@@ -11,17 +11,18 @@ Contains the server-side logic, API endpoints, code execution environments, and 
 - `server.js`: The main entry point for the backend server.
 - `evaluator.js`: Logic for evaluating code/algorithms.
 - `recommendation.js`: Logic for generating user recommendations.
-- `/prisma`: Contains `schema.prisma` definitions for the PostgreSQL database via Prisma ORM.
+- `database.json`: Local database / mock data file.
 - `/execution`: Directory likely used for isolated code execution or running test tasks.
-- `Dockerfile`: Containerization configuration for the backend.
 
 ### 2. `/dashboard` (React + Vite Frontend)
-Contains the user interface, a web dashboard for the application built with React and Vite. Features a premium "Deep Space Dark" theme with glassmorphism UI.
+Contains the user interface, likely a web dashboard for the application. Built with React and Vite.
 - `/src/App.jsx` & `/src/main.jsx`: Core application entry points.
-- `/src/components/`: Reusable React components (e.g., `CodeDemonstrator.jsx` integrates `@monaco-editor/react` for an advanced code editor).
+- `/src/components/`: Reusable React components.
+  - `CategoryPresentation.jsx`: Main modal rendering when a syllabus node is clicked. Houses the CLion-style debugger and tabbed workspace.
+  - `CodeDemonstrator.jsx`: Debugger code demonstrator component.
 - `/src/data/`: Data structures, constants, or mock data for the frontend.
-- `/src/App.css` & `/src/index.css`: Styling files. Follow the premium Vanilla CSS design system (Deep Space Dark Theme, Glassmorphism, CSS variables). Do NOT use Tailwind unless explicitly requested.
-- `Dockerfile`: Containerization configuration for the frontend.
+  - `/src/data/categories/`: Algorithm and data structure content files.
+- `/src/App.css` & `/src/index.css`: Styling files (note: standard CSS, adhere to the styling conventions present).
 
 ### 3. `/extension` (Chrome Extension)
 A browser extension associated with the project.
@@ -34,22 +35,38 @@ Testing framework and cases for the application.
 - `runner.js`: The main test runner script.
 - `/cases/`: Directory containing specific E2E test cases.
 
-### 5. Root Directory (`/`) Data, Scripts & Infrastructure
-The root contains numerous utility scripts, configuration files, and infrastructure definitions:
-- **Infrastructure**: `docker-compose.yml` for orchestrating services (db, backend, frontend) and `.github/workflows/ci.yml` for CI/CD.
-- **Agent Blueprints**: `/agent_instructions` contains task blueprints for specialized AI agents.
-- **Data Injection Scripts**: `inject_all.cjs`, `add_core_algos.cjs`, `add_math_chapters.cjs`, `rebuild_d_c.cjs` etc.
-- **Fix/Cleanup Scripts**: `fix_syntax.cjs`, `clean_syntax.cjs`, `fix_final.cjs`, `cleanup.cjs`, etc.
-- **Data Files**: `dp_data.json`, `math_data.cjs`, `graph_data_1.cjs`, etc. 
-- **PDF Resource**: `programa.pdf` (potentially the syllabus or course curriculum).
+### 5. Root Directory (`/`) Data & Scripts
+The root contains numerous CommonJS (`.cjs`) utility scripts and JSON data files. These are primarily used for processing, parsing, fixing, and injecting algorithmic and mathematical content.
+
+---
 
 ## 🛠 Guidelines for Agents
-1. **Frontend Changes**: Always look in `/dashboard/src/`. Component modifications go into `/components`. Follow the existing design aesthetics (Vanilla CSS, Deep Space Dark Theme, Glassmorphism, micro-animations). Ensure all components use predefined CSS variables from `index.css`.
+
+1. **Frontend Changes**: Always look in `/dashboard/src/`. Component modifications go into `/components`. Follow the existing design aesthetics (Vanilla CSS).
 2. **Backend/API Changes**: Look in `/backend`.
 3. **Extension Modifications**: Look in `/extension`. Ensure `manifest.json` permissions align with your changes.
 4. **Content Generation / Scripting**: If the user asks to modify algorithmic content (like Graphs, Math, Divide & Conquer), check the `.cjs` and `.json` data files in the root folder, or verify if they map to `/dashboard/src/data/`.
-5. **Transitional Chapters**: Categories that act as transitions to sub-algorithms (e.g., Shortest Path branching into Dijkstra, Bellman-Ford) are automatically detected in `CategoryPresentation.jsx` based on the presence of subcategories. For these, the UI hides the code and problem sections and instead displays a "Subcapitole / Algoritmi" interactive grid.
-6. **Testing & CI/CD**: E2E tests go to `/e2e_tests`. Unit and integration tests (Jest for backend, Vitest for frontend) are enforced via GitHub Actions in `.github/workflows/ci.yml`. Agents must ensure their code changes pass these automated CI checks.
-7. **Infrastructure & Deployment**: The project is fully containerized. Use `docker-compose up --build` to spin up the `db` (PostgreSQL), `backend`, and `frontend` services. Agents modifying environment variables, network ports, or dependencies must update `docker-compose.yml` and the respective `Dockerfile`s accordingly. Refer to `README-docker.md` for more details.
 
-When generating a response or plan, ensure you correctly target the relevant subdirectory to maintain structural integrity.
+5. **Aesthetics & UI Constraints**:
+   - **No Glassmorphism**: Do not use `backdrop-filter` or highly translucent panels in explanation popups/modals. Use solid dark themes.
+   - **No 3D Animations**: Do not use 3D transitions or spring layouts. Modal entries must use simple 2D animations (e.g. `@keyframes simpleSlideUp`).
+   - **CLion/IDE Dark Palette**: Use solid backgrounds like `#1e1f22` (CLion editor), `#1a1b1d` (IDE panels), and `#2b2d30` (borders/active areas).
+
+6. **CLion Debugger Layout & Logic**:
+   - **Left Pane (Code Editor)**: Syntax highlighted using the custom C++ tokenizer `highlightCpp`. Displays line numbers and CLion-style **inline variables** (e.g., `// max_val: 10`) next to the code line.
+   - **Vertical Control Strip**: Standard CLion debugger controls: Resume `▶`, Step Over `↷`, Step Back `↶`, Stop/Reset `■`, Run to End `⏭`.
+   - **Right Pane (Tabbed Workspace)**:
+     - **Debugger Tab**: Shows Call Stack Frames list and expandable tree-view of active Variables (supporting typings, e.g. `int`, `std::vector<int>`, etc.).
+     - **State Visualizer Tab**: Renders graphic elements like lists, trees, graphs, and matrices.
+     - **Console Tab**: Collects step-by-step logs from the debugger run.
+
+7. **Category Debugger States**:
+   - `getCategoryDebuggerState` handles custom state mappings for `Arrays`, `Divide_Conquer`, `Binary_Search`, and `Graphs/DFS/BFS`.
+   - For all other categories, a **dynamic regex parser** fallback extracts variables from the explanation text (matching patterns like `name = value`, `name este value`, `name devine value`) to populate the Variables list and inline labels.
+
+8. **Polymorphic Database Schemas (Matrices/Arrays)**:
+   - Handle variations in matrix definitions gracefully. Matrix representations inside data files might use `matrix.data` or `matrix.rows`.
+   - Cells in the matrix/array can be primitives (e.g., `5`) or objects (e.g., `{ val: 5 }`). Always use defensive checks (like `cell && typeof cell === 'object' ? cell.val : cell`) to avoid React render crashes (`Objects are not valid as a React child`).
+
+9. **Transitional Chapters**: Categories that act as transitions to sub-algorithms (e.g., Shortest Path branching into Dijkstra, Bellman-Ford) are automatically detected in `CategoryPresentation.jsx` based on the presence of subcategories. For these, the UI hides the code and problem sections and instead displays a "Subcapitole / Algoritmi" interactive grid.
+10. **Testing**: E2E tests go to `/e2e_tests`.

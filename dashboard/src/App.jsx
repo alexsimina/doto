@@ -3,13 +3,12 @@ import SyllabusTree from './components/SyllabusTree';
 import Recommendations from './components/Recommendations';
 import HistoryList from './components/HistoryList';
 import CategoryPresentation from './components/CategoryPresentation';
-import TypingTest from './components/TypingTest';
 
 import './index.css';
 
 function App() {
   const [progress, setProgress] = useState(null);
-  const [view, setView] = useState('syllabus'); // 'syllabus', 'dashboard', 'typing'
+  const [view, setView] = useState('syllabus'); // 'syllabus' or 'dashboard'
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
@@ -132,45 +131,23 @@ function App() {
       {/* Main Content Area */}
       <main className="main-content">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 0 32px' }}>
-          <h2 style={{ fontSize: '32px', letterSpacing: '-0.5px' }}>{view === 'typing' ? 'Typing Practice' : 'Dashboard'}</h2>
-          <div style={{ display: 'flex', gap: '16px' }}>
-            {view === 'dashboard' ? (
-              <button 
-                onClick={() => setView('typing')}
-                className="btn-primary glow-on-hover"
-                style={{ display: 'flex', gap: '10px', alignItems: 'center', padding: '14px 30px', fontSize: '16px', borderRadius: '16px', letterSpacing: '0.5px', background: 'linear-gradient(135deg, #10b981, #059669)' }}
-              >
-                <span style={{ fontSize: '22px' }}>⌨️</span> Typing Test
-              </button>
-            ) : (
-              <button 
-                onClick={() => setView('dashboard')}
-                className="btn-primary glow-on-hover"
-                style={{ display: 'flex', gap: '10px', alignItems: 'center', padding: '14px 30px', fontSize: '16px', borderRadius: '16px', letterSpacing: '0.5px' }}
-              >
-                <span style={{ fontSize: '22px' }}>◷</span> Înapoi la Dashboard
-              </button>
-            )}
-            <button 
-              onClick={() => setView('syllabus')}
-              className="btn-primary glow-on-hover"
-              style={{ display: 'flex', gap: '10px', alignItems: 'center', padding: '14px 30px', fontSize: '16px', borderRadius: '16px', letterSpacing: '0.5px' }}
-            >
-              <span style={{ fontSize: '22px' }}>⎈</span> Înapoi la Syllabus
-            </button>
-          </div>
+          <h2 style={{ fontSize: '32px', letterSpacing: '-0.5px' }}>Dashboard</h2>
+          <button 
+            onClick={() => setView('syllabus')}
+            className="btn-primary glow-on-hover"
+            style={{ display: 'flex', gap: '10px', alignItems: 'center', padding: '14px 30px', fontSize: '16px', borderRadius: '16px', letterSpacing: '0.5px' }}
+          >
+            <span style={{ fontSize: '22px' }}>⎈</span> Înapoi la Syllabus
+          </button>
         </div>
 
-        {view === 'typing' ? (
-          <TypingTest />
-        ) : (
-          <section className="glass-panel" style={{ padding: '32px', marginBottom: '32px' }}>
-            <h2 style={{ marginBottom: '24px', fontSize: '24px', display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <span style={{color: 'var(--accent-secondary)'}}>◷</span> Istoric Recent
-            </h2>
-            <HistoryList />
-          </section>
-        )}
+        {/* Top bar for History */}
+        <section className="glass-panel" style={{ padding: '32px', marginBottom: '32px' }}>
+          <h2 style={{ marginBottom: '24px', fontSize: '24px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <span style={{color: 'var(--accent-secondary)'}}>◷</span> Istoric Recent
+          </h2>
+          <HistoryList />
+        </section>
 
       </main>
     </div>

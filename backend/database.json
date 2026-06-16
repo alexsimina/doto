@@ -1,0 +1,61 @@
+{
+  "user_xp": {
+    "Math/Number_Theory": 0,
+    "Arrays": 20,
+    "Alg/Backtracking": 0,
+    "Sorting": 0,
+    "Strings": 0,
+    "Alg/Divide_Conquer": 0,
+    "Dynamic_Programming": 0,
+    "Graphs/DFS": 20,
+    "Graphs/BFS": 0,
+    "Data_Structures/RMQ": 0,
+    "Graphs/Shortest_Paths": 0,
+    "Graphs/MST": 0,
+    "Trees/Fenwick_Tree": 0,
+    "Trees/Segment_Trees": 0,
+    "Graphs/SCC_Biconnected": 0,
+    "Strings/Trie": 0,
+    "Strings/KMP": 0,
+    "Geometry/Computational": 0,
+    "Advanced_DP/CHT": 0,
+    "Trees/LCA": 0,
+    "Advanced_Graphs/Max_Flow": 0,
+    "Strings/Aho_Corasick": 0
+  },
+  "history": [
+    {
+      "problemId": "unknown",
+      "timestamp": "2026-06-09T12:43:46.969Z",
+      "evaluation": {
+        "topic": "Graphs/DFS",
+        "complexity": "O(V+E)",
+        "qualityScore": 70,
+        "isOptimal": true
+      },
+      "xpGained": 20
+    },
+    {
+      "problemId": "unknown",
+      "timestamp": "2026-06-09T12:45:12.405Z",
+      "evaluation": {
+        "topic": "Arrays",
+        "complexity": "O(N^2)",
+        "qualityScore": 70,
+        "isOptimal": false
+      },
+      "xpGained": 10
+    },
+    {
+      "problemId": "123",
+      "timestamp": "2026-06-09T12:48:25.574Z",
+      "evaluation": {
+        "topic": "Arrays",
+        "complexity": "O(N^2)",
+        "qualityScore": 70,
+        "isOptimal": false
+      },
+      "xpGained": 10
+    }
+  ]
+}

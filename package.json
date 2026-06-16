@@ -1,0 +1,13 @@
+{
+  "name": "doto-parser",
+  "version": "1.0.0",
+  "description": "Parser for Olympic Informatics cpp files",
+  "main": "parser.js",
+  "type": "module",
+  "scripts": {
+    "start": "node parser.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.11.1"
+  }
+}

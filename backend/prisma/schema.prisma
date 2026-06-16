@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id            Int            @id @default(autoincrement())
+  email         String         @unique
+  password_hash String
+  created_at    DateTime       @default(now())
+  submissions   Submission[]
+  typingStats   TypingStats[]
+}
+
+model Submission {
+  id         Int      @id @default(autoincrement())
+  user_id    Int
+  problem_id String
+  code       String
+  topic      String
+  score      Int
+  is_optimal Boolean
+  timestamp  DateTime @default(now())
+  user       User     @relation(fields: [user_id], references: [id])
+}
+
+model TypingStats {
+  id           Int      @id @default(autoincrement())
+  user_id      Int      @unique
+  wpm          Int
+  accuracy     Float
+  letter_stats Json
+  word_stats   Json
+  user         User     @relation(fields: [user_id], references: [id])
+}

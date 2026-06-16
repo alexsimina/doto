@@ -35,46 +35,28 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 7,
-      "text": "Inițializăm șirul de bază 'text' și modelul pe care vrem să-l căutăm 'pattern'.",
+      "line": 8,
+      "text": "Inițializăm șirul de bază 'text' cu valoarea 'algoritmica'.",
       "blocksVisual": [
         {
           "label": "Text",
           "groups": [
             [
-              {
-                "val": "a"
-              },
-              {
-                "val": "l"
-              },
-              {
-                "val": "g"
-              },
-              {
-                "val": "o"
-              },
-              {
-                "val": "r"
-              },
-              {
-                "val": "i"
-              },
-              {
-                "val": "t"
-              },
-              {
-                "val": "m"
-              },
-              {
-                "val": "i"
-              },
-              {
-                "val": "c"
-              },
-              {
-                "val": "a"
-              }
+              {"val": "a"}, {"val": "l"}, {"val": "g"}, {"val": "o"}, {"val": "r"}, {"val": "i"}, {"val": "t"}, {"val": "m"}, {"val": "i"}, {"val": "c"}, {"val": "a"}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 9,
+      "text": "Inițializăm șablonul (pattern) căutat cu 'ritm'.",
+      "blocksVisual": [
+        {
+          "label": "Text",
+          "groups": [
+            [
+              {"val": "a"}, {"val": "l"}, {"val": "g"}, {"val": "o"}, {"val": "r"}, {"val": "i"}, {"val": "t"}, {"val": "m"}, {"val": "i"}, {"val": "c"}, {"val": "a"}
             ]
           ]
         },
@@ -82,68 +64,160 @@ int main() {
           "label": "Pattern",
           "groups": [
             [
-              {
-                "val": "r"
-              },
-              {
-                "val": "i"
-              },
-              {
-                "val": "t"
-              },
-              {
-                "val": "m"
-              }
+              {"val": "r"}, {"val": "i"}, {"val": "t"}, {"val": "m"}
             ]
           ]
         }
       ]
     },
     {
-      "line": 11,
-      "text": "Folosim funcția 'find' pentru a căuta 'ritm'. Aceasta returnează indexul de început al primei apariții. Intern, C++ caută potriviri succesive.",
+      "line": 12,
+      "text": "Apelăm text.find(pattern) pentru a găsi 'ritm' în text. Începem căutarea de la indexul 0.",
       "blocksVisual": [
         {
-          "label": "Căutare 'find'",
+          "label": "Căutare index 0",
           "groups": [
             [
-              {
-                "val": "a"
-              },
-              {
-                "val": "l"
-              },
-              {
-                "val": "g"
-              },
-              {
-                "val": "o"
-              },
-              {
-                "val": "r",
-                "active": true
-              },
-              {
-                "val": "i",
-                "active": true
-              },
-              {
-                "val": "t",
-                "active": true
-              },
-              {
-                "val": "m",
-                "active": true
-              },
-              {
-                "val": "i"
-              },
-              {
-                "val": "c"
-              },
-              {
-                "val": "a"
-              }
+              {"val": "a", "active": true}, {"val": "l"}, {"val": "g"}, {"val": "o"}, {"val": "r"}, {"val": "i"}, {"val": "t"}, {"val": "m"}, {"val": "i"}, {"val": "c"}, {"val": "a"}
+            ],
+            [
+              {"val": "r", "active": true}, {"val": "i"}, {"val": "t"}, {"val": "m"}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "Litera de la indexul 0 ('a') nu corespunde cu prima literă din pattern ('r'). Avansăm la indexul 1.",
+      "blocksVisual": [
+        {
+          "label": "Căutare index 1",
+          "groups": [
+            [
+              {"val": "a"}, {"val": "l", "active": true}, {"val": "g"}, {"val": "o"}, {"val": "r"}, {"val": "i"}, {"val": "t"}, {"val": "m"}, {"val": "i"}, {"val": "c"}, {"val": "a"}
+            ],
+            [
+              {"val": "r", "active": true}, {"val": "i"}, {"val": "t"}, {"val": "m"}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "Litera de la indexul 1 ('l') nu corespunde cu 'r'. Avansăm la indexul 2.",
+      "blocksVisual": [
+        {
+          "label": "Căutare index 2",
+          "groups": [
+            [
+              {"val": "a"}, {"val": "l"}, {"val": "g", "active": true}, {"val": "o"}, {"val": "r"}, {"val": "i"}, {"val": "t"}, {"val": "m"}, {"val": "i"}, {"val": "c"}, {"val": "a"}
+            ],
+            [
+              {"val": "r", "active": true}, {"val": "i"}, {"val": "t"}, {"val": "m"}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "Litera de la indexul 2 ('g') nu corespunde cu 'r'. Avansăm la indexul 3.",
+      "blocksVisual": [
+        {
+          "label": "Căutare index 3",
+          "groups": [
+            [
+              {"val": "a"}, {"val": "l"}, {"val": "g"}, {"val": "o", "active": true}, {"val": "r"}, {"val": "i"}, {"val": "t"}, {"val": "m"}, {"val": "i"}, {"val": "c"}, {"val": "a"}
+            ],
+            [
+              {"val": "r", "active": true}, {"val": "i"}, {"val": "t"}, {"val": "m"}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "Litera de la indexul 3 ('o') nu corespunde cu 'r'. Avansăm la indexul 4.",
+      "blocksVisual": [
+        {
+          "label": "Căutare index 4",
+          "groups": [
+            [
+              {"val": "a"}, {"val": "l"}, {"val": "g"}, {"val": "o"}, {"val": "r", "active": true}, {"val": "i"}, {"val": "t"}, {"val": "m"}, {"val": "i"}, {"val": "c"}, {"val": "a"}
+            ],
+            [
+              {"val": "r", "active": true}, {"val": "i"}, {"val": "t"}, {"val": "m"}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "Litera de la indexul 4 ('r') se potrivește cu prima literă din pattern ('r')! Verificăm caracterele următoare.",
+      "blocksVisual": [
+        {
+          "label": "Potrivire parțială",
+          "groups": [
+            [
+              {"val": "a"}, {"val": "l"}, {"val": "g"}, {"val": "o"}, {"val": "r", "sorted": true}, {"val": "i", "active": true}, {"val": "t"}, {"val": "m"}, {"val": "i"}, {"val": "c"}, {"val": "a"}
+            ],
+            [
+              {"val": "r", "sorted": true}, {"val": "i", "active": true}, {"val": "t"}, {"val": "m"}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "Caracterele de la indexul 5 din text ('i') și indexul 1 din pattern ('i') se potrivesc! Continuăm.",
+      "blocksVisual": [
+        {
+          "label": "Potrivire parțială",
+          "groups": [
+            [
+              {"val": "a"}, {"val": "l"}, {"val": "g"}, {"val": "o"}, {"val": "r", "sorted": true}, {"val": "i", "sorted": true}, {"val": "t", "active": true}, {"val": "m"}, {"val": "i"}, {"val": "c"}, {"val": "a"}
+            ],
+            [
+              {"val": "r", "sorted": true}, {"val": "i", "sorted": true}, {"val": "t", "active": true}, {"val": "m"}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "Caracterele de la indexul 6 din text ('t') și indexul 2 din pattern ('t') se potrivesc! Mai avem un caracter.",
+      "blocksVisual": [
+        {
+          "label": "Potrivire parțială",
+          "groups": [
+            [
+              {"val": "a"}, {"val": "l"}, {"val": "g"}, {"val": "o"}, {"val": "r", "sorted": true}, {"val": "i", "sorted": true}, {"val": "t", "sorted": true}, {"val": "m", "active": true}, {"val": "i"}, {"val": "c"}, {"val": "a"}
+            ],
+            [
+              {"val": "r", "sorted": true}, {"val": "i", "sorted": true}, {"val": "t", "sorted": true}, {"val": "m", "active": true}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "Toate caracterele șablonului s-au potrivit la indexul 4! Funcția find va returna valoarea 4.",
+      "blocksVisual": [
+        {
+          "label": "Potrivire completă la indexul 4",
+          "groups": [
+            [
+              {"val": "a"}, {"val": "l"}, {"val": "g"}, {"val": "o"}, {"val": "r", "sorted": true}, {"val": "i", "sorted": true}, {"val": "t", "sorted": true}, {"val": "m", "sorted": true}, {"val": "i"}, {"val": "c"}, {"val": "a"}
+            ],
+            [
+              {"val": "r", "sorted": true}, {"val": "i", "sorted": true}, {"val": "t", "sorted": true}, {"val": "m", "sorted": true}
             ]
           ]
         }
@@ -151,69 +225,128 @@ int main() {
     },
     {
       "line": 13,
-      "text": "'string::npos' este o constantă specială care înseamnă 'nu a fost găsit'. Aici, condiția e adevărată, deci am găsit la indexul 4."
-    },
-    {
-      "line": 17,
-      "text": "Folosim 'substr(index, lungime)' pentru a extrage 4 caractere începând de la indexul 4. Obținem din nou 'ritm'.",
+      "text": "Verificăm dacă subșirul a fost găsit. Valoarea returnată (4) este diferită de 'string::npos' (care indică absența).",
       "blocksVisual": [
         {
-          "label": "Extragere 'substr'",
+          "label": "Verificare poziție",
           "groups": [
             [
-              {
-                "val": "r",
-                "sorted": true
-              },
-              {
-                "val": "i",
-                "sorted": true
-              },
-              {
-                "val": "t",
-                "sorted": true
-              },
-              {
-                "val": "m",
-                "sorted": true
-              }
+              {"val": "4 != string::npos", "sorted": true}
             ]
           ]
         }
       ]
     },
     {
-      "line": 21,
-      "text": "Folosim 'replace(index, lungime, noul_string)'. Înlocuim cele 4 caractere ('ritm') cu 'bra'. Rezultatul final va fi 'algebra'.",
+      "line": 14,
+      "text": "Condiția este adevărată, deci afișăm mesajul de succes la consolă.",
       "blocksVisual": [
         {
-          "label": "Înlocuire",
+          "label": "Output consolă",
           "groups": [
             [
-              {
-                "val": "a"
-              },
-              {
-                "val": "l"
-              },
-              {
-                "val": "g"
-              },
-              {
-                "val": "e"
-              },
-              {
-                "val": "b",
-                "active": true
-              },
-              {
-                "val": "r",
-                "active": true
-              },
-              {
-                "val": "a",
-                "active": true
-              }
+              {"val": "Am găsit 'ritm' la indexul 4", "sorted": true}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 19,
+      "text": "Apelăm text.substr(pos, 4) pentru a extrage 4 caractere începând de la indexul 4 (care conține 'ritm').",
+      "blocksVisual": [
+        {
+          "label": "Extragere substring",
+          "groups": [
+            [
+              {"val": "a"}, {"val": "l"}, {"val": "g"}, {"val": "o"}, {"val": "r", "active": true}, {"val": "i", "active": true}, {"val": "t", "active": true}, {"val": "m", "active": true}, {"val": "i"}, {"val": "c"}, {"val": "a"}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 19,
+      "text": "Subșirul 'sub' primește valoarea 'ritm'. Acesta este alocat ca un string nou în memorie.",
+      "blocksVisual": [
+        {
+          "label": "Variabila sub",
+          "groups": [
+            [
+              {"val": "r", "sorted": true}, {"val": "i", "sorted": true}, {"val": "t", "sorted": true}, {"val": "m", "sorted": true}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 20,
+      "text": "Afișăm substringul extras la consolă: 'Substring extras: ritm'.",
+      "blocksVisual": [
+        {
+          "label": "Output consolă",
+          "groups": [
+            [
+              {"val": "Substring extras: ritm", "sorted": true}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 24,
+      "text": "Apelăm text.replace(pos, 4, 'bra') pentru a înlocui subșirul de la indexul 4 de lungime 4 ('ritm') cu textul 'bra'.",
+      "blocksVisual": [
+        {
+          "label": "Înlocuire caractere",
+          "groups": [
+            [
+              {"val": "a"}, {"val": "l"}, {"val": "g"}, {"val": "o"}, {"val": "r", "active": true}, {"val": "i", "active": true}, {"val": "t", "active": true}, {"val": "m", "active": true}, {"val": "i"}, {"val": "c"}, {"val": "a"}
+            ],
+            [
+              {"val": "b", "sorted": true}, {"val": "r", "sorted": true}, {"val": "a", "sorted": true}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 24,
+      "text": "După eliminarea celor 4 caractere ('ritm') și inserarea celor 3 ('bra'), conținutul devine 'algebraica'.",
+      "blocksVisual": [
+        {
+          "label": "Șir modificat",
+          "groups": [
+            [
+              {"val": "a"}, {"val": "l"}, {"val": "g"}, {"val": "e"}, {"val": "b", "sorted": true}, {"val": "r", "sorted": true}, {"val": "a", "sorted": true}, {"val": "i"}, {"val": "c"}, {"val": "a"}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 25,
+      "text": "Afișăm rezultatul final la consolă: 'După înlocuire: algebraica'.",
+      "blocksVisual": [
+        {
+          "label": "Output consolă",
+          "groups": [
+            [
+              {"val": "După înlocuire: algebraica", "sorted": true}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 28,
+      "text": "Programul se încheie returnând 0, semnalizând rularea cu succes.",
+      "blocksVisual": [
+        {
+          "label": "Return",
+          "groups": [
+            [
+              {"val": "EXIT SUCCESS (0)", "sorted": true}
             ]
           ]
         }

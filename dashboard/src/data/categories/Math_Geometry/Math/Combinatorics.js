@@ -28,8 +28,7 @@ void pascalTriangle(int numRows) {
         for (int j = 0; j <= i; j++) {
             cout << triangle[i][j] << " ";
         }
-        cout << "
-";
+        cout << "\n";
     }
 }
 
@@ -40,464 +39,355 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 7,
-      "text": "Vrem să generăm primele 5 rânduri din Triunghiul lui Pascal (indexate de la 0 la 4).",
-      "blocksVisual": [
-        {
-          "label": "Inițializare",
-          "groups": [
-            [
-              {
-                "val": "i=0"
-              },
-              {
-                "val": "i=1"
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 11,
-      "text": "Pentru i = 0: Rândul are lungimea 1. Singurul element este setat la 1. (Combinări de 0 luate câte 0)",
+      "line": 12,
+      "text": "Pasul 1: Inițializăm generatorul Triunghiului lui Pascal pentru numRows = 5. Alocăm vectorul de vectori.",
       "matrix": {
-        "headers": [
-          "0",
-          "1",
-          "2",
-          "3",
-          "4"
-        ],
+        "headers": ["0", "1", "2", "3", "4"],
         "data": [
-          [
-            "1",
-            "",
-            "",
-            "",
-            ""
-          ],
-          [
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          [
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          [
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          [
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        ],
-        "activeCells": [
-          {
-            "r": 0,
-            "c": 0
-          }
-        ]
-      }
-    },
-    {
-      "line": 11,
-      "text": "Pentru i = 1: Rândul are lungimea 2. Primul și ultimul element sunt setate la 1.",
-      "matrix": {
-        "headers": [
-          "0",
-          "1",
-          "2",
-          "3",
-          "4"
-        ],
-        "data": [
-          [
-            "1",
-            "",
-            "",
-            "",
-            ""
-          ],
-          [
-            "1",
-            "1",
-            "",
-            "",
-            ""
-          ],
-          [
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          [
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          [
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        ],
-        "activeCells": [
-          {
-            "r": 1,
-            "c": 0
-          },
-          {
-            "r": 1,
-            "c": 1
-          }
-        ]
-      }
-    },
-    {
-      "line": 9,
-      "text": "Pentru i = 2: Rândul are lungimea 3. Elementele capetelor (j=0 și j=2) primesc automat valoarea 1.",
-      "matrix": {
-        "headers": [
-          "0",
-          "1",
-          "2",
-          "3",
-          "4"
-        ],
-        "data": [
-          [
-            "1",
-            "",
-            "",
-            "",
-            ""
-          ],
-          [
-            "1",
-            "1",
-            "",
-            "",
-            ""
-          ],
-          [
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          [
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          [
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
+          ["", "", "", "", ""],
+          ["", "", "", "", ""],
+          ["", "", "", "", ""],
+          ["", "", "", "", ""],
+          ["", "", "", "", ""]
         ],
         "activeCells": [],
         "highlightCells": []
       }
     },
     {
-      "line": 16,
-      "text": "Calculăm elementele de la mijloc. Pentru j=1: adunăm valorile de deasupra `triangle[1][0] + triangle[1][1] = 1 + 1 = 2`.",
+      "line": 15,
+      "text": "Pasul 2: i = 0 (primul rând). Redimensionăm rândul la lungimea 1.",
       "matrix": {
-        "headers": [
-          "0",
-          "1",
-          "2",
-          "3",
-          "4"
-        ],
+        "headers": ["0", "1", "2", "3", "4"],
         "data": [
-          [
-            "1",
-            "",
-            "",
-            "",
-            ""
-          ],
-          [
-            "1",
-            "1",
-            "",
-            "",
-            ""
-          ],
-          [
-            "1",
-            "2",
-            "1",
-            "",
-            ""
-          ],
-          [
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          [
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
+          ["", "", "", "", ""],
+          ["", "", "", "", ""],
+          ["", "", "", "", ""],
+          ["", "", "", "", ""],
+          ["", "", "", "", ""]
         ],
-        "activeCells": [
-          {
-            "r": 2,
-            "c": 1
-          }
-        ],
-        "highlightCells": [
-          {
-            "r": 1,
-            "c": 0
-          },
-          {
-            "r": 1,
-            "c": 1
-          }
-        ]
-      }
-    },
-    {
-      "line": 9,
-      "text": "Pentru i = 3: Rândul capătă lungimea 4. Capetele primesc 1.",
-      "matrix": {
-        "headers": [
-          "0",
-          "1",
-          "2",
-          "3",
-          "4"
-        ],
-        "data": [
-          [
-            "1",
-            "",
-            "",
-            "",
-            ""
-          ],
-          [
-            "1",
-            "1",
-            "",
-            "",
-            ""
-          ],
-          [
-            "1",
-            "2",
-            "1",
-            "",
-            ""
-          ],
-          [
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          [
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        ],
-        "activeCells": [],
+        "activeCells": [{ "r": 0, "c": 0 }],
         "highlightCells": []
       }
     },
     {
-      "line": 16,
-      "text": "Pentru j=1: 1 + 2 = 3. Pentru j=2: 2 + 1 = 3.",
+      "line": 17,
+      "text": "Pasul 3: triangle[0][0] = 1 (Combinări de 0 luate câte 0).",
       "matrix": {
-        "headers": [
-          "0",
-          "1",
-          "2",
-          "3",
-          "4"
-        ],
+        "headers": ["0", "1", "2", "3", "4"],
         "data": [
-          [
-            "1",
-            "",
-            "",
-            "",
-            ""
-          ],
-          [
-            "1",
-            "1",
-            "",
-            "",
-            ""
-          ],
-          [
-            "1",
-            "2",
-            "1",
-            "",
-            ""
-          ],
-          [
-            "1",
-            "3",
-            "3",
-            "1",
-            ""
-          ],
-          [
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
+          ["1", "", "", "", ""],
+          ["", "", "", "", ""],
+          ["", "", "", "", ""],
+          ["", "", "", "", ""],
+          ["", "", "", "", ""]
         ],
-        "activeCells": [
-          {
-            "r": 3,
-            "c": 1
-          },
-          {
-            "r": 3,
-            "c": 2
-          }
-        ],
-        "highlightCells": [
-          {
-            "r": 2,
-            "c": 0
-          },
-          {
-            "r": 2,
-            "c": 1
-          },
-          {
-            "r": 2,
-            "c": 2
-          }
-        ]
+        "activeCells": [{ "r": 0, "c": 0 }],
+        "highlightCells": []
       }
     },
     {
-      "line": 16,
-      "text": "Pentru i = 4: Capetele primesc 1. j=1: 1+3=4. j=2: 3+3=6. j=3: 3+1=4.",
+      "line": 15,
+      "text": "Pasul 4: Incrementăm i la 1. Redimensionăm rândul la lungimea 2.",
       "matrix": {
-        "headers": [
-          "0",
-          "1",
-          "2",
-          "3",
-          "4"
-        ],
+        "headers": ["0", "1", "2", "3", "4"],
         "data": [
-          [
-            "1",
-            "",
-            "",
-            "",
-            ""
-          ],
-          [
-            "1",
-            "1",
-            "",
-            "",
-            ""
-          ],
-          [
-            "1",
-            "2",
-            "1",
-            "",
-            ""
-          ],
-          [
-            "1",
-            "3",
-            "3",
-            "1",
-            ""
-          ],
-          [
-            "1",
-            "4",
-            "6",
-            "4",
-            "1"
-          ]
+          ["1", "", "", "", ""],
+          ["", "", "", "", ""],
+          ["", "", "", "", ""],
+          ["", "", "", "", ""],
+          ["", "", "", "", ""]
         ],
-        "activeCells": [
-          {
-            "r": 4,
-            "c": 1
-          },
-          {
-            "r": 4,
-            "c": 2
-          },
-          {
-            "r": 4,
-            "c": 3
-          }
+        "activeCells": [{ "r": 1, "c": 0 }, { "r": 1, "c": 1 }],
+        "highlightCells": []
+      }
+    },
+    {
+      "line": 17,
+      "text": "Pasul 5: Setăm primul element de pe rândul 1 la 1: triangle[1][0] = 1.",
+      "matrix": {
+        "headers": ["0", "1", "2", "3", "4"],
+        "data": [
+          ["1", "", "", "", ""],
+          ["1", "", "", "", ""],
+          ["", "", "", "", ""],
+          ["", "", "", "", ""],
+          ["", "", "", "", ""]
         ],
-        "highlightCells": [
-          {
-            "r": 3,
-            "c": 0
-          },
-          {
-            "r": 3,
-            "c": 1
-          },
-          {
-            "r": 3,
-            "c": 2
-          },
-          {
-            "r": 3,
-            "c": 3
-          }
-        ]
+        "activeCells": [{ "r": 1, "c": 0 }],
+        "highlightCells": []
+      }
+    },
+    {
+      "line": 18,
+      "text": "Pasul 6: Setăm ultimul element de pe rândul 1 la 1: triangle[1][1] = 1.",
+      "matrix": {
+        "headers": ["0", "1", "2", "3", "4"],
+        "data": [
+          ["1", "", "", "", ""],
+          ["1", "1", "", "", ""],
+          ["", "", "", "", ""],
+          ["", "", "", "", ""],
+          ["", "", "", "", ""]
+        ],
+        "activeCells": [{ "r": 1, "c": 1 }],
+        "highlightCells": []
+      }
+    },
+    {
+      "line": 15,
+      "text": "Pasul 7: Incrementăm i la 2. Redimensionăm rândul 2 la lungimea 3.",
+      "matrix": {
+        "headers": ["0", "1", "2", "3", "4"],
+        "data": [
+          ["1", "", "", "", ""],
+          ["1", "1", "", "", ""],
+          ["", "", "", "", ""],
+          ["", "", "", "", ""],
+          ["", "", "", "", ""]
+        ],
+        "activeCells": [{ "r": 2, "c": 0 }, { "r": 2, "c": 1 }, { "r": 2, "c": 2 }],
+        "highlightCells": []
+      }
+    },
+    {
+      "line": 17,
+      "text": "Pasul 8: Primul element: triangle[2][0] = 1.",
+      "matrix": {
+        "headers": ["0", "1", "2", "3", "4"],
+        "data": [
+          ["1", "", "", "", ""],
+          ["1", "1", "", "", ""],
+          ["1", "", "", "", ""],
+          ["", "", "", "", ""],
+          ["", "", "", "", ""]
+        ],
+        "activeCells": [{ "r": 2, "c": 0 }],
+        "highlightCells": []
+      }
+    },
+    {
+      "line": 20,
+      "text": "Pasul 9: Rândul 2, j = 1. Calculăm elementul interior: triangle[2][1] = triangle[1][0] + triangle[1][1].",
+      "matrix": {
+        "headers": ["0", "1", "2", "3", "4"],
+        "data": [
+          ["1", "", "", "", ""],
+          ["1", "1", "", "", ""],
+          ["1", "", "", "", ""],
+          ["", "", "", "", ""],
+          ["", "", "", "", ""]
+        ],
+        "activeCells": [{ "r": 2, "c": 1 }],
+        "highlightCells": [{ "r": 1, "c": 0 }, { "r": 1, "c": 1 }]
+      }
+    },
+    {
+      "line": 22,
+      "text": "Pasul 10: Sumăm valorile: 1 + 1 = 2. Deci triangle[2][1] = 2.",
+      "matrix": {
+        "headers": ["0", "1", "2", "3", "4"],
+        "data": [
+          ["1", "", "", "", ""],
+          ["1", "1", "", "", ""],
+          ["1", "2", "", "", ""],
+          ["", "", "", "", ""],
+          ["", "", "", "", ""]
+        ],
+        "activeCells": [{ "r": 2, "c": 1 }],
+        "highlightCells": [{ "r": 1, "c": 0 }, { "r": 1, "c": 1 }]
+      }
+    },
+    {
+      "line": 18,
+      "text": "Pasul 11: Setăm ultimul element: triangle[2][2] = 1.",
+      "matrix": {
+        "headers": ["0", "1", "2", "3", "4"],
+        "data": [
+          ["1", "", "", "", ""],
+          ["1", "1", "", "", ""],
+          ["1", "2", "1", "", ""],
+          ["", "", "", "", ""],
+          ["", "", "", "", ""]
+        ],
+        "activeCells": [{ "r": 2, "c": 2 }],
+        "highlightCells": []
+      }
+    },
+    {
+      "line": 15,
+      "text": "Pasul 12: Incrementăm i la 3. Redimensionăm rândul 3 la lungimea 4.",
+      "matrix": {
+        "headers": ["0", "1", "2", "3", "4"],
+        "data": [
+          ["1", "", "", "", ""],
+          ["1", "1", "", "", ""],
+          ["1", "2", "1", "", ""],
+          ["", "", "", "", ""],
+          ["", "", "", "", ""]
+        ],
+        "activeCells": [{ "r": 3, "c": 0 }, { "r": 3, "c": 1 }, { "r": 3, "c": 2 }, { "r": 3, "c": 3 }],
+        "highlightCells": []
+      }
+    },
+    {
+      "line": 17,
+      "text": "Pasul 13: Setăm triangle[3][0] = 1.",
+      "matrix": {
+        "headers": ["0", "1", "2", "3", "4"],
+        "data": [
+          ["1", "", "", "", ""],
+          ["1", "1", "", "", ""],
+          ["1", "2", "1", "", ""],
+          ["1", "", "", "", ""],
+          ["", "", "", "", ""]
+        ],
+        "activeCells": [{ "r": 3, "c": 0 }],
+        "highlightCells": []
+      }
+    },
+    {
+      "line": 22,
+      "text": "Pasul 14: Rândul 3, j = 1. Calculăm elementul din stânga sus + cel de deasupra: 1 + 2 = 3. Deci triangle[3][1] = 3.",
+      "matrix": {
+        "headers": ["0", "1", "2", "3", "4"],
+        "data": [
+          ["1", "", "", "", ""],
+          ["1", "1", "", "", ""],
+          ["1", "2", "1", "", ""],
+          ["1", "3", "", "", ""],
+          ["", "", "", "", ""]
+        ],
+        "activeCells": [{ "r": 3, "c": 1 }],
+        "highlightCells": [{ "r": 2, "c": 0 }, { "r": 2, "c": 1 }]
+      }
+    },
+    {
+      "line": 22,
+      "text": "Pasul 15: Rândul 3, j = 2. Calculăm elementul: 2 + 1 = 3. Deci triangle[3][2] = 3.",
+      "matrix": {
+        "headers": ["0", "1", "2", "3", "4"],
+        "data": [
+          ["1", "", "", "", ""],
+          ["1", "1", "", "", ""],
+          ["1", "2", "1", "", ""],
+          ["1", "3", "3", "", ""],
+          ["", "", "", "", ""]
+        ],
+        "activeCells": [{ "r": 3, "c": 2 }],
+        "highlightCells": [{ "r": 2, "c": 1 }, { "r": 2, "c": 2 }]
+      }
+    },
+    {
+      "line": 18,
+      "text": "Pasul 16: Setăm ultimul element: triangle[3][3] = 1.",
+      "matrix": {
+        "headers": ["0", "1", "2", "3", "4"],
+        "data": [
+          ["1", "", "", "", ""],
+          ["1", "1", "", "", ""],
+          ["1", "2", "1", "", ""],
+          ["1", "3", "3", "1", ""],
+          ["", "", "", "", ""]
+        ],
+        "activeCells": [{ "r": 3, "c": 3 }],
+        "highlightCells": []
+      }
+    },
+    {
+      "line": 15,
+      "text": "Pasul 17: Incrementăm i la 4. Redimensionăm ultimul rând la lungimea 5.",
+      "matrix": {
+        "headers": ["0", "1", "2", "3", "4"],
+        "data": [
+          ["1", "", "", "", ""],
+          ["1", "1", "", "", ""],
+          ["1", "2", "1", "", ""],
+          ["1", "3", "3", "1", ""],
+          ["", "", "", "", ""]
+        ],
+        "activeCells": [{ "r": 4, "c": 0 }, { "r": 4, "c": 1 }, { "r": 4, "c": 2 }, { "r": 4, "c": 3 }, { "r": 4, "c": 4 }],
+        "highlightCells": []
+      }
+    },
+    {
+      "line": 17,
+      "text": "Pasul 18: Setăm triangle[4][0] = 1.",
+      "matrix": {
+        "headers": ["0", "1", "2", "3", "4"],
+        "data": [
+          ["1", "", "", "", ""],
+          ["1", "1", "", "", ""],
+          ["1", "2", "1", "", ""],
+          ["1", "3", "3", "1", ""],
+          ["1", "", "", "", ""]
+        ],
+        "activeCells": [{ "r": 4, "c": 0 }],
+        "highlightCells": []
+      }
+    },
+    {
+      "line": 22,
+      "text": "Pasul 19: Rândul 4, j = 1. Adunăm: 1 + 3 = 4. triangle[4][1] = 4.",
+      "matrix": {
+        "headers": ["0", "1", "2", "3", "4"],
+        "data": [
+          ["1", "", "", "", ""],
+          ["1", "1", "", "", ""],
+          ["1", "2", "1", "", ""],
+          ["1", "3", "3", "1", ""],
+          ["1", "4", "", "", ""]
+        ],
+        "activeCells": [{ "r": 4, "c": 1 }],
+        "highlightCells": [{ "r": 3, "c": 0 }, { "r": 3, "c": 1 }]
+      }
+    },
+    {
+      "line": 22,
+      "text": "Pasul 20: Rândul 4, j = 2. Adunăm: 3 + 3 = 6. triangle[4][2] = 6 (Combinări de 4 luate câte 2).",
+      "matrix": {
+        "headers": ["0", "1", "2", "3", "4"],
+        "data": [
+          ["1", "", "", "", ""],
+          ["1", "1", "", "", ""],
+          ["1", "2", "1", "", ""],
+          ["1", "3", "3", "1", ""],
+          ["1", "4", "6", "", ""]
+        ],
+        "activeCells": [{ "r": 4, "c": 2 }],
+        "highlightCells": [{ "r": 3, "c": 1 }, { "r": 3, "c": 2 }]
+      }
+    },
+    {
+      "line": 22,
+      "text": "Pasul 21: Rândul 4, j = 3. Adunăm: 3 + 1 = 4. triangle[4][3] = 4.",
+      "matrix": {
+        "headers": ["0", "1", "2", "3", "4"],
+        "data": [
+          ["1", "", "", "", ""],
+          ["1", "1", "", "", ""],
+          ["1", "2", "1", "", ""],
+          ["1", "3", "3", "1", ""],
+          ["1", "4", "6", "4", ""]
+        ],
+        "activeCells": [{ "r": 4, "c": 3 }],
+        "highlightCells": [{ "r": 3, "c": 2 }, { "r": 3, "c": 3 }]
+      }
+    },
+    {
+      "line": 18,
+      "text": "Pasul 22: Setăm ultimul element: triangle[4][4] = 1. Generarea triunghiului s-a încheiat cu succes!",
+      "matrix": {
+        "headers": ["0", "1", "2", "3", "4"],
+        "data": [
+          ["1", "", "", "", ""],
+          ["1", "1", "", "", ""],
+          ["1", "2", "1", "", ""],
+          ["1", "3", "3", "1", ""],
+          ["1", "4", "6", "4", "1"]
+        ],
+        "activeCells": [{ "r": 4, "c": 4 }],
+        "highlightCells": []
       }
     }
   ],

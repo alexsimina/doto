@@ -27,300 +27,192 @@ int main() {
 `,
   "explanations": [
     {
+      "line": 11,
+      "text": "Apelăm funcția fastExpo(a = 2, n = 10) pentru a calcula 2^10.",
+      "blocksVisual": [
+        { "label": "Apel fastExpo(2, 10)", "groups": [[{"val": "2^10"}]] }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "Verificăm dacă exponentul n == 0. n = 10, deci continuăm.",
+      "blocksVisual": [
+        { "label": "n == 0", "groups": [[{"val": "Fals"}]] }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Verificăm dacă n este par: n % 2 == 0 (10 % 2 == 0) este adevărat.",
+      "blocksVisual": [
+        { "label": "Paritate", "groups": [[{"val": "Par", "sorted": true}]] }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "Apelăm recursiv fastExpo(a, n / 2) => fastExpo(2, 5) pentru a reduce problema la jumătate.",
+      "blocksVisual": [
+        { "label": "Stivă", "groups": [[{"val": "fastExpo(2, 5)"}]] }
+      ]
+    },
+    {
+      "line": 11,
+      "text": "Intrăm în noul apel fastExpo(a = 2, n = 5).",
+      "blocksVisual": [
+        { "label": "Apel fastExpo(2, 5)", "groups": [[{"val": "2^5"}]] }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "Verificăm dacă n == 0. Cum n = 5, continuăm.",
+      "blocksVisual": [
+        { "label": "n == 0", "groups": [[{"val": "Fals"}]] }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Verificăm dacă n % 2 == 0. n = 5 este impar, deci trecem la ramura else.",
+      "blocksVisual": [
+        { "label": "Paritate", "groups": [[{"val": "Impar", "active": true}]] }
+      ]
+    },
+    {
       "line": 17,
-      "text": "Apelăm funcția fastExpo pentru a calcula 2^10.",
+      "text": "Conform regulii pentru impari, apelăm fastExpo(a, n - 1) => fastExpo(2, 4). Soluția va fi 2 * fastExpo(2, 4).",
       "blocksVisual": [
-        {
-          "label": "Stare",
-          "groups": [
-            [
-              {
-                "val": "Calcul: 2^10",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 7,
-      "text": "Exponentul 10 este par. Conform strategiei Divide et Impera, calculăm întâi a^(n/2), adică 2^5.",
-      "blocksVisual": [
-        {
-          "label": "Înjumătățire",
-          "groups": [
-            [
-              {
-                "val": "Calculăm 2^5"
-              }
-            ],
-            [
-              {
-                "val": "Urmează: x * x",
-                "hidden": true
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 8,
-      "text": "Ne adâncim recursiv pentru a calcula fastExpo(2, 5).",
-      "blocksVisual": [
-        {
-          "label": "Apel recursiv",
-          "groups": [
-            [
-              {
-                "val": "Calcul: 2^5",
-                "active": true
-              }
-            ]
-          ]
-        }
+        { "label": "Stivă", "groups": [[{"val": "fastExpo(2, 4)"}]] }
       ]
     },
     {
       "line": 11,
-      "text": "Exponentul 5 este impar. Reducem problema calculând întâi 2^4.",
+      "text": "Intrăm în fastExpo(a = 2, n = 4).",
       "blocksVisual": [
-        {
-          "label": "Impar",
-          "groups": [
-            [
-              {
-                "val": "Calculăm 2^4"
-              }
-            ],
-            [
-              {
-                "val": "Urmează: 2 * (2^4)",
-                "hidden": true
-              }
-            ]
-          ]
-        }
+        { "label": "Apel fastExpo(2, 4)", "groups": [[{"val": "2^4"}]] }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "Verificăm dacă n == 0. Cum n = 4, continuăm.",
+      "blocksVisual": [
+        { "label": "n == 0", "groups": [[{"val": "Fals"}]] }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Deoarece n = 4 este par, vom calcula jumătatea lui: apelăm fastExpo(2, 2).",
+      "blocksVisual": [
+        { "label": "Stivă", "groups": [[{"val": "fastExpo(2, 2)"}]] }
       ]
     },
     {
       "line": 11,
-      "text": "Apel recursiv pentru fastExpo(2, 4).",
+      "text": "Intrăm în fastExpo(a = 2, n = 2).",
       "blocksVisual": [
-        {
-          "label": "Apel recursiv",
-          "groups": [
-            [
-              {
-                "val": "Calcul: 2^4",
-                "active": true
-              }
-            ]
-          ]
-        }
+        { "label": "Apel fastExpo(2, 2)", "groups": [[{"val": "2^2"}]] }
       ]
     },
     {
-      "line": 7,
-      "text": "Exponentul 4 este par. Înjumătățim la fastExpo(2, 2).",
+      "line": 12,
+      "text": "Verificăm dacă n == 0. Cum n = 2, continuăm.",
       "blocksVisual": [
-        {
-          "label": "Înjumătățire",
-          "groups": [
-            [
-              {
-                "val": "Calculăm 2^2"
-              }
-            ],
-            [
-              {
-                "val": "Urmează: y * y",
-                "hidden": true
-              }
-            ]
-          ]
-        }
+        { "label": "n == 0", "groups": [[{"val": "Fals"}]] }
       ]
     },
     {
-      "line": 8,
-      "text": "Apel recursiv pentru fastExpo(2, 2).",
+      "line": 13,
+      "text": "Exponentul 2 este par, deci apelăm recursiv fastExpo(2, 1).",
       "blocksVisual": [
-        {
-          "label": "Apel recursiv",
-          "groups": [
-            [
-              {
-                "val": "Calcul: 2^2",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 7,
-      "text": "Exponentul 2 este par. Înjumătățim la fastExpo(2, 1).",
-      "blocksVisual": [
-        {
-          "label": "Înjumătățire",
-          "groups": [
-            [
-              {
-                "val": "Calculăm 2^1"
-              }
-            ],
-            [
-              {
-                "val": "Urmează: z * z",
-                "hidden": true
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 8,
-      "text": "Apel recursiv pentru fastExpo(2, 1).",
-      "blocksVisual": [
-        {
-          "label": "Apel recursiv",
-          "groups": [
-            [
-              {
-                "val": "Calcul: 2^1",
-                "active": true
-              }
-            ]
-          ]
-        }
+        { "label": "Stivă", "groups": [[{"val": "fastExpo(2, 1)"}]] }
       ]
     },
     {
       "line": 11,
-      "text": "Exponentul 1 este impar. Reducem la fastExpo(2, 0).",
+      "text": "Intrăm în fastExpo(a = 2, n = 1).",
       "blocksVisual": [
-        {
-          "label": "Impar",
-          "groups": [
-            [
-              {
-                "val": "Calculăm 2^0"
-              }
-            ],
-            [
-              {
-                "val": "Urmează: 2 * (2^0)",
-                "hidden": true
-              }
-            ]
-          ]
-        }
+        { "label": "Apel fastExpo(2, 1)", "groups": [[{"val": "2^1"}]] }
       ]
     },
     {
-      "line": 6,
-      "text": "Cazul de bază: Exponentul este 0. Orice număr la puterea 0 este 1. Am atins baza recursivității!",
+      "line": 12,
+      "text": "Verificăm dacă n == 0. Cum n = 1, continuăm.",
       "blocksVisual": [
-        {
-          "label": "Caz de bază",
-          "groups": [
-            [
-              {
-                "val": "2^0 = 1",
-                "sorted": true
-              }
-            ]
-          ]
-        }
+        { "label": "n == 0", "groups": [[{"val": "Fals"}]] }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Exponentul 1 este impar. Apelăm recursiv fastExpo(2, 0). Rezultatul va fi 2 * fastExpo(2, 0).",
+      "blocksVisual": [
+        { "label": "Stivă", "groups": [[{"val": "fastExpo(2, 0)"}]] }
       ]
     },
     {
       "line": 11,
-      "text": "Ne întoarcem din recursivitate: 2 * (2^0) = 2 * 1 = 2. Deci 2^1 = 2.",
+      "text": "Intrăm în fastExpo(a = 2, n = 0).",
       "blocksVisual": [
-        {
-          "label": "Întoarcere",
-          "groups": [
-            [
-              {
-                "val": "2^1 = 2",
-                "sorted": true
-              }
-            ]
-          ]
-        }
+        { "label": "Apel fastExpo(2, 0)", "groups": [[{"val": "2^0"}]] }
       ]
     },
     {
-      "line": 9,
-      "text": "Acum avem răspunsul pentru (2^1). Îl ridicăm la pătrat pentru a obține 2^2: 2 * 2 = 4.",
+      "line": 12,
+      "text": "Deoarece n == 0, am atins cazul de bază! Returnăm 1.",
       "blocksVisual": [
-        {
-          "label": "Întoarcere (par)",
-          "groups": [
-            [
-              {
-                "val": "2^2 = 4",
-                "sorted": true
-              }
-            ]
-          ]
-        }
+        { "label": "Caz de bază", "groups": [[{"val": 1, "sorted": true}]] }
       ]
     },
     {
-      "line": 9,
-      "text": "Avem răspunsul pentru (2^2). Îl ridicăm la pătrat pentru a obține 2^4: 4 * 4 = 16.",
+      "line": 17,
+      "text": "Revenim în fastExpo(2, 1). Înmulțim baza cu valoarea returnată: 2 * 1 = 2. Returnăm 2.",
       "blocksVisual": [
-        {
-          "label": "Întoarcere (par)",
-          "groups": [
-            [
-              {
-                "val": "2^4 = 16",
-                "sorted": true
-              }
-            ]
-          ]
-        }
+        { "label": "Întoarcere", "groups": [[{"val": "2^1 = 2", "sorted": true}]] }
       ]
     },
     {
-      "line": 11,
-      "text": "Pentru exponent impar, multiplicăm cu baza: 2 * (2^4) = 2 * 16 = 32. Deci 2^5 = 32.",
+      "line": 14,
+      "text": "Revenim în fastExpo(2, 2). Valoarea returnată (half) este 2.",
       "blocksVisual": [
-        {
-          "label": "Întoarcere (impar)",
-          "groups": [
-            [
-              {
-                "val": "2^5 = 32",
-                "sorted": true
-              }
-            ]
-          ]
-        }
+        { "label": "Stare", "groups": [[{"val": "half = 2"}]] }
       ]
     },
     {
-      "line": 9,
-      "text": "În sfârșit, avem jumătatea pentru apelul inițial: (2^5). O ridicăm la pătrat: 32 * 32 = 1024.",
+      "line": 15,
+      "text": "Ridicăm la pătrat: half * half = 2 * 2 = 4. Returnăm 4.",
       "blocksVisual": [
-        {
-          "label": "FINAL COMBINE",
-          "groups": [
-            [
-              {
-                "val": "2^10 = 1024",
-                "sorted": true
-              }
-            ]
-          ]
-        }
+        { "label": "Ridicarea la pătrat", "groups": [[{"val": "2^2 = 4", "sorted": true}]] }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "Revenim în fastExpo(2, 4). Valoarea returnată (half) este 4.",
+      "blocksVisual": [
+        { "label": "Stare", "groups": [[{"val": "half = 4"}]] }
+      ]
+    },
+    {
+      "line": 15,
+      "text": "Ridicăm la pătrat: 4 * 4 = 16. Returnăm 16.",
+      "blocksVisual": [
+        { "label": "Ridicarea la pătrat", "groups": [[{"val": "2^4 = 16", "sorted": true}]] }
+      ]
+    },
+    {
+      "line": 17,
+      "text": "Revenim în fastExpo(2, 5). Înmulțim baza (2) cu rezultatul apelului pentru 2^4 (16) => 2 * 16 = 32. Returnăm 32.",
+      "blocksVisual": [
+        { "label": "Întoarcere", "groups": [[{"val": "2^5 = 32", "sorted": true}]] }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "Revenim în apelul inițial fastExpo(2, 10). Valoarea returnată (half) este 32.",
+      "blocksVisual": [
+        { "label": "Stare", "groups": [[{"val": "half = 32"}]] }
+      ]
+    },
+    {
+      "line": 15,
+      "text": "Efectuăm ultima ridicare la pătrat: 32 * 32 = 1024. Obținem rezultatul final 1024 în doar 5 pași recursivi!",
+      "blocksVisual": [
+        { "label": "Rezultat final", "groups": [[{"val": "2^10 = 1024", "sorted": true}]] }
       ]
     }
   ],

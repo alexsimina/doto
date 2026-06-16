@@ -31,109 +31,304 @@ int lis(vector<int>& arr) {
 
 int main() {
     vector<int> arr = {10, 9, 2, 5, 3, 7, 101, 18};
-    cout << \"Lungimea LIS este \" << lis(arr) << \"\
-\";
+    cout << "Lungimea LIS este " << lis(arr) << endl;
     return 0;
 }
 `,
   "explanations": [
     {
+      "line": 27,
+      "text": "Pornim programul. Avem vectorul arr = [10, 9, 2, 5, 3, 7, 101, 18] de lungime n = 8.",
+      "blocksVisual": [
+        {
+          "label": "arr",
+          "groups": [[
+            { "val": "10" }, { "val": "9" }, { "val": "2" }, { "val": "5" },
+            { "val": "3" }, { "val": "7" }, { "val": "101" }, { "val": "18" }
+          ]]
+        }
+      ]
+    },
+    {
       "line": 11,
-      "text": "Inițializăm dp cu 1 (orice element singur formează un LIS de lungime 1).",
+      "text": "Inițializăm vectorul dp cu 1. dp[i] reprezintă lungimea LIS care se termină la indexul i. dp = [1, 1, 1, 1, 1, 1, 1, 1]",
       "blocksVisual": [
         {
-          "label": "DP Init",
+          "label": "dp",
+          "groups": [[
+            { "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "1" },
+            { "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "1" }
+          ]]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "i = 1 (arr[1] = 9), j = 0 (arr[0] = 10). Comparăm 9 > 10. False, deci dp[1] rămâne 1.",
+      "blocksVisual": [
+        {
+          "label": "i=1, j=0",
           "groups": [
-            [
-              {
-                "val": "[1, 1, 1, 1, 1, 1, 1, 1]",
-                "active": true
-              }
-            ]
+            [{ "val": "10", "active": true }, { "val": "9", "active": true }, { "val": "2" }, { "val": "5" }, { "val": "3" }, { "val": "7" }, { "val": "101" }, { "val": "18" }],
+            [{ "val": "1" }, { "val": "1", "active": true }, { "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "1" }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "i = 2 (arr[2] = 2), j = 0 (arr[0] = 10). Comparăm 2 > 10. False, dp[2] rămâne 1.",
+      "blocksVisual": [
+        {
+          "label": "i=2, j=0",
+          "groups": [
+            [{ "val": "10", "active": true }, { "val": "9" }, { "val": "2", "active": true }, { "val": "5" }, { "val": "3" }, { "val": "7" }, { "val": "101" }, { "val": "18" }],
+            [{ "val": "1" }, { "val": "1" }, { "val": "1", "active": true }, { "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "1" }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "i = 2 (arr[2] = 2), j = 1 (arr[1] = 9). Comparăm 2 > 9. False, dp[2] rămâne 1.",
+      "blocksVisual": [
+        {
+          "label": "i=2, j=1",
+          "groups": [
+            [{ "val": "10" }, { "val": "9", "active": true }, { "val": "2", "active": true }, { "val": "5" }, { "val": "3" }, { "val": "7" }, { "val": "101" }, { "val": "18" }],
+            [{ "val": "1" }, { "val": "1" }, { "val": "1", "active": true }, { "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "1" }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "i = 3 (arr[3] = 5), j = 0 (arr[0] = 10) și j = 1 (arr[1] = 9). Ambele fals.",
+      "blocksVisual": [
+        {
+          "label": "i=3, j<2",
+          "groups": [
+            [{ "val": "10" }, { "val": "9" }, { "val": "2" }, { "val": "5", "active": true }, { "val": "3" }, { "val": "7" }, { "val": "101" }, { "val": "18" }],
+            [{ "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "1", "active": true }, { "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "1" }]
           ]
         }
       ]
     },
     {
       "line": 16,
-      "text": "La i=1 (arr[1]=9), îl comparăm cu arr[0]=10. 9 nu e mai mare ca 10. dp[1]=1.",
-      "blocksVisual": [
-        {
-          "label": "i=1",
-          "groups": [
-            [
-              {
-                "val": "Nu extinde"
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 16,
-      "text": "La i=3 (arr[3]=5), se uită la j=2 (arr[2]=2). Deoarece 5>2, dp[3] = dp[2]+1 = 2.",
+      "text": "i = 3 (arr[3] = 5), j = 2 (arr[2] = 2). Deoarece 5 > 2, dp[3] devine max(dp[3]=1, dp[2]+1 = 2) = 2.",
       "blocksVisual": [
         {
           "label": "i=3, j=2",
           "groups": [
-            [
-              {
-                "val": "dp[3] = 2",
-                "active": true
-              }
-            ]
+            [{ "val": "10" }, { "val": "9" }, { "val": "2", "active": true }, { "val": "5", "active": true }, { "val": "3" }, { "val": "7" }, { "val": "101" }, { "val": "18" }],
+            [{ "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "2", "active": true }, { "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "1" }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "i = 4 (arr[4] = 3), j = 0 (10) și j = 1 (9). Fals.",
+      "blocksVisual": [
+        {
+          "label": "i=4, j<2",
+          "groups": [
+            [{ "val": "10" }, { "val": "9" }, { "val": "2" }, { "val": "5" }, { "val": "3", "active": true }, { "val": "7" }, { "val": "101" }, { "val": "18" }],
+            [{ "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "2" }, { "val": "1", "active": true }, { "val": "1" }, { "val": "1" }, { "val": "1" }]
           ]
         }
       ]
     },
     {
       "line": 16,
-      "text": "La i=5 (arr[5]=7), se uită la 2, 5, 3. 7 e mai mare decât ele. Din j=4 (arr[4]=3), dp[5]=dp[4]+1=2. Dar din j=3(arr[3]=5), dp[5] = dp[3]+1=3.",
+      "text": "i = 4 (arr[4] = 3), j = 2 (arr[2] = 2). 3 > 2 este True. dp[4] = max(1, dp[2]+1) = 2.",
       "blocksVisual": [
         {
-          "label": "i=5 (Val 7)",
+          "label": "i=4, j=2",
           "groups": [
-            [
-              {
-                "val": "dp[5] = 3",
-                "active": true
-              }
-            ]
+            [{ "val": "10" }, { "val": "9" }, { "val": "2", "active": true }, { "val": "5" }, { "val": "3", "active": true }, { "val": "7" }, { "val": "101" }, { "val": "18" }],
+            [{ "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "2" }, { "val": "2", "active": true }, { "val": "1" }, { "val": "1" }, { "val": "1" }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "i = 4 (arr[4] = 3), j = 3 (arr[3] = 5). 3 > 5 este False. dp[4] rămâne 2.",
+      "blocksVisual": [
+        {
+          "label": "i=4, j=3",
+          "groups": [
+            [{ "val": "10" }, { "val": "9" }, { "val": "2" }, { "val": "5", "active": true }, { "val": "3", "active": true }, { "val": "7" }, { "val": "101" }, { "val": "18" }],
+            [{ "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "2" }, { "val": "2", "active": true }, { "val": "1" }, { "val": "1" }, { "val": "1" }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "i = 5 (arr[5] = 7), j = 0 (10) și j = 1 (9). False.",
+      "blocksVisual": [
+        {
+          "label": "i=5, j<2",
+          "groups": [
+            [{ "val": "10" }, { "val": "9" }, { "val": "2" }, { "val": "5" }, { "val": "3" }, { "val": "7", "active": true }, { "val": "101" }, { "val": "18" }],
+            [{ "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "2" }, { "val": "2" }, { "val": "1", "active": true }, { "val": "1" }, { "val": "1" }]
           ]
         }
       ]
     },
     {
       "line": 16,
-      "text": "La i=6 (arr[6]=101), acesta e mai mare ca 7 (dp=3), deci devine dp=4. La i=7(arr[7]=18), la fel devine dp=4 (extinde din valoarea 7).",
+      "text": "i = 5 (arr[5] = 7), j = 2 (arr[2] = 2). 7 > 2 este True. dp[5] = max(1, dp[2]+1) = 2.",
       "blocksVisual": [
         {
-          "label": "Final completare",
+          "label": "i=5, j=2",
           "groups": [
-            [
-              {
-                "val": "max_ans = 4"
-              }
-            ]
+            [{ "val": "10" }, { "val": "9" }, { "val": "2", "active": true }, { "val": "5" }, { "val": "3" }, { "val": "7", "active": true }, { "val": "101" }, { "val": "18" }],
+            [{ "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "2" }, { "val": "2" }, { "val": "2", "active": true }, { "val": "1" }, { "val": "1" }]
           ]
         }
       ]
     },
     {
-      "line": 24,
-      "text": "Returnăm 4.",
+      "line": 16,
+      "text": "i = 5 (arr[5] = 7), j = 3 (arr[3] = 5). 7 > 5 este True. dp[5] = max(2, dp[3]+1 = 3) = 3.",
       "blocksVisual": [
         {
-          "label": "Final",
+          "label": "i=5, j=3",
           "groups": [
-            [
-              {
-                "val": "Lungime: 4",
-                "sorted": true
-              }
-            ]
+            [{ "val": "10" }, { "val": "9" }, { "val": "2" }, { "val": "5", "active": true }, { "val": "3" }, { "val": "7", "active": true }, { "val": "101" }, { "val": "18" }],
+            [{ "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "2" }, { "val": "2" }, { "val": "3", "active": true }, { "val": "1" }, { "val": "1" }]
           ]
+        }
+      ]
+    },
+    {
+      "line": 16,
+      "text": "i = 5 (arr[5] = 7), j = 4 (arr[4] = 3). 7 > 3 este True. dp[5] = max(3, dp[4]+1 = 3) = 3.",
+      "blocksVisual": [
+        {
+          "label": "i=5, j=4",
+          "groups": [
+            [{ "val": "10" }, { "val": "9" }, { "val": "2" }, { "val": "5" }, { "val": "3", "active": true }, { "val": "7", "active": true }, { "val": "101" }, { "val": "18" }],
+            [{ "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "2" }, { "val": "2" }, { "val": "3", "active": true }, { "val": "1" }, { "val": "1" }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "i = 6 (arr[6] = 101), j = 0 (10) și j = 1 (9). Ambele True. dp[6] devine max(1, dp[0]+1=2) = 2.",
+      "blocksVisual": [
+        {
+          "label": "i=6, j<2",
+          "groups": [
+            [{ "val": "10", "active": true }, { "val": "9", "active": true }, { "val": "2" }, { "val": "5" }, { "val": "3" }, { "val": "7" }, { "val": "101", "active": true }, { "val": "18" }],
+            [{ "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "2" }, { "val": "2" }, { "val": "3" }, { "val": "2", "active": true }, { "val": "1" }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 16,
+      "text": "i = 6 (arr[6] = 101), j = 2 (2), j = 3 (5), j = 4 (3). Toate True. dp[6] crește până la 3.",
+      "blocksVisual": [
+        {
+          "label": "i=6, j<5",
+          "groups": [
+            [{ "val": "10" }, { "val": "9" }, { "val": "2" }, { "val": "5" }, { "val": "3" }, { "val": "7" }, { "val": "101", "active": true }, { "val": "18" }],
+            [{ "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "2" }, { "val": "2" }, { "val": "3" }, { "val": "3", "active": true }, { "val": "1" }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 16,
+      "text": "i = 6 (arr[6] = 101), j = 5 (arr[5] = 7). 101 > 7 este True. dp[6] = max(3, dp[5]+1 = 4) = 4.",
+      "blocksVisual": [
+        {
+          "label": "i=6, j=5",
+          "groups": [
+            [{ "val": "10" }, { "val": "9" }, { "val": "2" }, { "val": "5" }, { "val": "3" }, { "val": "7", "active": true }, { "val": "101", "active": true }, { "val": "18" }],
+            [{ "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "2" }, { "val": "2" }, { "val": "3" }, { "val": "4", "active": true }, { "val": "1" }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 16,
+      "text": "i = 7 (arr[7] = 18), j = 0 (10). 18 > 10 este True. dp[7] = max(1, dp[0]+1) = 2.",
+      "blocksVisual": [
+        {
+          "label": "i=7, j=0",
+          "groups": [
+            [{ "val": "10", "active": true }, { "val": "9" }, { "val": "2" }, { "val": "5" }, { "val": "3" }, { "val": "7" }, { "val": "101" }, { "val": "18", "active": true }],
+            [{ "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "2" }, { "val": "2" }, { "val": "3" }, { "val": "4" }, { "val": "2", "active": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 16,
+      "text": "i = 7 (arr[7] = 18), j = 1 (9). 18 > 9 este True. dp[7] = max(2, dp[1]+1) = 2.",
+      "blocksVisual": [
+        {
+          "label": "i=7, j=1",
+          "groups": [
+            [{ "val": "10" }, { "val": "9", "active": true }, { "val": "2" }, { "val": "5" }, { "val": "3" }, { "val": "7" }, { "val": "101" }, { "val": "18", "active": true }],
+            [{ "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "2" }, { "val": "2" }, { "val": "3" }, { "val": "4" }, { "val": "2", "active": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 16,
+      "text": "i = 7 (arr[7] = 18), j = 2 (2) și j = 3 (5). Ambele True. dp[7] = max(2, dp[3]+1) = 3.",
+      "blocksVisual": [
+        {
+          "label": "i=7, j<4",
+          "groups": [
+            [{ "val": "10" }, { "val": "9" }, { "val": "2" }, { "val": "5", "active": true }, { "val": "3" }, { "val": "7" }, { "val": "101" }, { "val": "18", "active": true }],
+            [{ "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "2" }, { "val": "2" }, { "val": "3" }, { "val": "4" }, { "val": "3", "active": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 16,
+      "text": "i = 7 (arr[7] = 18), j = 5 (arr[5] = 7). 18 > 7 este True. dp[7] = max(3, dp[5]+1 = 4) = 4.",
+      "blocksVisual": [
+        {
+          "label": "i=7, j=5",
+          "groups": [
+            [{ "val": "10" }, { "val": "9" }, { "val": "2" }, { "val": "5" }, { "val": "3" }, { "val": "7", "active": true }, { "val": "101" }, { "val": "18", "active": true }],
+            [{ "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "2" }, { "val": "2" }, { "val": "3" }, { "val": "4" }, { "val": "4", "active": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "i = 7 (arr[7] = 18), j = 6 (arr[6] = 101). 18 > 101 este False. dp[7] rămâne 4.",
+      "blocksVisual": [
+        {
+          "label": "i=7, j=6",
+          "groups": [
+            [{ "val": "10" }, { "val": "9" }, { "val": "2" }, { "val": "5" }, { "val": "3" }, { "val": "7" }, { "val": "101", "active": true }, { "val": "18", "active": true }],
+            [{ "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "2" }, { "val": "2" }, { "val": "3" }, { "val": "4" }, { "val": "4", "active": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 23,
+      "text": "Algoritmul s-a încheiat. Cel mai lung subșir strict crescător are lungimea max_ans = 4.",
+      "blocksVisual": [
+        {
+          "label": "Rezultat",
+          "groups": [[{ "val": "4", "sorted": true }]]
         }
       ]
     }

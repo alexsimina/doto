@@ -28,191 +28,302 @@ long long gcdExtended(long long a, long long b, long long *x, long long *y) {
 }
 
 int main() {
-    long long a = 35, b = 15;
+    long long a = 34, b = 21;
     long long x, y;
     long long g = gcdExtended(a, b, &x, &y);
     
-    cout << "CMMDC(" << a << ", " << b << ") = " << g << "
-";
-    cout << "X = " << x << ", Y = " << y << "
-";
-    cout << "Verificare: " << a << "*" << x << " + " << b << "*" << y << " = " << a*x + b*y << "
-";
+    cout << "CMMDC(" << a << ", " << b << ") = " << g << "\n";
+    cout << "X = " << x << ", Y = " << y << "\n";
+    cout << "Verificare: " << a << "*" << x << " + " << b << "*" << y << " = " << a*x + b*y << "\n";
     
     return 0;
 }
 `,
   "explanations": [
     {
+      "line": 31,
+      "text": "Pasul 1: Începem programul din funcția main cu a = 34 și b = 21. Apelăm gcdExtended(34, 21, &x, &y).",
+      "blocksVisual": [
+        {
+          "label": "Stiva de Apeluri",
+          "groups": [
+            [{ "val": "gcd(34, 21)", "active": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "Pasul 2: Apelul 1 - gcdExtended(34, 21). a = 34 (nenul). Calculăm recursiv cu b % a = 21 % 34 = 21 și a = 34.",
+      "blocksVisual": [
+        {
+          "label": "Stiva de Apeluri",
+          "groups": [
+            [{ "val": "gcd(34, 21)" }],
+            [{ "val": "gcd(21, 34)", "active": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "Pasul 3: Apelul 2 - gcdExtended(21, 34). a = 21 (nenul). Calculăm recursiv cu b % a = 34 % 21 = 13 și a = 21.",
+      "blocksVisual": [
+        {
+          "label": "Stiva de Apeluri",
+          "groups": [
+            [{ "val": "gcd(34, 21)" }],
+            [{ "val": "gcd(21, 34)" }],
+            [{ "val": "gcd(13, 21)", "active": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "Pasul 4: Apelul 3 - gcdExtended(13, 21). a = 13 (nenul). Calculăm recursiv cu b % a = 21 % 13 = 8 și a = 13.",
+      "blocksVisual": [
+        {
+          "label": "Stiva de Apeluri",
+          "groups": [
+            [{ "val": "gcd(34, 21)" }],
+            [{ "val": "gcd(21, 34)" }],
+            [{ "val": "gcd(13, 21)" }],
+            [{ "val": "gcd(8, 13)", "active": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "Pasul 5: Apelul 4 - gcdExtended(8, 13). a = 8 (nenul). Calculăm recursiv cu b % a = 13 % 8 = 5 și a = 8.",
+      "blocksVisual": [
+        {
+          "label": "Stiva de Apeluri",
+          "groups": [
+            [{ "val": "gcd(34, 21)" }],
+            [{ "val": "gcd(21, 34)" }],
+            [{ "val": "gcd(13, 21)" }],
+            [{ "val": "gcd(8, 13)" }],
+            [{ "val": "gcd(5, 8)", "active": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "Pasul 6: Apelul 5 - gcdExtended(5, 8). a = 5 (nenul). Calculăm recursiv cu b % a = 8 % 5 = 3 și a = 5.",
+      "blocksVisual": [
+        {
+          "label": "Stiva de Apeluri",
+          "groups": [
+            [{ "val": "gcd(34, 21)" }],
+            [{ "val": "gcd(21, 34)" }],
+            [{ "val": "gcd(13, 21)" }],
+            [{ "val": "gcd(8, 13)" }],
+            [{ "val": "gcd(5, 8)" }],
+            [{ "val": "gcd(3, 5)", "active": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "Pasul 7: Apelul 6 - gcdExtended(3, 5). a = 3 (nenul). Calculăm recursiv cu b % a = 5 % 3 = 2 și a = 3.",
+      "blocksVisual": [
+        {
+          "label": "Stiva de Apeluri",
+          "groups": [
+            [{ "val": "gcd(34, 21)" }],
+            [{ "val": "gcd(21, 34)" }],
+            [{ "val": "gcd(13, 21)" }],
+            [{ "val": "gcd(8, 13)" }],
+            [{ "val": "gcd(5, 8)" }],
+            [{ "val": "gcd(3, 5)" }],
+            [{ "val": "gcd(2, 3)", "active": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "Pasul 8: Apelul 7 - gcdExtended(2, 3). a = 2 (nenul). Calculăm recursiv cu b % a = 3 % 2 = 1 și a = 2.",
+      "blocksVisual": [
+        {
+          "label": "Stiva de Apeluri",
+          "groups": [
+            [{ "val": "gcd(34, 21)" }],
+            [{ "val": "gcd(21, 34)" }],
+            [{ "val": "gcd(13, 21)" }],
+            [{ "val": "gcd(8, 13)" }],
+            [{ "val": "gcd(5, 8)" }],
+            [{ "val": "gcd(3, 5)" }],
+            [{ "val": "gcd(2, 3)" }],
+            [{ "val": "gcd(1, 2)", "active": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "Pasul 9: Apelul 8 - gcdExtended(1, 2). a = 1 (nenul). Calculăm recursiv cu b % a = 2 % 1 = 0 și a = 1.",
+      "blocksVisual": [
+        {
+          "label": "Stiva de Apeluri",
+          "groups": [
+            [{ "val": "gcd(34, 21)" }],
+            [{ "val": "gcd(21, 34)" }],
+            [{ "val": "gcd(13, 21)" }],
+            [{ "val": "gcd(8, 13)" }],
+            [{ "val": "gcd(5, 8)" }],
+            [{ "val": "gcd(3, 5)" }],
+            [{ "val": "gcd(2, 3)" }],
+            [{ "val": "gcd(1, 2)" }],
+            [{ "val": "gcd(0, 1)", "active": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 15,
+      "text": "Pasul 10: Baza recursivității - a = 0. Întoarcem CMMDC = b = 1 și setăm coeficienții x1 = 0, y1 = 1.",
+      "blocksVisual": [
+        {
+          "label": "Bază Atingasă (gcd=1)",
+          "groups": [
+            [{ "val": "x1 = 0" }, { "val": "y1 = 1" }]
+          ]
+        }
+      ]
+    },
+    {
       "line": 24,
-      "text": "Începem cu a = 35 și b = 15. Vrem să găsim CMMDC și coeficienții x, y asfel încât 35*x + 15*y = CMMDC(35, 15).",
+      "text": "Pasul 11: Revenim la apelul gcdExtended(1, 2). Avem x1 = 0, y1 = 1. Noul x = y1 - (b / a) * x1 = 1 - (2 / 1) * 0 = 1. Noul y = x1 = 0.",
       "blocksVisual": [
         {
-          "label": "Căutăm",
+          "label": "Revenire gcd(1, 2)",
           "groups": [
-            [
-              {
-                "val": "35x + 15y = gcd(35, 15)"
-              }
-            ]
+            [{ "val": "x = 1" }, { "val": "y = 0", "sorted": true }]
           ]
         }
       ]
     },
     {
-      "line": 14,
-      "text": "Apel 1: gcdExtended(35, 15). a nu e 0. Apelăm recursiv cu (15 % 35, 35) = (15, 35). Dar wait, 35 % 15 e 5! Parametrii sunt (b%a, a).",
+      "line": 24,
+      "text": "Pasul 12: Revenim la apelul gcdExtended(2, 3). Avem x1 = 1, y1 = 0. Noul x = 0 - (3 / 2) * 1 = -1. Noul y = 1.",
       "blocksVisual": [
         {
-          "label": "Stare curentă",
+          "label": "Revenire gcd(2, 3)",
           "groups": [
-            [
-              {
-                "val": "35x + 15y = gcd(35, 15)",
-                "active": false
-              }
-            ]
+            [{ "val": "x = -1" }, { "val": "y = 1", "sorted": true }]
           ]
         }
       ]
     },
     {
-      "line": 14,
-      "text": "Să corectăm mental: apelul face (b%a, a). b=15, a=35. 15 % 35 = 15. Apelăm gcd(15, 35). Apoi gcd(35%15, 15) = gcd(5, 15). Apoi gcd(15%5, 5) = gcd(0, 5).",
+      "line": 24,
+      "text": "Pasul 13: Revenim la apelul gcdExtended(3, 5). Avem x1 = -1, y1 = 1. Noul x = 1 - (5 / 3) * (-1) = 2. Noul y = -1.",
       "blocksVisual": [
         {
-          "label": "Adâncire",
+          "label": "Revenire gcd(3, 5)",
           "groups": [
-            [
-              {
-                "val": "gcd(35, 15)"
-              }
-            ],
-            [
-              {
-                "val": "gcd(15, 35)"
-              }
-            ],
-            [
-              {
-                "val": "gcd(5, 15)"
-              }
-            ],
-            [
-              {
-                "val": "gcd(0, 5)",
-                "active": true
-              }
-            ]
+            [{ "val": "x = 2" }, { "val": "y = -1", "sorted": true }]
           ]
         }
       ]
     },
     {
-      "line": 9,
-      "text": "Atingem baza: a=0 (apelul (0, 5)). CMMDC este b, adică 5. Setăm x=0, y=1. Ne întoarcem sus.",
+      "line": 24,
+      "text": "Pasul 14: Revenim la apelul gcdExtended(5, 8). Avem x1 = 2, y1 = -1. Noul x = -1 - (8 / 5) * 2 = -3. Noul y = 2.",
       "blocksVisual": [
         {
-          "label": "Stare curentă",
+          "label": "Revenire gcd(5, 8)",
           "groups": [
-            [
-              {
-                "val": "gcd(35, 15)",
-                "active": false
-              }
-            ],
-            [
-              {
-                "val": "gcd(15, 35)",
-                "active": false
-              }
-            ],
-            [
-              {
-                "val": "gcd(5, 15)",
-                "active": false
-              }
-            ],
-            [
-              {
-                "val": "gcd(0, 5)",
-                "active": false
-              }
-            ]
+            [{ "val": "x = -3" }, { "val": "y = 2", "sorted": true }]
           ]
         }
       ]
     },
     {
-      "line": 17,
-      "text": "Ne întoarcem în gcd(5, 15). Avem x1=0, y1=1. Calculăm noul x: y1 - (15/5)*x1 = 1 - 3*0 = 1. Noul y: x1 = 0.",
+      "line": 24,
+      "text": "Pasul 15: Revenim la apelul gcdExtended(8, 13). Avem x1 = -3, y1 = 2. Noul x = 2 - (13 / 8) * (-3) = 5. Noul y = -3.",
       "blocksVisual": [
         {
-          "label": "gcd(5, 15)",
+          "label": "Revenire gcd(8, 13)",
           "groups": [
-            [
-              {
-                "val": "x = 1"
-              },
-              {
-                "val": "y = 0"
-              }
-            ]
+            [{ "val": "x = 5" }, { "val": "y = -3", "sorted": true }]
           ]
         }
       ]
     },
     {
-      "line": 17,
-      "text": "Ne întoarcem în gcd(15, 35). Avem x1=1, y1=0. Calculăm noul x: 0 - (35/15)*1 = 0 - 2*1 = -2. Noul y: 1.",
+      "line": 24,
+      "text": "Pasul 16: Revenim la apelul gcdExtended(13, 21). Avem x1 = 5, y1 = -3. Noul x = -3 - (21 / 13) * 5 = -8. Noul y = 5.",
       "blocksVisual": [
         {
-          "label": "gcd(15, 35)",
+          "label": "Revenire gcd(13, 21)",
           "groups": [
-            [
-              {
-                "val": "x = -2"
-              },
-              {
-                "val": "y = 1"
-              }
-            ]
+            [{ "val": "x = -8" }, { "val": "y = 5", "sorted": true }]
           ]
         }
       ]
     },
     {
-      "line": 17,
-      "text": "Ne întoarcem în gcd(35, 15). Avem x1=-2, y1=1. Calculăm noul x: 1 - (15/35)*(-2) = 1 - 0 = 1. Noul y: -2.",
+      "line": 24,
+      "text": "Pasul 17: Revenim la apelul gcdExtended(21, 34). Avem x1 = -8, y1 = 5. Noul x = 5 - (34 / 21) * (-8) = 13. Noul y = -8.",
       "blocksVisual": [
         {
-          "label": "gcd(35, 15)",
+          "label": "Revenire gcd(21, 34)",
           "groups": [
-            [
-              {
-                "val": "x = 1"
-              },
-              {
-                "val": "y = -2"
-              }
-            ]
+            [{ "val": "x = 13" }, { "val": "y = -8", "sorted": true }]
           ]
         }
       ]
     },
     {
-      "line": 28,
-      "text": "Final: g = 5, x = 1, y = -2. Verificare: 35*(1) + 15*(-2) = 35 - 30 = 5! Ecuația Diofantică este rezolvată corect și am aflat și CMMDC.",
+      "line": 24,
+      "text": "Pasul 18: Revenim la apelul de vârf gcdExtended(34, 21). Avem x1 = 13, y1 = -8. Noul x = -8 - (21 / 34) * 13 = -8. Noul y = 13.",
       "blocksVisual": [
         {
-          "label": "Succes",
+          "label": "Revenire gcd(34, 21)",
           "groups": [
-            [
-              {
-                "val": "35(1) + 15(-2) = 5",
-                "sorted": true
-              }
-            ]
+            [{ "val": "x = -8" }, { "val": "y = 13", "sorted": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 35,
+      "text": "Pasul 19: Funcția se termină și obținem g = 1 (CMMDC). Afișăm în consolă: CMMDC(34, 21) = 1.",
+      "blocksVisual": [
+        {
+          "label": "Consolă (g)",
+          "groups": [
+            [{ "val": "g = 1", "sorted": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 36,
+      "text": "Pasul 20: Afișăm valorile coeficienților Bezout: X = -8, Y = 13.",
+      "blocksVisual": [
+        {
+          "label": "Consolă (X, Y)",
+          "groups": [
+            [{ "val": "X = -8" }, { "val": "Y = 13", "sorted": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 37,
+      "text": "Pasul 21: Realizăm verificarea relației: 34 * (-8) + 21 * 13 = -272 + 273 = 1. Relația este validă!",
+      "blocksVisual": [
+        {
+          "label": "Verificare",
+          "groups": [
+            [{ "val": "34*(-8) + 21*(13) = 1", "sorted": true }]
           ]
         }
       ]

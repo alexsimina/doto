@@ -9,7 +9,7 @@ export const data = {
 #include <algorithm>
 using namespace std;
 
-int knapsack(int W, var vector<int>& wt, var vector<int>& val, int n) {
+int knapsack(int W, const vector<int>& wt, const vector<int>& val, int n) {
     // DP array liniarizat (optimizare spatiu O(W))
     vector<int> dp(W + 1, 0);
 
@@ -28,160 +28,260 @@ int main() {
     vector<int> wt = {10, 20, 30};
     int W = 50;
     
-    cout << \"Valoare Maxima = \" << knapsack(W, wt, val, val.size()) << \"\
-\";
+    cout << "Valoare Maxima = " << knapsack(W, wt, val, val.size()) << endl;
     return 0;
 }
 `,
   "explanations": [
     {
-      "line": 8,
-      "text": "Inițializăm dp cu 0. dp[w] reține valoarea max pt capacitatea w.",
+      "line": 21,
+      "text": "Pornim programul. Inițializăm vectorul de valori val = [60, 100, 120] și greutăți wt = [10, 20, 30].",
       "blocksVisual": [
         {
-          "label": "dp[0..50]",
+          "label": "Greutati & Valori",
           "groups": [
-            [
-              {
-                "val": "[0, 0, ..., 0]"
-              }
-            ]
+            [{ "val": "wt[0]=10" }, { "val": "wt[1]=20" }, { "val": "wt[2]=30" }],
+            [{ "val": "val[0]=60" }, { "val": "val[1]=100" }, { "val": "val[2]=120" }]
           ]
         }
       ]
     },
     {
-      "line": 11,
-      "text": "Luăm Obiectul 0 (wt=10, val=60).",
+      "line": 23,
+      "text": "Setăm capacitatea maximă a rucsacului W = 50.",
       "blocksVisual": [
         {
-          "label": "Obiect 0",
-          "groups": [
-            [
-              {
-                "val": "wt=10, val=60",
-                "active": true
-              }
-            ]
-          ]
+          "label": "Capacitate",
+          "groups": [[{ "val": "W = 50", "active": true }]]
         }
       ]
     },
     {
-      "line": 13,
-      "text": "Pentru W de la 50 la 10, actualizăm dp[w]. Pentru W>=10, obiectul încape. dp[w] devine max(0, dp[w-10] + 60) = 60.",
+      "line": 25,
+      "text": "Apelăm funcția knapsack(W = 50, wt, val, n = 3).",
       "blocksVisual": [
         {
-          "label": "Update",
-          "groups": [
-            [
-              {
-                "val": "dp[10..50] = 60",
-                "active": true
-              }
-            ]
-          ]
+          "label": "Apel",
+          "groups": [[{ "val": "knapsack(50)", "active": true }]]
         }
       ]
     },
     {
-      "line": 11,
-      "text": "Luăm Obiectul 1 (wt=20, val=100).",
+      "line": 9,
+      "text": "Inițializăm vectorul dp de dimensiune W + 1 cu valori de 0. dp[w] = 0.",
       "blocksVisual": [
         {
-          "label": "Obiect 1",
-          "groups": [
-            [
-              {
-                "val": "wt=20, val=100",
-                "active": true
-              }
-            ]
-          ]
+          "label": "dp[0, 10, 20, 30, 40, 50]",
+          "groups": [[
+            { "val": "dp[0]=0" }, { "val": "dp[10]=0" }, { "val": "dp[20]=0" },
+            { "val": "dp[30]=0" }, { "val": "dp[40]=0" }, { "val": "dp[50]=0" }
+          ]]
         }
       ]
     },
     {
-      "line": 13,
-      "text": "Parcurgem invers de la 50 la 20. Ex: dp[30] = max(dp[30], dp[30-20] + 100). Vechiul dp[30] era 60. Nou: dp[10]+100 = 60+100=160.",
+      "line": 12,
+      "text": "i = 0. Considerăm primul obiect (wt[0] = 10, val[0] = 60).",
       "blocksVisual": [
         {
-          "label": "Update W=30",
-          "groups": [
-            [
-              {
-                "val": "dp[30] devine 160",
-                "active": true
-              }
-            ]
-          ]
+          "label": "Obiect Curent",
+          "groups": [[{ "val": "wt=10, val=60", "active": true }]]
         }
       ]
     },
     {
-      "line": 13,
-      "text": "dp[20] = max(dp[20]=60, dp[0]+100=100) = 100.",
+      "line": 14,
+      "text": "w = 50: dp[50] devine max(dp[50]=0, dp[40]+60 = 60). dp[50] = 60.",
       "blocksVisual": [
         {
-          "label": "Update W=20",
-          "groups": [
-            [
-              {
-                "val": "dp[20] = 100"
-              }
-            ]
-          ]
+          "label": "dp[0, 10, 20, 30, 40, 50]",
+          "groups": [[
+            { "val": "dp[0]=0" }, { "val": "dp[10]=0" }, { "val": "dp[20]=0" },
+            { "val": "dp[30]=0" }, { "val": "dp[40]=0" }, { "val": "dp[50]=60", "active": true }
+          ]]
         }
       ]
     },
     {
-      "line": 11,
-      "text": "Luăm Obiectul 2 (wt=30, val=120).",
+      "line": 14,
+      "text": "w = 40: dp[40] devine max(dp[40]=0, dp[30]+60 = 60). dp[40] = 60.",
       "blocksVisual": [
         {
-          "label": "Obiect 2",
-          "groups": [
-            [
-              {
-                "val": "wt=30, val=120",
-                "active": true
-              }
-            ]
-          ]
+          "label": "dp[0, 10, 20, 30, 40, 50]",
+          "groups": [[
+            { "val": "dp[0]=0" }, { "val": "dp[10]=0" }, { "val": "dp[20]=0" },
+            { "val": "dp[30]=0" }, { "val": "dp[40]=60", "active": true }, { "val": "dp[50]=60" }
+          ]]
         }
       ]
     },
     {
-      "line": 13,
-      "text": "dp[50] = max(dp[50]=160, dp[20]+120=100+120=220).",
+      "line": 14,
+      "text": "w = 30: dp[30] devine max(dp[30]=0, dp[20]+60 = 60). dp[30] = 60.",
       "blocksVisual": [
         {
-          "label": "Update W=50",
-          "groups": [
-            [
-              {
-                "val": "dp[50] = 220",
-                "active": true
-              }
-            ]
-          ]
+          "label": "dp[0, 10, 20, 30, 40, 50]",
+          "groups": [[
+            { "val": "dp[0]=0" }, { "val": "dp[10]=0" }, { "val": "dp[20]=0" },
+            { "val": "dp[30]=60", "active": true }, { "val": "dp[40]=60" }, { "val": "dp[50]=60" }
+          ]]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "w = 20: dp[20] devine max(dp[20]=0, dp[10]+60 = 60). dp[20] = 60.",
+      "blocksVisual": [
+        {
+          "label": "dp[0, 10, 20, 30, 40, 50]",
+          "groups": [[
+            { "val": "dp[0]=0" }, { "val": "dp[10]=0" }, { "val": "dp[20]=60", "active": true },
+            { "val": "dp[30]=60" }, { "val": "dp[40]=60" }, { "val": "dp[50]=60" }
+          ]]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "w = 10: dp[10] devine max(dp[10]=0, dp[0]+60 = 60). dp[10] = 60.",
+      "blocksVisual": [
+        {
+          "label": "dp[0, 10, 20, 30, 40, 50]",
+          "groups": [[
+            { "val": "dp[0]=0" }, { "val": "dp[10]=60", "active": true }, { "val": "dp[20]=60" },
+            { "val": "dp[30]=60" }, { "val": "dp[40]=60" }, { "val": "dp[50]=60" }
+          ]]
+        }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "i = 1. Considerăm al doilea obiect (wt[1] = 20, val[1] = 100).",
+      "blocksVisual": [
+        {
+          "label": "Obiect Curent",
+          "groups": [[{ "val": "wt=20, val=100", "active": true }]]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "w = 50: dp[50] devine max(dp[50]=60, dp[30]+100 = 60+100 = 160). dp[50] = 160.",
+      "blocksVisual": [
+        {
+          "label": "dp[0, 10, 20, 30, 40, 50]",
+          "groups": [[
+            { "val": "dp[0]=0" }, { "val": "dp[10]=60" }, { "val": "dp[20]=60" },
+            { "val": "dp[30]=60" }, { "val": "dp[40]=60" }, { "val": "dp[50]=160", "active": true }
+          ]]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "w = 40: dp[40] devine max(dp[40]=60, dp[20]+100 = 60+100 = 160). dp[40] = 160.",
+      "blocksVisual": [
+        {
+          "label": "dp[0, 10, 20, 30, 40, 50]",
+          "groups": [[
+            { "val": "dp[0]=0" }, { "val": "dp[10]=60" }, { "val": "dp[20]=60" },
+            { "val": "dp[30]=60" }, { "val": "dp[40]=160", "active": true }, { "val": "dp[50]=160" }
+          ]]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "w = 30: dp[30] devine max(dp[30]=60, dp[10]+100 = 60+100 = 160). dp[30] = 160.",
+      "blocksVisual": [
+        {
+          "label": "dp[0, 10, 20, 30, 40, 50]",
+          "groups": [[
+            { "val": "dp[0]=0" }, { "val": "dp[10]=60" }, { "val": "dp[20]=60" },
+            { "val": "dp[30]=160", "active": true }, { "val": "dp[40]=160" }, { "val": "dp[50]=160" }
+          ]]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "w = 20: dp[20] devine max(dp[20]=60, dp[0]+100 = 100). dp[20] = 100.",
+      "blocksVisual": [
+        {
+          "label": "dp[0, 10, 20, 30, 40, 50]",
+          "groups": [[
+            { "val": "dp[0]=0" }, { "val": "dp[10]=60" }, { "val": "dp[20]=100", "active": true },
+            { "val": "dp[30]=160" }, { "val": "dp[40]=160" }, { "val": "dp[50]=160" }
+          ]]
+        }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "i = 2. Considerăm al treilea obiect (wt[2] = 30, val[2] = 120).",
+      "blocksVisual": [
+        {
+          "label": "Obiect Curent",
+          "groups": [[{ "val": "wt=30, val=120", "active": true }]]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "w = 50: dp[50] devine max(dp[50]=160, dp[20]+120 = 100+120 = 220). dp[50] = 220.",
+      "blocksVisual": [
+        {
+          "label": "dp[0, 10, 20, 30, 40, 50]",
+          "groups": [[
+            { "val": "dp[0]=0" }, { "val": "dp[10]=60" }, { "val": "dp[20]=100" },
+            { "val": "dp[30]=160" }, { "val": "dp[40]=160" }, { "val": "dp[50]=220", "active": true }
+          ]]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "w = 40: dp[40] devine max(dp[40]=160, dp[10]+120 = 60+120 = 180). dp[40] = 180.",
+      "blocksVisual": [
+        {
+          "label": "dp[0, 10, 20, 30, 40, 50]",
+          "groups": [[
+            { "val": "dp[0]=0" }, { "val": "dp[10]=60" }, { "val": "dp[20]=100" },
+            { "val": "dp[30]=160" }, { "val": "dp[40]=180", "active": true }, { "val": "dp[50]=220" }
+          ]]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "w = 30: dp[30] devine max(dp[30]=160, dp[0]+120 = 120). dp[30] = 160 (rămâne neschimbat).",
+      "blocksVisual": [
+        {
+          "label": "dp[0, 10, 20, 30, 40, 50]",
+          "groups": [[
+            { "val": "dp[0]=0" }, { "val": "dp[10]=60" }, { "val": "dp[20]=100" },
+            { "val": "dp[30]=160", "active": true }, { "val": "dp[40]=180" }, { "val": "dp[50]=220" }
+          ]]
         }
       ]
     },
     {
       "line": 18,
-      "text": "Returnăm dp[50] adică 220. (Obiectul 1 și Obiectul 2).",
+      "text": "Toate obiectele au fost procesate. Returnăm dp[W] = dp[50] = 220.",
       "blocksVisual": [
         {
-          "label": "Final",
-          "groups": [
-            [
-              {
-                "val": "Valoare 220",
-                "sorted": true
-              }
-            ]
-          ]
+          "label": "Rezultat",
+          "groups": [[{ "val": "dp[50]=220", "sorted": true }]]
+        }
+      ]
+    },
+    {
+      "line": 25,
+      "text": "Afișăm rezultatul final: Valoare Maxima = 220.",
+      "blocksVisual": [
+        {
+          "label": "Finalizat",
+          "groups": [[{ "val": "220", "sorted": true }]]
         }
       ]
     }

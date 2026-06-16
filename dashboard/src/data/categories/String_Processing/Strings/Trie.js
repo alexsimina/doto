@@ -66,404 +66,574 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 26,
-      "text": "Pentru a insera 'cat', pornim de la nodul Rădăcină (Root).",
+      "line": 50,
+      "text": "Inițializăm structura Trie. Rădăcina (Root) este creată ca un nod gol.",
       "graphVisual": {
         "nodes": [
-          {
-            "id": 0,
-            "label": "Root",
-            "x": 140,
-            "y": 30,
-            "state": "active"
-          }
+          {"id": 0, "label": "Root", "x": 140, "y": 20, "state": "active"}
         ],
         "edges": []
       }
     },
     {
-      "line": 30,
-      "text": "Verificăm prima literă: 'c'. Nodul Root nu are un copil 'c', așa că îl creăm.",
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": 0,
-            "label": "Root",
-            "x": 140,
-            "y": 30,
-            "state": "visited"
-          },
-          {
-            "id": 1,
-            "label": "c",
-            "x": 80,
-            "y": 100,
-            "state": "active"
-          }
-        ],
-        "edges": [
-          {
-            "source": 0,
-            "target": 1
-          }
-        ]
-      }
-    },
-    {
-      "line": 30,
-      "text": "Următoarea literă: 'a'. Creăm copilul 'a' pentru nodul 'c'.",
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": 0,
-            "label": "Root",
-            "x": 140,
-            "y": 30,
-            "state": "visited"
-          },
-          {
-            "id": 1,
-            "label": "c",
-            "x": 80,
-            "y": 100,
-            "state": "visited"
-          },
-          {
-            "id": 2,
-            "label": "a",
-            "x": 80,
-            "y": 160,
-            "state": "active"
-          }
-        ],
-        "edges": [
-          {
-            "source": 0,
-            "target": 1
-          },
-          {
-            "source": 1,
-            "target": 2
-          }
-        ]
-      }
-    },
-    {
-      "line": 30,
-      "text": "Ultima literă: 't'. Creăm copilul 't' pentru nodul 'a'.",
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": 0,
-            "label": "Root",
-            "x": 140,
-            "y": 30,
-            "state": "visited"
-          },
-          {
-            "id": 1,
-            "label": "c",
-            "x": 80,
-            "y": 100,
-            "state": "visited"
-          },
-          {
-            "id": 2,
-            "label": "a",
-            "x": 80,
-            "y": 160,
-            "state": "visited"
-          },
-          {
-            "id": 3,
-            "label": "t",
-            "x": 40,
-            "y": 220,
-            "state": "active"
-          }
-        ],
-        "edges": [
-          {
-            "source": 0,
-            "target": 1
-          },
-          {
-            "source": 1,
-            "target": 2
-          },
-          {
-            "source": 2,
-            "target": 3
-          }
-        ]
-      }
-    },
-    {
-      "line": 34,
-      "text": "Am terminat cuvântul. Marcăm nodul 't' ca fiind sfârșit de cuvânt (isEndOfWord = true).",
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": 0,
-            "label": "Root",
-            "x": 140,
-            "y": 30,
-            "state": "visited"
-          },
-          {
-            "id": 1,
-            "label": "c",
-            "x": 80,
-            "y": 100,
-            "state": "visited"
-          },
-          {
-            "id": 2,
-            "label": "a",
-            "x": 80,
-            "y": 160,
-            "state": "visited"
-          },
-          {
-            "id": 3,
-            "label": "t",
-            "x": 40,
-            "y": 220,
-            "state": "visited"
-          }
-        ],
-        "edges": [
-          {
-            "source": 0,
-            "target": 1
-          },
-          {
-            "source": 1,
-            "target": 2
-          },
-          {
-            "source": 2,
-            "target": 3
-          }
-        ]
-      }
-    },
-    {
-      "line": 50,
-      "text": "Acum inserăm 'car'. Root are deja copilul 'c', deci îl refolosim! Apoi 'c' are deja copilul 'a', deci refolosim! Pentru 'r', îl creăm din nodul 'a'. Aceasta este magia Trie-ului.",
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": 0,
-            "label": "Root",
-            "x": 140,
-            "y": 30,
-            "state": "visited"
-          },
-          {
-            "id": 1,
-            "label": "c",
-            "x": 80,
-            "y": 100,
-            "state": "visited"
-          },
-          {
-            "id": 2,
-            "label": "a",
-            "x": 80,
-            "y": 160,
-            "state": "visited"
-          },
-          {
-            "id": 3,
-            "label": "t",
-            "x": 40,
-            "y": 220,
-            "state": "visited"
-          },
-          {
-            "id": 4,
-            "label": "r",
-            "x": 120,
-            "y": 220,
-            "state": "active"
-          }
-        ],
-        "edges": [
-          {
-            "source": 0,
-            "target": 1
-          },
-          {
-            "source": 1,
-            "target": 2
-          },
-          {
-            "source": 2,
-            "target": 3
-          },
-          {
-            "source": 2,
-            "target": 4
-          }
-        ]
-      }
-    },
-    {
       "line": 51,
-      "text": "Pentru 'do', Root nu are 'd', așa că creăm o ramură separată în dreapta.",
+      "text": "Începem inserarea cuvântului 'cat'. Pornim de la nodul Rădăcină (Root).",
       "graphVisual": {
         "nodes": [
-          {
-            "id": 0,
-            "label": "Root",
-            "x": 140,
-            "y": 30,
-            "state": "visited"
-          },
-          {
-            "id": 1,
-            "label": "c",
-            "x": 80,
-            "y": 100
-          },
-          {
-            "id": 2,
-            "label": "a",
-            "x": 80,
-            "y": 160
-          },
-          {
-            "id": 3,
-            "label": "t",
-            "x": 40,
-            "y": 220
-          },
-          {
-            "id": 4,
-            "label": "r",
-            "x": 120,
-            "y": 220
-          },
-          {
-            "id": 5,
-            "label": "d",
-            "x": 200,
-            "y": 100,
-            "state": "active"
-          },
-          {
-            "id": 6,
-            "label": "o",
-            "x": 200,
-            "y": 160,
-            "state": "active"
-          }
+          {"id": 0, "label": "Root", "x": 140, "y": 20, "state": "active"}
+        ],
+        "edges": []
+      }
+    },
+    {
+      "line": 28,
+      "text": "Inserare 'cat': Verificăm dacă Root are un copil pentru caracterul 'c'. Deoarece nu are, creăm un nod nou.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20, "state": "visited"},
+          {"id": 1, "label": "c", "x": 80, "y": 60, "state": "active"}
         ],
         "edges": [
-          {
-            "source": 0,
-            "target": 1
-          },
-          {
-            "source": 1,
-            "target": 2
-          },
-          {
-            "source": 2,
-            "target": 3
-          },
-          {
-            "source": 2,
-            "target": 4
-          },
-          {
-            "source": 0,
-            "target": 5
-          },
-          {
-            "source": 5,
-            "target": 6
-          }
+          {"source": 0, "target": 1}
         ]
       }
     },
     {
-      "line": 54,
-      "text": "Când căutăm 'ca', mergem Root -> c -> a. Dar nodul 'a' NU are flag-ul isEndOfWord activ, deci 'ca' e doar un prefix, nu un cuvânt complet! Returnăm false.",
+      "line": 33,
+      "text": "Mutăm indicatorul curent la nodul nou creat pentru 'c'.",
       "graphVisual": {
         "nodes": [
-          {
-            "id": 0,
-            "label": "Root",
-            "x": 140,
-            "y": 30,
-            "state": "active"
-          },
-          {
-            "id": 1,
-            "label": "c",
-            "x": 80,
-            "y": 100,
-            "state": "active"
-          },
-          {
-            "id": 2,
-            "label": "a",
-            "x": 80,
-            "y": 160,
-            "state": "active"
-          },
-          {
-            "id": 3,
-            "label": "t",
-            "x": 40,
-            "y": 220
-          },
-          {
-            "id": 4,
-            "label": "r",
-            "x": 120,
-            "y": 220
-          },
-          {
-            "id": 5,
-            "label": "d",
-            "x": 200,
-            "y": 100
-          },
-          {
-            "id": 6,
-            "label": "o",
-            "x": 200,
-            "y": 160
-          }
+          {"id": 0, "label": "Root", "x": 140, "y": 20},
+          {"id": 1, "label": "c", "x": 80, "y": 60, "state": "active"}
         ],
         "edges": [
-          {
-            "source": 0,
-            "target": 1
-          },
-          {
-            "source": 1,
-            "target": 2
-          },
-          {
-            "source": 2,
-            "target": 3
-          },
-          {
-            "source": 2,
-            "target": 4
-          },
-          {
-            "source": 0,
-            "target": 5
-          },
-          {
-            "source": 5,
-            "target": 6
-          }
+          {"source": 0, "target": 1}
+        ]
+      }
+    },
+    {
+      "line": 28,
+      "text": "Inserare 'cat': Căutăm copilul pentru 'a' sub nodul 'c'. Negăsindu-l, creăm un nod nou.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20},
+          {"id": 1, "label": "c", "x": 80, "y": 60, "state": "visited"},
+          {"id": 2, "label": "a", "x": 80, "y": 110, "state": "active"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2}
+        ]
+      }
+    },
+    {
+      "line": 33,
+      "text": "Mutăm indicatorul curent la nodul 'a'.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20},
+          {"id": 1, "label": "c", "x": 80, "y": 60},
+          {"id": 2, "label": "a", "x": 80, "y": 110, "state": "active"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2}
+        ]
+      }
+    },
+    {
+      "line": 28,
+      "text": "Inserare 'cat': Căutăm copilul pentru 't' sub nodul 'a'. Deoarece nu există, creăm nodul.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20},
+          {"id": 1, "label": "c", "x": 80, "y": 60},
+          {"id": 2, "label": "a", "x": 80, "y": 110, "state": "visited"},
+          {"id": 3, "label": "t", "x": 50, "y": 160, "state": "active"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2},
+          {"source": 2, "target": 3}
+        ]
+      }
+    },
+    {
+      "line": 33,
+      "text": "Mutăm indicatorul la nodul 't'. Suntem la sfârșitul cuvântului 'cat'.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20},
+          {"id": 1, "label": "c", "x": 80, "y": 60},
+          {"id": 2, "label": "a", "x": 80, "y": 110},
+          {"id": 3, "label": "t", "x": 50, "y": 160, "state": "active"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2},
+          {"source": 2, "target": 3}
+        ]
+      }
+    },
+    {
+      "line": 35,
+      "text": "Marcăm nodul 't' ca fiind sfârșit de cuvânt (isEndOfWord = true). Cuvântul 'cat' a fost inserat.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20},
+          {"id": 1, "label": "c", "x": 80, "y": 60},
+          {"id": 2, "label": "a", "x": 80, "y": 110},
+          {"id": 3, "label": "t", "x": 50, "y": 160, "state": "visited"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2},
+          {"source": 2, "target": 3}
+        ]
+      }
+    },
+    {
+      "line": 52,
+      "text": "Începem inserarea cuvântului 'car'. Pornim din nou de la nodul Rădăcină (Root).",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20, "state": "active"},
+          {"id": 1, "label": "c", "x": 80, "y": 60},
+          {"id": 2, "label": "a", "x": 80, "y": 110},
+          {"id": 3, "label": "t", "x": 50, "y": 160, "state": "visited"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2},
+          {"source": 2, "target": 3}
+        ]
+      }
+    },
+    {
+      "line": 28,
+      "text": "Inserare 'car': Root are deja un copil pentru 'c' (nodul 1). Îl refolosim în loc să creăm altul.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20, "state": "visited"},
+          {"id": 1, "label": "c", "x": 80, "y": 60, "state": "active"},
+          {"id": 2, "label": "a", "x": 80, "y": 110},
+          {"id": 3, "label": "t", "x": 50, "y": 160, "state": "visited"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2},
+          {"source": 2, "target": 3}
+        ]
+      }
+    },
+    {
+      "line": 28,
+      "text": "Inserare 'car': Nodul 'c' are deja un copil pentru 'a' (nodul 2). Îl refolosim.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20},
+          {"id": 1, "label": "c", "x": 80, "y": 60, "state": "visited"},
+          {"id": 2, "label": "a", "x": 80, "y": 110, "state": "active"},
+          {"id": 3, "label": "t", "x": 50, "y": 160, "state": "visited"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2},
+          {"source": 2, "target": 3}
+        ]
+      }
+    },
+    {
+      "line": 28,
+      "text": "Inserare 'car': Căutăm copilul pentru 'r' sub nodul 'a'. Acesta nu există, așa că creăm un nod nou.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20},
+          {"id": 1, "label": "c", "x": 80, "y": 60},
+          {"id": 2, "label": "a", "x": 80, "y": 110, "state": "visited"},
+          {"id": 3, "label": "t", "x": 50, "y": 160, "state": "visited"},
+          {"id": 4, "label": "r", "x": 110, "y": 160, "state": "active"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2},
+          {"source": 2, "target": 3},
+          {"source": 2, "target": 4}
+        ]
+      }
+    },
+    {
+      "line": 33,
+      "text": "Mutăm indicatorul la noul nod 'r'.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20},
+          {"id": 1, "label": "c", "x": 80, "y": 60},
+          {"id": 2, "label": "a", "x": 80, "y": 110},
+          {"id": 3, "label": "t", "x": 50, "y": 160, "state": "visited"},
+          {"id": 4, "label": "r", "x": 110, "y": 160, "state": "active"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2},
+          {"source": 2, "target": 3},
+          {"source": 2, "target": 4}
+        ]
+      }
+    },
+    {
+      "line": 35,
+      "text": "Marcăm nodul 'r' ca sfârșit de cuvânt. Acum cuvintele 'cat' și 'car' împart prefixul comun 'ca'.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20},
+          {"id": 1, "label": "c", "x": 80, "y": 60},
+          {"id": 2, "label": "a", "x": 80, "y": 110},
+          {"id": 3, "label": "t", "x": 50, "y": 160, "state": "visited"},
+          {"id": 4, "label": "r", "x": 110, "y": 160, "state": "visited"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2},
+          {"source": 2, "target": 3},
+          {"source": 2, "target": 4}
+        ]
+      }
+    },
+    {
+      "line": 53,
+      "text": "Începem inserarea cuvântului 'do'. Pornim de la nodul Rădăcină (Root).",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20, "state": "active"},
+          {"id": 1, "label": "c", "x": 80, "y": 60},
+          {"id": 2, "label": "a", "x": 80, "y": 110},
+          {"id": 3, "label": "t", "x": 50, "y": 160, "state": "visited"},
+          {"id": 4, "label": "r", "x": 110, "y": 160, "state": "visited"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2},
+          {"source": 2, "target": 3},
+          {"source": 2, "target": 4}
+        ]
+      }
+    },
+    {
+      "line": 28,
+      "text": "Inserare 'do': Căutăm copilul 'd' sub Root. Acesta nu există, așa că creăm o ramură nouă în dreapta.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20, "state": "visited"},
+          {"id": 1, "label": "c", "x": 80, "y": 60},
+          {"id": 2, "label": "a", "x": 80, "y": 110},
+          {"id": 3, "label": "t", "x": 50, "y": 160, "state": "visited"},
+          {"id": 4, "label": "r", "x": 110, "y": 160, "state": "visited"},
+          {"id": 5, "label": "d", "x": 200, "y": 60, "state": "active"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2},
+          {"source": 2, "target": 3},
+          {"source": 2, "target": 4},
+          {"source": 0, "target": 5}
+        ]
+      }
+    },
+    {
+      "line": 33,
+      "text": "Mutăm indicatorul la nodul 'd'.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20},
+          {"id": 1, "label": "c", "x": 80, "y": 60},
+          {"id": 2, "label": "a", "x": 80, "y": 110},
+          {"id": 3, "label": "t", "x": 50, "y": 160, "state": "visited"},
+          {"id": 4, "label": "r", "x": 110, "y": 160, "state": "visited"},
+          {"id": 5, "label": "d", "x": 200, "y": 60, "state": "active"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2},
+          {"source": 2, "target": 3},
+          {"source": 2, "target": 4},
+          {"source": 0, "target": 5}
+        ]
+      }
+    },
+    {
+      "line": 28,
+      "text": "Inserare 'do': Căutăm copilul 'o' sub nodul 'd'. Deoarece nu există, creăm nodul.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20},
+          {"id": 1, "label": "c", "x": 80, "y": 60},
+          {"id": 2, "label": "a", "x": 80, "y": 110},
+          {"id": 3, "label": "t", "x": 50, "y": 160, "state": "visited"},
+          {"id": 4, "label": "r", "x": 110, "y": 160, "state": "visited"},
+          {"id": 5, "label": "d", "x": 200, "y": 60, "state": "visited"},
+          {"id": 6, "label": "o", "x": 200, "y": 110, "state": "active"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2},
+          {"source": 2, "target": 3},
+          {"source": 2, "target": 4},
+          {"source": 0, "target": 5},
+          {"source": 5, "target": 6}
+        ]
+      }
+    },
+    {
+      "line": 33,
+      "text": "Mutăm indicatorul la nodul 'o'.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20},
+          {"id": 1, "label": "c", "x": 80, "y": 60},
+          {"id": 2, "label": "a", "x": 80, "y": 110},
+          {"id": 3, "label": "t", "x": 50, "y": 160, "state": "visited"},
+          {"id": 4, "label": "r", "x": 110, "y": 160, "state": "visited"},
+          {"id": 5, "label": "d", "x": 200, "y": 60},
+          {"id": 6, "label": "o", "x": 200, "y": 110, "state": "active"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2},
+          {"source": 2, "target": 3},
+          {"source": 2, "target": 4},
+          {"source": 0, "target": 5},
+          {"source": 5, "target": 6}
+        ]
+      }
+    },
+    {
+      "line": 35,
+      "text": "Marcăm nodul 'o' ca fiind sfârșit de cuvânt. Toate cuvintele dicționarului au fost acum inserate în Trie.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20},
+          {"id": 1, "label": "c", "x": 80, "y": 60},
+          {"id": 2, "label": "a", "x": 80, "y": 110},
+          {"id": 3, "label": "t", "x": 50, "y": 160, "state": "visited"},
+          {"id": 4, "label": "r", "x": 110, "y": 160, "state": "visited"},
+          {"id": 5, "label": "d", "x": 200, "y": 60},
+          {"id": 6, "label": "o", "x": 200, "y": 110, "state": "visited"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2},
+          {"source": 2, "target": 3},
+          {"source": 2, "target": 4},
+          {"source": 0, "target": 5},
+          {"source": 5, "target": 6}
+        ]
+      }
+    },
+    {
+      "line": 55,
+      "text": "Acum căutăm cuvântul 'cat' în Trie. Pornim din nou de la nodul Rădăcină (Root).",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20, "state": "active"},
+          {"id": 1, "label": "c", "x": 80, "y": 60},
+          {"id": 2, "label": "a", "x": 80, "y": 110},
+          {"id": 3, "label": "t", "x": 50, "y": 160, "state": "visited"},
+          {"id": 4, "label": "r", "x": 110, "y": 160, "state": "visited"},
+          {"id": 5, "label": "d", "x": 200, "y": 60},
+          {"id": 6, "label": "o", "x": 200, "y": 110, "state": "visited"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2},
+          {"source": 2, "target": 3},
+          {"source": 2, "target": 4},
+          {"source": 0, "target": 5},
+          {"source": 5, "target": 6}
+        ]
+      }
+    },
+    {
+      "line": 40,
+      "text": "Căutare 'cat': Prima literă este 'c'. Root are un copil 'c' (nodul 1). Coborâm la el.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20, "state": "visited"},
+          {"id": 1, "label": "c", "x": 80, "y": 60, "state": "active"},
+          {"id": 2, "label": "a", "x": 80, "y": 110},
+          {"id": 3, "label": "t", "x": 50, "y": 160, "state": "visited"},
+          {"id": 4, "label": "r", "x": 110, "y": 160, "state": "visited"},
+          {"id": 5, "label": "d", "x": 200, "y": 60},
+          {"id": 6, "label": "o", "x": 200, "y": 110, "state": "visited"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2},
+          {"source": 2, "target": 3},
+          {"source": 2, "target": 4},
+          {"source": 0, "target": 5},
+          {"source": 5, "target": 6}
+        ]
+      }
+    },
+    {
+      "line": 40,
+      "text": "Căutare 'cat': A doua literă este 'a'. Nodul 'c' are un copil 'a' (nodul 2). Coborâm la el.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20},
+          {"id": 1, "label": "c", "x": 80, "y": 60, "state": "visited"},
+          {"id": 2, "label": "a", "x": 80, "y": 110, "state": "active"},
+          {"id": 3, "label": "t", "x": 50, "y": 160, "state": "visited"},
+          {"id": 4, "label": "r", "x": 110, "y": 160, "state": "visited"},
+          {"id": 5, "label": "d", "x": 200, "y": 60},
+          {"id": 6, "label": "o", "x": 200, "y": 110, "state": "visited"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2},
+          {"source": 2, "target": 3},
+          {"source": 2, "target": 4},
+          {"source": 0, "target": 5},
+          {"source": 5, "target": 6}
+        ]
+      }
+    },
+    {
+      "line": 40,
+      "text": "Căutare 'cat': A treia literă este 't'. Nodul 'a' are un copil 't' (nodul 3). Coborâm la el.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20},
+          {"id": 1, "label": "c", "x": 80, "y": 60},
+          {"id": 2, "label": "a", "x": 80, "y": 110, "state": "visited"},
+          {"id": 3, "label": "t", "x": 50, "y": 160, "state": "active"},
+          {"id": 4, "label": "r", "x": 110, "y": 160, "state": "visited"},
+          {"id": 5, "label": "d", "x": 200, "y": 60},
+          {"id": 6, "label": "o", "x": 200, "y": 110, "state": "visited"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2},
+          {"source": 2, "target": 3},
+          {"source": 2, "target": 4},
+          {"source": 0, "target": 5},
+          {"source": 5, "target": 6}
+        ]
+      }
+    },
+    {
+      "line": 45,
+      "text": "Căutare 'cat': Am terminat caracterele cuvântului. Nodul 't' (nodul 3) are isEndOfWord = true. Căutarea are succes, returnăm true.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20},
+          {"id": 1, "label": "c", "x": 80, "y": 60},
+          {"id": 2, "label": "a", "x": 80, "y": 110},
+          {"id": 3, "label": "t", "x": 50, "y": 160, "state": "visited"},
+          {"id": 4, "label": "r", "x": 110, "y": 160, "state": "visited"},
+          {"id": 5, "label": "d", "x": 200, "y": 60},
+          {"id": 6, "label": "o", "x": 200, "y": 110, "state": "visited"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2},
+          {"source": 2, "target": 3},
+          {"source": 2, "target": 4},
+          {"source": 0, "target": 5},
+          {"source": 5, "target": 6}
+        ]
+      }
+    },
+    {
+      "line": 57,
+      "text": "Căutăm acum cuvântul 'ca' (prefix în dicționar). Pornim de la nodul Rădăcină (Root).",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20, "state": "active"},
+          {"id": 1, "label": "c", "x": 80, "y": 60},
+          {"id": 2, "label": "a", "x": 80, "y": 110},
+          {"id": 3, "label": "t", "x": 50, "y": 160, "state": "visited"},
+          {"id": 4, "label": "r", "x": 110, "y": 160, "state": "visited"},
+          {"id": 5, "label": "d", "x": 200, "y": 60},
+          {"id": 6, "label": "o", "x": 200, "y": 110, "state": "visited"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2},
+          {"source": 2, "target": 3},
+          {"source": 2, "target": 4},
+          {"source": 0, "target": 5},
+          {"source": 5, "target": 6}
+        ]
+      }
+    },
+    {
+      "line": 40,
+      "text": "Căutare 'ca': Prima literă este 'c'. Coborâm la nodul 1 ('c', state: active).",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20, "state": "visited"},
+          {"id": 1, "label": "c", "x": 80, "y": 60, "state": "active"},
+          {"id": 2, "label": "a", "x": 80, "y": 110},
+          {"id": 3, "label": "t", "x": 50, "y": 160, "state": "visited"},
+          {"id": 4, "label": "r", "x": 110, "y": 160, "state": "visited"},
+          {"id": 5, "label": "d", "x": 200, "y": 60},
+          {"id": 6, "label": "o", "x": 200, "y": 110, "state": "visited"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2},
+          {"source": 2, "target": 3},
+          {"source": 2, "target": 4},
+          {"source": 0, "target": 5},
+          {"source": 5, "target": 6}
+        ]
+      }
+    },
+    {
+      "line": 40,
+      "text": "Căutare 'ca': A doua literă este 'a'. Coborâm la nodul 2 ('a', state: active).",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20},
+          {"id": 1, "label": "c", "x": 80, "y": 60, "state": "visited"},
+          {"id": 2, "label": "a", "x": 80, "y": 110, "state": "active"},
+          {"id": 3, "label": "t", "x": 50, "y": 160, "state": "visited"},
+          {"id": 4, "label": "r", "x": 110, "y": 160, "state": "visited"},
+          {"id": 5, "label": "d", "x": 200, "y": 60},
+          {"id": 6, "label": "o", "x": 200, "y": 110, "state": "visited"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2},
+          {"source": 2, "target": 3},
+          {"source": 2, "target": 4},
+          {"source": 0, "target": 5},
+          {"source": 5, "target": 6}
+        ]
+      }
+    },
+    {
+      "line": 45,
+      "text": "Căutare 'ca': Am parcurs toate literele. Nodul 2 ('a') nu este marcat ca sfârșit de cuvânt (isEndOfWord = false). Returnăm false (negăsit).",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 140, "y": 20},
+          {"id": 1, "label": "c", "x": 80, "y": 60},
+          {"id": 2, "label": "a", "x": 80, "y": 110, "state": "active"},
+          {"id": 3, "label": "t", "x": 50, "y": 160, "state": "visited"},
+          {"id": 4, "label": "r", "x": 110, "y": 160, "state": "visited"},
+          {"id": 5, "label": "d", "x": 200, "y": 60},
+          {"id": 6, "label": "o", "x": 200, "y": 110, "state": "visited"}
+        ],
+        "edges": [
+          {"source": 0, "target": 1},
+          {"source": 1, "target": 2},
+          {"source": 2, "target": 3},
+          {"source": 2, "target": 4},
+          {"source": 0, "target": 5},
+          {"source": 5, "target": 6}
         ]
       }
     }

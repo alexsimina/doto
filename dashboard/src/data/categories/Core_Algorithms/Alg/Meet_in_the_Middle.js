@@ -53,142 +53,192 @@ long long maxSubsetSumLessThanS(vector<long long>& a, long long S) {
 `,
   "explanations": [
     {
-      "line": 24,
-      "text": "Presupunem un vector de 40 elemente. Generarea tuturor celor 2^40 sume e imposibilă. Îl tăiem în 2 jumătăți de câte 20.",
-      "blocksVisual": [
-        {
-          "label": "Împărțire",
-          "groups": [
-            [
-              {
-                "val": "A[0..19]"
-              }
-            ],
-            [
-              {
-                "val": "A[20..39]"
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 27,
-      "text": "Generăm toate sumele posibile pentru prima jumătate. Există 2^20 (aprox 1 milion) sume. Le stocăm în 'left'.",
-      "blocksVisual": [
-        {
-          "label": "Sume Stânga",
-          "groups": [
-            [
-              {
-                "val": "2^20 elemente",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
       "line": 28,
-      "text": "Generăm sumele și pentru a doua jumătate. Le stocăm în 'right'.",
+      "text": "Apelăm maxSubsetSumLessThanS pentru a = {2, 3, 9, 10} și target S = 13. Dimensiunea vectorului este n = 4.",
       "blocksVisual": [
-        {
-          "label": "Sume Dreapta",
-          "groups": [
-            [
-              {
-                "val": "2^20 elemente",
-                "active": true
-              }
-            ]
-          ]
-        }
+        { "label": "Input", "groups": [[{"val": "a = {2, 3, 9, 10}"}, {"val": "S = 13"}]] }
       ]
     },
     {
-      "line": 31,
-      "text": "Sortăm vectorul 'right' ca să putem căuta binar în el. Durează $O(2^{N/2} \\log(2^{N/2}))$.",
+      "line": 30,
+      "text": "Declarăm vectorii auxiliari left și right pentru a reține sumele celor două jumătăți.",
       "blocksVisual": [
-        {
-          "label": "Sortare Right",
-          "groups": [
-            [
-              {
-                "val": "Sorted Right",
-                "sorted": true
-              }
-            ]
-          ]
-        }
+        { "label": "Inițializare", "groups": [[{"val": "left"}, {"val": "right"}]] }
       ]
     },
     {
-      "line": 36,
-      "text": "Parcurgem fiecare sumă L din 'left'. Vrem ca (L + R <= S), deci vrem un R maxim cu condiția R <= S - L.",
+      "line": 33,
+      "text": "Apelăm getSubsetSums pe prima jumătate a = {2, 3} (de la start = 0 la end = 2).",
       "blocksVisual": [
-        {
-          "label": "Iterare pe Left",
-          "groups": [
-            [
-              {
-                "val": "L curent",
-                "active": true
-              }
-            ]
-          ]
-        }
+        { "label": "Prima Jumătate", "groups": [[{"val": 2}, {"val": 3}]] }
+      ]
+    },
+    {
+      "line": 17,
+      "text": "Generăm sumele pentru submulțimile stângi folosind măști pe biți. Pentru masca 0 (submulțimea vidă), suma este 0.",
+      "blocksVisual": [
+        { "label": "left sume", "groups": [[{"val": 0, "active": true}]] }
+      ]
+    },
+    {
+      "line": 21,
+      "text": "Masca 1 selectează {2}, suma este 2. Masca 2 selectează {3}, suma este 3.",
+      "blocksVisual": [
+        { "label": "left sume", "groups": [[{"val": 0}, {"val": 2, "active": true}, {"val": 3, "active": true}]] }
+      ]
+    },
+    {
+      "line": 24,
+      "text": "Masca 3 selectează {2, 3}, suma este 5. Vectorul left devine: {0, 2, 3, 5}.",
+      "blocksVisual": [
+        { "label": "left complet", "groups": [[{"val": 0}, {"val": 2}, {"val": 3}, {"val": 5, "sorted": true}]] }
+      ]
+    },
+    {
+      "line": 34,
+      "text": "Apelăm getSubsetSums pe a doua jumătate a = {9, 10} (de la start = 2 la end = 4).",
+      "blocksVisual": [
+        { "label": "A doua Jumătate", "groups": [[{"val": 9}, {"val": 10}]] }
+      ]
+    },
+    {
+      "line": 17,
+      "text": "Generăm sumele pentru submulțimile drepte. Masca 0 produce suma 0.",
+      "blocksVisual": [
+        { "label": "right sume", "groups": [[{"val": 0, "active": true}]] }
+      ]
+    },
+    {
+      "line": 21,
+      "text": "Masca 1 produce {9}, suma este 9. Masca 2 produce {10}, suma este 10.",
+      "blocksVisual": [
+        { "label": "right sume", "groups": [[{"val": 0}, {"val": 9, "active": true}, {"val": 10, "active": true}]] }
+      ]
+    },
+    {
+      "line": 24,
+      "text": "Masca 3 produce {9, 10}, suma este 19. Vectorul right devine: {0, 9, 10, 19}.",
+      "blocksVisual": [
+        { "label": "right complet", "groups": [[{"val": 0}, {"val": 9}, {"val": 10}, {"val": 19, "sorted": true}]] }
+      ]
+    },
+    {
+      "line": 37,
+      "text": "Sortăm vectorul right. Vectorul este deja ordonat: {0, 9, 10, 19}.",
+      "blocksVisual": [
+        { "label": "Sorted Right", "groups": [[{"val": 0, "sorted": true}, {"val": 9, "sorted": true}, {"val": 10, "sorted": true}, {"val": 19, "sorted": true}]] }
       ]
     },
     {
       "line": 39,
-      "text": "Folosim 'upper_bound' (căutare binară) în 'right' pentru valoarea (S - L). Aceasta găsește rapid cel mai mare R.",
+      "text": "Inițializăm suma maximă validă: max_sum = 0.",
       "blocksVisual": [
-        {
-          "label": "Căutare Binară",
-          "groups": [
-            [
-              {
-                "val": "Găsim R",
-                "sorted": true
-              }
-            ]
-          ]
-        }
+        { "label": "max_sum = 0", "groups": [[{"val": 0}]] }
       ]
     },
     {
-      "line": 41,
-      "text": "Actualizăm suma maximă găsită până acum cu L + R. Continuăm până verificăm tot.",
+      "line": 42,
+      "text": "Începem parcurgerea vectorului left. Pentru i = 0, left[0] = 0.",
       "blocksVisual": [
-        {
-          "label": "Actualizare",
-          "groups": [
-            [
-              {
-                "val": "Max = L + R"
-              }
-            ]
-          ]
-        }
+        { "label": "i = 0", "groups": [[{"val": 0, "active": true}, {"val": 2}, {"val": 3}, {"val": 5}]] }
       ]
     },
     {
-      "line": 46,
-      "text": "A durat de un milion de ori mai puțin decât o rezolvare backtraking standard!",
+      "line": 43,
+      "text": "Verificăm dacă left[0] <= S (0 <= 13) - adevărat.",
       "blocksVisual": [
-        {
-          "label": "Victorie!",
-          "groups": [
-            [
-              {
-                "val": "Done",
-                "sorted": true
-              }
-            ]
-          ]
-        }
+        { "label": "Verificare S", "groups": [[{"val": "0 <= 13 (Adevărat)"}]] }
+      ]
+    },
+    {
+      "line": 45,
+      "text": "Căutăm binar în right cea mai mare valoare <= S - left[0] (13 - 0 = 13). upper_bound returnează poziția elementului 19.",
+      "blocksVisual": [
+        { "label": "Căutare 13", "groups": [[{"val": 0}, {"val": 9}, {"val": 10}, {"val": 19, "active": true}]] }
+      ]
+    },
+    {
+      "line": 47,
+      "text": "Deoarece elementul precedent lui 19 este 10, actualizăm max_sum = max(0, 0 + 10) = 10.",
+      "blocksVisual": [
+        { "label": "max_sum = 10", "groups": [[{"val": 10, "sorted": true}]] }
+      ]
+    },
+    {
+      "line": 42,
+      "text": "Incrementăm i la 1. left[1] = 2.",
+      "blocksVisual": [
+        { "label": "i = 1", "groups": [[{"val": 0}, {"val": 2, "active": true}, {"val": 3}, {"val": 5}]] }
+      ]
+    },
+    {
+      "line": 45,
+      "text": "Căutăm binar în right valoarea <= S - left[1] (13 - 2 = 11). upper_bound returnează elementul 19.",
+      "blocksVisual": [
+        { "label": "Căutare 11", "groups": [[{"val": 0}, {"val": 9}, {"val": 10}, {"val": 19, "active": true}]] }
+      ]
+    },
+    {
+      "line": 47,
+      "text": "Elementul precedent este 10. Actualizăm max_sum = max(10, 2 + 10) = 12.",
+      "blocksVisual": [
+        { "label": "max_sum = 12", "groups": [[{"val": 12, "sorted": true}]] }
+      ]
+    },
+    {
+      "line": 42,
+      "text": "Incrementăm i la 2. left[2] = 3.",
+      "blocksVisual": [
+        { "label": "i = 2", "groups": [[{"val": 0}, {"val": 2}, {"val": 3, "active": true}, {"val": 5}]] }
+      ]
+    },
+    {
+      "line": 45,
+      "text": "Căutăm binar în right valoarea <= S - left[2] (13 - 3 = 10). upper_bound returnează 19.",
+      "blocksVisual": [
+        { "label": "Căutare 10", "groups": [[{"val": 0}, {"val": 9}, {"val": 10}, {"val": 19, "active": true}]] }
+      ]
+    },
+    {
+      "line": 47,
+      "text": "Elementul precedent este 10. Actualizăm max_sum = max(12, 3 + 10) = 13.",
+      "blocksVisual": [
+        { "label": "max_sum = 13", "groups": [[{"val": 13, "sorted": true}]] }
+      ]
+    },
+    {
+      "line": 42,
+      "text": "Incrementăm i la 3. left[3] = 5.",
+      "blocksVisual": [
+        { "label": "i = 3", "groups": [[{"val": 0}, {"val": 2}, {"val": 3}, {"val": 5, "active": true}]] }
+      ]
+    },
+    {
+      "line": 45,
+      "text": "Căutăm binar în right valoarea <= S - left[3] (13 - 5 = 8). upper_bound returnează 9.",
+      "blocksVisual": [
+        { "label": "Căutare 8", "groups": [[{"val": 0}, {"val": 9, "active": true}, {"val": 10}, {"val": 19}]] }
+      ]
+    },
+    {
+      "line": 47,
+      "text": "Elementul precedent lui 9 este 0. Suma obținută ar fi 5 + 0 = 5. max_sum rămâne 13.",
+      "blocksVisual": [
+        { "label": "max_sum = 13", "groups": [[{"val": 13}]] }
+      ]
+    },
+    {
+      "line": 42,
+      "text": "Bucla for s-a terminat.",
+      "blocksVisual": [
+        { "label": "For terminat", "groups": [[{"val": "i = 4"}]] }
+      ]
+    },
+    {
+      "line": 51,
+      "text": "Returnăm valoarea max_sum = 13. Problema a fost rezolvată în mod optim folosind tehnica Meet in the Middle!",
+      "blocksVisual": [
+        { "label": "Rezultat Final", "groups": [[{"val": 13, "sorted": true}]] }
       ]
     }
   ],

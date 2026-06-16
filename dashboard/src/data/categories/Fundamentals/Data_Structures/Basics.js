@@ -35,252 +35,180 @@ int main() {
   "explanations": [
     {
       "line": 9,
-      "text": "Inițializăm o stivă goală (Stack). LIFO - Last In, First Out.",
+      "text": "📚 STIVA (Stack) — Principiu LIFO: Last In, First Out. Imaginează-ți un teanc de farfurii: poți pune sau lua doar din vârf. Inițializăm o stivă goală.",
+      "visual": "  ┌────┐\n  │    │  ← (goală)\n  └────┘\n  Stack LIFO",
       "blocksVisual": [
-        {
-          "label": "Stack",
-          "groups": [
-            [
-              {
-                "val": "Empty"
-              }
-            ]
-          ]
-        }
+        { "label": "Stack (goală)", "groups": [[{ "val": "∅" }]] }
       ]
     },
     {
       "line": 10,
-      "text": "Adăugăm (push) elementul 10. Acesta ajunge la bază, dar este și vârful.",
+      "text": "s.push(10) — Adăugăm elementul 10. Este primul element, deci este simultan și vârful (TOP) și baza (BOTTOM) stivei.",
+      "visual": "  ┌────┐\n  │ 10 │  ← TOP\n  └────┘\n    ↑ BOTTOM",
       "blocksVisual": [
-        {
-          "label": "Stack",
-          "groups": [
-            [
-              {
-                "val": 10,
-                "active": true
-              }
-            ]
-          ]
-        }
+        { "label": "TOP ↑", "groups": [[{ "val": 10, "active": true }]] },
+        { "label": "BOT ↓", "groups": [[{ "val": "───" }]] }
       ]
     },
     {
       "line": 11,
-      "text": "Adăugăm (push) elementul 20. Se așează PESTE elementul 10.",
+      "text": "s.push(20) — Adăugăm elementul 20. Se așează DEASUPRA lui 10. Noul vârf este 20. Elementul 10 coboară la bază.",
+      "visual": "  ┌────┐\n  │ 20 │  ← TOP (nou)\n  ├────┤\n  │ 10 │  ← BOTTOM\n  └────┘",
       "blocksVisual": [
-        {
-          "label": "Stack",
-          "groups": [
-            [
-              {
-                "val": 20,
-                "active": true
-              }
-            ],
-            [
-              {
-                "val": 10
-              }
-            ]
-          ]
-        }
+        { "label": "TOP ↑", "groups": [[{ "val": 20, "active": true }]] },
+        { "label": "BOT ↓", "groups": [[{ "val": 10 }]] }
       ]
     },
     {
       "line": 12,
-      "text": "Adăugăm (push) elementul 30. Noul vârf (top) al stivei este acum 30.",
+      "text": "s.push(30) — Adăugăm elementul 30. Acesta devine noul vârf (TOP). Stiva crește vertical în sus: 10 → 20 → 30.",
+      "visual": "  ┌────┐\n  │ 30 │  ← TOP\n  ├────┤\n  │ 20 │\n  ├────┤\n  │ 10 │  ← BOTTOM\n  └────┘",
       "blocksVisual": [
-        {
-          "label": "Stack",
-          "groups": [
-            [
-              {
-                "val": 30,
-                "active": true
-              }
-            ],
-            [
-              {
-                "val": 20
-              }
-            ],
-            [
-              {
-                "val": 10
-              }
-            ]
-          ]
-        }
+        { "label": "TOP ↑", "groups": [[{ "val": 30, "active": true }]] },
+        { "label": "     ", "groups": [[{ "val": 20 }]] },
+        { "label": "BOT ↓", "groups": [[{ "val": 10 }]] }
       ]
     },
     {
       "line": 14,
-      "text": "Citim valoarea din vârf cu `s.top()`. Valoarea este 30.",
+      "text": "s.top() — Citim valoarea din vârf FĂRĂ a o elimina. Valoarea returnată este 30. Stiva rămâne intactă.",
+      "visual": "  ┌────┐\n  │ 30 │  ← TOP  ✓ top() = 30\n  ├────┤\n  │ 20 │\n  ├────┤\n  │ 10 │  ← BOTTOM\n  └────┘",
       "blocksVisual": [
-        {
-          "label": "Stack",
-          "groups": [
-            [
-              {
-                "val": 30,
-                "sorted": true
-              }
-            ],
-            [
-              {
-                "val": 20
-              }
-            ],
-            [
-              {
-                "val": 10
-              }
-            ]
-          ]
-        }
+        { "label": "TOP ↑  top()=30", "groups": [[{ "val": 30, "sorted": true }]] },
+        { "label": "               ", "groups": [[{ "val": 20 }]] },
+        { "label": "BOT ↓          ", "groups": [[{ "val": 10 }]] }
       ]
     },
     {
       "line": 15,
-      "text": "Eliminăm vârful cu `s.pop()`. Elementul 30 dispare. Noul vârf redevine 20.",
+      "text": "s.pop() — Eliminăm vârful stivei. Elementul 30 este scos definitiv (LIFO: ultimul intrat, primul ieșit). Noul vârf devine 20.",
+      "visual": "  ╳ 30 ╳  ← eliminat!\n  ┌────┐\n  │ 20 │  ← TOP (nou)\n  ├────┤\n  │ 10 │  ← BOTTOM\n  └────┘",
       "blocksVisual": [
-        {
-          "label": "Stack",
-          "groups": [
-            [
-              {
-                "val": 20,
-                "active": true
-              }
-            ],
-            [
-              {
-                "val": 10
-              }
-            ]
-          ]
-        }
+        { "label": "⬆ eliminat", "groups": [[{ "val": 30, "hidden": true }]] },
+        { "label": "TOP ↑     ", "groups": [[{ "val": 20, "active": true }]] },
+        { "label": "BOT ↓     ", "groups": [[{ "val": 10 }]] }
+      ]
+    },
+    {
+      "line": 15,
+      "text": "Starea finală a stivei după pop(): [10, 20] cu 20 la vârf. Operațiile s.top() și s.pop() lucrează mereu la același capăt — vârful.",
+      "visual": "  ┌────┐\n  │ 20 │  ← TOP\n  ├────┤\n  │ 10 │  ← BOTTOM\n  └────┘\n  (30 a fost eliminat)",
+      "blocksVisual": [
+        { "label": "TOP ↑", "groups": [[{ "val": 20, "sorted": true }]] },
+        { "label": "BOT ↓", "groups": [[{ "val": 10 }]] }
+      ]
+    },
+    {
+      "line": 15,
+      "text": "🔁 Recapitulare Stack: push() adaugă la vârf, pop() elimină din vârf, top() citește vârful. Totul la un singur capăt! Complexitate O(1) pentru toate operațiile.",
+      "visual": "  push(x) → │ x  │ ← TOP\n            │ .. │\n  pop()   ← │ .. │\n            └────┘",
+      "blocksVisual": [
+        { "label": "push → TOP (O1)", "groups": [[{ "val": "push(x)", "active": true }]] },
+        { "label": "               ", "groups": [[{ "val": "..." }]] },
+        { "label": "pop  ← TOP (O1)", "groups": [[{ "val": "pop()" }]] }
       ]
     },
     {
       "line": 18,
-      "text": "Acum trecem la o Coadă (Queue). FIFO - First In, First Out.",
+      "text": "📬 COADA (Queue) — Principiu FIFO: First In, First Out. Ca o coadă la magazin: primul sosit, primul servit. Inițializăm o coadă goală.",
+      "visual": "  FRONT → [        ] → BACK\n  Queue FIFO (goală)",
       "blocksVisual": [
-        {
-          "label": "Queue (Coadă)",
-          "groups": [
-            [
-              {
-                "val": "Empty"
-              }
-            ]
-          ]
-        }
+        { "label": "Queue  FRONT → BACK", "groups": [[{ "val": "∅" }]] }
       ]
     },
     {
       "line": 19,
-      "text": "Adăugăm (push) 100 în coadă.",
+      "text": "q.push(100) — Adăugăm 100 la coadă. Primul element este simultan și FRONT (față) și BACK (spate). Va fi primul care iese.",
+      "visual": "  FRONT → [ 100 ] → BACK\n            ↑↑↑\n         primul venit",
       "blocksVisual": [
         {
-          "label": "Queue (Coadă)",
-          "groups": [
-            [
-              {
-                "val": 100,
-                "active": true
-              }
-            ]
-          ]
+          "label": "Queue  FRONT → BACK",
+          "groups": [[{ "val": 100, "active": true }]]
         }
       ]
     },
     {
       "line": 20,
-      "text": "Adăugăm 200 la sfârșitul cozii. Elementul 100 rămâne primul (în față).",
+      "text": "q.push(200) — Adăugăm 200 la SPATELE cozii. Elementul 100 rămâne la FRONT (va ieși primul). Coada crește spre dreapta.",
+      "visual": "  FRONT → [ 100 | 200 ] → BACK\n             ↑              ↑\n           front           back (nou)",
       "blocksVisual": [
         {
-          "label": "Queue (Coadă)",
-          "groups": [
-            [
-              {
-                "val": 100
-              },
-              {
-                "val": 200,
-                "active": true
-              }
-            ]
-          ]
+          "label": "Queue  FRONT → BACK",
+          "groups": [[{ "val": 100, "active": true }, { "val": 200 }]]
         }
       ]
     },
     {
       "line": 21,
-      "text": "Adăugăm 300. Coada crește în spate, iar primul venit e tot în față.",
+      "text": "q.push(300) — Adăugăm 300 la spate. Coada: [100, 200, 300]. 100 este FRONT (iese primul), 300 este BACK (ultimul venit).",
+      "visual": "  FRONT → [ 100 | 200 | 300 ] → BACK\n             ↑                    ↑\n          iese primul          intrat ultimul",
       "blocksVisual": [
         {
-          "label": "Queue (Coadă)",
-          "groups": [
-            [
-              {
-                "val": 100
-              },
-              {
-                "val": 200
-              },
-              {
-                "val": 300,
-                "active": true
-              }
-            ]
-          ]
+          "label": "Queue  FRONT → BACK",
+          "groups": [[{ "val": 100, "active": true }, { "val": 200 }, { "val": 300 }]]
         }
       ]
     },
     {
       "line": 23,
-      "text": "Citim elementul din față folosind `q.front()`. Acesta este 100 (primul venit).",
+      "text": "q.front() — Citim elementul din față FĂRĂ a-l elimina. Returnează 100 (primul intrat). Coada rămâne neschimbată.",
+      "visual": "  FRONT → [ 100 | 200 | 300 ] → BACK\n             ↑\n          front() = 100  ✓",
       "blocksVisual": [
         {
-          "label": "Queue (Coadă)",
-          "groups": [
-            [
-              {
-                "val": 100,
-                "sorted": true
-              },
-              {
-                "val": 200
-              },
-              {
-                "val": 300
-              }
-            ]
-          ]
+          "label": "Queue  FRONT → BACK   front()=100",
+          "groups": [[{ "val": 100, "sorted": true }, { "val": 200 }, { "val": 300 }]]
         }
       ]
     },
     {
       "line": 24,
-      "text": "Apelăm `q.pop()`. Acesta elimină elementul din față (100). Noul `front` devine 200.",
+      "text": "q.pop() — Eliminăm elementul din FAȚĂ (FIFO: primul venit, primul plecat). Elementul 100 iese. Noul FRONT devine 200.",
+      "visual": "  ╳ 100 ╳ → [ 200 | 300 ] → BACK\n  eliminat     ↑\n             front (nou) = 200",
       "blocksVisual": [
         {
-          "label": "Queue (Coadă)",
-          "groups": [
-            [
-              {
-                "val": 200,
-                "active": true
-              },
-              {
-                "val": 300
-              }
-            ]
-          ]
+          "label": "Queue  FRONT → BACK   (100 eliminat)",
+          "groups": [[{ "val": 100, "hidden": true }, { "val": 200, "active": true }, { "val": 300 }]]
         }
+      ]
+    },
+    {
+      "line": 24,
+      "text": "Starea finală a cozii după pop(): [200, 300] cu 200 la FRONT. Urmează 200 să iasă la un nou q.pop(), iar 300 va fi ultimul.",
+      "visual": "  FRONT → [ 200 | 300 ] → BACK\n  (100 a fost eliminat)",
+      "blocksVisual": [
+        {
+          "label": "Queue  FRONT → BACK",
+          "groups": [[{ "val": 200, "sorted": true }, { "val": 300 }]]
+        }
+      ]
+    },
+    {
+      "line": 24,
+      "text": "🔁 Recapitulare Queue: push() adaugă la BACK, pop() elimină din FRONT, front() citește FRONT-ul. Cele două operații sunt la capete OPUSE!",
+      "visual": "  push(x) → FRONT → [ ... | x ] → BACK\n  pop()   ← FRONT → [ ... ]",
+      "blocksVisual": [
+        {
+          "label": "pop ← FRONT  |  BACK → push",
+          "groups": [[{ "val": "pop←" }, { "val": "..." }, { "val": "→push", "active": true }]]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "⚖️ Stack vs Queue: Ambele sunt structuri liniare O(1), dar diferă prin ORDINEA de eliminare: Stack elimină ultimul venit (LIFO), Queue elimină primul venit (FIFO).",
+      "visual": "  STACK (LIFO)     QUEUE (FIFO)\n  ┌────┐           FRONT→[A|B|C]→BACK\n  │ C  │ ← in/out   pop←A   C→push\n  │ B  │\n  │ A  │ ← bottom",
+      "blocksVisual": [
+        { "label": "Stack LIFO  (in/out = TOP)", "groups": [[{ "val": "TOP", "active": true }, { "val": "..." }, { "val": "BOT" }]] },
+        { "label": "Queue FIFO  (in=BACK out=FRONT)", "groups": [[{ "val": "FRONT", "sorted": true }, { "val": "..." }, { "val": "BACK", "active": true }]] }
+      ]
+    },
+    {
+      "line": 9,
+      "text": "🎯 Aplicații reale: Stack → Call Stack în CPU, Undo/Redo în editoare, DFS în grafuri. Queue → BFS în grafuri, cozi de așteptare pe servere, print spooling.",
+      "visual": "  Stack: [ func3 ]  Queue: [req1|req2|req3]\n         [ func2 ]         server procesează\n         [ func1 ]         în ordinea sosirii",
+      "blocksVisual": [
+        { "label": "Stack → DFS / Undo / Call Stack", "groups": [[{ "val": "func3", "active": true }, { "val": "func2" }, { "val": "func1" }]] },
+        { "label": "Queue → BFS / Server / Printer ", "groups": [[{ "val": "req1", "sorted": true }, { "val": "req2" }, { "val": "req3" }]] }
       ]
     }
   ],

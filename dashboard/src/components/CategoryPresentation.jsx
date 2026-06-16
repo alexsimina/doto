@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import mockCategoryData from '../data/mockCategoryData';
 
 // HTML escaping helper for syntax highlighter
@@ -111,7 +111,7 @@ const highlightCpp = (code) => {
     const idMatch = code.substring(i).match(/^[a-zA-Z_][a-zA-Z0-9_]*/);
     if (idMatch) {
       const id = idMatch[0];
-      let style = '';
+      let style;
       
       let nextIdx = i + id.length;
       while (nextIdx < code.length && (code[nextIdx] === ' ' || code[nextIdx] === '\t')) {
@@ -400,7 +400,7 @@ const getCategoryDebuggerState = (category, stepIndex, activeLine, explanationTe
   else {
     // General fallback
     if (explanationText && typeof explanationText === 'string') {
-      const regex = /\b([a-zA-Z_][a-zA-Z0-9_]*)\s*(?:=|este|devine)\s*([0-9\-]+|"[^"]*"|'[^']'|true|false)\b/g;
+      const regex = /\b([a-zA-Z_][a-zA-Z0-9_]*)\s*(?:=|este|devine)\s*([0-9-]+|"[^"]*"|'[^']'|true|false)\b/g;
       let match;
       while ((match = regex.exec(explanationText)) !== null) {
         const name = match[1];
@@ -536,12 +536,7 @@ const CategoryPresentation = ({ category, onClose, onNavigate }) => {
   const cleanCode = data.code ? data.code.replace(/^\r?\n/, '').replace(/\r?\n$/, '') : '';
   const codeLines = cleanCode ? cleanCode.split('\n') : [];
 
-  // Reset index when changing categories
-  useEffect(() => {
-    setCurrentStepIndex(0);
-    setExpandedVars({});
-    isInitialMount.current = true;
-  }, [category]);
+
 
   const handlePrev = () => {
     if (explanations.length > 0) {
@@ -869,7 +864,7 @@ const CategoryPresentation = ({ category, onClose, onNavigate }) => {
                   const isActive = activeLine === lineNum;
                   
                   // Extract inline debugger value for this line
-                  const inlineVarVal = getInlineValueForLine(category, currentStepIndex, lineNum);
+                  const inlineVarVal = getInlineValueForLine(category, currentStepIndex, lineNum) || (isActive ? debugState.inlineVal : null);
                   
                   return (
                     <div 
@@ -1160,38 +1155,112 @@ const CategoryPresentation = ({ category, onClose, onNavigate }) => {
                               </div>
                             )}
 
-                            {currentExplanation?.graphVisual && (
-                              <div style={{ position: 'relative', width: '280px', height: '170px', flexShrink: 0 }}>
-                                <svg width="280" height="170" style={{ position: 'absolute', top: 0, left: 0 }}>
-                                  {currentExplanation.graphVisual.edges.map((edge, i) => {
-                                    const n1 = currentExplanation.graphVisual.nodes.find(n => n.id === edge.source);
-                                    const n2 = currentExplanation.graphVisual.nodes.find(n => n.id === edge.target);
-                                    if (!n1 || !n2) return null;
-                                    const scaleY = 170 / 220;
-                                    return <line key={i} x1={n1.x} y1={n1.y * scaleY} x2={n2.x} y2={n2.y * scaleY} stroke="rgba(255, 255, 255, 0.15)" strokeWidth="3" />
-                                  })}
-                                </svg>
-                                {currentExplanation.graphVisual.nodes.map(node => {
-                                  let bg = '#1e1f22';
-                                  let border = '#3c3f41';
-                                  let color = '#a9b7c6';
-                                  if (node.state === 'active') { bg = '#3574f0'; border = '#56a8f5'; color = '#fff'; }
-                                  else if (node.state === 'visited') { bg = '#59a869'; border = '#59a869'; color = '#fff'; }
-                                  
-                                  const scaleY = 170 / 220;
-                                  return (
-                                    <div key={node.id} style={{
-                                      position: 'absolute', left: node.x - 16, top: (node.y * scaleY) - 16, width: '32px', height: '32px',
-                                      borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                      background: bg, border: `1px solid ${border}`, color: color, fontWeight: 'bold', fontSize: '13px',
-                                      transition: 'all 0.2s ease', zIndex: 2
-                                    }}>
-                                      {node.label}
-                                    </div>
-                                  );
-                                })}
-                              </div>
-                            )}
+                            {currentExplanation?.graphVisual && (() => {
+                              const nodes = currentExplanation.graphVisual.nodes;
+                              if (!nodes || nodes.length === 0) return null;
+                              const xs = nodes.map(n => n.x);
+                              const ys = nodes.map(n => n.y);
+                              const minX = Math.min(...xs);
+                              const maxX = Math.max(...xs);
+                              const minY = Math.min(...ys);
+                              const maxY = Math.max(...ys);
+
+                              const padding = 20;
+                              const width = 280;
+                              const height = 170;
+
+                              const rangeX = maxX - minX || 1;
+                              const rangeY = maxY - minY || 1;
+
+                              const scaleX = (width - 2 * padding) / rangeX;
+                              const scaleY = (height - 2 * padding) / rangeY;
+                              const scale = Math.min(scaleX, scaleY);
+
+                              const getX = (x) => padding + (x - minX) * scale + (width - 2 * padding - rangeX * scale) / 2;
+                              const getY = (y) => padding + (y - minY) * scale + (height - 2 * padding - rangeY * scale) / 2;
+
+                              return (
+                                <div style={{ position: 'relative', width: `${width}px`, height: `${height}px`, flexShrink: 0 }}>
+                                  <svg width={width} height={height} style={{ position: 'absolute', top: 0, left: 0 }}>
+                                    {currentExplanation.graphVisual.edges.map((edge, i) => {
+                                      const n1 = nodes.find(n => n.id === edge.source);
+                                      const n2 = nodes.find(n => n.id === edge.target);
+                                      if (!n1 || !n2) return null;
+                                      const isEdgeActive = edge.active;
+                                      return (
+                                        <line 
+                                          key={i} 
+                                          x1={getX(n1.x)} 
+                                          y1={getY(n1.y)} 
+                                          x2={getX(n2.x)} 
+                                          y2={getY(n2.y)} 
+                                          stroke={isEdgeActive ? '#3574f0' : 'rgba(255, 255, 255, 0.15)'} 
+                                          strokeWidth={isEdgeActive ? '4' : '2.5'} 
+                                        />
+                                      );
+                                    })}
+                                  </svg>
+                                  {nodes.map(node => {
+                                     let bg = '#1e1f22';
+                                     let border = '#3c3f41';
+                                     let color = '#a9b7c6';
+                                     if (node.state === 'active' || node.active) { bg = '#3574f0'; border = '#56a8f5'; color = '#fff'; }
+                                     else if (node.state === 'visited') { bg = '#59a869'; border = '#59a869'; color = '#fff'; }
+                                     
+                                     const leftPos = getX(node.x);
+                                     const topPos = getY(node.y);
+                                     const hasDesc = !!node.desc;
+                                     
+                                     return (
+                                       <div key={node.id} style={{
+                                         position: 'absolute', 
+                                         left: `${leftPos}px`, 
+                                         top: `${topPos}px`, 
+                                         transform: 'translate(-50%, -50%)',
+                                         width: '28px', 
+                                         height: '28px',
+                                         zIndex: 2
+                                       }}>
+                                         {hasDesc && (
+                                           <div style={{
+                                             position: 'absolute',
+                                             top: '-15px',
+                                             left: '50%',
+                                             transform: 'translateX(-50%)',
+                                             fontSize: '8.5px',
+                                             color: '#8c929e',
+                                             fontFamily: 'var(--font-mono)',
+                                             fontWeight: 'bold',
+                                             whiteSpace: 'nowrap',
+                                             pointerEvents: 'none'
+                                           }}>
+                                             {node.desc}
+                                           </div>
+                                         )}
+                                         <div style={{
+                                           width: '100%',
+                                           height: '100%',
+                                           borderRadius: '50%',
+                                           display: 'flex', 
+                                           alignItems: 'center', 
+                                           justifyContent: 'center',
+                                           background: bg, 
+                                           border: `1px solid ${border}`, 
+                                           color: color, 
+                                           fontWeight: 'bold', 
+                                           fontSize: '11px',
+                                           transition: 'all 0.2s ease', 
+                                           boxShadow: (node.state === 'active' || node.active) ? '0 0 10px rgba(53, 116, 240, 0.5)' : 'none',
+                                           whiteSpace: 'nowrap'
+                                         }}>
+                                           {node.label}
+                                         </div>
+                                       </div>
+                                     );
+                                   })}
+                                </div>
+                              );
+                            })()}
                           </div>
 
                           {currentExplanation?.visual && (

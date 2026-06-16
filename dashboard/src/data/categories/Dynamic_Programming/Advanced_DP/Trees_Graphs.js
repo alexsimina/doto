@@ -3,6 +3,7 @@ export const data = {
   "complexity": "### Complexitate\n\n- **Timp:** O(V) deoarece fiecare nod și muchie este vizitată o singură dată (în post-ordine).\n- **Spațiu:** O(V) pentru tablourile DP și stiva recursivă.\n",
   "variations": "### Variații și Edge Cases\n\n1. Diametrul unui arbore.\n2. Tree Knapsack (Problema rucsacului, dar restricționată pe o ierarhie de noduri).",
   "applications": "### Aplicații\n\nProbleme de colorare sau acoperire pe grafuri cu densitate mică. Optimizarea structurilor ierarhice (sisteme de referințe sau permisiuni).",
+
   code: `
 #include <iostream>
 #include <vector>
@@ -38,143 +39,390 @@ int main() {
     vector<vector<int>> dp(n, vector<int>(2, 0));
     dfs(0, -1, adj, dp); // Rădăcina 0, părinte -1
     
-    cout << "Max Independent Set: " << max(dp[0][0], dp[0][1]) << "
-";
+    cout << "Max Independent Set: " << max(dp[0][0], dp[0][1]) << endl;
     return 0;
 }
 `,
   "explanations": [
     {
+      "line": 24,
+      "text": "Pornim programul. Avem un arbore cu n = 5 noduri și rădăcina 0.",
+      "graphVisual": {
+        "nodes": [
+          { "id": "0", "x": 140, "y": 30, "label": "0" },
+          { "id": "1", "x": 80, "y": 90, "label": "1" },
+          { "id": "2", "x": 200, "y": 90, "label": "2" },
+          { "id": "3", "x": 45, "y": 150, "label": "3" },
+          { "id": "4", "x": 115, "y": 150, "label": "4" }
+        ],
+        "edges": [
+          { "source": "0", "target": "1" },
+          { "source": "0", "target": "2" },
+          { "source": "1", "target": "3" },
+          { "source": "1", "target": "4" }
+        ]
+      }
+    },
+    {
       "line": 33,
-      "text": "Apelăm DFS din rădăcina 0.",
-      "blocksVisual": [
-        {
-          "label": "DFS Start",
-          "groups": [
-            [
-              {
-                "val": "Root 0",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ]
+      "text": "Apelăm dfs(0, -1) pentru a calcula dp de la rădăcina 0.",
+      "graphVisual": {
+        "nodes": [
+          { "id": "0", "x": 140, "y": 30, "label": "0", "state": "active" },
+          { "id": "1", "x": 80, "y": 90, "label": "1" },
+          { "id": "2", "x": 200, "y": 90, "label": "2" },
+          { "id": "3", "x": 45, "y": 150, "label": "3" },
+          { "id": "4", "x": 115, "y": 150, "label": "4" }
+        ],
+        "edges": [
+          { "source": "0", "target": "1" },
+          { "source": "0", "target": "2" },
+          { "source": "1", "target": "3" },
+          { "source": "1", "target": "4" }
+        ]
+      }
+    },
+    {
+      "line": 7,
+      "text": "Inițializăm stările de bază pentru nodul 0: dp[0][0] = 0 și dp[0][1] = 1.",
+      "graphVisual": {
+        "nodes": [
+          { "id": "0", "x": 140, "y": 30, "label": "0 (0,1)", "state": "active" },
+          { "id": "1", "x": 80, "y": 90, "label": "1" },
+          { "id": "2", "x": 200, "y": 90, "label": "2" },
+          { "id": "3", "x": 45, "y": 150, "label": "3" },
+          { "id": "4", "x": 115, "y": 150, "label": "4" }
+        ],
+        "edges": [
+          { "source": "0", "target": "1" },
+          { "source": "0", "target": "2" },
+          { "source": "1", "target": "3" },
+          { "source": "1", "target": "4" }
+        ]
+      }
     },
     {
       "line": 13,
-      "text": "DFS coboară până la frunze (nodurile 2, 3, 4).",
-      "blocksVisual": [
-        {
-          "label": "Coborâre",
-          "groups": [
-            [
-              {
-                "val": "Către frunze"
-              }
-            ]
-          ]
-        }
-      ]
+      "text": "Din nodul 0, apelăm dfs(1, 0) pentru primul copil.",
+      "graphVisual": {
+        "nodes": [
+          { "id": "0", "x": 140, "y": 30, "label": "0" },
+          { "id": "1", "x": 80, "y": 90, "label": "1", "state": "active" },
+          { "id": "2", "x": 200, "y": 90, "label": "2" },
+          { "id": "3", "x": 45, "y": 150, "label": "3" },
+          { "id": "4", "x": 115, "y": 150, "label": "4" }
+        ],
+        "edges": [
+          { "source": "0", "target": "1" },
+          { "source": "0", "target": "2" },
+          { "source": "1", "target": "3" },
+          { "source": "1", "target": "4" }
+        ]
+      }
     },
     {
-      "line": 8,
-      "text": "Frunza 3: dp[3][0]=0, dp[3][1]=1. Nu are copii. Se întoarce.",
-      "blocksVisual": [
-        {
-          "label": "Frunza 3",
-          "groups": [
-            [
-              {
-                "val": "dp[3]={0, 1}"
-              }
-            ]
-          ]
-        }
-      ]
+      "line": 7,
+      "text": "Inițializăm stările de bază pentru nodul 1: dp[1][0] = 0 și dp[1][1] = 1.",
+      "graphVisual": {
+        "nodes": [
+          { "id": "0", "x": 140, "y": 30, "label": "0" },
+          { "id": "1", "x": 80, "y": 90, "label": "1 (0,1)", "state": "active" },
+          { "id": "2", "x": 200, "y": 90, "label": "2" },
+          { "id": "3", "x": 45, "y": 150, "label": "3" },
+          { "id": "4", "x": 115, "y": 150, "label": "4" }
+        ],
+        "edges": [
+          { "source": "0", "target": "1" },
+          { "source": "0", "target": "2" },
+          { "source": "1", "target": "3" },
+          { "source": "1", "target": "4" }
+        ]
+      }
     },
     {
-      "line": 8,
-      "text": "Frunza 4: similar dp[4]={0, 1}.",
-      "blocksVisual": [
-        {
-          "label": "Frunza 4",
-          "groups": [
-            [
-              {
-                "val": "dp[4]={0, 1}"
-              }
-            ]
-          ]
-        }
-      ]
+      "line": 13,
+      "text": "Din nodul 1, apelăm dfs(3, 1) pentru copilul 3.",
+      "graphVisual": {
+        "nodes": [
+          { "id": "0", "x": 140, "y": 30, "label": "0" },
+          { "id": "1", "x": 80, "y": 90, "label": "1" },
+          { "id": "2", "x": 200, "y": 90, "label": "2" },
+          { "id": "3", "x": 45, "y": 150, "label": "3", "state": "active" },
+          { "id": "4", "x": 115, "y": 150, "label": "4" }
+        ],
+        "edges": [
+          { "source": "0", "target": "1" },
+          { "source": "0", "target": "2" },
+          { "source": "1", "target": "3" },
+          { "source": "1", "target": "4" }
+        ]
+      }
+    },
+    {
+      "line": 7,
+      "text": "Nodul 3 este frunză. Inițializăm dp[3][0] = 0 și dp[3][1] = 1.",
+      "graphVisual": {
+        "nodes": [
+          { "id": "0", "x": 140, "y": 30, "label": "0" },
+          { "id": "1", "x": 80, "y": 90, "label": "1" },
+          { "id": "2", "x": 200, "y": 90, "label": "2" },
+          { "id": "3", "x": 45, "y": 150, "label": "3 (0,1)", "state": "active" },
+          { "id": "4", "x": 115, "y": 150, "label": "4" }
+        ],
+        "edges": [
+          { "source": "0", "target": "1" },
+          { "source": "0", "target": "2" },
+          { "source": "1", "target": "3" },
+          { "source": "1", "target": "4" }
+        ]
+      }
+    },
+    {
+      "line": 13,
+      "text": "dfs(3, 1) s-a terminat. Revenim în nodul 1 și apelăm dfs(4, 1) pentru copilul 4.",
+      "graphVisual": {
+        "nodes": [
+          { "id": "0", "x": 140, "y": 30, "label": "0" },
+          { "id": "1", "x": 80, "y": 90, "label": "1" },
+          { "id": "2", "x": 200, "y": 90, "label": "2" },
+          { "id": "3", "x": 45, "y": 150, "label": "3 (0,1)", "state": "visited" },
+          { "id": "4", "x": 115, "y": 150, "label": "4", "state": "active" }
+        ],
+        "edges": [
+          { "source": "0", "target": "1" },
+          { "source": "0", "target": "2" },
+          { "source": "1", "target": "3" },
+          { "source": "1", "target": "4" }
+        ]
+      }
+    },
+    {
+      "line": 7,
+      "text": "Nodul 4 este frunză. Inițializăm dp[4][0] = 0 și dp[4][1] = 1.",
+      "graphVisual": {
+        "nodes": [
+          { "id": "0", "x": 140, "y": 30, "label": "0" },
+          { "id": "1", "x": 80, "y": 90, "label": "1" },
+          { "id": "2", "x": 200, "y": 90, "label": "2" },
+          { "id": "3", "x": 45, "y": 150, "label": "3 (0,1)", "state": "visited" },
+          { "id": "4", "x": 115, "y": 150, "label": "4 (0,1)", "state": "active" }
+        ],
+        "edges": [
+          { "source": "0", "target": "1" },
+          { "source": "0", "target": "2" },
+          { "source": "1", "target": "3" },
+          { "source": "1", "target": "4" }
+        ]
+      }
+    },
+    {
+      "line": 13,
+      "text": "dfs(4, 1) s-a terminat. Revenim în nodul 1 pentru a agrega rezultatele copiilor săi.",
+      "graphVisual": {
+        "nodes": [
+          { "id": "0", "x": 140, "y": 30, "label": "0" },
+          { "id": "1", "x": 80, "y": 90, "label": "1", "state": "active" },
+          { "id": "2", "x": 200, "y": 90, "label": "2" },
+          { "id": "3", "x": 45, "y": 150, "label": "3 (0,1)", "state": "visited" },
+          { "id": "4", "x": 115, "y": 150, "label": "4 (0,1)", "state": "visited" }
+        ],
+        "edges": [
+          { "source": "0", "target": "1" },
+          { "source": "0", "target": "2" },
+          { "source": "1", "target": "3" },
+          { "source": "1", "target": "4" }
+        ]
+      }
     },
     {
       "line": 16,
-      "text": "La nodul 1 (copiii 3, 4): Dacă nu includ 1, dp[1][0] += max(0, 1) + max(0, 1) = 2.",
-      "blocksVisual": [
-        {
-          "label": "Nod 1 (dp[1][0])",
-          "groups": [
-            [
-              {
-                "val": "Nu includ: 2",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ]
+      "text": "Prelucrăm copilul 3 pentru nodul 1: dp[1][0] += max(dp[3][0]=0, dp[3][1]=1) = 1.",
+      "graphVisual": {
+        "nodes": [
+          { "id": "0", "x": 140, "y": 30, "label": "0" },
+          { "id": "1", "x": 80, "y": 90, "label": "1 (1,1)", "state": "active" },
+          { "id": "2", "x": 200, "y": 90, "label": "2" },
+          { "id": "3", "x": 45, "y": 150, "label": "3 (0,1)", "state": "visited" },
+          { "id": "4", "x": 115, "y": 150, "label": "4 (0,1)", "state": "visited" }
+        ],
+        "edges": [
+          { "source": "0", "target": "1" },
+          { "source": "0", "target": "2" },
+          { "source": "1", "target": "3" },
+          { "source": "1", "target": "4" }
+        ]
+      }
     },
     {
       "line": 19,
-      "text": "Dacă includ 1, dp[1][1] += dp[3][0] + dp[4][0] = 1 + 0 + 0 = 1.",
-      "blocksVisual": [
-        {
-          "label": "Nod 1 (dp[1][1])",
-          "groups": [
-            [
-              {
-                "val": "Includ: 1",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ]
+      "text": "De asemenea, dacă includem nodul 1: dp[1][1] += dp[3][0] = 0. Momentan dp[1] = (1, 1).",
+      "graphVisual": {
+        "nodes": [
+          { "id": "0", "x": 140, "y": 30, "label": "0" },
+          { "id": "1", "x": 80, "y": 90, "label": "1 (1,1)", "state": "active" },
+          { "id": "2", "x": 200, "y": 90, "label": "2" },
+          { "id": "3", "x": 45, "y": 150, "label": "3 (0,1)", "state": "visited" },
+          { "id": "4", "x": 115, "y": 150, "label": "4 (0,1)", "state": "visited" }
+        ],
+        "edges": [
+          { "source": "0", "target": "1" },
+          { "source": "0", "target": "2" },
+          { "source": "1", "target": "3" },
+          { "source": "1", "target": "4" }
+        ]
+      }
     },
     {
       "line": 16,
-      "text": "Similar, se prelucrează nodul 2 (frunză, dp[2]={0,1}). La final, nodul 0 alege combinarea optimă a copiilor 1 și 2.",
-      "blocksVisual": [
-        {
-          "label": "Nod 0",
-          "groups": [
-            [
-              {
-                "val": "Combinație"
-              }
-            ]
-          ]
-        }
-      ]
+      "text": "Prelucrăm copilul 4 pentru nodul 1: dp[1][0] += max(dp[4][0]=0, dp[4][1]=1) = 1 + 1 = 2.",
+      "graphVisual": {
+        "nodes": [
+          { "id": "0", "x": 140, "y": 30, "label": "0" },
+          { "id": "1", "x": 80, "y": 90, "label": "1 (2,1)", "state": "active" },
+          { "id": "2", "x": 200, "y": 90, "label": "2" },
+          { "id": "3", "x": 45, "y": 150, "label": "3 (0,1)", "state": "visited" },
+          { "id": "4", "x": 115, "y": 150, "label": "4 (0,1)", "state": "visited" }
+        ],
+        "edges": [
+          { "source": "0", "target": "1" },
+          { "source": "0", "target": "2" },
+          { "source": "1", "target": "3" },
+          { "source": "1", "target": "4" }
+        ]
+      }
+    },
+    {
+      "line": 19,
+      "text": "Și dacă includem nodul 1: dp[1][1] += dp[4][0] = 0. Final dp[1] = (2, 1). dfs(1) se întoarce.",
+      "graphVisual": {
+        "nodes": [
+          { "id": "0", "x": 140, "y": 30, "label": "0" },
+          { "id": "1", "x": 80, "y": 90, "label": "1 (2,1)", "state": "visited" },
+          { "id": "2", "x": 200, "y": 90, "label": "2" },
+          { "id": "3", "x": 45, "y": 150, "label": "3 (0,1)", "state": "visited" },
+          { "id": "4", "x": 115, "y": 150, "label": "4 (0,1)", "state": "visited" }
+        ],
+        "edges": [
+          { "source": "0", "target": "1" },
+          { "source": "0", "target": "2" },
+          { "source": "1", "target": "3" },
+          { "source": "1", "target": "4" }
+        ]
+      }
+    },
+    {
+      "line": 13,
+      "text": "Revenim în nodul 0. Prelucrăm rezultatele de la copilul 1: dp[0][0] += max(2, 1) = 2 și dp[0][1] += dp[1][0] = 2. dp[0] = (2, 3).",
+      "graphVisual": {
+        "nodes": [
+          { "id": "0", "x": 140, "y": 30, "label": "0 (2,3)", "state": "active" },
+          { "id": "1", "x": 80, "y": 90, "label": "1 (2,1)", "state": "visited" },
+          { "id": "2", "x": 200, "y": 90, "label": "2" },
+          { "id": "3", "x": 45, "y": 150, "label": "3 (0,1)", "state": "visited" },
+          { "id": "4", "x": 115, "y": 150, "label": "4 (0,1)", "state": "visited" }
+        ],
+        "edges": [
+          { "source": "0", "target": "1" },
+          { "source": "0", "target": "2" },
+          { "source": "1", "target": "3" },
+          { "source": "1", "target": "4" }
+        ]
+      }
+    },
+    {
+      "line": 13,
+      "text": "Apelăm acum dfs(2, 0) pentru al doilea copil al rădăcinii.",
+      "graphVisual": {
+        "nodes": [
+          { "id": "0", "x": 140, "y": 30, "label": "0" },
+          { "id": "1", "x": 80, "y": 90, "label": "1 (2,1)", "state": "visited" },
+          { "id": "2", "x": 200, "y": 90, "label": "2", "state": "active" },
+          { "id": "3", "x": 45, "y": 150, "label": "3 (0,1)", "state": "visited" },
+          { "id": "4", "x": 115, "y": 150, "label": "4 (0,1)", "state": "visited" }
+        ],
+        "edges": [
+          { "source": "0", "target": "1" },
+          { "source": "0", "target": "2" },
+          { "source": "1", "target": "3" },
+          { "source": "1", "target": "4" }
+        ]
+      }
+    },
+    {
+      "line": 7,
+      "text": "Nodul 2 este frunză. Inițializăm dp[2][0] = 0 și dp[2][1] = 1. dfs(2) se întoarce.",
+      "graphVisual": {
+        "nodes": [
+          { "id": "0", "x": 140, "y": 30, "label": "0" },
+          { "id": "1", "x": 80, "y": 90, "label": "1 (2,1)", "state": "visited" },
+          { "id": "2", "x": 200, "y": 90, "label": "2 (0,1)", "state": "visited" },
+          { "id": "3", "x": 45, "y": 150, "label": "3 (0,1)", "state": "visited" },
+          { "id": "4", "x": 115, "y": 150, "label": "4 (0,1)", "state": "visited" }
+        ],
+        "edges": [
+          { "source": "0", "target": "1" },
+          { "source": "0", "target": "2" },
+          { "source": "1", "target": "3" },
+          { "source": "1", "target": "4" }
+        ]
+      }
+    },
+    {
+      "line": 13,
+      "text": "Revenim în nodul 0. Prelucrăm rezultatele de la copilul 2: dp[0][0] += max(dp[2][0]=0, dp[2][1]=1) = 2 + 1 = 3.",
+      "graphVisual": {
+        "nodes": [
+          { "id": "0", "x": 140, "y": 30, "label": "0 (3,3)", "state": "active" },
+          { "id": "1", "x": 80, "y": 90, "label": "1 (2,1)", "state": "visited" },
+          { "id": "2", "x": 200, "y": 90, "label": "2 (0,1)", "state": "visited" },
+          { "id": "3", "x": 45, "y": 150, "label": "3 (0,1)", "state": "visited" },
+          { "id": "4", "x": 115, "y": 150, "label": "4 (0,1)", "state": "visited" }
+        ],
+        "edges": [
+          { "source": "0", "target": "1" },
+          { "source": "0", "target": "2" },
+          { "source": "1", "target": "3" },
+          { "source": "1", "target": "4" }
+        ]
+      }
+    },
+    {
+      "line": 19,
+      "text": "Și dacă includem nodul 0: dp[0][1] += dp[2][0] = 3 + 0 = 3. Final dp[0] = (3, 3). dfs(0) se întoarce.",
+      "graphVisual": {
+        "nodes": [
+          { "id": "0", "x": 140, "y": 30, "label": "0 (3,3)", "state": "visited" },
+          { "id": "1", "x": 80, "y": 90, "label": "1 (2,1)", "state": "visited" },
+          { "id": "2", "x": 200, "y": 90, "label": "2 (0,1)", "state": "visited" },
+          { "id": "3", "x": 45, "y": 150, "label": "3 (0,1)", "state": "visited" },
+          { "id": "4", "x": 115, "y": 150, "label": "4 (0,1)", "state": "visited" }
+        ],
+        "edges": [
+          { "source": "0", "target": "1" },
+          { "source": "0", "target": "2" },
+          { "source": "1", "target": "3" },
+          { "source": "1", "target": "4" }
+        ]
+      }
     },
     {
       "line": 35,
-      "text": "Afișăm maximul la rădăcină (în acest caz 3: alegem nodurile 0, 3, 4).",
-      "blocksVisual": [
-        {
-          "label": "Final",
-          "groups": [
-            [
-              {
-                "val": "Rezultat = 3",
-                "sorted": true
-              }
-            ]
-          ]
-        }
-      ]
+      "text": "Rezultatul final este max(dp[0][0]=3, dp[0][1]=3) = 3. Alegem nodurile {0, 3, 4}.",
+      "graphVisual": {
+        "nodes": [
+          { "id": "0", "x": 140, "y": 30, "label": "0 (3,3)", "state": "visited" },
+          { "id": "1", "x": 80, "y": 90, "label": "1 (2,1)", "state": "visited" },
+          { "id": "2", "x": 200, "y": 90, "label": "2 (0,1)", "state": "visited" },
+          { "id": "3", "x": 45, "y": 150, "label": "3 (0,1)", "state": "visited" },
+          { "id": "4", "x": 115, "y": 150, "label": "4 (0,1)", "state": "visited" }
+        ],
+        "edges": [
+          { "source": "0", "target": "1" },
+          { "source": "0", "target": "2" },
+          { "source": "1", "target": "3" },
+          { "source": "1", "target": "4" }
+        ]
+      }
     }
   ],
   "problems": {

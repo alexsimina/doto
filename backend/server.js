@@ -97,7 +97,9 @@ app.post('/execute', async (req, res) => {
 
   try {
     const trace = await generateTrace(code, topic);
-    res.json({ trace });
+    const commentMatch = code.match(/\/\/\s*(.*)/);
+    const explanation = commentMatch ? commentMatch[1].trim() : "Code execution trace";
+    res.json({ trace, explanation });
   } catch (error) {
     console.error("Execution trace failed:", error);
     res.status(500).json({ error: 'Trace generation failed' });

@@ -46,13 +46,28 @@ ${code}
 function mockGenerateTrace(code) {
   const lines = code.split('\n');
   const trace = [];
+  const lowerCode = code.toLowerCase();
+  
+  let extraExplanation = "";
+  if (lowerCode.includes("dfs")) {
+    extraExplanation = "Recursive traversal of visited nodes.";
+  } else if (lowerCode.includes("bfs")) {
+    extraExplanation = "Queue-based traversal of visited nodes.";
+  } else if (lowerCode.includes("dijkstra") || lowerCode.includes("prim") || lowerCode.includes("kruskal")) {
+    extraExplanation = "Processing visited vertices and updating distances.";
+  }
+
   for (let i = 0; i < lines.length; i++) {
     const lineContent = lines[i].trim();
     if (lineContent) {
+      let explanation = `Executing: ${lineContent}`;
+      if (extraExplanation && trace.length === 0) {
+        explanation = `${extraExplanation} Executing: ${lineContent}`;
+      }
       trace.push({
         line: i + 1,
         segment: lineContent,
-        explanation: `Executing: ${lineContent}`,
+        explanation: explanation,
         state: { "line_number": i + 1 }
       });
     }

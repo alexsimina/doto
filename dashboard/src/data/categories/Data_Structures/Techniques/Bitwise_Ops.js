@@ -34,216 +34,319 @@ int main() {
   "explanations": [
     {
       "line": 10,
-      "text": "Reprezentarea binară: numerele sunt procesate la nivel de biți (0 și 1).",
+      "text": "Reprezentarea binară: numerele sunt procesate la nivel de biți (0 și 1) în memoria calculatorului.",
       "blocksVisual": [
         {
           "label": "Biți",
           "groups": [
-            [
-              {
-                "val": "1"
-              },
-              {
-                "val": "0"
-              },
-              {
-                "val": "1"
-              },
-              {
-                "val": "1"
-              }
-            ]
+            [{ "val": "1" }, { "val": "0" }, { "val": "1" }, { "val": "1" }]
           ]
         }
       ]
     },
     {
-      "line": 7,
-      "text": "Avem o mulțime de N = 3 elemente: A, B, C.",
+      "line": 14,
+      "text": "Avem o mulțime de N = 3 elemente distincte: A, B, C.",
       "blocksVisual": [
         {
           "label": "Date Intrare",
           "groups": [
-            [
-              {
-                "val": "A"
-              },
-              {
-                "val": "B"
-              },
-              {
-                "val": "C"
-              }
-            ]
+            [{ "val": "A" }, { "val": "B" }, { "val": "C" }]
           ]
         }
       ]
     },
     {
-      "line": 11,
+      "line": 17,
       "text": "Numărul total de submulțimi pentru N elemente este 2^N. Calculăm rapid folosind shiftare la stânga: (1 << 3) = 8.",
       "blocksVisual": [
         {
           "label": "Bitshift",
           "groups": [
-            [
-              {
-                "val": "1 << 3 = 8",
-                "active": true
-              }
-            ]
+            [{ "val": "1 << 3 = 8", "active": true }]
           ]
         }
       ]
     },
     {
-      "line": 13,
-      "text": "Iterăm 'mask' de la 0 la 7 (ex: 000, 001, 010... 111). Fiecare 'mask' e un număr a cărui scriere binară definește submulțimea.",
+      "line": 19,
+      "text": "Începem bucla for. Inițializăm masca 'mask' = 0 (în binar: 000).",
       "blocksVisual": [
         {
           "label": "Masca Curenta",
           "groups": [
-            [
-              {
-                "val": "mask = 0",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 18,
-      "text": "mask = 0 (Binar: 000). Niciun bit nu este 1. Rezultă o submulțime vidă.",
-      "blocksVisual": [
-        {
-          "label": "Masca 000",
-          "groups": [
-            [
-              {
-                "val": "{ }",
-                "sorted": true
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 13,
-      "text": "Iterația următoare: mask = 1 (Binar: 001). Bitul 0 este setat (dreapta).",
-      "blocksVisual": [
-        {
-          "label": "Masca Curenta",
-          "groups": [
-            [
-              {
-                "val": "mask = 1",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 18,
-      "text": "Pentru i = 0, condiția '1 & (1 << 0)' -> '1 & 1' este Adevărat. Afișează 'A'. Restul biților sunt 0.",
-      "blocksVisual": [
-        {
-          "label": "Masca 001",
-          "groups": [
-            [
-              {
-                "val": "{ A }",
-                "sorted": true
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 13,
-      "text": "mask = 3 (Binar: 011). Biții 0 și 1 sunt setați.",
-      "blocksVisual": [
-        {
-          "label": "Masca Curenta",
-          "groups": [
-            [
-              {
-                "val": "mask = 3",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 18,
-      "text": "Vor trece testul i=0 ('A') și i=1 ('B'). Afișează { A, B }.",
-      "blocksVisual": [
-        {
-          "label": "Masca 011",
-          "groups": [
-            [
-              {
-                "val": "{ A, B }",
-                "sorted": true
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 13,
-      "text": "mask = 7 (Binar: 111). Toți cei 3 biți sunt setați.",
-      "blocksVisual": [
-        {
-          "label": "Masca Curenta",
-          "groups": [
-            [
-              {
-                "val": "mask = 7",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 18,
-      "text": "Condiția '7 & (1 << i)' e adevărată pentru i=0,1,2. Afișează { A, B, C }.",
-      "blocksVisual": [
-        {
-          "label": "Masca 111",
-          "groups": [
-            [
-              {
-                "val": "{ A, B, C }",
-                "sorted": true
-              }
-            ]
+            [{ "val": "mask = 0 (000)", "active": true }]
           ]
         }
       ]
     },
     {
       "line": 24,
-      "text": "Am generat complet toate submulțimile fără să folosim Backtracking recursiv!",
+      "text": "mask = 0: Verificăm bitul 0 (1 << 0 = 1). Condiția (0 & 1) este Falsă.",
+      "blocksVisual": [
+        {
+          "label": "Verificare Bit 0",
+          "groups": [
+            [{ "val": "000 & 001 = 0 (Fals)" }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 24,
+      "text": "mask = 0: Verificăm bitul 1 (1 << 1 = 2). Condiția (0 & 2) este Falsă.",
+      "blocksVisual": [
+        {
+          "label": "Verificare Bit 1",
+          "groups": [
+            [{ "val": "000 & 010 = 0 (Fals)" }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 24,
+      "text": "mask = 0: Verificăm bitul 2 (1 << 2 = 4). Condiția (0 & 4) este Falsă.",
+      "blocksVisual": [
+        {
+          "label": "Verificare Bit 2",
+          "groups": [
+            [{ "val": "000 & 100 = 0 (Fals)" }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 20,
+      "text": "mask = 0: Niciun bit nu a fost setat. Afișăm submulțimea vidă { }.",
+      "blocksVisual": [
+        {
+          "label": "Afișare",
+          "groups": [
+            [{ "val": "{ }", "sorted": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 19,
+      "text": "Trecem la următoarea mască: mask = 1 (în binar: 001).",
+      "blocksVisual": [
+        {
+          "label": "Masca Curenta",
+          "groups": [
+            [{ "val": "mask = 1 (001)", "active": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 24,
+      "text": "mask = 1: Verificăm bitul 0 (1 << 0 = 1). Condiția (1 & 1) este Adevărată! Selectăm 'A'.",
+      "blocksVisual": [
+        {
+          "label": "Verificare Bit 0",
+          "groups": [
+            [{ "val": "001 & 001 = 1 (Adevărat)", "active": true }],
+            [{ "val": "A" }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 24,
+      "text": "mask = 1: Verificăm bitul 1 (1 & 2 = 0 - Fals) și bitul 2 (1 & 4 = 0 - Fals).",
+      "blocksVisual": [
+        {
+          "label": "Verificare rest biți",
+          "groups": [
+            [{ "val": "Fals pentru B și C" }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 20,
+      "text": "mask = 1: Afișăm submulțimea formată doar din elementul 'A': { A }.",
+      "blocksVisual": [
+        {
+          "label": "Afișare",
+          "groups": [
+            [{ "val": "{ A }", "sorted": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 19,
+      "text": "Trecem la mask = 2 (în binar: 010).",
+      "blocksVisual": [
+        {
+          "label": "Masca Curenta",
+          "groups": [
+            [{ "val": "mask = 2 (010)", "active": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 24,
+      "text": "mask = 2: Verificăm bitul 0 (2 & 1 = 0 - Fals). Verificăm bitul 1 (2 & 2 = 2 - Adevărat!). Selectăm 'B'.",
+      "blocksVisual": [
+        {
+          "label": "Verificare Biți",
+          "groups": [
+            [{ "val": "010 & 010 = 2 (Adevărat)", "active": true }],
+            [{ "val": "B" }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 24,
+      "text": "mask = 2: Verificăm bitul 2 (2 & 4 = 0 - Fals). Doar 'B' a fost selectat.",
+      "blocksVisual": [
+        {
+          "label": "Verificare Bit 2",
+          "groups": [
+            [{ "val": "010 & 100 = 0 (Fals)" }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 20,
+      "text": "mask = 2: Afișăm submulțimea { B }.",
+      "blocksVisual": [
+        {
+          "label": "Afișare",
+          "groups": [
+            [{ "val": "{ B }", "sorted": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 19,
+      "text": "Trecem la mask = 3 (în binar: 011).",
+      "blocksVisual": [
+        {
+          "label": "Masca Curenta",
+          "groups": [
+            [{ "val": "mask = 3 (011)", "active": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 24,
+      "text": "mask = 3: Verificăm bitul 0. 3 & 1 = 1 (Adevărat). Selectăm 'A'.",
+      "blocksVisual": [
+        {
+          "label": "Verificare Bit 0",
+          "groups": [
+            [{ "val": "011 & 001 = 1", "active": true }],
+            [{ "val": "A" }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 24,
+      "text": "mask = 3: Verificăm bitul 1. 3 & 2 = 2 (Adevărat). Selectăm 'B'. Bitul 2 este 0.",
+      "blocksVisual": [
+        {
+          "label": "Verificare Biți",
+          "groups": [
+            [{ "val": "011 & 010 = 2", "active": true }],
+            [{ "val": "A" }, { "val": "B" }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 20,
+      "text": "mask = 3: Afișăm submulțimea { A, B }.",
+      "blocksVisual": [
+        {
+          "label": "Afișare",
+          "groups": [
+            [{ "val": "{ A, B }", "sorted": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 19,
+      "text": "Trecem la mask = 4 (în binar: 100). Doar bitul 2 este setat. Afișăm { C }.",
+      "blocksVisual": [
+        {
+          "label": "Masca 100",
+          "groups": [
+            [{ "val": "mask = 4" }],
+            [{ "val": "{ C }", "sorted": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 19,
+      "text": "Trecem la mask = 5 (în binar: 101). Biții 0 și 2 sunt setați. Afișăm { A, C }.",
+      "blocksVisual": [
+        {
+          "label": "Masca 101",
+          "groups": [
+            [{ "val": "mask = 5" }],
+            [{ "val": "{ A, C }", "sorted": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 19,
+      "text": "Trecem la mask = 6 (în binar: 110). Biții 1 și 2 sunt setați. Afișăm { B, C }.",
+      "blocksVisual": [
+        {
+          "label": "Masca 110",
+          "groups": [
+            [{ "val": "mask = 6" }],
+            [{ "val": "{ B, C }", "sorted": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 19,
+      "text": "Trecem la ultima mască: mask = 7 (în binar: 111). Toți biții sunt setați.",
+      "blocksVisual": [
+        {
+          "label": "Masca 111",
+          "groups": [
+            [{ "val": "mask = 7 (111)", "active": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 20,
+      "text": "mask = 7: Toate cele 3 elemente sunt selectate. Afișăm { A, B, C }.",
+      "blocksVisual": [
+        {
+          "label": "Afișare",
+          "groups": [
+            [{ "val": "{ A, B, C }", "sorted": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 31,
+      "text": "Am parcurs toate cele 8 stări și am generat corect toate submulțimile posibile în O(2^N).",
       "blocksVisual": [
         {
           "label": "Succes!",
           "groups": [
-            [
-              {
-                "val": "8 Submulțimi"
-              }
-            ]
+            [{ "val": "8 Submulțimi", "sorted": true }]
           ]
         }
       ]

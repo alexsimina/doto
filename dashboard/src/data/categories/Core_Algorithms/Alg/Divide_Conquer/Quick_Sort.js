@@ -43,591 +43,171 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 31,
-      "text": "Avem vectorul nesortat [10, 7, 8, 9, 1, 5].",
-      "blocksVisual": [
-        {
-          "label": "Inițial",
-          "groups": [
-            [
-              {
-                "val": 10
-              },
-              {
-                "val": 7
-              },
-              {
-                "val": 8
-              },
-              {
-                "val": 9
-              },
-              {
-                "val": 1
-              },
-              {
-                "val": 5
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
       "line": 22,
-      "text": "Apelăm quickSort pentru întreg intervalul (low=0, high=5).",
+      "text": "Apelăm quickSort pentru întreg intervalul (low=0, high=5). Vectorul nesortat este [10, 7, 8, 9, 1, 5].",
       "blocksVisual": [
-        {
-          "label": "Apel initial",
-          "groups": [
-            [
-              {
-                "val": 10,
-                "active": true
-              },
-              {
-                "val": 7,
-                "active": true
-              },
-              {
-                "val": 8,
-                "active": true
-              },
-              {
-                "val": 9,
-                "active": true
-              },
-              {
-                "val": 1,
-                "active": true
-              },
-              {
-                "val": 5,
-                "active": true
-              }
-            ]
-          ]
-        }
+        { "label": "Vectorul", "groups": [[{"val": 10}, {"val": 7}, {"val": 8}, {"val": 9}, {"val": 1}, {"val": 5}]] }
       ]
     },
     {
       "line": 23,
-      "text": "Aflăm poziția pivotului apelând funcția partition.",
+      "text": "Verificăm condiția low < high (0 < 5), care este adevărată.",
       "blocksVisual": [
-        {
-          "label": "Partiționare curentă",
-          "groups": [
-            [
-              {
-                "val": 10,
-                "active": true
-              },
-              {
-                "val": 7,
-                "active": true
-              },
-              {
-                "val": 8,
-                "active": true
-              },
-              {
-                "val": 9,
-                "active": true
-              },
-              {
-                "val": 1,
-                "active": true
-              },
-              {
-                "val": 5,
-                "active": true
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 7,
-      "text": "La prima partiționare, Pivotul devine ultimul element: 5.",
-      "blocksVisual": [
-        {
-          "label": "Pivot = 5",
-          "groups": [
-            [
-              {
-                "val": 10
-              },
-              {
-                "val": 7
-              },
-              {
-                "val": 8
-              },
-              {
-                "val": 9
-              },
-              {
-                "val": 1
-              },
-              {
-                "val": 5,
-                "active": true
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 10,
-      "text": "Iterăm prin vector. 10 > 5, 7 > 5, 8 > 5, 9 > 5. Niciun swap până la 1.",
-      "blocksVisual": [
-        {
-          "label": "Căutare mai mici",
-          "groups": [
-            [
-              {
-                "val": 10
-              },
-              {
-                "val": 7
-              },
-              {
-                "val": 8
-              },
-              {
-                "val": 9
-              },
-              {
-                "val": 1,
-                "active": true
-              },
-              {
-                "val": 5,
-                "active": true
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 13,
-      "text": "Găsim 1 < 5. Îl aducem la început (swap cu arr[i+1], adică cu 10).",
-      "blocksVisual": [
-        {
-          "label": "Swap 1 cu 10",
-          "groups": [
-            [
-              {
-                "val": 1
-              },
-              {
-                "val": 7
-              },
-              {
-                "val": 8
-              },
-              {
-                "val": 9
-              },
-              {
-                "val": 10
-              },
-              {
-                "val": 5,
-                "active": true
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 17,
-      "text": "Aducem pivotul (5) la locul său corect (după 1). Facem swap între 7 (prima valoare mai mare) și 5.",
-      "blocksVisual": [
-        {
-          "label": "Fixare Pivot",
-          "groups": [
-            [
-              {
-                "val": 1
-              },
-              {
-                "val": 5,
-                "sorted": true
-              },
-              {
-                "val": 8
-              },
-              {
-                "val": 9
-              },
-              {
-                "val": 10
-              },
-              {
-                "val": 7
-              }
-            ]
-          ]
-        }
+        { "label": "Verificare", "groups": [[{"val": "0 < 5 (Adevărat)"}]] }
       ]
     },
     {
       "line": 24,
-      "text": "Aplicăm quickSort recursiv pe jumătatea stângă [1] (low=0, high=0). Condiția low < high e falsă, deci rămâne pe loc.",
+      "text": "Apelăm partition(arr, 0, 5) pentru a poziționa un element pivot la locul său final.",
       "blocksVisual": [
-        {
-          "label": "Stânga (Sortat)",
-          "groups": [
-            [
-              {
-                "val": 1,
-                "sorted": true
-              },
-              {
-                "val": 5,
-                "sorted": true
-              },
-              {
-                "val": 8
-              },
-              {
-                "val": 9
-              },
-              {
-                "val": 10
-              },
-              {
-                "val": 7
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 25,
-      "text": "Aplicăm quickSort pe jumătatea dreaptă (low=2, high=5). Intervalul este [8, 9, 10, 7].",
-      "blocksVisual": [
-        {
-          "label": "Partea Dreaptă",
-          "groups": [
-            [
-              {
-                "val": 1,
-                "sorted": true
-              },
-              {
-                "val": 5,
-                "sorted": true
-              },
-              {
-                "val": 8,
-                "active": true
-              },
-              {
-                "val": 9,
-                "active": true
-              },
-              {
-                "val": 10,
-                "active": true
-              },
-              {
-                "val": 7,
-                "active": true
-              }
-            ]
-          ]
-        }
+        { "label": "Partiționare", "groups": [[{"val": 10, "active": true}, {"val": 7, "active": true}, {"val": 8, "active": true}, {"val": 9, "active": true}, {"val": 1, "active": true}, {"val": 5, "active": true}]] }
       ]
     },
     {
       "line": 7,
-      "text": "Partiționăm [8, 9, 10, 7]. Pivotul devine ultimul element: 7.",
+      "text": "Alegem ultimul element ca pivot: pivot = arr[5] = 5.",
       "blocksVisual": [
-        {
-          "label": "Pivot = 7",
-          "groups": [
-            [
-              {
-                "val": 1,
-                "sorted": true
-              },
-              {
-                "val": 5,
-                "sorted": true
-              },
-              {
-                "val": 8
-              },
-              {
-                "val": 9
-              },
-              {
-                "val": 10
-              },
-              {
-                "val": 7,
-                "active": true
-              }
-            ]
-          ]
-        }
+        { "label": "Pivot = 5", "groups": [[{"val": 10}, {"val": 7}, {"val": 8}, {"val": 9}, {"val": 1}, {"val": 5, "sorted": true}]] }
+      ]
+    },
+    {
+      "line": 8,
+      "text": "Inițializăm indicele elementului mai mic: i = low - 1 = -1.",
+      "blocksVisual": [
+        { "label": "Indice i", "groups": [[{"val": "i = -1"}]] }
       ]
     },
     {
       "line": 10,
-      "text": "Toate elementele (8, 9, 10) sunt > 7. Niciun swap în buclă.",
+      "text": "Intrăm în buclă. j = 0: Comparăm arr[0] (10) cu pivotul (5). Deoarece 10 > 5, nu facem nimic.",
       "blocksVisual": [
-        {
-          "label": "Căutare",
-          "groups": [
-            [
-              {
-                "val": 1,
-                "sorted": true
-              },
-              {
-                "val": 5,
-                "sorted": true
-              },
-              {
-                "val": 8
-              },
-              {
-                "val": 9
-              },
-              {
-                "val": 10
-              },
-              {
-                "val": 7,
-                "active": true
-              }
-            ]
-          ]
-        }
+        { "label": "Comparație j=0", "groups": [[{"val": 10, "active": true}, {"val": 7}, {"val": 8}, {"val": 9}, {"val": 1}, {"val": 5}]] }
       ]
     },
     {
-      "line": 17,
-      "text": "Punem pivotul (7) la locul lui, la începutul intervalului (swap 8 cu 7). Vectorul devine [7, 9, 10, 8].",
+      "line": 10,
+      "text": "j = 1: Comparăm arr[1] (7) cu pivotul (5). Deoarece 7 > 5, nu facem nimic.",
       "blocksVisual": [
-        {
-          "label": "Fixare Pivot 7",
-          "groups": [
-            [
-              {
-                "val": 1,
-                "sorted": true
-              },
-              {
-                "val": 5,
-                "sorted": true
-              },
-              {
-                "val": 7,
-                "sorted": true
-              },
-              {
-                "val": 9
-              },
-              {
-                "val": 10
-              },
-              {
-                "val": 8
-              }
-            ]
-          ]
-        }
+        { "label": "Comparație j=1", "groups": [[{"val": 10}, {"val": 7, "active": true}, {"val": 8}, {"val": 9}, {"val": 1}, {"val": 5}]] }
+      ]
+    },
+    {
+      "line": 10,
+      "text": "j = 2: Comparăm arr[2] (8) cu pivotul (5). Deoarece 8 > 5, nu facem nimic.",
+      "blocksVisual": [
+        { "label": "Comparație j=2", "groups": [[{"val": 10}, {"val": 7}, {"val": 8, "active": true}, {"val": 9}, {"val": 1}, {"val": 5}]] }
+      ]
+    },
+    {
+      "line": 10,
+      "text": "j = 3: Comparăm arr[3] (9) cu pivotul (5). Deoarece 9 > 5, nu facem nimic.",
+      "blocksVisual": [
+        { "label": "Comparație j=3", "groups": [[{"val": 10}, {"val": 7}, {"val": 8}, {"val": 9, "active": true}, {"val": 1}, {"val": 5}]] }
+      ]
+    },
+    {
+      "line": 10,
+      "text": "j = 4: Comparăm arr[4] (1) cu pivotul (5). Deoarece 1 < 5, incrementăm i la 0.",
+      "blocksVisual": [
+        { "label": "Comparație j=4", "groups": [[{"val": 10}, {"val": 7}, {"val": 8}, {"val": 9}, {"val": 1, "active": true}, {"val": 5}]] }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "Facem swap între arr[i] (arr[0] = 10) și arr[j] (arr[4] = 1). Vectorul devine [1, 7, 8, 9, 10, 5].",
+      "blocksVisual": [
+        { "label": "După swap j=4", "groups": [[{"val": 1, "sorted": true}, {"val": 7}, {"val": 8}, {"val": 9}, {"val": 10}, {"val": 5}]] }
+      ]
+    },
+    {
+      "line": 15,
+      "text": "Ieșim din buclă. Facem swap între primul element mai mare (arr[1] = 7) și pivotul (arr[5] = 5).",
+      "blocksVisual": [
+        { "label": "Fixare Pivot", "groups": [[{"val": 1}, {"val": 5, "sorted": true}, {"val": 8}, {"val": 9}, {"val": 10}, {"val": 7}]] }
+      ]
+    },
+    {
+      "line": 16,
+      "text": "Returnăm indicele pivotului: pi = 1.",
+      "blocksVisual": [
+        { "label": "Pivot returnat", "groups": [[{"val": "pi = 1"}]] }
+      ]
+    },
+    {
+      "line": 24,
+      "text": "Apelăm recursiv quickSort(arr, low=0, pi-1=0). Deoarece low >= high (0 >= 0), apelul returnează imediat.",
+      "blocksVisual": [
+        { "label": "Jumătatea stângă sortată", "groups": [[{"val": 1, "sorted": true}, {"val": 5, "sorted": true}]] }
       ]
     },
     {
       "line": 25,
-      "text": "Aplicăm quickSort la dreapta lui 7. Interval: [9, 10, 8] (low=3, high=5).",
+      "text": "Apelăm recursiv quickSort(arr, pi+1=2, high=5) pentru intervalul [8, 9, 10, 7].",
       "blocksVisual": [
-        {
-          "label": "Partea Dreaptă",
-          "groups": [
-            [
-              {
-                "val": 1,
-                "sorted": true
-              },
-              {
-                "val": 5,
-                "sorted": true
-              },
-              {
-                "val": 7,
-                "sorted": true
-              },
-              {
-                "val": 9,
-                "active": true
-              },
-              {
-                "val": 10,
-                "active": true
-              },
-              {
-                "val": 8,
-                "active": true
-              }
-            ]
-          ]
-        }
+        { "label": "Apel quickSort(2, 5)", "groups": [[{"val": 1, "hidden": true}, {"val": 5, "hidden": true}, {"val": 8, "active": true}, {"val": 9, "active": true}, {"val": 10, "active": true}, {"val": 7, "active": true}]] }
       ]
     },
     {
       "line": 7,
-      "text": "Partiționăm [9, 10, 8]. Pivotul este 8. Atât 9 cât și 10 sunt mai mari ca 8. Swap 8 cu 9. Vector: [8, 10, 9].",
+      "text": "Alegem noul pivot: pivot = arr[5] = 7.",
       "blocksVisual": [
-        {
-          "label": "Pivot 8 fixat",
-          "groups": [
-            [
-              {
-                "val": 1,
-                "sorted": true
-              },
-              {
-                "val": 5,
-                "sorted": true
-              },
-              {
-                "val": 7,
-                "sorted": true
-              },
-              {
-                "val": 8,
-                "sorted": true
-              },
-              {
-                "val": 10
-              },
-              {
-                "val": 9
-              }
-            ]
-          ]
-        }
+        { "label": "Pivot = 7", "groups": [[{"val": 8}, {"val": 9}, {"val": 10}, {"val": 7, "sorted": true}]] }
+      ]
+    },
+    {
+      "line": 10,
+      "text": "Iterăm j de la 2 la 4. Toate valorile (8, 9, 10) sunt mai mari ca 7. Niciun swap în buclă.",
+      "blocksVisual": [
+        { "label": "Iterare", "groups": [[{"val": 8}, {"val": 9}, {"val": 10}, {"val": 7}]] }
+      ]
+    },
+    {
+      "line": 15,
+      "text": "Swap între arr[2] (8) și pivot (7). Vectorul devine [1, 5, 7, 9, 10, 8]. Pivotul 7 este acum la poziția finală index 2.",
+      "blocksVisual": [
+        { "label": "Pivot 7 fixat", "groups": [[{"val": 1, "sorted": true}, {"val": 5, "sorted": true}, {"val": 7, "sorted": true}, {"val": 9}, {"val": 10}, {"val": 8}]] }
+      ]
+    },
+    {
+      "line": 24,
+      "text": "Apelăm quickSort pentru stânga lui 7 (low=2, high=1). Returnează imediat.",
+      "blocksVisual": [
+        { "label": "Retur stânga", "groups": [[{"val": "Niciun element"}]] }
       ]
     },
     {
       "line": 25,
-      "text": "Aplicăm quickSort la dreapta lui 8. Interval: [10, 9] (low=4, high=5).",
+      "text": "Apelăm quickSort pentru dreapta lui 7 (low=3, high=5). Intervalul este [9, 10, 8].",
       "blocksVisual": [
-        {
-          "label": "Partea Dreaptă",
-          "groups": [
-            [
-              {
-                "val": 1,
-                "sorted": true
-              },
-              {
-                "val": 5,
-                "sorted": true
-              },
-              {
-                "val": 7,
-                "sorted": true
-              },
-              {
-                "val": 8,
-                "sorted": true
-              },
-              {
-                "val": 10,
-                "active": true
-              },
-              {
-                "val": 9,
-                "active": true
-              }
-            ]
-          ]
-        }
+        { "label": "Apel quickSort(3, 5)", "groups": [[{"val": 9, "active": true}, {"val": 10, "active": true}, {"val": 8, "active": true}]] }
       ]
     },
     {
       "line": 7,
-      "text": "Partiționăm [10, 9]. Pivotul e 9. 10 > 9. Swap 10 cu 9. Vector: [9, 10].",
+      "text": "Pentru sub-intervalul [9, 10, 8], pivotul este 8. Deoarece 9 > 8 și 10 > 8, după buclă facem swap între 9 și 8. Vectorul devine [1, 5, 7, 8, 10, 9].",
       "blocksVisual": [
-        {
-          "label": "Pivot 9 fixat",
-          "groups": [
-            [
-              {
-                "val": 1,
-                "sorted": true
-              },
-              {
-                "val": 5,
-                "sorted": true
-              },
-              {
-                "val": 7,
-                "sorted": true
-              },
-              {
-                "val": 8,
-                "sorted": true
-              },
-              {
-                "val": 9,
-                "sorted": true
-              },
-              {
-                "val": 10
-              }
-            ]
-          ]
-        }
+        { "label": "Pivot 8 fixat", "groups": [[{"val": 1, "sorted": true}, {"val": 5, "sorted": true}, {"val": 7, "sorted": true}, {"val": 8, "sorted": true}, {"val": 10}, {"val": 9}]] }
       ]
     },
     {
-      "line": 36,
-      "text": "La final, elementul 10 rămâne singur. Este automat considerat sortat.",
+      "line": 25,
+      "text": "Apelăm quickSort pentru dreapta lui 8: low=4, high=5. Intervalul este [10, 9].",
       "blocksVisual": [
-        {
-          "label": "Finalizat!",
-          "groups": [
-            [
-              {
-                "val": 1,
-                "sorted": true
-              },
-              {
-                "val": 5,
-                "sorted": true
-              },
-              {
-                "val": 7,
-                "sorted": true
-              },
-              {
-                "val": 8,
-                "sorted": true
-              },
-              {
-                "val": 9,
-                "sorted": true
-              },
-              {
-                "val": 10,
-                "sorted": true
-              }
-            ]
-          ]
-        }
+        { "label": "Apel quickSort(4, 5)", "groups": [[{"val": 10, "active": true}, {"val": 9, "active": true}]] }
+      ]
+    },
+    {
+      "line": 7,
+      "text": "Pivotul este 9. Deoarece 10 > 9, facem swap între 10 și 9. Pivotul 9 este fixat.",
+      "blocksVisual": [
+        { "label": "Pivot 9 fixat", "groups": [[{"val": 1, "sorted": true}, {"val": 5, "sorted": true}, {"val": 7, "sorted": true}, {"val": 8, "sorted": true}, {"val": 9, "sorted": true}, {"val": 10}]] }
+      ]
+    },
+    {
+      "line": 24,
+      "text": "Toate elementele au fost vizitate și partiționate corect. Vectorul este complet sortat!",
+      "blocksVisual": [
+        { "label": "Sortare Finalizată", "groups": [[{"val": 1, "sorted": true}, {"val": 5, "sorted": true}, {"val": 7, "sorted": true}, {"val": 8, "sorted": true}, {"val": 9, "sorted": true}, {"val": 10, "sorted": true}]] }
       ]
     }
   ],

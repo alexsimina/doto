@@ -21,15 +21,13 @@ void ciurulLuiEratostene(int n) {
         }
     }
     
-    cout << "Numere prime pana la " << n << ":
-";
+    cout << "Numere prime pana la " << n << ":\n";
     for (int p = 2; p <= n; p++) {
         if (estePrim[p]) {
             cout << p << " ";
         }
     }
-    cout << "
-";
+    cout << "\n";
 }
 
 int main() {
@@ -40,39 +38,19 @@ int main() {
   "explanations": [
     {
       "line": 7,
-      "text": "Inițializăm un vector `estePrim` în care presupunem că toate numerele sunt prime (true).",
+      "text": "Pasul 1: Apelăm funcția ciurulLuiEratostene(20). Inițializăm vectorul `estePrim` de lungime 21 cu `true` pentru toate numerele de la 0 la 20.",
       "blocksVisual": [
         {
-          "label": "Inițializare",
+          "label": "estePrim (Initializor)",
           "groups": [
             [
-              {
-                "val": "2"
-              },
-              {
-                "val": "3"
-              },
-              {
-                "val": "4"
-              },
-              {
-                "val": "5"
-              },
-              {
-                "val": "6"
-              },
-              {
-                "val": "7"
-              },
-              {
-                "val": "8"
-              },
-              {
-                "val": "9"
-              },
-              {
-                "val": 10
-              }
+              { "val": "2", "active": true }, { "val": "3", "active": true }, { "val": "4", "active": true },
+              { "val": "5", "active": true }, { "val": "6", "active": true }, { "val": "7", "active": true },
+              { "val": "8", "active": true }, { "val": "9", "active": true }, { "val": "10", "active": true },
+              { "val": "11", "active": true }, { "val": "12", "active": true }, { "val": "13", "active": true },
+              { "val": "14", "active": true }, { "val": "15", "active": true }, { "val": "16", "active": true },
+              { "val": "17", "active": true }, { "val": "18", "active": true }, { "val": "19", "active": true },
+              { "val": "20", "active": true }
             ]
           ]
         }
@@ -80,48 +58,16 @@ int main() {
     },
     {
       "line": 8,
-      "text": "0 și 1 nu sunt prime conform definiției matematice.",
+      "text": "Pasul 2: `0` și `1` sunt setate la `false` deoarece, prin definiție matematică, nu sunt numere prime.",
       "blocksVisual": [
         {
-          "label": "Stare curentă",
+          "label": "Marcat 0,1 ca neprime",
           "groups": [
             [
-              {
-                "val": "2",
-                "active": false
-              },
-              {
-                "val": "3",
-                "active": false
-              },
-              {
-                "val": "4",
-                "active": false
-              },
-              {
-                "val": "5",
-                "active": false
-              },
-              {
-                "val": "6",
-                "active": false
-              },
-              {
-                "val": "7",
-                "active": false
-              },
-              {
-                "val": "8",
-                "active": false
-              },
-              {
-                "val": "9",
-                "active": false
-              },
-              {
-                "val": 10,
-                "active": false
-              }
+              { "val": "2" }, { "val": "3" }, { "val": "4" }, { "val": "5" }, { "val": "6" },
+              { "val": "7" }, { "val": "8" }, { "val": "9" }, { "val": "10" }, { "val": "11" },
+              { "val": "12" }, { "val": "13" }, { "val": "14" }, { "val": "15" }, { "val": "16" },
+              { "val": "17" }, { "val": "18" }, { "val": "19" }, { "val": "20" }
             ]
           ]
         }
@@ -129,48 +75,16 @@ int main() {
     },
     {
       "line": 10,
-      "text": "Începem de la primul număr prim, p = 2. Mergem până la radical din N (adică p * p <= 20).",
+      "text": "Pasul 3: Intrăm în bucla exterioară începând cu p = 2. Verificăm condiția `p * p <= 20` (adică `4 <= 20`), care este adevărată.",
       "blocksVisual": [
         {
-          "label": "Stare curentă",
+          "label": "p = 2 (Verificare limita)",
           "groups": [
             [
-              {
-                "val": "2",
-                "active": false
-              },
-              {
-                "val": "3",
-                "active": false
-              },
-              {
-                "val": "4",
-                "active": false
-              },
-              {
-                "val": "5",
-                "active": false
-              },
-              {
-                "val": "6",
-                "active": false
-              },
-              {
-                "val": "7",
-                "active": false
-              },
-              {
-                "val": "8",
-                "active": false
-              },
-              {
-                "val": "9",
-                "active": false
-              },
-              {
-                "val": 10,
-                "active": false
-              }
+              { "val": "2", "active": true }, { "val": "3" }, { "val": "4" }, { "val": "5" }, { "val": "6" },
+              { "val": "7" }, { "val": "8" }, { "val": "9" }, { "val": "10" }, { "val": "11" },
+              { "val": "12" }, { "val": "13" }, { "val": "14" }, { "val": "15" }, { "val": "16" },
+              { "val": "17" }, { "val": "18" }, { "val": "19" }, { "val": "20" }
             ]
           ]
         }
@@ -178,40 +92,16 @@ int main() {
     },
     {
       "line": 11,
-      "text": "2 este marcat ca prim. Așa că îi vom tăia toți multiplii.",
+      "text": "Pasul 4: `estePrim[2]` este `true`. Asta înseamnă că 2 este număr prim! Vom începe tăierea multiplilor săi începând cu 2 * 2 = 4.",
       "blocksVisual": [
         {
-          "label": "p = 2",
+          "label": "2 confirmat prim",
           "groups": [
             [
-              {
-                "val": 2,
-                "active": true
-              },
-              {
-                "val": 3
-              },
-              {
-                "val": 4
-              },
-              {
-                "val": 5
-              },
-              {
-                "val": 6
-              },
-              {
-                "val": 7
-              },
-              {
-                "val": 8
-              },
-              {
-                "val": 9
-              },
-              {
-                "val": 10
-              }
+              { "val": "2", "sorted": true }, { "val": "3" }, { "val": "4" }, { "val": "5" }, { "val": "6" },
+              { "val": "7" }, { "val": "8" }, { "val": "9" }, { "val": "10" }, { "val": "11" },
+              { "val": "12" }, { "val": "13" }, { "val": "14" }, { "val": "15" }, { "val": "16" },
+              { "val": "17" }, { "val": "18" }, { "val": "19" }, { "val": "20" }
             ]
           ]
         }
@@ -219,44 +109,169 @@ int main() {
     },
     {
       "line": 12,
-      "text": "Începem tăierea de la p*p (adică 4). Orice multiplu mai mic (ex: 2*1) a fost deja procesat sau tăiat.",
+      "text": "Pasul 5: Bucla interioară pornește cu i = 4. Marcăm multiplii lui 2.",
       "blocksVisual": [
         {
-          "label": "Tăiere multipli de 2",
+          "label": "Tăiere multipli de 2 (i = 4)",
           "groups": [
             [
-              {
-                "val": 2,
-                "sorted": true
-              },
-              {
-                "val": 3
-              },
-              {
-                "val": 4,
-                "hidden": true
-              },
-              {
-                "val": 5
-              },
-              {
-                "val": 6,
-                "hidden": true
-              },
-              {
-                "val": 7
-              },
-              {
-                "val": 8,
-                "hidden": true
-              },
-              {
-                "val": 9
-              },
-              {
-                "val": 10,
-                "hidden": true
-              }
+              { "val": "2", "sorted": true }, { "val": "3" }, { "val": "4", "active": true }, { "val": "5" }, { "val": "6" },
+              { "val": "7" }, { "val": "8" }, { "val": "9" }, { "val": "10" }, { "val": "11" },
+              { "val": "12" }, { "val": "13" }, { "val": "14" }, { "val": "15" }, { "val": "16" },
+              { "val": "17" }, { "val": "18" }, { "val": "19" }, { "val": "20" }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Pasul 6: Setăm `estePrim[4] = false` (număr compus).",
+      "blocksVisual": [
+        {
+          "label": "Tăiat 4",
+          "groups": [
+            [
+              { "val": "2", "sorted": true }, { "val": "3" }, { "val": "4", "hidden": true }, { "val": "5" }, { "val": "6" },
+              { "val": "7" }, { "val": "8" }, { "val": "9" }, { "val": "10" }, { "val": "11" },
+              { "val": "12" }, { "val": "13" }, { "val": "14" }, { "val": "15" }, { "val": "16" },
+              { "val": "17" }, { "val": "18" }, { "val": "19" }, { "val": "20" }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Pasul 7: Tăiem următorul multiplu al lui 2, `i = 6`. Setăm `estePrim[6] = false`.",
+      "blocksVisual": [
+        {
+          "label": "Tăiat 6",
+          "groups": [
+            [
+              { "val": "2", "sorted": true }, { "val": "3" }, { "val": "4", "hidden": true }, { "val": "5" }, { "val": "6", "hidden": true },
+              { "val": "7" }, { "val": "8" }, { "val": "9" }, { "val": "10" }, { "val": "11" },
+              { "val": "12" }, { "val": "13" }, { "val": "14" }, { "val": "15" }, { "val": "16" },
+              { "val": "17" }, { "val": "18" }, { "val": "19" }, { "val": "20" }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Pasul 8: Tăiem următorul multiplu al lui 2, `i = 8`. Setăm `estePrim[8] = false`.",
+      "blocksVisual": [
+        {
+          "label": "Tăiat 8",
+          "groups": [
+            [
+              { "val": "2", "sorted": true }, { "val": "3" }, { "val": "4", "hidden": true }, { "val": "5" }, { "val": "6", "hidden": true },
+              { "val": "7" }, { "val": "8", "hidden": true }, { "val": "9" }, { "val": "10" }, { "val": "11" },
+              { "val": "12" }, { "val": "13" }, { "val": "14" }, { "val": "15" }, { "val": "16" },
+              { "val": "17" }, { "val": "18" }, { "val": "19" }, { "val": "20" }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Pasul 9: Tăiem următorul multiplu al lui 2, `i = 10`. Setăm `estePrim[10] = false`.",
+      "blocksVisual": [
+        {
+          "label": "Tăiat 10",
+          "groups": [
+            [
+              { "val": "2", "sorted": true }, { "val": "3" }, { "val": "4", "hidden": true }, { "val": "5" }, { "val": "6", "hidden": true },
+              { "val": "7" }, { "val": "8", "hidden": true }, { "val": "9" }, { "val": "10", "hidden": true }, { "val": "11" },
+              { "val": "12" }, { "val": "13" }, { "val": "14" }, { "val": "15" }, { "val": "16" },
+              { "val": "17" }, { "val": "18" }, { "val": "19" }, { "val": "20" }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Pasul 10: Tăiem următorul multiplu al lui 2, `i = 12`. Setăm `estePrim[12] = false`.",
+      "blocksVisual": [
+        {
+          "label": "Tăiat 12",
+          "groups": [
+            [
+              { "val": "2", "sorted": true }, { "val": "3" }, { "val": "4", "hidden": true }, { "val": "5" }, { "val": "6", "hidden": true },
+              { "val": "7" }, { "val": "8", "hidden": true }, { "val": "9" }, { "val": "10", "hidden": true }, { "val": "11" },
+              { "val": "12", "hidden": true }, { "val": "13" }, { "val": "14" }, { "val": "15" }, { "val": "16" },
+              { "val": "17" }, { "val": "18" }, { "val": "19" }, { "val": "20" }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Pasul 11: Tăiem următorul multiplu al lui 2, `i = 14`. Setăm `estePrim[14] = false`.",
+      "blocksVisual": [
+        {
+          "label": "Tăiat 14",
+          "groups": [
+            [
+              { "val": "2", "sorted": true }, { "val": "3" }, { "val": "4", "hidden": true }, { "val": "5" }, { "val": "6", "hidden": true },
+              { "val": "7" }, { "val": "8", "hidden": true }, { "val": "9" }, { "val": "10", "hidden": true }, { "val": "11" },
+              { "val": "12", "hidden": true }, { "val": "13" }, { "val": "14", "hidden": true }, { "val": "15" }, { "val": "16" },
+              { "val": "17" }, { "val": "18" }, { "val": "19" }, { "val": "20" }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Pasul 12: Tăiem următorul multiplu al lui 2, `i = 16`. Setăm `estePrim[16] = false`.",
+      "blocksVisual": [
+        {
+          "label": "Tăiat 16",
+          "groups": [
+            [
+              { "val": "2", "sorted": true }, { "val": "3" }, { "val": "4", "hidden": true }, { "val": "5" }, { "val": "6", "hidden": true },
+              { "val": "7" }, { "val": "8", "hidden": true }, { "val": "9" }, { "val": "10", "hidden": true }, { "val": "11" },
+              { "val": "12", "hidden": true }, { "val": "13" }, { "val": "14", "hidden": true }, { "val": "15" }, { "val": "16", "hidden": true },
+              { "val": "17" }, { "val": "18" }, { "val": "19" }, { "val": "20" }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Pasul 13: Tăiem următorul multiplu al lui 2, `i = 18`. Setăm `estePrim[18] = false`.",
+      "blocksVisual": [
+        {
+          "label": "Tăiat 18",
+          "groups": [
+            [
+              { "val": "2", "sorted": true }, { "val": "3" }, { "val": "4", "hidden": true }, { "val": "5" }, { "val": "6", "hidden": true },
+              { "val": "7" }, { "val": "8", "hidden": true }, { "val": "9" }, { "val": "10", "hidden": true }, { "val": "11" },
+              { "val": "12", "hidden": true }, { "val": "13" }, { "val": "14", "hidden": true }, { "val": "15" }, { "val": "16", "hidden": true },
+              { "val": "17" }, { "val": "18", "hidden": true }, { "val": "19" }, { "val": "20" }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Pasul 14: Tăiem ultimul multiplu al lui 2 în acest interval, `i = 20`. Setăm `estePrim[20] = false`.",
+      "blocksVisual": [
+        {
+          "label": "Tăiat 20",
+          "groups": [
+            [
+              { "val": "2", "sorted": true }, { "val": "3" }, { "val": "4", "hidden": true }, { "val": "5" }, { "val": "6", "hidden": true },
+              { "val": "7" }, { "val": "8", "hidden": true }, { "val": "9" }, { "val": "10", "hidden": true }, { "val": "11" },
+              { "val": "12", "hidden": true }, { "val": "13" }, { "val": "14", "hidden": true }, { "val": "15" }, { "val": "16", "hidden": true },
+              { "val": "17" }, { "val": "18", "hidden": true }, { "val": "19" }, { "val": "20", "hidden": true }
             ]
           ]
         }
@@ -264,53 +279,16 @@ int main() {
     },
     {
       "line": 10,
-      "text": "Trecem la următorul p, p = 3.",
+      "text": "Pasul 15: Incrementăm p la 3. Verificăm condiția `p * p <= 20` (adică `9 <= 20`), adevărat.",
       "blocksVisual": [
         {
-          "label": "Stare curentă",
+          "label": "p = 3 (Verificare limita)",
           "groups": [
             [
-              {
-                "val": 2,
-                "sorted": true,
-                "active": false
-              },
-              {
-                "val": 3,
-                "active": false
-              },
-              {
-                "val": 4,
-                "hidden": true,
-                "active": false
-              },
-              {
-                "val": 5,
-                "active": false
-              },
-              {
-                "val": 6,
-                "hidden": true,
-                "active": false
-              },
-              {
-                "val": 7,
-                "active": false
-              },
-              {
-                "val": 8,
-                "hidden": true,
-                "active": false
-              },
-              {
-                "val": 9,
-                "active": false
-              },
-              {
-                "val": 10,
-                "hidden": true,
-                "active": false
-              }
+              { "val": "2", "sorted": true }, { "val": "3", "active": true }, { "val": "4", "hidden": true }, { "val": "5" }, { "val": "6", "hidden": true },
+              { "val": "7" }, { "val": "8", "hidden": true }, { "val": "9" }, { "val": "10", "hidden": true }, { "val": "11" },
+              { "val": "12", "hidden": true }, { "val": "13" }, { "val": "14", "hidden": true }, { "val": "15" }, { "val": "16", "hidden": true },
+              { "val": "17" }, { "val": "18", "hidden": true }, { "val": "19" }, { "val": "20", "hidden": true }
             ]
           ]
         }
@@ -318,45 +296,16 @@ int main() {
     },
     {
       "line": 11,
-      "text": "3 este încă true (nu a fost tăiat de niciun număr anterior), deci este prim.",
+      "text": "Pasul 16: `estePrim[3]` este `true`. 3 este număr prim! Începem tăierea multiplilor săi de la 3 * 3 = 9.",
       "blocksVisual": [
         {
-          "label": "p = 3",
+          "label": "3 confirmat prim",
           "groups": [
             [
-              {
-                "val": 2,
-                "sorted": true
-              },
-              {
-                "val": 3,
-                "active": true
-              },
-              {
-                "val": 4,
-                "hidden": true
-              },
-              {
-                "val": 5
-              },
-              {
-                "val": 6,
-                "hidden": true
-              },
-              {
-                "val": 7
-              },
-              {
-                "val": 8,
-                "hidden": true
-              },
-              {
-                "val": 9
-              },
-              {
-                "val": 10,
-                "hidden": true
-              }
+              { "val": "2", "sorted": true }, { "val": "3", "sorted": true }, { "val": "4", "hidden": true }, { "val": "5" }, { "val": "6", "hidden": true },
+              { "val": "7" }, { "val": "8", "hidden": true }, { "val": "9" }, { "val": "10", "hidden": true }, { "val": "11" },
+              { "val": "12", "hidden": true }, { "val": "13" }, { "val": "14", "hidden": true }, { "val": "15" }, { "val": "16", "hidden": true },
+              { "val": "17" }, { "val": "18", "hidden": true }, { "val": "19" }, { "val": "20", "hidden": true }
             ]
           ]
         }
@@ -364,46 +313,84 @@ int main() {
     },
     {
       "line": 12,
-      "text": "Tăiem multiplii lui 3 începând de la 3*3 = 9. Observăm că 6 a fost deja tăiat de 2!",
+      "text": "Pasul 17: Bucla interioară pornește cu i = 9. Tăiem multiplii lui 3.",
       "blocksVisual": [
         {
-          "label": "Tăiere multipli de 3",
+          "label": "Tăiere multipli de 3 (i = 9)",
           "groups": [
             [
-              {
-                "val": 2,
-                "sorted": true
-              },
-              {
-                "val": 3,
-                "sorted": true
-              },
-              {
-                "val": 4,
-                "hidden": true
-              },
-              {
-                "val": 5
-              },
-              {
-                "val": 6,
-                "hidden": true
-              },
-              {
-                "val": 7
-              },
-              {
-                "val": 8,
-                "hidden": true
-              },
-              {
-                "val": 9,
-                "hidden": true
-              },
-              {
-                "val": 10,
-                "hidden": true
-              }
+              { "val": "2", "sorted": true }, { "val": "3", "sorted": true }, { "val": "4", "hidden": true }, { "val": "5" }, { "val": "6", "hidden": true },
+              { "val": "7" }, { "val": "8", "hidden": true }, { "val": "9", "active": true }, { "val": "10", "hidden": true }, { "val": "11" },
+              { "val": "12", "hidden": true }, { "val": "13" }, { "val": "14", "hidden": true }, { "val": "15" }, { "val": "16", "hidden": true },
+              { "val": "17" }, { "val": "18", "hidden": true }, { "val": "19" }, { "val": "20", "hidden": true }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Pasul 18: Setăm `estePrim[9] = false`.",
+      "blocksVisual": [
+        {
+          "label": "Tăiat 9",
+          "groups": [
+            [
+              { "val": "2", "sorted": true }, { "val": "3", "sorted": true }, { "val": "4", "hidden": true }, { "val": "5" }, { "val": "6", "hidden": true },
+              { "val": "7" }, { "val": "8", "hidden": true }, { "val": "9", "hidden": true }, { "val": "10", "hidden": true }, { "val": "11" },
+              { "val": "12", "hidden": true }, { "val": "13" }, { "val": "14", "hidden": true }, { "val": "15" }, { "val": "16", "hidden": true },
+              { "val": "17" }, { "val": "18", "hidden": true }, { "val": "19" }, { "val": "20", "hidden": true }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Pasul 19: Tăiem următorul multiplu, `i = 12`. Era deja false (tăiat de 2), deci nu se modifică nimic.",
+      "blocksVisual": [
+        {
+          "label": "Vizitat 12 (deja tăiat)",
+          "groups": [
+            [
+              { "val": "2", "sorted": true }, { "val": "3", "sorted": true }, { "val": "4", "hidden": true }, { "val": "5" }, { "val": "6", "hidden": true },
+              { "val": "7" }, { "val": "8", "hidden": true }, { "val": "9", "hidden": true }, { "val": "10", "hidden": true }, { "val": "11" },
+              { "val": "12", "hidden": true }, { "val": "13" }, { "val": "14", "hidden": true }, { "val": "15" }, { "val": "16", "hidden": true },
+              { "val": "17" }, { "val": "18", "hidden": true }, { "val": "19" }, { "val": "20", "hidden": true }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Pasul 20: Tăiem următorul multiplu, `i = 15`. Setăm `estePrim[15] = false`.",
+      "blocksVisual": [
+        {
+          "label": "Tăiat 15",
+          "groups": [
+            [
+              { "val": "2", "sorted": true }, { "val": "3", "sorted": true }, { "val": "4", "hidden": true }, { "val": "5" }, { "val": "6", "hidden": true },
+              { "val": "7" }, { "val": "8", "hidden": true }, { "val": "9", "hidden": true }, { "val": "10", "hidden": true }, { "val": "11" },
+              { "val": "12", "hidden": true }, { "val": "13" }, { "val": "14", "hidden": true }, { "val": "15", "hidden": true }, { "val": "16", "hidden": true },
+              { "val": "17" }, { "val": "18", "hidden": true }, { "val": "19" }, { "val": "20", "hidden": true }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Pasul 21: Tăiem ultimul multiplu, `i = 18`. Era deja false (tăiat de 2).",
+      "blocksVisual": [
+        {
+          "label": "Vizitat 18 (deja tăiat)",
+          "groups": [
+            [
+              { "val": "2", "sorted": true }, { "val": "3", "sorted": true }, { "val": "4", "hidden": true }, { "val": "5" }, { "val": "6", "hidden": true },
+              { "val": "7" }, { "val": "8", "hidden": true }, { "val": "9", "hidden": true }, { "val": "10", "hidden": true }, { "val": "11" },
+              { "val": "12", "hidden": true }, { "val": "13" }, { "val": "14", "hidden": true }, { "val": "15", "hidden": true }, { "val": "16", "hidden": true },
+              { "val": "17" }, { "val": "18", "hidden": true }, { "val": "19" }, { "val": "20", "hidden": true }
             ]
           ]
         }
@@ -411,55 +398,16 @@ int main() {
     },
     {
       "line": 10,
-      "text": "p = 4. Însă 4*4 = 16 <= 20. Verificăm.",
+      "text": "Pasul 22: Incrementăm p la 4. Verificăm condiția `p * p <= 20` (adică `16 <= 20`), adevărat.",
       "blocksVisual": [
         {
-          "label": "Stare curentă",
+          "label": "p = 4 (Verificare)",
           "groups": [
             [
-              {
-                "val": 2,
-                "sorted": true,
-                "active": false
-              },
-              {
-                "val": 3,
-                "sorted": true,
-                "active": false
-              },
-              {
-                "val": 4,
-                "hidden": true,
-                "active": false
-              },
-              {
-                "val": 5,
-                "active": false
-              },
-              {
-                "val": 6,
-                "hidden": true,
-                "active": false
-              },
-              {
-                "val": 7,
-                "active": false
-              },
-              {
-                "val": 8,
-                "hidden": true,
-                "active": false
-              },
-              {
-                "val": 9,
-                "hidden": true,
-                "active": false
-              },
-              {
-                "val": 10,
-                "hidden": true,
-                "active": false
-              }
+              { "val": "2", "sorted": true }, { "val": "3", "sorted": true }, { "val": "4", "hidden": true }, { "val": "5" }, { "val": "6", "hidden": true },
+              { "val": "7" }, { "val": "8", "hidden": true }, { "val": "9", "hidden": true }, { "val": "10", "hidden": true }, { "val": "11" },
+              { "val": "12", "hidden": true }, { "val": "13" }, { "val": "14", "hidden": true }, { "val": "15", "hidden": true }, { "val": "16", "hidden": true },
+              { "val": "17" }, { "val": "18", "hidden": true }, { "val": "19" }, { "val": "20", "hidden": true }
             ]
           ]
         }
@@ -467,55 +415,16 @@ int main() {
     },
     {
       "line": 11,
-      "text": "4 a fost tăiat anterior, deci `estePrim[4]` e fals. Sărim peste el!",
+      "text": "Pasul 23: `estePrim[4]` este `false`, deci nu facem nimic. Sărim peste el.",
       "blocksVisual": [
         {
-          "label": "Stare curentă",
+          "label": "4 nu e prim",
           "groups": [
             [
-              {
-                "val": 2,
-                "sorted": true,
-                "active": false
-              },
-              {
-                "val": 3,
-                "sorted": true,
-                "active": false
-              },
-              {
-                "val": 4,
-                "hidden": true,
-                "active": false
-              },
-              {
-                "val": 5,
-                "active": false
-              },
-              {
-                "val": 6,
-                "hidden": true,
-                "active": false
-              },
-              {
-                "val": 7,
-                "active": false
-              },
-              {
-                "val": 8,
-                "hidden": true,
-                "active": false
-              },
-              {
-                "val": 9,
-                "hidden": true,
-                "active": false
-              },
-              {
-                "val": 10,
-                "hidden": true,
-                "active": false
-              }
+              { "val": "2", "sorted": true }, { "val": "3", "sorted": true }, { "val": "4", "hidden": true }, { "val": "5" }, { "val": "6", "hidden": true },
+              { "val": "7" }, { "val": "8", "hidden": true }, { "val": "9", "hidden": true }, { "val": "10", "hidden": true }, { "val": "11" },
+              { "val": "12", "hidden": true }, { "val": "13" }, { "val": "14", "hidden": true }, { "val": "15", "hidden": true }, { "val": "16", "hidden": true },
+              { "val": "17" }, { "val": "18", "hidden": true }, { "val": "19" }, { "val": "20", "hidden": true }
             ]
           ]
         }
@@ -523,87 +432,49 @@ int main() {
     },
     {
       "line": 10,
-      "text": "p = 5. p*p = 25, care depășește limita n=20. Bucla principală se oprește.",
+      "text": "Pasul 24: Incrementăm p la 5. Condiția `p * p <= 20` (adică `25 <= 20`) devine falsă. Bucla principală se încheie.",
       "blocksVisual": [
         {
-          "label": "Stare curentă",
+          "label": "p = 5 (Sfârșit buclă)",
           "groups": [
             [
-              {
-                "val": 2,
-                "sorted": true,
-                "active": false
-              },
-              {
-                "val": 3,
-                "sorted": true,
-                "active": false
-              },
-              {
-                "val": 4,
-                "hidden": true,
-                "active": false
-              },
-              {
-                "val": 5,
-                "active": false
-              },
-              {
-                "val": 6,
-                "hidden": true,
-                "active": false
-              },
-              {
-                "val": 7,
-                "active": false
-              },
-              {
-                "val": 8,
-                "hidden": true,
-                "active": false
-              },
-              {
-                "val": 9,
-                "hidden": true,
-                "active": false
-              },
-              {
-                "val": 10,
-                "hidden": true,
-                "active": false
-              }
+              { "val": "2", "sorted": true }, { "val": "3", "sorted": true }, { "val": "4", "hidden": true }, { "val": "5", "active": true }, { "val": "6", "hidden": true },
+              { "val": "7" }, { "val": "8", "hidden": true }, { "val": "9", "hidden": true }, { "val": "10", "hidden": true }, { "val": "11" },
+              { "val": "12", "hidden": true }, { "val": "13" }, { "val": "14", "hidden": true }, { "val": "15", "hidden": true }, { "val": "16", "hidden": true },
+              { "val": "17" }, { "val": "18", "hidden": true }, { "val": "19" }, { "val": "20", "hidden": true }
             ]
           ]
         }
       ]
     },
     {
-      "line": 19,
-      "text": "Afișăm numerele care au rămas true (nu au fost tăiate niciodată): 2, 3, 5, 7, 11, 13, 17, 19.",
+      "line": 26,
+      "text": "Pasul 25: Parcurgem numerele rămase în vectorul `estePrim` începând cu p = 2 pentru a le afișa.",
       "blocksVisual": [
         {
-          "label": "Rezultat",
+          "label": "Colectare prime",
           "groups": [
             [
-              {
-                "val": "Prime:"
-              },
-              {
-                "val": 2,
-                "sorted": true
-              },
-              {
-                "val": 3,
-                "sorted": true
-              },
-              {
-                "val": 5,
-                "sorted": true
-              },
-              {
-                "val": 7,
-                "sorted": true
-              }
+              { "val": "2", "sorted": true }, { "val": "3", "sorted": true }, { "val": "4", "hidden": true }, { "val": "5", "sorted": true }, { "val": "6", "hidden": true },
+              { "val": "7", "sorted": true }, { "val": "8", "hidden": true }, { "val": "9", "hidden": true }, { "val": "10", "hidden": true }, { "val": "11", "sorted": true },
+              { "val": "12", "hidden": true }, { "val": "13", "sorted": true }, { "val": "14", "hidden": true }, { "val": "15", "hidden": true }, { "val": "16", "hidden": true },
+              { "val": "17", "sorted": true }, { "val": "18", "hidden": true }, { "val": "19", "sorted": true }, { "val": "20", "hidden": true }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 28,
+      "text": "Pasul 26: Numerele prime până la 20 sunt afișate cu succes: 2, 3, 5, 7, 11, 13, 17, 19.",
+      "blocksVisual": [
+        {
+          "label": "Numere Prime Rezultate",
+          "groups": [
+            [
+              { "val": "2", "sorted": true }, { "val": "3", "sorted": true }, { "val": "5", "sorted": true },
+              { "val": "7", "sorted": true }, { "val": "11", "sorted": true }, { "val": "13", "sorted": true },
+              { "val": "17", "sorted": true }, { "val": "19", "sorted": true }
             ]
           ]
         }

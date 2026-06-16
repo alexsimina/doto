@@ -28,73 +28,73 @@ function assertTraceConcepts(result, terms) {
   combinedText = combinedText.toLowerCase();
   
   for (const term of terms) {
-    assert.ok(combinedText.includes(term.toLowerCase()), \`Trace or explanation should contain domain-specific term: \${term}\`);
+    assert.ok(combinedText.includes(term.toLowerCase()), `Trace or explanation should contain domain-specific term: ${term}`);
   }
 }
 
 // --- F1: Execution Tracing ---
 exports.test_f1_trace_simple_variable = async () => {
-  const code = \`
+  const code = `
 int main() { 
     int a = 5; 
     int b = a + 10;
     return 0; 
-}\`;
+}`;
   const result = await sendCode(code);
   assert.ok(result.trace, 'Expected trace field in response');
   assert.ok(result.trace.length > 2, 'Trace length should be > 2');
 };
 
 exports.test_f1_trace_loop = async () => {
-  const code = \`
+  const code = `
 int main() { 
     int sum = 0;
     for(int i=0; i<5; i++){
         sum += i;
     } 
     return 0; 
-}\`;
+}`;
   const result = await sendCode(code);
   assert.ok(result.trace, 'Expected trace field in response');
   assert.ok(result.trace.length > 5, 'Trace length should be > 5');
 };
 
 exports.test_f1_trace_function_call = async () => {
-  const code = \`
+  const code = `
 int multiply(int x, int y) {
     return x * y;
 }
 int main() { 
     int res = multiply(3, 4); 
     return 0; 
-}\`;
+}`;
   const result = await sendCode(code);
   assert.ok(result.trace, 'Expected trace field in response');
   assert.ok(result.trace.length > 3, 'Trace length should be > 3');
 };
 
 exports.test_f1_trace_array_mutation = async () => {
-  const code = \`
+  const code = `
 int main() { 
     int arr[5] = {0}; 
     for(int i=0; i<5; i++) {
         arr[i] = i * 2;
     }
     return 0; 
-}\`;
+}`;
   const result = await sendCode(code);
   assert.ok(result.trace, 'Expected trace field in response');
   assert.ok(result.trace.length > 5, 'Trace length should be > 5');
 };
 
 exports.test_f1_trace_math_operations = async () => {
-  const code = \`
+  const code = `
 int main() { 
     int a = 10;
     int b = 3;
     int c = a + b * 2 - (a / b); 
     return 0; 
-}\`;
+}`;
   const result = await sendCode(code);
   assert.ok(result.trace, 'Expected trace field in response');
   assert.ok(result.trace.length > 3, 'Trace length should be > 3');
@@ -102,7 +102,7 @@ int main() {
 
 // --- F2: Div & Conquer ---
 exports.test_f2_merge_sort_explanation = async () => {
-  const code = \`
+  const code = `
 // merge sort
 void merge(int arr[], int l, int m, int r) {
     int n1 = m - l + 1;
@@ -130,7 +130,7 @@ int main() {
     int arr[] = {12, 11, 13, 5, 6, 7};
     mergeSort(arr, 0, 5);
     return 0; 
-}\`;
+}`;
   const result = await sendCode(code);
   assert.ok(result.explanation, 'Expected explanation field');
   assert.match(result.explanation, /merge sort/i);
@@ -138,7 +138,7 @@ int main() {
 };
 
 exports.test_f2_quick_sort_explanation = async () => {
-  const code = \`
+  const code = `
 // quick sort
 void swap(int* a, int* b) {
     int t = *a; *a = *b; *b = t;
@@ -166,7 +166,7 @@ int main() {
     int arr[] = {10, 7, 8, 9, 1, 5};
     quickSort(arr, 0, 5);
     return 0; 
-}\`;
+}`;
   const result = await sendCode(code);
   assert.ok(result.explanation, 'Expected explanation field');
   assert.match(result.explanation, /quick sort/i);
@@ -174,7 +174,7 @@ int main() {
 };
 
 exports.test_f2_binary_search_explanation = async () => {
-  const code = \`
+  const code = `
 // binary search
 int binarySearch(int arr[], int l, int r, int x) {
     while (l <= r) {
@@ -190,7 +190,7 @@ int main() {
     int result = binarySearch(arr, 0, 4, 10);
     int dividing = 1;
     return 0; 
-}\`;
+}`;
   const result = await sendCode(code);
   assert.ok(result.explanation, 'Expected explanation field');
   assert.match(result.explanation, /binary search/i);
@@ -198,7 +198,7 @@ int main() {
 };
 
 exports.test_f2_closest_pair_explanation = async () => {
-  const code = \`
+  const code = `
 // closest pair
 float my_sqrt(float n) {
     float x = n;
@@ -220,7 +220,7 @@ int main() {
                 min = dist(P[i], P[j]);
     int dividing = 1;
     return 0; 
-}\`;
+}`;
   const result = await sendCode(code);
   assert.ok(result.explanation, 'Expected explanation field');
   assert.match(result.explanation, /closest pair/i);
@@ -228,7 +228,7 @@ int main() {
 };
 
 exports.test_f2_karatsuba_explanation = async () => {
-  const code = \`
+  const code = `
 // karatsuba
 int karatsuba(int x, int y) {
     if (x < 10 || y < 10) return x * y;
@@ -244,7 +244,7 @@ int main() {
     int dividing = 1;
     karatsuba(12, 34);
     return 0; 
-}\`;
+}`;
   const result = await sendCode(code);
   assert.ok(result.explanation, 'Expected explanation field');
   assert.match(result.explanation, /karatsuba/i);
@@ -253,7 +253,7 @@ int main() {
 
 // --- F3: Graphs ---
 exports.test_f3_bfs_explanation = async () => {
-  const code = \`
+  const code = `
 // bfs
 int main() { 
     int queue[100];
@@ -271,7 +271,7 @@ int main() {
         }
     }
     return 0; 
-}\`;
+}`;
   const result = await sendCode(code);
   assert.ok(result.explanation, 'Expected explanation field');
   assert.match(result.explanation, /bfs/i);
@@ -279,7 +279,7 @@ int main() {
 };
 
 exports.test_f3_dfs_explanation = async () => {
-  const code = \`
+  const code = `
 // dfs
 int visited[10] = {0};
 int graph[10][10] = {0};
@@ -296,7 +296,7 @@ int main() {
     dfs(0);
     int recursive = 1;
     return 0; 
-}\`;
+}`;
   const result = await sendCode(code);
   assert.ok(result.explanation, 'Expected explanation field');
   assert.match(result.explanation, /dfs/i);
@@ -304,7 +304,7 @@ int main() {
 };
 
 exports.test_f3_dijkstra_explanation = async () => {
-  const code = \`
+  const code = `
 // dijkstra
 int main() { 
     int dist[10];
@@ -322,7 +322,7 @@ int main() {
         visited[u] = 1;
     }
     return 0; 
-}\`;
+}`;
   const result = await sendCode(code);
   assert.ok(result.explanation, 'Expected explanation field');
   assert.match(result.explanation, /dijkstra/i);
@@ -330,7 +330,7 @@ int main() {
 };
 
 exports.test_f3_kruskal_explanation = async () => {
-  const code = \`
+  const code = `
 // kruskal
 int parent[10];
 int find(int i) {
@@ -349,7 +349,7 @@ int main() {
     int visited[10] = {0};
     visited[0] = 1;
     return 0; 
-}\`;
+}`;
   const result = await sendCode(code);
   assert.ok(result.explanation, 'Expected explanation field');
   assert.match(result.explanation, /kruskal/i);
@@ -357,7 +357,7 @@ int main() {
 };
 
 exports.test_f3_prim_explanation = async () => {
-  const code = \`
+  const code = `
 // prim
 int main() { 
     int graph[3][3] = {{0, 2, 3}, {2, 0, 1}, {3, 1, 0}};
@@ -377,7 +377,7 @@ int main() {
         if (v != -1) visited[v] = 1;
     }
     return 0; 
-}\`;
+}`;
   const result = await sendCode(code);
   assert.ok(result.explanation, 'Expected explanation field');
   assert.match(result.explanation, /prim/i);
@@ -386,7 +386,7 @@ int main() {
 
 // --- F4: Strings ---
 exports.test_f4_kmp_explanation = async () => {
-  const code = \`
+  const code = `
 // kmp
 void computeLPSArray(char* pat, int M, int* lps) {
     int len = 0;
@@ -433,7 +433,7 @@ int main() {
     KMPSearch(pat, txt);
     int prefix = 1;
     return 0; 
-}\`;
+}`;
   const result = await sendCode(code);
   assert.ok(result.explanation, 'Expected explanation field');
   assert.match(result.explanation, /kmp/i);
@@ -441,7 +441,7 @@ int main() {
 };
 
 exports.test_f4_rabin_karp_explanation = async () => {
-  const code = \`
+  const code = `
 // rabin karp
 int main() { 
     char txt[] = "AABAACAADAABAABA";
@@ -459,7 +459,7 @@ int main() {
         t = (256 * t + txt[i]) % 101;
     }
     return 0; 
-}\`;
+}`;
   const result = await sendCode(code);
   assert.ok(result.explanation, 'Expected explanation field');
   assert.match(result.explanation, /rabin karp/i);
@@ -467,7 +467,7 @@ int main() {
 };
 
 exports.test_f4_boyer_moore_explanation = async () => {
-  const code = \`
+  const code = `
 // boyer moore
 void badCharHeuristic(char *str, int size, int badchar[256]) {
     for (int i = 0; i < 256; i++) badchar[i] = -1;
@@ -480,7 +480,7 @@ int main() {
     badCharHeuristic(pat, 3, badchar);
     int prefix = 1;
     return 0; 
-}\`;
+}`;
   const result = await sendCode(code);
   assert.ok(result.explanation, 'Expected explanation field');
   assert.match(result.explanation, /boyer moore/i);
@@ -488,7 +488,7 @@ int main() {
 };
 
 exports.test_f4_z_algorithm_explanation = async () => {
-  const code = \`
+  const code = `
 // z algorithm
 void getZarr(char str[], int Z[], int n) {
     int L = 0, R = 0;
@@ -507,7 +507,7 @@ int main() {
     getZarr(text, Z, 12);
     int prefix = 1;
     return 0; 
-}\`;
+}`;
   const result = await sendCode(code);
   assert.ok(result.explanation, 'Expected explanation field');
   assert.match(result.explanation, /z algorithm/i);
@@ -515,7 +515,7 @@ int main() {
 };
 
 exports.test_f4_suffix_array_explanation = async () => {
-  const code = \`
+  const code = `
 // suffix array
 int cmp(char *a, char *b) {
     int i = 0;
@@ -535,7 +535,7 @@ int main() {
     }
     int prefix = 1;
     return 0; 
-}\`;
+}`;
   const result = await sendCode(code);
   assert.ok(result.explanation, 'Expected explanation field');
   assert.match(result.explanation, /suffix array/i);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import SyllabusTree from './components/SyllabusTree';
 import Recommendations from './components/Recommendations';
 import HistoryList from './components/HistoryList';
@@ -67,6 +67,7 @@ function App() {
 
         {selectedCategory && (
           <CategoryPresentation 
+            key={selectedCategory}
             category={selectedCategory} 
             onClose={() => setSelectedCategory(null)} 
             onNavigate={(cat) => setSelectedCategory(cat)}

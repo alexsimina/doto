@@ -25,8 +25,7 @@ bool isValid(int r, int c) {
 
 void solve(int row) {
     if (row == N) {
-        cout << "Solutie gasita!
-";
+        cout << "Solutie gasita!\n";
         return;
     }
     
@@ -41,246 +40,627 @@ void solve(int row) {
 `,
   "explanations": [
     {
-      "line": 20,
-      "text": "Începem căutarea pe prima linie (row = 0) pentru un tablou de 4x4.",
-      "blocksVisual": [
-        {
-          "label": "Stare curentă",
-          "groups": [
-            [
-              {
-                "val": "Row: 0"
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
       "line": 26,
-      "text": "Încercăm plasarea reginei pe prima coloană (c = 0).",
+      "text": "Inițializăm solve(row=0). Tabla 4x4 este complet goală. Vom încerca să plasăm câte o regină pe fiecare rând, coloană cu coloană.",
       "blocksVisual": [
-        {
-          "label": "Linia 0",
-          "groups": [
-            [
-              {
-                "val": "R0, C0",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ]
+        { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 2", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 3", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "start"}
+        ],
+        "edges": []
+      }
     },
     {
-      "line": 10,
-      "text": "Verificăm dacă e valid. Cum tabla e goală, e mereu valid pe R0.",
+      "line": 27,
+      "text": "Verificăm row == N: 0 == 4? NU. Condiția de bază nu este îndeplinită, deci continuăm cu plasarea reginei pe rândul 0.",
       "blocksVisual": [
-        {
-          "label": "Validare",
-          "groups": [
-            [
-              {
-                "val": "Valid!"
-              }
-            ]
-          ]
-        }
-      ]
+        { "label": "Rând 0", "groups": [[{"val": "·", "active": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 2", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 3", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "row=0", "state": "active"}
+        ],
+        "edges": []
+      }
     },
     {
-      "line": 28,
-      "text": "Plasăm regina la (0, 0). Apelăm recursiv pentru linia 1.",
+      "line": 33,
+      "text": "Testăm c=0 pentru rândul 0. Apelăm isValid(0,0). Tabla e goală, deci nu există conflicte. isValid = TRUE.",
       "blocksVisual": [
-        {
-          "label": "Plasează R0",
-          "groups": [
-            [
-              {
-                "val": "Q la (0,0)",
-                "sorted": true
-              }
-            ]
-          ]
-        }
-      ]
+        { "label": "Rând 0", "groups": [[{"val": "?", "active": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 2", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 3", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "row=0"},
+          {"id": "r0c0", "x": 30, "y": 50, "label": "(0,0)", "state": "active"}
+        ],
+        "edges": [
+          {"source": "root", "target": "r0c0", "active": true}
+        ]
+      }
     },
     {
-      "line": 26,
-      "text": "Pentru linia 1, încercăm c=0, c=1. Ambele sunt atacate de (0,0). La c=2 este valid.",
+      "line": 35,
+      "text": "Plasăm regina la (0,0): col[0]=0. Acum apelăm recursiv solve(1) pentru a plasa regina pe rândul 1.",
       "blocksVisual": [
-        {
-          "label": "Linia 1",
-          "groups": [
-            [
-              {
-                "val": "C=0: Atacat",
-                "hidden": true
-              },
-              {
-                "val": "C=1: Atacat",
-                "hidden": true
-              },
-              {
-                "val": "C=2: Valid",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ]
+        { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 2", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 3", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "row=0"},
+          {"id": "r0c0", "x": 30, "y": 50, "label": "(0,0)", "state": "visited"}
+        ],
+        "edges": [
+          {"source": "root", "target": "r0c0"}
+        ]
+      }
     },
     {
-      "line": 28,
-      "text": "Plasăm regina la (1, 2). Mergem la linia 2.",
+      "line": 33,
+      "text": "solve(1): Testăm c=0 pentru rândul 1. isValid(1,0): col[0]=0 → conflict pe coloana 0! isValid = FALSE.",
       "blocksVisual": [
-        {
-          "label": "Plasează R1",
-          "groups": [
-            [
-              {
-                "val": "Q la (1,2)",
-                "sorted": true
-              }
-            ]
-          ]
-        }
-      ]
+        { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "X", "active": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 2", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 3", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "row=0"},
+          {"id": "r0c0", "x": 30, "y": 50, "label": "(0,0)", "state": "visited"},
+          {"id": "r1c0", "x": 30, "y": 90, "label": "(1,0)✗"}
+        ],
+        "edges": [
+          {"source": "root", "target": "r0c0"},
+          {"source": "r0c0", "target": "r1c0"}
+        ]
+      }
     },
     {
-      "line": 26,
-      "text": "Pentru linia 2, TOATE coloanele (0, 1, 2, 3) sunt atacate de (0,0) și (1,2).",
+      "line": 33,
+      "text": "Testăm c=1 pentru rândul 1. isValid(1,1): col[0]=0 → diagonală! |0-1|==|0-1| → 1==1. Conflict diagonal! isValid = FALSE.",
       "blocksVisual": [
-        {
-          "label": "Linia 2",
-          "groups": [
-            [
-              {
-                "val": "C=0: X"
-              },
-              {
-                "val": "C=1: X"
-              },
-              {
-                "val": "C=2: X"
-              },
-              {
-                "val": "C=3: X"
-              }
-            ]
-          ]
-        }
-      ]
+        { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "·"}, {"val": "X", "active": true}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 2", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 3", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "row=0"},
+          {"id": "r0c0", "x": 30, "y": 50, "label": "(0,0)", "state": "visited"},
+          {"id": "r1c0", "x": 30, "y": 90, "label": "(1,0)✗"},
+          {"id": "r1c1", "x": 85, "y": 90, "label": "(1,1)✗"}
+        ],
+        "edges": [
+          {"source": "root", "target": "r0c0"},
+          {"source": "r0c0", "target": "r1c0"},
+          {"source": "r0c0", "target": "r1c1"}
+        ]
+      }
     },
     {
-      "line": 31,
-      "text": "Ieșim din for pe linia 2. Backtrack! Ne întoarcem la linia 1 și încercăm următoarea coloană (c=3).",
+      "line": 33,
+      "text": "Testăm c=2 pentru rândul 1. isValid(1,2): coloana diferită (2≠0), diagonal: |0-1|=1, |0-2|=2 → 1≠2. Valid! isValid = TRUE.",
       "blocksVisual": [
-        {
-          "label": "Backtrack L2->L1",
-          "groups": [
-            [
-              {
-                "val": "Înapoi la R1",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ]
+        { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "?", "active": true}, {"val": "·"}]] },
+        { "label": "Rând 2", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 3", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "row=0"},
+          {"id": "r0c0", "x": 30, "y": 50, "label": "(0,0)", "state": "visited"},
+          {"id": "r1c0", "x": 30, "y": 90, "label": "(1,0)✗"},
+          {"id": "r1c1", "x": 85, "y": 90, "label": "(1,1)✗"},
+          {"id": "r1c2", "x": 140, "y": 90, "label": "(1,2)", "state": "active"}
+        ],
+        "edges": [
+          {"source": "root", "target": "r0c0"},
+          {"source": "r0c0", "target": "r1c0"},
+          {"source": "r0c0", "target": "r1c1"},
+          {"source": "r0c0", "target": "r1c2", "active": true}
+        ]
+      }
     },
     {
-      "line": 28,
-      "text": "Plasăm regina la (1, 3). Mergem iar la linia 2.",
+      "line": 35,
+      "text": "Plasăm regina la (1,2): col[1]=2. Apelăm recursiv solve(2). Tabla arată: Q la (0,0) și (1,2).",
       "blocksVisual": [
-        {
-          "label": "Plasează R1 (nou)",
-          "groups": [
-            [
-              {
-                "val": "Q la (1,3)",
-                "sorted": true
-              }
-            ]
-          ]
-        }
-      ]
+        { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}]] },
+        { "label": "Rând 2", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 3", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "row=0"},
+          {"id": "r0c0", "x": 30, "y": 50, "label": "(0,0)", "state": "visited"},
+          {"id": "r1c0", "x": 30, "y": 90, "label": "(1,0)✗"},
+          {"id": "r1c1", "x": 85, "y": 90, "label": "(1,1)✗"},
+          {"id": "r1c2", "x": 140, "y": 90, "label": "(1,2)", "state": "visited"}
+        ],
+        "edges": [
+          {"source": "root", "target": "r0c0"},
+          {"source": "r0c0", "target": "r1c0"},
+          {"source": "r0c0", "target": "r1c1"},
+          {"source": "r0c0", "target": "r1c2"}
+        ]
+      }
     },
     {
-      "line": 26,
-      "text": "La linia 2, acum c=1 este valid.",
+      "line": 33,
+      "text": "solve(2): Testăm c=0. isValid(2,0): col[0]=0 → conflict coloana 0! FALSE. Testăm c=1: col[1]=2, diagonal |1-2|=1, |2-1|=1 → 1==1, conflict! FALSE.",
       "blocksVisual": [
-        {
-          "label": "Linia 2",
-          "groups": [
-            [
-              {
-                "val": "C=1: Valid",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ]
+        { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}]] },
+        { "label": "Rând 2", "groups": [[{"val": "X", "active": true}, {"val": "X", "active": true}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 3", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "row=0"},
+          {"id": "r0c0", "x": 30, "y": 50, "label": "(0,0)", "state": "visited"},
+          {"id": "r1c2", "x": 140, "y": 90, "label": "(1,2)", "state": "visited"},
+          {"id": "r2c0", "x": 85, "y": 130, "label": "(2,0)✗"},
+          {"id": "r2c1", "x": 140, "y": 130, "label": "(2,1)✗"}
+        ],
+        "edges": [
+          {"source": "root", "target": "r0c0"},
+          {"source": "r0c0", "target": "r1c2"},
+          {"source": "r1c2", "target": "r2c0"},
+          {"source": "r1c2", "target": "r2c1"}
+        ]
+      }
     },
     {
-      "line": 28,
-      "text": "Plasăm regina la (2, 1). Mergem la linia 3.",
+      "line": 33,
+      "text": "solve(2): Testăm c=2. col[1]=2 → conflict coloana 2! FALSE. Testăm c=3: col[0]=0, |0-2|=2,|0-3|=3 diferite; col[1]=2, |1-2|=1,|2-3|=1 → 1==1, conflict diagonal! FALSE.",
       "blocksVisual": [
-        {
-          "label": "Plasează R2",
-          "groups": [
-            [
-              {
-                "val": "Q la (2,1)",
-                "sorted": true
-              }
-            ]
-          ]
-        }
-      ]
+        { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}]] },
+        { "label": "Rând 2", "groups": [[{"val": "X", "active": true}, {"val": "X", "active": true}, {"val": "X", "active": true}, {"val": "X", "active": true}]] },
+        { "label": "Rând 3", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "row=0"},
+          {"id": "r0c0", "x": 30, "y": 50, "label": "(0,0)", "state": "visited"},
+          {"id": "r1c2", "x": 140, "y": 90, "label": "(1,2)", "state": "visited"},
+          {"id": "r2c0", "x": 30, "y": 130, "label": "(2,0)✗"},
+          {"id": "r2c1", "x": 85, "y": 130, "label": "(2,1)✗"},
+          {"id": "r2c2", "x": 140, "y": 130, "label": "(2,2)✗"},
+          {"id": "r2c3", "x": 195, "y": 130, "label": "(2,3)✗"}
+        ],
+        "edges": [
+          {"source": "root", "target": "r0c0"},
+          {"source": "r0c0", "target": "r1c2"},
+          {"source": "r1c2", "target": "r2c0"},
+          {"source": "r1c2", "target": "r2c1"},
+          {"source": "r1c2", "target": "r2c2"},
+          {"source": "r1c2", "target": "r2c3"}
+        ]
+      }
     },
     {
-      "line": 26,
-      "text": "La linia 3, c=0, 1, 2, 3 sunt verificate. C=0, C=1, C=2 atacate. C=3 atacat de R1.",
+      "line": 38,
+      "text": "Nicio coloană validă pe rândul 2 (cu Q la (0,0) și (1,2)). solve(2) se termină → BACKTRACK la solve(1). Revenim și continuăm cu c=3 pe rândul 1.",
       "blocksVisual": [
-        {
-          "label": "Linia 3",
-          "groups": [
-            [
-              {
-                "val": "Toate atacate!"
-              }
-            ]
-          ]
-        }
-      ]
+        { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "?", "active": true}]] },
+        { "label": "Rând 2", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 3", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "row=0"},
+          {"id": "r0c0", "x": 30, "y": 50, "label": "(0,0)", "state": "visited"},
+          {"id": "r1c2", "x": 100, "y": 90, "label": "(1,2)✗"},
+          {"id": "r1c3", "x": 195, "y": 90, "label": "(1,3)", "state": "active"}
+        ],
+        "edges": [
+          {"source": "root", "target": "r0c0"},
+          {"source": "r0c0", "target": "r1c2"},
+          {"source": "r0c0", "target": "r1c3", "active": true}
+        ]
+      }
     },
     {
-      "line": 31,
-      "text": "Backtrack L3->L2! Și tot așa până descoperim soluția: (0,1), (1,3), (2,0), (3,2).",
+      "line": 34,
+      "text": "isValid(1,3): col[0]=0 → coloana diferită (3≠0); diagonal: |0-1|=1, |0-3|=3 → 1≠3. Valid! Plasăm Q la (1,3): col[1]=3.",
       "blocksVisual": [
-        {
-          "label": "Soluție finală",
-          "groups": [
-            [
-              {
-                "val": "(0,1)"
-              },
-              {
-                "val": "(1,3)"
-              },
-              {
-                "val": "(2,0)"
-              },
-              {
-                "val": "(3,2)"
-              }
-            ]
-          ]
-        }
-      ]
+        { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "Q", "sorted": true}]] },
+        { "label": "Rând 2", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 3", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "row=0"},
+          {"id": "r0c0", "x": 30, "y": 50, "label": "(0,0)", "state": "visited"},
+          {"id": "r1c2", "x": 100, "y": 90, "label": "(1,2)✗"},
+          {"id": "r1c3", "x": 195, "y": 90, "label": "(1,3)", "state": "visited"}
+        ],
+        "edges": [
+          {"source": "root", "target": "r0c0"},
+          {"source": "r0c0", "target": "r1c2"},
+          {"source": "r0c0", "target": "r1c3"}
+        ]
+      }
+    },
+    {
+      "line": 36,
+      "text": "Apelăm solve(2) din nou. Testăm c=0: col[0]=0→conflict col! c=1: col[0]=0,|0-2|=2,|0-1|=1 ok; col[1]=3,|1-2|=1,|3-1|=2 ok. isValid(2,1)=TRUE!",
+      "blocksVisual": [
+        { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "Q", "sorted": true}]] },
+        { "label": "Rând 2", "groups": [[{"val": "X"}, {"val": "?", "active": true}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 3", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "row=0"},
+          {"id": "r0c0", "x": 30, "y": 50, "label": "(0,0)", "state": "visited"},
+          {"id": "r1c3", "x": 195, "y": 50, "label": "(1,3)", "state": "visited"},
+          {"id": "r2c0b","x": 140, "y": 90, "label": "(2,0)✗"},
+          {"id": "r2c1b","x": 195, "y": 90, "label": "(2,1)", "state": "active"}
+        ],
+        "edges": [
+          {"source": "root", "target": "r0c0"},
+          {"source": "root", "target": "r1c3"},
+          {"source": "r1c3", "target": "r2c0b"},
+          {"source": "r1c3", "target": "r2c1b", "active": true}
+        ]
+      }
+    },
+    {
+      "line": 35,
+      "text": "Plasăm Q la (2,1): col[2]=1. Apelăm solve(3). Tabla: Q la (0,0), (1,3), (2,1).",
+      "blocksVisual": [
+        { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "Q", "sorted": true}]] },
+        { "label": "Rând 2", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 3", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "row=0"},
+          {"id": "r0c0", "x": 30, "y": 50, "label": "(0,0)", "state": "visited"},
+          {"id": "r1c3", "x": 195, "y": 50, "label": "(1,3)", "state": "visited"},
+          {"id": "r2c1b","x": 195, "y": 90, "label": "(2,1)", "state": "visited"}
+        ],
+        "edges": [
+          {"source": "root", "target": "r0c0"},
+          {"source": "root", "target": "r1c3"},
+          {"source": "r1c3", "target": "r2c1b"}
+        ]
+      }
+    },
+    {
+      "line": 33,
+      "text": "solve(3): Testăm c=0. isValid(3,0): col[0]=0→conflict col! FALSE. Testăm c=1: col[2]=1→conflict col! FALSE. Testăm c=2: verificăm toate reginele...",
+      "blocksVisual": [
+        { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "Q", "sorted": true}]] },
+        { "label": "Rând 2", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 3", "groups": [[{"val": "X"}, {"val": "X"}, {"val": "?", "active": true}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "row=0"},
+          {"id": "r0c0", "x": 30, "y": 50, "label": "(0,0)", "state": "visited"},
+          {"id": "r1c3", "x": 195, "y": 50, "label": "(1,3)", "state": "visited"},
+          {"id": "r2c1b","x": 195, "y": 90, "label": "(2,1)", "state": "visited"},
+          {"id": "r3c0", "x": 100, "y": 130, "label": "(3,0)✗"},
+          {"id": "r3c1", "x": 155, "y": 130, "label": "(3,1)✗"},
+          {"id": "r3c2", "x": 210, "y": 130, "label": "(3,2)", "state": "active"}
+        ],
+        "edges": [
+          {"source": "root", "target": "r0c0"},
+          {"source": "root", "target": "r1c3"},
+          {"source": "r1c3", "target": "r2c1b"},
+          {"source": "r2c1b", "target": "r3c0"},
+          {"source": "r2c1b", "target": "r3c1"},
+          {"source": "r2c1b", "target": "r3c2", "active": true}
+        ]
+      }
+    },
+    {
+      "line": 34,
+      "text": "isValid(3,2): col[0]=0≠2; diag(0,3):|0-3|=3,|0-2|=2 ok. col[1]=3≠2; diag(1,3):|1-3|=2,|3-2|=1 ok. col[2]=1≠2; diag(2,3):|2-3|=1,|1-2|=1 → CONFLICT! FALSE.",
+      "blocksVisual": [
+        { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "Q", "sorted": true}]] },
+        { "label": "Rând 2", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 3", "groups": [[{"val": "X"}, {"val": "X"}, {"val": "X", "active": true}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "row=0"},
+          {"id": "r0c0", "x": 30, "y": 50, "label": "(0,0)", "state": "visited"},
+          {"id": "r1c3", "x": 195, "y": 50, "label": "(1,3)", "state": "visited"},
+          {"id": "r2c1b","x": 195, "y": 90, "label": "(2,1)", "state": "visited"},
+          {"id": "r3c0", "x": 100, "y": 130, "label": "(3,0)✗"},
+          {"id": "r3c1", "x": 155, "y": 130, "label": "(3,1)✗"},
+          {"id": "r3c2", "x": 210, "y": 130, "label": "(3,2)✗"}
+        ],
+        "edges": [
+          {"source": "root", "target": "r0c0"},
+          {"source": "root", "target": "r1c3"},
+          {"source": "r1c3", "target": "r2c1b"},
+          {"source": "r2c1b", "target": "r3c0"},
+          {"source": "r2c1b", "target": "r3c1"},
+          {"source": "r2c1b", "target": "r3c2"}
+        ]
+      }
+    },
+    {
+      "line": 33,
+      "text": "Testăm c=3 pe rândul 3. isValid(3,3): col[1]=3→CONFLICT coloana! FALSE. Niciun c valid pe rândul 3 → BACKTRACK la solve(2).",
+      "blocksVisual": [
+        { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "Q", "sorted": true}]] },
+        { "label": "Rând 2", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 3", "groups": [[{"val": "X"}, {"val": "X"}, {"val": "X"}, {"val": "X", "active": true}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "row=0"},
+          {"id": "r0c0", "x": 30, "y": 50, "label": "(0,0)", "state": "visited"},
+          {"id": "r1c3", "x": 195, "y": 50, "label": "(1,3)", "state": "visited"},
+          {"id": "r2c1b","x": 195, "y": 90, "label": "(2,1)✗"},
+          {"id": "r3c3", "x": 210, "y": 130, "label": "(3,3)✗"}
+        ],
+        "edges": [
+          {"source": "root", "target": "r0c0"},
+          {"source": "root", "target": "r1c3"},
+          {"source": "r1c3", "target": "r2c1b"},
+          {"source": "r2c1b", "target": "r3c3"}
+        ]
+      }
+    },
+    {
+      "line": 38,
+      "text": "BACKTRACK la solve(2). Continuăm cu c=2,3 pe rândul 2. isValid(2,2): col[1]=3≠2, diag(1,2):|1-2|=1,|3-2|=1 CONFLICT! isValid(2,3): col[1]=3→conflict col! BACKTRACK la solve(1).",
+      "blocksVisual": [
+        { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "Q", "sorted": true}]] },
+        { "label": "Rând 2", "groups": [[{"val": "X"}, {"val": "X"}, {"val": "X"}, {"val": "X", "active": true}]] },
+        { "label": "Rând 3", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "row=0"},
+          {"id": "r0c0", "x": 30, "y": 50, "label": "(0,0)", "state": "visited"},
+          {"id": "r1c3", "x": 195, "y": 50, "label": "(1,3)✗"},
+          {"id": "r2all","x": 210, "y": 90, "label": "r2:TOATE✗"}
+        ],
+        "edges": [
+          {"source": "root", "target": "r0c0"},
+          {"source": "root", "target": "r1c3"},
+          {"source": "r1c3", "target": "r2all"}
+        ]
+      }
+    },
+    {
+      "line": 38,
+      "text": "La solve(1), c=3 era ultima opțiune. Toate coloanele epuizate pe rândul 1 (cu Q la (0,0)) → BACKTRACK la solve(0). Continuăm cu c=1 pe rândul 0.",
+      "blocksVisual": [
+        { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "?", "active": true}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 2", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 3", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "row=0"},
+          {"id": "r0c0", "x": 30, "y": 50, "label": "(0,0)✗"},
+          {"id": "r0c1", "x": 130, "y": 50, "label": "(0,1)", "state": "active"}
+        ],
+        "edges": [
+          {"source": "root", "target": "r0c0"},
+          {"source": "root", "target": "r0c1", "active": true}
+        ]
+      }
+    },
+    {
+      "line": 35,
+      "text": "isValid(0,1) = TRUE (tabla goală). Plasăm Q la (0,1): col[0]=1. Apelăm solve(1). Explorăm ramura (0,1).",
+      "blocksVisual": [
+        { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 2", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 3", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "row=0"},
+          {"id": "r0c0", "x": 30, "y": 50, "label": "(0,0)✗"},
+          {"id": "r0c1", "x": 130, "y": 50, "label": "(0,1)", "state": "visited"}
+        ],
+        "edges": [
+          {"source": "root", "target": "r0c0"},
+          {"source": "root", "target": "r0c1"}
+        ]
+      }
+    },
+    {
+      "line": 33,
+      "text": "solve(1) cu col[0]=1: Testăm c=0. isValid(1,0): col[0]=1≠0; diag:|0-1|=1,|1-0|=1→CONFLICT! c=1: col[0]=1→conflict col! c=2: diag:|0-1|=1,|1-2|=1→CONFLICT! Testăm c=3.",
+      "blocksVisual": [
+        { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "X"}, {"val": "X"}, {"val": "X"}, {"val": "?", "active": true}]] },
+        { "label": "Rând 2", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 3", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "row=0"},
+          {"id": "r0c1", "x": 130, "y": 50, "label": "(0,1)", "state": "visited"},
+          {"id": "s1c3", "x": 180, "y": 90, "label": "(1,3)", "state": "active"}
+        ],
+        "edges": [
+          {"source": "root", "target": "r0c1"},
+          {"source": "r0c1", "target": "s1c3", "active": true}
+        ]
+      }
+    },
+    {
+      "line": 35,
+      "text": "isValid(1,3): col[0]=1≠3; diag:|0-1|=1,|1-3|=2 ok. Valid! Plasăm Q la (1,3): col[1]=3. Apelăm solve(2).",
+      "blocksVisual": [
+        { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "Q", "sorted": true}]] },
+        { "label": "Rând 2", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 3", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "row=0"},
+          {"id": "r0c1", "x": 130, "y": 50, "label": "(0,1)", "state": "visited"},
+          {"id": "s1c3", "x": 180, "y": 90, "label": "(1,3)", "state": "visited"}
+        ],
+        "edges": [
+          {"source": "root", "target": "r0c1"},
+          {"source": "r0c1", "target": "s1c3"}
+        ]
+      }
+    },
+    {
+      "line": 33,
+      "text": "solve(2) cu (0,1),(1,3): Testăm c=0. isValid(2,0): col[0]=1≠0; diag(0,2):|0-2|=2,|1-0|=1 ok; col[1]=3≠0; diag(1,2):|1-2|=1,|3-0|=3 ok. isValid=TRUE!",
+      "blocksVisual": [
+        { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "Q", "sorted": true}]] },
+        { "label": "Rând 2", "groups": [[{"val": "?", "active": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 3", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "row=0"},
+          {"id": "r0c1", "x": 130, "y": 50, "label": "(0,1)", "state": "visited"},
+          {"id": "s1c3", "x": 180, "y": 90, "label": "(1,3)", "state": "visited"},
+          {"id": "s2c0", "x": 180, "y": 130, "label": "(2,0)", "state": "active"}
+        ],
+        "edges": [
+          {"source": "root", "target": "r0c1"},
+          {"source": "r0c1", "target": "s1c3"},
+          {"source": "s1c3", "target": "s2c0", "active": true}
+        ]
+      }
+    },
+    {
+      "line": 35,
+      "text": "Plasăm Q la (2,0): col[2]=0. Apelăm solve(3). Tabla: Q la (0,1), (1,3), (2,0). Aproape de soluție!",
+      "blocksVisual": [
+        { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "Q", "sorted": true}]] },
+        { "label": "Rând 2", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 3", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "row=0"},
+          {"id": "r0c1", "x": 130, "y": 50, "label": "(0,1)", "state": "visited"},
+          {"id": "s1c3", "x": 180, "y": 90, "label": "(1,3)", "state": "visited"},
+          {"id": "s2c0", "x": 180, "y": 130, "label": "(2,0)", "state": "visited"}
+        ],
+        "edges": [
+          {"source": "root", "target": "r0c1"},
+          {"source": "r0c1", "target": "s1c3"},
+          {"source": "s1c3", "target": "s2c0"}
+        ]
+      }
+    },
+    {
+      "line": 33,
+      "text": "solve(3) cu (0,1),(1,3),(2,0): Testăm c=0: col[2]=0→CONFLICT! c=1: col[0]=1→CONFLICT col! c=2: isValid(3,2): col[0]=1≠2,diag(0,3):|0-3|=3,|1-2|=1ok; col[1]=3≠2,diag(1,3):|1-3|=2,|3-2|=1ok; col[2]=0≠2,diag(2,3):|2-3|=1,|0-2|=2ok. isValid=TRUE!",
+      "blocksVisual": [
+        { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "Q", "sorted": true}]] },
+        { "label": "Rând 2", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 3", "groups": [[{"val": "X"}, {"val": "X"}, {"val": "?", "active": true}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "row=0"},
+          {"id": "r0c1", "x": 130, "y": 50, "label": "(0,1)", "state": "visited"},
+          {"id": "s1c3", "x": 180, "y": 90, "label": "(1,3)", "state": "visited"},
+          {"id": "s2c0", "x": 180, "y": 130, "label": "(2,0)", "state": "visited"},
+          {"id": "s3c2", "x": 220, "y": 155, "label": "(3,2)", "state": "active"}
+        ],
+        "edges": [
+          {"source": "root", "target": "r0c1"},
+          {"source": "r0c1", "target": "s1c3"},
+          {"source": "s1c3", "target": "s2c0"},
+          {"source": "s2c0", "target": "s3c2", "active": true}
+        ]
+      }
+    },
+    {
+      "line": 35,
+      "text": "Plasăm Q la (3,2): col[3]=2. Apelăm solve(4). Acum row==N (4==4) → SOLUȚIE GĂSITĂ! Prima soluție: col=[1,3,0,2] → Q la (0,1),(1,3),(2,0),(3,2).",
+      "blocksVisual": [
+        { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "Q", "sorted": true}]] },
+        { "label": "Rând 2", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 3", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "row=0"},
+          {"id": "r0c1", "x": 130, "y": 50, "label": "(0,1)", "state": "visited"},
+          {"id": "s1c3", "x": 180, "y": 90, "label": "(1,3)", "state": "visited"},
+          {"id": "s2c0", "x": 180, "y": 130, "label": "(2,0)", "state": "visited"},
+          {"id": "s3c2", "x": 220, "y": 155, "label": "(3,2)✓", "state": "visited"}
+        ],
+        "edges": [
+          {"source": "root", "target": "r0c1"},
+          {"source": "r0c1", "target": "s1c3"},
+          {"source": "s1c3", "target": "s2c0"},
+          {"source": "s2c0", "target": "s3c2", "active": true}
+        ]
+      }
+    },
+    {
+      "line": 27,
+      "text": "row==N: Tipărim 'Soluție găsită!'. Algoritmul continuă backtracking-ul pentru a găsi TOATE soluțiile. Tabla 4x4 are 2 soluții posibile.",
+      "blocksVisual": [
+        { "label": "Soluția 1: col=[1,3,0,2]", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 1", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "Q", "sorted": true}]] },
+        { "label": "Rând 2", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
+        { "label": "Rând 3", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}]] }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {"id": "root", "x": 130, "y": 10, "label": "SOLUTIE 1"},
+          {"id": "r0c1", "x": 130, "y": 50, "label": "(0,1)", "state": "visited"},
+          {"id": "s1c3", "x": 180, "y": 90, "label": "(1,3)", "state": "visited"},
+          {"id": "s2c0", "x": 180, "y": 130, "label": "(2,0)", "state": "visited"},
+          {"id": "s3c2", "x": 220, "y": 155, "label": "(3,2)", "state": "visited"}
+        ],
+        "edges": [
+          {"source": "root", "target": "r0c1", "active": true},
+          {"source": "r0c1", "target": "s1c3", "active": true},
+          {"source": "s1c3", "target": "s2c0", "active": true},
+          {"source": "s2c0", "target": "s3c2", "active": true}
+        ]
+      }
     }
   ],
   "problems": {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 // HTML escaping helper
 const escapeHtml = (str) => {
@@ -110,7 +110,7 @@ const highlightCpp = (code) => {
     const idMatch = code.substring(i).match(/^[a-zA-Z_][a-zA-Z0-9_]*/);
     if (idMatch) {
       const id = idMatch[0];
-      let style = '';
+      let style;
       
       let nextIdx = i + id.length;
       while (nextIdx < code.length && (code[nextIdx] === ' ' || code[nextIdx] === '\t')) {

@@ -69,168 +69,166 @@ vector<int> solveMo(vector<int>& arr, vector<Query>& queries) {
 `,
   "explanations": [
     {
-      "line": 15,
-      "text": "Definim cum sortăm interogările (Queries). Eleganța este că, datorită acestei ordonări, parcurgerile lui currL și currR vor fi reduse masiv.",
+      "line": 46,
+      "text": "Apelăm solveMo cu arr = {1, 2, 1, 3, 2} (indici 0-4) și interogările Q0=[1,3], Q1=[2,4]. Toate interogările sunt citite OFFLINE înainte de procesare.",
       "blocksVisual": [
-        {
-          "label": "Sortarea lui Mo",
-          "groups": [
-            [
-              {
-                "val": "Sort dupa Block(L)"
-              },
-              {
-                "val": "Sort dupa R"
-              }
-            ]
-          ]
-        }
+        { "label": "Array arr[0-4]", "groups": [[{"val": "1\n[0]"}, {"val": "2\n[1]"}, {"val": "1\n[2]"}, {"val": "3\n[3]"}, {"val": "2\n[4]"}]] },
+        { "label": "Query-uri (nesortate)", "groups": [[{"val": "Q0:[1,3]"}, {"val": "Q1:[2,4]"}]] },
+        { "label": "Răspunsuri ans[]", "groups": [[{"val": "ans[0]=?"}, {"val": "ans[1]=?"}]] }
       ]
     },
     {
-      "line": 43,
-      "text": "Sortăm vectorul de interogări conform funcției compareQueries. Amintiți-vă că este un algoritm OFFLINE (știm tot la început).",
+      "line": 47,
+      "text": "Calculăm blockSize = sqrt(5) ≈ 2. Vectorul este împărțit în blocuri de dimensiune 2: [0-1], [2-3], [4].",
       "blocksVisual": [
-        {
-          "label": "Sortate Offline",
-          "groups": [
-            [
-              {
-                "val": "Q1, Q2, ..., Qn"
-              }
-            ]
-          ]
-        }
+        { "label": "Block 0 [0-1]", "groups": [[{"val": "1\n[0]"}, {"val": "2\n[1]"}]] },
+        { "label": "Block 1 [2-3]", "groups": [[{"val": "1\n[2]"}, {"val": "3\n[3]"}]] },
+        { "label": "Block 2 [4]", "groups": [[{"val": "2\n[4]"}]] },
+        { "label": "blockSize=2", "groups": [[{"val": "2", "sorted": true}]] }
       ]
     },
     {
       "line": 48,
-      "text": "Setăm pointerii inițiali currL și currR care definesc o 'fereastră' de acoperire. Acum ea este goală.",
+      "text": "Sortăm interogările prin compareQueries. Q0: bloc(L=1)=1/2=0; Q1: bloc(L=2)=2/2=1. Blocuri diferite → Q0 rămâne înaintea Q1.",
       "blocksVisual": [
-        {
-          "label": "Pointeri Init",
-          "groups": [
-            [
-              {
-                "val": "currL = 0"
-              },
-              {
-                "val": "currR = -1"
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 52,
-      "text": "Primim un prim Query (ex: L=2, R=5). Deoarece currR este -1, bucla 'while(currR < q.R)' rulează și extinde fereastra la dreapta.",
-      "blocksVisual": [
-        {
-          "label": "Extinde R",
-          "groups": [
-            [
-              {
-                "val": "Add arr[0]"
-              },
-              {
-                "val": "Add arr[1]"
-              },
-              {
-                "val": "..."
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 31,
-      "text": "Funcția add() se asigură că atunci când un element apare prima dată (freq[x]==1), creștem contorul elementelor distincte.",
-      "blocksVisual": [
-        {
-          "label": "Add",
-          "groups": [
-            [
-              {
-                "val": "+ distinct",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 56,
-      "text": "Acum că currR a ajuns la 5, aducem currL la 2 prin bucla 'while(currL < q.L)'. Funcția remove() șterge elementele lăsate în urmă.",
-      "blocksVisual": [
-        {
-          "label": "Restrânge L",
-          "groups": [
-            [
-              {
-                "val": "Remove arr[0]"
-              },
-              {
-                "val": "Remove arr[1]"
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 36,
-      "text": "Funcția remove() scade frecvența. Dacă a ajuns la 0, scade contorul elementelor distincte.",
-      "blocksVisual": [
-        {
-          "label": "Remove",
-          "groups": [
-            [
-              {
-                "val": "- distinct",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 60,
-      "text": "Răspunsul la acest moment e corect stocat în 'current_answer'. Îl salvăm pe poziția Q.id din vectorul rezultat.",
-      "blocksVisual": [
-        {
-          "label": "Salvare rezultat",
-          "groups": [
-            [
-              {
-                "val": "Ans[id] = ans",
-                "sorted": true
-              }
-            ]
-          ]
-        }
+        { "label": "Query-uri sortate Mo", "groups": [[{"val": "Q0:[1,3]\nbloc(L)=0", "sorted": true}, {"val": "Q1:[2,4]\nbloc(L)=1"}]] },
+        { "label": "Ordine finală", "groups": [[{"val": "1. Q0"}, {"val": "2. Q1"}]] }
       ]
     },
     {
       "line": 50,
-      "text": "Următorul Query (ex: L=3, R=6). currL avansează un pas (scoate elem), currR avansează un pas (adaugă elem). Datorită sortării lui Mo, numărul de mișcări este garantat matematic a fi sub O(N sqrt N) per total!",
+      "text": "Inițializăm vectorul de răspunsuri ans[] cu 2 intrări nedeterminate și setăm pointerii currL=0, currR=-1 (fereastră vidă).",
       "blocksVisual": [
-        {
-          "label": "Următorul Q",
-          "groups": [
-            [
-              {
-                "val": "L++"
-              },
-              {
-                "val": "R++"
-              }
-            ]
-          ]
-        }
+        { "label": "Array arr[0-4]", "groups": [[{"val": "1\n[0]"}, {"val": "2\n[1]"}, {"val": "1\n[2]"}, {"val": "3\n[3]"}, {"val": "2\n[4]"}]] },
+        { "label": "Fereastră [currL, currR]", "groups": [[{"val": "currL=0"}, {"val": "currR=-1\n(vid)"}]] },
+        { "label": "Răspunsuri ans[]", "groups": [[{"val": "ans[0]=?"}, {"val": "ans[1]=?"}]] }
+      ]
+    },
+    {
+      "line": 55,
+      "text": "Procesăm Q0 = {L=1, R=3}. Fereastra curentă este [0,-1] (vidă). Trebuie să ajungem la fereastra [1,3]. Ordinea operațiilor: extinde R, apoi restrânge L.",
+      "blocksVisual": [
+        { "label": "Array arr[0-4]", "groups": [[{"val": "1\n[0]"}, {"val": "2\n[1]"}, {"val": "1\n[2]"}, {"val": "3\n[3]"}, {"val": "2\n[4]"}]] },
+        { "label": "Q0: țintă [1,3]", "groups": [[{"val": "L=1", "active": true}, {"val": "R=3", "active": true}]] },
+        { "label": "Fereastră curentă", "groups": [[{"val": "currL=0"}, {"val": "currR=-1"}]] }
+      ]
+    },
+    {
+      "line": 59,
+      "text": "while(currR < q.R): currR=-1 < 3=q.R → currR++ devine 0. add(arr[0]=1): freq[1]++ → freq[1]=1. Prima apariție → current_answer=1.",
+      "blocksVisual": [
+        { "label": "Array arr[0-4]  (currR→0)", "groups": [[{"val": "1\n[0]", "active": true}, {"val": "2\n[1]"}, {"val": "1\n[2]"}, {"val": "3\n[3]"}, {"val": "2\n[4]"}]] },
+        { "label": "freq[] actualizat", "groups": [[{"val": "freq[1]=1", "active": true}, {"val": "freq[2]=0"}, {"val": "freq[3]=0"}]] },
+        { "label": "Distinct count", "groups": [[{"val": "curr_ans=1", "active": true}]] }
+      ]
+    },
+    {
+      "line": 59,
+      "text": "currR=0 < 3 → currR++ devine 1. add(arr[1]=2): freq[2]++ → freq[2]=1. Nouă valoare distinctă → current_answer=2.",
+      "blocksVisual": [
+        { "label": "Array arr[0-4]  (currR→1)", "groups": [[{"val": "1\n[0]", "sorted": true}, {"val": "2\n[1]", "active": true}, {"val": "1\n[2]"}, {"val": "3\n[3]"}, {"val": "2\n[4]"}]] },
+        { "label": "freq[] actualizat", "groups": [[{"val": "freq[1]=1"}, {"val": "freq[2]=1", "active": true}, {"val": "freq[3]=0"}]] },
+        { "label": "Distinct count", "groups": [[{"val": "curr_ans=2", "active": true}]] }
+      ]
+    },
+    {
+      "line": 59,
+      "text": "currR=1 < 3 → currR++ devine 2. add(arr[2]=1): freq[1]++ → freq[1]=2. Nu e prima apariție → current_answer rămâne 2.",
+      "blocksVisual": [
+        { "label": "Array arr[0-4]  (currR→2)", "groups": [[{"val": "1\n[0]", "sorted": true}, {"val": "2\n[1]", "sorted": true}, {"val": "1\n[2]", "active": true}, {"val": "3\n[3]"}, {"val": "2\n[4]"}]] },
+        { "label": "freq[] actualizat", "groups": [[{"val": "freq[1]=2", "active": true}, {"val": "freq[2]=1"}, {"val": "freq[3]=0"}]] },
+        { "label": "Distinct count", "groups": [[{"val": "curr_ans=2"}]] }
+      ]
+    },
+    {
+      "line": 59,
+      "text": "currR=2 < 3 → currR++ devine 3. add(arr[3]=3): freq[3]++ → freq[3]=1. Nouă valoare distinctă → current_answer=3. Acum currR=q.R, bucla R se oprește.",
+      "blocksVisual": [
+        { "label": "Array arr[0-4]  (currR→3)", "groups": [[{"val": "1\n[0]", "sorted": true}, {"val": "2\n[1]", "sorted": true}, {"val": "1\n[2]", "sorted": true}, {"val": "3\n[3]", "active": true}, {"val": "2\n[4]"}]] },
+        { "label": "freq[] actualizat", "groups": [[{"val": "freq[1]=2"}, {"val": "freq[2]=1"}, {"val": "freq[3]=1", "active": true}]] },
+        { "label": "Distinct count", "groups": [[{"val": "curr_ans=3", "sorted": true}]] }
+      ]
+    },
+    {
+      "line": 61,
+      "text": "while(currL < q.L): currL=0 < 1=q.L → remove(arr[0]=1). freq[1]-- → freq[1]=1. freq[1]>0 → current_answer rămâne 3. currL++ devine 1.",
+      "blocksVisual": [
+        { "label": "Array arr[0-4]  (scoatem [0])", "groups": [[{"val": "1\n[0]", "hidden": true}, {"val": "2\n[1]", "active": true}, {"val": "1\n[2]", "sorted": true}, {"val": "3\n[3]", "sorted": true}, {"val": "2\n[4]"}]] },
+        { "label": "freq[] actualizat", "groups": [[{"val": "freq[1]=1", "active": true}, {"val": "freq[2]=1"}, {"val": "freq[3]=1"}]] },
+        { "label": "Distinct count", "groups": [[{"val": "curr_ans=3", "sorted": true}]] }
+      ]
+    },
+    {
+      "line": 61,
+      "text": "currL=1 = q.L=1 → bucla L se oprește. Fereastra curentă este [1,3] = intervalul cerut de Q0. Avem curr_ans=3.",
+      "blocksVisual": [
+        { "label": "Array arr  [currL=1, currR=3]", "groups": [[{"val": "1\n[0]", "hidden": true}, {"val": "2\n[1]", "active": true}, {"val": "1\n[2]", "sorted": true}, {"val": "3\n[3]", "active": true}, {"val": "2\n[4]"}]] },
+        { "label": "freq[]", "groups": [[{"val": "freq[1]=1"}, {"val": "freq[2]=1"}, {"val": "freq[3]=1"}]] },
+        { "label": "Distinct count", "groups": [[{"val": "curr_ans=3", "sorted": true}]] }
+      ]
+    },
+    {
+      "line": 65,
+      "text": "Salvăm ans[Q0.id] = ans[0] = current_answer = 3. Elementele distincte din [1,3] sunt {2, 1, 3}. ✓",
+      "blocksVisual": [
+        { "label": "Array arr  fereastra [1,3]", "groups": [[{"val": "1\n[0]", "hidden": true}, {"val": "2\n[1]", "sorted": true}, {"val": "1\n[2]", "sorted": true}, {"val": "3\n[3]", "sorted": true}, {"val": "2\n[4]"}]] },
+        { "label": "freq[]", "groups": [[{"val": "freq[1]=1"}, {"val": "freq[2]=1"}, {"val": "freq[3]=1"}]] },
+        { "label": "Răspunsuri ans[]", "groups": [[{"val": "ans[0]=3", "sorted": true}, {"val": "ans[1]=?"}]] }
+      ]
+    },
+    {
+      "line": 55,
+      "text": "Procesăm Q1 = {L=2, R=4}. Fereastra curentă este [1,3]. Trebuie să ajungem la [2,4]. Extindem R de la 3 la 4, apoi mutăm L de la 1 la 2.",
+      "blocksVisual": [
+        { "label": "Array arr  (fereastra curentă [1,3])", "groups": [[{"val": "1\n[0]", "hidden": true}, {"val": "2\n[1]", "active": true}, {"val": "1\n[2]", "sorted": true}, {"val": "3\n[3]", "active": true}, {"val": "2\n[4]"}]] },
+        { "label": "Q1: țintă [2,4]", "groups": [[{"val": "L=2", "active": true}, {"val": "R=4", "active": true}]] },
+        { "label": "Distinct count", "groups": [[{"val": "curr_ans=3"}]] }
+      ]
+    },
+    {
+      "line": 59,
+      "text": "while(currR < q.R): currR=3 < 4=q.R → currR++ devine 4. add(arr[4]=2): freq[2]++ → freq[2]=2. Nu e prima apariție → current_answer rămâne 3.",
+      "blocksVisual": [
+        { "label": "Array arr  (currR→4)", "groups": [[{"val": "1\n[0]", "hidden": true}, {"val": "2\n[1]", "active": true}, {"val": "1\n[2]", "sorted": true}, {"val": "3\n[3]", "sorted": true}, {"val": "2\n[4]", "active": true}]] },
+        { "label": "freq[] actualizat", "groups": [[{"val": "freq[1]=1"}, {"val": "freq[2]=2", "active": true}, {"val": "freq[3]=1"}]] },
+        { "label": "Distinct count", "groups": [[{"val": "curr_ans=3"}]] }
+      ]
+    },
+    {
+      "line": 61,
+      "text": "while(currL < q.L): currL=1 < 2=q.L → remove(arr[1]=2). freq[2]-- → freq[2]=1. freq[2]>0 → current_answer rămâne 3. currL++ devine 2.",
+      "blocksVisual": [
+        { "label": "Array arr  (scoatem [1])", "groups": [[{"val": "1\n[0]", "hidden": true}, {"val": "2\n[1]", "hidden": true}, {"val": "1\n[2]", "active": true}, {"val": "3\n[3]", "sorted": true}, {"val": "2\n[4]", "sorted": true}]] },
+        { "label": "freq[] actualizat", "groups": [[{"val": "freq[1]=1"}, {"val": "freq[2]=1", "active": true}, {"val": "freq[3]=1"}]] },
+        { "label": "Distinct count", "groups": [[{"val": "curr_ans=3", "sorted": true}]] }
+      ]
+    },
+    {
+      "line": 61,
+      "text": "currL=2 = q.L=2 → bucla L se oprește. Fereastra curentă este [2,4] = intervalul cerut de Q1. curr_ans=3.",
+      "blocksVisual": [
+        { "label": "Array arr  [currL=2, currR=4]", "groups": [[{"val": "1\n[0]", "hidden": true}, {"val": "2\n[1]", "hidden": true}, {"val": "1\n[2]", "active": true}, {"val": "3\n[3]", "sorted": true}, {"val": "2\n[4]", "active": true}]] },
+        { "label": "freq[]", "groups": [[{"val": "freq[1]=1"}, {"val": "freq[2]=1"}, {"val": "freq[3]=1"}]] },
+        { "label": "Distinct count", "groups": [[{"val": "curr_ans=3", "sorted": true}]] }
+      ]
+    },
+    {
+      "line": 65,
+      "text": "Salvăm ans[Q1.id] = ans[1] = current_answer = 3. Elementele distincte din [2,4] sunt {1, 3, 2}. ✓",
+      "blocksVisual": [
+        { "label": "Array arr  fereastra [2,4]", "groups": [[{"val": "1\n[0]", "hidden": true}, {"val": "2\n[1]", "hidden": true}, {"val": "1\n[2]", "sorted": true}, {"val": "3\n[3]", "sorted": true}, {"val": "2\n[4]", "sorted": true}]] },
+        { "label": "freq[]", "groups": [[{"val": "freq[1]=1"}, {"val": "freq[2]=1"}, {"val": "freq[3]=1"}]] },
+        { "label": "Răspunsuri ans[]  (FINAL)", "groups": [[{"val": "ans[0]=3", "sorted": true}, {"val": "ans[1]=3", "sorted": true}]] }
+      ]
+    },
+    {
+      "line": 67,
+      "text": "Returnăm ans = {3, 3}. Algoritmul lui Mo a procesat toate interogările offline cu mutări minime ale pointerilor datorită sortării inteligente!",
+      "blocksVisual": [
+        { "label": "Array arr[0-4]", "groups": [[{"val": "1\n[0]"}, {"val": "2\n[1]"}, {"val": "1\n[2]"}, {"val": "3\n[3]"}, {"val": "2\n[4]"}]] },
+        { "label": "Q0=[1,3] → distincte={2,1,3}", "groups": [[{"val": "2", "sorted": true}, {"val": "1", "sorted": true}, {"val": "3", "sorted": true}]] },
+        { "label": "Q1=[2,4] → distincte={1,3,2}", "groups": [[{"val": "1", "sorted": true}, {"val": "3", "sorted": true}, {"val": "2", "sorted": true}]] },
+        { "label": "Rezultat Final ans[]", "groups": [[{"val": "ans[0]=3", "sorted": true}, {"val": "ans[1]=3", "sorted": true}]] }
       ]
     }
   ],

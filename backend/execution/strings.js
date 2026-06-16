@@ -46,13 +46,24 @@ ${code}
 function mockGenerateTrace(code) {
   const lines = code.split('\n');
   const trace = [];
+  const lowerCode = code.toLowerCase();
+  
+  let extraExplanation = "";
+  if (lowerCode.includes("kmp") || lowerCode.includes("rabin") || lowerCode.includes("boyer") || lowerCode.includes("z algorithm") || lowerCode.includes("suffix")) {
+    extraExplanation = "Analyzing prefix information for matching.";
+  }
+
   for (let i = 0; i < lines.length; i++) {
     const lineContent = lines[i].trim();
     if (lineContent) {
+      let explanation = `Executing: ${lineContent}`;
+      if (extraExplanation && trace.length === 0) {
+        explanation = `${extraExplanation} Executing: ${lineContent}`;
+      }
       trace.push({
         line: i + 1,
         segment: lineContent,
-        explanation: `Executing: ${lineContent}`,
+        explanation: explanation,
         state: { "line_number": i + 1 }
       });
     }

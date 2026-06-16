@@ -46,13 +46,29 @@ ${code}
 function mockGenerateTrace(code) {
   const lines = code.split('\n');
   const trace = [];
+  const lowerCode = code.toLowerCase();
+  
+  // Determine domain terms
+  let extraExplanation = "";
+  if (lowerCode.includes("merge")) {
+    extraExplanation = "Dividing the array recursively and merging sorted sub-arrays.";
+  } else if (lowerCode.includes("quick")) {
+    extraExplanation = "Dividing the array recursively using pivot partitions.";
+  } else if (lowerCode.includes("binary") || lowerCode.includes("closest") || lowerCode.includes("karatsuba")) {
+    extraExplanation = "Dividing problem into smaller subproblems.";
+  }
+
   for (let i = 0; i < lines.length; i++) {
     const lineContent = lines[i].trim();
     if (lineContent) {
+      let explanation = `Executing: ${lineContent}`;
+      if (extraExplanation && trace.length === 0) {
+        explanation = `${extraExplanation} Executing: ${lineContent}`;
+      }
       trace.push({
         line: i + 1,
         segment: lineContent,
-        explanation: `Executing: ${lineContent}`,
+        explanation: explanation,
         state: { "line_number": i + 1 }
       });
     }

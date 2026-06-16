@@ -9,12 +9,10 @@ export const data = {
 using namespace std;
 
 int fib(int n, vector<int>& memo) {
-    if (n <= 1) return n; // Cazuri de baza
+    if (n <= 1) return n; 
     
-    // Daca am calculat deja valoarea, o returnam
     if (memo[n] != -1) return memo[n];
     
-    // Altfel, calculam recursiv si salvam
     memo[n] = fib(n - 1, memo) + fib(n - 2, memo);
     return memo[n];
 }
@@ -22,265 +20,391 @@ int fib(int n, vector<int>& memo) {
 int main() {
     int n = 5;
     vector<int> memo(n + 1, -1);
-    cout << "Fibonacci(" << n << ") = " << fib(n, memo) << "
-";
+    cout << "Fibonacci(" << n << ") = " << fib(n, memo) << endl;
     return 0;
 }
 `,
   "explanations": [
     {
-      "line": 16,
-      "text": "Inițializăm vectorul de memoizare cu -1 (semnificând 'necalculat').",
-      "blocksVisual": [
-        {
-          "label": "Memo",
-          "groups": [
-            [
-              {
-                "val": "[-1, -1, -1, -1, -1, -1]",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
       "line": 17,
-      "text": "Apelăm fib(5).",
+      "text": "Pornim programul. Inițializăm variabila n = 5.",
+      "blocksVisual": [
+        {
+          "label": "Variabile",
+          "groups": [[{ "val": "n = 5", "active": true }]]
+        }
+      ]
+    },
+    {
+      "line": 18,
+      "text": "Inițializăm vectorul de memoizare cu -1 pentru n + 1 elemente. memo = [-1, -1, -1, -1, -1, -1]",
+      "blocksVisual": [
+        {
+          "label": "Memo",
+          "groups": [[
+            { "val": "-1" }, { "val": "-1" }, { "val": "-1" },
+            { "val": "-1" }, { "val": "-1" }, { "val": "-1" }
+          ]]
+        }
+      ]
+    },
+    {
+      "line": 19,
+      "text": "Apelăm funcția fib(n, memo) pentru n = 5.",
       "blocksVisual": [
         {
           "label": "Call Stack",
-          "groups": [
-            [
-              {
-                "val": "fib(5)",
-                "active": true
-              }
-            ]
-          ]
+          "groups": [[{ "val": "fib(5)", "active": true }]]
         }
       ]
     },
     {
       "line": 6,
-      "text": "n=5 nu e caz de bază.",
+      "text": "Intrăm în fib(5). Valoarea n = 5 nu este caz de bază (n <= 1).",
       "blocksVisual": [
         {
           "label": "Call Stack",
-          "groups": [
-            [
-              {
-                "val": "fib(5)"
-              }
-            ]
-          ]
+          "groups": [[{ "val": "fib(5)", "active": true }]]
         }
       ]
     },
     {
       "line": 9,
-      "text": "Verificăm memo[5]. Este -1, deci mergem mai departe.",
+      "text": "Verificăm dacă valoarea a fost calculată. memo[5] este -1 (necalculat).",
       "blocksVisual": [
         {
-          "label": "Call Stack",
-          "groups": [
-            [
-              {
-                "val": "fib(5)"
-              }
-            ]
-          ]
+          "label": "Memo",
+          "groups": [[
+            { "val": "-1" }, { "val": "-1" }, { "val": "-1" },
+            { "val": "-1" }, { "val": "-1" }, { "val": "-1", "active": true }
+          ]]
         }
       ]
     },
     {
       "line": 12,
-      "text": "Calculăm fib(4) și fib(3). Prima dată fib(4) intră pe stivă.",
+      "text": "Calculăm recursiv fib(4) ca prim argument din sumă.",
       "blocksVisual": [
         {
           "label": "Call Stack",
-          "groups": [
-            [
-              {
-                "val": "fib(4)",
-                "active": true
-              },
-              {
-                "val": "fib(5)"
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 12,
-      "text": "Din fib(4) se apelează fib(3), apoi fib(2), apoi fib(1).",
-      "blocksVisual": [
-        {
-          "label": "Call Stack",
-          "groups": [
-            [
-              {
-                "val": "fib(1)",
-                "active": true
-              },
-              {
-                "val": "fib(2)"
-              },
-              {
-                "val": "fib(3)"
-              },
-              {
-                "val": "fib(4)"
-              },
-              {
-                "val": "fib(5)"
-              }
-            ]
-          ]
+          "groups": [[{ "val": "fib(5)" }, { "val": "fib(4)", "active": true }]]
         }
       ]
     },
     {
       "line": 6,
-      "text": "fib(1) = 1. Se întoarce la fib(2).",
-      "blocksVisual": [
-        {
-          "label": "fib(1)",
-          "groups": [
-            [
-              {
-                "val": "1"
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 12,
-      "text": "În fib(2), apelăm acum fib(0), care e 0. Suma e 1+0=1. Salvăm în memo[2]=1.",
-      "blocksVisual": [
-        {
-          "label": "Memo",
-          "groups": [
-            [
-              {
-                "val": "[-1, -1, 1, -1, -1, -1]",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 12,
-      "text": "Acum fib(3) calculează fib(3-2)=fib(1) care din nou este caz de bază. Rezultat: 1+1=2. memo[3]=2.",
-      "blocksVisual": [
-        {
-          "label": "Memo",
-          "groups": [
-            [
-              {
-                "val": "[-1, -1, 1, 2, -1, -1]",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 12,
-      "text": "La fib(4), apelăm fib(2).",
+      "text": "Intrăm în fib(4). Valoarea n = 4 nu este caz de bază.",
       "blocksVisual": [
         {
           "label": "Call Stack",
-          "groups": [
-            [
-              {
-                "val": "fib(2)",
-                "active": true
-              },
-              {
-                "val": "fib(4)"
-              },
-              {
-                "val": "fib(5)"
-              }
-            ]
-          ]
+          "groups": [[{ "val": "fib(5)" }, { "val": "fib(4)", "active": true }]]
         }
       ]
     },
     {
       "line": 9,
-      "text": "Dar fib(2) are memo[2] != -1! Returnăm 1 IMEDIAT, tăind ramura.",
-      "blocksVisual": [
-        {
-          "label": "O(1) Branch!",
-          "groups": [
-            [
-              {
-                "val": "Return 1 (Cache)",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 12,
-      "text": "memo[4] devine fib(3)+fib(2) = 2+1=3.",
+      "text": "Verificăm dacă am calculat memo[4]. Este -1.",
       "blocksVisual": [
         {
           "label": "Memo",
-          "groups": [
-            [
-              {
-                "val": "[-1, -1, 1, 2, 3, -1]",
-                "active": true
-              }
-            ]
-          ]
+          "groups": [[
+            { "val": "-1" }, { "val": "-1" }, { "val": "-1" },
+            { "val": "-1" }, { "val": "-1", "active": true }, { "val": "-1" }
+          ]]
         }
       ]
     },
     {
       "line": 12,
-      "text": "Pentru fib(5), calculăm fib(3). Găsim memo[3]=2 IMEDIAT.",
+      "text": "Apelăm recursiv fib(3) din interiorul lui fib(4).",
       "blocksVisual": [
         {
-          "label": "O(1) Branch!",
-          "groups": [
-            [
-              {
-                "val": "Return 2 (Cache)",
-                "active": true
-              }
-            ]
-          ]
+          "label": "Call Stack",
+          "groups": [[{ "val": "fib(5)" }, { "val": "fib(4)" }, { "val": "fib(3)", "active": true }]]
+        }
+      ]
+    },
+    {
+      "line": 6,
+      "text": "Intrăm în fib(3). Valoarea n = 3 nu este caz de bază.",
+      "blocksVisual": [
+        {
+          "label": "Call Stack",
+          "groups": [[{ "val": "fib(5)" }, { "val": "fib(4)" }, { "val": "fib(3)", "active": true }]]
+        }
+      ]
+    },
+    {
+      "line": 9,
+      "text": "Verificăm dacă am calculat memo[3]. Este -1.",
+      "blocksVisual": [
+        {
+          "label": "Memo",
+          "groups": [[
+            { "val": "-1" }, { "val": "-1" }, { "val": "-1" },
+            { "val": "-1", "active": true }, { "val": "-1" }, { "val": "-1" }
+          ]]
+        }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "Apelăm recursiv fib(2) din interiorul lui fib(3).",
+      "blocksVisual": [
+        {
+          "label": "Call Stack",
+          "groups": [[{ "val": "fib(5)" }, { "val": "fib(4)" }, { "val": "fib(3)" }, { "val": "fib(2)", "active": true }]]
+        }
+      ]
+    },
+    {
+      "line": 6,
+      "text": "Intrăm în fib(2). Valoarea n = 2 nu este caz de bază.",
+      "blocksVisual": [
+        {
+          "label": "Call Stack",
+          "groups": [[{ "val": "fib(5)" }, { "val": "fib(4)" }, { "val": "fib(3)" }, { "val": "fib(2)", "active": true }]]
+        }
+      ]
+    },
+    {
+      "line": 9,
+      "text": "Verificăm dacă am calculat memo[2]. Este -1.",
+      "blocksVisual": [
+        {
+          "label": "Memo",
+          "groups": [[
+            { "val": "-1" }, { "val": "-1" }, { "val": "-1", "active": true },
+            { "val": "-1" }, { "val": "-1" }, { "val": "-1" }
+          ]]
+        }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "Apelăm recursiv fib(1) din interiorul lui fib(2).",
+      "blocksVisual": [
+        {
+          "label": "Call Stack",
+          "groups": [[{ "val": "fib(5)" }, { "val": "fib(4)" }, { "val": "fib(3)" }, { "val": "fib(2)" }, { "val": "fib(1)", "active": true }]]
+        }
+      ]
+    },
+    {
+      "line": 6,
+      "text": "fib(1) este caz de bază (n <= 1). Se returnează valoarea 1.",
+      "blocksVisual": [
+        {
+          "label": "Call Stack",
+          "groups": [[{ "val": "fib(5)" }, { "val": "fib(4)" }, { "val": "fib(3)" }, { "val": "fib(2)" }]]
+        }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "Apelăm acum al doilea argument, adică fib(0), din fib(2).",
+      "blocksVisual": [
+        {
+          "label": "Call Stack",
+          "groups": [[{ "val": "fib(5)" }, { "val": "fib(4)" }, { "val": "fib(3)" }, { "val": "fib(2)" }, { "val": "fib(0)", "active": true }]]
+        }
+      ]
+    },
+    {
+      "line": 6,
+      "text": "fib(0) este caz de bază (n <= 1). Se returnează valoarea 0.",
+      "blocksVisual": [
+        {
+          "label": "Call Stack",
+          "groups": [[{ "val": "fib(5)" }, { "val": "fib(4)" }, { "val": "fib(3)" }, { "val": "fib(2)" }]]
+        }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "Calculăm fib(2) = fib(1) + fib(0) = 1 + 0 = 1. Salvăm în memo[2] = 1.",
+      "blocksVisual": [
+        {
+          "label": "Memo",
+          "groups": [[
+            { "val": "-1" }, { "val": "-1" }, { "val": "1", "active": true },
+            { "val": "-1" }, { "val": "-1" }, { "val": "-1" }
+          ]]
         }
       ]
     },
     {
       "line": 13,
-      "text": "Final: memo[5] devine fib(4)+fib(3) = 3+2=5.",
+      "text": "Returnăm valoarea memo[2] = 1.",
+      "blocksVisual": [
+        {
+          "label": "Call Stack",
+          "groups": [[{ "val": "fib(5)" }, { "val": "fib(4)" }, { "val": "fib(3)" }]]
+        }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "Din fib(3), apelăm al doilea termen fib(1).",
+      "blocksVisual": [
+        {
+          "label": "Call Stack",
+          "groups": [[{ "val": "fib(5)" }, { "val": "fib(4)" }, { "val": "fib(3)" }, { "val": "fib(1)", "active": true }]]
+        }
+      ]
+    },
+    {
+      "line": 6,
+      "text": "fib(1) este caz de bază. Returnează valoarea 1.",
+      "blocksVisual": [
+        {
+          "label": "Call Stack",
+          "groups": [[{ "val": "fib(5)" }, { "val": "fib(4)" }, { "val": "fib(3)" }]]
+        }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "Calculăm fib(3) = fib(2) + fib(1) = 1 + 1 = 2. Salvăm memo[3] = 2.",
       "blocksVisual": [
         {
           "label": "Memo",
-          "groups": [
-            [
-              {
-                "val": "[-1, -1, 1, 2, 3, 5]",
-                "active": true
-              }
-            ]
-          ]
+          "groups": [[
+            { "val": "-1" }, { "val": "-1" }, { "val": "1" },
+            { "val": "2", "active": true }, { "val": "-1" }, { "val": "-1" }
+          ]]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Returnăm valoarea memo[3] = 2.",
+      "blocksVisual": [
+        {
+          "label": "Call Stack",
+          "groups": [[{ "val": "fib(5)" }, { "val": "fib(4)" }]]
+        }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "Din fib(4), apelăm al doilea termen fib(2).",
+      "blocksVisual": [
+        {
+          "label": "Call Stack",
+          "groups": [[{ "val": "fib(5)" }, { "val": "fib(4)" }, { "val": "fib(2)", "active": true }]]
+        }
+      ]
+    },
+    {
+      "line": 9,
+      "text": "În fib(2), verificăm memo[2]. memo[2] = 1, adică diferit de -1! Avem cache hit!",
+      "blocksVisual": [
+        {
+          "label": "Memo",
+          "groups": [[
+            { "val": "-1" }, { "val": "-1" }, { "val": "1", "active": true },
+            { "val": "2" }, { "val": "-1" }, { "val": "-1" }
+          ]]
+        }
+      ]
+    },
+    {
+      "line": 9,
+      "text": "Returnăm valoarea memo[2] = 1 direct, fără a mai face apeluri recursive.",
+      "blocksVisual": [
+        {
+          "label": "Call Stack",
+          "groups": [[{ "val": "fib(5)" }, { "val": "fib(4)" }]]
+        }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "Calculăm fib(4) = fib(3) + fib(2) = 2 + 1 = 3. Salvăm în memo[4] = 3.",
+      "blocksVisual": [
+        {
+          "label": "Memo",
+          "groups": [[
+            { "val": "-1" }, { "val": "-1" }, { "val": "1" },
+            { "val": "2" }, { "val": "3", "active": true }, { "val": "-1" }
+          ]]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Returnăm valoarea memo[4] = 3.",
+      "blocksVisual": [
+        {
+          "label": "Call Stack",
+          "groups": [[{ "val": "fib(5)" }]]
+        }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "Din fib(5), apelăm al doilea termen fib(3).",
+      "blocksVisual": [
+        {
+          "label": "Call Stack",
+          "groups": [[{ "val": "fib(5)" }, { "val": "fib(3)", "active": true }]]
+        }
+      ]
+    },
+    {
+      "line": 9,
+      "text": "Verificăm memo[3]. memo[3] = 2, deci din nou cache hit!",
+      "blocksVisual": [
+        {
+          "label": "Memo",
+          "groups": [[
+            { "val": "-1" }, { "val": "-1" }, { "val": "1" },
+            { "val": "2", "active": true }, { "val": "3" }, { "val": "-1" }
+          ]]
+        }
+      ]
+    },
+    {
+      "line": 9,
+      "text": "Returnăm memo[3] = 2 direct.",
+      "blocksVisual": [
+        {
+          "label": "Call Stack",
+          "groups": [[{ "val": "fib(5)" }]]
+        }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "Calculăm fib(5) = fib(4) + fib(3) = 3 + 2 = 5. Salvăm memo[5] = 5.",
+      "blocksVisual": [
+        {
+          "label": "Memo",
+          "groups": [[
+            { "val": "-1" }, { "val": "-1" }, { "val": "1" },
+            { "val": "2" }, { "val": "3" }, { "val": "5", "active": true }
+          ]]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Returnăm memo[5] = 5.",
+      "blocksVisual": [
+        {
+          "label": "Call Stack",
+          "groups": [[]]
+        }
+      ]
+    },
+    {
+      "line": 19,
+      "text": "Afișăm rezultatul final: Fibonacci(5) = 5.",
+      "blocksVisual": [
+        {
+          "label": "Finalizat",
+          "groups": [[{ "val": "5", "sorted": true }]]
         }
       ]
     }

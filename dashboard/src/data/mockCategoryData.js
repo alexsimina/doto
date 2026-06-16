@@ -18,6 +18,10 @@ import { data as data_Data_Structures_RMQ } from './categories/Data_Structures/D
 import { data as data_Data_Structures_Disjoint_Sets } from './categories/Data_Structures/Data_Structures/Disjoint_Sets.js';
 import { data as data_Trees_Fenwick_Tree } from './categories/Data_Structures/Trees/Fenwick_Tree.js';
 import { data as data_Trees_Segment_Trees } from './categories/Data_Structures/Trees/Segment_Trees.js';
+import { data as data_Data_Structures_Frequency_Vectors } from './categories/Data_Structures/Data_Structures/Frequency_Vectors.js';
+import { data as data_Data_Structures_Stack } from './categories/Data_Structures/Data_Structures/Stack.js';
+import { data as data_Data_Structures_Queue_Deque } from './categories/Data_Structures/Data_Structures/Queue_Deque.js';
+import { data as data_Data_Structures_Priority_Queue } from './categories/Data_Structures/Data_Structures/Priority_Queue.js';
 import { data as data_Alg_Backtracking } from './categories/Core_Algorithms/Alg/Backtracking.js';
 import { data as data_Alg_Greedy } from './categories/Core_Algorithms/Alg/Greedy.js';
 import { data as data_Alg_Meet_in_the_Middle } from './categories/Core_Algorithms/Alg/Meet_in_the_Middle.js';
@@ -81,6 +85,10 @@ const mockCategoryData = {
   "Data_Structures/Disjoint_Sets": data_Data_Structures_Disjoint_Sets,
   "Trees/Fenwick_Tree": data_Trees_Fenwick_Tree,
   "Trees/Segment_Trees": data_Trees_Segment_Trees,
+  "Data_Structures/Frequency_Vectors": data_Data_Structures_Frequency_Vectors,
+  "Data_Structures/Stack": data_Data_Structures_Stack,
+  "Data_Structures/Queue_Deque": data_Data_Structures_Queue_Deque,
+  "Data_Structures/Priority_Queue": data_Data_Structures_Priority_Queue,
   "Alg/Backtracking": data_Alg_Backtracking,
   "Alg/Greedy": data_Alg_Greedy,
   "Alg/Meet_in_the_Middle": data_Alg_Meet_in_the_Middle,

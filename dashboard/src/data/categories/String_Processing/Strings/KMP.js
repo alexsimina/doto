@@ -57,90 +57,170 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 7,
-      "text": "Etapa de Preprocesare: Construim PI array-ul pentru pattern-ul 'ABABCABAB'. Ne spune cel mai lung prefix care este și sufix. De exemplu, pentru 'ABABCABAB', ultimul B (index 8) are sufixul 'ABAB' care e egal cu prefixul 'ABAB', deci pi[8] = 4.",
+      "line": 8,
+      "text": "Etapa 1: Preprocesare (computePi). Începem calculul vectorului PI pentru pattern-ul 'ABABCABAB'. j = 0, i = 1.",
       "blocksVisual": [
         {
-          "label": "Pattern și PI Array",
+          "label": "Pattern & PI",
           "groups": [
             [
-              {
-                "val": "A"
-              },
-              {
-                "val": "B"
-              },
-              {
-                "val": "A"
-              },
-              {
-                "val": "B"
-              },
-              {
-                "val": "C"
-              },
-              {
-                "val": "A"
-              },
-              {
-                "val": "B"
-              },
-              {
-                "val": "A"
-              },
-              {
-                "val": "B"
-              }
+              {"val": "A", "active": true}, {"val": "B"}, {"val": "A"}, {"val": "B"}, {"val": "C"}, {"val": "A"}, {"val": "B"}, {"val": "A"}, {"val": "B"}
             ],
             [
-              {
-                "val": "0"
-              },
-              {
-                "val": "0"
-              },
-              {
-                "val": "1"
-              },
-              {
-                "val": "2"
-              },
-              {
-                "val": "0"
-              },
-              {
-                "val": "1"
-              },
-              {
-                "val": "2"
-              },
-              {
-                "val": "3"
-              },
-              {
-                "val": "4"
-              }
+              {"val": "0", "sorted": true}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}
             ]
           ]
         }
       ]
     },
     {
-      "line": 25,
-      "text": "Începem căutarea în text, având PI-ul gata. i e indexul pe text, j pe pattern.",
+      "line": 13,
+      "text": "Pasul i = 1: Comparăm pat[1] ('B') cu pat[j] ('A'). Nu se potrivesc și j este 0, deci pi[1] = 0.",
       "blocksVisual": [
         {
-          "label": "KMP Search (i=0..4, j=0..4)",
+          "label": "i = 1, j = 0",
           "groups": [
             [
-              {
-                "val": "T: A B A B D ..."
-              }
+              {"val": "A", "active": true}, {"val": "B", "active": true}, {"val": "A"}, {"val": "B"}, {"val": "C"}, {"val": "A"}, {"val": "B"}, {"val": "A"}, {"val": "B"}
             ],
             [
-              {
-                "val": "P: A B A B C ..."
-              }
+              {"val": "0", "sorted": true}, {"val": "0", "sorted": true}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Pasul i = 2: Comparăm pat[2] ('A') cu pat[j] ('A'). Se potrivesc! j devine 1, pi[2] = 1.",
+      "blocksVisual": [
+        {
+          "label": "i = 2, j = 1",
+          "groups": [
+            [
+              {"val": "A", "active": true}, {"val": "B"}, {"val": "A", "active": true}, {"val": "B"}, {"val": "C"}, {"val": "A"}, {"val": "B"}, {"val": "A"}, {"val": "B"}
+            ],
+            [
+              {"val": "0", "sorted": true}, {"val": "0", "sorted": true}, {"val": "1", "sorted": true}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Pasul i = 3: Comparăm pat[3] ('B') cu pat[j] ('B'). Se potrivesc! j devine 2, pi[3] = 2.",
+      "blocksVisual": [
+        {
+          "label": "i = 3, j = 2",
+          "groups": [
+            [
+              {"val": "A"}, {"val": "B", "active": true}, {"val": "A"}, {"val": "B", "active": true}, {"val": "C"}, {"val": "A"}, {"val": "B"}, {"val": "A"}, {"val": "B"}
+            ],
+            [
+              {"val": "0", "sorted": true}, {"val": "0", "sorted": true}, {"val": "1", "sorted": true}, {"val": "2", "sorted": true}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Pasul i = 4: Comparăm pat[4] ('C') cu pat[j] ('A'). Mismatch! Deoarece j = 2 > 0, ne întoarcem la pi[j-1] = pi[1] = 0.",
+      "blocksVisual": [
+        {
+          "label": "i = 4, mismatch",
+          "groups": [
+            [
+              {"val": "A"}, {"val": "B"}, {"val": "A", "active": true}, {"val": "B"}, {"val": "C", "active": true}, {"val": "A"}, {"val": "B"}, {"val": "A"}, {"val": "B"}
+            ],
+            [
+              {"val": "0", "sorted": true}, {"val": "0", "sorted": true}, {"val": "1", "sorted": true}, {"val": "2", "sorted": true}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 19,
+      "text": "j a devenit 0. Comparăm pat[4] ('C') cu pat[0] ('A'). Mismatch! pi[4] devine 0.",
+      "blocksVisual": [
+        {
+          "label": "i = 4, j = 0",
+          "groups": [
+            [
+              {"val": "A", "active": true}, {"val": "B"}, {"val": "A"}, {"val": "B"}, {"val": "C", "active": true}, {"val": "A"}, {"val": "B"}, {"val": "A"}, {"val": "B"}
+            ],
+            [
+              {"val": "0", "sorted": true}, {"val": "0", "sorted": true}, {"val": "1", "sorted": true}, {"val": "2", "sorted": true}, {"val": "0", "sorted": true}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Pasul i = 5: Comparăm pat[5] ('A') cu pat[0] ('A'). Match! j devine 1, pi[5] = 1.",
+      "blocksVisual": [
+        {
+          "label": "i = 5, j = 1",
+          "groups": [
+            [
+              {"val": "A", "active": true}, {"val": "B"}, {"val": "A"}, {"val": "B"}, {"val": "C"}, {"val": "A", "active": true}, {"val": "B"}, {"val": "A"}, {"val": "B"}
+            ],
+            [
+              {"val": "0", "sorted": true}, {"val": "0", "sorted": true}, {"val": "1", "sorted": true}, {"val": "2", "sorted": true}, {"val": "0", "sorted": true}, {"val": "1", "sorted": true}, {"val": "0"}, {"val": "0"}, {"val": "0"}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Pasul i = 6: Comparăm pat[6] ('B') cu pat[1] ('B'). Match! j devine 2, pi[6] = 2.",
+      "blocksVisual": [
+        {
+          "label": "i = 6, j = 2",
+          "groups": [
+            [
+              {"val": "A"}, {"val": "B", "active": true}, {"val": "A"}, {"val": "B"}, {"val": "C"}, {"val": "A"}, {"val": "B", "active": true}, {"val": "A"}, {"val": "B"}
+            ],
+            [
+              {"val": "0", "sorted": true}, {"val": "0", "sorted": true}, {"val": "1", "sorted": true}, {"val": "2", "sorted": true}, {"val": "0", "sorted": true}, {"val": "1", "sorted": true}, {"val": "2", "sorted": true}, {"val": "0"}, {"val": "0"}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Pasul i = 7: Comparăm pat[7] ('A') cu pat[2] ('A'). Match! j devine 3, pi[7] = 3.",
+      "blocksVisual": [
+        {
+          "label": "i = 7, j = 3",
+          "groups": [
+            [
+              {"val": "A"}, {"val": "B"}, {"val": "A", "active": true}, {"val": "B"}, {"val": "C"}, {"val": "A"}, {"val": "B"}, {"val": "A", "active": true}, {"val": "B"}
+            ],
+            [
+              {"val": "0", "sorted": true}, {"val": "0", "sorted": true}, {"val": "1", "sorted": true}, {"val": "2", "sorted": true}, {"val": "0", "sorted": true}, {"val": "1", "sorted": true}, {"val": "2", "sorted": true}, {"val": "3", "sorted": true}, {"val": "0"}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Pasul i = 8: Comparăm pat[8] ('B') cu pat[3] ('B'). Match! j devine 4, pi[8] = 4. Preprocesarea s-a încheiat.",
+      "blocksVisual": [
+        {
+          "label": "PI complet",
+          "groups": [
+            [
+              {"val": "A"}, {"val": "B"}, {"val": "A"}, {"val": "B", "active": true}, {"val": "C"}, {"val": "A"}, {"val": "B"}, {"val": "A"}, {"val": "B", "active": true}
+            ],
+            [
+              {"val": "0", "sorted": true}, {"val": "0", "sorted": true}, {"val": "1", "sorted": true}, {"val": "2", "sorted": true}, {"val": "0", "sorted": true}, {"val": "1", "sorted": true}, {"val": "2", "sorted": true}, {"val": "3", "sorted": true}, {"val": "4", "sorted": true}
             ]
           ]
         }
@@ -148,174 +228,265 @@ int main() {
     },
     {
       "line": 31,
-      "text": "Găsim potrivire la primele 4 litere: 'ABAB' se potrivește cu 'ABAB'. Dar la i=4 în text e 'D', iar la j=4 în pattern e 'C'. Mismatch!",
+      "text": "Etapa 2: Căutare (kmpSearch). Pornim de la i = 0 (pe text) și j = 0 (pe pattern). Comparăm txt[0] ('A') cu pat[0] ('A'). Potrivire!",
       "blocksVisual": [
         {
-          "label": "Mismatch la C vs D",
+          "label": "Căutare i = 0",
           "groups": [
             [
-              {
-                "val": "A",
-                "sorted": true
-              },
-              {
-                "val": "B",
-                "sorted": true
-              },
-              {
-                "val": "A",
-                "sorted": true
-              },
-              {
-                "val": "B",
-                "sorted": true
-              },
-              {
-                "val": "D",
-                "active": true
-              }
+              {"val": "A", "active": true}, {"val": "B"}, {"val": "A"}, {"val": "B"}, {"val": "D"}, {"val": "A"}, {"val": "B"}, {"val": "A"}, {"val": "C"}, {"val": "D"}, {"val": "A"}, {"val": "B"}, {"val": "A"}, {"val": "B"}, {"val": "C"}, {"val": "A"}, {"val": "B"}, {"val": "A"}, {"val": "B"}
             ],
             [
-              {
-                "val": "A",
-                "sorted": true
-              },
-              {
-                "val": "B",
-                "sorted": true
-              },
-              {
-                "val": "A",
-                "sorted": true
-              },
-              {
-                "val": "B",
-                "sorted": true
-              },
-              {
-                "val": "C",
-                "active": true
-              }
+              {"val": "A", "active": true}, {"val": "B"}, {"val": "A"}, {"val": "B"}, {"val": "C"}, {"val": "A"}, {"val": "B"}, {"val": "A"}, {"val": "B"}
             ]
           ]
         }
       ]
     },
     {
-      "line": 32,
-      "text": "În loc să ne întoarcem pe i în text la indexul 1 (cum ar face varianta naivă), KMP zice: M-am blocat la j=4. PI array pt j-1 (adică pi[3]) este 2. Știm că 'AB' este deja un prefix care s-a potrivit la capătul a ceea ce am citit. Deci mutăm j la 2!",
+      "line": 31,
+      "text": "Continuăm: i = 1, j = 1. txt[1] ('B') se potrivește cu pat[1] ('B').",
       "blocksVisual": [
         {
-          "label": "Shift inteligent (j = 2)",
+          "label": "Căutare i = 1",
           "groups": [
             [
-              {
-                "val": "A"
-              },
-              {
-                "val": "B"
-              },
-              {
-                "val": "A",
-                "sorted": true
-              },
-              {
-                "val": "B",
-                "sorted": true
-              },
-              {
-                "val": "D",
-                "active": true
-              }
+              {"val": "A"}, {"val": "B", "active": true}, {"val": "A"}, {"val": "B"}, {"val": "D"}, {"val": "A"}, {"val": "B"}, {"val": "A"}, {"val": "C"}, {"val": "D"}
             ],
             [
-              {
-                "val": "-",
-                "hidden": true
-              },
-              {
-                "val": "-",
-                "hidden": true
-              },
-              {
-                "val": "A",
-                "sorted": true
-              },
-              {
-                "val": "B",
-                "sorted": true
-              },
-              {
-                "val": "A",
-                "active": true
-              }
+              {"val": "A"}, {"val": "B", "active": true}, {"val": "A"}, {"val": "B"}, {"val": "C"}, {"val": "A"}, {"val": "B"}, {"val": "A"}, {"val": "B"}
             ]
           ]
         }
       ]
     },
     {
-      "line": 32,
-      "text": "Acum comparăm text[4] ('D') cu pattern[2] ('A'). Încă nu e bine. j=2, ne ducem la pi[1] care e 0. j devine 0.",
+      "line": 31,
+      "text": "Continuăm: i = 2, j = 2. txt[2] ('A') se potrivește cu pat[2] ('A').",
       "blocksVisual": [
         {
-          "label": "Nou shift",
+          "label": "Căutare i = 2",
           "groups": [
             [
-              {
-                "val": "A"
-              },
-              {
-                "val": "B"
-              },
-              {
-                "val": "A"
-              },
-              {
-                "val": "B"
-              },
-              {
-                "val": "D",
-                "active": true
-              }
+              {"val": "A"}, {"val": "B"}, {"val": "A", "active": true}, {"val": "B"}, {"val": "D"}, {"val": "A"}, {"val": "B"}
             ],
             [
-              {
-                "val": "-",
-                "hidden": true
-              },
-              {
-                "val": "-",
-                "hidden": true
-              },
-              {
-                "val": "-",
-                "hidden": true
-              },
-              {
-                "val": "-",
-                "hidden": true
-              },
-              {
-                "val": "A",
-                "active": true
-              }
+              {"val": "A"}, {"val": "B"}, {"val": "A", "active": true}, {"val": "B"}, {"val": "C"}, {"val": "A"}, {"val": "B"}
             ]
           ]
         }
       ]
     },
     {
-      "line": 30,
-      "text": "i-ul pur și simplu continuă (i avansează, NICIODATĂ nu scade). Așa obținem O(N). Patternul este decalat constant pe baza informațiilor din PI array.",
+      "line": 31,
+      "text": "Continuăm: i = 3, j = 3. txt[3] ('B') se potrivește cu pat[3] ('B'). j devine 4.",
       "blocksVisual": [
         {
-          "label": "Căutare mai departe",
+          "label": "Căutare i = 3",
           "groups": [
             [
-              {
-                "val": "KMP Rulez!"
-              }
+              {"val": "A"}, {"val": "B"}, {"val": "A"}, {"val": "B", "active": true}, {"val": "D"}
+            ],
+            [
+              {"val": "A"}, {"val": "B"}, {"val": "A"}, {"val": "B", "active": true}, {"val": "C"}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 31,
+      "text": "La i = 4, txt[4] ('D') nu corespunde cu pat[4] ('C'). Mismatch la j = 4!",
+      "blocksVisual": [
+        {
+          "label": "Mismatch i = 4",
+          "groups": [
+            [
+              {"val": "A", "sorted": true}, {"val": "B", "sorted": true}, {"val": "A", "sorted": true}, {"val": "B", "sorted": true}, {"val": "D", "active": true}
+            ],
+            [
+              {"val": "A", "sorted": true}, {"val": "B", "sorted": true}, {"val": "A", "sorted": true}, {"val": "B", "sorted": true}, {"val": "C", "active": true}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 37,
+      "text": "KMP folosește PI: pentru j = 4, fallback pe pi[3] = 2. Înseamnă că prefixul 'AB' coincide cu sufixul dinaintea nepotrivirii. j devine 2, i rămâne 4.",
+      "blocksVisual": [
+        {
+          "label": "Fallback j = 2",
+          "groups": [
+            [
+              {"val": "A"}, {"val": "B"}, {"val": "A", "sorted": true}, {"val": "B", "sorted": true}, {"val": "D", "active": true}
+            ],
+            [
+              {"val": "-", "hidden": true}, {"val": "-", "hidden": true}, {"val": "A", "sorted": true}, {"val": "B", "sorted": true}, {"val": "A", "active": true}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 37,
+      "text": "Comparăm txt[4] ('D') cu pat[2] ('A'). Încă nu se potrivesc! Fallback pe pi[1] = 0. j devine 0.",
+      "blocksVisual": [
+        {
+          "label": "Fallback j = 0",
+          "groups": [
+            [
+              {"val": "A"}, {"val": "B"}, {"val": "A"}, {"val": "B"}, {"val": "D", "active": true}
+            ],
+            [
+              {"val": "-", "hidden": true}, {"val": "-", "hidden": true}, {"val": "-", "hidden": true}, {"val": "-", "hidden": true}, {"val": "A", "active": true}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 31,
+      "text": "i = 5, j = 0. txt[5] ('A') se potrivește cu pat[0] ('A'). j devine 1.",
+      "blocksVisual": [
+        {
+          "label": "i = 5, j = 1",
+          "groups": [
+            [
+              {"val": "A"}, {"val": "B"}, {"val": "A"}, {"val": "B"}, {"val": "D"}, {"val": "A", "active": true}, {"val": "B"}
+            ],
+            [
+              {"val": "-", "hidden": true}, {"val": "-", "hidden": true}, {"val": "-", "hidden": true}, {"val": "-", "hidden": true}, {"val": "-", "hidden": true}, {"val": "A", "active": true}, {"val": "B"}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 31,
+      "text": "i = 6: txt[6] ('B') se potrivește cu pat[1] ('B'). j devine 2.",
+      "blocksVisual": [
+        {
+          "label": "i = 6, j = 2",
+          "groups": [
+            [
+              {"val": "A"}, {"val": "B"}, {"val": "A", "active": true}, {"val": "B"}
+            ],
+            [
+              {"val": "A"}, {"val": "B", "active": true}, {"val": "A"}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 31,
+      "text": "i = 7: txt[7] ('A') se potrivește cu pat[2] ('A'). j devine 3.",
+      "blocksVisual": [
+        {
+          "label": "i = 7, j = 3",
+          "groups": [
+            [
+              {"val": "B"}, {"val": "A", "active": true}, {"val": "C"}
+            ],
+            [
+              {"val": "B"}, {"val": "A", "active": true}, {"val": "B"}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 31,
+      "text": "La i = 8, txt[8] ('C') nu se potrivește cu pat[3] ('B'). Mismatch! Fallback pe pi[2] = 1. Compare txt[8] ('C') cu pat[1] ('B') (mismatch), fallback pi[0]=0, mismatch.",
+      "blocksVisual": [
+        {
+          "label": "Mismatch la i = 8",
+          "groups": [
+            [
+              {"val": "A"}, {"val": "B"}, {"val": "A"}, {"val": "C", "active": true}
+            ],
+            [
+              {"val": "A"}, {"val": "B"}, {"val": "A"}, {"val": "B", "active": true}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 31,
+      "text": "i = 9: txt[9] ('D') vs pat[0] ('A'). Nepotrivire totală. j rămâne 0.",
+      "blocksVisual": [
+        {
+          "label": "i = 9, j = 0",
+          "groups": [
+            [
+              {"val": "D", "active": true}, {"val": "A"}
+            ],
+            [
+              {"val": "A", "active": true}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 31,
+      "text": "La i = 10, găsim o nouă potrivire! txt[10] ('A') == pat[0] ('A'). j devine 1.",
+      "blocksVisual": [
+        {
+          "label": "Potrivire i = 10",
+          "groups": [
+            [
+              {"val": "D"}, {"val": "A", "active": true}, {"val": "B"}, {"val": "A"}, {"val": "B"}, {"val": "C"}, {"val": "A"}, {"val": "B"}, {"val": "A"}, {"val": "B"}
+            ],
+            [
+              {"val": "A", "active": true}, {"val": "B"}, {"val": "A"}, {"val": "B"}, {"val": "C"}, {"val": "A"}, {"val": "B"}, {"val": "A"}, {"val": "B"}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 31,
+      "text": "Urmează o serie de potriviri consecutive: i = 11..17 corespund perfect cu pat[1..7]. j crește până la 8.",
+      "blocksVisual": [
+        {
+          "label": "Potriviri succesive",
+          "groups": [
+            [
+              {"val": "A", "sorted": true}, {"val": "B", "sorted": true}, {"val": "A", "sorted": true}, {"val": "B", "sorted": true}, {"val": "C", "sorted": true}, {"val": "A", "sorted": true}, {"val": "B", "sorted": true}, {"val": "A", "sorted": true}, {"val": "B"}
+            ],
+            [
+              {"val": "A", "sorted": true}, {"val": "B", "sorted": true}, {"val": "A", "sorted": true}, {"val": "B", "sorted": true}, {"val": "C", "sorted": true}, {"val": "A", "sorted": true}, {"val": "B", "sorted": true}, {"val": "A", "sorted": true}, {"val": "B"}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 31,
+      "text": "La i = 18, txt[18] ('B') == pat[8] ('B'). j devine 9 (mărimea patternului). Am găsit o potrivire completă la indexul 10!",
+      "blocksVisual": [
+        {
+          "label": "GĂSIT LA INDEX 10",
+          "groups": [
+            [
+              {"val": "A", "sorted": true}, {"val": "B", "sorted": true}, {"val": "A", "sorted": true}, {"val": "B", "sorted": true}, {"val": "C", "sorted": true}, {"val": "A", "sorted": true}, {"val": "B", "sorted": true}, {"val": "A", "sorted": true}, {"val": "B", "sorted": true}
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 46,
+      "text": "După găsirea meciului, facem fallback pe pi[j-1] = pi[8] = 4 pentru a continua căutarea unei alte potriviri. Căutarea se finalizează cu succes.",
+      "blocksVisual": [
+        {
+          "label": "Finalizare",
+          "groups": [
+            [
+              {"val": "KMP finalizat cu succes", "sorted": true}
             ]
           ]
         }

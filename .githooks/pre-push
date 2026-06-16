@@ -1,0 +1,71 @@
+#!/bin/sh
+
+# Pre-push hook to verify that the project builds and runs tests successfully before pushing.
+
+echo "========================================="
+echo "🔍 Running pre-push verification tests..."
+echo "========================================="
+
+# 1. Verify dashboard build
+echo ""
+echo "📦 Step 1: Building dashboard..."
+echo "-----------------------------------------"
+cd dashboard
+npm run build
+BUILD_STATUS=$?
+cd ..
+
+if [ $BUILD_STATUS -ne 0 ]; then
+    echo ""
+    echo "❌ ERROR: Dashboard build failed!"
+    echo "Push aborted. Please fix the build errors before pushing."
+    echo "========================================="
+    exit 1
+fi
+echo "✅ Dashboard build succeeded."
+
+# 2. Verify backend routing tests
+echo ""
+echo "⚙️ Step 2: Running backend unit tests..."
+echo "-----------------------------------------"
+node backend/test_routing.js
+TEST_STATUS=$?
+
+if [ $TEST_STATUS -ne 0 ]; then
+    echo ""
+    echo "❌ ERROR: Backend unit tests failed!"
+    echo "Push aborted. Please fix the tests before pushing."
+    echo "========================================="
+    exit 1
+fi
+echo "✅ Backend unit tests passed."
+
+# 3. Verify E2E tests (only if backend server is running)
+echo ""
+echo "🌐 Step 3: Checking if backend server is running for E2E tests..."
+echo "-----------------------------------------"
+# Attempt to connect to localhost:3000/execute
+curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/execute > /dev/null 2>&1
+CURL_STATUS=$?
+
+if [ $CURL_STATUS -eq 0 ]; then
+    echo "⚡ Backend server detected on port 3000. Running E2E tests..."
+    node e2e_tests/runner.js
+    E2E_STATUS=$?
+    if [ $E2E_STATUS -ne 0 ]; then
+        echo ""
+        echo "❌ ERROR: E2E tests failed!"
+        echo "Push aborted. Please fix the E2E test failures before pushing."
+        echo "========================================="
+        exit 1
+    fi
+    echo "✅ E2E tests passed."
+else
+    echo "⚠️ Backend server not detected on port 3000. Skipping E2E tests."
+fi
+
+echo ""
+echo "========================================="
+echo "🎉 All checks passed! Proceeding with push."
+echo "========================================="
+exit 0

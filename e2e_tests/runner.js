@@ -34,7 +34,7 @@ async function run() {
   if (failed > 0) {
     process.exit(1);
   } else {
-    process.exit(0);
+    setTimeout(() => { process.exit(0); }, 250);
   }
 }
 

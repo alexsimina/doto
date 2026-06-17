@@ -13,7 +13,7 @@ using namespace std;
 int blockSize;
 vector<int> b; // vectorul de blocuri
 
-void preprocess(var vector<int>& input) {
+void preprocess(const vector<int>& input) {
     int n = input.size();
     blockSize = sqrt(n);
     // rotunjire in sus pentru ultimul bloc
@@ -32,7 +32,7 @@ void update(vector<int>& input, int idx, int val) {
 }
 
 // Query pe intervalul [l, r]
-int query(var vector<int>& input, int l, int r) {
+int query(const vector<int>& input, int l, int r) {
     int sum = 0;
     int c_l = l / blockSize;
     int c_r = r / blockSize;
@@ -51,6 +51,13 @@ int query(var vector<int>& input, int l, int r) {
         for (int i = c_r * blockSize; i <= r; i++) sum += input[i];
     }
     return sum;
+}
+
+int main() {
+    vector<int> input = {2, 1, 3, 4, 5, 8, 9, 2, 0};
+    preprocess(input);
+    cout << "Suma pe [1, 7]: " << query(input, 1, 7) << "\n";
+    return 0;
 }
 `,
   "explanations": [
@@ -250,6 +257,27 @@ int query(var vector<int>& input, int l, int r) {
         { "label": "Block 1 [3-5]  (1 op – b[1]=17)", "groups": [[{"val": 4, "sorted": true}, {"val": 5, "sorted": true}, {"val": 8, "sorted": true}]] },
         { "label": "Block 2 [6-8]  (2 op)", "groups": [[{"val": 9, "sorted": true}, {"val": 2, "sorted": true}, {"val": 0, "hidden": true}]] },
         { "label": "Rezultat Final query[1,7]", "groups": [[{"val": "32", "sorted": true}]] }
+      ]
+    },
+    {
+      "line": 50,
+      "text": "Intrăm în funcția main și definim vectorul de intrare input cu 9 elemente.",
+      "blocksVisual": [
+        { "label": "input", "groups": [[{"val": 2}, {"val": 1}, {"val": 3}, {"val": 4}, {"val": 5}, {"val": 8}, {"val": 9}, {"val": 2}, {"val": 0}]] }
+      ]
+    },
+    {
+      "line": 52,
+      "text": "Apelăm funcția preprocess(input) pentru a precalcula sumele pe blocuri.",
+      "blocksVisual": [
+        { "label": "b[]", "groups": [[{"val": 6, "sorted": true}, {"val": 17, "sorted": true}, {"val": 11, "sorted": true}]] }
+      ]
+    },
+    {
+      "line": 53,
+      "text": "Apelăm query(input, 1, 7) pentru a obține suma în timp O(sqrt(N)) și o afișăm la consolă.",
+      "blocksVisual": [
+        { "label": "Afișat", "groups": [[{"val": "32", "sorted": true}]] }
       ]
     }
   ],

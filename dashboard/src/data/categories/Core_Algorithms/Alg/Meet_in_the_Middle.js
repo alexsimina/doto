@@ -11,7 +11,7 @@ export const data = {
 using namespace std;
 
 // Functie auxiliara pentru a genera toate sumele de submultimi
-void getSubsetSums(var vector<long long>& arr, int start, int end, vector<long long>& res) {
+void getSubsetSums(const vector<long long>& arr, int start, int end, vector<long long>& res) {
     int n = end - start;
     // Iteram prin toate cele 2^n submultimi posibile folosind biti
     for (int i = 0; i < (1 << n); i++) {
@@ -49,6 +49,13 @@ long long maxSubsetSumLessThanS(vector<long long>& a, long long S) {
         }
     }
     return max_sum;
+}
+
+int main() {
+    vector<long long> a = {2, 3, 9, 10};
+    long long S = 13;
+    cout << "Suma maxima <= " << S << " este: " << maxSubsetSumLessThanS(a, S) << "\n";
+    return 0;
 }
 `,
   "explanations": [

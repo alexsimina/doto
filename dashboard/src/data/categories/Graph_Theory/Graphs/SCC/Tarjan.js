@@ -1,492 +1,404 @@
 export const data = {
-  "presentation": "### Prezentare Generală\n\nAlgoritmul lui Tarjan este o metodă foarte elegantă bazată pe o singură parcurgere DFS pentru a găsi Componentele Tare Conexe (SCC) într-un graf orientat.\\n\\nSe bazează pe menținerea a două valori pentru fiecare nod:\\n1. `tin[u]`: momentul de timp la care nodul u a fost descoperit.\\n2. `low[u]`: cea mai mică adâncime (moment de timp) ce poate fi atinsă dintr-un descendent al lui u printr-o muchie de întoarcere (back edge).\\n\\nDacă după evaluarea tuturor vecinilor `low[u] == tin[u]`, înseamnă că nu există nicio cale de a ieși din subarborele lui u spre un strămoș. Deci u este 'rădăcina' unei componente tare conexe, iar tot ce este stivuit deasupra lui aparține acestei componente.",
-  "complexity": "### Complexitate\n\n- **Timp:** O(V + E) - o singură parcurgere DFS.\\n- **Spațiu:** O(V) pentru stiva de noduri, `tin`, `low` și `onStack`.\n",
-  "variations": "### Variații și Edge Cases\n\nAcelași concept (low-link) se folosește pe grafuri neorientate pentru a găsi Puncte de Articulație (Cut Vertices) și Punți (Bridges).",
-  "applications": "### Aplicații\n\nDetectarea 'single points of failure' (puncte critice) în rețele de computere, reducerea grafurilor la DAG-uri (Directed Acyclic Graphs).",
-  code: `
-#include <iostream>
-#include <vector>
-#include <stack>
-
-using namespace std;
-
-vector<int> adj[1005];
-int tin[1005], low[1005];
-bool onStack[1005];
-stack<int> st;
-int timer = 0, sccCount = 0;
-
-void tarjan(int u) {
-    tin[u] = low[u] = ++timer;
-    st.push(u);
-    onStack[u] = true;
-
-    for (int v : adj[u]) {
-        if (tin[v] == 0) {
-            // Nod nevizitat (Tree edge)
-            tarjan(v);
-            low[u] = min(low[u], low[v]);
-        } else if (onStack[v]) {
-            // Back edge spre un nod din componenta curenta
-            low[u] = min(low[u], tin[v]);
-        }
-    }
-
-    // Daca u este radacina unei componente tare conexe
-    if (low[u] == tin[u]) {
-        sccCount++;
-        cout << "SCC " << sccCount << ": ";
-        while (true) {
-            int v = st.top();
-            st.pop();
-            onStack[v] = false;
-            cout << v << " ";
-            if (u == v) break;
-        }
-        cout << "\
-";
-    }
-}
-
-int main() {
-    int V = 4;
-    adj[1].push_back(2);
-    adj[2].push_back(3);
-    adj[3].push_back(1); // Ciclu 1-2-3
-    adj[3].push_back(4); // Muchie catre alt nod
-    
-    for (int i = 1; i <= V; i++) {
-        if (tin[i] == 0) {
-            tarjan(i);
-        }
-    }
-    return 0;
-}
-`,
+  "presentation": "### Algoritmul lui Tarjan (SCC)\n\nAlgoritmul lui Tarjan identifică componentele tare conexe ale unui graf orientat într-o **singură trecere DFS**.\n\nFiecare nod primește un număr de ordine unic (`tin`) și un indice de accesibilitate (`low`). Nodurile sunt stocate pe o stivă pe măsură ce sunt vizitate. Când pentru un nod $u$ avem `low[u] == tin[u]`, acesta devine rădăcina unei componente tare conexe.",
+  "complexity": "### Complexitate\n\n- **Timp:** $O(V + E)$ - o singură parcurgere DFS.\n- **Spațiu:** $O(V)$ - pentru vectorii `tin`, `low`, `onStack` și stivă.",
+  "variations": "### Variații și Cazuri Particulare\n\n- **Puncte de articulație și Punți**: Concepte similare în grafuri neorientate.",
+  "applications": "### Aplicații Reale\n\n- Optimizarea compilatoarelor.\n- Detecția deadlock-urilor în sisteme de operare.\n- Analiza rețelelor sociale complexe.",
+  "code": "#include <iostream>\n#include <vector>\n#include <stack>\n#include <algorithm>\n\nusing namespace std;\n\nconst int MAXN = 1005;\nvector<int> adj[MAXN];\nint tin[MAXN], low[MAXN];\nbool onStack[MAXN];\nstack<int> st;\nint timer = 0, sccCount = 0;\n\nvoid tarjan(int u) {\n    tin[u] = low[u] = ++timer;\n    st.push(u);\n    onStack[u] = true;\n\n    for (int v : adj[u]) {\n        if (tin[v] == 0) {\n            tarjan(v);\n            low[u] = min(low[u], low[v]);\n        } else if (onStack[v]) {\n            low[u] = min(low[u], tin[v]);\n        }\n    }\n\n    if (low[u] == tin[u]) {\n        sccCount++;\n        cout << \"SCC: \";\n        while (true) {\n            int v = st.top();\n            st.pop();\n            onStack[v] = false;\n            cout << v << \" \";\n            if (u == v) break;\n        }\n        cout << \"\\n\";\n    }\n}\n\nint main() {\n    adj[1].push_back(2);\n    adj[2].push_back(3);\n    adj[3].push_back(1);\n    adj[3].push_back(4);\n    \n    for (int i = 1; i <= 4; i++) {\n        if (tin[i] == 0) tarjan(i);\n    }\n    return 0;\n}\n",
   "explanations": [
     {
-      "line": 9,
-      "text": "Începem DFS-ul din nodul 1. Îi atribuim `tin[1] = 1`, `low[1] = 1`. Îl punem pe stivă.",
-      "blocksVisual": [
-        {
-          "label": "DFS",
-          "groups": [
-            [
-              {
-                "val": "tin[1]=1, low[1]=1",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "1",
-            "label": "1",
-            "x": 100,
-            "y": 50,
-            "state": "active"
-          },
-          {
-            "id": "2",
-            "label": "2",
-            "x": 200,
-            "y": 50
-          },
-          {
-            "id": "3",
-            "label": "3",
-            "x": 150,
-            "y": 150
-          },
-          {
-            "id": "4",
-            "label": "4",
-            "x": 250,
-            "y": 150
-          }
-        ],
-        "edges": [
-          {
-            "source": "1",
-            "target": "2"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "3",
-            "target": "1"
-          },
-          {
-            "source": "3",
-            "target": "4"
-          }
-        ]
-      }
-    },
-    {
       "line": 15,
-      "text": "Nodul 1 apelează recursiv pentru 2, apoi 2 pentru 3. Astfel, 2 și 3 primesc timer-uri succesive și intră pe stivă.",
+      "text": "Începem apelul `tarjan` pentru nodul 1.",
       "blocksVisual": [
         {
-          "label": "Stiva",
+          "label": "Nod",
           "groups": [
             [
               {
-                "val": "Stiva: [1, 2, 3]",
-                "active": true
-              }
-            ],
-            [
-              {
-                "val": "tin[3]=3, low[3]=3"
-              }
-            ]
-          ]
-        }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "1",
-            "label": "1",
-            "x": 100,
-            "y": 50,
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "label": "2",
-            "x": 200,
-            "y": 50,
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "label": "3",
-            "x": 150,
-            "y": 150,
-            "state": "active"
-          },
-          {
-            "id": "4",
-            "label": "4",
-            "x": 250,
-            "y": 150
-          }
-        ],
-        "edges": [
-          {
-            "source": "1",
-            "target": "2",
-            "style": "thick"
-          },
-          {
-            "source": "2",
-            "target": "3",
-            "style": "thick"
-          },
-          {
-            "source": "3",
-            "target": "1"
-          },
-          {
-            "source": "3",
-            "target": "4"
-          }
-        ]
-      }
-    },
-    {
-      "line": 19,
-      "text": "Din nodul 3 vedem muchia către 1. Nodul 1 e deja vizitat și pe stivă, deci avem o muchie de întoarcere (back edge). Actualizăm `low[3] = min(low[3], tin[1]) = 1`.",
-      "blocksVisual": [
-        {
-          "label": "Low Link",
-          "groups": [
-            [
-              {
-                "val": "low[3] = min(3, 1) = 1",
+                "val": "u: 1",
                 "active": true
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "1",
-            "label": "1",
-            "x": 100,
-            "y": 50,
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "label": "2",
-            "x": 200,
-            "y": 50,
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "label": "3",
-            "x": 150,
-            "y": 150,
-            "state": "active"
-          },
-          {
-            "id": "4",
-            "label": "4",
-            "x": 250,
-            "y": 150
-          }
-        ],
-        "edges": [
-          {
-            "source": "1",
-            "target": "2",
-            "style": "thick"
-          },
-          {
-            "source": "2",
-            "target": "3",
-            "style": "thick"
-          },
-          {
-            "source": "3",
-            "target": "1",
-            "style": "dashed"
-          },
-          {
-            "source": "3",
-            "target": "4"
-          }
-        ]
-      }
-    },
-    {
-      "line": 15,
-      "text": "Tot din 3, DFS-ul continuă în 4. `tin[4] = 4, low[4] = 4`. Nodul 4 nu are muchii. Deoarece `low[4] == tin[4] == 4`, am găsit o SCC! O extragem din stivă: componenta este doar [4].",
-      "blocksVisual": [
-        {
-          "label": "Extract SCC",
-          "groups": [
-            [
-              {
-                "val": "SCC: {4}",
-                "sorted": true
-              }
-            ]
-          ]
-        }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "1",
-            "label": "1",
-            "x": 100,
-            "y": 50,
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "label": "2",
-            "x": 200,
-            "y": 50,
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "label": "3",
-            "x": 150,
-            "y": 150,
-            "state": "active"
-          },
-          {
-            "id": "4",
-            "label": "4",
-            "x": 250,
-            "y": 150,
-            "state": "active"
-          }
-        ],
-        "edges": [
-          {
-            "source": "1",
-            "target": "2"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "3",
-            "target": "1"
-          },
-          {
-            "source": "3",
-            "target": "4"
-          }
-        ]
-      }
+      ]
     },
     {
       "line": 16,
-      "text": "Ne întoarcem din 3 în 2. Actualizăm `low[2] = min(low[2], low[3]) = 1`. Ne întoarcem din 2 în 1. Actualizăm `low[1] = min(low[1], low[2]) = 1`.",
+      "text": "Incrementăm `timer`. Atribuim `tin[1] = low[1] = 1`.",
       "blocksVisual": [
         {
-          "label": "Backtrack",
+          "label": "tin/low",
           "groups": [
             [
               {
-                "val": "low propagat la 1",
+                "val": "tin[1]: 1"
+              },
+              {
+                "val": "low[1]: 1"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 17,
+      "text": "Adăugăm nodul 1 în stivă.",
+      "blocksVisual": [
+        {
+          "label": "Stack",
+          "groups": [
+            [
+              {
+                "val": "1",
                 "active": true
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "1",
-            "label": "1",
-            "x": 100,
-            "y": 50,
-            "state": "active"
-          },
-          {
-            "id": "2",
-            "label": "2",
-            "x": 200,
-            "y": 50,
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "label": "3",
-            "x": 150,
-            "y": 150,
-            "state": "visited"
-          },
-          {
-            "id": "4",
-            "label": "4",
-            "x": 250,
-            "y": 150
-          }
-        ],
-        "edges": [
-          {
-            "source": "1",
-            "target": "2",
-            "style": "thick"
-          },
-          {
-            "source": "2",
-            "target": "3",
-            "style": "thick"
-          },
-          {
-            "source": "3",
-            "target": "1"
-          },
-          {
-            "source": "3",
-            "target": "4"
-          }
-        ]
-      }
+      ]
     },
     {
-      "line": 25,
-      "text": "Pentru nodul 1, avem `low[1] == tin[1] == 1`. Extragem toate elementele de pe stivă până dăm de 1. Componenta a doua este [3, 2, 1]!",
+      "line": 18,
+      "text": "Marcăm că nodul 1 este pe stivă: `onStack[1] = true`.",
       "blocksVisual": [
         {
-          "label": "Extract SCC",
+          "label": "onStack",
           "groups": [
             [
               {
-                "val": "SCC: {3, 2, 1}",
-                "sorted": true
+                "val": "onStack[1]: true"
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "1",
-            "label": "1",
-            "x": 100,
-            "y": 50,
-            "state": "active"
-          },
-          {
-            "id": "2",
-            "label": "2",
-            "x": 200,
-            "y": 50,
-            "state": "active"
-          },
-          {
-            "id": "3",
-            "label": "3",
-            "x": 150,
-            "y": 150,
-            "state": "active"
-          },
-          {
-            "id": "4",
-            "label": "4",
-            "x": 250,
-            "y": 150
-          }
-        ],
-        "edges": [
-          {
-            "source": "1",
-            "target": "2"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "3",
-            "target": "1"
-          },
-          {
-            "source": "3",
-            "target": "4"
-          }
-        ]
-      }
+      ]
+    },
+    {
+      "line": 20,
+      "text": "Explorăm vecinii lui 1: [2]. Primul vecin este 2.",
+      "blocksVisual": [
+        {
+          "label": "Vecin",
+          "groups": [
+            [
+              {
+                "val": "v: 2",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 21,
+      "text": "Verificăm dacă nodul 2 a fost vizitat. `tin[2] == 0` este adevărat.",
+      "blocksVisual": [
+        {
+          "label": "Vizitat check",
+          "groups": [
+            [
+              {
+                "val": "tin[2]: 0"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 22,
+      "text": "Apelăm recursiv `tarjan(2)`.",
+      "blocksVisual": [
+        {
+          "label": "Apel",
+          "groups": [
+            [
+              {
+                "val": "tarjan(2)",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 16,
+      "text": "Pentru nodul 2: `tin[2] = low[2] = 2`.",
+      "blocksVisual": [
+        {
+          "label": "tin/low",
+          "groups": [
+            [
+              {
+                "val": "tin[2]: 2"
+              },
+              {
+                "val": "low[2]: 2"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 17,
+      "text": "Adăugăm nodul 2 în stivă.",
+      "blocksVisual": [
+        {
+          "label": "Stack",
+          "groups": [
+            [
+              {
+                "val": "1"
+              },
+              {
+                "val": "2",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 20,
+      "text": "Explorăm vecinii lui 2: [3]. Apelăm `tarjan(3)`.",
+      "blocksVisual": [
+        {
+          "label": "Apel",
+          "groups": [
+            [
+              {
+                "val": "tarjan(3)",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 16,
+      "text": "Pentru nodul 3: `tin[3] = low[3] = 3`.",
+      "blocksVisual": [
+        {
+          "label": "tin/low",
+          "groups": [
+            [
+              {
+                "val": "tin[3]: 3"
+              },
+              {
+                "val": "low[3]: 3"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 17,
+      "text": "Adăugăm nodul 3 în stivă.",
+      "blocksVisual": [
+        {
+          "label": "Stack",
+          "groups": [
+            [
+              {
+                "val": "1"
+              },
+              {
+                "val": "2"
+              },
+              {
+                "val": "3",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 20,
+      "text": "Explorăm vecinii lui 3: [1, 4]. Începem cu vecinul 1.",
+      "blocksVisual": [
+        {
+          "label": "Vecin",
+          "groups": [
+            [
+              {
+                "val": "v: 1",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 21,
+      "text": "Verificăm dacă nodul 1 a fost vizitat. Este vizitat (`tin[1] == 1`).",
+      "blocksVisual": []
+    },
+    {
+      "line": 24,
+      "text": "Nodul 1 este pe stivă, deci avem muchie de întoarcere. Actualizăm `low[3] = min(low[3], tin[1]) = 1`.",
+      "blocksVisual": [
+        {
+          "label": "low[3]",
+          "groups": [
+            [
+              {
+                "val": "low[3]: 1",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 20,
+      "text": "Trecem la celălalt vecin al lui 3, care este nodul 4.",
+      "blocksVisual": [
+        {
+          "label": "Vecin",
+          "groups": [
+            [
+              {
+                "val": "v: 4",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 22,
+      "text": "Nodul 4 nu este vizitat. Apelăm recursiv `tarjan(4)`.",
+      "blocksVisual": [
+        {
+          "label": "Apel",
+          "groups": [
+            [
+              {
+                "val": "tarjan(4)",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 16,
+      "text": "Nodul 4: `tin[4] = low[4] = 4`.",
+      "blocksVisual": [
+        {
+          "label": "tin/low",
+          "groups": [
+            [
+              {
+                "val": "tin[4]: 4"
+              },
+              {
+                "val": "low[4]: 4"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 17,
+      "text": "Adăugăm nodul 4 în stivă.",
+      "blocksVisual": [
+        {
+          "label": "Stack",
+          "groups": [
+            [
+              {
+                "val": "1"
+              },
+              {
+                "val": "2"
+              },
+              {
+                "val": "3"
+              },
+              {
+                "val": "4",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 20,
+      "text": "Nodul 4 nu are vecini.",
+      "blocksVisual": []
+    },
+    {
+      "line": 28,
+      "text": "Verificăm pentru 4: `low[4] == tin[4] == 4`. Am găsit o componentă!",
+      "blocksVisual": []
+    },
+    {
+      "line": 31,
+      "text": "Extragem din stivă până la nodul 4 inclusiv. Componenta este {4}.",
+      "blocksVisual": [
+        {
+          "label": "SCC",
+          "groups": [
+            [
+              {
+                "val": "4",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 23,
+      "text": "Revenim în apelul lui 3. Actualizăm `low[3] = min(low[3], low[4]) = min(1, 4) = 1`.",
+      "blocksVisual": [
+        {
+          "label": "low[3]",
+          "groups": [
+            [
+              {
+                "val": "low[3]: 1"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 28,
+      "text": "Ne întoarcem în 1. Avem `low[1] == tin[1] == 1`. Extragem stiva: obținem componenta {3, 2, 1}.",
+      "blocksVisual": [
+        {
+          "label": "SCC",
+          "groups": [
+            [
+              {
+                "val": "3, 2, 1",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
     }
-  ],
-  "problems": {
-    "easy": [
-      {
-        "title": "CTC",
-        "url": "https://www.infoarena.ro/problema/ctc",
-        "desc": "Problema clasica Componente Tare Conexe."
-      }
-    ],
-    "medium": [
-      {
-        "title": "Critical Connections in a Network",
-        "url": "https://leetcode.com/problems/critical-connections-in-a-network/",
-        "desc": "Aplicație a conceptului de 'low-link' (Tarjan Bridge-finding)."
-      }
-    ],
-    "hard": []
-  }
+  ]
 };

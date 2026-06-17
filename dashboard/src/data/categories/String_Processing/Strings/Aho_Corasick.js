@@ -1,17 +1,16 @@
 export const data = {
-  "presentation": "### Prezentare Generală\n\nAho-Corasick este algoritmul absolut pentru căutarea simultană a MULTIPLE pattern-uri (un dicționar) într-un singur text.\n\nGândește-te la o combinație strălucită între Trie (unde stocăm dicționarul de pattern-uri) și KMP (unde calculăm muchii de 'eșec' - failure links). Un Failure Link ne spune: 'dacă ai ajuns într-un nod pe Trie dar următoarea literă nu se potrivește, la ce alt nod din Trie trebuie să sari (cel mai lung prefix comun care se potrivește) ca să continui eficient?'.",
-  "complexity": "### Complexitate\n\n- **Timp:** Preprocesarea dicționarului: O(Sumă lungimi pattern-uri). Căutarea în text: O(N + Z), unde N e lungimea textului, iar Z e numărul total de apariții ale tuturor cuvintelor din dicționar. Este extrem de rapid!\n- **Spațiu:** O(Sumă lungimi pattern-uri * Σ) pentru Trie și vectorul de tranziții.\n",
-  "variations": "### Variații și Edge Cases\n\n1. Aho-Corasick pe Automate Finit Deterministe (DFA): Calculăm direct un automat de tranziții, astfel încât la fiecare pas facem o sigură verificare, obținând O(N) garantat pe text, independent de mărimea dicționarului.\n2. Aho-Corasick DP: Combinat cu Programare Dinamică pentru a afla 'Câte parole de lungime L care nu conțin cuvinte interzise pot fi generate?'.",
-  "applications": "### Aplicații\n\nAplicația clasică: Antivirus Scanner. Motoarele antivirus trebuie să caute milioane de 'semnături' (viruși) într-un fișier. Fac un Aho-Corasick pe viruși, și apoi trec fișierul suspect o singură dată (în streaming!) prin automat.",
-  code: `
-#include <iostream>
+  "presentation": "### Prezentare Generală\n\nAlgoritmul **Aho-Corasick** este un algoritm extrem de puternic de potrivire a șirurilor (String Matching), conceput pentru a căuta simultan un dicționar întreg de șabloane într-un singur text de intrare. \n\nÎn esență, Aho-Corasick combină ideea de **Trie** (în care stocăm șabloanele din dicționar) cu ideea de **Failure Links** (legături de eșec) împrumutată din algoritmul **KMP**.\n\n### Cum Funcționează?\n\n1. **Construirea Trie-ului:** Toate șabloanele din dicționar sunt inserate într-un Trie standard.\n2. **Calcularea Legăturilor de Eșec (Failure Links):** Folosind o parcurgere în lățime (**BFS**), calculăm legăturile de eșec pentru fiecare nod. Legătura de eșec a unui nod $u$ (care reprezintă un prefix $P$) indică spre nodul $v$ din Trie care reprezintă cel mai lung sufix propriu al lui $P$ care există în Trie. În caz de mismatch pe caracterul următor, automatul sare pe această legătură de eșec pentru a continua căutarea fără a lua textul de la capăt.\n3. **Legături de Dicționar (Dictionary Links / Optimization):** Ne ajută să raportăm toate cuvintele găsite chiar și atunci când un cuvânt este inclus în interiorul altui cuvânt mai lung (de exemplu, *\"he\"* în interiorul lui *\"she\"*).\n4. **Optimizarea DFA (Automat Finit Determinist):** Dacă un nod nu are o muchie pentru un caracter, putem precalcula tranziția direct către starea în care s-ar ajunge urmând legătura de eșec. Astfel, tranziția devine strict $\\mathcal{O}(1)$ la fiecare pas pe text.",
+  "complexity": "### Complexitate\n\nFie $M$ suma lungimilor tuturor șabloanelor din dicționar, $\\Sigma$ dimensiunea alfabetului și $N$ lungimea textului în care se face căutarea.\n\n- **Timp:** \n  - **Construcția Trie-ului și DFA-ului:** $\\mathcal{O}(M \\cdot \\Sigma)$ folosind BFS.\n  - **Căutarea în text:** $\\mathcal{O}(N + Z)$, unde $Z$ este numărul total de apariții ale șabloanelor în text. Cu optimizarea DFA, facem exact $N$ tranziții, fiecare în timp $\\mathcal{O}(1)$.\n- **Spațiu:**\n  - $\\mathcal{O}(M \\cdot \\Sigma)$ pentru a stoca matricea de tranziții a automatului.",
+  "variations": "### Variații și Edge Cases\n\n1. **Programare Dinamică pe Aho-Corasick:** Utilizat frecvent pentru a genera sau număra șiruri de caractere de lungime $L$ care respectă anumite proprietăți (de exemplu, *\"Câte șiruri de lungime $L$ nu conțin niciunul dintre cuvintele interzise din dicționar?\"*).\n2. **Aho-Corasick cu memorie redusă:** În loc de matricea bidimensională `nxt[MAXN][26]`, se pot folosi liste de adiacență sau tabele de dispersie (hashmaps) în fiecare nod, reducând spațiul la $\\mathcal{O}(M)$ în detrimentul unei constante de timp ușor mai mari la tranziție.",
+  "applications": "### Aplicații\n\n- **Scanere Antivirus:** Căutarea a zeci de mii de semnături de malware (șiruri de biți) în fișiere suspecte într-o singură trecere.\n- **Sisteme de Detecție a Intruziunilor (IDS):** Scanarea traficului de rețea în timp real pentru identificarea pachetelor suspecte.\n- **Sisteme de filtrare de text (Cenzură / Spam):** Blocarea automată a cuvintelor obscene sau a link-urilor spam pe platformele de socializare.",
+  code: `#include <iostream>
 #include <vector>
 #include <queue>
 #include <string>
 
 using namespace std;
 
-var int MAXN = 1000;
+const int MAXN = 1000;
 int nxt[MAXN][26], fail[MAXN], cnt[MAXN];
 int sz = 0;
 
@@ -57,330 +56,425 @@ int main() {
             temp = fail[temp];
         }
     }
-    cout << "Cuvinte gasite: " << matches << "
-";
+    cout << "Cuvinte gasite: " << matches << "\\n";
     return 0;
-}
-`,
+}`,
   "explanations": [
     {
-      "line": 36,
-      "text": "Pasul 1: Construim structura Trie primind cuvintele 'he', 'she', 'his', 'hers'. Rădăcina (Root) este creată pe nivelul 0.",
+      "line": 39,
+      "text": "Pornim programul din funcția main.",
       "graphVisual": {
         "nodes": [
-          {"id": 0, "label": "Root", "x": 140, "y": 20, "state": "active"}
+          {"id": 0, "label": "Root", "x": 200, "y": 45, "state": "active"}
         ],
         "edges": []
       }
     },
     {
-      "line": 8,
-      "text": "Inserare 'he': Creăm nodul 1 ('h') sub Root, și nodul 2 ('e') sub nodul 1. Marcăm nodul 2 ca fiind capăt de cuvânt.",
+      "line": 40,
+      "text": "Apelăm `insert(\"he\")` pentru a adăuga primul cuvânt în Trie.",
       "graphVisual": {
         "nodes": [
-          {"id": 0, "label": "Root", "x": 140, "y": 20},
-          {"id": 1, "label": "h", "x": 80, "y": 60, "state": "visited"},
-          {"id": 2, "label": "e", "x": 50, "y": 110, "state": "active"}
+          {"id": 0, "label": "Root", "x": 200, "y": 45, "state": "active"}
+        ],
+        "edges": []
+      }
+    },
+    {
+      "line": 13,
+      "text": "Inițializăm pointerul u = 0 (Root).",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 200, "y": 45, "state": "active"}
+        ],
+        "edges": []
+      }
+    },
+    {
+      "line": 15,
+      "text": "Inserare 'he': creăm nodul 1 pentru caracterul 'h' sub Root.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 200, "y": 45},
+          {"id": 1, "label": "h (1)", "x": 140, "y": 100, "state": "active"}
         ],
         "edges": [
-          {"source": 0, "target": 1},
-          {"source": 1, "target": 2}
+          {"source": 0, "target": 1, "label": "h"}
         ]
       }
     },
     {
-      "line": 8,
-      "text": "Inserare 'she': Creăm o ramură nouă din Root cu nodul 3 ('s'), apoi nodul 4 ('h') și nodul 5 ('e', capăt de cuvânt).",
+      "line": 16,
+      "text": "Mergem la nodul 1.",
       "graphVisual": {
         "nodes": [
-          {"id": 0, "label": "Root", "x": 140, "y": 20},
-          {"id": 1, "label": "h", "x": 80, "y": 60},
-          {"id": 2, "label": "e", "x": 50, "y": 110},
-          {"id": 3, "label": "s", "x": 200, "y": 60, "state": "visited"},
-          {"id": 4, "label": "h", "x": 200, "y": 110, "state": "visited"},
-          {"id": 5, "label": "e", "x": 200, "y": 160, "state": "active"}
+          {"id": 0, "label": "Root", "x": 200, "y": 45},
+          {"id": 1, "label": "h (1)", "x": 140, "y": 100, "state": "active"}
         ],
         "edges": [
-          {"source": 0, "target": 1},
-          {"source": 1, "target": 2},
-          {"source": 0, "target": 3},
-          {"source": 3, "target": 4},
-          {"source": 4, "target": 5}
+          {"source": 0, "target": 1, "label": "h"}
         ]
       }
     },
     {
-      "line": 8,
-      "text": "Inserare 'his': Folosim nodul 1 ('h') existent sub Root. Adăugăm nodul 6 ('i') sub 'h', și nodul 7 ('s', capăt) sub 'i'.",
+      "line": 15,
+      "text": "Inserare 'he': creăm nodul 2 pentru caracterul 'e' sub nodul 1.",
       "graphVisual": {
         "nodes": [
-          {"id": 0, "label": "Root", "x": 140, "y": 20},
-          {"id": 1, "label": "h", "x": 80, "y": 60},
-          {"id": 2, "label": "e", "x": 50, "y": 110},
-          {"id": 3, "label": "s", "x": 200, "y": 60},
-          {"id": 4, "label": "h", "x": 200, "y": 110},
-          {"id": 5, "label": "e", "x": 200, "y": 160},
-          {"id": 6, "label": "i", "x": 100, "y": 110, "state": "visited"},
-          {"id": 7, "label": "s", "x": 100, "y": 160, "state": "active"}
+          {"id": 0, "label": "Root", "x": 200, "y": 45},
+          {"id": 1, "label": "h (1)", "x": 140, "y": 100},
+          {"id": 2, "label": "e* (2)", "x": 100, "y": 160, "state": "active"}
         ],
         "edges": [
-          {"source": 0, "target": 1},
-          {"source": 1, "target": 2},
-          {"source": 0, "target": 3},
-          {"source": 3, "target": 4},
-          {"source": 4, "target": 5},
-          {"source": 1, "target": 6},
-          {"source": 6, "target": 7}
+          {"source": 0, "target": 1, "label": "h"},
+          {"source": 1, "target": 2, "label": "e"}
         ]
       }
     },
     {
-      "line": 8,
-      "text": "Inserare 'hers': Folosim prefixul 'he' existent (nodurile 1 și 2). Creăm nodul 8 ('r') sub nodul 2, și nodul 9 ('s', capăt) sub nodul 8.",
+      "line": 18,
+      "text": "Am finalizat inserarea cuvântului \"he\". Marcăm nodul 2 ca având cnt[2] = 1 (cuvânt valid).",
       "graphVisual": {
         "nodes": [
-          {"id": 0, "label": "Root", "x": 140, "y": 20},
-          {"id": 1, "label": "h", "x": 80, "y": 60},
-          {"id": 2, "label": "e", "x": 50, "y": 110},
-          {"id": 3, "label": "s", "x": 200, "y": 60},
-          {"id": 4, "label": "h", "x": 200, "y": 110},
-          {"id": 5, "label": "e", "x": 200, "y": 160},
-          {"id": 6, "label": "i", "x": 100, "y": 110},
-          {"id": 7, "label": "s", "x": 100, "y": 160},
-          {"id": 8, "label": "r", "x": 50, "y": 160, "state": "visited"},
-          {"id": 9, "label": "s", "x": 50, "y": 210, "state": "active"}
+          {"id": 0, "label": "Root", "x": 200, "y": 45},
+          {"id": 1, "label": "h (1)", "x": 140, "y": 100},
+          {"id": 2, "label": "e* (2)", "x": 100, "y": 160, "state": "visited"}
         ],
         "edges": [
-          {"source": 0, "target": 1},
-          {"source": 1, "target": 2},
-          {"source": 0, "target": 3},
-          {"source": 3, "target": 4},
-          {"source": 4, "target": 5},
-          {"source": 1, "target": 6},
-          {"source": 6, "target": 7},
-          {"source": 2, "target": 8},
-          {"source": 8, "target": 9}
+          {"source": 0, "target": 1, "label": "h"},
+          {"source": 1, "target": 2, "label": "e"}
         ]
       }
     },
     {
-      "line": 22,
-      "text": "Calcul failure links (BFS): Adăugăm în coadă copiii rădăcinii, adică nodurile 1 ('h') și 3 ('s'). Legăturile lor de eșec vor pointa spre Root (0).",
+      "line": 40,
+      "text": "Inserăm pe rând cuvintele \"she\", \"his\" și \"hers\" în mod similar, reutilizând prefixele deja create.",
       "graphVisual": {
         "nodes": [
-          {"id": 0, "label": "Root", "x": 140, "y": 20, "state": "visited"},
-          {"id": 1, "label": "h", "x": 80, "y": 60, "state": "active"},
-          {"id": 3, "label": "s", "x": 200, "y": 60, "state": "active"}
+          {"id": 0, "label": "Root", "x": 200, "y": 45},
+          {"id": 1, "label": "h (1)", "x": 140, "y": 100},
+          {"id": 2, "label": "e* (2)", "x": 100, "y": 160},
+          {"id": 3, "label": "s (3)", "x": 260, "y": 100},
+          {"id": 4, "label": "h (4)", "x": 260, "y": 160},
+          {"id": 5, "label": "e* (5)", "x": 260, "y": 220},
+          {"id": 6, "label": "i (6)", "x": 180, "y": 160},
+          {"id": 7, "label": "s* (7)", "x": 180, "y": 220},
+          {"id": 8, "label": "r (8)", "x": 100, "y": 220},
+          {"id": 9, "label": "s* (9)", "x": 100, "y": 280}
         ],
         "edges": [
-          {"source": 1, "target": 0},
-          {"source": 3, "target": 0}
+          {"source": 0, "target": 1, "label": "h"},
+          {"source": 1, "target": 2, "label": "e"},
+          {"source": 0, "target": 3, "label": "s"},
+          {"source": 3, "target": 4, "label": "h"},
+          {"source": 4, "target": 5, "label": "e"},
+          {"source": 1, "target": 6, "label": "i"},
+          {"source": 6, "target": 7, "label": "s"},
+          {"source": 2, "target": 8, "label": "r"},
+          {"source": 8, "target": 9, "label": "s"}
+        ]
+      }
+    },
+    {
+      "line": 41,
+      "text": "Apelăm funcția build() pentru a calcula legăturile de eșec (fail links).",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 200, "y": 45, "state": "active"}
+        ],
+        "edges": []
+      }
+    },
+    {
+      "line": 23,
+      "text": "Intrăm în build(). Adăugăm în coada BFS copiii direcți ai Root-ului: nodurile 1 ('h') și 3 ('s'). Legătura lor de eșec este setată implicit pe 0 (Root).",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 200, "y": 45},
+          {"id": 1, "label": "h (1)", "x": 140, "y": 100, "state": "active"},
+          {"id": 3, "label": "s (3)", "x": 260, "y": 100, "state": "active"}
+        ],
+        "edges": [
+          {"source": 1, "target": 0, "label": "fail"},
+          {"source": 3, "target": 0, "label": "fail"}
+        ]
+      }
+    },
+    {
+      "line": 26,
+      "text": "Bucla BFS procesează coada nod cu nod până devine goală.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 0, "label": "Root", "x": 200, "y": 45}
+        ],
+        "edges": []
+      }
+    },
+    {
+      "line": 27,
+      "text": "Procesăm primul nod din coadă: nodul 1 ('h'). Extragem și analizăm copiii săi.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 1, "label": "h (1)", "x": 140, "y": 100, "state": "active"}
+        ],
+        "edges": []
+      }
+    },
+    {
+      "line": 30,
+      "text": "Nodul 1 are ca prim copil nodul 2 ('e'). Legătura de eșec pentru 2 este calculată ca fail[2] = nxt[fail[1]]['e'] = nxt[0]['e'] = 0 (Root).",
+      "graphVisual": {
+        "nodes": [
+          {"id": 2, "label": "e* (2)", "x": 100, "y": 160, "state": "active"},
+          {"id": 0, "label": "Root", "x": 200, "y": 45}
+        ],
+        "edges": [
+          {"source": 2, "target": 0, "label": "fail"}
+        ]
+      }
+    },
+    {
+      "line": 30,
+      "text": "Nodul 1 are ca al doilea copil nodul 6 ('i'). Legătura sa de eșec este setată tot pe Root: fail[6] = 0.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 6, "label": "i (6)", "x": 180, "y": 160, "state": "active"},
+          {"id": 0, "label": "Root", "x": 200, "y": 45}
+        ],
+        "edges": [
+          {"source": 6, "target": 0, "label": "fail"}
         ]
       }
     },
     {
       "line": 27,
-      "text": "BFS: Procesăm copiii nodului 1 ('h'). Pentru copilul său, nodul 2 ('e'): fail[2] = nxt[fail[1]]['e'] = nxt[0]['e'] = 0 (Root).",
+      "text": "Procesăm nodul 3 ('s') din coadă. Căutăm copiii lui.",
       "graphVisual": {
         "nodes": [
-          {"id": 1, "label": "h", "x": 80, "y": 60, "state": "visited"},
-          {"id": 2, "label": "e", "x": 50, "y": 110, "state": "active"},
-          {"id": 0, "label": "Root", "x": 140, "y": 20}
+          {"id": 3, "label": "s (3)", "x": 260, "y": 100, "state": "active"}
+        ],
+        "edges": []
+      }
+    },
+    {
+      "line": 30,
+      "text": "Nodul 3 are ca copil nodul 4 ('h'). fail[4] = nxt[fail[3]]['h'] = nxt[0]['h'] = 1 (nodul 'h' sub Root). Legătura de eșec a lui 4 pointează la 1.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 4, "label": "h (4)", "x": 260, "y": 160, "state": "active"},
+          {"id": 1, "label": "h (1)", "x": 140, "y": 100}
         ],
         "edges": [
-          {"source": 2, "target": 0}
+          {"source": 4, "target": 1, "label": "fail"}
         ]
       }
     },
     {
-      "line": 27,
-      "text": "BFS: Procesăm următorul copil al nodului 1 ('h'): copilul 6 ('i'). fail[6] = nxt[fail[1]]['i'] = nxt[0]['i'] = 0.",
+      "line": 30,
+      "text": "Procesăm nodul 2 ('e'). Copilul său 8 ('r') primește fail[8] = nxt[fail[2]]['r'] = nxt[0]['r'] = 0.",
       "graphVisual": {
         "nodes": [
-          {"id": 1, "label": "h", "x": 80, "y": 60, "state": "visited"},
-          {"id": 6, "label": "i", "x": 100, "y": 110, "state": "active"},
-          {"id": 0, "label": "Root", "x": 140, "y": 20}
+          {"id": 8, "label": "r (8)", "x": 100, "y": 220, "state": "active"},
+          {"id": 0, "label": "Root", "x": 200, "y": 45}
         ],
         "edges": [
-          {"source": 6, "target": 0}
+          {"source": 8, "target": 0, "label": "fail"}
         ]
       }
     },
     {
-      "line": 27,
-      "text": "BFS: Procesăm copiii nodului 3 ('s'): copilul 4 ('h'). fail[4] = nxt[fail[3]]['h'] = nxt[0]['h'] = 1 ('h' sub root). Failure link-ul lui 4 pointează spre 1.",
+      "line": 30,
+      "text": "Procesăm nodul 6 ('i'). Copilul său 7 ('s') primește fail[7] = nxt[fail[6]]['s'] = nxt[0]['s'] = 3 ('s' sub Root). Legătura de eșec duce la 3.",
       "graphVisual": {
         "nodes": [
-          {"id": 3, "label": "s", "x": 200, "y": 60, "state": "visited"},
-          {"id": 4, "label": "h", "x": 200, "y": 110, "state": "active"},
-          {"id": 1, "label": "h", "x": 80, "y": 60, "state": "visited"}
+          {"id": 7, "label": "s* (7)", "x": 180, "y": 220, "state": "active"},
+          {"id": 3, "label": "s (3)", "x": 260, "y": 100}
         ],
         "edges": [
-          {"source": 4, "target": 1}
+          {"source": 7, "target": 3, "label": "fail"}
         ]
       }
     },
     {
-      "line": 27,
-      "text": "BFS: Procesăm copiii nodului 2 ('e'): copilul 8 ('r'). fail[8] = nxt[fail[2]]['r'] = nxt[0]['r'] = 0.",
+      "line": 30,
+      "text": "Procesăm nodul 4 ('h'). Copilul său 5 ('e') primește fail[5] = nxt[fail[4]]['e'] = nxt[1]['e'] = 2. Legătura de eșec duce la nodul 2.",
       "graphVisual": {
         "nodes": [
-          {"id": 2, "label": "e", "x": 50, "y": 110, "state": "visited"},
-          {"id": 8, "label": "r", "x": 50, "y": 160, "state": "active"},
-          {"id": 0, "label": "Root", "x": 140, "y": 20}
+          {"id": 5, "label": "e* (5)", "x": 260, "y": 220, "state": "active"},
+          {"id": 2, "label": "e* (2)", "x": 100, "y": 160}
         ],
         "edges": [
-          {"source": 8, "target": 0}
+          {"source": 5, "target": 2, "label": "fail"}
         ]
       }
     },
     {
-      "line": 27,
-      "text": "BFS: Procesăm copiii nodului 6 ('i'): copilul 7 ('s'). fail[7] = nxt[fail[6]]['s'] = nxt[0]['s'] = 3 ('s' sub root). Legătura de eșec duce la nodul 3.",
+      "line": 30,
+      "text": "Procesăm nodul 8 ('r'). Copilul său 9 ('s') primește fail[9] = nxt[fail[8]]['s'] = nxt[0]['s'] = 3. Legătura de eșec pointează la 3.",
       "graphVisual": {
         "nodes": [
-          {"id": 6, "label": "i", "x": 100, "y": 110, "state": "visited"},
-          {"id": 7, "label": "s", "x": 100, "y": 160, "state": "active"},
-          {"id": 3, "label": "s", "x": 200, "y": 60, "state": "visited"}
+          {"id": 9, "label": "s* (9)", "x": 100, "y": 280, "state": "active"},
+          {"id": 3, "label": "s (3)", "x": 260, "y": 100}
         ],
         "edges": [
-          {"source": 7, "target": 3}
+          {"source": 9, "target": 3, "label": "fail"}
         ]
       }
     },
     {
-      "line": 27,
-      "text": "BFS: Procesăm copiii nodului 4 ('h'): copilul 5 ('e'). fail[5] = nxt[fail[4]]['e'] = nxt[1]['e'] = 2 ('e' sub 'h'). Legătura de eșec a lui 5 duce la nodul 2.",
-      "graphVisual": {
-        "nodes": [
-          {"id": 4, "label": "h", "x": 200, "y": 110, "state": "visited"},
-          {"id": 5, "label": "e", "x": 200, "y": 160, "state": "active"},
-          {"id": 2, "label": "e", "x": 50, "y": 110, "state": "visited"}
-        ],
-        "edges": [
-          {"source": 5, "target": 2}
-        ]
-      }
+      "line": 43,
+      "text": "Definim textul în care căutăm: text = \"ahishers\".",
+      "blocksVisual": [
+        {
+          "label": "Text",
+          "groups": [[{"val": "a"}, {"val": "h"}, {"val": "i"}, {"val": "s"}, {"val": "h"}, {"val": "e"}, {"val": "r"}, {"val": "s"}]]
+        }
+      ]
     },
     {
-      "line": 27,
-      "text": "BFS: Procesăm copiii nodului 8 ('r'): copilul 9 ('s'). fail[9] = nxt[fail[8]]['s'] = nxt[0]['s'] = 3. Legătura de eșec a lui 9 pointează spre nodul 3.",
-      "graphVisual": {
-        "nodes": [
-          {"id": 8, "label": "r", "x": 50, "y": 160, "state": "visited"},
-          {"id": 9, "label": "s", "x": 50, "y": 210, "state": "active"},
-          {"id": 3, "label": "s", "x": 200, "y": 60, "state": "visited"}
-        ],
-        "edges": [
-          {"source": 9, "target": 3}
-        ]
-      }
+      "line": 44,
+      "text": "Inițializăm starea curentă în automat u = 0, și numărul de potriviri matches = 0.",
+      "blocksVisual": [
+        {
+          "label": "Stare Căutare",
+          "groups": [[{"val": "u = 0", "sorted": true}, {"val": "matches = 0", "sorted": true}]]
+        }
+      ]
     },
     {
-      "line": 37,
-      "text": "Automatul DFA este complet construit. Acum începem căutarea în textul 'ahishers'. u = 0.",
+      "line": 46,
+      "text": "Pasul 0: caracterul 'a'. De la u = 0, nxt[0]['a'] = 0. Rămânem la Root.",
       "graphVisual": {
         "nodes": [
-          {"id": 0, "label": "Root", "x": 140, "y": 20, "state": "active"}
+          {"id": 0, "label": "Root", "x": 200, "y": 45, "state": "active"}
         ],
         "edges": []
       }
     },
     {
       "line": 46,
-      "text": "Căutare index 0 ('a'): u = nxt[0]['a'] = 0. Rămânem la Root.",
+      "text": "Pasul 1: caracterul 'h'. De la u = 0, u devine nxt[0]['h'] = 1.",
       "graphVisual": {
         "nodes": [
-          {"id": 0, "label": "Root", "x": 140, "y": 20, "state": "active"}
+          {"id": 0, "label": "Root", "x": 200, "y": 45},
+          {"id": 1, "label": "h (1)", "x": 140, "y": 100, "state": "active"}
         ],
         "edges": []
       }
     },
     {
       "line": 46,
-      "text": "Căutare index 1 ('h'): u = nxt[0]['h'] = 1. Trecem la nodul 1 ('h').",
+      "text": "Pasul 2: caracterul 'i'. De la u = 1, u devine nxt[1]['i'] = 6.",
       "graphVisual": {
         "nodes": [
-          {"id": 0, "label": "Root", "x": 140, "y": 20},
-          {"id": 1, "label": "h", "x": 80, "y": 60, "state": "active"}
+          {"id": 1, "label": "h (1)", "x": 140, "y": 100},
+          {"id": 6, "label": "i (6)", "x": 180, "y": 160, "state": "active"}
         ],
         "edges": []
       }
     },
     {
       "line": 46,
-      "text": "Căutare index 2 ('i'): u = nxt[1]['i'] = 6. Trecem la nodul 6 ('i').",
+      "text": "Pasul 3: caracterul 's'. De la u = 6, u devine nxt[6]['s'] = 7.",
       "graphVisual": {
         "nodes": [
-          {"id": 1, "label": "h", "x": 80, "y": 60},
-          {"id": 6, "label": "i", "x": 100, "y": 110, "state": "active"}
-        ],
-        "edges": []
-      }
-    },
-    {
-      "line": 46,
-      "text": "Căutare index 3 ('s'): u = nxt[6]['s'] = 7. Trecem la nodul 7 ('s').",
-      "graphVisual": {
-        "nodes": [
-          {"id": 6, "label": "i", "x": 100, "y": 110},
-          {"id": 7, "label": "s", "x": 100, "y": 160, "state": "active"}
+          {"id": 6, "label": "i (6)", "x": 180, "y": 160},
+          {"id": 7, "label": "s* (7)", "x": 180, "y": 220, "state": "active"}
         ],
         "edges": []
       }
     },
     {
       "line": 49,
-      "text": "Nodul 7 are cnt[7] = 1, adică reprezintă cuvântul 'his'. Adăugăm 1 la matches. Mergem pe fail[7] = 3. matches = 1.",
+      "text": "Suntem în nodul 7. Acesta este cuvânt valid (cnt[7] = 1, \"his\"). Adăugăm la matches. Urmărim legătura de eșec fail[7] = 3. matches devine 1.",
       "graphVisual": {
         "nodes": [
-          {"id": 7, "label": "s", "x": 100, "y": 160, "state": "visited"},
-          {"id": 3, "label": "s", "x": 200, "y": 60, "state": "active"}
+          {"id": 7, "label": "s* (7)", "x": 180, "y": 220, "state": "visited"},
+          {"id": 3, "label": "s (3)", "x": 260, "y": 100, "state": "active"}
         ],
         "edges": []
       }
     },
     {
       "line": 46,
-      "text": "Căutare index 4 ('h'): u = nxt[7]['h'] = 4. Trecem la nodul 4 ('h' din subarborele 'she').",
+      "text": "Pasul 4: caracterul 'h'. De la u = 7, nxt[7]['h'] = 4. Trecem la nodul 4.",
       "graphVisual": {
         "nodes": [
-          {"id": 4, "label": "h", "x": 200, "y": 110, "state": "active"}
+          {"id": 4, "label": "h (4)", "x": 260, "y": 160, "state": "active"}
         ],
         "edges": []
       }
     },
     {
       "line": 46,
-      "text": "Căutare index 5 ('e'): u = nxt[4]['e'] = 5. Trecem la nodul 5 ('e' din subarborele 'she').",
+      "text": "Pasul 5: caracterul 'e'. De la u = 4, nxt[4]['e'] = 5. Trecem la nodul 5.",
       "graphVisual": {
         "nodes": [
-          {"id": 5, "label": "e", "x": 200, "y": 160, "state": "active"}
+          {"id": 5, "label": "e* (5)", "x": 260, "y": 220, "state": "active"}
         ],
         "edges": []
       }
     },
     {
       "line": 49,
-      "text": "Nodul 5 este capăt de cuvânt ('she') -> matches = 2. Urmărim fail[5] = 2 ('he' - capăt de cuvânt) -> matches = 3. fail[2] = 0.",
+      "text": "Nodul 5 este sfârșit de cuvânt (\"she\"), incrementăm matches la 2. Urmărim fail[5] = 2 (\"he\"), incrementăm matches la 3.",
       "graphVisual": {
         "nodes": [
-          {"id": 5, "label": "e", "x": 200, "y": 160, "state": "visited"},
-          {"id": 2, "label": "e", "x": 50, "y": 110, "state": "active"}
+          {"id": 5, "label": "e* (5)", "x": 260, "y": 220, "state": "visited"},
+          {"id": 2, "label": "e* (2)", "x": 100, "y": 160, "state": "visited"}
         ],
         "edges": []
       }
     },
     {
       "line": 46,
-      "text": "Căutare index 6 ('r') și index 7 ('s'): u ajunge la nodul 8 ('r'), apoi la nodul 9 ('s'). Găsim cuvântul 'hers'. matches devine 4. Căutare finalizată cu succes!",
+      "text": "Pasul 6: caracterul 'r'. De la u = 5, nxt[5]['r'] = 8. Trecem la nodul 8.",
       "graphVisual": {
         "nodes": [
-          {"id": 8, "label": "r", "x": 50, "y": 160, "state": "visited"},
-          {"id": 9, "label": "s", "x": 50, "y": 210, "state": "active"}
+          {"id": 8, "label": "r (8)", "x": 100, "y": 220, "state": "active"}
         ],
         "edges": []
       }
+    },
+    {
+      "line": 46,
+      "text": "Pasul 7: caracterul 's'. De la u = 8, nxt[8]['s'] = 9. Trecem la nodul 9.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 9, "label": "s* (9)", "x": 100, "y": 280, "state": "active"}
+        ],
+        "edges": []
+      }
+    },
+    {
+      "line": 49,
+      "text": "Nodul 9 este sfârșit de cuvânt (\"hers\"). Incrementăm matches la 4. Căutarea este completă.",
+      "graphVisual": {
+        "nodes": [
+          {"id": 9, "label": "s* (9)", "x": 100, "y": 280, "state": "visited"}
+        ],
+        "edges": []
+      }
+    },
+    {
+      "line": 54,
+      "text": "Afișăm rezultatul final: 4 matches găsite în text.",
+      "blocksVisual": [
+        {
+          "label": "Consolă",
+          "groups": [[{"val": "Cuvinte gasite: 4", "sorted": true}]]
+        }
+      ]
+    },
+    {
+      "line": 55,
+      "text": "Programul se încheie returnând 0.",
+      "blocksVisual": [
+        {
+          "label": "Exit",
+          "groups": [[{"val": "0", "sorted": true}]]
+        }
+      ]
     }
   ],
   "problems": {
@@ -388,21 +482,21 @@ int main() {
       {
         "title": "Aho-Corasick Infoarena",
         "url": "https://www.infoarena.ro/problema/ahocorasick",
-        "desc": "Problema clasică"
+        "desc": "Problema clasică de determinare a numărului de apariții ale unui set de cuvinte într-un text."
       }
     ],
     "medium": [
       {
         "title": "Stream of Characters",
         "url": "https://leetcode.com/problems/stream-of-characters/",
-        "desc": "Trie răsturnat sau AC"
+        "desc": "Căutarea pe flux infinit (stream) de caractere; se pretează optim cu Aho-Corasick sau Trie inversat."
       }
     ],
     "hard": [
       {
         "title": "Trie + DP (Password Generator)",
         "url": "https://codeforces.com/problemset/problem/86/C",
-        "desc": "Aho-Corasick combinat cu DP"
+        "desc": "Determinarea numărului de parole valide folosind programare dinamică pe stările automatului Aho-Corasick."
       }
     ]
   }

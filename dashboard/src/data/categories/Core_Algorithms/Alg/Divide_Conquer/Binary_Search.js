@@ -9,7 +9,7 @@ export const data = {
 
 using namespace std;
 
-int binarySearch(var vector<int>& arr, int target) {
+int binarySearch(const vector<int>& arr, int target) {
     int left = 0;
     int right = arr.size() - 1;
     
@@ -37,11 +37,9 @@ int main() {
     int result = binarySearch(arr, target);
     
     if (result != -1) {
-        cout << "Elementul " << target << " a fost gasit la indexul: " << result << "
-";
+        cout << "Elementul " << target << " a fost gasit la indexul: " << result << "\n";
     } else {
-        cout << "Elementul " << target << " nu a fost gasit.
-";
+        cout << "Elementul " << target << " nu a fost gasit.\n";
     }
     
     return 0;

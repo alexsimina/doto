@@ -1,18 +1,16 @@
 export const data = {
-  "presentation": "### Prezentare Generală\n\nProgramarea Dinamică (DP) este o metodă de optimizare algoritmică bazată pe două concepte cheie:\n\n1. Substructură optimă: Soluția optimă a problemei poate fi construită din soluțiile optime ale subproblemelor sale.\n2. Subprobleme care se suprapun: Algoritmul rezolvă aceleași subprobleme de mai multe ori.\n\nPentru a evita recalcularea (care duce la timpi exponențiali în cazul recursivității naive), DP salvează răspunsurile parțiale. Aceasta se poate face în două moduri:\n- Top-Down (Memoizare): Folosim recursivitate, dar salvăm rezultatele într-o memorie (ex: array, hashmap).\n- Bottom-Up (Tabulare): Folosim iterație (for loops) pentru a construi soluția de la cele mai mici subprobleme (cazuri de bază) până la răspunsul final.",
-  "complexity": "### Complexitate\n\n- **Timp:** Depinde de numărul de Stări * Complexitatea Tranziției. De cele mai multe ori polinomial, reducând complexități de la O(2^N) la O(N) sau O(N^2).\n- **Spațiu:** O(Număr de stări), dar adesea poate fi optimizat dacă starea curentă depinde doar de linia anterioară (Rolling Arrays).\n",
-  "variations": "### Variații și Edge Cases\n\n1. DP pe șiruri de caractere (LCS, Edit Distance)\n2. DP pe vectori/matrici (Subșir crescător, Căi într-o grilă)\n3. DP pe stări exponențiale (Bitmask DP)\n4. DP pe Arbori/Grafuri",
-  "applications": "### Aplicații\n\nGăsirea celui mai scurt drum cu constrângeri speciale, alinieri ADN în bioinformatică, probleme de planificare și rucsac, alocări optime de resurse.",
+  "presentation": "### Prezentare Generală\n\nProgramarea Dinamică (DP) este o paradigmă de proiectare a algoritmilor utilizată pentru rezolvarea problemelor de optimizare prin descompunerea lor în subprobleme mai simple ale căror soluții sunt combinate pentru a rezolva problema globală. DP se bazează pe două concepte fundamentale:\n\n1. **Substructură optimă (Optimal Substructure):** Soluția optimă a unei probleme de dimensiune mai mare poate fi construită în mod eficient din soluțiile optime ale subproblemelor sale. De exemplu, în determinarea drumului minim între două noduri, orice sub-drum al acestui traseu trebuie să fie, la rândul său, un drum minim.\n2. **Subprobleme care se suprapun (Overlapping Subproblems):** Spațiul subproblemelor este relativ mic, ceea ce înseamnă că algoritmul recursiv rezolvă aceleași subprobleme de mai multe ori. În loc să recalculăm recursiv aceleași stări, salvăm rezultatele deja obținute într-o structură de date.\n\n#### Formulare Matematică\nO recurență generală în Programarea Dinamică poate fi exprimată sub forma:\n$$dp[i] = \\mathcal{O}_{j \\in \\text{tranziti(i)}} \\left( dp[j] \\oplus \\text{cost}(j, i) \\right)$$\nunde:\n- $dp[i]$ reprezintă starea curentă.\n- $\\mathcal{O}$ este un operator de optimizare precum $\\min$, $\\max$ sau sumă $\\sum$.\n- $j$ este o stare anterioară din care se poate efectua tranziția.\n- $\\text{cost}(j, i)$ reprezintă costul tranziției de la starea $j$ la starea $i$.\n\n#### Abordări de Implementare\n- **Top-Down (Memoizare):** Se pornește de la problema mare, se rezolvă recursiv subproblemele, iar rezultatele sunt salvate într-o structură (vector sau tabel hash) la prima calculare. La apelurile ulterioare, se returnează direct valoarea salvată.\n- **Bottom-Up (Tabulare):** Se rezolvă mai întâi cazurile de bază, iar apoi se iterează prin stări în ordine crescătoare a complexității lor, populând tabela de la cele mai simple subprobleme până la soluția finală.",
+  "complexity": "### Complexitate\n\n- **Timp:** $\\mathcal{O}(\\text{Număr de Stări} \\times \\text{Complexitatea unei Tranziții})$. DP reduce complexitatea de la una exponențială $\\mathcal{O}(2^N)$ sau $\\mathcal{O}(N!)$ la una polinomială (ex. $\\mathcal{O}(N)$ sau $\\mathcal{O}(N^2)$).\n- **Spațiu:** $\\mathcal{O}(\\text{Număr de Stări})$ pentru stocarea structurii de date (memoizare/tabulare). Aceasta poate fi optimizată adesea la $\\mathcal{O}(\\text{Stare Redusă})$ folosind tehnica ecranului rulant (Rolling Array) dacă tranziția curentă depinde doar de un număr limitat de stări anterioare.",
+  "variations": "### Variații și Edge Cases\n\n1. **DP pe Șiruri de Caractere:** Alinierea secvențelor, distanța de editare (Edit Distance), Cel Mai Lung Subșir Comun (LCS).\n2. **DP pe Interval (Interval DP):** Determinarea costului optim de combinare a elementelor pe subintervale închise, de tipul $[i, j]$ (ex: înmulțirea optimă de matrice).\n3. **DP pe Arbori (Tree DP):** Calculul stărilor asociate nodurilor dintr-o structură ierarhică prin parcurgeri de tip DFS.\n4. **DP cu Stări Exponențiale (Bitmask DP):** Folosit când numărul de stări este reprezentat sub formă de submulțimi folosind biți (ex: Travelling Salesperson Problem pentru $N \\le 20$).\n5. **Edge Cases Importante:**\n   - Inițializarea corectă a stărilor de bază (ex. $dp[0]$, $dp[1]$).\n   - Evitarea depășirii tipurilor de date (folosirea `long long` sau aplicarea operației modulo $10^9 + 7$ la fiecare pas).\n   - Direcția corectă de parcurgere în tabulare (Bottom-Up) pentru a asigura disponibilitatea stărilor anterioare.",
+  "applications": "### Aplicații în Lumea Reală\n\n- **Bioinformatică:** Alinierea secvențelor ADN (algoritmii Needleman-Wunsch și Smith-Waterman).\n- **Compilatoare:** Analiza lexicală și sintactică, potrivirea de regex-uri.\n- **Rțele de Comunicații:** Algoritmi de rutare (Bellman-Ford, Floyd-Warshall) pentru stabilirea celei mai scurte căi cu costuri/lățimi de bandă dinamice.\n- **Economie și Finanțe:** Alocarea optimă a bugetului, probleme de investiții imobiliare și planificare strategică.",
   code: `
 #include <iostream>
 #include <vector>
 using namespace std;
 
 int fib(int n, vector<int>& memo) {
-    if (n <= 1) return n; 
-    
+    if (n <= 1) return n;
     if (memo[n] != -1) return memo[n];
-    
     memo[n] = fib(n - 1, memo) + fib(n - 2, memo);
     return memo[n];
 }
@@ -26,7 +24,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 17,
+      "line": 12,
       "text": "Pornim programul. Inițializăm variabila n = 5.",
       "blocksVisual": [
         {
@@ -36,7 +34,7 @@ int main() {
       ]
     },
     {
-      "line": 18,
+      "line": 13,
       "text": "Inițializăm vectorul de memoizare cu -1 pentru n + 1 elemente. memo = [-1, -1, -1, -1, -1, -1]",
       "blocksVisual": [
         {
@@ -49,7 +47,7 @@ int main() {
       ]
     },
     {
-      "line": 19,
+      "line": 14,
       "text": "Apelăm funcția fib(n, memo) pentru n = 5.",
       "blocksVisual": [
         {
@@ -59,17 +57,7 @@ int main() {
       ]
     },
     {
-      "line": 6,
-      "text": "Intrăm în fib(5). Valoarea n = 5 nu este caz de bază (n <= 1).",
-      "blocksVisual": [
-        {
-          "label": "Call Stack",
-          "groups": [[{ "val": "fib(5)", "active": true }]]
-        }
-      ]
-    },
-    {
-      "line": 9,
+      "line": 7,
       "text": "Verificăm dacă valoarea a fost calculată. memo[5] este -1 (necalculat).",
       "blocksVisual": [
         {
@@ -82,7 +70,7 @@ int main() {
       ]
     },
     {
-      "line": 12,
+      "line": 8,
       "text": "Calculăm recursiv fib(4) ca prim argument din sumă.",
       "blocksVisual": [
         {
@@ -92,17 +80,7 @@ int main() {
       ]
     },
     {
-      "line": 6,
-      "text": "Intrăm în fib(4). Valoarea n = 4 nu este caz de bază.",
-      "blocksVisual": [
-        {
-          "label": "Call Stack",
-          "groups": [[{ "val": "fib(5)" }, { "val": "fib(4)", "active": true }]]
-        }
-      ]
-    },
-    {
-      "line": 9,
+      "line": 7,
       "text": "Verificăm dacă am calculat memo[4]. Este -1.",
       "blocksVisual": [
         {
@@ -115,7 +93,7 @@ int main() {
       ]
     },
     {
-      "line": 12,
+      "line": 8,
       "text": "Apelăm recursiv fib(3) din interiorul lui fib(4).",
       "blocksVisual": [
         {
@@ -125,17 +103,7 @@ int main() {
       ]
     },
     {
-      "line": 6,
-      "text": "Intrăm în fib(3). Valoarea n = 3 nu este caz de bază.",
-      "blocksVisual": [
-        {
-          "label": "Call Stack",
-          "groups": [[{ "val": "fib(5)" }, { "val": "fib(4)" }, { "val": "fib(3)", "active": true }]]
-        }
-      ]
-    },
-    {
-      "line": 9,
+      "line": 7,
       "text": "Verificăm dacă am calculat memo[3]. Este -1.",
       "blocksVisual": [
         {
@@ -148,7 +116,7 @@ int main() {
       ]
     },
     {
-      "line": 12,
+      "line": 8,
       "text": "Apelăm recursiv fib(2) din interiorul lui fib(3).",
       "blocksVisual": [
         {
@@ -158,17 +126,7 @@ int main() {
       ]
     },
     {
-      "line": 6,
-      "text": "Intrăm în fib(2). Valoarea n = 2 nu este caz de bază.",
-      "blocksVisual": [
-        {
-          "label": "Call Stack",
-          "groups": [[{ "val": "fib(5)" }, { "val": "fib(4)" }, { "val": "fib(3)" }, { "val": "fib(2)", "active": true }]]
-        }
-      ]
-    },
-    {
-      "line": 9,
+      "line": 7,
       "text": "Verificăm dacă am calculat memo[2]. Este -1.",
       "blocksVisual": [
         {
@@ -181,7 +139,7 @@ int main() {
       ]
     },
     {
-      "line": 12,
+      "line": 8,
       "text": "Apelăm recursiv fib(1) din interiorul lui fib(2).",
       "blocksVisual": [
         {
@@ -191,17 +149,7 @@ int main() {
       ]
     },
     {
-      "line": 6,
-      "text": "fib(1) este caz de bază (n <= 1). Se returnează valoarea 1.",
-      "blocksVisual": [
-        {
-          "label": "Call Stack",
-          "groups": [[{ "val": "fib(5)" }, { "val": "fib(4)" }, { "val": "fib(3)" }, { "val": "fib(2)" }]]
-        }
-      ]
-    },
-    {
-      "line": 12,
+      "line": 8,
       "text": "Apelăm acum al doilea argument, adică fib(0), din fib(2).",
       "blocksVisual": [
         {
@@ -211,17 +159,7 @@ int main() {
       ]
     },
     {
-      "line": 6,
-      "text": "fib(0) este caz de bază (n <= 1). Se returnează valoarea 0.",
-      "blocksVisual": [
-        {
-          "label": "Call Stack",
-          "groups": [[{ "val": "fib(5)" }, { "val": "fib(4)" }, { "val": "fib(3)" }, { "val": "fib(2)" }]]
-        }
-      ]
-    },
-    {
-      "line": 12,
+      "line": 8,
       "text": "Calculăm fib(2) = fib(1) + fib(0) = 1 + 0 = 1. Salvăm în memo[2] = 1.",
       "blocksVisual": [
         {
@@ -234,7 +172,7 @@ int main() {
       ]
     },
     {
-      "line": 13,
+      "line": 9,
       "text": "Returnăm valoarea memo[2] = 1.",
       "blocksVisual": [
         {
@@ -244,7 +182,7 @@ int main() {
       ]
     },
     {
-      "line": 12,
+      "line": 8,
       "text": "Din fib(3), apelăm al doilea termen fib(1).",
       "blocksVisual": [
         {
@@ -254,17 +192,7 @@ int main() {
       ]
     },
     {
-      "line": 6,
-      "text": "fib(1) este caz de bază. Returnează valoarea 1.",
-      "blocksVisual": [
-        {
-          "label": "Call Stack",
-          "groups": [[{ "val": "fib(5)" }, { "val": "fib(4)" }, { "val": "fib(3)" }]]
-        }
-      ]
-    },
-    {
-      "line": 12,
+      "line": 8,
       "text": "Calculăm fib(3) = fib(2) + fib(1) = 1 + 1 = 2. Salvăm memo[3] = 2.",
       "blocksVisual": [
         {
@@ -277,7 +205,7 @@ int main() {
       ]
     },
     {
-      "line": 13,
+      "line": 9,
       "text": "Returnăm valoarea memo[3] = 2.",
       "blocksVisual": [
         {
@@ -287,7 +215,7 @@ int main() {
       ]
     },
     {
-      "line": 12,
+      "line": 8,
       "text": "Din fib(4), apelăm al doilea termen fib(2).",
       "blocksVisual": [
         {
@@ -297,7 +225,7 @@ int main() {
       ]
     },
     {
-      "line": 9,
+      "line": 7,
       "text": "În fib(2), verificăm memo[2]. memo[2] = 1, adică diferit de -1! Avem cache hit!",
       "blocksVisual": [
         {
@@ -310,7 +238,7 @@ int main() {
       ]
     },
     {
-      "line": 9,
+      "line": 7,
       "text": "Returnăm valoarea memo[2] = 1 direct, fără a mai face apeluri recursive.",
       "blocksVisual": [
         {
@@ -320,7 +248,7 @@ int main() {
       ]
     },
     {
-      "line": 12,
+      "line": 8,
       "text": "Calculăm fib(4) = fib(3) + fib(2) = 2 + 1 = 3. Salvăm în memo[4] = 3.",
       "blocksVisual": [
         {
@@ -333,7 +261,7 @@ int main() {
       ]
     },
     {
-      "line": 13,
+      "line": 9,
       "text": "Returnăm valoarea memo[4] = 3.",
       "blocksVisual": [
         {
@@ -343,7 +271,7 @@ int main() {
       ]
     },
     {
-      "line": 12,
+      "line": 8,
       "text": "Din fib(5), apelăm al doilea termen fib(3).",
       "blocksVisual": [
         {
@@ -353,7 +281,7 @@ int main() {
       ]
     },
     {
-      "line": 9,
+      "line": 7,
       "text": "Verificăm memo[3]. memo[3] = 2, deci din nou cache hit!",
       "blocksVisual": [
         {
@@ -366,7 +294,7 @@ int main() {
       ]
     },
     {
-      "line": 9,
+      "line": 7,
       "text": "Returnăm memo[3] = 2 direct.",
       "blocksVisual": [
         {
@@ -376,7 +304,7 @@ int main() {
       ]
     },
     {
-      "line": 12,
+      "line": 8,
       "text": "Calculăm fib(5) = fib(4) + fib(3) = 3 + 2 = 5. Salvăm memo[5] = 5.",
       "blocksVisual": [
         {
@@ -389,7 +317,7 @@ int main() {
       ]
     },
     {
-      "line": 13,
+      "line": 9,
       "text": "Returnăm memo[5] = 5.",
       "blocksVisual": [
         {
@@ -399,7 +327,7 @@ int main() {
       ]
     },
     {
-      "line": 19,
+      "line": 14,
       "text": "Afișăm rezultatul final: Fibonacci(5) = 5.",
       "blocksVisual": [
         {

@@ -1,495 +1,259 @@
 export const data = {
-  "presentation": "### Prezentare Generală\n\nPentru a găsi cel mai scurt drum (când muchiile au ponderi), BFS nu mai funcționează. Avem nevoie de:\\n\\n1. **Algoritmul lui Dijkstra**: Găsește drumurile minime de la un nod sursă la toate celelalte. Funcționează doar pentru ponderi $\\\\ge 0$. Folosește un Priority Queue (Min-Heap).\\n2. **Algoritmul Bellman-Ford**: Poate gestiona ponderi negative. Iterează relaxarea muchiilor de V-1 ori. Poate și detecta Cicluri de Cost Negativ!\\n3. **Floyd-Warshall**: Găsește drumul minim între *orice pereche* de noduri (All-Pairs Shortest Path) folosind Programare Dinamică. Simplu de scris (3 for-uri).",
-  "complexity": "### Complexitate\n\nDijkstra: O(E log V) (cu Priority Queue).\\nBellman-Ford: O(V * E).\\nFloyd-Warshall: O(V^3). (E bun doar pentru V $\\\\le$ 400).",
-  "variations": "### Variații și Edge Cases\n\nA* Search (A-Star) - o extensie a lui Dijkstra care folosește o euristică pentru a ghida căutarea mai rapid către destinație (folosit extensiv în jocuri video).",
-  "applications": "### Aplicații\n\nNavigație GPS (Google Maps folosește variații ultra-optimizate de Dijkstra/A* numite Contraction Hierarchies), rutingul pachetelor de rețea pe internet (OSPF).",
-  code: `
-#include <iostream>
-#include <vector>
-#include <queue>
-
-using namespace std;
-const int INF = 1e9;
-
-struct Edge { int to, weight; };
-
-void dijkstra(int start, int V, vector<vector<Edge>>& adj) {
-    vector<int> dist(V, INF);
-    // priority_queue min-heap: stocheaza perechi (distanta, nod)
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-    
-    dist[start] = 0;
-    pq.push({0, start});
-    
-    while (!pq.empty()) {
-        int d = pq.top().first;
-        int u = pq.top().second;
-        pq.pop();
-        
-        // Optimizare vitala: daca am gasit un drum mai bun in trecut, oprim ramura
-        if (d > dist[u]) continue;
-        
-        for (Edge e : adj[u]) {
-            if (dist[u] + e.weight < dist[e.to]) {
-                dist[e.to] = dist[u] + e.weight;
-                pq.push({dist[e.to], e.to});
-            }
-        }
-    }
-    
-    for (int i = 0; i < V; i++) cout << "0 -> " << i << " : " << dist[i] << "
-";
-}
-
-int main() {
-    int V = 5;
-    vector<vector<Edge>> adj(V);
-    // Muchii orientate ponderate
-    adj[0].push_back({1, 10}); adj[0].push_back({2, 3});
-    adj[1].push_back({3, 2});
-    adj[2].push_back({1, 1}); adj[2].push_back({3, 8}); adj[2].push_back({4, 2});
-    adj[4].push_back({3, 9});
-    
-    dijkstra(0, V, adj);
-    return 0;
-}
-`,
+  "presentation": "### Algoritmul lui Dijkstra\n\nAlgoritmul lui Dijkstra determină cele mai scurte drumuri de la un nod sursă la toate celelalte noduri dintr-un graf ponderat cu **costuri non-negative** ($w(e) \\ge 0$).",
+  "complexity": "### Complexitate\n\n- **Timp:** $O(E \\log V)$ - cu ajutorul unui heap binar.\n- **Spațiu:** $O(V + E)$ - pentru listele de adiacență și elementele stocate în coadă.",
+  "variations": "### Variații și Cazuri Particulare\n\n- **Ponderi negative**: Dijkstra **nu funcționează** corect pe grafuri cu muchii negative.",
+  "applications": "### Aplicații Reale\n\n- Calcularea rutelor pe hărți electronice.\n- Rutarea pachetelor de date pe Internet (protocolul OSPF).",
+  "code": "#include <iostream>\n#include <vector>\n#include <queue>\n\nusing namespace std;\nconst int INF = 1e9;\n\nstruct Edge { int to, weight; };\n\nvoid dijkstra(int start, int V, vector<vector<Edge>>& adj) {\n    vector<int> dist(V, INF);\n    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;\n    \n    dist[start] = 0;\n    pq.push({0, start});\n    \n    while (!pq.empty()) {\n        int d = pq.top().first;\n        int u = pq.top().second;\n        pq.pop();\n        \n        if (d > dist[u]) continue;\n        \n        for (Edge e : adj[u]) {\n            if (dist[u] + e.weight < dist[e.to]) {\n                dist[e.to] = dist[u] + e.weight;\n                pq.push({dist[e.to], e.to});\n            }\n        }\n    }\n    \n    for (int i = 0; i < V; i++) {\n        cout << \"0 -> \" << i << \" : \" << dist[i] << \"\\n\";\n    }\n}\n\nint main() {\n    int V = 5;\n    vector<vector<Edge>> adj(V);\n    adj[0].push_back({1, 10}); adj[0].push_back({2, 3});\n    adj[1].push_back({3, 2});\n    adj[2].push_back({1, 1}); adj[2].push_back({3, 8}); adj[2].push_back({4, 2});\n    adj[4].push_back({3, 9});\n    \n    dijkstra(0, V, adj);\n    return 0;\n}\n",
   "explanations": [
     {
+      "line": 10,
+      "text": "Începem execuția funcției `dijkstra` pornind din nodul 0.",
+      "blocksVisual": [
+        {
+          "label": "Start",
+          "groups": [
+            [
+              {
+                "val": "start: 0"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
       "line": 11,
-      "text": "Inițializăm vectorul de distanțe cu INF (Infinit), cu excepția nodului start care e 0.",
+      "text": "Inițializăm vectorul de distanțe cu valoarea infinită ($10^9$) pentru toate nodurile, iar pentru sursă cu 0.",
       "blocksVisual": [
         {
           "label": "Distanțe",
           "groups": [
             [
               {
-                "val": "0: 0",
+                "val": "dist[0]: 0",
                 "active": true
               },
               {
-                "val": "1: INF"
+                "val": "dist[1]: INF"
               },
               {
-                "val": "2: INF"
+                "val": "dist[2]: INF"
               },
               {
-                "val": "3: INF"
+                "val": "dist[3]: INF"
               },
               {
-                "val": "4: INF"
+                "val": "dist[4]: INF"
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 50,
-            "y": 110,
-            "label": "0",
-            "state": "active"
-          },
-          {
-            "id": "1",
-            "x": 140,
-            "y": 50,
-            "label": "1"
-          },
-          {
-            "id": "2",
-            "x": 140,
-            "y": 170,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 230,
-            "y": 50,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 230,
-            "y": 170,
-            "label": "4"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "2",
-            "target": "1"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "2",
-            "target": "4"
-          },
-          {
-            "source": "4",
-            "target": "3"
-          }
-        ]
-      }
+      ]
     },
     {
-      "line": 13,
-      "text": "Creăm un Min-Heap pentru a extrage mereu cel mai apropiat nod nevizitat în timp O(log V).",
+      "line": 12,
+      "text": "Declarăm Min-Heap-ul `pq` (coada de priorități) pentru a extrage perechile `{distanță, nod}`.",
       "blocksVisual": [
         {
-          "label": "Min Heap",
+          "label": "Priority Queue",
+          "groups": [
+            []
+          ]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "Salvăm distanța 0 pentru sursa 0: `dist[0] = 0`.",
+      "blocksVisual": [
+        {
+          "label": "dist[0]",
           "groups": [
             [
               {
-                "val": "pq = [{0, 0}]"
+                "val": "dist[0]: 0",
+                "active": true
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 50,
-            "y": 110,
-            "label": "0",
-            "state": "active"
-          },
-          {
-            "id": "1",
-            "x": 140,
-            "y": 50,
-            "label": "1"
-          },
-          {
-            "id": "2",
-            "x": 140,
-            "y": 170,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 230,
-            "y": 50,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 230,
-            "y": 170,
-            "label": "4"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "2",
-            "target": "1"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "2",
-            "target": "4"
-          },
-          {
-            "source": "4",
-            "target": "3"
-          }
-        ]
-      }
+      ]
+    },
+    {
+      "line": 15,
+      "text": "Adăugăm perechea `{0, 0}` în heap.",
+      "blocksVisual": [
+        {
+          "label": "Priority Queue",
+          "groups": [
+            [
+              {
+                "val": "{0, 0}",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 17,
+      "text": "Intrăm în buclă: coada nu este goală, conține starea `{0, 0}`.",
+      "blocksVisual": [
+        {
+          "label": "Priority Queue",
+          "groups": [
+            [
+              {
+                "val": "{0, 0}"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 18,
+      "text": "Preluăm distanța minimă din vârful cozii: `d = 0`.",
+      "blocksVisual": [
+        {
+          "label": "d",
+          "groups": [
+            [
+              {
+                "val": "d: 0",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 19,
+      "text": "Preluăm nodul cel mai apropiat: `u = 0`.",
+      "blocksVisual": [
+        {
+          "label": "u",
+          "groups": [
+            [
+              {
+                "val": "u: 0",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
     },
     {
       "line": 20,
-      "text": "Extragem (dist=0, nod=0).",
+      "text": "Eliminăm starea `{0, 0}` din heap. Coada rămâne goală.",
       "blocksVisual": [
         {
-          "label": "Nod curent",
+          "label": "Priority Queue",
+          "groups": [
+            []
+          ]
+        }
+      ]
+    },
+    {
+      "line": 22,
+      "text": "Verificăm dacă distanța retrasă `d` este mai mare decât cea mai bună distanță curentă. `0 > 0` este fals, continuăm.",
+      "blocksVisual": []
+    },
+    {
+      "line": 24,
+      "text": "Parcurgem muchiile de ieșire ale nodului 0: (0->1, pondere 10) și (0->2, pondere 3). Începem cu 1.",
+      "blocksVisual": [
+        {
+          "label": "Muchie curentă",
           "groups": [
             [
               {
-                "val": "Nod 0",
+                "val": "0 -> 1 (w: 10)",
                 "active": true
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 50,
-            "y": 110,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 140,
-            "y": 50,
-            "label": "1"
-          },
-          {
-            "id": "2",
-            "x": 140,
-            "y": 170,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 230,
-            "y": 50,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 230,
-            "y": 170,
-            "label": "4"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "2",
-            "target": "1"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "2",
-            "target": "4"
-          },
-          {
-            "source": "4",
-            "target": "3"
-          }
-        ]
-      }
+      ]
     },
     {
-      "line": 26,
-      "text": "Analizăm muchiile lui 0: (0->1, cost 10) și (0->2, cost 3).",
-      "blocksVisual": [
-        {
-          "label": "Relaxare",
-          "groups": [
-            [
-              {
-                "val": "Relaxăm vecinii",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 50,
-            "y": 110,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 140,
-            "y": 50,
-            "label": "1",
-            "state": "active"
-          },
-          {
-            "id": "2",
-            "x": 140,
-            "y": 170,
-            "label": "2",
-            "state": "active"
-          },
-          {
-            "id": "3",
-            "x": 230,
-            "y": 50,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 230,
-            "y": 170,
-            "label": "4"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "2",
-            "target": "1"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "2",
-            "target": "4"
-          },
-          {
-            "source": "4",
-            "target": "3"
-          }
-        ]
-      }
-    },
-    {
-      "line": 27,
-      "text": "Verificăm Relaxarea: (dist[0] + 10) < INF. Da! Actualizăm dist[1] = 10.",
+      "line": 25,
+      "text": "Relaxăm drumul spre 1: `dist[0] + 10 = 10` < `dist[1]` (care este INF). Actualizăm `dist[1] = 10`.",
       "blocksVisual": [
         {
           "label": "Distanțe",
           "groups": [
             [
               {
-                "val": "1: 10",
-                "active": true
-              },
-              {
-                "val": "2: 3",
+                "val": "dist[1]: 10",
                 "active": true
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 50,
-            "y": 110,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 140,
-            "y": 50,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 140,
-            "y": 170,
-            "label": "2",
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "x": 230,
-            "y": 50,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 230,
-            "y": 170,
-            "label": "4"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "2",
-            "target": "1"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "2",
-            "target": "4"
-          },
-          {
-            "source": "4",
-            "target": "3"
-          }
-        ]
-      }
+      ]
     },
     {
-      "line": 29,
-      "text": "Punem perechile {10, 1} și {3, 2} în Min-Heap. Heap-ul aduce la suprafață {3, 2}.",
+      "line": 26,
+      "text": "Adăugăm `{10, 1}` în coada de priorități.",
       "blocksVisual": [
         {
-          "label": "Min Heap",
+          "label": "Priority Queue",
+          "groups": [
+            [
+              {
+                "val": "{10, 1}",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 24,
+      "text": "Trecem la a doua muchie: 0->2 (pondere 3).",
+      "blocksVisual": [
+        {
+          "label": "Muchie curentă",
+          "groups": [
+            [
+              {
+                "val": "0 -> 2 (w: 3)",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 25,
+      "text": "Relaxăm drumul spre 2: `dist[0] + 3 = 3` < `dist[2]` (INF). Actualizăm `dist[2] = 3`.",
+      "blocksVisual": [
+        {
+          "label": "Distanțe",
+          "groups": [
+            [
+              {
+                "val": "dist[2]: 3",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 26,
+      "text": "Adăugăm `{3, 2}` în coada de priorități. Coada are acum: `[{3, 2}, {10, 1}]`.",
+      "blocksVisual": [
+        {
+          "label": "Priority Queue",
           "groups": [
             [
               {
@@ -501,553 +265,158 @@ int main() {
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 50,
-            "y": 110,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 140,
-            "y": 50,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 140,
-            "y": 170,
-            "label": "2",
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "x": 230,
-            "y": 50,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 230,
-            "y": 170,
-            "label": "4"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "2",
-            "target": "1"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "2",
-            "target": "4"
-          },
-          {
-            "source": "4",
-            "target": "3"
-          }
-        ]
-      }
+      ]
     },
     {
-      "line": 20,
-      "text": "Extragem {3, 2}. Ne aflăm la nodul 2 (care a fost descoperit cu distanța minimă de 3). Vecinii sunt 1 (cost 1), 3 (cost 8), 4 (cost 2).",
+      "line": 17,
+      "text": "Reluăm bucla. Heap-ul aduce la suprafață elementul minim `{3, 2}`.",
       "blocksVisual": [
         {
-          "label": "Nod curent",
+          "label": "Priority Queue",
           "groups": [
             [
               {
-                "val": "Nod 2",
+                "val": "{3, 2}"
+              },
+              {
+                "val": "{10, 1}"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 18,
+      "text": "Extragem `d = 3`.",
+      "blocksVisual": [
+        {
+          "label": "d",
+          "groups": [
+            [
+              {
+                "val": "d: 3",
                 "active": true
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 50,
-            "y": 110,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 140,
-            "y": 50,
-            "label": "1"
-          },
-          {
-            "id": "2",
-            "x": 140,
-            "y": 170,
-            "label": "2",
-            "state": "active"
-          },
-          {
-            "id": "3",
-            "x": 230,
-            "y": 50,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 230,
-            "y": 170,
-            "label": "4"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "2",
-            "target": "1"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "2",
-            "target": "4"
-          },
-          {
-            "source": "4",
-            "target": "3"
-          }
-        ]
-      }
+      ]
     },
     {
-      "line": 27,
-      "text": "Relaxăm (2->1, cost 1): 3 + 1 = 4. Mai bun decât vechiul 10? DA! Noul dist[1] devine 4.",
+      "line": 19,
+      "text": "Extragem `u = 2`.",
+      "blocksVisual": [
+        {
+          "label": "u",
+          "groups": [
+            [
+              {
+                "val": "u: 2",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 24,
+      "text": "Parcurgem vecinii nodului 2: (2->1, pondere 1), (2->3, pondere 8), (2->4, pondere 2). Vizităm 2->1.",
+      "blocksVisual": [
+        {
+          "label": "Muchie",
+          "groups": [
+            [
+              {
+                "val": "2 -> 1 (w: 1)",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 25,
+      "text": "Relaxăm drumul spre 1: `dist[2] + 1 = 3 + 1 = 4` < `dist[1]` (care este 10). Actualizăm `dist[1] = 4`.",
       "blocksVisual": [
         {
           "label": "Distanțe",
           "groups": [
             [
               {
-                "val": "1: 4",
-                "active": true
-              },
-              {
-                "val": "2: 3"
-              },
-              {
-                "val": "3: 11",
-                "active": true
-              },
-              {
-                "val": "4: 5",
+                "val": "dist[1]: 4",
                 "active": true
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 50,
-            "y": 110,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 140,
-            "y": 50,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 140,
-            "y": 170,
-            "label": "2",
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "x": 230,
-            "y": 50,
-            "label": "3",
-            "state": "active"
-          },
-          {
-            "id": "4",
-            "x": 230,
-            "y": 170,
-            "label": "4",
-            "state": "active"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "2",
-            "target": "1"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "2",
-            "target": "4"
-          },
-          {
-            "source": "4",
-            "target": "3"
-          }
-        ]
-      }
+      ]
     },
     {
-      "line": 29,
-      "text": "Băgăm noul drum pentru 1 în Heap: {4, 1}.",
+      "line": 26,
+      "text": "Adăugăm `{4, 1}` în coada de priorități.",
       "blocksVisual": [
         {
-          "label": "Min Heap",
+          "label": "Priority Queue",
           "groups": [
             [
               {
                 "val": "{4, 1}"
               },
               {
-                "val": "{5, 4}"
-              },
-              {
-                "val": "{10, 1}(vechi)"
-              },
-              {
-                "val": "{11, 3}"
+                "val": "{10, 1}"
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 50,
-            "y": 110,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 140,
-            "y": 50,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 140,
-            "y": 170,
-            "label": "2",
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "x": 230,
-            "y": 50,
-            "label": "3",
-            "state": "visited"
-          },
-          {
-            "id": "4",
-            "x": 230,
-            "y": 170,
-            "label": "4",
-            "state": "visited"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "2",
-            "target": "1"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "2",
-            "target": "4"
-          },
-          {
-            "source": "4",
-            "target": "3"
-          }
-        ]
-      }
+      ]
     },
     {
       "line": 24,
-      "text": "La extragerea stării vechi {10, 1}, condiția `d > dist[u]` se va prinde că am găsit deja ceva mai bun (4) și o va ignora. Aceasta e optimizarea vitală pentru Dijkstra pe cozi de priorități!",
+      "text": "Următoarea muchie din 2 este 2->4 (pondere 2). Relaxăm `dist[4] = 5`.",
       "blocksVisual": [
         {
-          "label": "Optimizare",
+          "label": "Distanțe",
           "groups": [
             [
               {
-                "val": "Ignoră stări slabe",
-                "sorted": true
+                "val": "dist[4]: 5",
+                "active": true
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 50,
-            "y": 110,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 140,
-            "y": 50,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 140,
-            "y": 170,
-            "label": "2",
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "x": 230,
-            "y": 50,
-            "label": "3",
-            "state": "visited"
-          },
-          {
-            "id": "4",
-            "x": 230,
-            "y": 170,
-            "label": "4",
-            "state": "visited"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "2",
-            "target": "1"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "2",
-            "target": "4"
-          },
-          {
-            "source": "4",
-            "target": "3"
-          }
-        ]
-      }
+      ]
     },
     {
       "line": 34,
-      "text": "La final afișăm drumurile.",
+      "text": "Continuăm procesarea restului de stări din heap. Obținem distanțele minime finale.",
       "blocksVisual": [
         {
-          "label": "Finalizat",
+          "label": "Rezultat",
           "groups": [
             [
               {
-                "val": "0: 0, 1: 4, 2: 3, 3: 6, 4: 5",
-                "sorted": true
+                "val": "dist[0]: 0"
+              },
+              {
+                "val": "dist[1]: 4"
+              },
+              {
+                "val": "dist[2]: 3"
+              },
+              {
+                "val": "dist[3]: 6"
+              },
+              {
+                "val": "dist[4]: 5"
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 50,
-            "y": 110,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 140,
-            "y": 50,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 140,
-            "y": 170,
-            "label": "2",
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "x": 230,
-            "y": 50,
-            "label": "3",
-            "state": "visited"
-          },
-          {
-            "id": "4",
-            "x": 230,
-            "y": 170,
-            "label": "4",
-            "state": "visited"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "2",
-            "target": "1"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "2",
-            "target": "4"
-          },
-          {
-            "source": "4",
-            "target": "3"
-          }
-        ]
-      }
+      ]
     }
-  ],
-  "problems": {
-    "easy": [
-      {
-        "title": "Dijkstra",
-        "url": "https://www.infoarena.ro/problema/dijkstra",
-        "desc": "Clasica Dijkstra"
-      },
-      {
-        "title": "Bellman-Ford",
-        "url": "https://www.infoarena.ro/problema/bellmanford",
-        "desc": "Drumuri negative"
-      }
-    ],
-    "medium": [
-      {
-        "title": "Network Delay Time",
-        "url": "https://leetcode.com/problems/network-delay-time/",
-        "desc": "Dijkstra Basic"
-      },
-      {
-        "title": "Floyd-Warshall",
-        "url": "https://www.infoarena.ro/problema/royfloyd",
-        "desc": "Roy-Floyd (V^3)"
-      }
-    ],
-    "hard": [
-      {
-        "title": "Cheapest Flights Within K Stops",
-        "url": "https://leetcode.com/problems/cheapest-flights-within-k-stops/",
-        "desc": "Bellman-Ford Relaxări K pași"
-      }
-    ]
-  }
+  ]
 };

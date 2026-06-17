@@ -48,11 +48,9 @@ void mergeSort(vector<int>& arr, int left, int right) {
 int main() {
     vector<int> arr = {38, 27, 43, 3};
     mergeSort(arr, 0, arr.size() - 1);
-    
     cout << "Array sortat: ";
     for(int x : arr) cout << x << " ";
-    cout << "
-";
+    cout << "\n";
     return 0;
 }
 `,

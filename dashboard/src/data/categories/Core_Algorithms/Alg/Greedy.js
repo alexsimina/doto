@@ -34,6 +34,12 @@ void printMaxActivities(vector<Activity>& arr) {
         }
     }
 }
+
+int main() {
+    vector<Activity> arr = {{3, 5}, {0, 6}, {1, 4}, {8, 9}, {5, 7}};
+    printMaxActivities(arr);
+    return 0;
+}
 `,
   "explanations": [
     {

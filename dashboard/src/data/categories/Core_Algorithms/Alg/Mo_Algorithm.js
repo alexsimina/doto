@@ -66,6 +66,15 @@ vector<int> solveMo(vector<int>& arr, vector<Query>& queries) {
     }
     return ans;
 }
+
+int main() {
+    vector<int> arr = {1, 2, 1, 3, 2};
+    vector<Query> queries = {{1, 3, 0}, {2, 4, 1}};
+    vector<int> ans = solveMo(arr, queries);
+    for (int x : ans) cout << x << " ";
+    cout << "\n";
+    return 0;
+}
 `,
   "explanations": [
     {
@@ -97,11 +106,17 @@ vector<int> solveMo(vector<int>& arr, vector<Query>& queries) {
     },
     {
       "line": 44,
-      "text": "Inițializăm vectorul de răspunsuri ans[] cu 2 intrări nedeterminate și setăm pointerii currL=0, currR=-1 (fereastră vidă).",
+      "text": "Inițializăm vectorul de răspunsuri ans[] cu 2 intrări nedeterminate.",
       "blocksVisual": [
         { "label": "Array arr[0-4]", "groups": [[{"val": "1\n[0]"}, {"val": "2\n[1]"}, {"val": "1\n[2]"}, {"val": "3\n[3]"}, {"val": "2\n[4]"}]] },
-        { "label": "Fereastră [currL, currR]", "groups": [[{"val": "currL=0"}, {"val": "currR=-1\n(vid)"}]] },
         { "label": "Răspunsuri ans[]", "groups": [[{"val": "ans[0]=?"}, {"val": "ans[1]=?"}]] }
+      ]
+    },
+    {
+      "line": 47,
+      "text": "Setăm pointerii inițiali ai ferestrei glisante: currL = 0 și currR = -1 (fereastră vidă).",
+      "blocksVisual": [
+        { "label": "Fereastră [currL, currR]", "groups": [[{"val": "currL=0"}, {"val": "currR=-1\n(vid)"}]] }
       ]
     },
     {
@@ -229,6 +244,20 @@ vector<int> solveMo(vector<int>& arr, vector<Query>& queries) {
         { "label": "Q0=[1,3] → distincte={2,1,3}", "groups": [[{"val": "2", "sorted": true}, {"val": "1", "sorted": true}, {"val": "3", "sorted": true}]] },
         { "label": "Q1=[2,4] → distincte={1,3,2}", "groups": [[{"val": "1", "sorted": true}, {"val": "3", "sorted": true}, {"val": "2", "sorted": true}]] },
         { "label": "Rezultat Final ans[]", "groups": [[{"val": "ans[0]=3", "sorted": true}, {"val": "ans[1]=3", "sorted": true}]] }
+      ]
+    },
+    {
+      "line": 70,
+      "text": "Intrăm în funcția main unde definim vectorul arr, cele două query-uri [1,3] și [2,4] și apelăm solveMo.",
+      "blocksVisual": [
+        { "label": "main", "groups": [[{"val": "start", "active": true}]] }
+      ]
+    },
+    {
+      "line": 74,
+      "text": "Afișăm rezultatele stocate în vectorul ans: primul răspuns este 3, al doilea răspuns este 3.",
+      "blocksVisual": [
+        { "label": "Afișare", "groups": [[{"val": "3 3", "sorted": true}]] }
       ]
     }
   ],

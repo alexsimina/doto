@@ -24,9 +24,7 @@ int main() {
     int N = 3;
     int dim = 1 << N;
     int r = 5, c = 2;
-    
-    cout << "Valoarea la (" << r << ", " << c << ") este: " << zTraversal(dim, r, c) << "
-";
+    cout << "Valoarea la (" << r << ", " << c << ") este: " << zTraversal(dim, r, c) << "\n";
     return 0;
 }
 `,
@@ -4579,7 +4577,7 @@ int main() {
     }
   },
   {
-    "line": 22,
+    "line": 27,
     "text": "Toate apelurile de pe stivă s-au evaluat și s-au însumat. Valoarea finală returnată este 38.",
     "matrix": {
       "headers": [

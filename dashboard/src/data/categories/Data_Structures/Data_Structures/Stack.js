@@ -1,41 +1,9 @@
 export const data = {
-  "presentation": "### Prezentare Generală\n\nStiva (Stack) este o structură de date liniară care funcționează după principiul **LIFO** (Last In, First Out - Ultimul venit, primul plecat). Singurul element accesibil direct este cel din vârf (cel mai recent adăugat).\n\nPutem vizualiza stiva ca pe un teanc de farfurii: poți adăuga o farfurie nouă doar în vârf (push) și o poți îndepărta doar pe cea de deasupra (pop). Această structură este extrem de utilă pentru gestionarea apelurilor de funcții (Call Stack), parantezarea expresiilor sau menținerea unui istoric de operații pentru acțiuni de tip Undo.",
-  "complexity": "### Complexitate\n\n- **Timp:** Operațiile de bază (`push`, `pop`, `top`, `empty`, `size`) sunt extrem de eficiente, rulând în timp constant **O(1)**.\n- **Spațiu:** **O(N)**, unde N este numărul total de elemente stocate în stivă.\n",
-  "variations": "### Variații și Edge Cases\n\n1. **Stiva Monotonă:** O stivă ale cărei elemente sunt menținute într-o ordine strict monotonă (crescătoare sau descrescătoare). Când se adaugă un element nou, se elimină din vârf toate elementele care încalcă ordinea. Este o tehnică extrem de folosită pentru a găsi 'următorul element mai mare' în timp liniar O(N).\n2. **Stiva cu dimensiune limitată:** Implementată pe un tablou static unde se aruncă o excepție (Stack Overflow) dacă se depășește capacitatea maximă.",
+  "presentation": "### Prezentare Generală\n\nStiva (**Stack**) este o structură de date liniară care respectă principiul **LIFO** (*Last In, First Out* - Ultimul intrat, primul ieșit). Singurul element accesibil în mod direct este cel situat în vârful stivei (cel mai recent adăugat).\n\nPutem vizualiza o stivă ca pe un teanc de farfurii: adăugarea unui element nou se poate face doar deasupra (operația `push`), iar eliminarea se poate face exclusiv pentru elementul din vârf (operația `pop`). Această structură este ideală pentru parantezarea expresiilor, recursivitate și menținerea unui istoric pentru operații reversibile (de tip Undo).",
+  "complexity": "### Complexitate\n\n- **Timp:** Operațiile fundamentale (`push`, `pop`, `top`/`peek`, `empty`, `size`) sunt extrem de rapide, executându-se în timp constant $O(1)$.\n- **Spațiu:** $O(N)$, unde $N$ este numărul maxim de elemente stocate simultan în stivă.",
+  "variations": "### Variații și Edge Cases\n\n1. **Stivă Monotonă:** O stivă în care elementele sunt păstrate într-o ordine strict crescătoare sau descrescătoare. La inserarea unui element nou, se elimină din vârf toate elementele care încalcă monotonia. Utilă pentru determinarea rapidă în $O(N)$ a următorului element mai mare/mic dintr-un șir.\n2. **Stack Overflow / Underflow:** Erori generate la depășirea capacității maxime a stivei (Overflow - de obicei în cazul recursivității infinite) sau la încercarea de a elimina dintr-o stivă goală (Underflow).",
   "applications": "### Aplicații\n\n- Verificarea expresiilor matematice parantezate corect.\n- Evaluarea expresiilor în formă postfixată (Reverse Polish Notation).\n- Parcurgerea grafurilor în adâncime (DFS - Depth First Search).\n- Funcționalitatea de Undo/Redo în editoarele de text.",
-  code: `
-#include <iostream>
-#include <stack>
-#include <string>
-
-using namespace std;
-
-bool parantezeCorecte(string sir) {
-    stack<char> s;
-    for (char c : sir) {
-        if (c == '(' || c == '[' || c == '{') {
-            s.push(c);
-        } else {
-            if (s.empty()) return false;
-            char varf = s.top();
-            if ((c == ')' && varf == '(') || 
-                (c == ']' && varf == '[') || 
-                (c == '}' && varf == '{')) {
-                s.pop();
-            } else {
-                return false; 
-            }
-        }
-    }
-    return s.empty();
-}
-
-int main() {
-    string s = "{[()]}()[{}]";
-    bool ok = parantezeCorecte(s);
-    return 0;
-}
-`,
+  "code": "\n#include <iostream>\n#include <stack>\n#include <string>\n\nusing namespace std;\n\nbool parantezeCorecte(string sir) {\n    stack<char> s;\n    for (char c : sir) {\n        if (c == '(' || c == '[' || c == '{') {\n            s.push(c);\n        } else {\n            if (s.empty()) return false;\n            char varf = s.top();\n            if ((c == ')' && varf == '(') || \n                (c == ']' && varf == '[') || \n                (c == '}' && varf == '{')) {\n                s.pop();\n            } else {\n                return false; \n            }\n        }\n    }\n    return s.empty();\n}\n\nint main() {\n    string s = \"{[()]}()[{}]\";\n    bool ok = parantezeCorecte(s);\n    return 0;\n}\n",
   "explanations": [
     {
       "line": 8,
@@ -44,320 +12,502 @@ int main() {
         {
           "label": "Stivă Goadă",
           "groups": [
-            [{ "val": "Vârf", "hidden": true }]
+            [
+              {
+                "val": "Vârf",
+                "hidden": true
+              }
+            ]
           ]
         }
       ]
     },
     {
-      "line": 9,
+      "line": 12,
       "text": "Pasul 1: c = '{'. Fiind paranteză deschisă, o punem pe stivă.",
       "blocksVisual": [
         {
           "label": "Push '{'",
           "groups": [
-            [{ "val": "{", "active": true }]
+            [
+              {
+                "val": "{",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
-      "line": 9,
+      "line": 12,
       "text": "Pasul 2: c = '['. O punem pe stivă în vârful elementului '{'.",
       "blocksVisual": [
         {
           "label": "Push '['",
           "groups": [
-            [{ "val": "[", "active": true }],
-            [{ "val": "{" }]
+            [
+              {
+                "val": "[",
+                "active": true
+              }
+            ],
+            [
+              {
+                "val": "{"
+              }
+            ]
           ]
         }
       ]
     },
     {
-      "line": 9,
+      "line": 12,
       "text": "Pasul 3: c = '('. O adăugăm pe stivă peste '['.",
       "blocksVisual": [
         {
           "label": "Push '('",
           "groups": [
-            [{ "val": "(", "active": true }],
-            [{ "val": "[" }],
-            [{ "val": "{" }]
+            [
+              {
+                "val": "(",
+                "active": true
+              }
+            ],
+            [
+              {
+                "val": "["
+              }
+            ],
+            [
+              {
+                "val": "{"
+              }
+            ]
           ]
         }
       ]
     },
     {
-      "line": 13,
+      "line": 14,
       "text": "Pasul 4: c = ')'. Fiind închisă, verificăm dacă stiva e goală (nu este) și citim vârful stivei.",
       "blocksVisual": [
         {
           "label": "Citire Vârf",
           "groups": [
-            [{ "val": "(", "active": true }],
-            [{ "val": "[" }],
-            [{ "val": "{" }]
+            [
+              {
+                "val": "(",
+                "active": true
+              }
+            ],
+            [
+              {
+                "val": "["
+              }
+            ],
+            [
+              {
+                "val": "{"
+              }
+            ]
           ]
         }
       ]
     },
     {
-      "line": 14,
+      "line": 15,
       "text": "Vârful stivei este '('. Se potrivește cu c = ')', deci le împerechem cu succes.",
       "blocksVisual": [
         {
           "label": "Potrivire ')' și '('",
           "groups": [
-            [{ "val": "Match: ()", "sorted": true }],
-            [{ "val": "[" }],
-            [{ "val": "{" }]
+            [
+              {
+                "val": "Match: ()",
+                "sorted": true
+              }
+            ],
+            [
+              {
+                "val": "["
+              }
+            ],
+            [
+              {
+                "val": "{"
+              }
+            ]
           ]
         }
       ]
     },
     {
-      "line": 17,
+      "line": 19,
       "text": "Eliminăm '(' din stivă prin pop(). Noul vârf devine '['.",
       "blocksVisual": [
         {
           "label": "Pop",
           "groups": [
-            [{ "val": "[", "active": true }],
-            [{ "val": "{" }]
+            [
+              {
+                "val": "[",
+                "active": true
+              }
+            ],
+            [
+              {
+                "val": "{"
+              }
+            ]
           ]
         }
       ]
     },
     {
-      "line": 13,
+      "line": 14,
       "text": "Pasul 5: c = ']'. Verificăm vârful stivei.",
       "blocksVisual": [
         {
           "label": "Citire Vârf",
           "groups": [
-            [{ "val": "[", "active": true }],
-            [{ "val": "{" }]
+            [
+              {
+                "val": "[",
+                "active": true
+              }
+            ],
+            [
+              {
+                "val": "{"
+              }
+            ]
           ]
         }
       ]
     },
     {
-      "line": 14,
+      "line": 15,
       "text": "Vârful stivei este '['. Se potrivește cu c = ']', deci le împerechem.",
       "blocksVisual": [
         {
           "label": "Potrivire ']' și '['",
           "groups": [
-            [{ "val": "Match: []", "sorted": true }],
-            [{ "val": "{" }]
+            [
+              {
+                "val": "Match: []",
+                "sorted": true
+              }
+            ],
+            [
+              {
+                "val": "{"
+              }
+            ]
           ]
         }
       ]
     },
     {
-      "line": 17,
+      "line": 19,
       "text": "Eliminăm '[' din stivă. Noul vârf devine '{'.",
       "blocksVisual": [
         {
           "label": "Pop",
           "groups": [
-            [{ "val": "{", "active": true }]
+            [
+              {
+                "val": "{",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
-      "line": 13,
+      "line": 14,
       "text": "Pasul 6: c = '}'. Verificăm vârful stivei.",
       "blocksVisual": [
         {
           "label": "Citire Vârf",
           "groups": [
-            [{ "val": "{", "active": true }]
+            [
+              {
+                "val": "{",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
-      "line": 14,
+      "line": 15,
       "text": "Vârful stivei este '{'. Se potrivește cu c = '}', deci le împerechem.",
       "blocksVisual": [
         {
           "label": "Potrivire '}' și '{'",
           "groups": [
-            [{ "val": "Match: {}", "sorted": true }]
+            [
+              {
+                "val": "Match: {}",
+                "sorted": true
+              }
+            ]
           ]
         }
       ]
     },
     {
-      "line": 17,
+      "line": 19,
       "text": "Eliminăm '{'. Stiva devine goală.",
       "blocksVisual": [
         {
           "label": "Pop - Stivă Goală",
           "groups": [
-            [{ "val": "Vârf", "hidden": true }]
+            [
+              {
+                "val": "Vârf",
+                "hidden": true
+              }
+            ]
           ]
         }
       ]
     },
     {
-      "line": 9,
+      "line": 12,
       "text": "Pasul 7: c = '('. Este deschisă, deci o adăugăm pe stivă.",
       "blocksVisual": [
         {
           "label": "Push '('",
           "groups": [
-            [{ "val": "(", "active": true }]
+            [
+              {
+                "val": "(",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
-      "line": 13,
+      "line": 14,
       "text": "Pasul 8: c = ')'. Verificăm vârful stivei.",
       "blocksVisual": [
         {
           "label": "Citire Vârf",
           "groups": [
-            [{ "val": "(", "active": true }]
+            [
+              {
+                "val": "(",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
-      "line": 14,
+      "line": 15,
       "text": "Vârful stivei este '('. Se potrivește cu c = ')', deci le împerechem.",
       "blocksVisual": [
         {
           "label": "Potrivire ')' și '('",
           "groups": [
-            [{ "val": "Match: ()", "sorted": true }]
+            [
+              {
+                "val": "Match: ()",
+                "sorted": true
+              }
+            ]
           ]
         }
       ]
     },
     {
-      "line": 17,
+      "line": 19,
       "text": "Eliminăm '('. Stiva devine goală din nou.",
       "blocksVisual": [
         {
           "label": "Pop - Stivă Goală",
           "groups": [
-            [{ "val": "Vârf", "hidden": true }]
+            [
+              {
+                "val": "Vârf",
+                "hidden": true
+              }
+            ]
           ]
         }
       ]
     },
     {
-      "line": 9,
+      "line": 12,
       "text": "Pasul 9: c = '['. Este deschisă, o punem pe stivă.",
       "blocksVisual": [
         {
           "label": "Push '['",
           "groups": [
-            [{ "val": "[", "active": true }]
+            [
+              {
+                "val": "[",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
-      "line": 9,
+      "line": 12,
       "text": "Pasul 10: c = '{'. O punem pe stivă peste '['.",
       "blocksVisual": [
         {
           "label": "Push '{'",
           "groups": [
-            [{ "val": "{", "active": true }],
-            [{ "val": "[" }]
+            [
+              {
+                "val": "{",
+                "active": true
+              }
+            ],
+            [
+              {
+                "val": "["
+              }
+            ]
           ]
         }
       ]
     },
     {
-      "line": 13,
+      "line": 14,
       "text": "Pasul 11: c = '}'. Verificăm vârful stivei.",
       "blocksVisual": [
         {
           "label": "Citire Vârf",
           "groups": [
-            [{ "val": "{", "active": true }],
-            [{ "val": "[" }]
+            [
+              {
+                "val": "{",
+                "active": true
+              }
+            ],
+            [
+              {
+                "val": "["
+              }
+            ]
           ]
         }
       ]
     },
     {
-      "line": 14,
+      "line": 15,
       "text": "Vârful stivei este '{'. Se potrivește cu c = '}', deci le împerechem.",
       "blocksVisual": [
         {
           "label": "Potrivire '}' și '{'",
           "groups": [
-            [{ "val": "Match: {}", "sorted": true }],
-            [{ "val": "[" }]
+            [
+              {
+                "val": "Match: {}",
+                "sorted": true
+              }
+            ],
+            [
+              {
+                "val": "["
+              }
+            ]
           ]
         }
       ]
     },
     {
-      "line": 17,
+      "line": 19,
       "text": "Eliminăm '{'. Noul vârf este '['.",
       "blocksVisual": [
         {
           "label": "Pop",
           "groups": [
-            [{ "val": "[", "active": true }]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 13,
-      "text": "Pasul 12: c = ']'. Verificăm vârful stivei.",
-      "blocksVisual": [
-        {
-          "label": "Citire Vârf",
-          "groups": [
-            [{ "val": "[", "active": true }]
+            [
+              {
+                "val": "[",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       "line": 14,
+      "text": "Pasul 12: c = ']'. Verificăm vârful stivei.",
+      "blocksVisual": [
+        {
+          "label": "Citire Vârf",
+          "groups": [
+            [
+              {
+                "val": "[",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 15,
       "text": "Vârful stivei este '['. Se potrivește cu c = ']', deci le împerechem.",
       "blocksVisual": [
         {
           "label": "Potrivire ']' și '['",
           "groups": [
-            [{ "val": "Match: []", "sorted": true }]
+            [
+              {
+                "val": "Match: []",
+                "sorted": true
+              }
+            ]
           ]
         }
       ]
     },
     {
-      "line": 17,
+      "line": 19,
       "text": "Eliminăm '['. Stiva este goală și am terminat de parcurs șirul.",
       "blocksVisual": [
         {
           "label": "Pop - Stivă Goală",
           "groups": [
-            [{ "val": "Vârf", "hidden": true }]
+            [
+              {
+                "val": "Vârf",
+                "hidden": true
+              }
+            ]
           ]
         }
       ]
     },
     {
-      "line": 23,
+      "line": 25,
       "text": "Parcurgerea s-a finalizat fără erori. Returnăm s.empty(). Deoarece stiva este goală, expresia este corect parantezată. Rezultatul este Adevărat (true).",
       "blocksVisual": [
         {
           "label": "Rezultat Final",
           "groups": [
-            [{ "val": "Valid!", "sorted": true }]
+            [
+              {
+                "val": "Valid!",
+                "sorted": true
+              }
+            ]
           ]
         }
       ]

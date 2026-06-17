@@ -1,281 +1,110 @@
 export const data = {
-  "presentation": "### Prezentare Generală\n\nDepth First Search (Parcurgerea în Adâncime) este o tehnică fundamentală de explorare a unui graf. Se pornește dintr-un nod sursă și se vizitează un vecin, apoi un vecin al acelui vecin, adâncindu-ne cât mai mult posibil. Când ajungem la un nod fără vecini nevizitați, ne 'întoarcem' (backtrack) la nodul anterior.\\n\\nEste implementată natural folosind o funcție recursivă (care folosește implicit stiva de apeluri a sistemului). Este esențial să marcăm nodurile deja vizitate într-un vector `visited` pentru a nu intra într-un ciclu infinit.",
-  "complexity": "### Complexitate\n\n- **Timp:** O(V + E) deoarece explorăm fiecare nod și fiecare muchie exact o dată.\\n- **Spațiu:** O(V) pentru vectorul de vizitați și stiva de recursivitate (în cel mai rău caz, graful este o linie dreaptă).\n",
-  "variations": "### Variații și Edge Cases\n\nAflarea Componentelor Conexe, Detectarea Ciclurilor (grafuri orientate/neorientate), Sortare Topologică.",
-  "applications": "### Aplicații\n\nRezolvarea labirinturilor, flood fill (umplerea contururilor în MS Paint), analiza rețelelor electrice.",
-  code: `
-#include <iostream>
-#include <vector>
-
-using namespace std;
-
-void dfs(int node, vector<vector<int>>& adj, vector<bool>& visited) {
-    visited[node] = true;
-    cout << node << " ";
-    
-    for (int neighbor : adj[node]) {
-        if (!visited[neighbor]) {
-            dfs(neighbor, adj, visited);
-        }
-    }
-}
-
-int main() {
-    int V = 5;
-    vector<vector<int>> adj = {
-        {1, 2},    // Vecinii lui 0
-        {0, 3, 4}, // Vecinii lui 1
-        {0, 4},    // Vecinii lui 2
-        {1},       // Vecinii lui 3
-        {1, 2}     // Vecinii lui 4
-    };
-    
-    vector<bool> visited(V, false);
-    
-    cout << "Parcurgere DFS pornind din 0: ";
-    dfs(0, adj, visited);
-    cout << "
-";
-    
-    return 0;
-}
-`,
+  "presentation": "### Parcurgerea în Adâncime (DFS)\n\nDepth-First Search (DFS) explorează graful mergând cât mai adânc posibil pe fiecare ramură, înainte de a se întoarce (backtracking) la nodurile anterioare.\n\nSe folosește o structură de tip LIFO (Last-In, First-Out) - de cele mai multe ori prin intermediul **stivei de apeluri recursive**. DFS împarte muchiile grafului în muchii de arbore (folosite pentru vizitarea nodurilor noi) și muchii de întoarcere (back edges, care detectează cicluri). Complexitatea sa în timp este de $O(V + E)$.",
+  "complexity": "### Complexitate\n\n- **Timp:** $O(V + E)$ - vizităm fiecare nod și muchie exact o singură dată.\n- **Spațiu:** $O(V)$ - stiva de recursivitate poate ajunge la adâncimea $V$ (dacă graful este un drum liniar).",
+  "variations": "### Variații și Cazuri Particulare\n\n- **DFS Iterativ**: Implementat cu o structură explicită de tip `std::stack`.\n- **Timpi de intrare/ieșire (Euler Tour)**: Memorarea momentului de început și de sfârșit pentru vizita fiecărui nod.\n- **Detecția ciclurilor**: Dacă în timpul parcurgerii întâlnim un nod vizitat care se află pe stiva de recursivitate activă.",
+  "applications": "### Aplicații Reale\n\n- Sortarea topologică a unui graf orientat aciclic (DAG).\n- Determinarea componentelor conexe și tare conexe.\n- Rezolvarea puzzle-urilor și labirinturilor.",
+  "code": "#include <iostream>\n#include <vector>\n\nusing namespace std;\n\nvoid dfs(int node, vector<vector<int>>& adj, vector<bool>& visited) {\n    visited[node] = true;\n    cout << node << \" \";\n    \n    for (int neighbor : adj[node]) {\n        if (!visited[neighbor]) {\n            dfs(neighbor, adj, visited);\n        }\n    }\n}\n\nint main() {\n    int V = 5;\n    vector<vector<int>> adj = {\n        {1, 2},\n        {0, 3, 4},\n        {0, 4},\n        {1},\n        {1, 2}\n    };\n    vector<bool> visited(V, false);\n    dfs(0, adj, visited);\n    return 0;\n}\n",
   "explanations": [
     {
-      "line": 30,
-      "text": "Începem DFS-ul din nodul 0.",
-      "blocksVisual": [
-        {
-          "label": "Apel",
-          "groups": [
-            [
-              {
-                "val": "dfs(0)",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 40,
-            "label": "0",
-            "state": "active"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 110,
-            "label": "1"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 110,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 180,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 180,
-            "label": "4"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          }
-        ]
-      }
-    },
-    {
       "line": 7,
-      "text": "Marcăm nodul 0 ca vizitat.",
+      "text": "Intrăm în funcția recursivă `dfs` pentru nodul 0.",
       "blocksVisual": [
         {
-          "label": "Vizitat",
+          "label": "Nod curent",
           "groups": [
             [
               {
-                "val": "0",
+                "val": "node: 0",
                 "active": true
-              },
-              {
-                "val": "1"
-              },
-              {
-                "val": "2"
-              },
-              {
-                "val": "3"
-              },
-              {
-                "val": "4"
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 40,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 110,
-            "label": "1"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 110,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 180,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 180,
-            "label": "4"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          }
-        ]
-      }
+      ]
     },
     {
-      "line": 10,
-      "text": "Iterăm prin vecinii lui 0 (adică 1 și 2).",
+      "line": 8,
+      "text": "Marcăm nodul 0 ca vizitat în vectorul `visited`.",
       "blocksVisual": [
         {
-          "label": "Vecini 0",
+          "label": "Visited",
           "groups": [
             [
               {
-                "val": "1",
+                "val": "visited[0]: true",
                 "active": true
               },
               {
-                "val": "2"
+                "val": "visited[1]: false"
+              },
+              {
+                "val": "visited[2]: false"
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 40,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 110,
-            "label": "1",
-            "state": "active"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 110,
-            "label": "2",
-            "state": "active"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 180,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 180,
-            "label": "4"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          }
-        ]
-      }
+      ]
+    },
+    {
+      "line": 9,
+      "text": "Afișăm nodul 0.",
+      "blocksVisual": [
+        {
+          "label": "Consolă",
+          "groups": [
+            [
+              {
+                "val": "0 "
+              }
+            ]
+          ]
+        }
+      ]
     },
     {
       "line": 11,
-      "text": "Vecinul 1 nu este vizitat. Apelăm recursiv `dfs(1)`.",
+      "text": "Parcurgem lista de vecini ai nodului 0: [1, 2]. Primul vecin este 1.",
       "blocksVisual": [
         {
-          "label": "Apel",
+          "label": "Vecin",
           "groups": [
             [
+              {
+                "val": "neighbor: 1",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "Verificăm dacă vecinul 1 a fost vizitat. `visited[1]` este false.",
+      "blocksVisual": [
+        {
+          "label": "Visited check",
+          "groups": [
+            [
+              {
+                "val": "visited[1]: false"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Apelăm recursiv `dfs(1)`.",
+      "blocksVisual": [
+        {
+          "label": "Recursivitate",
+          "groups": [
+            [
+              {
+                "val": "dfs(0)"
+              },
               {
                 "val": "dfs(1)",
                 "active": true
@@ -283,233 +112,144 @@ int main() {
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 40,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 110,
-            "label": "1",
-            "state": "active"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 110,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 180,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 180,
-            "label": "4"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          }
-        ]
-      }
+      ]
     },
     {
       "line": 7,
-      "text": "Marcăm 1 ca vizitat.",
+      "text": "Pornim executarea `dfs(1)`.",
       "blocksVisual": [
         {
-          "label": "Vizitat",
+          "label": "Nod curent",
           "groups": [
             [
               {
-                "val": "0",
+                "val": "node: 1",
                 "active": true
-              },
-              {
-                "val": "1",
-                "active": true
-              },
-              {
-                "val": "2"
-              },
-              {
-                "val": "3"
-              },
-              {
-                "val": "4"
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 40,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 110,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 110,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 180,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 180,
-            "label": "4"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          }
-        ]
-      }
+      ]
     },
     {
-      "line": 10,
-      "text": "Vecinii lui 1 sunt 0, 3, 4. 0 e deja vizitat. Urmează 3.",
+      "line": 8,
+      "text": "Marcăm nodul 1 ca vizitat.",
       "blocksVisual": [
         {
-          "label": "Vecini 1",
+          "label": "Visited",
           "groups": [
             [
               {
-                "val": "0(viz)"
+                "val": "visited[0]: true"
               },
               {
-                "val": "3",
+                "val": "visited[1]: true",
                 "active": true
               },
               {
-                "val": "4"
+                "val": "visited[2]: false"
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 40,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 110,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 110,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 180,
-            "label": "3",
-            "state": "active"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 180,
-            "label": "4",
-            "state": "active"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          }
-        ]
-      }
+      ]
+    },
+    {
+      "line": 9,
+      "text": "Afișăm nodul 1.",
+      "blocksVisual": [
+        {
+          "label": "Consolă",
+          "groups": [
+            [
+              {
+                "val": "0 1 "
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 11,
+      "text": "Parcurgem vecinii nodului 1: [0, 3, 4]. Primul vecin este 0.",
+      "blocksVisual": [
+        {
+          "label": "Vecin",
+          "groups": [
+            [
+              {
+                "val": "neighbor: 0",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
     },
     {
       "line": 12,
+      "text": "Nodul 0 este vizitat, deci nu facem nimic.",
+      "blocksVisual": [
+        {
+          "label": "Visited check",
+          "groups": [
+            [
+              {
+                "val": "visited[0]: true"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 11,
+      "text": "Trecem la următorul vecin al nodului 1, care este 3.",
+      "blocksVisual": [
+        {
+          "label": "Vecin",
+          "groups": [
+            [
+              {
+                "val": "neighbor: 3",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "Nodul 3 nu este vizitat.",
+      "blocksVisual": [
+        {
+          "label": "Visited check",
+          "groups": [
+            [
+              {
+                "val": "visited[3]: false"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 13,
       "text": "Apelăm recursiv `dfs(3)`.",
       "blocksVisual": [
         {
-          "label": "Apel",
+          "label": "Recursivitate",
           "groups": [
             [
+              {
+                "val": "dfs(0)"
+              },
+              {
+                "val": "dfs(1)"
+              },
               {
                 "val": "dfs(3)",
                 "active": true
@@ -517,379 +257,92 @@ int main() {
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 40,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 110,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 110,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 180,
-            "label": "3",
-            "state": "active"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 180,
-            "label": "4"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          }
-        ]
-      }
+      ]
     },
     {
-      "line": 7,
-      "text": "Marcăm 3 ca vizitat.",
+      "line": 8,
+      "text": "Marcăm nodul 3 ca vizitat.",
       "blocksVisual": [
         {
-          "label": "Vizitat",
+          "label": "Visited",
           "groups": [
             [
               {
-                "val": "0",
+                "val": "visited[3]: true",
                 "active": true
-              },
-              {
-                "val": "1",
-                "active": true
-              },
-              {
-                "val": "2"
-              },
-              {
-                "val": "3",
-                "active": true
-              },
-              {
-                "val": "4"
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 40,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 110,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 110,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 180,
-            "label": "3",
-            "state": "visited"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 180,
-            "label": "4"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          }
-        ]
-      }
+      ]
     },
     {
-      "line": 10,
-      "text": "Vecinii lui 3 sunt doar 1. Dar 1 este deja vizitat! Deci am atins un capăt.",
+      "line": 9,
+      "text": "Afișăm nodul 3.",
       "blocksVisual": [
         {
-          "label": "Vecini 3",
+          "label": "Consolă",
           "groups": [
             [
               {
-                "val": "1(viz)"
+                "val": "0 1 3 "
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 40,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 110,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 110,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 180,
-            "label": "3",
-            "state": "visited"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 180,
-            "label": "4"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          }
-        ]
-      }
+      ]
     },
     {
-      "line": 15,
-      "text": "Funcția `dfs(3)` se termină. Ne întoarcem (backtrack) la `dfs(1)`.",
+      "line": 11,
+      "text": "Vecinii lui 3 sunt [1]. 1 este vizitat. Ne întoarcem din `dfs(3)`.",
       "blocksVisual": [
         {
           "label": "Backtrack",
           "groups": [
             [
               {
-                "val": "Înapoi la dfs(1)",
-                "sorted": true
-              }
-            ]
-          ]
-        }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 40,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 110,
-            "label": "1",
-            "state": "active"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 110,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 180,
-            "label": "3",
-            "state": "visited"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 180,
-            "label": "4"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          }
-        ]
-      }
-    },
-    {
-      "line": 10,
-      "text": "La `dfs(1)`, următorul vecin de verificat era 4. 4 nu este vizitat.",
-      "blocksVisual": [
-        {
-          "label": "Vecini 1",
-          "groups": [
-            [
-              {
-                "val": "0(viz)"
+                "val": "dfs(0)"
               },
               {
-                "val": "3(viz)"
-              },
-              {
-                "val": "4",
+                "val": "dfs(1)",
                 "active": true
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 40,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 110,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 110,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 180,
-            "label": "3",
-            "state": "visited"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 180,
-            "label": "4",
-            "state": "active"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          }
-        ]
-      }
+      ]
     },
     {
-      "line": 12,
+      "line": 11,
+      "text": "Revenim în `dfs(1)`. Următorul vecin nerezolvat este 4.",
+      "blocksVisual": [
+        {
+          "label": "Vecin",
+          "groups": [
+            [
+              {
+                "val": "neighbor: 4",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 13,
       "text": "Apelăm recursiv `dfs(4)`.",
       "blocksVisual": [
         {
-          "label": "Apel",
+          "label": "Recursivitate",
           "groups": [
             [
+              {
+                "val": "dfs(0)"
+              },
+              {
+                "val": "dfs(1)"
+              },
               {
                 "val": "dfs(4)",
                 "active": true
@@ -897,472 +350,100 @@ int main() {
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 40,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 110,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 110,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 180,
-            "label": "3",
-            "state": "visited"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 180,
-            "label": "4",
-            "state": "active"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          }
-        ]
-      }
+      ]
     },
     {
-      "line": 7,
-      "text": "Marcăm 4 ca vizitat.",
+      "line": 8,
+      "text": "Marcăm nodul 4 ca vizitat.",
       "blocksVisual": [
         {
-          "label": "Vizitat",
+          "label": "Visited",
           "groups": [
             [
               {
-                "val": "0",
-                "active": true
-              },
-              {
-                "val": "1",
-                "active": true
-              },
-              {
-                "val": "2"
-              },
-              {
-                "val": "3",
-                "active": true
-              },
-              {
-                "val": "4",
+                "val": "visited[4]: true",
                 "active": true
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 40,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 110,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 110,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 180,
-            "label": "3",
-            "state": "visited"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 180,
-            "label": "4",
-            "state": "visited"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          }
-        ]
-      }
+      ]
     },
     {
-      "line": 10,
-      "text": "Vecinii lui 4 sunt 1 și 2. 1 este deja vizitat. Apelăm DFS pentru 2.",
+      "line": 9,
+      "text": "Afișăm nodul 4.",
       "blocksVisual": [
         {
-          "label": "Vecini 4",
+          "label": "Consolă",
           "groups": [
             [
               {
-                "val": "1(viz)"
-              },
+                "val": "0 1 3 4 "
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 11,
+      "text": "Parcurgem vecinii lui 4: [1, 2]. 1 este vizitat. Trecem la vecinul 2.",
+      "blocksVisual": [
+        {
+          "label": "Vecin",
+          "groups": [
+            [
               {
-                "val": "2",
+                "val": "neighbor: 2",
                 "active": true
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 40,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 110,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 110,
-            "label": "2",
-            "state": "active"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 180,
-            "label": "3",
-            "state": "visited"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 180,
-            "label": "4",
-            "state": "visited"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          }
-        ]
-      }
+      ]
     },
     {
-      "line": 7,
-      "text": "Marcăm 2 ca vizitat.",
+      "line": 13,
+      "text": "Nodul 2 nu este vizitat. Apelăm recursiv `dfs(2)`.",
       "blocksVisual": [
         {
-          "label": "Vizitat",
+          "label": "Recursivitate",
           "groups": [
             [
               {
-                "val": "Toate vizitate!",
-                "sorted": true
+                "val": "dfs(0)"
+              },
+              {
+                "val": "dfs(1)"
+              },
+              {
+                "val": "dfs(4)"
+              },
+              {
+                "val": "dfs(2)",
+                "active": true
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 40,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 110,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 110,
-            "label": "2",
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 180,
-            "label": "3",
-            "state": "visited"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 180,
-            "label": "4",
-            "state": "visited"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          }
-        ]
-      }
+      ]
     },
     {
-      "line": 10,
-      "text": "Vecinii lui 2 (0, 4) sunt amândoi vizitați. Ne întoarcem.",
+      "line": 8,
+      "text": "Marcăm 2 ca vizitat. Toate nodurile sunt acum vizitate. Algoritmul se întoarce succesiv din toate apelurile.",
       "blocksVisual": [
         {
-          "label": "Backtrack",
+          "label": "Visited",
           "groups": [
             [
               {
-                "val": "Înapoi la dfs(4)"
+                "val": "visited[2]: true",
+                "active": true
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 40,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 110,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 110,
-            "label": "2",
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 180,
-            "label": "3",
-            "state": "visited"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 180,
-            "label": "4",
-            "state": "visited"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          }
-        ]
-      }
-    },
-    {
-      "line": 15,
-      "text": "Se termină `dfs(4)`, apoi se termină `dfs(1)`, iar în `dfs(0)` vecinul rămas era 2 (deja vizitat). Astfel, am explorat întregul graf conex!",
-      "blocksVisual": [
-        {
-          "label": "Ordinea Vizitării",
-          "groups": [
-            [
-              {
-                "val": "0 -> 1 -> 3 -> 4 -> 2",
-                "sorted": true
-              }
-            ]
-          ]
-        }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 40,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 110,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 110,
-            "label": "2",
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 180,
-            "label": "3",
-            "state": "visited"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 180,
-            "label": "4",
-            "state": "visited"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          }
-        ]
-      }
+      ]
     }
-  ],
-  "problems": {
-    "easy": [
-      {
-        "title": "Componente Conexe",
-        "url": "https://www.pbinfo.ro/probleme/417/componenteconexe",
-        "desc": "Găsire componente"
-      }
-    ],
-    "medium": [
-      {
-        "title": "Number of Islands",
-        "url": "https://leetcode.com/problems/number-of-islands/",
-        "desc": "DFS pe matrice"
-      }
-    ],
-    "hard": [
-      {
-        "title": "Longest Increasing Path in a Matrix",
-        "url": "https://leetcode.com/problems/longest-increasing-path-in-a-matrix/",
-        "desc": "DFS + Memoization"
-      }
-    ]
-  }
+  ]
 };

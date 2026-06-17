@@ -1,8 +1,8 @@
 export const data = {
-  "presentation": "### Prezentare Generală\n\nCel Mai Lung Subșir Strict Crescător (Longest Increasing Subsequence - LIS) extrage un subșir strict crescător cât mai lung.\\n\\nExemplu: Pentru [10, 9, 2, 5, 3, 7, 101, 18], un LIS este [2, 3, 7, 101] (lungime 4).\\n\\nStarea: dp[i] = lungimea LIS care se termină exact la indexul i.\\n\\nTranziție (Abordarea O(N^2)):\\nPentru fiecare i, ne uităm la toate j < i. Dacă arr[i] > arr[j], atunci șirul care se termină în j poate fi extins cu arr[i].\\ndp[i] = max(dp[i], dp[j] + 1).\\n\\nExistă și o tehnică cu Binary Search care aduce complexitatea la O(N log N), dar paradigma DP se vede cel mai clar în versiunea pătratică.",
-  "complexity": "### Complexitate\n\n- **Timp:** O(N^2) abordarea pur DP. O(N log N) abordarea Căutare Binară + DP.\\n- **Spațiu:** O(N) pentru vectorul dp.\n",
-  "variations": "### Variații și Edge Cases\n\n1. Cel mai lung subșir descrescător (LDS).\\n2. Bitonic Subsequence (crește, apoi descrește).",
-  "applications": "### Aplicații\n\nSortarea minimă a elementelor (cate elemente trebuie mutate), analize pe secvențe biologice, algoritmul Patience Sorting.",
+  "presentation": "### Prezentare Generală\n\nCel Mai Lung Subșir Strict Crescător (Longest Increasing Subsequence - LIS) este o problemă fundamentală de programare dinamică ce constă în găsirea lungimii maxime a unui subșir al unui tablou dat, astfel încât elementele subșirului să fie în ordine strict crescătoare. Elementele subșirului nu trebuie să fie adiacente în tabloul original.\n\nDe exemplu, în vectorul:\n- $arr$ = $[10, 9, 2, 5, 3, 7, 101, 18]$\nUn subșir crescător maxim este $[2, 3, 7, 101]$ (sau $[2, 5, 7, 101]$, $[2, 3, 7, 18]$ etc.), având lungimea maximă 4.\n\n#### Formulare DP\nDefinim starea:\n- $dp[i]$ = lungimea celui mai lung subșir strict crescător care se termină exact cu elementul de pe poziția $i$ ($arr[i]$).\n\nTranzițiile se stabilesc prin compararea elementului curent $arr[i]$ cu toate elementele anterioare $arr[j]$ ($j < i$):\n- Dacă $arr[i] > arr[j]$, atunci putem extinde orice subșir valid care se termină în $j$ prin adăugarea lui $arr[i]$.\n- Din toate opțiunile de extindere posibile, o alegem pe cea care maximizează lungimea:\n  $$dp[i] = \\max \\left( 1, \\max_{j < i, arr[i] > arr[j]} (dp[j] + 1) \\right)$$\n\n#### Cazuri de Bază\nFiecare element individual reprezintă un subșir crescător valid de lungime 1:\n$$dp[i] = 1 \\quad \\forall i \\in [0, N-1]$$\n\n#### Optimizare la $\\mathcal{O}(N \\log N)$\nPrin menținerea unui vector auxiliar care stochează cel mai mic element final pentru fiecare lungime de subșir crescător întâlnită până acum, putem folosi Căutarea Binară (prin funcții precum `std::lower_bound` în C++) pentru a plasa fiecare element la poziția sa optimă în $\\mathcal{O}(\\log N)$ per pas.",
+  "complexity": "### Complexitate\n\n- **Timp:** \n  - $\\mathcal{O}(N^2)$ pentru abordarea standard cu două bucle imbricate (prezentată în cod).\n  - $\\mathcal{O}(N \\log N)$ pentru varianta optimizată cu Căutare Binară.\n- **Spațiu:** $\\mathcal{O}(N)$ pentru stocarea vectorului $dp$ (sau a vectorului auxiliar în cazul versiunii logaritmice).",
+  "variations": "### Variații și Edge Cases\n\n1. **Cel Mai Lung Subșir Descrescător (LDS):** Se dorește o secvență strict descrescătoare (se inversează condiția în $arr[i] < arr[j]$).\n2. **Subșir Crescător Non-Strict (LIS Non-Strict):** Elementele succesive pot fi egale (condiția devine $arr[i] \\ge arr[j]$).\n3. **Cel Mai Lung Subșir Bitonic:** Subșirul crește până la un punct, după care scade (se calculează LIS de la stânga la dreapta și LDS de la dreapta la stânga, maximizând $dp_{LIS}[i] + dp_{LDS}[i] - 1$).\n4. **Edge Cases:**\n   - Vector gol (LIS = 0).\n   - Vector sortat strict descrescător (LIS = 1).\n   - Vector cu toate elementele egale (LIS = 1 pentru strict crescător, LIS = $N$ pentru non-strict).",
+  "applications": "### Aplicații în Lumea Reală\n\n- **Patience Sorting:** Un algoritm eficient de sortare bazat pe jocul de cărți Solitaire, care calculează LIS în mod natural.\n- **Analiză Climatologică:** Identificarea tendințelor de încălzire globală prin extragerea celor mai lungi perioade de creștere consecutivă a temperaturilor medii.\n- **Sincronizarea Datelor:** Algoritmi de ordonare a pachetelor de date sosite dezordonat în rețele.\n- **Geometrie Computațională:** Determinarea numărului maxim de drepte neintersectabile în anumite configurații.",
   code: `
 #include <iostream>
 #include <vector>
@@ -115,7 +115,7 @@ int main() {
       ]
     },
     {
-      "line": 16,
+      "line": 17,
       "text": "i = 3 (arr[3] = 5), j = 2 (arr[2] = 2). Deoarece 5 > 2, dp[3] devine max(dp[3]=1, dp[2]+1 = 2) = 2.",
       "blocksVisual": [
         {
@@ -135,13 +135,13 @@ int main() {
           "label": "i=4, j<2",
           "groups": [
             [{ "val": "10" }, { "val": "9" }, { "val": "2" }, { "val": "5" }, { "val": "3", "active": true }, { "val": "7" }, { "val": "101" }, { "val": "18" }],
-            [{ "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "2" }, { "val": "1", "active": true }, { "val": "1" }, { "val": "1" }, { "val": "1" }]
+            [{ "val": "1" }, { "val": "1" }, { "val": "1" }, { "val": "2" }, { "val": "2", "active": true }, { "val": "1" }, { "val": "1" }, { "val": "1" }]
           ]
         }
       ]
     },
     {
-      "line": 16,
+      "line": 17,
       "text": "i = 4 (arr[4] = 3), j = 2 (arr[2] = 2). 3 > 2 este True. dp[4] = max(1, dp[2]+1) = 2.",
       "blocksVisual": [
         {
@@ -180,7 +180,7 @@ int main() {
       ]
     },
     {
-      "line": 16,
+      "line": 17,
       "text": "i = 5 (arr[5] = 7), j = 2 (arr[2] = 2). 7 > 2 este True. dp[5] = max(1, dp[2]+1) = 2.",
       "blocksVisual": [
         {
@@ -193,7 +193,7 @@ int main() {
       ]
     },
     {
-      "line": 16,
+      "line": 17,
       "text": "i = 5 (arr[5] = 7), j = 3 (arr[3] = 5). 7 > 5 este True. dp[5] = max(2, dp[3]+1 = 3) = 3.",
       "blocksVisual": [
         {
@@ -206,7 +206,7 @@ int main() {
       ]
     },
     {
-      "line": 16,
+      "line": 17,
       "text": "i = 5 (arr[5] = 7), j = 4 (arr[4] = 3). 7 > 3 este True. dp[5] = max(3, dp[4]+1 = 3) = 3.",
       "blocksVisual": [
         {
@@ -232,7 +232,7 @@ int main() {
       ]
     },
     {
-      "line": 16,
+      "line": 17,
       "text": "i = 6 (arr[6] = 101), j = 2 (2), j = 3 (5), j = 4 (3). Toate True. dp[6] crește până la 3.",
       "blocksVisual": [
         {
@@ -245,7 +245,7 @@ int main() {
       ]
     },
     {
-      "line": 16,
+      "line": 17,
       "text": "i = 6 (arr[6] = 101), j = 5 (arr[5] = 7). 101 > 7 este True. dp[6] = max(3, dp[5]+1 = 4) = 4.",
       "blocksVisual": [
         {
@@ -258,7 +258,7 @@ int main() {
       ]
     },
     {
-      "line": 16,
+      "line": 17,
       "text": "i = 7 (arr[7] = 18), j = 0 (10). 18 > 10 este True. dp[7] = max(1, dp[0]+1) = 2.",
       "blocksVisual": [
         {
@@ -271,7 +271,7 @@ int main() {
       ]
     },
     {
-      "line": 16,
+      "line": 17,
       "text": "i = 7 (arr[7] = 18), j = 1 (9). 18 > 9 este True. dp[7] = max(2, dp[1]+1) = 2.",
       "blocksVisual": [
         {
@@ -284,7 +284,7 @@ int main() {
       ]
     },
     {
-      "line": 16,
+      "line": 17,
       "text": "i = 7 (arr[7] = 18), j = 2 (2) și j = 3 (5). Ambele True. dp[7] = max(2, dp[3]+1) = 3.",
       "blocksVisual": [
         {
@@ -297,7 +297,7 @@ int main() {
       ]
     },
     {
-      "line": 16,
+      "line": 17,
       "text": "i = 7 (arr[7] = 18), j = 5 (arr[5] = 7). 18 > 7 este True. dp[7] = max(3, dp[5]+1 = 4) = 4.",
       "blocksVisual": [
         {

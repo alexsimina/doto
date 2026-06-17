@@ -1,230 +1,101 @@
 export const data = {
-  "presentation": "### Prezentare Generală\n\nBreadth First Search (Parcurgerea în Lățime) explorează graful nivel cu nivel, plecând de la nodul sursă. Întâi vizitează toți vecinii direcți, apoi vecinii vecinilor, și așa mai departe.\\n\\nAcest comportament face ca BFS să fie algoritmul perfect pentru a găsi **cel mai scurt drum** (ca număr de muchii) într-un graf neponderat.\\n\\nImplementarea se bazează pe o structură de date de tip Coadă (Queue - FIFO: First In, First Out).",
-  "complexity": "### Complexitate\n\n- **Timp:** O(V + E) - fiecare nod este adăugat în coadă o singură dată, iar fiecare muchie este verificată o singură dată.\\n- **Spațiu:** O(V) - pentru coada de așteptare și vectorul de vizitați. În cel mai rău caz (un graf stea), coada va conține V-1 noduri.\n",
-  "variations": "### Variații și Edge Cases\n\nLee Algorithm (BFS pe o matrice pentru găsirea drumului minim într-un labirint), 0-1 BFS (dacă muchiile au cost 0 sau 1, folosim un deque în loc de queue), Multi-source BFS (dacă avem mai multe surse din care plecăm simultan).",
-  "applications": "### Aplicații\n\nGăsirea celui mai scurt drum pe o hartă fără ponderi, rețele peer-to-peer (pentru a găsi nodurile vecine), web crawlers, algoritmul lui Ford-Fulkerson (pentru aflarea drumului de creștere în rețea - Edmonds-Karp).",
-  code: `
-#include <iostream>
-#include <vector>
-#include <queue>
-
-using namespace std;
-
-void bfs(int start, vector<vector<int>>& adj, int V) {
-    vector<bool> visited(V, false);
-    queue<int> q;
-    
-    visited[start] = true;
-    q.push(start);
-    
-    while (!q.empty()) {
-        int node = q.front();
-        q.pop();
-        
-        cout << node << " ";
-        
-        for (int neighbor : adj[node]) {
-            if (!visited[neighbor]) {
-                visited[neighbor] = true;
-                q.push(neighbor);
-            }
-        }
-    }
-}
-
-int main() {
-    int V = 6;
-    vector<vector<int>> adj = {
-        {1, 2},    // Vecini 0
-        {0, 3, 4}, // Vecini 1
-        {0, 4},    // Vecini 2
-        {1, 5},    // Vecini 3
-        {1, 2, 5}, // Vecini 4
-        {3, 4}     // Vecini 5
-    };
-    
-    cout << "Parcurgere BFS pornind din 0: ";
-    bfs(0, adj, V);
-    cout << "
-";
-    
-    return 0;
-}
-`,
+  "presentation": "### Parcurgerea în Lățime (BFS)\n\nBreadth-First Search (BFS) explorează un graf strat cu strat, începând dintr-un nod sursă. Aceasta vizitează mai întâi toți vecinii direcți ai sursei, apoi vecinii acestora și așa mai departe.\n\nDatorită structurii FIFO (First-In, First-Out) implementate cu ajutorul unei **Cozi**, BFS are proprietatea remarcabilă de a descoperi **cele mai scurte drumuri** (măsurate în număr de muchii) de la sursă la toate celelalte noduri în grafuri neponderate. Distanța minimă de la o sursă $s$ la un nod $u$ este determinată pas cu pas.",
+  "complexity": "### Complexitate\n\n- **Timp:** $O(V + E)$ - fiecare nod intră în coadă o singură dată și fiecare muchie este vizitată cel mult de două ori.\n- **Spațiu:** $O(V)$ - pentru coada de așteptare și vectorul `visited` care ține evidența nodurilor explorate.",
+  "variations": "### Variații și Cazuri Particulare\n\n- **Lee Algorithm**: BFS aplicat pe matrice/grid pentru găsirea drumului minim într-un labirint.\n- **0-1 BFS**: Când muchiile au costul 0 sau 1, se folosește un `std::deque`.\n- **Multi-source BFS**: Când se pleacă din mai multe surse simultan.",
+  "applications": "### Aplicații Reale\n\n- Determinarea distanței minime în rețele neponderate.\n- Găsirea celei mai scurte căi de conectare între utilizatori pe platforme sociale.\n- Algoritmul Edmonds-Karp.",
+  "code": "#include <iostream>\n#include <vector>\n#include <queue>\n\nusing namespace std;\n\nvoid bfs(int start, vector<vector<int>>& adj, int V) {\n    vector<bool> visited(V, false);\n    queue<int> q;\n    \n    visited[start] = true;\n    q.push(start);\n    \n    while (!q.empty()) {\n        int node = q.front();\n        q.pop();\n        cout << node << \" \";\n        \n        for (int neighbor : adj[node]) {\n            if (!visited[neighbor]) {\n                visited[neighbor] = true;\n                q.push(neighbor);\n            }\n        }\n    }\n}\n\nint main() {\n    int V = 5;\n    vector<vector<int>> adj = {\n        {1, 2},\n        {0, 3, 4},\n        {0, 4},\n        {1, 4},\n        {1, 2, 3}\n    };\n    bfs(0, adj, V);\n    return 0;\n}\n",
   "explanations": [
     {
-      "line": 40,
-      "text": "Începem BFS din nodul 0.",
+      "line": 7,
+      "text": "Începem funcția `bfs` pornind din nodul de start.",
       "blocksVisual": [
         {
           "label": "Start",
           "groups": [
             [
               {
-                "val": "0"
+                "val": "start: 0"
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 30,
-            "label": "0",
-            "state": "active"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 90,
-            "label": "1"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 90,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 150,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 150,
-            "label": "4"
-          },
-          {
-            "id": "5",
-            "x": 80,
-            "y": 200,
-            "label": "5"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          },
-          {
-            "source": "3",
-            "target": "5"
-          },
-          {
-            "source": "4",
-            "target": "5"
-          }
-        ]
-      }
+      ]
+    },
+    {
+      "line": 8,
+      "text": "Inițializăm vectorul `visited` cu `false` pentru toate cele $V$ noduri.",
+      "blocksVisual": [
+        {
+          "label": "Visited",
+          "groups": [
+            [
+              {
+                "val": "visited[0]: false"
+              },
+              {
+                "val": "visited[1]: false"
+              },
+              {
+                "val": "visited[2]: false"
+              },
+              {
+                "val": "visited[3]: false"
+              },
+              {
+                "val": "visited[4]: false"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 9,
+      "text": "Declarăm coada `q` în care vom reține nodurile în curs de explorare.",
+      "blocksVisual": [
+        {
+          "label": "Queue",
+          "groups": [
+            []
+          ]
+        }
+      ]
     },
     {
       "line": 11,
-      "text": "Marcăm 0 ca vizitat.",
+      "text": "Marcăm nodul de start (0) ca fiind vizitat.",
       "blocksVisual": [
         {
-          "label": "Vizitat",
+          "label": "Visited",
           "groups": [
             [
               {
-                "val": "0",
+                "val": "visited[0]: true",
                 "active": true
+              },
+              {
+                "val": "visited[1]: false"
+              },
+              {
+                "val": "visited[2]: false"
+              },
+              {
+                "val": "visited[3]: false"
+              },
+              {
+                "val": "visited[4]: false"
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 30,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 90,
-            "label": "1"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 90,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 150,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 150,
-            "label": "4"
-          },
-          {
-            "id": "5",
-            "x": 80,
-            "y": 200,
-            "label": "5"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          },
-          {
-            "source": "3",
-            "target": "5"
-          },
-          {
-            "source": "4",
-            "target": "5"
-          }
-        ]
-      }
+      ]
     },
     {
       "line": 12,
-      "text": "Adăugăm 0 în coadă.",
+      "text": "Adăugăm nodul de start în coadă.",
       "blocksVisual": [
         {
-          "label": "Coadă",
+          "label": "Queue",
           "groups": [
             [
               {
@@ -234,81 +105,14 @@ int main() {
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 30,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 90,
-            "label": "1"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 90,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 150,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 150,
-            "label": "4"
-          },
-          {
-            "id": "5",
-            "x": 80,
-            "y": 200,
-            "label": "5"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          },
-          {
-            "source": "3",
-            "target": "5"
-          },
-          {
-            "source": "4",
-            "target": "5"
-          }
-        ]
-      }
+      ]
     },
     {
       "line": 14,
-      "text": "Cât timp coada nu e goală, extragem primul element.",
+      "text": "Verificăm dacă coada nu este goală. Ea conține elementul [0].",
       "blocksVisual": [
         {
-          "label": "Pop",
+          "label": "Queue",
           "groups": [
             [
               {
@@ -316,272 +120,122 @@ int main() {
               }
             ]
           ]
-        },
+        }
+      ]
+    },
+    {
+      "line": 15,
+      "text": "Extragem elementul din fața cozii: `node = 0`.",
+      "blocksVisual": [
         {
-          "label": "Coadă Rămasă",
+          "label": "Nod curent",
           "groups": [
             [
               {
-                "val": "Gol"
+                "val": "node: 0",
+                "active": true
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 30,
-            "label": "0",
-            "state": "active"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 90,
-            "label": "1"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 90,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 150,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 150,
-            "label": "4"
-          },
-          {
-            "id": "5",
-            "x": 80,
-            "y": 200,
-            "label": "5"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          },
-          {
-            "source": "3",
-            "target": "5"
-          },
-          {
-            "source": "4",
-            "target": "5"
-          }
-        ]
-      }
+      ]
+    },
+    {
+      "line": 16,
+      "text": "Eliminăm elementul din coadă. Coada devine goală.",
+      "blocksVisual": [
+        {
+          "label": "Queue",
+          "groups": [
+            []
+          ]
+        }
+      ]
+    },
+    {
+      "line": 17,
+      "text": "Afișăm nodul 0 în consola de ieșire.",
+      "blocksVisual": [
+        {
+          "label": "Console",
+          "groups": [
+            [
+              {
+                "val": "0 "
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 19,
+      "text": "Iterăm prin vecinii nodului 0, care sunt 1 și 2. Începem cu vecinul 1.",
+      "blocksVisual": [
+        {
+          "label": "Vecin",
+          "groups": [
+            [
+              {
+                "val": "neighbor: 1",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
     },
     {
       "line": 20,
-      "text": "Explorăm vecinii lui 0 (1 și 2). Niciunul nu e vizitat.",
+      "text": "Verificăm dacă vecinul 1 este vizitat. `visited[1]` este false.",
       "blocksVisual": [
         {
-          "label": "Vecini 0",
+          "label": "Visited Check",
           "groups": [
             [
               {
-                "val": "1",
-                "active": true
-              },
-              {
-                "val": "2",
-                "active": true
+                "val": "visited[1]: false"
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 30,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 90,
-            "label": "1",
-            "state": "active"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 90,
-            "label": "2",
-            "state": "active"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 150,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 150,
-            "label": "4"
-          },
-          {
-            "id": "5",
-            "x": 80,
-            "y": 200,
-            "label": "5"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          },
-          {
-            "source": "3",
-            "target": "5"
-          },
-          {
-            "source": "4",
-            "target": "5"
-          }
-        ]
-      }
+      ]
+    },
+    {
+      "line": 21,
+      "text": "Marcăm nodul 1 ca vizitat.",
+      "blocksVisual": [
+        {
+          "label": "Visited",
+          "groups": [
+            [
+              {
+                "val": "visited[0]: true"
+              },
+              {
+                "val": "visited[1]: true",
+                "active": true
+              },
+              {
+                "val": "visited[2]: false"
+              },
+              {
+                "val": "visited[3]: false"
+              },
+              {
+                "val": "visited[4]: false"
+              }
+            ]
+          ]
+        }
+      ]
     },
     {
       "line": 22,
-      "text": "Marcăm 1 și 2 ca vizitați și îi adăugăm în coadă.",
+      "text": "Adăugăm nodul 1 în coadă.",
       "blocksVisual": [
         {
-          "label": "Coadă",
-          "groups": [
-            [
-              {
-                "val": "1",
-                "active": true
-              },
-              {
-                "val": "2",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 30,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 90,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 90,
-            "label": "2",
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 150,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 150,
-            "label": "4"
-          },
-          {
-            "id": "5",
-            "x": 80,
-            "y": 200,
-            "label": "5"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          },
-          {
-            "source": "3",
-            "target": "5"
-          },
-          {
-            "source": "4",
-            "target": "5"
-          }
-        ]
-      }
-    },
-    {
-      "line": 14,
-      "text": "Extragem pe 1 din coadă.",
-      "blocksVisual": [
-        {
-          "label": "Pop",
+          "label": "Queue",
           "groups": [
             [
               {
@@ -589,189 +243,132 @@ int main() {
               }
             ]
           ]
-        },
+        }
+      ]
+    },
+    {
+      "line": 19,
+      "text": "Trecem la următorul vecin al nodului 0, care este nodul 2.",
+      "blocksVisual": [
         {
-          "label": "Coadă",
+          "label": "Vecin",
           "groups": [
             [
               {
-                "val": "2"
+                "val": "neighbor: 2",
+                "active": true
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 30,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 90,
-            "label": "1",
-            "state": "active"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 90,
-            "label": "2",
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 150,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 150,
-            "label": "4"
-          },
-          {
-            "id": "5",
-            "x": 80,
-            "y": 200,
-            "label": "5"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          },
-          {
-            "source": "3",
-            "target": "5"
-          },
-          {
-            "source": "4",
-            "target": "5"
-          }
-        ]
-      }
+      ]
     },
     {
       "line": 20,
-      "text": "Vecinii lui 1 sunt 0, 3, 4. 0 este vizitat, deci adăugăm 3 și 4.",
+      "text": "Nodul 2 nu este vizitat. Continuăm explorarea lui.",
       "blocksVisual": [
         {
-          "label": "Coadă Nouă",
+          "label": "Visited Check",
           "groups": [
             [
               {
-                "val": "2"
+                "val": "visited[2]: false"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 21,
+      "text": "Marcăm nodul 2 ca vizitat.",
+      "blocksVisual": [
+        {
+          "label": "Visited",
+          "groups": [
+            [
+              {
+                "val": "visited[0]: true"
               },
               {
-                "val": "3",
+                "val": "visited[1]: true"
+              },
+              {
+                "val": "visited[2]: true",
                 "active": true
               },
               {
-                "val": "4",
+                "val": "visited[3]: false"
+              },
+              {
+                "val": "visited[4]: false"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 22,
+      "text": "Adăugăm nodul 2 în coadă.",
+      "blocksVisual": [
+        {
+          "label": "Queue",
+          "groups": [
+            [
+              {
+                "val": "1"
+              },
+              {
+                "val": "2"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "Revenim la buclă. Coada nu este goală, conține [1, 2].",
+      "blocksVisual": [
+        {
+          "label": "Queue",
+          "groups": [
+            [
+              {
+                "val": "1"
+              },
+              {
+                "val": "2"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 15,
+      "text": "Extragem elementul din fața cozii: `node = 1`.",
+      "blocksVisual": [
+        {
+          "label": "Nod curent",
+          "groups": [
+            [
+              {
+                "val": "node: 1",
                 "active": true
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 30,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 90,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 90,
-            "label": "2",
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 150,
-            "label": "3",
-            "state": "active"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 150,
-            "label": "4",
-            "state": "active"
-          },
-          {
-            "id": "5",
-            "x": 80,
-            "y": 200,
-            "label": "5"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          },
-          {
-            "source": "3",
-            "target": "5"
-          },
-          {
-            "source": "4",
-            "target": "5"
-          }
-        ]
-      }
+      ]
     },
     {
-      "line": 14,
-      "text": "Extragem pe 2 din coadă.",
+      "line": 16,
+      "text": "Eliminăm 1 din coadă. Coada rămâne cu [2].",
       "blocksVisual": [
         {
-          "label": "Pop",
+          "label": "Queue",
           "groups": [
             [
               {
@@ -779,11 +376,155 @@ int main() {
               }
             ]
           ]
-        },
+        }
+      ]
+    },
+    {
+      "line": 17,
+      "text": "Afișăm nodul 1 în consolă.",
+      "blocksVisual": [
         {
-          "label": "Coadă",
+          "label": "Console",
           "groups": [
             [
+              {
+                "val": "0 1 "
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 19,
+      "text": "Iterăm prin vecinii lui 1: [0, 3, 4]. Începem cu vecinul 0.",
+      "blocksVisual": [
+        {
+          "label": "Vecin",
+          "groups": [
+            [
+              {
+                "val": "neighbor: 0",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 20,
+      "text": "Nodul 0 este deja vizitat, îl ignorăm.",
+      "blocksVisual": [
+        {
+          "label": "Visited Check",
+          "groups": [
+            [
+              {
+                "val": "visited[0]: true"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 19,
+      "text": "Trecem la următorul vecin al nodului 1, care este 3.",
+      "blocksVisual": [
+        {
+          "label": "Vecin",
+          "groups": [
+            [
+              {
+                "val": "neighbor: 3",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 20,
+      "text": "Nodul 3 nu este vizitat.",
+      "blocksVisual": [
+        {
+          "label": "Visited Check",
+          "groups": [
+            [
+              {
+                "val": "visited[3]: false"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 21,
+      "text": "Marcăm nodul 3 ca vizitat.",
+      "blocksVisual": [
+        {
+          "label": "Visited",
+          "groups": [
+            [
+              {
+                "val": "visited[3]: true",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 22,
+      "text": "Adăugăm nodul 3 în coadă. Coada devine [2, 3].",
+      "blocksVisual": [
+        {
+          "label": "Queue",
+          "groups": [
+            [
+              {
+                "val": "2"
+              },
+              {
+                "val": "3"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 19,
+      "text": "Trecem la următorul vecin al nodului 1, nodul 4.",
+      "blocksVisual": [
+        {
+          "label": "Vecin",
+          "groups": [
+            [
+              {
+                "val": "neighbor: 4",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 21,
+      "text": "Marcăm nodul 4 ca vizitat și îl adăugăm în coadă. Coada devine [2, 3, 4].",
+      "blocksVisual": [
+        {
+          "label": "Queue",
+          "groups": [
+            [
+              {
+                "val": "2"
+              },
               {
                 "val": "3"
               },
@@ -793,379 +534,19 @@ int main() {
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 30,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 90,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 90,
-            "label": "2",
-            "state": "active"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 150,
-            "label": "3",
-            "state": "visited"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 150,
-            "label": "4",
-            "state": "visited"
-          },
-          {
-            "id": "5",
-            "x": 80,
-            "y": 200,
-            "label": "5"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          },
-          {
-            "source": "3",
-            "target": "5"
-          },
-          {
-            "source": "4",
-            "target": "5"
-          }
-        ]
-      }
-    },
-    {
-      "line": 20,
-      "text": "Vecinii lui 2 sunt 0 și 4. Ambele sunt deja vizitate/în coadă. Nu adăugăm nimic.",
-      "blocksVisual": [
-        {
-          "label": "Skip",
-          "groups": [
-            [
-              {
-                "val": "Niciunul adăugat"
-              }
-            ]
-          ]
-        }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 30,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 90,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 90,
-            "label": "2",
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 150,
-            "label": "3",
-            "state": "visited"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 150,
-            "label": "4",
-            "state": "visited"
-          },
-          {
-            "id": "5",
-            "x": 80,
-            "y": 200,
-            "label": "5"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          },
-          {
-            "source": "3",
-            "target": "5"
-          },
-          {
-            "source": "4",
-            "target": "5"
-          }
-        ]
-      }
+      ]
     },
     {
       "line": 14,
-      "text": "Extragem pe 3. Vecinii săi: 1 (vizitat), 5 (nevizitat).",
+      "text": "Coada nu este goală. Extragem următorul nod, care este 2, apoi vecinii lui 0 și 4 (ambii vizitați). La fel pentru 3 și 4. Coada se golește și algoritmul se încheie.",
       "blocksVisual": [
         {
-          "label": "Pop",
+          "label": "Queue",
           "groups": [
-            [
-              {
-                "val": "3"
-              }
-            ]
-          ]
-        },
-        {
-          "label": "Coadă",
-          "groups": [
-            [
-              {
-                "val": "4"
-              },
-              {
-                "val": "5",
-                "active": true
-              }
-            ]
+            []
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 30,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 90,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 90,
-            "label": "2",
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 150,
-            "label": "3",
-            "state": "active"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 150,
-            "label": "4",
-            "state": "visited"
-          },
-          {
-            "id": "5",
-            "x": 80,
-            "y": 200,
-            "label": "5",
-            "state": "active"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          },
-          {
-            "source": "3",
-            "target": "5"
-          },
-          {
-            "source": "4",
-            "target": "5"
-          }
-        ]
-      }
-    },
-    {
-      "line": 14,
-      "text": "Extragem pe 4. Vecinii (1, 2, 5) toți vizitați. Apoi extragem 5. Gata!",
-      "blocksVisual": [
-        {
-          "label": "Ordinea Vizitării",
-          "groups": [
-            [
-              {
-                "val": "0 -> 1 -> 2 -> 3 -> 4 -> 5",
-                "sorted": true
-              }
-            ]
-          ]
-        }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 30,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 80,
-            "y": 90,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 200,
-            "y": 90,
-            "label": "2",
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "x": 50,
-            "y": 150,
-            "label": "3",
-            "state": "visited"
-          },
-          {
-            "id": "4",
-            "x": 110,
-            "y": 150,
-            "label": "4",
-            "state": "visited"
-          },
-          {
-            "id": "5",
-            "x": 80,
-            "y": 200,
-            "label": "5",
-            "state": "visited"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          },
-          {
-            "source": "3",
-            "target": "5"
-          },
-          {
-            "source": "4",
-            "target": "5"
-          }
-        ]
-      }
+      ]
     }
-  ],
-  "problems": {
-    "easy": [
-      {
-        "title": "BFS Parcurgere",
-        "url": "https://www.pbinfo.ro/probleme/418/bfs",
-        "desc": "Parcurgere simplă"
-      }
-    ],
-    "medium": [
-      {
-        "title": "Rotting Oranges",
-        "url": "https://leetcode.com/problems/rotting-oranges/",
-        "desc": "Multi-source BFS"
-      }
-    ],
-    "hard": [
-      {
-        "title": "Word Ladder",
-        "url": "https://leetcode.com/problems/word-ladder/",
-        "desc": "BFS pentru drum minim în graf de cuvinte"
-      }
-    ]
-  }
+  ]
 };

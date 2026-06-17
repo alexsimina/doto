@@ -1,9 +1,9 @@
 export const data = {
-  "presentation": "### Prezentare Generală\n\nVectorul de Diferențe (Difference Array) este o tehnică excelentă utilizată atunci când ai nevoie să efectuezi rapid un număr mare de operații de tip 'adunare pe intervale' (Range Additions) asupra unui vector, urmate de citirea valorilor finale.\n\nÎn loc să adunăm valoarea V fiecărui element din intervalul [L, R] (ceea ce ia O(N) per operație), creăm un vector auxiliar 'diff'. Pentru a adăuga V pe intervalul [L, R], facem doar:\n'diff[L] += V' și 'diff[R + 1] -= V'.\nLa final, reconstruim vectorul real parcurgând 'diff' cu sume parțiale: 'arr[i] = arr[i - 1] + diff[i]'.",
-  "complexity": "### Complexitate\n\n- **Timp:** O(1) pentru fiecare actualizare (Update). O(N) pentru a reconstrui vectorul la final. Dacă avem U update-uri, timpul total scade de la O(U * N) la O(U + N)!\n- **Spațiu:** O(N) pentru vectorul auxiliar 'diff'.\n",
-  "variations": "### Variații și Edge Cases\n\n1. Matrice de Diferențe 2D: Aceeași logică, dar pentru matrice. Adăugarea pe o submatrice [r1..r2][c1..c2] modifică 4 elemente în matricea diferență: +V la (r1, c1), -V la (r1, c2+1), -V la (r2+1, c1), +V la (r2+1, c2+1).\n2. Sume Parțiale (Prefix Sums): Diferența Array este conceptul invers (derivat) al Sumelor Parțiale (integrală). Dacă faci sume parțiale pe Diferențe, obții Vectorul curent.",
-  "applications": "### Aplicații\n\nOrice problemă care necesită modificări multiple și statice pe intervale și interogări doar la final: actualizări de scoruri pe servere, vopsirea unui gard cu mai multe culori, rezervări de tren/autobuz unde trebuie să știi pasagerii per stație (Scanline).",
-  code: `
+  "presentation": "### Prezentare Generală\n\nVectorul de Diferențe (**Difference Array**) este o tehnică extrem de eficientă folosită atunci când trebuie să efectuăm un număr mare de actualizări pe intervale (Range Additions) asupra unui vector, urmat de interogări (citiri) ale valorilor sale.\n\nSă presupunem că avem un vector de dimensiune $N$ și dorim să adăugăm o valoare $V$ tuturor elementelor din intervalul $[L, R]$. Abordarea naivă necesită modificarea fiecărui element în parte, având o complexitate de $O(N)$ per operație. \n\nFolosind un vector auxiliar de diferențe `diff`, definit prin relația:\n$$diff[i] = arr[i] - arr[i - 1]$$\n\nPutem efectua actualizarea intervalului $[L, R]$ în timp constant $O(1)$ prin doar două modificări:\n1. `diff[L] += V`\n2. `diff[R + 1] -= V`\n\nLa final, valorile finale ale vectorului se pot obține calculând sumele parțiale (prefix sum) ale vectorului `diff` de la stânga la dreapta într-o singură parcurgere liniară $O(N)$.",
+  "complexity": "### Complexitate\n\n- **Timp:** \n  - Actualizare (Update): $O(1)$ per operație.\n  - Reconstruire vector final: $O(N)$.\n  - Pentru $U$ actualizări, complexitatea totală este de $O(U + N)$ comparat cu $O(U \\cdot N)$ în cazul naiv.\n- **Spațiu:** $O(N)$ memorie adițională pentru stocarea vectorului `diff` de dimensiune $N+2$.",
+  "variations": "### Variații și Edge Cases\n\n1. **Matrice de Diferențe 2D:** Logica se poate extinde pentru 2D. Pentru a adăuga $V$ într-o submatrice definită de colțul stânga-sus $(r_1, c_1)$ și colțul dreapta-jos $(r_2, c_2)$, modificăm doar 4 puncte în matricea de diferențe:\n   - `diff[r1][c1] += V`\n   - `diff[r1][c2+1] -= V`\n   - `diff[r2+1][c1] -= V`\n   - `diff[r2+1][c2+1] += V`\n2. **Relația cu Prefix Sums:** Vectorul de Diferențe și Vectorul de Sume Parțiale sunt operații inverse una față de cealaltă (analog cu diferențierea și integrarea în analiză matematică).",
+  "applications": "### Aplicații\n\n- **Scanline Algorithm:** Determinarea acoperirii unui set de intervale pe o dreaptă (de exemplu, numărul maxim de utilizatori conectați simultan pe un server).\n- **Actualizări statice pe intervale:** Adăugarea de scoruri sau modificări repetate pe intervale unde interogările se fac doar după finalizarea tuturor actualizărilor.",
+  "code": `
 #include <iostream>
 #include <vector>
 
@@ -11,54 +11,65 @@ using namespace std;
 
 int main() {
     int N = 5;
-    // Initial toate elementele sunt 0
-    vector<int> arr(N + 1, 0); 
-    vector<int> diff(N + 2, 0); // +2 pentru a evita index out of bounds la R+1
+    vector<int> arr(N + 1, 0);
+    vector<int> diff(N + 2, 0);
     
-    // Operatii: Aduna V pe intervalul [L, R] (indexare de la 1)
-    // 1. Aduna 10 pe [1, 3]
+    // 1. Adunam 10 pe intervalul [1, 3]
     diff[1] += 10;
     diff[3 + 1] -= 10;
     
-    // 2. Aduna 20 pe [2, 5]
+    // 2. Adunam 20 pe intervalul [2, 5]
     diff[2] += 20;
     diff[5 + 1] -= 20;
     
-    // 3. Aduna 5 pe [3, 4]
+    // 3. Adunam 5 pe intervalul [3, 4]
     diff[3] += 5;
     diff[4 + 1] -= 5;
     
-    // Reconstruirea vectorului prin Sume Partiale
-    cout << "Valorile finale: ";
+    // Reconstruire prin sume partiale
     for (int i = 1; i <= N; i++) {
         arr[i] = arr[i - 1] + diff[i];
+    }
+    
+    // Afisare rezultate
+    for (int i = 1; i <= N; i++) {
         cout << arr[i] << " ";
     }
-    cout << "
-";
-    
+    cout << "\\n";
     return 0;
 }
 `,
   "explanations": [
     {
-      "line": 4,
-      "text": "Structura vectorului de diferențe: diff[i] = arr[i] - arr[i-1]. Păstrează doar salturile de valoare.",
+      "line": 8,
+      "text": "Inițializăm numărul de elemente $N = 5$.",
       "blocksVisual": [
         {
-          "label": "Concept",
+          "label": "Variabile",
           "groups": [
-            [{ "val": "diff[i] = arr[i] - arr[i-1]" }]
+            [{ "val": "N = 5", "active": true }]
           ]
         }
       ]
     },
     {
-      "line": 4,
-      "text": "Avem un vector 'diff' inițializat cu 0. Dimensiune N=5 (folosim indici 1..6 pentru siguranță).",
+      "line": 9,
+      "text": "Inițializăm vectorul real `arr` cu 0. Dimensiunea este $N + 1$ (indexare de la 1).",
       "blocksVisual": [
         {
-          "label": "Diff Initial",
+          "label": "arr",
+          "groups": [
+            [{ "val": "arr[1]: 0" }, { "val": "arr[2]: 0" }, { "val": "arr[3]: 0" }, { "val": "arr[4]: 0" }, { "val": "arr[5]: 0" }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 10,
+      "text": "Inițializăm vectorul de diferențe `diff` cu 0. Are dimensiune $N + 2$ pentru a preveni erori la modificarea indicelui $R + 1$.",
+      "blocksVisual": [
+        {
+          "label": "diff",
           "groups": [
             [{ "val": "diff[1]: 0" }, { "val": "diff[2]: 0" }, { "val": "diff[3]: 0" }, { "val": "diff[4]: 0" }, { "val": "diff[5]: 0" }, { "val": "diff[6]: 0" }]
           ]
@@ -66,11 +77,11 @@ int main() {
       ]
     },
     {
-      "line": 9,
-      "text": "Update 1: Adunăm 10 pe [1, 3]. Pasul 1A: Adunăm 10 la diff[1].",
+      "line": 13,
+      "text": "Primul update: Adăugăm $10$ pe intervalul $[1, 3]$. Adăugăm $10$ la poziția de start $L=1$ a vectorului de diferențe.",
       "blocksVisual": [
         {
-          "label": "Diff[1] += 10",
+          "label": "diff (L=1)",
           "groups": [
             [{ "val": "diff[1]: 10", "active": true }, { "val": "diff[2]: 0" }, { "val": "diff[3]: 0" }, { "val": "diff[4]: 0" }, { "val": "diff[5]: 0" }, { "val": "diff[6]: 0" }]
           ]
@@ -78,11 +89,11 @@ int main() {
       ]
     },
     {
-      "line": 10,
-      "text": "Update 1: Pasul 1B: Scădem 10 la R+1 = 4: diff[4] -= 10. Asta anulează impactul lui +10 de la indexul 4 încolo.",
+      "line": 14,
+      "text": "Pentru primul update, scădem $10$ la poziția imediat următoare intervalului $R + 1 = 4$: `diff[4] -= 10`.",
       "blocksVisual": [
         {
-          "label": "Diff[4] -= 10",
+          "label": "diff (R+1=4)",
           "groups": [
             [{ "val": "diff[1]: 10" }, { "val": "diff[2]: 0" }, { "val": "diff[3]: 0" }, { "val": "diff[4]: -10", "active": true }, { "val": "diff[5]: 0" }, { "val": "diff[6]: 0" }]
           ]
@@ -90,11 +101,11 @@ int main() {
       ]
     },
     {
-      "line": 13,
-      "text": "Update 2: Adunăm 20 pe [2, 5]. Pasul 2A: Adunăm 20 la diff[2].",
+      "line": 17,
+      "text": "Al doilea update: Adăugăm $20$ pe intervalul $[2, 5]$. Adăugăm $20$ la poziția de start $L=2$: `diff[2] += 20`.",
       "blocksVisual": [
         {
-          "label": "Diff[2] += 20",
+          "label": "diff (L=2)",
           "groups": [
             [{ "val": "diff[1]: 10" }, { "val": "diff[2]: 20", "active": true }, { "val": "diff[3]: 0" }, { "val": "diff[4]: -10" }, { "val": "diff[5]: 0" }, { "val": "diff[6]: 0" }]
           ]
@@ -102,11 +113,11 @@ int main() {
       ]
     },
     {
-      "line": 14,
-      "text": "Update 2: Pasul 2B: Scădem 20 la R+1 = 6: diff[6] -= 20.",
+      "line": 18,
+      "text": "Pentru al doilea update, scădem $20$ la poziția imediat următoare $R + 1 = 6$: `diff[6] -= 20`.",
       "blocksVisual": [
         {
-          "label": "Diff[6] -= 20",
+          "label": "diff (R+1=6)",
           "groups": [
             [{ "val": "diff[1]: 10" }, { "val": "diff[2]: 20" }, { "val": "diff[3]: 0" }, { "val": "diff[4]: -10" }, { "val": "diff[5]: 0" }, { "val": "diff[6]: -20", "active": true }]
           ]
@@ -114,11 +125,11 @@ int main() {
       ]
     },
     {
-      "line": 17,
-      "text": "Update 3: Adunăm 5 pe [3, 4]. Pasul 3A: Adunăm 5 la diff[3].",
+      "line": 21,
+      "text": "Al treilea update: Adăugăm $5$ pe intervalul $[3, 4]$. Adăugăm $5$ la poziția de start $L=3$: `diff[3] += 5`.",
       "blocksVisual": [
         {
-          "label": "Diff[3] += 5",
+          "label": "diff (L=3)",
           "groups": [
             [{ "val": "diff[1]: 10" }, { "val": "diff[2]: 20" }, { "val": "diff[3]: 5", "active": true }, { "val": "diff[4]: -10" }, { "val": "diff[5]: 0" }, { "val": "diff[6]: -20" }]
           ]
@@ -126,11 +137,11 @@ int main() {
       ]
     },
     {
-      "line": 18,
-      "text": "Update 3: Pasul 3B: Scădem 5 la R+1 = 5: diff[5] -= 5. Acum toți biții/salturile din diff sunt gata.",
+      "line": 22,
+      "text": "Pentru al treilea update, scădem $5$ la poziția $R + 1 = 5$: `diff[5] -= 5`.",
       "blocksVisual": [
         {
-          "label": "Diff[5] -= 5",
+          "label": "diff (R+1=5)",
           "groups": [
             [{ "val": "diff[1]: 10" }, { "val": "diff[2]: 20" }, { "val": "diff[3]: 5" }, { "val": "diff[4]: -10" }, { "val": "diff[5]: -5", "active": true }, { "val": "diff[6]: -20" }]
           ]
@@ -138,131 +149,143 @@ int main() {
       ]
     },
     {
-      "line": 22,
-      "text": "Începem reconstruirea vectorului `arr` prin sume parțiale pe vectorul de diferențe.",
+      "line": 25,
+      "text": "Începem bucla de reconstrucție prin sume parțiale: `arr[i] = arr[i - 1] + diff[i]`. Pornim de la $i = 1$.",
       "blocksVisual": [
         {
-          "label": "Start Sume Parțiale",
+          "label": "Buclă i=1",
           "groups": [
-            [{ "val": "i = 1" }]
+            [{ "val": "i = 1", "active": true }]
           ]
         }
       ]
     },
     {
-      "line": 23,
-      "text": "Reconstruire i = 1: Citim saltul diff[1] = 10. Calculăm arr[1] = arr[0] + diff[1] = 0 + 10 = 10.",
+      "line": 26,
+      "text": "Calculăm `arr[1] = arr[0] + diff[1] = 0 + 10 = 10`.",
       "blocksVisual": [
         {
-          "label": "Calcul arr[1]",
+          "label": "Reconstruire arr[1]",
           "groups": [
-            [{ "val": "arr[1]: 10", "active": true }, { "val": "0" }, { "val": "0" }, { "val": "0" }, { "val": "0" }]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 22,
-      "text": "Trecem la următorul element din buclă: i = 2.",
-      "blocksVisual": [
-        {
-          "label": "Buclă",
-          "groups": [
-            [{ "val": "i = 2" }]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 23,
-      "text": "Reconstruire i = 2: Citim saltul diff[2] = 20. Calculăm arr[2] = arr[1] + diff[2] = 10 + 20 = 30.",
-      "blocksVisual": [
-        {
-          "label": "Calcul arr[2]",
-          "groups": [
-            [{ "val": "10" }, { "val": "arr[2]: 30", "active": true }, { "val": "0" }, { "val": "0" }, { "val": "0" }]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 22,
-      "text": "Trecem la următorul element din buclă: i = 3.",
-      "blocksVisual": [
-        {
-          "label": "Buclă",
-          "groups": [
-            [{ "val": "i = 3" }]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 23,
-      "text": "Reconstruire i = 3: Citim saltul diff[3] = 5. Calculăm arr[3] = arr[2] + diff[3] = 30 + 5 = 35.",
-      "blocksVisual": [
-        {
-          "label": "Calcul arr[3]",
-          "groups": [
-            [{ "val": "10" }, { "val": "30" }, { "val": "arr[3]: 35", "active": true }, { "val": "0" }, { "val": "0" }]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 22,
-      "text": "Trecem la următorul element din buclă: i = 4.",
-      "blocksVisual": [
-        {
-          "label": "Buclă",
-          "groups": [
-            [{ "val": "i = 4" }]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 23,
-      "text": "Reconstruire i = 4: Citim saltul diff[4] = -10. Calculăm arr[4] = arr[3] + diff[4] = 35 + (-10) = 25.",
-      "blocksVisual": [
-        {
-          "label": "Calcul arr[4]",
-          "groups": [
-            [{ "val": "10" }, { "val": "30" }, { "val": "35" }, { "val": "arr[4]: 25", "active": true }, { "val": "0" }]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 22,
-      "text": "Trecem la ultimul element: i = 5.",
-      "blocksVisual": [
-        {
-          "label": "Buclă",
-          "groups": [
-            [{ "val": "i = 5" }]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 23,
-      "text": "Reconstruire i = 5: Citim saltul diff[5] = -5. Calculăm arr[5] = arr[4] + diff[5] = 25 + (-5) = 20.",
-      "blocksVisual": [
-        {
-          "label": "Calcul arr[5]",
-          "groups": [
-            [{ "val": "10" }, { "val": "30" }, { "val": "35" }, { "val": "25" }, { "val": "arr[5]: 20", "active": true }]
+            [{ "val": "arr[1]: 10", "active": true }, { "val": "arr[2]: 0" }, { "val": "arr[3]: 0" }, { "val": "arr[4]: 0" }, { "val": "arr[5]: 0" }]
           ]
         }
       ]
     },
     {
       "line": 25,
-      "text": "Afișăm valorile finale obținute în vector.",
+      "text": "Trecem la următoarea iterație: $i = 2$.",
       "blocksVisual": [
         {
-          "label": "Afișare Rezultate",
+          "label": "Buclă i=2",
+          "groups": [
+            [{ "val": "i = 2", "active": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 26,
+      "text": "Calculăm `arr[2] = arr[1] + diff[2] = 10 + 20 = 30`.",
+      "blocksVisual": [
+        {
+          "label": "Reconstruire arr[2]",
+          "groups": [
+            [{ "val": "arr[1]: 10" }, { "val": "arr[2]: 30", "active": true }, { "val": "arr[3]: 0" }, { "val": "arr[4]: 0" }, { "val": "arr[5]: 0" }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 25,
+      "text": "Trecem la următoarea iterație: $i = 3$.",
+      "blocksVisual": [
+        {
+          "label": "Buclă i=3",
+          "groups": [
+            [{ "val": "i = 3", "active": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 26,
+      "text": "Calculăm `arr[3] = arr[2] + diff[3] = 30 + 5 = 35`.",
+      "blocksVisual": [
+        {
+          "label": "Reconstruire arr[3]",
+          "groups": [
+            [{ "val": "arr[1]: 10" }, { "val": "arr[2]: 30" }, { "val": "arr[3]: 35", "active": true }, { "val": "arr[4]: 0" }, { "val": "arr[5]: 0" }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 25,
+      "text": "Trecem la următoarea iterație: $i = 4$.",
+      "blocksVisual": [
+        {
+          "label": "Buclă i=4",
+          "groups": [
+            [{ "val": "i = 4", "active": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 26,
+      "text": "Calculăm `arr[4] = arr[3] + diff[4] = 35 + (-10) = 25`.",
+      "blocksVisual": [
+        {
+          "label": "Reconstruire arr[4]",
+          "groups": [
+            [{ "val": "arr[1]: 10" }, { "val": "arr[2]: 30" }, { "val": "arr[3]: 35" }, { "val": "arr[4]: 25", "active": true }, { "val": "arr[5]: 0" }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 25,
+      "text": "Trecem la ultima iterație a buclei de reconstrucție: $i = 5$.",
+      "blocksVisual": [
+        {
+          "label": "Buclă i=5",
+          "groups": [
+            [{ "val": "i = 5", "active": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 26,
+      "text": "Calculăm `arr[5] = arr[4] + diff[5] = 25 + (-5) = 20`.",
+      "blocksVisual": [
+        {
+          "label": "Reconstruire arr[5]",
+          "groups": [
+            [{ "val": "arr[1]: 10" }, { "val": "arr[2]: 30" }, { "val": "arr[3]: 35" }, { "val": "arr[4]: 25" }, { "val": "arr[5]: 20", "active": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 30,
+      "text": "Începem bucla de afișare pentru elementele finale, de la pozițiile $1$ la $5$.",
+      "blocksVisual": [
+        {
+          "label": "Afișare rezultate",
+          "groups": [
+            [{ "val": "Afișare", "active": true }]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 31,
+      "text": "Afișăm valoarea finală de pe poziția curentă din `arr`.",
+      "blocksVisual": [
+        {
+          "label": "Output",
           "groups": [
             [{ "val": "10 30 35 25 20", "sorted": true }]
           ]
@@ -270,13 +293,13 @@ int main() {
       ]
     },
     {
-      "line": 28,
-      "text": "Algoritmul s-a încheiat cu succes! Am demonstrat cum interogarea complexă se face într-o singură parcurgere liniară.",
+      "line": 34,
+      "text": "Programul returnează 0 și se încheie cu succes.",
       "blocksVisual": [
         {
-          "label": "Finalizat",
+          "label": "Sfârșit",
           "groups": [
-            [{ "val": "O(N + U)", "sorted": true }]
+            [{ "val": "Succes!", "sorted": true }]
           ]
         }
       ]
@@ -285,33 +308,23 @@ int main() {
   "problems": {
     "easy": [
       {
-        "title": "Sume partiale si Diferente",
-        "url": "https://www.pbinfo.ro/probleme/2301/diferente",
-        "desc": "pbinfo"
-      },
-      {
-        "title": "Corporate Flight Bookings",
-        "url": "https://leetcode.com/problems/corporate-flight-bookings/",
-        "desc": "Clasica aplicație de Range Addition"
+        "title": "Range Addition (LeetCode #370)",
+        "url": "https://leetcode.com/problems/range-addition/",
+        "desc": "Problemă clasică directă de aplicare a vectorului de diferențe."
       }
     ],
     "medium": [
       {
-        "title": "Car Pooling",
-        "url": "https://leetcode.com/problems/car-pooling/",
-        "desc": "Simulare Scanline"
-      },
-      {
-        "title": "Shifting Letters II",
-        "url": "https://leetcode.com/problems/shifting-letters-ii/",
-        "desc": "Diferențe aplicate pe șiruri"
+        "title": "Corporate Flight Bookings (LeetCode #1109)",
+        "url": "https://leetcode.com/problems/corporate-flight-bookings/",
+        "desc": "Aplicație directă a actualizărilor multiple pe intervale de zboruri."
       }
     ],
     "hard": [
       {
-        "title": "Stamping the Grid",
-        "url": "https://leetcode.com/problems/stamping-the-grid/",
-        "desc": "Diferențe pe Matrice (2D)"
+        "title": "Describe the Painting (LeetCode #1943)",
+        "url": "https://leetcode.com/problems/describe-the-painting/",
+        "desc": "Utilizarea tehnicii scanline împreună cu un vector sau map de diferențe pentru culori."
       }
     ]
   }

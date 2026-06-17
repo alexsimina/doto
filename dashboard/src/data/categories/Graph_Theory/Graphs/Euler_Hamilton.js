@@ -1,66 +1,90 @@
 export const data = {
-  "presentation": "### Prezentare Generală\n\nUn **Drum Eulerian** vizitează fiecare muchie dintr-un graf exact o singură dată. Un **Ciclu Eulerian** este un drum Eulerian care se întoarce la nodul de pornire.\\n\\nPentru grafuri neorientate:\\n- Ciclu Eulerian: toate nodurile au grad par.\\n- Drum Eulerian: exact 2 noduri au grad impar (restul par).\\n\\nAlgoritmul lui Hierholzer găsește un Ciclu Eulerian în O(E): facem DFS, dar distrugem muchiile pe măsură ce le parcurgem. Când ne blocăm într-un nod, adăugăm acel nod la răspuns. La final, răspunsul se inversează.\\n\\nUn **Drum/Ciclu Hamiltonian** vizitează fiecare nod exact o singură dată. Spre deosebire de Eulerian, problema este NP-Hard (nu are soluție eficientă polinomială, necesitând Backtracking sau Bitmask DP O(2^N * N^2)).",
-  "complexity": "### Complexitate\n\nEulerian (Hierholzer): O(V + E) timp și spațiu.\\nHamiltonian (Held-Karp Bitmask DP): O(2^V * V^2) timp. (Deci imposibil pentru V > 20).",
-  "variations": "### Variații și Edge Cases\n\nProblema Poștașului Chinez (Găsirea drumului minim care vizitează toate muchiile măcar o dată), Problema Comis-Voiajorului (TSP - vizitarea tuturor nodurilor cu cost minim).",
-  "applications": "### Aplicații\n\nRute de gunoieri, poștași, curățarea străzilor cu utilaje (Eulerian). Optimizarea livrărilor logistice (TSP).",
-  code: `
-#include <iostream>
-#include <vector>
-#include <stack>
-#include <algorithm>
-
-using namespace std;
-
-void findEulerianPath(int start, vector<vector<int>>& adj) {
-    stack<int> curr_path;
-    vector<int> circuit;
-    
-    curr_path.push(start);
-    int curr_v = start; 
-
-    while (!curr_path.empty()) {
-        if (adj[curr_v].size()) {
-            curr_path.push(curr_v);
-            int next_v = adj[curr_v].back();
-            adj[curr_v].pop_back();
-            
-            // Daca graful era neorientat, trebuia stearsa si muchia inapoi!
-            // Presupunem graf orientat pentru simplitate
-            curr_v = next_v;
-        } else {
-            circuit.push_back(curr_v);
-            curr_v = curr_path.top();
-            curr_path.pop();
-        }
-    }
-
-    reverse(circuit.begin(), circuit.end());
-    for (int node : circuit) cout << node << " ";
-    cout << "
-";
-}
-
-int main() {
-    vector<vector<int>> adj = {
-        {1},    // 0 -> 1
-        {2},    // 1 -> 2
-        {0, 3}, // 2 -> 0, 2 -> 3
-        {4},    // 3 -> 4
-        {2}     // 4 -> 2
-    };
-    
-    cout << "Ciclu Eulerian: ";
-    findEulerianPath(0, adj);
-    return 0;
-}
-`,
+  "presentation": "### Drumuri și Cicluri Euler / Hamilton\n\n- **Ciclu Eulerian**: Un drum într-un graf care vizitează **fiecare muchie** exact o singură dată și revine la nodul de start. Există dacă și numai dacă toate nodurile au grad par (graf neorientat) sau $\\text{in-degree}(v) = \\text{out-degree}(v)$ (graf orientat).\n- **Ciclu Hamiltonian**: Un drum care vizitează **fiecare nod** exact o singură dată și revine la start. Problema determinării sale este NP-completă.\n\nAlgoritmul lui **Hierholzer** găsește un ciclu eulerian în mod eficient folosind o stivă pentru a construi subcicluri și a le îmbina progresiv.",
+  "complexity": "### Complexitate\n\n- **Timp:** $O(V + E)$ - parcurgem fiecare muchie exact o dată folosind stiva.\n- **Spațiu:** $O(V + E)$ - pentru stiva de drum curent și vectorul de rezultate.",
+  "variations": "### Variații și Cazuri Particulare\n\n- **Drum Eulerian (nu ciclu)**: Vizitează toate muchiile exact o dată, dar începe și se termină în noduri diferite.\n- **Algoritmul Fleury**: Un alt algoritm pentru drumuri euleriene, dar mai puțin eficient ($O(E^2)$).",
+  "applications": "### Aplicații Reale\n\n- Planificarea rutelor mașinilor de deszăpezire sau colectare a deșeurilor.\n- Reconstrucția secvențelor ADN prin intermediul grafurilor de Bruijn.\n- Proiectarea circuitelor integrate.",
+  "code": "#include <iostream>\n#include <vector>\n#include <stack>\n#include <algorithm>\n\nusing namespace std;\n\nvoid findEulerianPath(int start, vector<vector<int>>& adj) {\n    stack<int> curr_path;\n    vector<int> circuit;\n    \n    curr_path.push(start);\n    int curr_v = start; \n\n    while (!curr_path.empty()) {\n        if (!adj[curr_v].empty()) {\n            curr_path.push(curr_v);\n            int next_v = adj[curr_v].back();\n            adj[curr_v].pop_back();\n            curr_v = next_v;\n        } else {\n            circuit.push_back(curr_v);\n            curr_v = curr_path.top();\n            curr_path.pop();\n        }\n    }\n\n    reverse(circuit.begin(), circuit.end());\n    for (int node : circuit) cout << node << \" \";\n}\n\nint main() {\n    int V = 4;\n    vector<vector<int>> adj(V);\n    adj[0].push_back(1);\n    adj[1].push_back(2);\n    adj[2].push_back(0);\n    adj[2].push_back(3);\n    adj[3].push_back(2);\n    \n    findEulerianPath(0, adj);\n    return 0;\n}\n",
   "explanations": [
     {
-      "line": 12,
-      "text": "Începem de la nodul 0.",
+      "line": 8,
+      "text": "Începem căutarea ciclului eulerian cu funcția `findEulerianPath`.",
       "blocksVisual": [
         {
           "label": "Start",
+          "groups": [
+            [
+              {
+                "val": "start: 0"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 9,
+      "text": "Declarăm stiva `curr_path` pentru stocarea drumului curent.",
+      "blocksVisual": [
+        {
+          "label": "Stack",
+          "groups": [
+            []
+          ]
+        }
+      ]
+    },
+    {
+      "line": 10,
+      "text": "Declarăm vectorul `circuit` pentru salvarea ordinii finale a ciclului.",
+      "blocksVisual": [
+        {
+          "label": "Circuit",
+          "groups": [
+            []
+          ]
+        }
+      ]
+    },
+    {
+      "line": 12,
+      "text": "Adăugăm nodul de pornire (0) în stivă.",
+      "blocksVisual": [
+        {
+          "label": "Stack",
+          "groups": [
+            [
+              {
+                "val": "0",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Setăm nodul curent `curr_v = 0`.",
+      "blocksVisual": [
+        {
+          "label": "curr_v",
+          "groups": [
+            [
+              {
+                "val": "0",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 15,
+      "text": "Intrăm în bucla principală: stiva nu este goală.",
+      "blocksVisual": [
+        {
+          "label": "Stack",
           "groups": [
             [
               {
@@ -69,453 +93,351 @@ int main() {
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 80,
-            "y": 60,
-            "label": "0",
-            "state": "active"
-          },
-          {
-            "id": "1",
-            "x": 200,
-            "y": 60,
-            "label": "1"
-          },
-          {
-            "id": "2",
-            "x": 140,
-            "y": 130,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 80,
-            "y": 200,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 200,
-            "y": 200,
-            "label": "4"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "1",
-            "target": "2"
-          },
-          {
-            "source": "2",
-            "target": "0"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "3",
-            "target": "4"
-          },
-          {
-            "source": "4",
-            "target": "2"
-          }
-        ]
-      }
+      ]
     },
     {
       "line": 16,
-      "text": "Avem vecini pentru nodul curent. Îl salvăm pe stivă, luăm primul vecin disponibil și ȘTERGEM muchia dintre ei.",
+      "text": "Verificăm dacă nodul 0 mai are muchii nefolosite. Are o muchie către nodul 1.",
       "blocksVisual": [
         {
-          "label": "Alegere Muchie",
+          "label": "Listă vecini",
           "groups": [
             [
               {
-                "val": "0 -> 1",
+                "val": "adj[0]: [1]"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 17,
+      "text": "Salvăm nodul curent (0) pe stivă.",
+      "blocksVisual": [
+        {
+          "label": "Stack",
+          "groups": [
+            [
+              {
+                "val": "0"
+              },
+              {
+                "val": "0",
                 "active": true
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 80,
-            "y": 60,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 200,
-            "y": 60,
-            "label": "1",
-            "state": "active"
-          },
-          {
-            "id": "2",
-            "x": 140,
-            "y": 130,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 80,
-            "y": 200,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 200,
-            "y": 200,
-            "label": "4"
-          }
-        ],
-        "edges": [
-          {
-            "source": "1",
-            "target": "2"
-          },
-          {
-            "source": "2",
-            "target": "0"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "3",
-            "target": "4"
-          },
-          {
-            "source": "4",
-            "target": "2"
-          }
-        ]
-      }
+      ]
+    },
+    {
+      "line": 18,
+      "text": "Identificăm următorul nod: `next_v = 1`.",
+      "blocksVisual": [
+        {
+          "label": "next_v",
+          "groups": [
+            [
+              {
+                "val": "1",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 19,
+      "text": "Ștergem muchia din listă (simulând parcurgerea ei).",
+      "blocksVisual": [
+        {
+          "label": "Listă vecini",
+          "groups": [
+            [
+              {
+                "val": "adj[0]: []",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 20,
+      "text": "Ne mutăm în noul nod: `curr_v = 1`.",
+      "blocksVisual": [
+        {
+          "label": "curr_v",
+          "groups": [
+            [
+              {
+                "val": "1",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 15,
+      "text": "Reluăm bucla. Stiva conține [0, 0]. Nodul curent este 1.",
+      "blocksVisual": [
+        {
+          "label": "Stack",
+          "groups": [
+            [
+              {
+                "val": "0"
+              },
+              {
+                "val": "0"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 16,
+      "text": "Nodul 1 are vecinul 2. Salvăm 1 pe stivă.",
+      "blocksVisual": [
+        {
+          "label": "Stack",
+          "groups": [
+            [
+              {
+                "val": "0"
+              },
+              {
+                "val": "0"
+              },
+              {
+                "val": "1",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 19,
+      "text": "Ștergem muchia $1 \\to 2$. setăm `curr_v = 2`.",
+      "blocksVisual": [
+        {
+          "label": "curr_v",
+          "groups": [
+            [
+              {
+                "val": "2",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 16,
+      "text": "Nodul 2 are vecinii [0, 3]. Ultimul adăugat este 3. Îl salvăm pe 2 în stivă.",
+      "blocksVisual": [
+        {
+          "label": "Stack",
+          "groups": [
+            [
+              {
+                "val": "0"
+              },
+              {
+                "val": "0"
+              },
+              {
+                "val": "1"
+              },
+              {
+                "val": "2",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 19,
+      "text": "Ștergem muchia către 3, mutăm `curr_v = 3`.",
+      "blocksVisual": [
+        {
+          "label": "curr_v",
+          "groups": [
+            [
+              {
+                "val": "3",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 16,
+      "text": "Nodul 3 are vecinul 2. Îl salvăm pe 3 pe stivă, ștergem muchia, mutăm `curr_v = 2`.",
+      "blocksVisual": [
+        {
+          "label": "Stack",
+          "groups": [
+            [
+              {
+                "val": "0"
+              },
+              {
+                "val": "0"
+              },
+              {
+                "val": "1"
+              },
+              {
+                "val": "2"
+              },
+              {
+                "val": "3",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 16,
+      "text": "Nodul 2 are acum doar vecinul 0. Îl salvăm în stivă, ștergem muchia, mutăm `curr_v = 0`.",
+      "blocksVisual": [
+        {
+          "label": "Stack",
+          "groups": [
+            [
+              {
+                "val": "0"
+              },
+              {
+                "val": "0"
+              },
+              {
+                "val": "1"
+              },
+              {
+                "val": "2"
+              },
+              {
+                "val": "3"
+              },
+              {
+                "val": "2",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 16,
+      "text": "Nodul 0 nu mai are nicio muchie neparcursă. Intrăm pe ramura `else`.",
+      "blocksVisual": [
+        {
+          "label": "adj[0]",
+          "groups": [
+            [
+              {
+                "val": "[]"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 22,
+      "text": "Adăugăm nodul curent 0 la circuit.",
+      "blocksVisual": [
+        {
+          "label": "Circuit",
+          "groups": [
+            [
+              {
+                "val": "0",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
     },
     {
       "line": 23,
-      "text": "Ne mutăm la noul nod și repetăm. Continuăm până nu mai avem muchii.",
+      "text": "Restabilim `curr_v` la cel din vârful stivei (2).",
       "blocksVisual": [
         {
-          "label": "Drum Recursiv",
+          "label": "curr_v",
           "groups": [
             [
               {
-                "val": "0 -> 1 -> 2 -> 3 -> 4 -> 2 -> 0"
-              }
-            ]
-          ]
-        }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 80,
-            "y": 60,
-            "label": "0"
-          },
-          {
-            "id": "1",
-            "x": 200,
-            "y": 60,
-            "label": "1"
-          },
-          {
-            "id": "2",
-            "x": 140,
-            "y": 130,
-            "label": "2",
-            "state": "active"
-          },
-          {
-            "id": "3",
-            "x": 80,
-            "y": 200,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 200,
-            "y": 200,
-            "label": "4"
-          }
-        ],
-        "edges": []
-      }
-    },
-    {
-      "line": 24,
-      "text": "Când un nod rămâne complet FĂRĂ muchii de ieșire (ne-am blocat), îl adăugăm la rezultatul final `circuit`.",
-      "blocksVisual": [
-        {
-          "label": "Blocaj",
-          "groups": [
-            [
-              {
-                "val": "Nod adăugat la final"
-              }
-            ]
-          ]
-        }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 80,
-            "y": 60,
-            "label": "0"
-          },
-          {
-            "id": "1",
-            "x": 200,
-            "y": 60,
-            "label": "1"
-          },
-          {
-            "id": "2",
-            "x": 140,
-            "y": 130,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 80,
-            "y": 200,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 200,
-            "y": 200,
-            "label": "4"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "1",
-            "target": "2"
-          },
-          {
-            "source": "2",
-            "target": "0"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "3",
-            "target": "4"
-          },
-          {
-            "source": "4",
-            "target": "2"
-          }
-        ]
-      }
-    },
-    {
-      "line": 26,
-      "text": "Ne întoarcem la ultimul nod salvat în stivă (Backtrack) ca să vedem dacă are alte rute neexplorate.",
-      "blocksVisual": [
-        {
-          "label": "Backtrack",
-          "groups": [
-            [
-              {
-                "val": "Pop stiva",
+                "val": "2",
                 "active": true
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 80,
-            "y": 60,
-            "label": "0"
-          },
-          {
-            "id": "1",
-            "x": 200,
-            "y": 60,
-            "label": "1"
-          },
-          {
-            "id": "2",
-            "x": 140,
-            "y": 130,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 80,
-            "y": 200,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 200,
-            "y": 200,
-            "label": "4"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "1",
-            "target": "2"
-          },
-          {
-            "source": "2",
-            "target": "0"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "3",
-            "target": "4"
-          },
-          {
-            "source": "4",
-            "target": "2"
-          }
-        ]
-      }
+      ]
     },
     {
-      "line": 31,
-      "text": "La final, inversăm `circuit`. Dacă graful satisface condițiile, rezultatul este Ciclu/Drum Eulerian valid!",
+      "line": 24,
+      "text": "Eliminăm vârful stivei.",
+      "blocksVisual": [
+        {
+          "label": "Stack",
+          "groups": [
+            [
+              {
+                "val": "0"
+              },
+              {
+                "val": "0"
+              },
+              {
+                "val": "1"
+              },
+              {
+                "val": "2"
+              },
+              {
+                "val": "3"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 27,
+      "text": "Continuăm procesul până stiva este goală, inversăm ordinea elementelor din `circuit` și obținem ciclul complet.",
       "blocksVisual": [
         {
           "label": "Rezultat",
           "groups": [
             [
               {
-                "val": "0 -> 1 -> 2 -> 3 -> 4 -> 2 -> 0",
-                "sorted": true
+                "val": "circuit: [0, 1, 2, 3, 2, 0]"
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 80,
-            "y": 60,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 200,
-            "y": 60,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 140,
-            "y": 130,
-            "label": "2",
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "x": 80,
-            "y": 200,
-            "label": "3",
-            "state": "visited"
-          },
-          {
-            "id": "4",
-            "x": 200,
-            "y": 200,
-            "label": "4",
-            "state": "visited"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "1",
-            "target": "2"
-          },
-          {
-            "source": "2",
-            "target": "0"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "3",
-            "target": "4"
-          },
-          {
-            "source": "4",
-            "target": "2"
-          }
-        ]
-      }
+      ]
     }
-  ],
-  "problems": {
-    "easy": [
-      {
-        "title": "Ciclu Eulerian",
-        "url": "https://www.infoarena.ro/problema/ciclueuler",
-        "desc": "Clasica O(M)"
-      }
-    ],
-    "medium": [
-      {
-        "title": "Reconstruct Itinerary",
-        "url": "https://leetcode.com/problems/reconstruct-itinerary/",
-        "desc": "Drum Eulerian cu Sortare Lexicografică"
-      }
-    ],
-    "hard": [
-      {
-        "title": "Hamiltonian Path (TSP)",
-        "url": "https://www.infoarena.ro/problema/tsp",
-        "desc": "Traveling Salesman Bitmask DP"
-      }
-    ]
-  }
+  ]
 };

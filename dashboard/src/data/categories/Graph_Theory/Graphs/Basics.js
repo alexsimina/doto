@@ -1,56 +1,13 @@
 export const data = {
-  "presentation": "### Prezentare Generală\n\nUn graf este o structură de date neliniară formată din noduri (vârfuri) și muchii (conexiuni între noduri). Este folosit pentru a modela relații între perechi de obiecte.\\n\\nTipuri principale:\\n- Orientate / Neorientate: Muchiile au o direcție (A -> B) sau sunt bidirecționale.\\n- Ponderate / Neponderate: Muchiile au un 'cost' (ex: distanță, timp).\\n\\nReprezentare:\\n1. Matrice de adiacență: O matrice N x N unde M[i][j] = 1 dacă există muchie între i și j.\\n2. Liste de adiacență: Un vector de liste, unde vec[i] conține toți vecinii nodului i. Este mult mai eficientă din punct de vedere al memoriei pentru grafuri rare (cu puține muchii).",
-  "complexity": "### Complexitate\n\n- **Spațiu:** O(V^2) pentru matricea de adiacență, O(V + E) pentru liste de adiacență (V = noduri, E = muchii).\\n- **Timp:** Verificarea existenței unei muchii e O(1) la matrice, dar O(grad(V)) la liste. Parcurgerea vecinilor e O(V) la matrice, O(grad(V)) la liste.\n",
-  "variations": "### Variații și Edge Cases\n\nGrafuri Bipartite (nodurile pot fi împărțite în 2 seturi fără muchii în interiorul aceluiași set), Arbori (grafuri conexe fără cicluri), DAG (Directed Acyclic Graph - graf orientat fără cicluri).",
-  "applications": "### Aplicații\n\nRețele de socializare (prietenii sunt muchii), hărți GPS (intersecțiile sunt noduri, străzile sunt muchii), rețele de calculatoare, web (link-uri între pagini).",
-  code: `
-#include <iostream>
-#include <vector>
-
-using namespace std;
-
-int main() {
-    int V = 5; // Numarul de noduri (0 la 4)
-    vector<vector<int>> adj(V);
-    
-    // Adaugam muchii pentru un graf neorientat
-    // Muchia 0-1
-    adj[0].push_back(1);
-    adj[1].push_back(0);
-    
-    // Muchia 0-4
-    adj[0].push_back(4);
-    adj[4].push_back(0);
-    
-    // Muchia 1-2
-    adj[1].push_back(2);
-    adj[2].push_back(1);
-    
-    // Muchia 1-3
-    adj[1].push_back(3);
-    adj[3].push_back(1);
-    
-    // Muchia 1-4
-    adj[1].push_back(4);
-    adj[4].push_back(1);
-    
-    // Afisarea listei de adiacenta
-    for (int i = 0; i < V; ++i) {
-        cout << "Nodul " << i << " este conectat cu: ";
-        for (int vec : adj[i]) {
-            cout << vec << " ";
-        }
-        cout << "
-";
-    }
-    
-    return 0;
-}
-`,
+  "presentation": "### Reprezentarea Grafurilor (Liste de Adiacență)\n\nUn graf $G = (V, E)$ este o structură formată dintr-o mulțime de noduri (vârfuri) $V$ și o mulțime de muchii (conexiuni) $E \\subseteq V \\times V$. În funcție de direcția muchiilor, avem grafuri **orientate** sau **neorientate**. De asemenea, muchiile pot avea un cost (grafuri **ponderate**).\n\nReprezentarea prin **Liste de adiacență** stochează vecinii fiecărui nod $u$ ca o listă dinamică. Astfel, pentru fiecare nod $u$, menținem o listă cu toate nodurile $v$ pentru care există o muchie $(u, v)$.\n\nAceastă reprezentare este optimă pentru grafuri rare (cu puține muchii), economisind memorie în comparație cu o matrice de adiacență de dimensiune $V \\times V$, unde majoritatea celulelor ar fi egale cu $0$.",
+  "complexity": "### Complexitate\n\n- **Spațiu:** $O(V + E)$ - optim pentru grafuri rare ($E \\ll V^2$).\n- **Timp:**\n  - Adăugare muchie: $O(1)$.\n  - Verificare existență muchie $(u, v)$: $O(\\deg(u))$, unde $\\deg(u)$ este gradul nodului $u$.\n  - Parcurgere vecini nod $u$: $O(\\deg(u))$.",
+  "variations": "### Variații și Cazuri Particulare\n\n- **Matrice de adiacență**: Matrice $V \\times V$ unde $A[i][j] = 1$ dacă există muchie de la $i$ la $j$. Utilă pentru grafuri dense.\n- **Listă de muchii**: Vector simplu cu perechi de forma $(u, v)$, util în algoritmi precum Kruskal sau Bellman-Ford.",
+  "applications": "### Aplicații Reale\n\n- Rețele sociale (liste de adiacență pentru stocarea legăturilor de prietenie).\n- Hărți rutiere și sisteme GPS.\n- Găsirea conexiunilor directe între servere în rețele.",
+  "code": "#include <iostream>\n#include <vector>\n\nusing namespace std;\n\nint main() {\n    int V = 5;\n    vector<vector<int>> adj(V);\n    \n    adj[0].push_back(1);\n    adj[1].push_back(0);\n    \n    adj[0].push_back(4);\n    adj[4].push_back(0);\n    \n    adj[1].push_back(2);\n    adj[2].push_back(1);\n    \n    adj[1].push_back(3);\n    adj[3].push_back(1);\n    \n    adj[1].push_back(4);\n    adj[4].push_back(1);\n    \n    for (int i = 0; i < V; ++i) {\n        cout << \"Nodul \" << i << \" conectat cu: \";\n        for (int neighbor : adj[i]) {\n            cout << neighbor << \" \";\n        }\n        cout << \"\\n\";\n    }\n    return 0;\n}\n",
   "explanations": [
     {
       "line": 7,
-      "text": "Avem 5 noduri numerotate de la 0 la 4.",
+      "text": "Inițializăm numărul de noduri ale grafului la $V = 5$.",
       "blocksVisual": [
         {
           "label": "Noduri",
@@ -74,49 +31,14 @@ int main() {
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 50,
-            "y": 110,
-            "label": "0"
-          },
-          {
-            "id": "1",
-            "x": 140,
-            "y": 110,
-            "label": "1"
-          },
-          {
-            "id": "2",
-            "x": 230,
-            "y": 50,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 230,
-            "y": 170,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 140,
-            "y": 190,
-            "label": "4"
-          }
-        ],
-        "edges": []
-      }
+      ]
     },
     {
       "line": 8,
-      "text": "Inițializăm un vector de vectori (liste de adiacență). `adj[i]` va reține vecinii nodului `i`.",
+      "text": "Declarăm listele de adiacență ca fiind un vector de vectori cu 5 elemente vide.",
       "blocksVisual": [
         {
-          "label": "Liste vide",
+          "label": "Liste de adiacență",
           "groups": [
             [
               {
@@ -145,49 +67,14 @@ int main() {
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 50,
-            "y": 110,
-            "label": "0"
-          },
-          {
-            "id": "1",
-            "x": 140,
-            "y": 110,
-            "label": "1"
-          },
-          {
-            "id": "2",
-            "x": 230,
-            "y": 50,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 230,
-            "y": 170,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 140,
-            "y": 190,
-            "label": "4"
-          }
-        ],
-        "edges": []
-      }
+      ]
     },
     {
-      "line": 12,
-      "text": "Adăugăm muchia neorientată (0, 1). Punem 1 în lista lui 0.",
+      "line": 11,
+      "text": "Adăugăm nodul 1 în lista de vecini a nodului 0.",
       "blocksVisual": [
         {
-          "label": "Muchia 0-1",
+          "label": "Liste de adiacență",
           "groups": [
             [
               {
@@ -207,51 +94,28 @@ int main() {
         "nodes": [
           {
             "id": "0",
-            "x": 50,
-            "y": 110,
+            "x": 100,
+            "y": 50,
             "label": "0",
             "state": "active"
           },
           {
             "id": "1",
-            "x": 140,
-            "y": 110,
+            "x": 50,
+            "y": 120,
             "label": "1",
             "state": "active"
-          },
-          {
-            "id": "2",
-            "x": 230,
-            "y": 50,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 230,
-            "y": 170,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 140,
-            "y": 190,
-            "label": "4"
           }
         ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          }
-        ]
+        "edges": []
       }
     },
     {
-      "line": 13,
-      "text": "Și punem 0 în lista lui 1.",
+      "line": 12,
+      "text": "Adăugăm nodul 0 în lista de vecini a nodului 1 (graf neorientat).",
       "blocksVisual": [
         {
-          "label": "Muchia 0-1",
+          "label": "Liste de adiacență",
           "groups": [
             [
               {
@@ -271,35 +135,70 @@ int main() {
         "nodes": [
           {
             "id": "0",
-            "x": 50,
-            "y": 110,
+            "x": 100,
+            "y": 50,
             "label": "0",
             "state": "active"
           },
           {
             "id": "1",
-            "x": 140,
-            "y": 110,
+            "x": 50,
+            "y": 120,
             "label": "1",
+            "state": "active"
+          }
+        ],
+        "edges": [
+          {
+            "source": "0",
+            "target": "1",
+            "active": true
+          }
+        ]
+      }
+    },
+    {
+      "line": 14,
+      "text": "Adăugăm nodul 4 în lista de vecini a nodului 0.",
+      "blocksVisual": [
+        {
+          "label": "Liste de adiacență",
+          "groups": [
+            [
+              {
+                "val": "adj[0]: [1, 4]",
+                "active": true
+              }
+            ],
+            [
+              {
+                "val": "adj[4]: []"
+              }
+            ]
+          ]
+        }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {
+            "id": "0",
+            "x": 100,
+            "y": 50,
+            "label": "0",
             "state": "active"
           },
           {
-            "id": "2",
-            "x": 230,
-            "y": 50,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 230,
-            "y": 170,
-            "label": "3"
+            "id": "1",
+            "x": 50,
+            "y": 120,
+            "label": "1"
           },
           {
             "id": "4",
-            "x": 140,
-            "y": 190,
-            "label": "4"
+            "x": 150,
+            "y": 200,
+            "label": "4",
+            "state": "active"
           }
         ],
         "edges": [
@@ -311,16 +210,15 @@ int main() {
       }
     },
     {
-      "line": 16,
-      "text": "Adăugăm muchia (0, 4).",
+      "line": 15,
+      "text": "Adăugăm nodul 0 în lista de vecini a nodului 4.",
       "blocksVisual": [
         {
-          "label": "Muchia 0-4",
+          "label": "Liste de adiacență",
           "groups": [
             [
               {
-                "val": "adj[0]: [1, 4]",
-                "active": true
+                "val": "adj[0]: [1, 4]"
               }
             ],
             [
@@ -336,34 +234,73 @@ int main() {
         "nodes": [
           {
             "id": "0",
-            "x": 50,
-            "y": 110,
+            "x": 100,
+            "y": 50,
             "label": "0",
             "state": "active"
           },
           {
             "id": "1",
-            "x": 140,
-            "y": 110,
+            "x": 50,
+            "y": 120,
             "label": "1"
           },
           {
-            "id": "2",
-            "x": 230,
-            "y": 50,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 230,
-            "y": 170,
-            "label": "3"
-          },
-          {
             "id": "4",
-            "x": 140,
-            "y": 190,
+            "x": 150,
+            "y": 200,
             "label": "4",
+            "state": "active"
+          }
+        ],
+        "edges": [
+          {
+            "source": "0",
+            "target": "1"
+          },
+          {
+            "source": "0",
+            "target": "4",
+            "active": true
+          }
+        ]
+      }
+    },
+    {
+      "line": 17,
+      "text": "Adăugăm nodul 2 în lista de vecini a nodului 1.",
+      "blocksVisual": [
+        {
+          "label": "Liste de adiacență",
+          "groups": [
+            [
+              {
+                "val": "adj[1]: [0, 2]",
+                "active": true
+              }
+            ],
+            [
+              {
+                "val": "adj[2]: []"
+              }
+            ]
+          ]
+        }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {
+            "id": "1",
+            "x": 50,
+            "y": 120,
+            "label": "1",
+            "state": "active"
+          },
+          {
+            "id": "2",
+            "x": 150,
+            "y": 120,
+            "label": "2",
             "state": "active"
           }
         ],
@@ -380,16 +317,15 @@ int main() {
       }
     },
     {
-      "line": 20,
-      "text": "Adăugăm muchia (1, 2).",
+      "line": 18,
+      "text": "Adăugăm nodul 1 în lista de vecini a nodului 2.",
       "blocksVisual": [
         {
-          "label": "Muchia 1-2",
+          "label": "Liste de adiacență",
           "groups": [
             [
               {
-                "val": "adj[1]: [0, 2]",
-                "active": true
+                "val": "adj[1]: [0, 2]"
               }
             ],
             [
@@ -404,36 +340,73 @@ int main() {
       "graphVisual": {
         "nodes": [
           {
-            "id": "0",
-            "x": 50,
-            "y": 110,
-            "label": "0"
-          },
-          {
             "id": "1",
-            "x": 140,
-            "y": 110,
+            "x": 50,
+            "y": 120,
             "label": "1",
             "state": "active"
           },
           {
             "id": "2",
-            "x": 230,
-            "y": 50,
+            "x": 150,
+            "y": 120,
             "label": "2",
+            "state": "active"
+          }
+        ],
+        "edges": [
+          {
+            "source": "0",
+            "target": "1"
+          },
+          {
+            "source": "0",
+            "target": "4"
+          },
+          {
+            "source": "1",
+            "target": "2",
+            "active": true
+          }
+        ]
+      }
+    },
+    {
+      "line": 20,
+      "text": "Adăugăm nodul 3 în lista de vecini a nodului 1.",
+      "blocksVisual": [
+        {
+          "label": "Liste de adiacență",
+          "groups": [
+            [
+              {
+                "val": "adj[1]: [0, 2, 3]",
+                "active": true
+              }
+            ],
+            [
+              {
+                "val": "adj[3]: []"
+              }
+            ]
+          ]
+        }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {
+            "id": "1",
+            "x": 50,
+            "y": 120,
+            "label": "1",
             "state": "active"
           },
           {
             "id": "3",
-            "x": 230,
-            "y": 170,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 140,
-            "y": 190,
-            "label": "4"
+            "x": 50,
+            "y": 200,
+            "label": "3",
+            "state": "active"
           }
         ],
         "edges": [
@@ -453,16 +426,15 @@ int main() {
       }
     },
     {
-      "line": 24,
-      "text": "Adăugăm muchia (1, 3).",
+      "line": 21,
+      "text": "Adăugăm nodul 1 în lista de vecini a nodului 3.",
       "blocksVisual": [
         {
-          "label": "Muchia 1-3",
+          "label": "Liste de adiacență",
           "groups": [
             [
               {
-                "val": "adj[1]: [0, 2, 3]",
-                "active": true
+                "val": "adj[1]: [0, 2, 3]"
               }
             ],
             [
@@ -477,36 +449,77 @@ int main() {
       "graphVisual": {
         "nodes": [
           {
-            "id": "0",
-            "x": 50,
-            "y": 110,
-            "label": "0"
-          },
-          {
             "id": "1",
-            "x": 140,
-            "y": 110,
+            "x": 50,
+            "y": 120,
             "label": "1",
             "state": "active"
           },
           {
-            "id": "2",
-            "x": 230,
-            "y": 50,
-            "label": "2"
+            "id": "3",
+            "x": 50,
+            "y": 200,
+            "label": "3",
+            "state": "active"
+          }
+        ],
+        "edges": [
+          {
+            "source": "0",
+            "target": "1"
           },
           {
-            "id": "3",
-            "x": 230,
-            "y": 170,
-            "label": "3",
+            "source": "0",
+            "target": "4"
+          },
+          {
+            "source": "1",
+            "target": "2"
+          },
+          {
+            "source": "1",
+            "target": "3",
+            "active": true
+          }
+        ]
+      }
+    },
+    {
+      "line": 23,
+      "text": "Adăugăm nodul 4 în lista de vecini a nodului 1.",
+      "blocksVisual": [
+        {
+          "label": "Liste de adiacență",
+          "groups": [
+            [
+              {
+                "val": "adj[1]: [0, 2, 3, 4]",
+                "active": true
+              }
+            ],
+            [
+              {
+                "val": "adj[4]: [0]"
+              }
+            ]
+          ]
+        }
+      ],
+      "graphVisual": {
+        "nodes": [
+          {
+            "id": "1",
+            "x": 50,
+            "y": 120,
+            "label": "1",
             "state": "active"
           },
           {
             "id": "4",
-            "x": 140,
-            "y": 190,
-            "label": "4"
+            "x": 150,
+            "y": 200,
+            "label": "4",
+            "state": "active"
           }
         ],
         "edges": [
@@ -530,16 +543,15 @@ int main() {
       }
     },
     {
-      "line": 28,
-      "text": "Adăugăm muchia (1, 4).",
+      "line": 24,
+      "text": "Adăugăm nodul 1 în lista de vecini a nodului 4.",
       "blocksVisual": [
         {
-          "label": "Muchia 1-4",
+          "label": "Liste de adiacență",
           "groups": [
             [
               {
-                "val": "adj[1]: [0, 2, 3, 4]",
-                "active": true
+                "val": "adj[1]: [0, 2, 3, 4]"
               }
             ],
             [
@@ -554,34 +566,16 @@ int main() {
       "graphVisual": {
         "nodes": [
           {
-            "id": "0",
-            "x": 50,
-            "y": 110,
-            "label": "0"
-          },
-          {
             "id": "1",
-            "x": 140,
-            "y": 110,
+            "x": 50,
+            "y": 120,
             "label": "1",
             "state": "active"
           },
           {
-            "id": "2",
-            "x": 230,
-            "y": 50,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 230,
-            "y": 170,
-            "label": "3"
-          },
-          {
             "id": "4",
-            "x": 140,
-            "y": 190,
+            "x": 150,
+            "y": 200,
             "label": "4",
             "state": "active"
           }
@@ -605,135 +599,209 @@ int main() {
           },
           {
             "source": "1",
-            "target": "4"
+            "target": "4",
+            "active": true
           }
         ]
       }
     },
     {
-      "line": 32,
-      "text": "Afișăm structura finală a grafului. Aceasta este o reprezentare compactă și eficientă!",
+      "line": 26,
+      "text": "Afișăm listele de adiacență. Pornim bucla de la `i = 0`.",
       "blocksVisual": [
         {
-          "label": "Graful Final",
+          "label": "Index",
           "groups": [
             [
               {
-                "val": "Nod 0 -> 1, 4",
-                "sorted": true
-              }
-            ],
-            [
-              {
-                "val": "Nod 1 -> 0, 2, 3, 4",
-                "sorted": true
-              }
-            ],
-            [
-              {
-                "val": "Nod 2 -> 1",
-                "sorted": true
-              }
-            ],
-            [
-              {
-                "val": "Nod 3 -> 1",
-                "sorted": true
-              }
-            ],
-            [
-              {
-                "val": "Nod 4 -> 0, 1",
-                "sorted": true
+                "val": "i: 0",
+                "active": true
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 50,
-            "y": 110,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 140,
-            "y": 110,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 230,
-            "y": 50,
-            "label": "2",
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "x": 230,
-            "y": 170,
-            "label": "3",
-            "state": "visited"
-          },
-          {
-            "id": "4",
-            "x": 140,
-            "y": 190,
-            "label": "4",
-            "state": "visited"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1"
-          },
-          {
-            "source": "0",
-            "target": "4"
-          },
-          {
-            "source": "1",
-            "target": "2"
-          },
-          {
-            "source": "1",
-            "target": "3"
-          },
-          {
-            "source": "1",
-            "target": "4"
-          }
-        ]
-      }
+      ]
+    },
+    {
+      "line": 27,
+      "text": "Afișăm prefixul 'Nodul 0 conectat cu: '.",
+      "blocksVisual": [
+        {
+          "label": "Afișare",
+          "groups": [
+            [
+              {
+                "val": "i: 0"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 28,
+      "text": "Începem parcurgerea vecinilor nodului 0. Primul vecin este 1.",
+      "blocksVisual": [
+        {
+          "label": "Vecin curent",
+          "groups": [
+            [
+              {
+                "val": "neighbor: 1",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 29,
+      "text": "Tipărim nodul 1.",
+      "blocksVisual": [
+        {
+          "label": "Afișat",
+          "groups": [
+            [
+              {
+                "val": "1"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 28,
+      "text": "Trecem la următorul vecin al nodului 0, care este 4.",
+      "blocksVisual": [
+        {
+          "label": "Vecin curent",
+          "groups": [
+            [
+              {
+                "val": "neighbor: 4",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 29,
+      "text": "Tipărim nodul 4.",
+      "blocksVisual": [
+        {
+          "label": "Afișat",
+          "groups": [
+            [
+              {
+                "val": "4"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 26,
+      "text": "Mergem la `i = 1` în bucla exterioară.",
+      "blocksVisual": [
+        {
+          "label": "Index",
+          "groups": [
+            [
+              {
+                "val": "i: 1",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 28,
+      "text": "Începem parcurgerea vecinilor nodului 1. Primul vecin este 0.",
+      "blocksVisual": [
+        {
+          "label": "Vecin curent",
+          "groups": [
+            [
+              {
+                "val": "neighbor: 0",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 29,
+      "text": "Tipărim nodul 0.",
+      "blocksVisual": [
+        {
+          "label": "Afișat",
+          "groups": [
+            [
+              {
+                "val": "0"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 28,
+      "text": "Următorul vecin al nodului 1 este 2.",
+      "blocksVisual": [
+        {
+          "label": "Vecin curent",
+          "groups": [
+            [
+              {
+                "val": "neighbor: 2",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 29,
+      "text": "Tipărim nodul 2.",
+      "blocksVisual": [
+        {
+          "label": "Afișat",
+          "groups": [
+            [
+              {
+                "val": "2"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 32,
+      "text": "Încheiem rularea programului cu succes.",
+      "blocksVisual": [
+        {
+          "label": "Terminare",
+          "groups": [
+            [
+              {
+                "val": "return 0"
+              }
+            ]
+          ]
+        }
+      ]
     }
-  ],
-  "problems": {
-    "easy": [
-      {
-        "title": "Matrice de Adiacență",
-        "url": "https://www.pbinfo.ro/probleme/412/adiacenta",
-        "desc": "Creare din muchii"
-      }
-    ],
-    "medium": [
-      {
-        "title": "Grade Noduri",
-        "url": "https://www.pbinfo.ro/probleme/416/grade",
-        "desc": "Calcul grade"
-      }
-    ],
-    "hard": [
-      {
-        "title": "Find the Town Judge",
-        "url": "https://leetcode.com/problems/find-the-town-judge/",
-        "desc": "Grade intrare/ieșire"
-      }
-    ]
-  }
+  ]
 };

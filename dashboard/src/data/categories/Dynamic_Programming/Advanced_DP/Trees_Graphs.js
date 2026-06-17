@@ -1,9 +1,9 @@
 export const data = {
-  "presentation": "### Prezentare Generală\n\nProgramare Dinamică pe Arbori (DP on Trees) combină traversarea arborilor (DFS) cu paradigmele DP.\n\nÎntr-un arbore, substructura optimă este naturală: soluția pentru rădăcină depinde de soluțiile copiilor (subarborilor). O stare comună este `dp[node][state]`, unde `state` poate însemna dacă nodul curent este inclus sau nu într-o mulțime, sau numărul de culori folosite.\n\nCaz clasic: Maximum Independent Set of a Tree. Vrem să alegem noduri astfel încât să maximizăm numărul lor, dar niciun părinte să nu fie ales simultan cu fiul său.\n- dp[u][0] = Maximum fără a include u = sum(max(dp[v][0], dp[v][1]))\n- dp[u][1] = Maximum incluzând u = 1 + sum(dp[v][0])",
-  "complexity": "### Complexitate\n\n- **Timp:** O(V) deoarece fiecare nod și muchie este vizitată o singură dată (în post-ordine).\n- **Spațiu:** O(V) pentru tablourile DP și stiva recursivă.\n",
-  "variations": "### Variații și Edge Cases\n\n1. Diametrul unui arbore.\n2. Tree Knapsack (Problema rucsacului, dar restricționată pe o ierarhie de noduri).",
-  "applications": "### Aplicații\n\nProbleme de colorare sau acoperire pe grafuri cu densitate mică. Optimizarea structurilor ierarhice (sisteme de referințe sau permisiuni).",
-
+  "presentation": "### Prezentare Generală\n\n**Programarea Dinamică pe Arbori (Tree DP)** combină proprietățile structurale ale arborilor cu principiile Programării Dinamice. Datorită structurii ierarhice aciclice, subproblemele unui arbore sunt definite în mod natural de subarborii săi. Soluția optimă pentru un nod părinte poate fi calculată exclusiv din soluțiile optime ale nodurilor copii.\n\nÎn mod tipic, Tree DP se implementează recursiv printr-o parcurgere în adâncime (DFS). Se procesează mai întâi frunzele (cazurile de bază), iar apoi, în post-ordine, se agregă rezultatele de la fii către părinți, urcând spre rădăcină.\n\n#### Problema Clasică: Maximum Independent Set (MIS)\nSe dorește alegerea unei submulțimi de noduri din arbore cu cardinalitate maximă, astfel încât să nu existe două noduri adiacente (conectate direct printr-o muchie) selectate simultan.\n\nDefinim starea pentru fiecare nod $u$:\n- $dp[u][0]$ = dimensiunea maximă a unei mulțimi independente în subarborele lui $u$, în care $u$ **nu** este inclus.\n- $dp[u][1]$ = dimensiunea maximă a unei mulțimi independente în subarborele lui $u$, în care $u$ **este** inclus.\n\n#### Tranziții\n1. **Dacă NU includem nodul $u$ ($dp[u][0]$):** Copiii $v$ ai lui $u$ pot fi fie incluși, fie excluși din mulțime. Alegem varianta optimă pentru fiecare copil:\n   $$dp[u][0] = \\sum_{v \\in children(u)} \\max(dp[v][0], dp[v][1])$$\n2. **Dacă includem nodul $u$ ($dp[u][1]$):** Copiii $v$ nu au voie să fie incluși (pentru a evita adiacența). Adăugăm $1$ pentru nodul $u$:\n   $$dp[u][1] = 1 + \\sum_{v \\in children(u)} dp[v][0]$$",
+  "complexity": "### Complexitate\n\n- **Timp:** $\\mathcal{O}(V + E) = \\mathcal{O}(V)$, deoarece într-un arbore numărul de muchii este $E = V - 1$. Fiecare nod și fiecare muchie este vizitată exact o singură dată în timpul parcurgerii DFS.\n- **Spațiu:** $\\mathcal{O}(V)$ pentru stocarea stărilor de programare dinamică în matricea $dp$, la care se adaugă spațiul ocupat de stiva recursivă a parcurgerii DFS.",
+  "variations": "### Variații și Edge Cases\n\n1. **Determinarea Diametrului unui Arbore:** Determinarea celei mai mari distanțe dintre oricare două noduri. Definim $dp[u]$ ca fiind lungimea celui mai lung drum de la $u$ în subarborele său, iar diametrul global este $\\max_{u} (drum1(u) + drum2(u))$.\n2. **Tree Knapsack (Subtree DP cu Greutăți):** Fiecare nod are o greutate și o valoare, iar alegerea unui nod este condiționată de selectarea părintelui său. Starea devine $dp[u][w]$ — valoarea maximă obtenabilă în subarborele lui $u$ cu capacitatea $w$.\n3. **Edge Cases:**\n   - Arbore format dintr-un singur nod (răspunsul este $1$).\n   - Arbore de tip linie (echivalent cu o problemă DP clasică pe secvență liniară).\n   - Rădăcină cu un singur copil.",
+  "applications": "### Aplicații în Lumea Reală\n\n- **Ierarhii Organizaționale:** Selectarea celei mai mari echipe de angajați pentru un eveniment fără ca un manager și subordonatul său direct să fie invitați simultan (pentru a asigura comunicarea liberă).\n- **Securitatea Rețelelor:** Plasarea unui număr minim de servere de securitate (firewalls) în nodurile unei rețele ierarhice pentru a monitoriza toate conexiunile.\n- **Instalarea Facilităților:** Amplasarea optimă a routerelor wireless în clădiri cu structură arborescentă pentru acoperire maximă cu cost minim."
+,
   code: `
 #include <iostream>
 #include <vector>
@@ -388,7 +388,26 @@ int main() {
     },
     {
       "line": 19,
-      "text": "Și dacă includem nodul 0: dp[0][1] += dp[2][0] = 3 + 0 = 3. Final dp[0] = (3, 3). dfs(0) se întoarce.",
+      "text": "Și dacă includem nodul 0: dp[0][1] += dp[2][0] = 3 + 0 = 3. Final dp[0] = (3, 3).",
+      "graphVisual": {
+        "nodes": [
+          { "id": "0", "x": 140, "y": 30, "label": "0 (3,3)", "state": "visited" },
+          { "id": "1", "x": 80, "y": 90, "label": "1 (2,1)", "state": "visited" },
+          { "id": "2", "x": 200, "y": 90, "label": "2 (0,1)", "state": "visited" },
+          { "id": "3", "x": 45, "y": 150, "label": "3 (0,1)", "state": "visited" },
+          { "id": "4", "x": 115, "y": 150, "label": "4 (0,1)", "state": "visited" }
+        ],
+        "edges": [
+          { "source": "0", "target": "1" },
+          { "source": "0", "target": "2" },
+          { "source": "1", "target": "3" },
+          { "source": "1", "target": "4" }
+        ]
+      }
+    },
+    {
+      "line": 33,
+      "text": "Funcția recursivă dfs(0, -1) își încheie execuția. Matricea DP conține acum rezultatele optime pentru toate subarborile.",
       "graphVisual": {
         "nodes": [
           { "id": "0", "x": 140, "y": 30, "label": "0 (3,3)", "state": "visited" },
@@ -407,7 +426,26 @@ int main() {
     },
     {
       "line": 35,
-      "text": "Rezultatul final este max(dp[0][0]=3, dp[0][1]=3) = 3. Alegem nodurile {0, 3, 4}.",
+      "text": "Rezultatul final este max(dp[0][0]=3, dp[0][1]=3) = 3. Alegem nodurile {0, 3, 4} pentru mulțimea independentă maximă.",
+      "graphVisual": {
+        "nodes": [
+          { "id": "0", "x": 140, "y": 30, "label": "0 (3,3)", "state": "visited" },
+          { "id": "1", "x": 80, "y": 90, "label": "1 (2,1)", "state": "visited" },
+          { "id": "2", "x": 200, "y": 90, "label": "2 (0,1)", "state": "visited" },
+          { "id": "3", "x": 45, "y": 150, "label": "3 (0,1)", "state": "visited" },
+          { "id": "4", "x": 115, "y": 150, "label": "4 (0,1)", "state": "visited" }
+        ],
+        "edges": [
+          { "source": "0", "target": "1" },
+          { "source": "0", "target": "2" },
+          { "source": "1", "target": "3" },
+          { "source": "1", "target": "4" }
+        ]
+      }
+    },
+    {
+      "line": 36,
+      "text": "Programul se termină cu succes, returnând 0.",
       "graphVisual": {
         "nodes": [
           { "id": "0", "x": 140, "y": 30, "label": "0 (3,3)", "state": "visited" },

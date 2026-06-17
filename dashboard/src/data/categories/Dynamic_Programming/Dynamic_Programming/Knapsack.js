@@ -1,8 +1,8 @@
 export const data = {
-  "presentation": "### Prezentare Generală\n\nProblema Rucsacului (0/1 Knapsack) este o problemă clasică de optimizare combinatorică.\\n\\nAi un rucsac cu o capacitate maximă W și un set de obiecte, fiecare având o greutate și o valoare. Scopul este să maximizezi valoarea totală a obiectelor puse în rucsac, fără a depăși capacitatea.\\n\\nAbordarea Naivă: Generăm toate submulțimile (2^N).\\n\\nAbordarea DP:\\nDefinim starea: dp[i][w] = valoarea maximă folosind un subset al primelor i obiecte și capacitate curentă w.\\n\\nTranziția pentru obiectul curent i:\\n1. Nu-l luăm: dp[i][w] = dp[i-1][w]\\n2. Îl luăm (dacă încape): dp[i][w] = dp[i-1][w - greutate[i]] + valoare[i]\\nSoluția la pasul i este maximul dintre aceste două opțiuni.",
-  "complexity": "### Complexitate\n\n- **Timp:** O(N * W), unde N = număr obiecte, W = capacitatea rucsacului.\\n- **Spațiu:** O(N * W), ce poate fi optimizat la O(W) (Rolling Array), folosind doar linia precedentă.\n",
-  "variations": "### Variații și Edge Cases\n\n1. Fracțional Knapsack (rezolvat cu Greedy).\\n2. Unbounded Knapsack (fiecare obiect poate fi luat de un număr nelimitat de ori - Coin Change).\\n3. Multiple Knapsack (număr finit c_i din fiecare obiect).",
-  "applications": "### Aplicații\n\nAlocarea de bugete, selecția de proiecte cu constrângeri de resurse, tăierea stocului.",
+  "presentation": "### Prezentare Generală\n\nProblema Rucsacului (0/1 Knapsack) este o problemă clasică de optimizare combinatorică:\n\nAvând o mulțime de $N$ obiecte, fiecare caracterizat de o greutate $wt[i]$ și o valoare $val[i]$, și un rucsac de capacitate maximă $W$, scopul este să selectăm un subset de obiecte astfel încât valoarea lor totală să fie maximă, iar greutatea lor totală să nu depășească capacitatea rucsacului.\n\nFiecare obiect poate fi ales o singură dată (0/1).\n\n#### Formulare DP\nDefinim starea:\n- $dp[i][w]$ = valoarea maximă care poate fi obținută folosind primele $i$ obiecte, având o capacitate disponibilă a rucsacului de exact/maximum $w$.\n\nTranziția se bazează pe decizia de a include sau exclude obiectul $i$:\n1. **Excludem obiectul $i$:** Valoarea rămâne cea obținută din primele $i-1$ obiecte: \n   $$dp[i][w] = dp[i-1][w]$$\n2. **Includem obiectul $i$ (dacă $w \\ge wt[i]$):** Valoarea devine suma dintre valoarea obiectului curent și cea optimă pentru capacitatea rămasă $w - wt[i]$ folosind primele $i-1$ obiecte:\n   $$dp[i][w] = dp[i-1][w - wt[i]] + val[i]$$\n\nFormula de recurență generală:\n$$dp[i][w] = \\max(dp[i-1][w], dp[i-1][w - wt[i]] + val[i])$$\n\n#### Optimizarea Spațiului (Rolling Array)\nDeoarece linia $i$ depinde exclusiv de elementele de pe linia $i-1$, putem reduce dimensiunea spațiului la un singur vector 1D de lungime $W+1$:\n$$dp[w] = \\max(dp[w], dp[w - wt[i]] + val[i])$$\nPentru a evita folosirea aceluiași obiect de mai multe ori (ceea ce ar corespunde problemei Unbounded Knapsack), iterarea capacității $w$ trebuie realizată în sens invers, de la $W$ la $wt[i]$.",
+  "complexity": "### Complexitate\n\n- **Timp:** $\\mathcal{O}(N \\times W)$, unde $N$ este numărul de obiecte și $W$ este capacitatea rucsacului. Deși este polinomial în raport cu parametrii numerici, din punct de vedere computațional este un algoritm pseudo-polinomial (deoarece depinde de valoarea numerică a lui $W$, nu de numărul său de biți).\n- **Spațiu:** $\\mathcal{O}(W)$ prin optimizarea cu vector 1D, sau $\\mathcal{O}(N \\times W)$ dacă este necesară reconstrucția subsetului optim de obiecte selectate.",
+  "variations": "### Variații și Edge Cases\n\n1. **Fractional Knapsack:** Obiectele pot fi tăiate (se rezolvă optim cu o strategie Greedy sortând după densitatea de valoare $\\frac{val[i]}{wt[i]}$).\n2. **Unbounded Knapsack:** Fiecare obiect este disponibil în cantități nelimitate (bucla pentru $w$ se parcurge direct, de la $wt[i]$ la $W$).\n3. **Bounded Knapsack:** Fiecare obiect $i$ este disponibil în maximum $c_i$ exemplare (se poate reduce la 0/1 Knapsack prin descompunere binară a cantităților în sub-obiecte).\n4. **Edge Cases:**\n   - Capacitate $W = 0$.\n   - Greutatea unui obiect depășește capacitatea maximă ($wt[i] > W$).\n   - Valori sau greutăți egale cu $0$.",
+  "applications": "### Aplicații în Lumea Reală\n\n- **Managementul Portofoliilor:** Selectarea investițiilor care maximizează profitul fără a depăși un buget de risc limitat.\n- **Criptografie:** Criptosistemul Merkle-Hellman bazat pe problema sumei subseturilor (o variație a rucsacului).\n- **Încărcarea Mărfurilor:** Distribuirea eficientă a containerelor în avioane sau nave cargo cu constrângeri stricte de greutate.\n- **Alocarea Resurselor în Cloud:** Plasarea mașinilor virtuale pe serverer fizice cu capacitate fixă de CPU/RAM.",
   code: `
 #include <iostream>
 #include <vector>
@@ -34,7 +34,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 13,
+      "line": 21,
       "text": "Pornim programul. Inițializăm vectorul de valori val = [60, 100, 120] și greutăți wt = [10, 20, 30].",
       "blocksVisual": [
         {
@@ -47,7 +47,7 @@ int main() {
       ]
     },
     {
-      "line": 15,
+      "line": 23,
       "text": "Setăm capacitatea maximă a rucsacului W = 50.",
       "blocksVisual": [
         {
@@ -57,7 +57,7 @@ int main() {
       ]
     },
     {
-      "line": 17,
+      "line": 25,
       "text": "Apelăm funcția knapsack(W = 50, wt, val, n = 3).",
       "blocksVisual": [
         {
@@ -67,7 +67,7 @@ int main() {
       ]
     },
     {
-      "line": 1,
+      "line": 8,
       "text": "Inițializăm vectorul dp de dimensiune W + 1 cu valori de 0. dp[w] = 0.",
       "blocksVisual": [
         {
@@ -80,7 +80,7 @@ int main() {
       ]
     },
     {
-      "line": 4,
+      "line": 11,
       "text": "i = 0. Considerăm primul obiect (wt[0] = 10, val[0] = 60).",
       "blocksVisual": [
         {
@@ -90,7 +90,7 @@ int main() {
       ]
     },
     {
-      "line": 6,
+      "line": 14,
       "text": "w = 50: dp[50] devine max(dp[50]=0, dp[40]+60 = 60). dp[50] = 60.",
       "blocksVisual": [
         {
@@ -103,7 +103,7 @@ int main() {
       ]
     },
     {
-      "line": 6,
+      "line": 14,
       "text": "w = 40: dp[40] devine max(dp[40]=0, dp[30]+60 = 60). dp[40] = 60.",
       "blocksVisual": [
         {
@@ -116,7 +116,7 @@ int main() {
       ]
     },
     {
-      "line": 6,
+      "line": 14,
       "text": "w = 30: dp[30] devine max(dp[30]=0, dp[20]+60 = 60). dp[30] = 60.",
       "blocksVisual": [
         {
@@ -129,7 +129,7 @@ int main() {
       ]
     },
     {
-      "line": 6,
+      "line": 14,
       "text": "w = 20: dp[20] devine max(dp[20]=0, dp[10]+60 = 60). dp[20] = 60.",
       "blocksVisual": [
         {
@@ -142,7 +142,7 @@ int main() {
       ]
     },
     {
-      "line": 6,
+      "line": 14,
       "text": "w = 10: dp[10] devine max(dp[10]=0, dp[0]+60 = 60). dp[10] = 60.",
       "blocksVisual": [
         {
@@ -155,7 +155,7 @@ int main() {
       ]
     },
     {
-      "line": 4,
+      "line": 11,
       "text": "i = 1. Considerăm al doilea obiect (wt[1] = 20, val[1] = 100).",
       "blocksVisual": [
         {
@@ -165,7 +165,7 @@ int main() {
       ]
     },
     {
-      "line": 6,
+      "line": 14,
       "text": "w = 50: dp[50] devine max(dp[50]=60, dp[30]+100 = 60+100 = 160). dp[50] = 160.",
       "blocksVisual": [
         {
@@ -178,7 +178,7 @@ int main() {
       ]
     },
     {
-      "line": 6,
+      "line": 14,
       "text": "w = 40: dp[40] devine max(dp[40]=60, dp[20]+100 = 60+100 = 160). dp[40] = 160.",
       "blocksVisual": [
         {
@@ -191,7 +191,7 @@ int main() {
       ]
     },
     {
-      "line": 6,
+      "line": 14,
       "text": "w = 30: dp[30] devine max(dp[30]=60, dp[10]+100 = 60+100 = 160). dp[30] = 160.",
       "blocksVisual": [
         {
@@ -204,7 +204,7 @@ int main() {
       ]
     },
     {
-      "line": 6,
+      "line": 14,
       "text": "w = 20: dp[20] devine max(dp[20]=60, dp[0]+100 = 100). dp[20] = 100.",
       "blocksVisual": [
         {
@@ -217,7 +217,7 @@ int main() {
       ]
     },
     {
-      "line": 4,
+      "line": 11,
       "text": "i = 2. Considerăm al treilea obiect (wt[2] = 30, val[2] = 120).",
       "blocksVisual": [
         {
@@ -227,7 +227,7 @@ int main() {
       ]
     },
     {
-      "line": 6,
+      "line": 14,
       "text": "w = 50: dp[50] devine max(dp[50]=160, dp[20]+120 = 100+120 = 220). dp[50] = 220.",
       "blocksVisual": [
         {
@@ -240,7 +240,7 @@ int main() {
       ]
     },
     {
-      "line": 6,
+      "line": 14,
       "text": "w = 40: dp[40] devine max(dp[40]=160, dp[10]+120 = 60+120 = 180). dp[40] = 180.",
       "blocksVisual": [
         {
@@ -253,7 +253,7 @@ int main() {
       ]
     },
     {
-      "line": 6,
+      "line": 14,
       "text": "w = 30: dp[30] devine max(dp[30]=160, dp[0]+120 = 120). dp[30] = 160 (rămâne neschimbat).",
       "blocksVisual": [
         {
@@ -266,7 +266,7 @@ int main() {
       ]
     },
     {
-      "line": 10,
+      "line": 17,
       "text": "Toate obiectele au fost procesate. Returnăm dp[W] = dp[50] = 220.",
       "blocksVisual": [
         {
@@ -276,7 +276,7 @@ int main() {
       ]
     },
     {
-      "line": 17,
+      "line": 25,
       "text": "Afișăm rezultatul final: Valoare Maxima = 220.",
       "blocksVisual": [
         {

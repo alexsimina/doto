@@ -37,6 +37,12 @@ void solve(int row) {
         }
     }
 }
+
+int main() {
+    col.resize(N);
+    solve(0);
+    return 0;
+}
 `,
   "explanations": [
     {

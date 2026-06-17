@@ -1,709 +1,337 @@
 export const data = {
-  "presentation": "### Prezentare Generală\n\nAlgoritmul lui Prim găsește Arborele Minim de Acoperire (MST). Spre deosebire de Kruskal (care e bazat pe muchii), Prim crește un singur copac, pornind dintr-un nod arbitrar. La fiecare pas, algoritmul extrage cea mai ieftină muchie care conectează un nod deja aflat în arbore cu un nod nevizitat.",
-  "complexity": "### Complexitate\n\n- **Timp:** O(E log V) folosind o Coadă de Priorități (Min-Heap).\\n- **Spațiu:** O(V + E) pentru graf și coadă.\n",
-  "variations": "### Variații și Edge Cases\n\nPoate rula în O(E + V log V) teoretic dacă se folosește un Fibonacci Heap, util doar pentru grafuri extrem de dense.",
-  "applications": "### Aplicații\n\nDesign-ul rețelelor electrice (cablarea caselor), design-ul plăcilor de circuit, algoritmi de aproximare pentru problema comisarului voiajor (TSP).",
-  code: `
-#include <iostream>
-#include <vector>
-#include <queue>
-
-using namespace std;
-
-typedef pair<int, int> pii; // {cost, nod}
-vector<pii> adj[10005];
-bool inMST[10005];
-
-int prim(int start) {
-    priority_queue<pii, vector<pii>, greater<pii>> pq;
-    
-    int totalCost = 0;
-    pq.push({0, start}); // cost 0, plecam din start
-    
-    while (!pq.empty()) {
-        int cost = pq.top().first;
-        int u = pq.top().second;
-        pq.pop();
-        
-        if (inMST[u]) continue; // daca e deja vizitat, ignoram muchia
-        
-        inMST[u] = true;
-        totalCost += cost;
-        
-        for (auto edge : adj[u]) {
-            int v = edge.second;
-            int w = edge.first;
-            if (!inMST[v]) {
-                pq.push({w, v});
-            }
-        }
-    }
-    
-    return totalCost;
-}
-
-int main() {
-    // Graf: u, v, cost
-    // 0-1 (4), 0-2 (1), 1-2 (2), 1-3 (5), 2-3 (8)
-    adj[0].push_back({4, 1}); adj[1].push_back({4, 0});
-    adj[0].push_back({1, 2}); adj[2].push_back({1, 0});
-    adj[1].push_back({2, 2}); adj[2].push_back({2, 1});
-    adj[1].push_back({5, 3}); adj[3].push_back({5, 1});
-    adj[2].push_back({8, 3}); adj[3].push_back({8, 2});
-    
-    cout << "Cost MST: " << prim(0) << "\
-";
-    return 0;
-}
-`,
+  "presentation": "### Algoritmul lui Prim (MST)\n\nAlgoritmul lui Prim construiește Arborele Parțial de Cost Minim (MST) pornind de la un singur nod rădăcină și extinzând progresiv arborele. La fiecare pas, se selectează o muchie minimă $e = (u, v)$ unde $u \\in \\text{MST}$ și $v \\notin \\text{MST}$.",
+  "complexity": "### Complexitate\n\n- **Timp:** $O(E \\log V)$ - cu priority queue.\n- **Spațiu:** $O(V + E)$ - memorarea grafului.",
+  "variations": "### Variații și Cazuri Particulare\n\n- **Varianta cu tablou**: utilă pe grafuri dense, având complexitate $O(V^2)$.",
+  "applications": "### Aplicații Reale\n\n- Optimizarea cablurilor de rețea.",
+  "code": "#include <iostream>\n#include <vector>\n#include <queue>\n\nusing namespace std;\n\ntypedef pair<int, int> pii;\nconst int MAXN = 10005;\nvector<pii> adj[MAXN];\nbool inMST[MAXN];\n\nint prim(int start, int V) {\n    priority_queue<pii, vector<pii>, greater<pii>> pq;\n    int totalCost = 0;\n    pq.push({0, start});\n    \n    while (!pq.empty()) {\n        int cost = pq.top().first;\n        int u = pq.top().second;\n        pq.pop();\n        \n        if (inMST[u]) continue;\n        \n        inMST[u] = true;\n        totalCost += cost;\n        \n        for (auto edge : adj[u]) {\n            int v = edge.second;\n            int w = edge.first;\n            if (!inMST[v]) {\n                pq.push({w, v});\n            }\n        }\n    }\n    return totalCost;\n}\n\nint main() {\n    int V = 4;\n    adj[0].push_back({4, 1}); adj[1].push_back({4, 0});\n    adj[0].push_back({1, 2}); adj[2].push_back({1, 0});\n    adj[1].push_back({2, 2}); adj[2].push_back({2, 1});\n    adj[1].push_back({5, 3}); adj[3].push_back({5, 1});\n    adj[2].push_back({8, 3}); adj[3].push_back({8, 2});\n    prim(0, V);\n    return 0;\n}\n",
   "explanations": [
     {
-      "line": 7,
-      "text": "Punem nodul de start în Priority Queue (Heap).",
+      "line": 12,
+      "text": "Începem executarea algoritmului lui Prim.",
       "blocksVisual": [
         {
-          "label": "Min-Heap",
+          "label": "Start",
           "groups": [
             [
               {
-                "val": "{0, nodul 0}",
+                "val": "start: 0"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 13,
+      "text": "Inițializăm coada de priorități `pq` (min-heap).",
+      "blocksVisual": [
+        {
+          "label": "Queue",
+          "groups": [
+            []
+          ]
+        }
+      ]
+    },
+    {
+      "line": 14,
+      "text": "Setăm `totalCost = 0`.",
+      "blocksVisual": [
+        {
+          "label": "totalCost",
+          "groups": [
+            [
+              {
+                "val": "0"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 15,
+      "text": "Introducem nodul de pornire 0 în heap cu costul 0.",
+      "blocksVisual": [
+        {
+          "label": "Queue",
+          "groups": [
+            [
+              {
+                "val": "{0, 0}",
                 "active": true
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "label": "0",
-            "x": 100,
-            "y": 50,
-            "state": "active"
-          },
-          {
-            "id": "1",
-            "label": "1",
-            "x": 200,
-            "y": 50
-          },
-          {
-            "id": "2",
-            "label": "2",
-            "x": 100,
-            "y": 150
-          },
-          {
-            "id": "3",
-            "label": "3",
-            "x": 200,
-            "y": 150
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1",
-            "label": "4"
-          },
-          {
-            "source": "0",
-            "target": "2",
-            "label": "1"
-          },
-          {
-            "source": "1",
-            "target": "2",
-            "label": "2"
-          },
-          {
-            "source": "1",
-            "target": "3",
-            "label": "5"
-          },
-          {
-            "source": "2",
-            "target": "3",
-            "label": "8"
-          }
-        ]
-      }
+      ]
     },
     {
-      "line": 12,
-      "text": "Extragem din Heap muchia cu costul minim {0, 0}. Nodul 0 devine vizitat. TotalCost = 0.",
+      "line": 17,
+      "text": "Intrăm în buclă: coada nu este goală.",
+      "blocksVisual": [
+        {
+          "label": "Queue",
+          "groups": [
+            [
+              {
+                "val": "{0, 0}"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 18,
+      "text": "Preluăm muchia din vârful heap-ului: cost = 0.",
+      "blocksVisual": [
+        {
+          "label": "cost",
+          "groups": [
+            [
+              {
+                "val": "cost: 0",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 19,
+      "text": "Preluăm nodul țintă: `u = 0`.",
+      "blocksVisual": [
+        {
+          "label": "u",
+          "groups": [
+            [
+              {
+                "val": "u: 0",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 20,
+      "text": "Pop din coadă.",
+      "blocksVisual": [
+        {
+          "label": "Queue",
+          "groups": [
+            []
+          ]
+        }
+      ]
+    },
+    {
+      "line": 22,
+      "text": "Verificăm dacă nodul 0 este deja în MST. Nu este vizitat.",
+      "blocksVisual": [
+        {
+          "label": "inMST check",
+          "groups": [
+            [
+              {
+                "val": "inMST[0]: false"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 24,
+      "text": "Adăugăm nodul 0 la MST: `inMST[0] = true`.",
       "blocksVisual": [
         {
           "label": "inMST",
           "groups": [
             [
               {
-                "val": "0",
+                "val": "inMST[0]: true",
                 "active": true
-              },
-              {
-                "val": "1"
-              },
-              {
-                "val": "2"
-              },
-              {
-                "val": "3"
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "label": "0",
-            "x": 100,
-            "y": 50,
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "label": "1",
-            "x": 200,
-            "y": 50
-          },
-          {
-            "id": "2",
-            "label": "2",
-            "x": 100,
-            "y": 150
-          },
-          {
-            "id": "3",
-            "label": "3",
-            "x": 200,
-            "y": 150
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1",
-            "label": "4"
-          },
-          {
-            "source": "0",
-            "target": "2",
-            "label": "1"
-          },
-          {
-            "source": "1",
-            "target": "2",
-            "label": "2"
-          },
-          {
-            "source": "1",
-            "target": "3",
-            "label": "5"
-          },
-          {
-            "source": "2",
-            "target": "3",
-            "label": "8"
-          }
-        ]
-      }
+      ]
+    },
+    {
+      "line": 25,
+      "text": "Adunăm costul curent: `totalCost` rămâne 0.",
+      "blocksVisual": []
+    },
+    {
+      "line": 27,
+      "text": "Parcurgem vecinii nodului 0: 1 (cost 4) și 2 (cost 1).",
+      "blocksVisual": [
+        {
+          "label": "Vecin",
+          "groups": [
+            [
+              {
+                "val": "v: 1"
+              },
+              {
+                "val": "v: 2"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 30,
+      "text": "Nodul 1 nu este în MST, îl punem în heap: `{4, 1}`.",
+      "blocksVisual": [
+        {
+          "label": "Queue",
+          "groups": [
+            [
+              {
+                "val": "{4, 1}"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 30,
+      "text": "Nodul 2 nu este în MST, îl punem în heap: `{1, 2}`.",
+      "blocksVisual": [
+        {
+          "label": "Queue",
+          "groups": [
+            [
+              {
+                "val": "{1, 2}"
+              },
+              {
+                "val": "{4, 1}"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 17,
+      "text": "Reluăm bucla. Heap-ul scoate muchia minimă: `{1, 2}`.",
+      "blocksVisual": [
+        {
+          "label": "Queue",
+          "groups": [
+            [
+              {
+                "val": "{1, 2}"
+              },
+              {
+                "val": "{4, 1}"
+              }
+            ]
+          ]
+        }
+      ]
     },
     {
       "line": 19,
-      "text": "Introducem vecinii lui 0 în Heap: nodul 1 (cost 4) și nodul 2 (cost 1).",
+      "text": "Extragem nodul `u = 2` cu `cost = 1`.",
       "blocksVisual": [
         {
-          "label": "Min-Heap",
+          "label": "u",
           "groups": [
             [
               {
-                "val": "{1, nodul 2}",
+                "val": "u: 2",
                 "active": true
-              },
-              {
-                "val": "{4, nodul 1}"
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "label": "0",
-            "x": 100,
-            "y": 50,
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "label": "1",
-            "x": 200,
-            "y": 50,
-            "state": "active"
-          },
-          {
-            "id": "2",
-            "label": "2",
-            "x": 100,
-            "y": 150,
-            "state": "active"
-          },
-          {
-            "id": "3",
-            "label": "3",
-            "x": 200,
-            "y": 150
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1",
-            "label": "4",
-            "style": "dashed"
-          },
-          {
-            "source": "0",
-            "target": "2",
-            "label": "1",
-            "style": "dashed"
-          },
-          {
-            "source": "1",
-            "target": "2",
-            "label": "2"
-          },
-          {
-            "source": "1",
-            "target": "3",
-            "label": "5"
-          },
-          {
-            "source": "2",
-            "target": "3",
-            "label": "8"
-          }
-        ]
-      }
+      ]
     },
     {
-      "line": 12,
-      "text": "La pasul următor, Heap-ul va extrage pe {1, 2}. Deci includem muchia 0-2 (cost 1) în MST. Nodul 2 devine vizitat. TotalCost = 1.",
+      "line": 24,
+      "text": "Marcăm `inMST[2] = true`.",
       "blocksVisual": [
         {
-          "label": "Min-Heap",
+          "label": "inMST",
           "groups": [
             [
               {
-                "val": "{4, nodul 1}"
-              }
-            ]
-          ]
-        }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "label": "0",
-            "x": 100,
-            "y": 50,
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "label": "1",
-            "x": 200,
-            "y": 50
-          },
-          {
-            "id": "2",
-            "label": "2",
-            "x": 100,
-            "y": 150,
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "label": "3",
-            "x": 200,
-            "y": 150
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1",
-            "label": "4"
-          },
-          {
-            "source": "0",
-            "target": "2",
-            "label": "1",
-            "style": "thick"
-          },
-          {
-            "source": "1",
-            "target": "2",
-            "label": "2"
-          },
-          {
-            "source": "1",
-            "target": "3",
-            "label": "5"
-          },
-          {
-            "source": "2",
-            "target": "3",
-            "label": "8"
-          }
-        ]
-      }
-    },
-    {
-      "line": 19,
-      "text": "Adăugăm vecinii lui 2 în Heap: nodul 1 (cost 2) și nodul 3 (cost 8). Heap-ul sortează elementele automat.",
-      "blocksVisual": [
-        {
-          "label": "Min-Heap",
-          "groups": [
-            [
-              {
-                "val": "{2, nodul 1}",
+                "val": "inMST[2]: true",
                 "active": true
-              },
-              {
-                "val": "{4, nodul 1}"
-              },
-              {
-                "val": "{8, nodul 3}"
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "label": "0",
-            "x": 100,
-            "y": 50,
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "label": "1",
-            "x": 200,
-            "y": 50,
-            "state": "active"
-          },
-          {
-            "id": "2",
-            "label": "2",
-            "x": 100,
-            "y": 150,
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "label": "3",
-            "x": 200,
-            "y": 150,
-            "state": "active"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1",
-            "label": "4"
-          },
-          {
-            "source": "0",
-            "target": "2",
-            "label": "1",
-            "style": "thick"
-          },
-          {
-            "source": "1",
-            "target": "2",
-            "label": "2",
-            "style": "dashed"
-          },
-          {
-            "source": "1",
-            "target": "3",
-            "label": "5"
-          },
-          {
-            "source": "2",
-            "target": "3",
-            "label": "8",
-            "style": "dashed"
-          }
-        ]
-      }
+      ]
     },
     {
-      "line": 12,
-      "text": "Se extrage elementul minim: nodul 1 prin muchia de cost 2 (conectat la 2). Adăugăm 2 în MST. TotalCost devine 3.",
+      "line": 25,
+      "text": "Actualizăm `totalCost = 0 + 1 = 1`.",
       "blocksVisual": [
         {
-          "label": "Min-Heap",
+          "label": "totalCost",
           "groups": [
             [
               {
-                "val": "{4, nodul 1}"
-              },
-              {
-                "val": "{8, nodul 3}"
-              }
-            ]
-          ]
-        }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "label": "0",
-            "x": 100,
-            "y": 50,
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "label": "1",
-            "x": 200,
-            "y": 50,
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "label": "2",
-            "x": 100,
-            "y": 150,
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "label": "3",
-            "x": 200,
-            "y": 150
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1",
-            "label": "4"
-          },
-          {
-            "source": "0",
-            "target": "2",
-            "label": "1",
-            "style": "thick"
-          },
-          {
-            "source": "1",
-            "target": "2",
-            "label": "2",
-            "style": "thick"
-          },
-          {
-            "source": "1",
-            "target": "3",
-            "label": "5"
-          },
-          {
-            "source": "2",
-            "target": "3",
-            "label": "8"
-          }
-        ]
-      }
-    },
-    {
-      "line": 19,
-      "text": "Adăugăm vecinii lui 1: nodul 3 cu cost 5. Nodul 0 e deja în MST deci îl ignorăm. Heap are min {5, nodul 3}.",
-      "blocksVisual": [
-        {
-          "label": "Min-Heap",
-          "groups": [
-            [
-              {
-                "val": "{4, nodul 1}"
-              },
-              {
-                "val": "{5, nodul 3}",
+                "val": "1",
                 "active": true
-              },
-              {
-                "val": "{8, nodul 3}"
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "label": "0",
-            "x": 100,
-            "y": 50,
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "label": "1",
-            "x": 200,
-            "y": 50,
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "label": "2",
-            "x": 100,
-            "y": 150,
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "label": "3",
-            "x": 200,
-            "y": 150,
-            "state": "active"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1",
-            "label": "4"
-          },
-          {
-            "source": "0",
-            "target": "2",
-            "label": "1",
-            "style": "thick"
-          },
-          {
-            "source": "1",
-            "target": "2",
-            "label": "2",
-            "style": "thick"
-          },
-          {
-            "source": "1",
-            "target": "3",
-            "label": "5",
-            "style": "dashed"
-          },
-          {
-            "source": "2",
-            "target": "3",
-            "label": "8"
-          }
-        ]
-      }
+      ]
     },
     {
-      "line": 14,
-      "text": "Când vom scoate elementul {4, nodul 1}, vom vedea pe linia 21 că inMST[1] e deja true, deci ignorăm muchia (continue)! După aceea, scoatem pe {5, 3} și includem nodul 3 în MST. Cost final = 8.",
+      "line": 27,
+      "text": "Explorăm vecinii lui 2: 1 (cost 2) și 3 (cost 8).",
+      "blocksVisual": []
+    },
+    {
+      "line": 30,
+      "text": "Punem `{2, 1}` și `{8, 3}` în heap.",
       "blocksVisual": [
         {
-          "label": "Final",
+          "label": "Queue",
           "groups": [
             [
               {
-                "val": "TotalCost = 8",
-                "sorted": true
+                "val": "{2, 1}"
+              },
+              {
+                "val": "{4, 1}"
+              },
+              {
+                "val": "{8, 3}"
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "label": "0",
-            "x": 100,
-            "y": 50,
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "label": "1",
-            "x": 200,
-            "y": 50,
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "label": "2",
-            "x": 100,
-            "y": 150,
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "label": "3",
-            "x": 200,
-            "y": 150,
-            "state": "visited"
-          }
-        ],
-        "edges": [
-          {
-            "source": "0",
-            "target": "1",
-            "label": "4"
-          },
-          {
-            "source": "0",
-            "target": "2",
-            "label": "1",
-            "style": "thick"
-          },
-          {
-            "source": "1",
-            "target": "2",
-            "label": "2",
-            "style": "thick"
-          },
-          {
-            "source": "1",
-            "target": "3",
-            "label": "5",
-            "style": "thick"
-          },
-          {
-            "source": "2",
-            "target": "3",
-            "label": "8"
-          }
-        ]
-      }
+      ]
+    },
+    {
+      "line": 17,
+      "text": "Etapa următoare extrage `{2, 1}`, adăugând nodul 1 la MST cu costul 2. La final se adaugă nodul 3 cu costul 5. Cost final = 8.",
+      "blocksVisual": [
+        {
+          "label": "Cost Final",
+          "groups": [
+            [
+              {
+                "val": "8"
+              }
+            ]
+          ]
+        }
+      ]
     }
-  ],
-  "problems": {
-    "easy": [
-      {
-        "title": "Min Cost to Connect All Points",
-        "url": "https://leetcode.com/problems/min-cost-to-connect-all-points/",
-        "desc": "Perfect pentru Prim pe graf dens (puncte 2D)."
-      }
-    ],
-    "medium": [],
-    "hard": []
-  }
+  ]
 };

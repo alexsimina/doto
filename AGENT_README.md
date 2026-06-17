@@ -68,5 +68,46 @@ The root contains numerous CommonJS (`.cjs`) utility scripts and JSON data files
    - Handle variations in matrix definitions gracefully. Matrix representations inside data files might use `matrix.data` or `matrix.rows`.
    - Cells in the matrix/array can be primitives (e.g., `5`) or objects (e.g., `{ val: 5 }`). Always use defensive checks (like `cell && typeof cell === 'object' ? cell.val : cell`) to avoid React render crashes (`Objects are not valid as a React child`).
 
-9. **Transitional Chapters**: Categories that act as transitions to sub-algorithms (e.g., Shortest Path branching into Dijkstra, Bellman-Ford) are automatically detected in `CategoryPresentation.jsx` based on the presence of subcategories. For these, the UI hides the code and problem sections and instead displays a "Subcapitole / Algoritmi" interactive grid.
-10. **Testing**: E2E tests go to `/e2e_tests`.
+9. Transitional Chapters: Categories that act as transitions to sub-algorithms (e.g., Shortest Path branching into Dijkstra, Bellman-Ford) are automatically detected in `CategoryPresentation.jsx` based on the presence of subcategories. For these, the UI hides the code and problem sections and instead displays a "Subcapitole / Algoritmi" interactive grid.
+10. Testing: E2E tests go to `/e2e_tests`.
+
+---
+
+## 📚 Syllabus Category Structure (Theory, Transition, and Algorithm Nodes)
+
+Every topic in the syllabus tree corresponds to a JavaScript configuration file under `/dashboard/src/data/categories/` (e.g. `Basics.js`, `DFS.js`, `Shortest_Path.js`). Each file must export a `data` object with the following structure depending on its type:
+
+### 1. Theory Nodes (Noduri de Teorie)
+Used to explain mathematical foundations or general concepts.
+- **Fields**:
+  - `presentation`: Detailed markdown text explaining the theory in Romanian, utilizing LaTeX notation (e.g., `$O(N \log N)$` or `$\sum$`) for math and complexities.
+  - `complexity`: Space and time complexity analysis in Romanian.
+  - `variations`: Alternate approaches, variants, and edge cases.
+  - `applications`: Real-world applications and use cases.
+  - `code`: C++ source code demonstrating the theory/algorithm (if applicable).
+  - `explanations`: Debugger simulation steps detailing state changes (if applicable).
+
+### 2. Transition Nodes (Noduri de Tranziție)
+Used as intermediate navigation hubs when a category branches into sub-topics (e.g. `Shortest_Path` branching into Dijkstra, Bellman-Ford, Floyd-Warshall).
+- **Fields**:
+  - `presentation`, `complexity`, `variations`, `applications` describing the high-level topic.
+  - `code`: Must be set to an empty string (`""`).
+  - `explanations`: Must be set to an empty array (`[]`).
+  - `problems`: A dictionary containing lists of practice problems grouped by difficulty:
+    ```json
+    {
+      "easy": [{ "title": "...", "url": "...", "desc": "..." }],
+      "medium": [{ "title": "...", "url": "...", "desc": "..." }],
+      "hard": [{ "title": "...", "url": "...", "desc": "..." }]
+    }
+    ```
+
+### 3. Algorithm Nodes (Noduri de Algoritmi)
+Concrete implementation of a specific algorithm with debugger steps.
+- **Fields**:
+  - Comprehensive `presentation`, `complexity`, `variations`, and `applications`.
+  - `code`: C++ source code.
+  - `explanations`: Array of step objects (typically 20+ steps) for the CLion-style debugger:
+    - `line`: The 1-indexed line number in `code` currently being executed.
+    - `text`: Detailed explanation of the step in Romanian.
+    - `blocksVisual` / `graphVisual` / `matrixVisual`: State visualization structure representing active variables or visual containers.

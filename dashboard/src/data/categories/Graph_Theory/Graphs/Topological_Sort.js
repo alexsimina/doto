@@ -1,888 +1,191 @@
 export const data = {
-  "presentation": "### Prezentare Generală\n\nSortarea Topologică este o aranjare liniară a nodurilor dintr-un DAG (Directed Acyclic Graph) astfel încât pentru fiecare muchie orientată u -> v, nodul u apare înaintea nodului v în acea înșiruire.\\n\\nPentru ce e folosită? Pentru a programa o serie de task-uri care au dependențe (de ex. un curs universitar necesită alte cursuri ca pre-rechizite, sau compilarea unui proiect depinde de ordinea modulelor).\\n\\nAlgoritmul lui Kahn: Calculăm 'gradul de intrare' (in-degree) pentru fiecare nod. Nodurile cu grad 0 nu depind de nimic, deci pot fi adăugate primele. Le adăugăm într-o coadă, le scoatem, și 'ștergem' muchiile care pornesc din ele, scăzând gradul vecinilor. Când un vecin ajunge la grad 0, îl adăugăm în coadă.",
-  "complexity": "### Complexitate\n\n- **Timp:** O(V + E) - fiecare nod este introdus în coadă o dată, iar fiecare muchie e vizitată la scăderea gradului.\\n- **Spațiu:** O(V) pentru vectorul de in-degree și coadă.\n",
-  "variations": "### Variații și Edge Cases\n\nDetectarea unui ciclu într-un graf orientat: dacă la finalul algoritmului Kahn nu am reușit să punem toate cele V noduri în lista sortată, înseamnă că există o dependență circulară (un ciclu)!",
-  "applications": "### Aplicații\n\nDependency Resolution (cum face `npm` sau `apt`), scheduling de task-uri.",
-  code: `
-#include <iostream>
-#include <vector>
-#include <queue>
-
-using namespace std;
-
-vector<int> topologicalSort(int V, vector<vector<int>>& adj) {
-    vector<int> inDegree(V, 0);
-    // Calculam gradul de intrare pentru fiecare nod
-    for (int i = 0; i < V; ++i) {
-        for (int neighbor : adj[i]) {
-            inDegree[neighbor]++;
-        }
-    }
-    
-    queue<int> q;
-    // Adaugam nodurile care nu depind de nimic (inDegree == 0)
-    for (int i = 0; i < V; ++i) {
-        if (inDegree[i] == 0) q.push(i);
-    }
-    
-    vector<int> topOrder;
-    while (!q.empty()) {
-        int node = q.front();
-        q.pop();
-        topOrder.push_back(node);
-        
-        // Simulam stergerea muchiilor
-        for (int neighbor : adj[node]) {
-            inDegree[neighbor]--;
-            if (inDegree[neighbor] == 0) {
-                q.push(neighbor);
-            }
-        }
-    }
-    
-    if (topOrder.size() != V) {
-        cout << "Eroare: Graful are un ciclu!
-";
-        return {};
-    }
-    return topOrder;
-}
-
-int main() {
-    int V = 6;
-    vector<vector<int>> adj(V);
-    // 5 -> 0, 5 -> 2, 4 -> 0, 4 -> 1, 2 -> 3, 3 -> 1
-    adj[5].push_back(0); adj[5].push_back(2);
-    adj[4].push_back(0); adj[4].push_back(1);
-    adj[2].push_back(3); adj[3].push_back(1);
-    
-    vector<int> res = topologicalSort(V, adj);
-    cout << "Sortare Topologica: ";
-    for (int n : res) cout << n << " ";
-    cout << "
-";
-    return 0;
-}
-`,
+  "presentation": "### Sortare Topologică\n\nSortarea Topologică reprezintă o aranjare liniară a nodurilor unui graf orientat aciclic (DAG) astfel încât pentru fiecare muchie orientată $u \\to v$, nodul $u$ să apară înaintea nodului $v$ în ordinea finală.\n\nAlgoritmul lui **Kahn** funcționează prin calcularea gradelor de intrare (in-degree) ale tuturor nodurilor. Nodurile cu in-degree 0 nu depind de niciun alt nod și sunt introduse într-o coadă. Când un nod este procesat, muchiile care pornesc din el sunt simulate ca fiind șterse, scăzând in-degree-ul vecinilor săi.",
+  "complexity": "### Complexitate\n\n- **Timp:** $O(V + E)$ - calcularea in-degree durează $O(V + E)$, iar fiecare nod și muchie este procesat exact o dată.\n- **Spațiu:** $O(V)$ - pentru coadă și vectorul `inDegree`.",
+  "variations": "### Variații și Cazuri Particulare\n\n- **Sortare Topologică bazată pe DFS**: Rulăm DFS și adăugăm nodurile într-o listă la finalizarea vizitei acestora.\n- **Detecția ciclurilor**: Dacă numărul de noduri din ordinea topologică rezultată este mai mic decât $V$.",
+  "applications": "### Aplicații Reale\n\n- Rezolvarea dependențelor la compilarea fișierelor.\n- Instalarea pachetelor software.\n- Planificarea activităților cu condiții de precondiție.",
+  "code": "#include <iostream>\n#include <vector>\n#include <queue>\n\nusing namespace std;\n\nvector<int> topologicalSort(int V, vector<vector<int>>& adj) {\n    vector<int> inDegree(V, 0);\n    for (int i = 0; i < V; ++i) {\n        for (int neighbor : adj[i]) {\n            inDegree[neighbor]++;\n        }\n    }\n    \n    queue<int> q;\n    for (int i = 0; i < V; ++i) {\n        if (inDegree[i] == 0) {\n            q.push(i);\n        }\n    }\n    \n    vector<int> topOrder;\n    while (!q.empty()) {\n        int u = q.front();\n        q.pop();\n        topOrder.push_back(u);\n        \n        for (int v : adj[u]) {\n            inDegree[v]--;\n            if (inDegree[v] == 0) {\n                q.push(v);\n            }\n        }\n    }\n    return topOrder;\n}\n\nint main() {\n    int V = 5;\n    vector<vector<int>> adj(V);\n    adj[0].push_back(2);\n    adj[1].push_back(2);\n    adj[2].push_back(3);\n    adj[2].push_back(4);\n    adj[3].push_back(4);\n    \n    vector<int> res = topologicalSort(V, adj);\n    for (int node : res) cout << node << \" \";\n    return 0;\n}\n",
   "explanations": [
     {
-      "line": 3,
-      "text": "Calculăm gradul de intrare. Adică de câte alte noduri depinde fiecare nod.",
+      "line": 7,
+      "text": "Începem funcția `topologicalSort`.",
       "blocksVisual": [
         {
-          "label": "InDegree",
+          "label": "Noduri",
           "groups": [
             [
               {
-                "val": "0: 2"
-              },
-              {
-                "val": "1: 2"
-              },
-              {
-                "val": "2: 1"
-              },
-              {
-                "val": "3: 1"
-              },
-              {
-                "val": "4: 0"
-              },
-              {
-                "val": "5: 0"
+                "val": "V: 5"
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 130,
-            "label": "0"
-          },
-          {
-            "id": "1",
-            "x": 200,
-            "y": 200,
-            "label": "1"
-          },
-          {
-            "id": "2",
-            "x": 80,
-            "y": 130,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 80,
-            "y": 200,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 230,
-            "y": 50,
-            "label": "4"
-          },
-          {
-            "id": "5",
-            "x": 50,
-            "y": 50,
-            "label": "5"
-          }
-        ],
-        "edges": [
-          {
-            "source": "5",
-            "target": "0"
-          },
-          {
-            "source": "5",
-            "target": "2"
-          },
-          {
-            "source": "4",
-            "target": "0"
-          },
-          {
-            "source": "4",
-            "target": "1"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "3",
-            "target": "1"
-          }
-        ]
-      }
+      ]
+    },
+    {
+      "line": 8,
+      "text": "Inițializăm vectorul de in-degree cu 0 pentru toate nodurile.",
+      "blocksVisual": [
+        {
+          "label": "inDegree",
+          "groups": [
+            [
+              {
+                "val": "inDegree[0]: 0"
+              },
+              {
+                "val": "inDegree[1]: 0"
+              },
+              {
+                "val": "inDegree[2]: 0"
+              },
+              {
+                "val": "inDegree[3]: 0"
+              },
+              {
+                "val": "inDegree[4]: 0"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 9,
+      "text": "Pornim calculul gradelor de intrare iterând prin noduri.",
+      "blocksVisual": [
+        {
+          "label": "Calcul grade",
+          "groups": [
+            [
+              {
+                "val": "Start"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 10,
+      "text": "Iterăm prin vecinii fiecărui nod.",
+      "blocksVisual": [
+        {
+          "label": "Muchiile",
+          "groups": [
+            [
+              {
+                "val": "Vizitare"
+              }
+            ]
+          ]
+        }
+      ]
     },
     {
       "line": 11,
-      "text": "Nodurile 4 și 5 au inDegree 0. Pot fi executate primele! Le băgăm în coadă.",
+      "text": "Incrementăm in-degree pentru fiecare nod țintă. La finalul buclei, valorile sunt calculate.",
       "blocksVisual": [
         {
-          "label": "Coadă",
+          "label": "inDegree",
           "groups": [
             [
               {
-                "val": "4",
-                "active": true
+                "val": "inDegree[0]: 0"
               },
               {
-                "val": "5",
-                "active": true
+                "val": "inDegree[1]: 0"
+              },
+              {
+                "val": "inDegree[2]: 2"
+              },
+              {
+                "val": "inDegree[3]: 1"
+              },
+              {
+                "val": "inDegree[4]: 2"
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 130,
-            "label": "0"
-          },
-          {
-            "id": "1",
-            "x": 200,
-            "y": 200,
-            "label": "1"
-          },
-          {
-            "id": "2",
-            "x": 80,
-            "y": 130,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 80,
-            "y": 200,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 230,
-            "y": 50,
-            "label": "4",
-            "state": "active"
-          },
-          {
-            "id": "5",
-            "x": 50,
-            "y": 50,
-            "label": "5",
-            "state": "active"
-          }
-        ],
-        "edges": [
-          {
-            "source": "5",
-            "target": "0"
-          },
-          {
-            "source": "5",
-            "target": "2"
-          },
-          {
-            "source": "4",
-            "target": "0"
-          },
-          {
-            "source": "4",
-            "target": "1"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "3",
-            "target": "1"
-          }
-        ]
-      }
+      ]
+    },
+    {
+      "line": 15,
+      "text": "Declarăm coada `q` pentru a reține nodurile cu in-degree 0.",
+      "blocksVisual": [
+        {
+          "label": "Queue",
+          "groups": [
+            []
+          ]
+        }
+      ]
+    },
+    {
+      "line": 16,
+      "text": "Căutăm nodurile care nu au dependențe.",
+      "blocksVisual": []
+    },
+    {
+      "line": 17,
+      "text": "Verificăm dacă `inDegree[0] == 0`.",
+      "blocksVisual": [
+        {
+          "label": "Verificare",
+          "groups": [
+            [
+              {
+                "val": "inDegree[0]: 0"
+              }
+            ]
+          ]
+        }
+      ]
     },
     {
       "line": 18,
-      "text": "Scoatem 4. Îl adăugăm la rezultat.",
+      "text": "Adăugăm nodul 0 în coadă.",
       "blocksVisual": [
         {
-          "label": "Rezultat",
-          "groups": [
-            [
-              {
-                "val": "4"
-              }
-            ]
-          ]
-        }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 130,
-            "label": "0"
-          },
-          {
-            "id": "1",
-            "x": 200,
-            "y": 200,
-            "label": "1"
-          },
-          {
-            "id": "2",
-            "x": 80,
-            "y": 130,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 80,
-            "y": 200,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 230,
-            "y": 50,
-            "label": "4",
-            "state": "visited"
-          },
-          {
-            "id": "5",
-            "x": 50,
-            "y": 50,
-            "label": "5",
-            "state": "active"
-          }
-        ],
-        "edges": [
-          {
-            "source": "5",
-            "target": "0"
-          },
-          {
-            "source": "5",
-            "target": "2"
-          },
-          {
-            "source": "4",
-            "target": "0"
-          },
-          {
-            "source": "4",
-            "target": "1"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "3",
-            "target": "1"
-          }
-        ]
-      }
-    },
-    {
-      "line": 24,
-      "text": "Scădem inDegree pentru vecinii lui 4 (adică 0 și 1).",
-      "blocksVisual": [
-        {
-          "label": "InDegree Update",
-          "groups": [
-            [
-              {
-                "val": "0: 1",
-                "active": true
-              },
-              {
-                "val": "1: 1",
-                "active": true
-              },
-              {
-                "val": "2: 1"
-              },
-              {
-                "val": "3: 1"
-              }
-            ]
-          ]
-        }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 130,
-            "label": "0",
-            "state": "active"
-          },
-          {
-            "id": "1",
-            "x": 200,
-            "y": 200,
-            "label": "1",
-            "state": "active"
-          },
-          {
-            "id": "2",
-            "x": 80,
-            "y": 130,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 80,
-            "y": 200,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 230,
-            "y": 50,
-            "label": "4",
-            "state": "visited"
-          },
-          {
-            "id": "5",
-            "x": 50,
-            "y": 50,
-            "label": "5",
-            "state": "active"
-          }
-        ],
-        "edges": [
-          {
-            "source": "5",
-            "target": "0"
-          },
-          {
-            "source": "5",
-            "target": "2"
-          },
-          {
-            "source": "4",
-            "target": "0"
-          },
-          {
-            "source": "4",
-            "target": "1"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "3",
-            "target": "1"
-          }
-        ]
-      }
-    },
-    {
-      "line": 18,
-      "text": "Scoatem 5. Îl adăugăm la rezultat.",
-      "blocksVisual": [
-        {
-          "label": "Rezultat",
-          "groups": [
-            [
-              {
-                "val": "4"
-              },
-              {
-                "val": "5"
-              }
-            ]
-          ]
-        }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 130,
-            "label": "0"
-          },
-          {
-            "id": "1",
-            "x": 200,
-            "y": 200,
-            "label": "1"
-          },
-          {
-            "id": "2",
-            "x": 80,
-            "y": 130,
-            "label": "2"
-          },
-          {
-            "id": "3",
-            "x": 80,
-            "y": 200,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 230,
-            "y": 50,
-            "label": "4",
-            "state": "visited"
-          },
-          {
-            "id": "5",
-            "x": 50,
-            "y": 50,
-            "label": "5",
-            "state": "visited"
-          }
-        ],
-        "edges": [
-          {
-            "source": "5",
-            "target": "0"
-          },
-          {
-            "source": "5",
-            "target": "2"
-          },
-          {
-            "source": "4",
-            "target": "0"
-          },
-          {
-            "source": "4",
-            "target": "1"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "3",
-            "target": "1"
-          }
-        ]
-      }
-    },
-    {
-      "line": 24,
-      "text": "Scădem inDegree pentru vecinii lui 5 (0 și 2). Noul inDegree pentru 0 devine 0! Pentru 2 devine 0!",
-      "blocksVisual": [
-        {
-          "label": "InDegree Update",
-          "groups": [
-            [
-              {
-                "val": "0: 0",
-                "active": true
-              },
-              {
-                "val": "2: 0",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 130,
-            "label": "0",
-            "state": "active"
-          },
-          {
-            "id": "1",
-            "x": 200,
-            "y": 200,
-            "label": "1"
-          },
-          {
-            "id": "2",
-            "x": 80,
-            "y": 130,
-            "label": "2",
-            "state": "active"
-          },
-          {
-            "id": "3",
-            "x": 80,
-            "y": 200,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 230,
-            "y": 50,
-            "label": "4",
-            "state": "visited"
-          },
-          {
-            "id": "5",
-            "x": 50,
-            "y": 50,
-            "label": "5",
-            "state": "visited"
-          }
-        ],
-        "edges": [
-          {
-            "source": "5",
-            "target": "0"
-          },
-          {
-            "source": "5",
-            "target": "2"
-          },
-          {
-            "source": "4",
-            "target": "0"
-          },
-          {
-            "source": "4",
-            "target": "1"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "3",
-            "target": "1"
-          }
-        ]
-      }
-    },
-    {
-      "line": 26,
-      "text": "Fiindcă 0 și 2 au atins 0 dependențe, le punem în coadă.",
-      "blocksVisual": [
-        {
-          "label": "Coadă",
+          "label": "Queue",
           "groups": [
             [
               {
                 "val": "0",
                 "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 17,
+      "text": "Verificăm dacă `inDegree[1] == 0`.",
+      "blocksVisual": [
+        {
+          "label": "Verificare",
+          "groups": [
+            [
+              {
+                "val": "inDegree[1]: 0"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 18,
+      "text": "Adăugăm nodul 1 în coadă.",
+      "blocksVisual": [
+        {
+          "label": "Queue",
+          "groups": [
+            [
+              {
+                "val": "0"
               },
-              {
-                "val": "2",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 130,
-            "label": "0",
-            "state": "active"
-          },
-          {
-            "id": "1",
-            "x": 200,
-            "y": 200,
-            "label": "1"
-          },
-          {
-            "id": "2",
-            "x": 80,
-            "y": 130,
-            "label": "2",
-            "state": "active"
-          },
-          {
-            "id": "3",
-            "x": 80,
-            "y": 200,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 230,
-            "y": 50,
-            "label": "4",
-            "state": "visited"
-          },
-          {
-            "id": "5",
-            "x": 50,
-            "y": 50,
-            "label": "5",
-            "state": "visited"
-          }
-        ],
-        "edges": [
-          {
-            "source": "5",
-            "target": "0"
-          },
-          {
-            "source": "5",
-            "target": "2"
-          },
-          {
-            "source": "4",
-            "target": "0"
-          },
-          {
-            "source": "4",
-            "target": "1"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "3",
-            "target": "1"
-          }
-        ]
-      }
-    },
-    {
-      "line": 18,
-      "text": "Scoatem 0. Acesta nu are vecini. Rezultat: [4, 5, 0].",
-      "blocksVisual": [
-        {
-          "label": "Rezultat",
-          "groups": [
-            [
-              {
-                "val": "4, 5, 0"
-              }
-            ]
-          ]
-        }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 130,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 200,
-            "y": 200,
-            "label": "1"
-          },
-          {
-            "id": "2",
-            "x": 80,
-            "y": 130,
-            "label": "2",
-            "state": "active"
-          },
-          {
-            "id": "3",
-            "x": 80,
-            "y": 200,
-            "label": "3"
-          },
-          {
-            "id": "4",
-            "x": 230,
-            "y": 50,
-            "label": "4",
-            "state": "visited"
-          },
-          {
-            "id": "5",
-            "x": 50,
-            "y": 50,
-            "label": "5",
-            "state": "visited"
-          }
-        ],
-        "edges": [
-          {
-            "source": "5",
-            "target": "0"
-          },
-          {
-            "source": "5",
-            "target": "2"
-          },
-          {
-            "source": "4",
-            "target": "0"
-          },
-          {
-            "source": "4",
-            "target": "1"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "3",
-            "target": "1"
-          }
-        ]
-      }
-    },
-    {
-      "line": 18,
-      "text": "Scoatem 2. Vecinul său e 3. Scădem inDegree-ul lui 3. Devine 0! Punem 3 în coadă.",
-      "blocksVisual": [
-        {
-          "label": "Coadă",
-          "groups": [
-            [
-              {
-                "val": "3",
-                "active": true
-              }
-            ]
-          ]
-        }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 130,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 200,
-            "y": 200,
-            "label": "1"
-          },
-          {
-            "id": "2",
-            "x": 80,
-            "y": 130,
-            "label": "2",
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "x": 80,
-            "y": 200,
-            "label": "3",
-            "state": "active"
-          },
-          {
-            "id": "4",
-            "x": 230,
-            "y": 50,
-            "label": "4",
-            "state": "visited"
-          },
-          {
-            "id": "5",
-            "x": 50,
-            "y": 50,
-            "label": "5",
-            "state": "visited"
-          }
-        ],
-        "edges": [
-          {
-            "source": "5",
-            "target": "0"
-          },
-          {
-            "source": "5",
-            "target": "2"
-          },
-          {
-            "source": "4",
-            "target": "0"
-          },
-          {
-            "source": "4",
-            "target": "1"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "3",
-            "target": "1"
-          }
-        ]
-      }
-    },
-    {
-      "line": 18,
-      "text": "Scoatem 3. Vecinul e 1. Scădem inDegree-ul lui 1. Devine 0! Punem 1 în coadă.",
-      "blocksVisual": [
-        {
-          "label": "Coadă",
-          "groups": [
-            [
               {
                 "val": "1",
                 "active": true
@@ -890,196 +193,214 @@ int main() {
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 130,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 200,
-            "y": 200,
-            "label": "1",
-            "state": "active"
-          },
-          {
-            "id": "2",
-            "x": 80,
-            "y": 130,
-            "label": "2",
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "x": 80,
-            "y": 200,
-            "label": "3",
-            "state": "visited"
-          },
-          {
-            "id": "4",
-            "x": 230,
-            "y": 50,
-            "label": "4",
-            "state": "visited"
-          },
-          {
-            "id": "5",
-            "x": 50,
-            "y": 50,
-            "label": "5",
-            "state": "visited"
-          }
-        ],
-        "edges": [
-          {
-            "source": "5",
-            "target": "0"
-          },
-          {
-            "source": "5",
-            "target": "2"
-          },
-          {
-            "source": "4",
-            "target": "0"
-          },
-          {
-            "source": "4",
-            "target": "1"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "3",
-            "target": "1"
-          }
-        ]
-      }
+      ]
     },
     {
-      "line": 18,
-      "text": "Scoatem 1. Nu are vecini. Am terminat!",
+      "line": 22,
+      "text": "Declarăm vectorul `topOrder` în care vom stoca rezultatul final.",
       "blocksVisual": [
         {
-          "label": "Rezultat Final",
+          "label": "topOrder",
+          "groups": [
+            []
+          ]
+        }
+      ]
+    },
+    {
+      "line": 23,
+      "text": "Intrăm în bucla principală: coada conține [0, 1].",
+      "blocksVisual": [
+        {
+          "label": "Queue",
           "groups": [
             [
               {
-                "val": "4, 5, 0, 2, 3, 1",
-                "sorted": true
+                "val": "0"
+              },
+              {
+                "val": "1"
               }
             ]
           ]
         }
-      ],
-      "graphVisual": {
-        "nodes": [
-          {
-            "id": "0",
-            "x": 140,
-            "y": 130,
-            "label": "0",
-            "state": "visited"
-          },
-          {
-            "id": "1",
-            "x": 200,
-            "y": 200,
-            "label": "1",
-            "state": "visited"
-          },
-          {
-            "id": "2",
-            "x": 80,
-            "y": 130,
-            "label": "2",
-            "state": "visited"
-          },
-          {
-            "id": "3",
-            "x": 80,
-            "y": 200,
-            "label": "3",
-            "state": "visited"
-          },
-          {
-            "id": "4",
-            "x": 230,
-            "y": 50,
-            "label": "4",
-            "state": "visited"
-          },
-          {
-            "id": "5",
-            "x": 50,
-            "y": 50,
-            "label": "5",
-            "state": "visited"
-          }
-        ],
-        "edges": [
-          {
-            "source": "5",
-            "target": "0"
-          },
-          {
-            "source": "5",
-            "target": "2"
-          },
-          {
-            "source": "4",
-            "target": "0"
-          },
-          {
-            "source": "4",
-            "target": "1"
-          },
-          {
-            "source": "2",
-            "target": "3"
-          },
-          {
-            "source": "3",
-            "target": "1"
-          }
-        ]
-      }
+      ]
+    },
+    {
+      "line": 24,
+      "text": "Extragem elementul din fața cozii: `u = 0`.",
+      "blocksVisual": [
+        {
+          "label": "u",
+          "groups": [
+            [
+              {
+                "val": "u: 0",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 25,
+      "text": "Scoatem elementul din coadă.",
+      "blocksVisual": [
+        {
+          "label": "Queue",
+          "groups": [
+            [
+              {
+                "val": "1"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 26,
+      "text": "Adăugăm nodul 0 în ordinea topologică.",
+      "blocksVisual": [
+        {
+          "label": "topOrder",
+          "groups": [
+            [
+              {
+                "val": "0",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 28,
+      "text": "Explorăm vecinii lui 0, adică nodul 2.",
+      "blocksVisual": [
+        {
+          "label": "Vecin",
+          "groups": [
+            [
+              {
+                "val": "v: 2",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 29,
+      "text": "Decrementăm gradul nodului 2: `inDegree[2]` devine 1.",
+      "blocksVisual": [
+        {
+          "label": "inDegree",
+          "groups": [
+            [
+              {
+                "val": "inDegree[2]: 1",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 30,
+      "text": "Verificăm dacă `inDegree[2] == 0`. Este 1, deci nu-l punem în coadă.",
+      "blocksVisual": []
+    },
+    {
+      "line": 23,
+      "text": "Mergem la următorul pas din buclă. Extragem `u = 1`.",
+      "blocksVisual": [
+        {
+          "label": "u",
+          "groups": [
+            [
+              {
+                "val": "u: 1",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 26,
+      "text": "Adăugăm nodul 1 în `topOrder`.",
+      "blocksVisual": [
+        {
+          "label": "topOrder",
+          "groups": [
+            [
+              {
+                "val": "0"
+              },
+              {
+                "val": "1",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 29,
+      "text": "Decrementăm gradul vecinului 2: `inDegree[2]` devine 0.",
+      "blocksVisual": [
+        {
+          "label": "inDegree",
+          "groups": [
+            [
+              {
+                "val": "inDegree[2]: 0",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 31,
+      "text": "Întrucât `inDegree[2]` a ajuns la 0, îl adăugăm în coadă.",
+      "blocksVisual": [
+        {
+          "label": "Queue",
+          "groups": [
+            [
+              {
+                "val": "2",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "line": 35,
+      "text": "Procesăm în continuare nodul 2, care va debloca nodul 3, care va debloca nodul 4. Returnăm ordinea topologică completă.",
+      "blocksVisual": [
+        {
+          "label": "Final",
+          "groups": [
+            [
+              {
+                "val": "topOrder: [0, 1, 2, 3, 4]"
+              }
+            ]
+          ]
+        }
+      ]
     }
-  ],
-  "problems": {
-    "easy": [
-      {
-        "title": "Sortare Topologica",
-        "url": "https://www.infoarena.ro/problema/sortaret",
-        "desc": "Problema clasica"
-      }
-    ],
-    "medium": [
-      {
-        "title": "Course Schedule",
-        "url": "https://leetcode.com/problems/course-schedule/",
-        "desc": "Detectie Cicluri"
-      },
-      {
-        "title": "Course Schedule II",
-        "url": "https://leetcode.com/problems/course-schedule-ii/",
-        "desc": "Aflare Ordine"
-      }
-    ],
-    "hard": [
-      {
-        "title": "Alien Dictionary",
-        "url": "https://leetcode.com/problems/alien-dictionary/",
-        "desc": "Dedus alfabete extraterestre cu DAG"
-      }
-    ]
-  }
+  ]
 };

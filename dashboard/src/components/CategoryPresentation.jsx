@@ -785,6 +785,116 @@ const getCategoryDebuggerState = (category, stepIndex, activeLine, explanationTe
       inlineVal = `start: 0`;
     }
   }
+  else if (cat.includes('Math/Number_Theory')) {
+    // Sieve of Eratosthenes debugger state
+    let p = 2;
+    if (stepIndex >= 14) p = 3;
+    if (stepIndex >= 22) p = 4;
+    if (stepIndex >= 23) p = 5;
+    const sieveArr = [2,3,5,7,11,13,17,19];
+    const eliminated = [4,6,8,9,10,12,14,15,16,18,20];
+    globalVars.push({ name: 'estePrim', type: 'vector<bool>', val: '[2..20]', expandable: false });
+    globalVars.push({ name: 'n', type: 'int', val: '20', expandable: false });
+    if (stepIndex >= 2) vars.push({ name: 'p', type: 'int', val: p, expandable: false });
+    if (stepIndex >= 4 && stepIndex <= 23) {
+      let iVal = p * p;
+      if (stepIndex >= 12) iVal = 20;
+      if (stepIndex >= 14) iVal = 9;
+      vars.push({ name: 'i', type: 'int', val: iVal, expandable: false });
+    }
+    frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+    if (stepIndex >= 2) frames.unshift({ name: `ciurulLuiEratostene(n = 20)`, file: 'main.cpp', line: activeLine });
+    if (stepIndex >= 2) inlineVal = `p: ${p}`;
+  }
+  else if (cat.includes('Math/Combinatorics')) {
+    // Pascal Triangle debugger state
+    let iVal = 0, jVal = 0;
+    if (stepIndex >= 3) iVal = 1;
+    if (stepIndex >= 6) iVal = 2;
+    if (stepIndex >= 8 && stepIndex <= 10) jVal = 1;
+    if (stepIndex >= 11) iVal = 3;
+    if (stepIndex >= 13) jVal = 1;
+    if (stepIndex >= 14) jVal = 2;
+    if (stepIndex >= 16) { iVal = 4; jVal = 0; }
+    if (stepIndex >= 18) jVal = 1;
+    if (stepIndex >= 19) jVal = 2;
+    if (stepIndex >= 20) jVal = 3;
+    globalVars.push({ name: 'numRows', type: 'int', val: '5', expandable: false });
+    globalVars.push({ name: 'triangle', type: 'vector<vector<int>>', val: `size=${iVal+1}`, expandable: false });
+    vars.push({ name: 'i', type: 'int', val: iVal, expandable: false });
+    if (stepIndex >= 8) vars.push({ name: 'j', type: 'int', val: jVal, expandable: false });
+    frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+    frames.unshift({ name: `pascalTriangle(numRows = 5)`, file: 'main.cpp', line: activeLine });
+    inlineVal = `i: ${iVal}, j: ${jVal}`;
+  }
+  else if (cat.includes('Geometry/Computational')) {
+    // Cross product debugger state
+    const pointA = { x: 1, y: 1 }, pointB = { x: 3, y: 3 };
+    globalVars.push({ name: 'A', type: 'Point', val: '{1, 1}', expandable: false });
+    globalVars.push({ name: 'B', type: 'Point', val: '{3, 3}', expandable: false });
+    let cpResult = 0;
+    let cName = 'C_Coliniar';
+    if (stepIndex <= 8) { cName = 'C_Coliniar'; cpResult = 0; }
+    else if (stepIndex <= 14) { cName = 'C_Stanga'; cpResult = 4; }
+    else { cName = 'C_Dreapta'; cpResult = -4; }
+    vars.push({ name: cName, type: 'Point', val: cName === 'C_Coliniar' ? '{5,5}' : cName === 'C_Stanga' ? '{2,4}' : '{4,2}', expandable: false });
+    if (stepIndex >= 4) vars.push({ name: 'cp', type: 'long long', val: cpResult, expandable: false });
+    frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+    if (stepIndex >= 4 && stepIndex <= 7) frames.unshift({ name: `crossProduct(A, B, ${cName})`, file: 'main.cpp', line: activeLine });
+    inlineVal = stepIndex >= 4 ? `cp: ${cpResult}` : null;
+  }
+  else if (cat.includes('Math/Advanced')) {
+    // Extended GCD debugger state
+    const gcdFrames = [
+      [34, 21], [21, 34], [13, 21], [8, 13], [5, 8], [3, 5], [2, 3], [1, 2], [0, 1]
+    ];
+    globalVars.push({ name: 'a', type: 'long long', val: '34', expandable: false });
+    globalVars.push({ name: 'b', type: 'long long', val: '21', expandable: false });
+    const depth = Math.min(stepIndex, 8);
+    for (let d = 0; d <= depth; d++) {
+      const f = gcdFrames[d];
+      frames.push({ name: `gcdExtended(${f[0]}, ${f[1]})`, file: 'main.cpp', line: d === depth ? activeLine : 15 });
+    }
+    frames.push({ name: 'main()', file: 'main.cpp', line: 26 });
+    frames.reverse();
+    if (stepIndex >= 10) {
+      const xVals = [null, 1, -1, 2, -3, 5, -8, 13, -8];
+      const yVals = [null, 0, 1, -1, 2, -3, 5, -8, 13];
+      const idx = Math.min(stepIndex - 10, 8);
+      if (idx >= 0) {
+        vars.push({ name: 'x', type: 'long long', val: xVals[idx] ?? 0, expandable: false });
+        vars.push({ name: 'y', type: 'long long', val: yVals[idx] ?? 1, expandable: false });
+      }
+    }
+    inlineVal = depth > 0 ? `depth: ${depth}` : null;
+  }
+  else if (cat.includes('Math/Game_Theory')) {
+    // Nim game debugger state
+    let nimSum = 0;
+    if (stepIndex >= 2) nimSum = 3;  // after XOR with stiva1
+    if (stepIndex >= 3) nimSum = 7;  // after XOR with stiva2 (3^4=7)
+    if (stepIndex >= 4) nimSum = 2;  // after XOR with stiva3 (7^5=2)
+    globalVars.push({ name: 'stive', type: 'vector<int>', val: '{3, 4, 5}', expandable: false });
+    vars.push({ name: 'nimSum', type: 'int', val: nimSum, expandable: false });
+    frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+    if (stepIndex >= 1) frames.unshift({ name: `playNim(stive)`, file: 'main.cpp', line: activeLine });
+    inlineVal = `nimSum: ${nimSum}`;
+  }
+  else if (cat.includes('Math/Linear_Algebra')) {
+    // Gaussian Elimination debugger state
+    let iVal = 0, kVal = 0, maxRow = 0;
+    if (stepIndex >= 3) maxRow = 1;
+    if (stepIndex >= 4) { iVal = 0; kVal = 1; }
+    if (stepIndex >= 8) { iVal = 1; kVal = 0; maxRow = 1; }
+    globalVars.push({ name: 'n', type: 'int', val: '3', expandable: false });
+    globalVars.push({ name: 'a', type: 'vector<vector<double>>', val: '3x4 matrix', expandable: false });
+    vars.push({ name: 'i', type: 'int', val: iVal, expandable: false });
+    if (stepIndex >= 3) vars.push({ name: 'maxRow', type: 'int', val: maxRow, expandable: false });
+    if (stepIndex >= 4) vars.push({ name: 'k', type: 'int', val: kVal, expandable: false });
+    frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+    if (stepIndex >= 1) frames.unshift({ name: `gaussianElimination(a)`, file: 'main.cpp', line: activeLine });
+    inlineVal = `i: ${iVal}`;
+  }
   else {
     // Dynamic simulated engine fallback
     const dynamicState = getDynamicCallStackAndVars(category, stepIndex, activeLine, explanationText);
@@ -1449,6 +1559,26 @@ const CategoryPresentation = ({ category, onClose, onNavigate }) => {
                   >
                     <span>💻</span> Console
                   </button>
+                  {(category.includes('Math/') || category.includes('Geometry/')) && (
+                    <button
+                      onClick={() => setActiveTab('visualizer')}
+                      style={{
+                        background: activeTab === 'visualizer' ? '#1e1f22' : 'transparent',
+                        border: 'none',
+                        borderRight: '1px solid #3c3f41',
+                        color: activeTab === 'visualizer' ? '#fff' : '#a9b7c6',
+                        padding: '0 16px',
+                        cursor: 'pointer',
+                        fontSize: '12px',
+                        fontWeight: 'bold',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px'
+                      }}
+                    >
+                      <span style={{ color: activeTab === 'visualizer' ? '#b378ba' : '#888' }}>🔬</span> Vizualizator
+                    </button>
+                  )}
                 </div>
                 
                 {/* Active Line Status tag */}
@@ -1708,8 +1838,8 @@ const CategoryPresentation = ({ category, onClose, onNavigate }) => {
 
                                   // ── Generic blocks (Stack, Queue, visited array, etc.) ──
                                   const labelLower = (row.label || '').toLowerCase();
-                                  const isStack = labelLower.includes('top') || labelLower.includes('stack') || labelLower.includes('bot');
-                                  const isQueue = labelLower.includes('front') || labelLower.includes('queue') || labelLower.includes('back');
+                                  const isStack = labelLower.includes('top') || labelLower.includes('stack') || labelLower.includes('bot') || labelLower.includes('stiv') || labelLower.includes('apelur');
+                                  const isQueue = labelLower.includes('front') || labelLower.includes('queue') || labelLower.includes('back') || labelLower.includes('coada');
 
                                   return (
                                     <div key={rIdx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px', width: '100%' }}>
@@ -1722,25 +1852,29 @@ const CategoryPresentation = ({ category, onClose, onNavigate }) => {
                                           {isStack ? '▲ ' : isQueue ? '⟶ ' : ''}{row.label}
                                         </span>
                                       )}
-                                      <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', justifyContent: 'center' }}>
+                                      <div style={{ display: 'flex', gap: '4px', flexWrap: isStack ? 'nowrap' : 'wrap', justifyContent: 'center', flexDirection: isStack ? 'column-reverse' : 'row', width: isStack ? '100%' : 'auto' }}>
                                         {row.groups.map((group, gIdx) => (
                                           <div key={gIdx} style={{
                                             display: 'flex',
-                                            flexDirection: isStack ? 'column-reverse' : 'row',
+                                            flexDirection: 'row',
                                             gap: '3px',
-                                            background: '#141517',
-                                            padding: '5px',
-                                            borderRadius: '8px',
+                                            background: isStack ? 'linear-gradient(135deg,#1a1b1e,#23252a)' : '#141517',
+                                            padding: isStack ? '6px 10px' : '5px',
+                                            borderRadius: '6px',
                                             border: `1px solid ${isStack ? '#cc7832' : isQueue ? '#b378ba' : '#2b2d30'}`,
-                                            boxShadow: isStack ? '0 0 8px rgba(204,120,50,0.15)' : isQueue ? '0 0 8px rgba(179,120,186,0.15)' : 'none',
+                                            boxShadow: isStack ? '0 2px 6px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04)' : isQueue ? '0 0 8px rgba(179,120,186,0.15)' : 'none',
+                                            width: isStack ? '100%' : 'auto',
+                                            alignItems: 'center',
                                           }}>
+                                            {isStack && <span style={{ color: '#666', marginRight: '6px', fontSize: '9px', flexShrink: 0 }}>⊞</span>}
                                             {group.map((block, bIdx) => (
                                               <div key={bIdx} style={{
-                                                minWidth: '36px', padding: '0 8px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                                background: block.active ? 'linear-gradient(135deg,#2860c8,#3574f0)' : (block.sorted ? 'linear-gradient(135deg,#4a9a5a,#59a869)' : '#1e1f22'),
-                                                border: `1px solid ${block.active ? '#56a8f5' : (block.sorted ? '#59a869' : '#3c3f41')}`,
-                                                borderRadius: '5px', color: block.active || block.sorted ? '#fff' : '#a9b7c6',
-                                                fontWeight: 'bold', fontSize: '13px', fontFamily: 'var(--font-mono)',
+                                                flex: isStack ? 1 : 'none',
+                                                minWidth: '36px', padding: '2px 8px', height: '30px', display: 'flex', alignItems: 'center', justifyContent: isStack ? 'flex-start' : 'center',
+                                                background: block.active ? 'linear-gradient(135deg,#2860c8,#3574f0)' : (block.sorted ? 'linear-gradient(135deg,#4a9a5a,#59a869)' : 'transparent'),
+                                                border: `1px solid ${block.active ? '#56a8f5' : (block.sorted ? '#59a869' : 'transparent')}`,
+                                                borderRadius: '4px', color: block.active ? '#fff' : block.sorted ? '#fff' : isStack ? '#cc9a4a' : '#a9b7c6',
+                                                fontWeight: block.active || isStack ? 'bold' : 'normal', fontSize: isStack ? '12px' : '13px', fontFamily: 'var(--font-mono)',
                                                 transition: 'all 0.25s ease',
                                                 opacity: block.hidden ? 0.15 : 1,
                                                 boxShadow: block.active ? '0 0 10px rgba(53,116,240,0.6)' : (block.sorted ? '0 0 6px rgba(89,168,105,0.4)' : 'none'),
@@ -2033,6 +2167,316 @@ const CategoryPresentation = ({ category, onClose, onNavigate }) => {
                       </div>
                     </div>
                   )}
+
+                  {activeTab === 'visualizer' && (category.includes('Math/') || category.includes('Geometry/')) && (() => {
+                    const catKey = category;
+                    return (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', height: '100%', padding: '4px 0' }}>
+                        <div style={{ fontSize: '12px', color: '#888', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                          🔬 Vizualizator Matematic — Pas {currentStepIndex + 1}
+                        </div>
+
+                        {/* NUMBER THEORY: Sieve Grid */}
+                        {catKey.includes('Number_Theory') && (() => {
+                          const eliminated = new Set([4,6,8,9,10,12,14,15,16,18,20]);
+                          // based on step, some are active
+                          const activelyEliminating = [];
+                          if (currentStepIndex >= 4 && currentStepIndex <= 13) {
+                            const multiples2 = [4,6,8,10,12,14,16,18,20];
+                            for (let i = 0; i <= currentStepIndex - 4; i++) activelyEliminating.push(multiples2[i]);
+                          }
+                          if (currentStepIndex >= 16 && currentStepIndex <= 20) {
+                            const multiples3 = [9,12,15,18];
+                            for (let i = 0; i <= currentStepIndex - 16; i++) activelyEliminating.push(multiples3[i]);
+                          }
+                          const confirmed = currentStepIndex >= 3 ? [2] : [];
+                          if (currentStepIndex >= 15) confirmed.push(3);
+                          if (currentStepIndex >= 25) confirmed.push(5,7,11,13,17,19);
+                          const nums = Array.from({length: 19}, (_, i) => i + 2);
+                          return (
+                            <div style={{ background: 'linear-gradient(135deg,#141517,#18191c)', border: '1px solid #2b2d30', borderRadius: '10px', padding: '16px' }}>
+                              <div style={{ fontSize: '11px', color: '#b378ba', fontWeight: 'bold', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                                🔢 Ciurul lui Eratostene — N = 20
+                              </div>
+                              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', justifyContent: 'flex-start' }}>
+                                {nums.map(n => {
+                                  const isPrime = !eliminated.has(n);
+                                  const isBeingElim = activelyEliminating.includes(n);
+                                  const isConfirmed = confirmed.includes(n);
+                                  let bg = '#1e1f22', border = '#3c3f41', color = '#a9b7c6', shadow = 'none';
+                                  if (isBeingElim) { bg = 'rgba(219, 88, 96, 0.3)'; border = '#db5860'; color = '#ff8b8b'; shadow = '0 0 8px rgba(219,88,96,0.4)'; }
+                                  else if (isConfirmed) { bg = 'linear-gradient(135deg,#4a9a5a,#59a869)'; border = '#59a869'; color = '#fff'; shadow = '0 0 10px rgba(89,168,105,0.5)'; }
+                                  else if (!isPrime) { bg = '#141517'; border = '#252629'; color = '#444'; }
+                                  return (
+                                    <div key={n} style={{
+                                      width: '38px', height: '38px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                      background: bg, border: `2px solid ${border}`, borderRadius: '8px',
+                                      color, fontWeight: 'bold', fontSize: '14px', fontFamily: 'var(--font-mono)',
+                                      boxShadow: shadow, transition: 'all 0.3s ease',
+                                      textDecoration: (!isPrime && !isBeingElim) ? 'line-through' : 'none',
+                                      opacity: (!isPrime && !isBeingElim) ? 0.4 : 1,
+                                    }}>
+                                      {n}
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                              <div style={{ marginTop: '12px', display: 'flex', gap: '16px', fontSize: '11px' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                  <div style={{ width: '10px', height: '10px', borderRadius: '2px', background: 'linear-gradient(135deg,#4a9a5a,#59a869)' }} />
+                                  <span style={{ color: '#aaa' }}>Prime confirmat</span>
+                                </div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                  <div style={{ width: '10px', height: '10px', borderRadius: '2px', background: 'rgba(219,88,96,0.4)', border: '1px solid #db5860' }} />
+                                  <span style={{ color: '#aaa' }}>Eliminat (compus)</span>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })()}
+
+                        {/* COMBINATORICS: Pascal Triangle visual */}
+                        {catKey.includes('Combinatorics') && (() => {
+                          const triangle = [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]];
+                          const maxRow = Math.min(currentStepIndex < 3 ? 0 : currentStepIndex < 6 ? 1 : currentStepIndex < 11 ? 2 : currentStepIndex < 16 ? 3 : 4, 4);
+                          return (
+                            <div style={{ background: 'linear-gradient(135deg,#141517,#18191c)', border: '1px solid #2b2d30', borderRadius: '10px', padding: '16px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                              <div style={{ fontSize: '11px', color: '#b378ba', fontWeight: 'bold', marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                                🔺 Triunghiul lui Pascal — C(N, K)
+                              </div>
+                              {triangle.slice(0, maxRow + 1).map((row, rIdx) => (
+                                <div key={rIdx} style={{ display: 'flex', gap: '6px', justifyContent: 'center' }}>
+                                  {row.map((val, cIdx) => {
+                                    const isNew = rIdx === maxRow;
+                                    return (
+                                      <div key={cIdx} style={{
+                                        width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                        background: isNew ? 'linear-gradient(135deg,#2860c8,#3574f0)' : 'linear-gradient(135deg,#252629,#2b2d30)',
+                                        border: `2px solid ${isNew ? '#56a8f5' : '#3c3f41'}`,
+                                        borderRadius: '8px', color: isNew ? '#fff' : '#a9b7c6',
+                                        fontWeight: 'bold', fontSize: '14px', fontFamily: 'var(--font-mono)',
+                                        boxShadow: isNew ? '0 0 12px rgba(53,116,240,0.5)' : 'none',
+                                        transition: 'all 0.3s ease',
+                                      }}>
+                                        {val}
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              ))}
+                              <div style={{ marginTop: '6px', fontSize: '11px', color: '#555', fontFamily: 'var(--font-mono)' }}>
+                                C(N,K) = C(N-1,K-1) + C(N-1,K)
+                              </div>
+                            </div>
+                          );
+                        })()}
+
+                        {/* COMPUTATIONAL GEOMETRY: Coordinate plane */}
+                        {catKey.includes('Computational') && (() => {
+                          const pts = { A: {x:1,y:1}, B: {x:3,y:3} };
+                          const testPoints = [
+                            { name: 'C_Coliniar', x: 5, y: 5, cp: 0, color: '#ffc66d' },
+                            { name: 'C_Stanga', x: 2, y: 4, cp: 4, color: '#59a869' },
+                            { name: 'C_Dreapta', x: 4, y: 2, cp: -4, color: '#db5860' },
+                          ];
+                          const activePtIdx = currentStepIndex <= 8 ? 0 : currentStepIndex <= 14 ? 1 : 2;
+                          const activeTestPt = testPoints[activePtIdx];
+                          const svgSize = 200;
+                          const scale = 32;
+                          const originX = 20, originY = svgSize - 20;
+                          const toSvg = (x, y) => ({ sx: originX + x * scale, sy: originY - y * scale });
+                          const ptA = toSvg(pts.A.x, pts.A.y);
+                          const ptB = toSvg(pts.B.x, pts.B.y);
+                          const ptC = toSvg(activeTestPt.x, activeTestPt.y);
+                          return (
+                            <div style={{ background: 'linear-gradient(135deg,#141517,#18191c)', border: '1px solid #2b2d30', borderRadius: '10px', padding: '16px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+                              <div style={{ fontSize: '11px', color: '#b378ba', fontWeight: 'bold', marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                                📐 Cross Product — Plan 2D
+                              </div>
+                              <svg width={svgSize} height={svgSize} style={{ background: '#0f1012', borderRadius: '8px', border: '1px solid #2b2d30' }}>
+                                {/* Grid */}
+                                {[1,2,3,4,5].map(i => (
+                                  <g key={i}>
+                                    <line x1={originX + i*scale} y1={0} x2={originX + i*scale} y2={svgSize} stroke="#1e1f22" strokeWidth="1"/>
+                                    <line x1={0} y1={originY - i*scale} x2={svgSize} y2={originY - i*scale} stroke="#1e1f22" strokeWidth="1"/>
+                                    <text x={originX + i*scale} y={originY + 12} textAnchor="middle" fontSize="8" fill="#444" fontFamily="var(--font-mono)">{i}</text>
+                                    <text x={originX - 12} y={originY - i*scale + 3} textAnchor="middle" fontSize="8" fill="#444" fontFamily="var(--font-mono)">{i}</text>
+                                  </g>
+                                ))}
+                                {/* Axes */}
+                                <line x1={originX} y1={0} x2={originX} y2={svgSize} stroke="#333" strokeWidth="1.5"/>
+                                <line x1={0} y1={originY} x2={svgSize} y2={originY} stroke="#333" strokeWidth="1.5"/>
+                                {/* Edge AB */}
+                                <line x1={ptA.sx} y1={ptA.sy} x2={ptB.sx} y2={ptB.sy} stroke="#3574f0" strokeWidth="2" markerEnd="url(#arr2d)"/>
+                                {/* Edge AC */}
+                                <line x1={ptA.sx} y1={ptA.sy} x2={ptC.sx} y2={ptC.sy} stroke={activeTestPt.color} strokeWidth="2" strokeDasharray="4,2"/>
+                                {/* Defs */}
+                                <defs>
+                                  <marker id="arr2d" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                                    <polygon points="0 0, 8 4, 0 8" fill="#3574f0"/>
+                                  </marker>
+                                </defs>
+                                {/* Points */}
+                                <circle cx={ptA.sx} cy={ptA.sy} r="5" fill="#56a8f5" stroke="#fff" strokeWidth="1"/>
+                                <text x={ptA.sx+6} y={ptA.sy-6} fontSize="9" fill="#56a8f5" fontFamily="var(--font-mono)">A(1,1)</text>
+                                <circle cx={ptB.sx} cy={ptB.sy} r="5" fill="#56a8f5" stroke="#fff" strokeWidth="1"/>
+                                <text x={ptB.sx+6} y={ptB.sy-6} fontSize="9" fill="#56a8f5" fontFamily="var(--font-mono)">B(3,3)</text>
+                                <circle cx={ptC.sx} cy={ptC.sy} r="5" fill={activeTestPt.color} stroke="#fff" strokeWidth="1.5"/>
+                                <text x={ptC.sx+6} y={ptC.sy-6} fontSize="9" fill={activeTestPt.color} fontFamily="var(--font-mono)">{activeTestPt.name.replace('C_','C(').replace('Coliniar','5,5)').replace('Stanga','2,4)').replace('Dreapta','4,2)')}</text>
+                              </svg>
+                              <div style={{ display: 'flex', gap: '12px', fontSize: '11px', flexWrap: 'wrap', justifyContent: 'center' }}>
+                                <div style={{ padding: '6px 12px', background: 'rgba(255,198,109,0.1)', border: '1px solid rgba(255,198,109,0.3)', borderRadius: '6px', color: '#ffc66d', fontFamily: 'var(--font-mono)' }}>
+                                  CP = {activeTestPt.cp} {activeTestPt.cp === 0 ? '→ Coliniar' : activeTestPt.cp > 0 ? '→ Stânga (Anti-Orar)' : '→ Dreapta (Orar)'}
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })()}
+
+                        {/* GAME THEORY: XOR visualization */}
+                        {catKey.includes('Game_Theory') && (() => {
+                          const stacks = [3, 4, 5];
+                          const xorVals = [0, 3, 3^4, 3^4^5];
+                          const xorStep = currentStepIndex <= 1 ? 0 : currentStepIndex === 2 ? 1 : currentStepIndex === 3 ? 2 : 3;
+                          const nimSum = xorVals[xorStep];
+                          return (
+                            <div style={{ background: 'linear-gradient(135deg,#141517,#18191c)', border: '1px solid #2b2d30', borderRadius: '10px', padding: '16px' }}>
+                              <div style={{ fontSize: '11px', color: '#b378ba', fontWeight: 'bold', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                                ♟️ Jocul Nim — Stive XOR
+                              </div>
+                              <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', marginBottom: '16px' }}>
+                                {stacks.map((s, idx) => {
+                                  const isProcessed = xorStep > idx;
+                                  const isCurrent = xorStep === idx + 1;
+                                  return (
+                                    <div key={idx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
+                                      <div style={{ fontSize: '10px', color: '#888', fontFamily: 'var(--font-mono)' }}>Stiva {idx + 1}</div>
+                                      <div style={{ display: 'flex', flexDirection: 'column-reverse', gap: '3px' }}>
+                                        {Array.from({length: s}, (_, i) => (
+                                          <div key={i} style={{
+                                            width: '32px', height: '18px', borderRadius: '4px',
+                                            background: isCurrent ? 'linear-gradient(135deg,#2860c8,#3574f0)' : isProcessed ? 'linear-gradient(135deg,#4a9a5a,#59a869)' : '#252629',
+                                            border: `1px solid ${isCurrent ? '#56a8f5' : isProcessed ? '#59a869' : '#3c3f41'}`,
+                                            transition: 'all 0.3s ease',
+                                          }}/>
+                                        ))}
+                                      </div>
+                                      <div style={{ fontSize: '12px', fontWeight: 'bold', color: isProcessed || isCurrent ? '#fff' : '#666', fontFamily: 'var(--font-mono)' }}>{s}</div>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                              <div style={{ textAlign: 'center', padding: '10px', background: nimSum !== 0 ? 'rgba(89,168,105,0.15)' : 'rgba(219,88,96,0.15)', border: `1px solid ${nimSum !== 0 ? '#59a869' : '#db5860'}`, borderRadius: '8px' }}>
+                                <div style={{ fontSize: '18px', fontWeight: 'bold', fontFamily: 'var(--font-mono)', color: nimSum !== 0 ? '#59a869' : '#db5860' }}>
+                                  NimSum = {nimSum} ({nimSum.toString(2).padStart(4, '0')} binar)
+                                </div>
+                                <div style={{ fontSize: '12px', color: '#aaa', marginTop: '4px' }}>
+                                  {nimSum !== 0 ? '✅ Primul jucător câștigă!' : '❌ Al doilea jucător câștigă!'}
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })()}
+
+                        {/* ADVANCED MATH: GCD visualization */}
+                        {catKey.includes('Math/Advanced') && (() => {
+                          const pairs = [[34,21],[21,34],[13,21],[8,13],[5,8],[3,5],[2,3],[1,2],[0,1]];
+                          const depth = Math.min(currentStepIndex, 8);
+                          return (
+                            <div style={{ background: 'linear-gradient(135deg,#141517,#18191c)', border: '1px solid #2b2d30', borderRadius: '10px', padding: '16px' }}>
+                              <div style={{ fontSize: '11px', color: '#b378ba', fontWeight: 'bold', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                                🔄 Euclid Extins — Stivă Recursivă
+                              </div>
+                              <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', maxHeight: '260px', overflowY: 'auto' }}>
+                                {pairs.slice(0, depth + 1).map((pair, idx) => {
+                                  const isTop = idx === depth;
+                                  return (
+                                    <div key={idx} style={{
+                                      display: 'flex', alignItems: 'center', gap: '8px',
+                                      padding: '6px 12px', borderRadius: '6px',
+                                      background: isTop ? 'linear-gradient(135deg,rgba(53,116,240,0.2),rgba(53,116,240,0.1))' : 'rgba(255,255,255,0.02)',
+                                      border: `1px solid ${isTop ? '#3574f0' : '#252629'}`,
+                                      transition: 'all 0.25s ease',
+                                    }}>
+                                      <span style={{ color: '#666', fontSize: '9px', width: '14px' }}>⊞</span>
+                                      <span style={{ color: isTop ? '#56a8f5' : '#888', fontSize: '11px', fontFamily: 'var(--font-mono)', fontWeight: isTop ? 'bold' : 'normal' }}>
+                                        gcdExtended({pair[0]}, {pair[1]})
+                                      </span>
+                                      {isTop && <span style={{ color: '#3574f0', fontSize: '10px', marginLeft: 'auto' }}>← activ</span>}
+                                    </div>
+                                  );
+                                })}
+                                <div style={{ padding: '6px 12px', borderRadius: '6px', background: 'rgba(255,255,255,0.01)', border: '1px solid #1e1f22', opacity: 0.5 }}>
+                                  <span style={{ color: '#555', fontSize: '11px', fontFamily: 'var(--font-mono)' }}>main()</span>
+                                </div>
+                              </div>
+                              {currentStepIndex >= 10 && (
+                                <div style={{ marginTop: '10px', padding: '8px', background: 'rgba(89,168,105,0.1)', border: '1px solid #59a869', borderRadius: '6px', fontSize: '11px', fontFamily: 'var(--font-mono)' }}>
+                                  <span style={{ color: '#59a869' }}>✓ Revenire: </span>
+                                  <span style={{ color: '#a9b7c6' }}>CMMDC = 1, a•x + b•y = 1</span>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })()}
+
+                        {/* LINEAR ALGEBRA: Matrix visualization */}
+                        {catKey.includes('Linear_Algebra') && (() => {
+                          const matrices = [
+                            { data: [['2.00','1.00','-1.00','8.00'],['-3.00','-1.00','2.00','-11.00'],['-2.00','1.00','2.00','-3.00']], activeRow: -1 },
+                            { data: [['2.00','1.00','-1.00','8.00'],['-3.00','-1.00','2.00','-11.00'],['-2.00','1.00','2.00','-3.00']], activeRow: 1 },
+                            { data: [['-3.00','-1.00','2.00','-11.00'],['2.00','1.00','-1.00','8.00'],['-2.00','1.00','2.00','-3.00']], activeRow: 0 },
+                            { data: [['-3.00','-1.00','2.00','-11.00'],['0.00','0.33','0.33','-0.33'],['0.00','0.33','0.67','-10.33']], activeRow: -1 },
+                          ];
+                          const mIdx = Math.min(Math.floor(currentStepIndex / 5), 3);
+                          const m = matrices[mIdx];
+                          return (
+                            <div style={{ background: 'linear-gradient(135deg,#141517,#18191c)', border: '1px solid #2b2d30', borderRadius: '10px', padding: '16px' }}>
+                              <div style={{ fontSize: '11px', color: '#b378ba', fontWeight: 'bold', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                                🔢 Eliminare Gaussiană — Forma Eșalonată
+                              </div>
+                              <div style={{ display: 'flex', gap: '6px', flexDirection: 'column', alignItems: 'center' }}>
+                                <div style={{ display: 'flex', gap: '4px', marginBottom: '4px' }}>
+                                  {['X1','X2','X3','C'].map(h => (
+                                    <div key={h} style={{ width: '70px', textAlign: 'center', fontSize: '10px', color: '#ffc66d', fontFamily: 'var(--font-mono)', fontWeight: 'bold' }}>{h}</div>
+                                  ))}
+                                </div>
+                                {m.data.map((row, rIdx) => (
+                                  <div key={rIdx} style={{ display: 'flex', gap: '4px' }}>
+                                    {row.map((cell, cIdx) => {
+                                      const isActive = rIdx === m.activeRow;
+                                      const isPivot = cIdx === rIdx && cell !== '0.00';
+                                      return (
+                                        <div key={cIdx} style={{
+                                          width: '70px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                          background: isPivot ? 'rgba(53,116,240,0.25)' : isActive ? 'rgba(245,166,35,0.15)' : cIdx === 3 ? '#252629' : '#1e1f22',
+                                          border: `1px solid ${isPivot ? '#3574f0' : isActive ? '#f5a623' : '#2b2d30'}`,
+                                          borderRadius: '4px', fontSize: '11px', fontFamily: 'var(--font-mono)',
+                                          color: isPivot ? '#56a8f5' : isActive ? '#f5a623' : cIdx === 3 ? '#ffc66d' : '#a9b7c6',
+                                          fontWeight: isPivot ? 'bold' : 'normal',
+                                          transition: 'all 0.3s ease',
+                                        }}>
+                                          {cell}
+                                        </div>
+                                      );
+                                    })}
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          );
+                        })()}
+
+                        {/* Default fallback for other Math topics */}
+                        {!catKey.includes('Number_Theory') && !catKey.includes('Combinatorics') && !catKey.includes('Computational') && !catKey.includes('Game_Theory') && !catKey.includes('Math/Advanced') && !catKey.includes('Linear_Algebra') && (
+                          <div style={{ background: 'linear-gradient(135deg,#141517,#18191c)', border: '1px solid #2b2d30', borderRadius: '10px', padding: '24px', textAlign: 'center', opacity: 0.6 }}>
+                            <div style={{ fontSize: '32px', marginBottom: '8px' }}>🔢</div>
+                            <div style={{ color: '#888', fontSize: '13px' }}>Vizualizator matematic disponibil în modul Debugger</div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })()}
 
                 </div>
               </div>

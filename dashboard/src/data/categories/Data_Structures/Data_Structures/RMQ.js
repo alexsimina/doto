@@ -6,7 +6,7 @@ export const data = {
   "code": "\n#include <iostream>\n#include <vector>\n#include <cmath>\n\nusing namespace std;\n\nint main() {\n    vector<int> A = {7, 2, 3, 0, 5, 10, 3, 12, 18};\n    int n = A.size();\n    int k = log2(n) + 1;\n    \n    // st[i][j] = minimul pe intervalul de lungime 2^j care incepe la pozitia i\n    vector<vector<int>> st(n, vector<int>(k));\n    \n    // Initializare pt lungimi de 2^0 = 1\n    for (int i = 0; i < n; i++)\n        st[i][0] = A[i];\n        \n    // Construire Sparse Table O(N log N)\n    for (int j = 1; (1 << j) <= n; j++) {\n        for (int i = 0; i + (1 << j) <= n; i++) {\n            st[i][j] = min(st[i][j - 1], st[i + (1 << (j - 1))][j - 1]);\n        }\n    }\n    \n    // Interogare pe intervalul [1, 5] = {2, 3, 0, 5, 10}\n    int L = 1, R = 5;\n    int j = log2(R - L + 1); // 5 elemente -> log2(5) = 2 (intervale de 4)\n    \n    int minim = min(st[L][j], st[R - (1 << j) + 1][j]);\n    \n    cout << \"Minim pe [\" << L << \", \" << R << \"] este \" << minim << \"\\n\";\n    return 0;\n}\n",
   "explanations": [
     {
-      "line": 19,
+      "line": 13,
       "text": "Matricea st[i][j] va reține valorile minime precalculate. Linii = pornire interval, Coloane = puteri ale lui 2.",
       "blocksVisual": [
         {
@@ -158,7 +158,7 @@ export const data = {
       }
     },
     {
-      "line": 22,
+      "line": 16,
       "text": "Inițializăm j=0: intervale de lungime 2^0 = 1. Fiecare element este minimul propriului său interval de lungime 1.",
       "blocksVisual": [
         {
@@ -310,7 +310,7 @@ export const data = {
       }
     },
     {
-      "line": 28,
+      "line": 22,
       "text": "Construcție j=1 (L=2): st[0][1] = min(st[0][0], st[1][0]) = min(7, 2) = 2",
       "blocksVisual": [
         {
@@ -463,7 +463,7 @@ export const data = {
       }
     },
     {
-      "line": 28,
+      "line": 22,
       "text": "Construcție j=1 (L=2): st[1][1] = min(st[1][0], st[2][0]) = min(2, 3) = 2",
       "blocksVisual": [
         {
@@ -616,7 +616,7 @@ export const data = {
       }
     },
     {
-      "line": 28,
+      "line": 22,
       "text": "Construcție j=1 (L=2): st[2][1] = min(st[2][0], st[3][0]) = min(3, 0) = 0",
       "blocksVisual": [
         {
@@ -769,7 +769,7 @@ export const data = {
       }
     },
     {
-      "line": 28,
+      "line": 22,
       "text": "Construcție j=1 (L=2): st[3][1] = min(st[3][0], st[4][0]) = min(0, 5) = 0",
       "blocksVisual": [
         {
@@ -922,7 +922,7 @@ export const data = {
       }
     },
     {
-      "line": 28,
+      "line": 22,
       "text": "Construcție j=1 (L=2): st[4][1] = min(st[4][0], st[5][0]) = min(5, 10) = 5",
       "blocksVisual": [
         {
@@ -1075,7 +1075,7 @@ export const data = {
       }
     },
     {
-      "line": 28,
+      "line": 22,
       "text": "Construcție j=1 (L=2): st[5][1] = min(st[5][0], st[6][0]) = min(10, 3) = 3",
       "blocksVisual": [
         {
@@ -1228,7 +1228,7 @@ export const data = {
       }
     },
     {
-      "line": 28,
+      "line": 22,
       "text": "Construcție j=1 (L=2): st[6][1] = min(st[6][0], st[7][0]) = min(3, 12) = 3",
       "blocksVisual": [
         {
@@ -1381,7 +1381,7 @@ export const data = {
       }
     },
     {
-      "line": 28,
+      "line": 22,
       "text": "Construcție j=1 (L=2): st[7][1] = min(st[7][0], st[8][0]) = min(12, 18) = 12",
       "blocksVisual": [
         {
@@ -1534,7 +1534,7 @@ export const data = {
       }
     },
     {
-      "line": 28,
+      "line": 22,
       "text": "Construcție j=2 (L=4): st[0][2] = min(st[0][1], st[2][1]) = min(2, 0) = 0",
       "blocksVisual": [
         {
@@ -1687,7 +1687,7 @@ export const data = {
       }
     },
     {
-      "line": 28,
+      "line": 22,
       "text": "Construcție j=2 (L=4): st[1][2] = min(st[1][1], st[3][1]) = min(2, 0) = 0",
       "blocksVisual": [
         {
@@ -1840,7 +1840,7 @@ export const data = {
       }
     },
     {
-      "line": 28,
+      "line": 22,
       "text": "Construcție j=2 (L=4): st[2][2] = min(st[2][1], st[4][1]) = min(0, 5) = 0",
       "blocksVisual": [
         {
@@ -1993,7 +1993,7 @@ export const data = {
       }
     },
     {
-      "line": 28,
+      "line": 22,
       "text": "Construcție j=2 (L=4): st[3][2] = min(st[3][1], st[5][1]) = min(0, 3) = 0",
       "blocksVisual": [
         {
@@ -2146,7 +2146,7 @@ export const data = {
       }
     },
     {
-      "line": 28,
+      "line": 22,
       "text": "Construcție j=2 (L=4): st[4][2] = min(st[4][1], st[6][1]) = min(5, 3) = 3",
       "blocksVisual": [
         {
@@ -2299,7 +2299,7 @@ export const data = {
       }
     },
     {
-      "line": 28,
+      "line": 22,
       "text": "Construcție j=2 (L=4): st[5][2] = min(st[5][1], st[7][1]) = min(3, 12) = 3",
       "blocksVisual": [
         {
@@ -2452,7 +2452,7 @@ export const data = {
       }
     },
     {
-      "line": 33,
+      "line": 27,
       "text": "Pentru a răspunde la interogarea pe [1, 5], lungimea este R - L + 1 = 5.",
       "blocksVisual": [
         {
@@ -2604,7 +2604,7 @@ export const data = {
       }
     },
     {
-      "line": 34,
+      "line": 28,
       "text": "Cea mai mare putere a lui 2 mai mică sau egală cu 5 este 4. Deci j = log2(5) = 2.",
       "blocksVisual": [
         {
@@ -2756,7 +2756,7 @@ export const data = {
       }
     },
     {
-      "line": 36,
+      "line": 30,
       "text": "Prima parte acoperă [1, 4] folosind st[L][j] = st[1][2] = 0.",
       "blocksVisual": [
         {
@@ -2910,7 +2910,7 @@ export const data = {
       }
     },
     {
-      "line": 36,
+      "line": 30,
       "text": "A doua parte acoperă [2, 5] folosind st[R - 2^j + 1][j] = st[2][2] = 0.",
       "blocksVisual": [
         {
@@ -3064,7 +3064,7 @@ export const data = {
       }
     },
     {
-      "line": 36,
+      "line": 30,
       "text": "Minimul general este min(st[1][2], st[2][2]) = min(0, 0) = 0. Suprapunerea elementelor {2, 3, 4} nu afectează rezultatul minimului.",
       "blocksVisual": [
         {
@@ -3217,7 +3217,7 @@ export const data = {
       }
     },
     {
-      "line": 38,
+      "line": 32,
       "text": "Răspunsul este afișat în timp O(1) direct! Precalcularea Sparse Table oferă interogări ultrarapide.",
       "blocksVisual": [
         {

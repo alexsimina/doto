@@ -42,7 +42,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 10,
+      "line": 4,
       "text": "Structura vectorului de diferențe: diff[i] = arr[i] - arr[i-1]. Păstrează doar salturile de valoare.",
       "blocksVisual": [
         {
@@ -54,7 +54,7 @@ int main() {
       ]
     },
     {
-      "line": 10,
+      "line": 4,
       "text": "Avem un vector 'diff' inițializat cu 0. Dimensiune N=5 (folosim indici 1..6 pentru siguranță).",
       "blocksVisual": [
         {
@@ -66,7 +66,7 @@ int main() {
       ]
     },
     {
-      "line": 15,
+      "line": 9,
       "text": "Update 1: Adunăm 10 pe [1, 3]. Pasul 1A: Adunăm 10 la diff[1].",
       "blocksVisual": [
         {
@@ -78,7 +78,7 @@ int main() {
       ]
     },
     {
-      "line": 16,
+      "line": 10,
       "text": "Update 1: Pasul 1B: Scădem 10 la R+1 = 4: diff[4] -= 10. Asta anulează impactul lui +10 de la indexul 4 încolo.",
       "blocksVisual": [
         {
@@ -90,7 +90,7 @@ int main() {
       ]
     },
     {
-      "line": 19,
+      "line": 13,
       "text": "Update 2: Adunăm 20 pe [2, 5]. Pasul 2A: Adunăm 20 la diff[2].",
       "blocksVisual": [
         {
@@ -102,7 +102,7 @@ int main() {
       ]
     },
     {
-      "line": 20,
+      "line": 14,
       "text": "Update 2: Pasul 2B: Scădem 20 la R+1 = 6: diff[6] -= 20.",
       "blocksVisual": [
         {
@@ -114,7 +114,7 @@ int main() {
       ]
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "Update 3: Adunăm 5 pe [3, 4]. Pasul 3A: Adunăm 5 la diff[3].",
       "blocksVisual": [
         {
@@ -126,7 +126,7 @@ int main() {
       ]
     },
     {
-      "line": 24,
+      "line": 18,
       "text": "Update 3: Pasul 3B: Scădem 5 la R+1 = 5: diff[5] -= 5. Acum toți biții/salturile din diff sunt gata.",
       "blocksVisual": [
         {
@@ -138,7 +138,7 @@ int main() {
       ]
     },
     {
-      "line": 28,
+      "line": 22,
       "text": "Începem reconstruirea vectorului `arr` prin sume parțiale pe vectorul de diferențe.",
       "blocksVisual": [
         {
@@ -150,7 +150,7 @@ int main() {
       ]
     },
     {
-      "line": 29,
+      "line": 23,
       "text": "Reconstruire i = 1: Citim saltul diff[1] = 10. Calculăm arr[1] = arr[0] + diff[1] = 0 + 10 = 10.",
       "blocksVisual": [
         {
@@ -162,7 +162,7 @@ int main() {
       ]
     },
     {
-      "line": 28,
+      "line": 22,
       "text": "Trecem la următorul element din buclă: i = 2.",
       "blocksVisual": [
         {
@@ -174,7 +174,7 @@ int main() {
       ]
     },
     {
-      "line": 29,
+      "line": 23,
       "text": "Reconstruire i = 2: Citim saltul diff[2] = 20. Calculăm arr[2] = arr[1] + diff[2] = 10 + 20 = 30.",
       "blocksVisual": [
         {
@@ -186,7 +186,7 @@ int main() {
       ]
     },
     {
-      "line": 28,
+      "line": 22,
       "text": "Trecem la următorul element din buclă: i = 3.",
       "blocksVisual": [
         {
@@ -198,7 +198,7 @@ int main() {
       ]
     },
     {
-      "line": 29,
+      "line": 23,
       "text": "Reconstruire i = 3: Citim saltul diff[3] = 5. Calculăm arr[3] = arr[2] + diff[3] = 30 + 5 = 35.",
       "blocksVisual": [
         {
@@ -210,7 +210,7 @@ int main() {
       ]
     },
     {
-      "line": 28,
+      "line": 22,
       "text": "Trecem la următorul element din buclă: i = 4.",
       "blocksVisual": [
         {
@@ -222,7 +222,7 @@ int main() {
       ]
     },
     {
-      "line": 29,
+      "line": 23,
       "text": "Reconstruire i = 4: Citim saltul diff[4] = -10. Calculăm arr[4] = arr[3] + diff[4] = 35 + (-10) = 25.",
       "blocksVisual": [
         {
@@ -234,7 +234,7 @@ int main() {
       ]
     },
     {
-      "line": 28,
+      "line": 22,
       "text": "Trecem la ultimul element: i = 5.",
       "blocksVisual": [
         {
@@ -246,7 +246,7 @@ int main() {
       ]
     },
     {
-      "line": 29,
+      "line": 23,
       "text": "Reconstruire i = 5: Citim saltul diff[5] = -5. Calculăm arr[5] = arr[4] + diff[5] = 25 + (-5) = 20.",
       "blocksVisual": [
         {
@@ -258,7 +258,7 @@ int main() {
       ]
     },
     {
-      "line": 31,
+      "line": 25,
       "text": "Afișăm valorile finale obținute în vector.",
       "blocksVisual": [
         {
@@ -270,7 +270,7 @@ int main() {
       ]
     },
     {
-      "line": 34,
+      "line": 28,
       "text": "Algoritmul s-a încheiat cu succes! Am demonstrat cum interogarea complexă se face într-o singură parcurgere liniară.",
       "blocksVisual": [
         {

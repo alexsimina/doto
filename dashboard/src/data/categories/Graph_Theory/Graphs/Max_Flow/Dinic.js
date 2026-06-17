@@ -86,7 +86,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 49,
+      "line": 43,
       "text": "Rulăm BFS din Sursă (nod 0) pentru a construi Graful pe Niveluri. Căutăm cele mai scurte drumuri (nefolosite la maxim) către Destinație (nod 3).",
       "blocksVisual": [
         {
@@ -166,7 +166,7 @@ int main() {
       }
     },
     {
-      "line": 32,
+      "line": 26,
       "text": "BFS a găsit că T are nivelul 2. Acum apelăm DFS pentru a găsi 'Blocking Flows' doar pe muchiile care merg de la L la L+1 (ex: nivel 0 -> 1 -> 2). De remarcat că muchia 1->2 nu va fi folosită acum deoarece ambele noduri sunt pe nivelul 1!",
       "blocksVisual": [
         {
@@ -241,7 +241,7 @@ int main() {
       }
     },
     {
-      "line": 42,
+      "line": 36,
       "text": "Trimitem 2 unități de flux pe S->1->T (limitat de muchia 1->T). Flux total = 2.",
       "blocksVisual": [
         {
@@ -314,7 +314,7 @@ int main() {
       }
     },
     {
-      "line": 42,
+      "line": 36,
       "text": "Încă suntem în faza curentă de DFS. Mai găsim un drum valid: S->2->T. Trimitem 2 unități de flux. Flux total = 4.",
       "blocksVisual": [
         {
@@ -387,7 +387,7 @@ int main() {
       }
     },
     {
-      "line": 49,
+      "line": 43,
       "text": "DFS-ul se oprește deoarece nu mai putem trimite flux pe nivelurile actuale. Reluăm BFS-ul pentru a reface Nivelurile. De data asta, muchia 0->2 și 1->3 sunt pline (capacitate 0 rămasă). BFS va găsi drumul 0 -> 1 -> 2 -> 3!",
       "blocksVisual": [
         {
@@ -471,7 +471,7 @@ int main() {
       }
     },
     {
-      "line": 52,
+      "line": 46,
       "text": "Trimitem 1 unitate de flux prin 0->1->2->3. Fluxul ajunge la maximul de 5. Următorul BFS nu va mai putea atinge T, și algoritmul se încheie.",
       "blocksVisual": [
         {

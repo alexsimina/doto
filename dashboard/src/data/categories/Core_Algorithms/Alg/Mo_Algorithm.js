@@ -69,7 +69,7 @@ vector<int> solveMo(vector<int>& arr, vector<Query>& queries) {
 `,
   "explanations": [
     {
-      "line": 46,
+      "line": 40,
       "text": "Apelăm solveMo cu arr = {1, 2, 1, 3, 2} (indici 0-4) și interogările Q0=[1,3], Q1=[2,4]. Toate interogările sunt citite OFFLINE înainte de procesare.",
       "blocksVisual": [
         { "label": "Array arr[0-4]", "groups": [[{"val": "1\n[0]"}, {"val": "2\n[1]"}, {"val": "1\n[2]"}, {"val": "3\n[3]"}, {"val": "2\n[4]"}]] },
@@ -78,7 +78,7 @@ vector<int> solveMo(vector<int>& arr, vector<Query>& queries) {
       ]
     },
     {
-      "line": 47,
+      "line": 41,
       "text": "Calculăm blockSize = sqrt(5) ≈ 2. Vectorul este împărțit în blocuri de dimensiune 2: [0-1], [2-3], [4].",
       "blocksVisual": [
         { "label": "Block 0 [0-1]", "groups": [[{"val": "1\n[0]"}, {"val": "2\n[1]"}]] },
@@ -88,7 +88,7 @@ vector<int> solveMo(vector<int>& arr, vector<Query>& queries) {
       ]
     },
     {
-      "line": 48,
+      "line": 42,
       "text": "Sortăm interogările prin compareQueries. Q0: bloc(L=1)=1/2=0; Q1: bloc(L=2)=2/2=1. Blocuri diferite → Q0 rămâne înaintea Q1.",
       "blocksVisual": [
         { "label": "Query-uri sortate Mo", "groups": [[{"val": "Q0:[1,3]\nbloc(L)=0", "sorted": true}, {"val": "Q1:[2,4]\nbloc(L)=1"}]] },
@@ -96,7 +96,7 @@ vector<int> solveMo(vector<int>& arr, vector<Query>& queries) {
       ]
     },
     {
-      "line": 50,
+      "line": 44,
       "text": "Inițializăm vectorul de răspunsuri ans[] cu 2 intrări nedeterminate și setăm pointerii currL=0, currR=-1 (fereastră vidă).",
       "blocksVisual": [
         { "label": "Array arr[0-4]", "groups": [[{"val": "1\n[0]"}, {"val": "2\n[1]"}, {"val": "1\n[2]"}, {"val": "3\n[3]"}, {"val": "2\n[4]"}]] },
@@ -105,7 +105,7 @@ vector<int> solveMo(vector<int>& arr, vector<Query>& queries) {
       ]
     },
     {
-      "line": 55,
+      "line": 49,
       "text": "Procesăm Q0 = {L=1, R=3}. Fereastra curentă este [0,-1] (vidă). Trebuie să ajungem la fereastra [1,3]. Ordinea operațiilor: extinde R, apoi restrânge L.",
       "blocksVisual": [
         { "label": "Array arr[0-4]", "groups": [[{"val": "1\n[0]"}, {"val": "2\n[1]"}, {"val": "1\n[2]"}, {"val": "3\n[3]"}, {"val": "2\n[4]"}]] },
@@ -114,7 +114,7 @@ vector<int> solveMo(vector<int>& arr, vector<Query>& queries) {
       ]
     },
     {
-      "line": 59,
+      "line": 53,
       "text": "while(currR < q.R): currR=-1 < 3=q.R → currR++ devine 0. add(arr[0]=1): freq[1]++ → freq[1]=1. Prima apariție → current_answer=1.",
       "blocksVisual": [
         { "label": "Array arr[0-4]  (currR→0)", "groups": [[{"val": "1\n[0]", "active": true}, {"val": "2\n[1]"}, {"val": "1\n[2]"}, {"val": "3\n[3]"}, {"val": "2\n[4]"}]] },
@@ -123,7 +123,7 @@ vector<int> solveMo(vector<int>& arr, vector<Query>& queries) {
       ]
     },
     {
-      "line": 59,
+      "line": 53,
       "text": "currR=0 < 3 → currR++ devine 1. add(arr[1]=2): freq[2]++ → freq[2]=1. Nouă valoare distinctă → current_answer=2.",
       "blocksVisual": [
         { "label": "Array arr[0-4]  (currR→1)", "groups": [[{"val": "1\n[0]", "sorted": true}, {"val": "2\n[1]", "active": true}, {"val": "1\n[2]"}, {"val": "3\n[3]"}, {"val": "2\n[4]"}]] },
@@ -132,7 +132,7 @@ vector<int> solveMo(vector<int>& arr, vector<Query>& queries) {
       ]
     },
     {
-      "line": 59,
+      "line": 53,
       "text": "currR=1 < 3 → currR++ devine 2. add(arr[2]=1): freq[1]++ → freq[1]=2. Nu e prima apariție → current_answer rămâne 2.",
       "blocksVisual": [
         { "label": "Array arr[0-4]  (currR→2)", "groups": [[{"val": "1\n[0]", "sorted": true}, {"val": "2\n[1]", "sorted": true}, {"val": "1\n[2]", "active": true}, {"val": "3\n[3]"}, {"val": "2\n[4]"}]] },
@@ -141,7 +141,7 @@ vector<int> solveMo(vector<int>& arr, vector<Query>& queries) {
       ]
     },
     {
-      "line": 59,
+      "line": 53,
       "text": "currR=2 < 3 → currR++ devine 3. add(arr[3]=3): freq[3]++ → freq[3]=1. Nouă valoare distinctă → current_answer=3. Acum currR=q.R, bucla R se oprește.",
       "blocksVisual": [
         { "label": "Array arr[0-4]  (currR→3)", "groups": [[{"val": "1\n[0]", "sorted": true}, {"val": "2\n[1]", "sorted": true}, {"val": "1\n[2]", "sorted": true}, {"val": "3\n[3]", "active": true}, {"val": "2\n[4]"}]] },
@@ -150,7 +150,7 @@ vector<int> solveMo(vector<int>& arr, vector<Query>& queries) {
       ]
     },
     {
-      "line": 61,
+      "line": 55,
       "text": "while(currL < q.L): currL=0 < 1=q.L → remove(arr[0]=1). freq[1]-- → freq[1]=1. freq[1]>0 → current_answer rămâne 3. currL++ devine 1.",
       "blocksVisual": [
         { "label": "Array arr[0-4]  (scoatem [0])", "groups": [[{"val": "1\n[0]", "hidden": true}, {"val": "2\n[1]", "active": true}, {"val": "1\n[2]", "sorted": true}, {"val": "3\n[3]", "sorted": true}, {"val": "2\n[4]"}]] },
@@ -159,7 +159,7 @@ vector<int> solveMo(vector<int>& arr, vector<Query>& queries) {
       ]
     },
     {
-      "line": 61,
+      "line": 55,
       "text": "currL=1 = q.L=1 → bucla L se oprește. Fereastra curentă este [1,3] = intervalul cerut de Q0. Avem curr_ans=3.",
       "blocksVisual": [
         { "label": "Array arr  [currL=1, currR=3]", "groups": [[{"val": "1\n[0]", "hidden": true}, {"val": "2\n[1]", "active": true}, {"val": "1\n[2]", "sorted": true}, {"val": "3\n[3]", "active": true}, {"val": "2\n[4]"}]] },
@@ -168,7 +168,7 @@ vector<int> solveMo(vector<int>& arr, vector<Query>& queries) {
       ]
     },
     {
-      "line": 65,
+      "line": 59,
       "text": "Salvăm ans[Q0.id] = ans[0] = current_answer = 3. Elementele distincte din [1,3] sunt {2, 1, 3}. ✓",
       "blocksVisual": [
         { "label": "Array arr  fereastra [1,3]", "groups": [[{"val": "1\n[0]", "hidden": true}, {"val": "2\n[1]", "sorted": true}, {"val": "1\n[2]", "sorted": true}, {"val": "3\n[3]", "sorted": true}, {"val": "2\n[4]"}]] },
@@ -177,7 +177,7 @@ vector<int> solveMo(vector<int>& arr, vector<Query>& queries) {
       ]
     },
     {
-      "line": 55,
+      "line": 49,
       "text": "Procesăm Q1 = {L=2, R=4}. Fereastra curentă este [1,3]. Trebuie să ajungem la [2,4]. Extindem R de la 3 la 4, apoi mutăm L de la 1 la 2.",
       "blocksVisual": [
         { "label": "Array arr  (fereastra curentă [1,3])", "groups": [[{"val": "1\n[0]", "hidden": true}, {"val": "2\n[1]", "active": true}, {"val": "1\n[2]", "sorted": true}, {"val": "3\n[3]", "active": true}, {"val": "2\n[4]"}]] },
@@ -186,7 +186,7 @@ vector<int> solveMo(vector<int>& arr, vector<Query>& queries) {
       ]
     },
     {
-      "line": 59,
+      "line": 53,
       "text": "while(currR < q.R): currR=3 < 4=q.R → currR++ devine 4. add(arr[4]=2): freq[2]++ → freq[2]=2. Nu e prima apariție → current_answer rămâne 3.",
       "blocksVisual": [
         { "label": "Array arr  (currR→4)", "groups": [[{"val": "1\n[0]", "hidden": true}, {"val": "2\n[1]", "active": true}, {"val": "1\n[2]", "sorted": true}, {"val": "3\n[3]", "sorted": true}, {"val": "2\n[4]", "active": true}]] },
@@ -195,7 +195,7 @@ vector<int> solveMo(vector<int>& arr, vector<Query>& queries) {
       ]
     },
     {
-      "line": 61,
+      "line": 55,
       "text": "while(currL < q.L): currL=1 < 2=q.L → remove(arr[1]=2). freq[2]-- → freq[2]=1. freq[2]>0 → current_answer rămâne 3. currL++ devine 2.",
       "blocksVisual": [
         { "label": "Array arr  (scoatem [1])", "groups": [[{"val": "1\n[0]", "hidden": true}, {"val": "2\n[1]", "hidden": true}, {"val": "1\n[2]", "active": true}, {"val": "3\n[3]", "sorted": true}, {"val": "2\n[4]", "sorted": true}]] },
@@ -204,7 +204,7 @@ vector<int> solveMo(vector<int>& arr, vector<Query>& queries) {
       ]
     },
     {
-      "line": 61,
+      "line": 55,
       "text": "currL=2 = q.L=2 → bucla L se oprește. Fereastra curentă este [2,4] = intervalul cerut de Q1. curr_ans=3.",
       "blocksVisual": [
         { "label": "Array arr  [currL=2, currR=4]", "groups": [[{"val": "1\n[0]", "hidden": true}, {"val": "2\n[1]", "hidden": true}, {"val": "1\n[2]", "active": true}, {"val": "3\n[3]", "sorted": true}, {"val": "2\n[4]", "active": true}]] },
@@ -213,7 +213,7 @@ vector<int> solveMo(vector<int>& arr, vector<Query>& queries) {
       ]
     },
     {
-      "line": 65,
+      "line": 59,
       "text": "Salvăm ans[Q1.id] = ans[1] = current_answer = 3. Elementele distincte din [2,4] sunt {1, 3, 2}. ✓",
       "blocksVisual": [
         { "label": "Array arr  fereastra [2,4]", "groups": [[{"val": "1\n[0]", "hidden": true}, {"val": "2\n[1]", "hidden": true}, {"val": "1\n[2]", "sorted": true}, {"val": "3\n[3]", "sorted": true}, {"val": "2\n[4]", "sorted": true}]] },
@@ -222,7 +222,7 @@ vector<int> solveMo(vector<int>& arr, vector<Query>& queries) {
       ]
     },
     {
-      "line": 67,
+      "line": 61,
       "text": "Returnăm ans = {3, 3}. Algoritmul lui Mo a procesat toate interogările offline cu mutări minime ale pointerilor datorită sortării inteligente!",
       "blocksVisual": [
         { "label": "Array arr[0-4]", "groups": [[{"val": "1\n[0]"}, {"val": "2\n[1]"}, {"val": "1\n[2]"}, {"val": "3\n[3]"}, {"val": "2\n[4]"}]] },

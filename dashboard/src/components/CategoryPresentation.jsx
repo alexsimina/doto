@@ -262,19 +262,406 @@ const formatText = (text) => {
   });
 };
 
+// Dictionary/mapping of important global variables per category
+const getCategoryGlobalVars = (category, stepIndex, activeLine, explanationText) => {
+  const globalVars = [];
+  const cat = typeof category === 'string' ? category : '';
+
+  if (cat.includes('Number_Theory')) {
+    globalVars.push({ name: 'MOD', type: 'const int', val: '1000000007', expandable: false });
+    globalVars.push({ name: 'is_prime', type: 'bool[1000005]', val: '(Ciurul lui Eratostene pentru prime)', expandable: false });
+  }
+  else if (cat.includes('Combinatorics')) {
+    globalVars.push({ name: 'MOD', type: 'const int', val: '1000000007', expandable: false });
+    globalVars.push({ name: 'fact', type: 'int[100005]', val: '(Vector precalculare factoriale)', expandable: false });
+  }
+  else if (cat.includes('Computational') || cat.includes('Geometry')) {
+    globalVars.push({ name: 'EPS', type: 'const double', val: '1e-9', expandable: false });
+    globalVars.push({ name: 'INF', type: 'const double', val: '1e18', expandable: false });
+  }
+  else if (cat.includes('Math/Advanced')) {
+    globalVars.push({ name: 'MOD', type: 'const int', val: '1000000007', expandable: false });
+  }
+  else if (cat.includes('Game_Theory')) {
+    globalVars.push({ name: 'memo', type: 'int[10005]', val: '{-1, -1, -1, ...} (DP cache)', expandable: false });
+  }
+  else if (cat.includes('Linear_Algebra')) {
+    globalVars.push({ name: 'MOD', type: 'const int', val: '1000000007', expandable: false });
+  }
+  else if (cat.includes('Data_Structures/Basics')) {
+    globalVars.push({ name: 'CAPACITY', type: 'const int', val: '1000', expandable: false });
+  }
+  else if (cat.includes('Sorting')) {
+    globalVars.push({ name: 'MAXN', type: 'const int', val: '100000', expandable: false });
+  }
+  else if (cat.includes('Two_Pointers')) {
+    globalVars.push({ name: 'INF', type: 'const int', val: '1e9', expandable: false });
+  }
+  else if (cat === 'Strings') {
+    globalVars.push({ name: 'alphabet_size', type: 'const int', val: '26', expandable: false });
+  }
+  else if (cat.includes('Strings/Trie')) {
+    globalVars.push({ name: 'root', type: 'TrieNode*', val: '0x7ffeb073', expandable: false });
+  }
+  else if (cat.includes('Strings/KMP')) {
+    globalVars.push({ name: 'pi', type: 'std::vector<int>', val: '{0, 0, 1, 2, 0, 1}', expandable: false });
+  }
+  else if (cat.includes('Strings/Aho_Corasick')) {
+    globalVars.push({ name: 'link', type: 'int[MAX_STATES]', val: 'Suffix failure links', expandable: false });
+  }
+  else if (cat.includes('Strings/Suffix_Structures')) {
+    globalVars.push({ name: 'sa', type: 'int[MAXN]', val: 'Suffix array representation', expandable: false });
+  }
+  else if (cat.includes('Backtracking')) {
+    globalVars.push({ name: 'sol', type: 'int[20]', val: '{0, 0, 0, ...}', expandable: false });
+    globalVars.push({ name: 'visited', type: 'bool[20]', val: '{false, false, ...}', expandable: false });
+  }
+  else if (cat.includes('Greedy')) {
+    globalVars.push({ name: 'INF', type: 'const int', val: '1e9', expandable: false });
+  }
+  else if (cat.includes('Meet_in_the_Middle')) {
+    globalVars.push({ name: 'first_half', type: 'std::vector<int>', val: '{0, 3, 5, 8, 12}', expandable: false });
+  }
+  else if (cat.includes('Square_Root_Decomp')) {
+    globalVars.push({ name: 'block_size', type: 'int', val: '316', expandable: false });
+    globalVars.push({ name: 'blocks', type: 'int[317]', val: 'Precomputed block sums', expandable: false });
+  }
+  else if (cat.includes('Mo_Algorithm')) {
+    globalVars.push({ name: 'block_size', type: 'int', val: '316', expandable: false });
+  }
+  else if (cat.includes('Knapsack')) {
+    globalVars.push({ name: 'dp', type: 'int[105][1005]', val: 'DP values grid', expandable: false });
+  }
+  else if (cat.includes('LCS')) {
+    globalVars.push({ name: 'dp', type: 'int[1005][1005]', val: 'LCS length table', expandable: false });
+  }
+  else if (cat.includes('LIS')) {
+    globalVars.push({ name: 'dp', type: 'std::vector<int>', val: 'LIS lengths array', expandable: false });
+  }
+  else if (cat.includes('Trees_Graphs') && cat.includes('DP')) {
+    globalVars.push({ name: 'dp', type: 'int[MAXN][2]', val: 'DP states on trees/graphs', expandable: false });
+  }
+  else if (cat.includes('Exponential_States')) {
+    globalVars.push({ name: 'dp', type: 'int[1 << N][N]', val: 'Bitmask DP table', expandable: false });
+  }
+  else if (cat.includes('CHT')) {
+    globalVars.push({ name: 'hull', type: 'std::vector<Line>', val: 'Active lines in hull', expandable: false });
+  }
+  else if (cat.includes('Bitwise_Ops')) {
+    globalVars.push({ name: 'BITS', type: 'const int', val: '32', expandable: false });
+  }
+  else if (cat.includes('Difference_Arrays')) {
+    globalVars.push({ name: 'diff', type: 'std::vector<int>&', val: 'Vector of differences', expandable: false });
+  }
+  else if (cat.includes('RMQ')) {
+    globalVars.push({ name: 'st', type: 'int[MAXN][LOGMAX]', val: 'Sparse Table grid', expandable: false });
+  }
+  else if (cat.includes('Disjoint_Sets')) {
+    globalVars.push({ name: 'parent', type: 'std::vector<int>', val: '{0, 1, 2, 3, 4, 5}', expandable: true });
+    globalVars.push({ name: 'rank', type: 'std::vector<int>', val: '{0, 0, 0, 0, 0, 0}', expandable: true });
+  }
+  else if (cat.includes('Fenwick_Tree')) {
+    globalVars.push({ name: 'aib', type: 'std::vector<int>', val: 'Fenwick Tree binary representation', expandable: false });
+  }
+  else if (cat.includes('Segment_Trees')) {
+    globalVars.push({ name: 'tree', type: 'std::vector<int>', val: 'size = 4N', expandable: false });
+    globalVars.push({ name: 'lazy', type: 'std::vector<int>', val: 'size = 4N (lazy updates)', expandable: false });
+  }
+  else if (cat.includes('Frequency_Vectors')) {
+    globalVars.push({ name: 'freq', type: 'int[100005]', val: 'Global frequency table', expandable: false });
+  }
+  else if (cat.includes('Stack')) {
+    globalVars.push({ name: 'st', type: 'std::stack<int>', val: 'Main evaluation stack', expandable: false });
+  }
+  else if (cat.includes('Queue_Deque')) {
+    globalVars.push({ name: 'dq', type: 'std::deque<int>', val: 'Deque double-ended storage', expandable: false });
+  }
+  else if (cat.includes('Priority_Queue')) {
+    globalVars.push({ name: 'pq', type: 'std::priority_queue<int>', val: 'Priority Queue (max-heap)', expandable: false });
+  }
+  else if (cat.includes('Graphs/Basics')) {
+    globalVars.push({ name: 'adj', type: 'std::vector<std::vector<int>>', val: 'Graph adjacency list', expandable: false });
+  }
+  else if (cat.includes('Topological_Sort')) {
+    globalVars.push({ name: 'adj', type: 'std::vector<std::vector<int>>', val: 'Graph adjacency list', expandable: false });
+    globalVars.push({ name: 'in_degree', type: 'std::vector<int>', val: 'In-degree array', expandable: false });
+  }
+  else if (cat.includes('SCC_Biconnected') || cat.includes('SCC')) {
+    globalVars.push({ name: 'adj', type: 'std::vector<std::vector<int>>&', val: 'Graph adjacency list', expandable: false });
+    globalVars.push({ name: 'dfn', type: 'int[MAXN]', val: 'Discovery times array', expandable: false });
+    globalVars.push({ name: 'low', type: 'int[MAXN]', val: 'Low link values array', expandable: false });
+  }
+  else if (cat.includes('Eulerian_Hamiltonian') || cat.includes('Euler_Hamilton')) {
+    globalVars.push({ name: 'adj', type: 'std::vector<std::vector<int>>&', val: 'Graph adjacency list', expandable: false });
+    globalVars.push({ name: 'circuit', type: 'std::vector<int>', val: 'Constructed Eulerian circuit', expandable: false });
+  }
+  else if (cat.includes('Shortest_Path/Dijkstra')) {
+    globalVars.push({ name: 'INF', type: 'const int', val: '1e9', expandable: false });
+    globalVars.push({ name: 'dist', type: 'std::vector<int>', val: '{0, 10, 3, INF, INF}', expandable: false });
+  }
+  else if (cat.includes('Shortest_Path/Bellman_Ford')) {
+    globalVars.push({ name: 'INF', type: 'const int', val: '1e9', expandable: false });
+    globalVars.push({ name: 'dist', type: 'std::vector<int>', val: '{0, 6, 7, INF, INF}', expandable: false });
+  }
+  else if (cat.includes('Shortest_Path/Floyd_Warshall')) {
+    globalVars.push({ name: 'INF', type: 'const int', val: '1e9', expandable: false });
+    globalVars.push({ name: 'dist[105][105]', type: 'int[][]', val: 'Matrix of all-pairs shortest paths', expandable: false });
+  }
+  else if (cat.includes('Shortest_Path')) {
+    globalVars.push({ name: 'INF', type: 'const int', val: '1e9', expandable: false });
+  }
+  else if (cat.includes('MST/Kruskal')) {
+    globalVars.push({ name: 'edges', type: 'std::vector<Edge>', val: 'Sorted edges list', expandable: false });
+    globalVars.push({ name: 'parent', type: 'std::vector<int>', val: 'DSU parents array', expandable: false });
+  }
+  else if (cat.includes('MST/Prim')) {
+    globalVars.push({ name: 'adj', type: 'std::vector<std::vector<Edge>>&', val: 'Weighted graph adjacency list', expandable: false });
+    globalVars.push({ name: 'visited', type: 'std::vector<bool>', val: 'MST inclusion states', expandable: false });
+  }
+  else if (cat.includes('MST')) {
+    globalVars.push({ name: 'INF', type: 'const int', val: '1e9', expandable: false });
+  }
+  else if (cat.includes('SCC/Kosaraju')) {
+    globalVars.push({ name: 'adj', type: 'std::vector<std::vector<int>>&', val: 'Graph adjacency list', expandable: false });
+    globalVars.push({ name: 'adjT', type: 'std::vector<std::vector<int>>&', val: 'Transposed graph adjacency list', expandable: false });
+  }
+  else if (cat.includes('SCC/Tarjan')) {
+    globalVars.push({ name: 'adj', type: 'std::vector<std::vector<int>>&', val: 'Graph adjacency list', expandable: false });
+    globalVars.push({ name: 'ids', type: 'int[MAXN]', val: 'Node discovery IDs', expandable: false });
+    globalVars.push({ name: 'low', type: 'int[MAXN]', val: 'Node lowest reachable links', expandable: false });
+  }
+  else if (cat.includes('Max_Flow/Edmonds_Karp')) {
+    globalVars.push({ name: 'capacity', type: 'int[MAXN][MAXN]', val: 'Residual capacity matrix', expandable: false });
+    globalVars.push({ name: 'parent', type: 'std::vector<int>', val: 'BFS path parents', expandable: false });
+  }
+  else if (cat.includes('Max_Flow/Dinic')) {
+    globalVars.push({ name: 'level', type: 'int[MAXN]', val: 'Level graph nodes level', expandable: false });
+    globalVars.push({ name: 'ptr', type: 'int[MAXN]', val: 'Next edge to explore in DFS', expandable: false });
+  }
+  else if (cat.includes('Max_Flow')) {
+    globalVars.push({ name: 'INF', type: 'const int', val: '1e9', expandable: false });
+  }
+  else if (cat.includes('LCA/Binary_Lifting')) {
+    globalVars.push({ name: 'up', type: 'int[MAXN][LOGN]', val: 'Binary lifting ancestor matrix', expandable: false });
+    globalVars.push({ name: 'tin', type: 'int[MAXN]', val: 'DFS entrance times', expandable: false });
+    globalVars.push({ name: 'tout', type: 'int[MAXN]', val: 'DFS exit times', expandable: false });
+  }
+  else if (cat.includes('LCA/Euler_RMQ')) {
+    globalVars.push({ name: 'euler', type: 'std::vector<int>', val: 'Euler path traversal nodes', expandable: false });
+    globalVars.push({ name: 'depth', type: 'std::vector<int>', val: 'Nodes depth array', expandable: false });
+  }
+  else if (cat.includes('LCA')) {
+    globalVars.push({ name: 'parent', type: 'int[MAXN]', val: 'Node parent nodes', expandable: false });
+  }
+  else {
+    globalVars.push({ name: 'INF', type: 'const int', val: '1e9', expandable: false });
+    globalVars.push({ name: 'MOD', type: 'const int', val: '1e9+7', expandable: false });
+  }
+
+  return globalVars;
+};
+
+// Helper to parse function definitions and parameter lists from C++ code
+const parseCodeFunctions = (code) => {
+  if (!code) return [];
+  const lines = code.split('\n');
+  const functions = [];
+  
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const match = line.match(/^\s*([a-zA-Z_][a-zA-Z0-9_<>\s*&]*\s+)?([a-zA-Z_][a-zA-Z0-9_]*)\s*\(([^)]*)\)\s*(?:const\s*)?\{/);
+    if (match) {
+      const name = match[2].trim();
+      const paramsText = match[3];
+      
+      if (new Set(['if', 'for', 'while', 'switch', 'catch', 'else']).has(name)) {
+        continue;
+      }
+      
+      const params = paramsText.split(',').map(p => p.trim()).filter(Boolean).map(p => {
+        const parts = p.split(/\s+/);
+        let paramName = parts[parts.length - 1];
+        paramName = paramName.replace(/^[*&]+/, '').replace(/\[\]$/, '');
+        return paramName;
+      });
+      
+      const startLine = i + 1;
+      
+      let braceCount = 1;
+      let endLine = startLine;
+      for (let j = i + 1; j < lines.length; j++) {
+        const checkLine = lines[j];
+        for (let k = 0; k < checkLine.length; k++) {
+          const char = checkLine[k];
+          if (char === '{') braceCount++;
+          else if (char === '}') braceCount--;
+        }
+        if (braceCount === 0) {
+          endLine = j + 1;
+          break;
+        }
+      }
+      
+      functions.push({
+        name,
+        params,
+        startLine,
+        endLine
+      });
+    }
+  }
+  return functions;
+};
+
+// Simulated debugger state tracker for arbitrary categories
+const getDynamicCallStackAndVars = (category, stepIndex, activeLine, explanationText) => {
+  const categoryData = mockCategoryData[category] || {};
+  const code = categoryData.code ? categoryData.code.replace(/^\r?\n/, '').replace(/\r?\n$/, '') : '';
+  const explanations = categoryData.explanations || [];
+  
+  const functions = parseCodeFunctions(code);
+  
+  const getFuncForLine = (lineNum) => {
+    if (!lineNum) return null;
+    return functions.find(f => lineNum >= f.startLine && lineNum <= f.endLine) || null;
+  };
+  
+  let stack = [{
+    functionName: 'main',
+    line: activeLine || 1,
+    params: {},
+    name: 'main()',
+    file: 'main.cpp'
+  }];
+  
+  let currentLocalVars = [];
+  
+  for (let i = 0; i <= stepIndex; i++) {
+    const exp = explanations[i];
+    if (!exp) continue;
+    
+    const lineNum = exp.line;
+    const text = exp.text || '';
+    
+    const parsedVars = {};
+    const varRegex = /\b([a-zA-Z_][a-zA-Z0-9_]*(?:\[[a-zA-Z0-9_]+\])?)\s*(?:=|este|devine)\s*([0-9-]+|"[^"]*"|'[^']'|true|false)\b/g;
+    let match;
+    while ((match = varRegex.exec(text)) !== null) {
+      parsedVars[match[1]] = match[2];
+    }
+    
+    const func = getFuncForLine(lineNum);
+    
+    if (!func || func.name === 'main') {
+      stack = [{
+        functionName: 'main',
+        line: lineNum,
+        params: parsedVars,
+        name: 'main()',
+        file: 'main.cpp'
+      }];
+    } else {
+      if (stack.length === 0 || stack[0].functionName !== 'main') {
+        stack.unshift({
+          functionName: 'main',
+          line: 1,
+          params: {},
+          name: 'main()',
+          file: 'main.cpp'
+        });
+      }
+      
+      const isRecursiveCall = (text.match(/apelăm\s+recursiv|apelăm\s+funcția|apel\s+|intrăm\s+în\s+noul|intrăm\s+în|apelam\s+recursiv|apelam/i) || 
+                              (text.includes(func.name) && lineNum === func.startLine)) &&
+                              text.toLowerCase().includes(func.name.toLowerCase());
+      const isReturn = text.match(/revenim\s+în|întoarcem|returnăm|return|backtrack|revenim|intoarcem|returnam/i);
+      
+      const topFrame = stack[stack.length - 1];
+      
+      if (topFrame.functionName !== func.name) {
+        if (isReturn) {
+          while (stack.length > 1 && stack[stack.length - 1].functionName !== func.name) {
+            stack.pop();
+          }
+          if (stack.length > 1) {
+            stack[stack.length - 1].line = lineNum;
+            Object.assign(stack[stack.length - 1].params, parsedVars);
+          }
+        } else {
+          stack.push({
+            functionName: func.name,
+            line: lineNum,
+            params: parsedVars,
+            name: `${func.name}()`,
+            file: 'solution.cpp'
+          });
+        }
+      } else {
+        if (isRecursiveCall) {
+          stack.push({
+            functionName: func.name,
+            line: lineNum,
+            params: parsedVars,
+            name: `${func.name}()`,
+            file: 'solution.cpp'
+          });
+        } else if (isReturn && stack.length > 2) {
+          stack.pop();
+          stack[stack.length - 1].line = lineNum;
+          Object.assign(stack[stack.length - 1].params, parsedVars);
+        } else {
+          topFrame.line = lineNum;
+          Object.assign(topFrame.params, parsedVars);
+        }
+      }
+    }
+    
+    stack.forEach(frame => {
+      const fInfo = functions.find(f => f.name === frame.functionName);
+      if (fInfo && fInfo.name !== 'main') {
+        const paramStrings = fInfo.params.map(pName => {
+          const val = frame.params[pName] !== undefined ? frame.params[pName] : pName;
+          return `${pName} = ${val}`;
+        });
+        frame.name = `${fInfo.name}(${paramStrings.join(', ')})`;
+      } else {
+        frame.name = 'main()';
+      }
+    });
+    
+    if (i === stepIndex) {
+      const activeFrame = stack[stack.length - 1];
+      currentLocalVars = Object.entries(activeFrame.params).map(([name, val]) => {
+        const type = isNaN(val) ? (val === 'true' || val === 'false' ? 'bool' : 'std::string') : 'int';
+        return { name, type, val, expandable: false };
+      });
+    }
+  }
+  
+  let inlineVal = null;
+  if (currentLocalVars.length > 0 && activeLine) {
+    inlineVal = currentLocalVars.map(v => `${v.name}: ${v.val}`).join(', ');
+  }
+  
+  return {
+    vars: currentLocalVars,
+    frames: [...stack].reverse(),
+    inlineVal
+  };
+};
+
 // Extractor of CLion Debugger state (Variables, Stack Frames, Inline Variables)
 const getCategoryDebuggerState = (category, stepIndex, activeLine, explanationText) => {
   const vars = [];
+  const globalVars = [];
   const frames = [];
   let inlineVal = null;
 
   const cat = typeof category === 'string' ? category : '';
 
-  // Default frames (Stack frame list)
-  frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
-
   if (cat === 'Arrays') {
-    vars.push({ name: 'arr', type: 'std::vector<int>', val: '{10, 24, 8, 42, 17}', expandable: true });
+    frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+    globalVars.push({ name: 'arr', type: 'std::vector<int>', val: '{10, 24, 8, 42, 17}', expandable: true });
     if (stepIndex >= 1) {
       let maxVal = 10;
       if (stepIndex >= 4) maxVal = 24;
@@ -291,7 +678,7 @@ const getCategoryDebuggerState = (category, stepIndex, activeLine, explanationTe
       if (activeLine === 11 || activeLine === 12) inlineVal = `i: ${iVal}, arr[i]: ${[10, 24, 8, 42, 17][iVal]}`;
     }
     if (stepIndex >= 11) {
-      vars.push({ name: 'matrix', type: 'std::vector<std::vector<int>>', val: '{{1, 2, 3}, {4, 5, 6}}', expandable: true });
+      globalVars.push({ name: 'matrix', type: 'std::vector<std::vector<int>>', val: '{{1, 2, 3}, {4, 5, 6}}', expandable: true });
     }
     if (stepIndex >= 12) {
       let sumVal = 0;
@@ -306,9 +693,10 @@ const getCategoryDebuggerState = (category, stepIndex, activeLine, explanationTe
       if (activeLine === 22 || activeLine === 26 || activeLine === 32) inlineVal = `sum: ${sumVal}`;
     }
   }
-  else if (cat.includes('Divide_Conquer') || cat.includes('Binary_Search')) {
-    vars.push({ name: 'arr', type: 'std::vector<int>&', val: '{2, 5, 8, 12, 16, 23, 38, 56, 72, 91}', expandable: true });
-    vars.push({ name: 'target', type: 'int', val: '23', expandable: false });
+  else if (cat.endsWith('Binary_Search') || cat === 'Binary_Search') {
+    frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+    globalVars.push({ name: 'arr', type: 'std::vector<int>&', val: '{2, 5, 8, 12, 16, 23, 38, 56, 72, 91}', expandable: true });
+    globalVars.push({ name: 'target', type: 'int', val: '23', expandable: false });
 
     let left = 0, right = 9, mid = -1;
     if (stepIndex >= 3) left = 5;
@@ -334,8 +722,6 @@ const getCategoryDebuggerState = (category, stepIndex, activeLine, explanationTe
     if (activeLine === 26) inlineVal = `right: ${right}`;
   }
   else if (cat.endsWith('/DFS') || cat === 'DFS') {
-    vars.push({ name: 'adj', type: 'std::vector<std::vector<int>>&', val: 'size = 5', expandable: true });
-    
     let nodeVal = -1;
     let neighborVal = -1;
     let visitedArray = [false, false, false, false, false];
@@ -353,10 +739,12 @@ const getCategoryDebuggerState = (category, stepIndex, activeLine, explanationTe
     if (stepIndex === 6) neighborVal = 3;
     if (stepIndex === 11) neighborVal = 4;
     
-    vars.push({ name: 'visited', type: 'std::vector<bool>&', val: `{${visitedArray.map(b => b ? 'true' : 'false').join(', ')}}`, expandable: false });
+    globalVars.push({ name: 'adj', type: 'std::vector<std::vector<int>>&', val: 'size = 5', expandable: true });
+    globalVars.push({ name: 'visited', type: 'std::vector<bool>&', val: `{${visitedArray.map(b => b ? 'true' : 'false').join(', ')}}`, expandable: false });
     if (nodeVal !== -1) vars.push({ name: 'node', type: 'int', val: nodeVal, expandable: false });
     if (neighborVal !== -1) vars.push({ name: 'neighbor', type: 'int', val: neighborVal, expandable: false });
     
+    frames.push({ name: 'main()', file: 'main.cpp', line: 36 });
     activeStack.forEach((n, idx) => {
       frames.unshift({ name: `dfs(node = ${n}, adj, visited)`, file: 'dfs.cpp', line: idx === 0 ? activeLine : 18 });
     });
@@ -367,8 +755,6 @@ const getCategoryDebuggerState = (category, stepIndex, activeLine, explanationTe
     }
   }
   else if (cat.endsWith('/BFS') || cat === 'BFS') {
-    vars.push({ name: 'adj', type: 'std::vector<std::vector<int>>&', val: 'size = 6', expandable: true });
-    
     let nodeVal = -1;
     let visitedArray = [false, false, false, false, false, false];
     let qArray = [];
@@ -383,10 +769,12 @@ const getCategoryDebuggerState = (category, stepIndex, activeLine, explanationTe
     if (stepIndex >= 10) { visitedArray[5] = true; qArray = [4, 5]; nodeVal = 3; }
     if (stepIndex >= 11) { qArray = []; nodeVal = 5; }
     
-    vars.push({ name: 'visited', type: 'std::vector<bool>', val: `{${visitedArray.map(b => b ? 'true' : 'false').join(', ')}}`, expandable: false });
+    globalVars.push({ name: 'adj', type: 'std::vector<std::vector<int>>&', val: 'size = 6', expandable: true });
+    globalVars.push({ name: 'visited', type: 'std::vector<bool>', val: `{${visitedArray.map(b => b ? 'true' : 'false').join(', ')}}`, expandable: false });
     vars.push({ name: 'q', type: 'std::queue<int>', val: qArray.length > 0 ? `{${qArray.join(', ')}}` : 'empty', expandable: false });
     if (nodeVal !== -1) vars.push({ name: 'node', type: 'int', val: nodeVal, expandable: false });
     
+    frames.push({ name: 'main()', file: 'main.cpp', line: 36 });
     if (stepIndex >= 1) {
       frames.unshift({ name: `bfs(start = 0, adj, V = 6)`, file: 'solution.cpp', line: activeLine });
     }
@@ -398,23 +786,19 @@ const getCategoryDebuggerState = (category, stepIndex, activeLine, explanationTe
     }
   }
   else {
-    // General fallback
-    if (explanationText && typeof explanationText === 'string') {
-      const regex = /\b([a-zA-Z_][a-zA-Z0-9_]*)\s*(?:=|este|devine)\s*([0-9-]+|"[^"]*"|'[^']'|true|false)\b/g;
-      let match;
-      while ((match = regex.exec(explanationText)) !== null) {
-        const name = match[1];
-        const val = match[2];
-        const type = isNaN(val) ? (val === 'true' || val === 'false' ? 'bool' : 'std::string') : 'int';
-        vars.push({ name, type, val, expandable: false });
-      }
-      if (vars.length > 0 && activeLine) {
-        inlineVal = vars.map(v => `${v.name}: ${v.val}`).join(', ');
-      }
-    }
+    // Dynamic simulated engine fallback
+    const dynamicState = getDynamicCallStackAndVars(category, stepIndex, activeLine, explanationText);
+    vars.push(...dynamicState.vars);
+    frames.push(...dynamicState.frames);
+    inlineVal = dynamicState.inlineVal;
   }
 
-  return { vars, frames, inlineVal };
+  // Populate globalVars if still empty
+  if (globalVars.length === 0) {
+    globalVars.push(...getCategoryGlobalVars(category, stepIndex, activeLine, explanationText));
+  }
+
+  return { vars, globalVars, frames, inlineVal };
 };
 
 const getInlineValueForLine = (category, stepIndex, lineNum) => {
@@ -587,6 +971,95 @@ const CategoryPresentation = ({ category, onClose, onNavigate }) => {
 
   const toggleVarExpand = (name) => {
     setExpandedVars(prev => ({ ...prev, [name]: !prev[name] }));
+  };
+
+  const renderVariable = (v) => {
+    const isExpandable = v.expandable;
+    const isExpanded = !!expandedVars[v.name];
+    
+    return (
+      <div key={v.name} style={{ fontFamily: 'var(--font-mono)', fontSize: '13px', padding: '3px 0' }}>
+        <div 
+          style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '4px', 
+            cursor: isExpandable ? 'pointer' : 'default',
+            padding: '2px 4px',
+            borderRadius: '3px',
+            background: 'transparent'
+          }} 
+          onClick={() => isExpandable && toggleVarExpand(v.name)}
+          onMouseOver={e => e.currentTarget.style.background = '#2d2f34'}
+          onMouseOut={e => e.currentTarget.style.background = 'transparent'}
+        >
+          <span style={{ color: 'rgba(255,255,255,0.3)', userSelect: 'none', width: '12px', fontSize: '10px' }}>
+            {isExpandable ? (isExpanded ? '▼' : '▶') : ''}
+          </span>
+          <span style={{ color: '#b378ba' }}>{'{x}'}</span>
+          <span style={{ color: '#9cdcfe', fontWeight: 600 }}> {v.name}</span>
+          <span style={{ color: 'rgba(255,255,255,0.35)' }}>: {v.type}</span>
+          <span style={{ color: '#a9b7c6', marginLeft: '6px' }}> = {v.val}</span>
+        </div>
+        
+        {isExpandable && isExpanded && (
+          <div style={{ paddingLeft: '24px', borderLeft: '1px dashed #3c3f41', marginTop: '2px', marginLeft: '10px' }}>
+            {v.name === 'arr' && (category.includes('Binary_Search') || category.includes('Divide_Conquer') ? [2, 5, 8, 12, 16, 23, 38, 56, 72, 91] : [10, 24, 8, 42, 17]).map((item, idx) => (
+              <div key={idx} style={{ padding: '2px 4px', display: 'flex', gap: '4px' }}>
+                <span style={{ color: 'rgba(255,255,255,0.3)', width: '12px' }}></span>
+                <span style={{ color: '#e06c75' }}>[{idx}]</span>: <span style={{ color: '#2ebfc6' }}>{item}</span>
+              </div>
+            ))}
+            {v.name === 'matrix' && [
+              { r: 0, vals: [1, 2, 3] },
+              { r: 1, vals: [4, 5, 6] }
+            ].map((row, idx) => (
+               <div key={idx} style={{ padding: '2px 4px', display: 'flex', gap: '4px' }}>
+                 <span style={{ color: 'rgba(255,255,255,0.3)', width: '12px' }}></span>
+                 <span style={{ color: '#e06c75' }}>[{idx}]</span>: <span style={{ color: '#a9b7c6' }}>{'{'}{row.vals.join(', ')}{'}'}</span>
+               </div>
+            ))}
+            {v.name === 'parent' && [0, 1, 2, 3, 4, 5].map((parentVal, idx) => (
+               <div key={idx} style={{ padding: '2px 4px', display: 'flex', gap: '4px' }}>
+                 <span style={{ color: 'rgba(255,255,255,0.3)', width: '12px' }}></span>
+                 <span style={{ color: '#e06c75' }}>[{idx}]</span>: <span style={{ color: '#a9b7c6' }}>{parentVal}</span>
+               </div>
+            ))}
+            {v.name === 'rank' && [0, 0, 0, 0, 0, 0].map((rankVal, idx) => (
+               <div key={idx} style={{ padding: '2px 4px', display: 'flex', gap: '4px' }}>
+                 <span style={{ color: 'rgba(255,255,255,0.3)', width: '12px' }}></span>
+                 <span style={{ color: '#e06c75' }}>[{idx}]</span>: <span style={{ color: '#a9b7c6' }}>{rankVal}</span>
+               </div>
+            ))}
+            {v.name === 'adj' && (
+              (category.endsWith('/DFS') || category === 'DFS') ? [
+                { u: 0, neighbors: [1, 2] },
+                { u: 1, neighbors: [0, 3, 4] },
+                { u: 2, neighbors: [0, 4] },
+                { u: 3, neighbors: [1] },
+                { u: 4, neighbors: [1, 2] }
+              ] : (category.endsWith('/BFS') || category === 'BFS') ? [
+                { u: 0, neighbors: [1, 2] },
+                { u: 1, neighbors: [0, 3, 4] },
+                { u: 2, neighbors: [0, 4] },
+                { u: 3, neighbors: [1, 5] },
+                { u: 4, neighbors: [1, 2, 5] },
+                { u: 5, neighbors: [3, 4] }
+              ] : [
+                { u: 0, neighbors: [1, 2] },
+                { u: 1, neighbors: [0, 2, 3] },
+                { u: 2, neighbors: [0, 1] }
+              ]
+            ).map((row, idx) => (
+              <div key={idx} style={{ padding: '2px 4px', display: 'flex', gap: '4px' }}>
+                <span style={{ color: 'rgba(255,255,255,0.3)', width: '12px' }}></span>
+                <span style={{ color: '#e06c75' }}>[{idx}]</span>: <span style={{ color: '#a9b7c6' }}>Node {row.u} → {JSON.stringify(row.neighbors)}</span>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    );
   };
 
   const currentExplanation = explanations[currentStepIndex];
@@ -1078,202 +1551,368 @@ const CategoryPresentation = ({ category, onClose, onNavigate }) => {
                         {/* Visualizer Pane */}
                         <div style={{ 
                           flex: 1.2, 
-                          minWidth: '280px', 
-                          background: '#1a1b1c', 
-                          padding: '12px', 
-                          borderRadius: '6px', 
-                          border: '1px solid #2b2d30',
+                          minWidth: '300px', 
+                          background: 'linear-gradient(145deg, #18191c, #1e1f22)',
+                          padding: '14px', 
+                          borderRadius: '8px', 
+                          border: '1px solid #2f3136',
+                          boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04)',
                           display: 'flex',
                           flexDirection: 'column',
                           justifyContent: 'center',
                           alignItems: 'center',
-                          minHeight: '190px'
+                          minHeight: '220px',
+                          gap: '12px',
                         }}>
-                          <div style={{ fontSize: '11px', color: '#888', fontWeight: 'bold', alignSelf: 'flex-start', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '8px' }}>
+                          {/* Panel title */}
+                          <div style={{ fontSize: '10px', color: '#555d6b', fontWeight: '700', alignSelf: 'flex-start', textTransform: 'uppercase', letterSpacing: '1px', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                            <span style={{ display: 'inline-block', width: '6px', height: '6px', borderRadius: '50%', background: '#3574f0', boxShadow: '0 0 6px #3574f0' }} />
                             State Visualizer
                           </div>
-                          
-                          {currentExplanation?.matrix && (
-                            <div style={{ overflowX: 'auto', width: '100%' }}>
-                              <table style={{ borderCollapse: 'collapse', width: '100%', color: 'white', fontSize: '12px', textAlign: 'center' }}>
-                                <thead>
-                                  <tr>
-                                    {currentExplanation.matrix.headers.map((h, i) => (
-                                      <th key={i} style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', padding: '4px', color: '#ffc66d' }}>{h}</th>
-                                    ))}
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  {matrixData.map((row, r) => (
-                                    <tr key={r}>
-                                      {row.map((cell, c) => {
-                                        const cellVal = cell && typeof cell === 'object' ? cell.val : cell;
-                                        const isActive = currentExplanation.matrix.activeCells?.some(ac => ac.r === r && ac.c === c);
-                                        const isHighlight = currentExplanation.matrix.highlightCells?.some(hc => hc.r === r && hc.c === c);
-                                        const bg = isActive ? 'rgba(89, 168, 105, 0.3)' : (isHighlight ? 'rgba(255, 198, 109, 0.25)' : 'transparent');
-                                        const borderRight = c === 0 ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(255, 255, 255, 0.05)';
-                                        return (
-                                          <td key={c} style={{ padding: '6px', borderRight, borderBottom: '1px solid rgba(255, 255, 255, 0.05)', background: bg, fontWeight: isActive || isHighlight ? 'bold' : 'normal', color: isActive ? '#59a869' : (isHighlight ? '#ffc66d' : '#a9b7c6') }}>
-                                            {cellVal}
-                                          </td>
-                                        );
-                                      })}
-                                    </tr>
-                                  ))}
-                                </tbody>
-                              </table>
-                            </div>
-                          )}
 
-                          <div style={{ display: 'flex', gap: '16px', width: '100%', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
-                            {currentExplanation?.blocksVisual && (
-                              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center', flex: 1, minWidth: '180px' }}>
-                                {currentExplanation.blocksVisual.map((row, rIdx) => (
-                                  <div key={rIdx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', width: '100%' }}>
-                                    {row.label && <span style={{ color: '#a9b7c6', fontSize: '11px', fontWeight: 'bold' }}>{row.label}</span>}
-                                    <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
-                                      {row.groups.map((group, gIdx) => (
-                                        <div key={gIdx} style={{ display: 'flex', gap: '4px', background: '#1a1b1c', padding: '4px', borderRadius: '4px', border: '1px solid #2b2d30' }}>
-                                          {group.map((block, bIdx) => (
-                                            <div key={bIdx} style={{
-                                              minWidth: '32px', padding: '0 6px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                              background: block.active ? '#3574f0' : (block.sorted ? '#59a869' : '#1e1f22'),
-                                              border: `1px solid ${block.active ? '#56a8f5' : (block.sorted ? '#59a869' : '#3c3f41')}`,
-                                              borderRadius: '4px', color: block.active || block.sorted ? '#fff' : '#a9b7c6', fontWeight: 'bold', fontSize: '12px',
-                                              transition: 'all 0.2s ease',
-                                              opacity: block.hidden ? 0.2 : 1,
-                                              whiteSpace: 'nowrap'
+                          {/* ── MATRIX ── */}
+                          {currentExplanation?.matrix && (() => {
+                            const mx = currentExplanation.matrix;
+                            const mxData = mx.data || mx.rows || [];
+                            return (
+                              <div style={{ overflowX: 'auto', overflowY: 'auto', maxHeight: '260px', width: '100%' }}>
+                                <div style={{ fontSize: '10px', color: '#7c9cbf', fontWeight: 'bold', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                                  {mx.title || 'DP Matrix'}
+                                </div>
+                                <table style={{ borderCollapse: 'separate', borderSpacing: '2px', fontSize: '12px', textAlign: 'center', fontFamily: 'var(--font-mono)' }}>
+                                  {mx.headers && mx.headers.length > 0 && (
+                                    <thead>
+                                      <tr>
+                                        {mx.headers.map((h, i) => (
+                                          <th key={i} style={{
+                                            padding: '5px 8px',
+                                            background: i === 0 ? '#1a1b1c' : '#252629',
+                                            color: i === 0 ? '#555' : '#ffc66d',
+                                            fontWeight: 'bold',
+                                            borderRadius: '4px',
+                                            border: '1px solid #2b2d30',
+                                            minWidth: '28px',
+                                            fontSize: '11px',
+                                          }}>{h}</th>
+                                        ))}
+                                      </tr>
+                                    </thead>
+                                  )}
+                                  <tbody>
+                                    {mxData.map((row, r) => (
+                                      <tr key={r}>
+                                        {row.map((cell, c) => {
+                                          const cellVal = cell && typeof cell === 'object' ? cell.val : cell;
+                                          const isEmpty = cellVal === '' || cellVal === null || cellVal === undefined;
+                                          const isActive = mx.activeCells?.some(ac => ac.r === r && ac.c === c);
+                                          const isHighlight = mx.highlightCells?.some(hc => hc.r === r && hc.c === c);
+                                          const isRowHeader = c === 0;
+                                          let bg, color, border, shadow;
+                                          if (isActive) {
+                                            bg = 'rgba(53, 116, 240, 0.25)'; color = '#56a8f5'; border = '1px solid #3574f0'; shadow = '0 0 8px rgba(53,116,240,0.4)';
+                                          } else if (isHighlight) {
+                                            bg = 'rgba(245, 166, 35, 0.2)'; color = '#f5a623'; border = '1px solid rgba(245,166,35,0.5)'; shadow = '0 0 6px rgba(245,166,35,0.3)';
+                                          } else if (isRowHeader) {
+                                            bg = '#252629'; color = '#ffc66d'; border = '1px solid #2b2d30'; shadow = 'none';
+                                          } else {
+                                            bg = '#1a1b1c'; color = isEmpty ? '#333' : '#a9b7c6'; border = '1px solid #252629'; shadow = 'none';
+                                          }
+                                          return (
+                                            <td key={c} style={{
+                                              padding: '5px 8px', minWidth: '28px', height: '28px',
+                                              background: bg, color: color, border: border,
+                                              borderRadius: '4px', fontWeight: isActive || isHighlight || isRowHeader ? 'bold' : 'normal',
+                                              boxShadow: shadow, transition: 'all 0.25s ease',
                                             }}>
-                                              {block.val}
-                                            </div>
-                                          ))}
+                                              {isEmpty ? '·' : cellVal}
+                                            </td>
+                                          );
+                                        })}
+                                      </tr>
+                                    ))}
+                                  </tbody>
+                                </table>
+                              </div>
+                            );
+                          })()}
+
+                          {/* ── BLOCKS VISUAL + GRAPH VISUAL (flex container) ── */}
+                          <div style={{ display: 'flex', gap: '16px', width: '100%', justifyContent: 'center', alignItems: 'center', flexDirection: (currentExplanation?.blocksVisual && currentExplanation?.graphVisual) ? 'column' : 'row', flexWrap: 'wrap' }}>
+
+                            {/* ── BLOCKS VISUAL ── */}
+                            {currentExplanation?.blocksVisual && (
+                              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'center', width: '100%' }}>
+                                {currentExplanation.blocksVisual.map((row, rIdx) => {
+                                  const indexedPattern = /^(.+)\[(\d+)\]:\s*(.+)$/;
+                                  const firstGroup = row.groups[0] || [];
+                                  const isIndexedArray = firstGroup.length > 0 && firstGroup.every(b => indexedPattern.test(String(b.val)));
+
+                                  if (isIndexedArray) {
+                                    // ── Compact indexed array (e.g. tree[i]: val) ──
+                                    const parsed = firstGroup.map(b => {
+                                      const m = String(b.val).match(indexedPattern);
+                                      return { arrayName: m[1], index: m[2], value: m[3], active: b.active, sorted: b.sorted, hidden: b.hidden };
+                                    });
+                                    const arrayName = parsed[0].arrayName;
+                                    const otherGroups = row.groups.slice(1);
+                                    return (
+                                      <div key={rIdx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', width: '100%' }}>
+                                        {row.label && <span style={{ color: '#7c9cbf', fontSize: '11px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{row.label}</span>}
+                                        <div style={{ display: 'flex', alignItems: 'flex-end', gap: '8px' }}>
+                                          <span style={{ color: '#7c9cbf', fontSize: '12px', fontWeight: 'bold', fontFamily: 'var(--font-mono)', paddingBottom: '6px', flexShrink: 0 }}>
+                                            {arrayName}:
+                                          </span>
+                                          <div style={{ display: 'flex', gap: '3px', background: '#141517', padding: '5px', borderRadius: '8px', border: '1px solid #2b2d30', boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.4)' }}>
+                                            {parsed.map((entry, eIdx) => (
+                                              <div key={eIdx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px' }}>
+                                                <span style={{ fontSize: '9px', color: '#404552', fontFamily: 'var(--font-mono)', lineHeight: 1 }}>{entry.index}</span>
+                                                <div style={{
+                                                  minWidth: '30px', padding: '0 4px', height: '30px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                                  background: entry.active ? 'linear-gradient(135deg, #2860c8, #3574f0)' : (entry.sorted ? 'linear-gradient(135deg, #4a9a5a, #59a869)' : '#1e1f22'),
+                                                  border: `1px solid ${entry.active ? '#56a8f5' : (entry.sorted ? '#59a869' : '#3c3f41')}`,
+                                                  borderRadius: '5px', color: entry.active || entry.sorted ? '#fff' : '#a9b7c6',
+                                                  fontWeight: 'bold', fontSize: '12px', fontFamily: 'var(--font-mono)',
+                                                  transition: 'all 0.25s ease',
+                                                  opacity: entry.hidden ? 0.15 : 1,
+                                                  boxShadow: entry.active ? '0 0 10px rgba(53,116,240,0.6)' : (entry.sorted ? '0 0 6px rgba(89,168,105,0.4)' : 'none'),
+                                                  transform: entry.active ? 'scaleY(1.05)' : 'scaleY(1)',
+                                                }}>
+                                                  {entry.value}
+                                                </div>
+                                              </div>
+                                            ))}
+                                          </div>
                                         </div>
-                                      ))}
+                                        {otherGroups.length > 0 && (
+                                          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
+                                            {otherGroups.map((group, gIdx) => (
+                                              <div key={gIdx} style={{ display: 'flex', gap: '4px', background: '#141517', padding: '4px 6px', borderRadius: '6px', border: '1px solid #2b2d30' }}>
+                                                {group.map((block, bIdx) => (
+                                                  <div key={bIdx} style={{
+                                                    minWidth: '32px', padding: '0 10px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                                    background: block.active ? 'rgba(53,116,240,0.15)' : 'transparent',
+                                                    border: `1px solid ${block.active ? '#3574f0' : '#3c3f41'}`,
+                                                    borderRadius: '5px', color: block.active ? '#56a8f5' : '#8b949e',
+                                                    fontWeight: 'bold', fontSize: '12px', fontFamily: 'var(--font-mono)', whiteSpace: 'nowrap'
+                                                  }}>
+                                                    {block.val}
+                                                  </div>
+                                                ))}
+                                              </div>
+                                            ))}
+                                          </div>
+                                        )}
+                                      </div>
+                                    );
+                                  }
+
+                                  // ── Generic blocks (Stack, Queue, visited array, etc.) ──
+                                  const labelLower = (row.label || '').toLowerCase();
+                                  const isStack = labelLower.includes('top') || labelLower.includes('stack') || labelLower.includes('bot');
+                                  const isQueue = labelLower.includes('front') || labelLower.includes('queue') || labelLower.includes('back');
+
+                                  return (
+                                    <div key={rIdx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px', width: '100%' }}>
+                                      {row.label && (
+                                        <span style={{
+                                          color: isStack ? '#cc7832' : isQueue ? '#b378ba' : '#7c9cbf',
+                                          fontSize: '10px', fontWeight: 'bold', fontFamily: 'var(--font-mono)',
+                                          textTransform: 'uppercase', letterSpacing: '0.5px',
+                                        }}>
+                                          {isStack ? '▲ ' : isQueue ? '⟶ ' : ''}{row.label}
+                                        </span>
+                                      )}
+                                      <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', justifyContent: 'center' }}>
+                                        {row.groups.map((group, gIdx) => (
+                                          <div key={gIdx} style={{
+                                            display: 'flex',
+                                            flexDirection: isStack ? 'column-reverse' : 'row',
+                                            gap: '3px',
+                                            background: '#141517',
+                                            padding: '5px',
+                                            borderRadius: '8px',
+                                            border: `1px solid ${isStack ? '#cc7832' : isQueue ? '#b378ba' : '#2b2d30'}`,
+                                            boxShadow: isStack ? '0 0 8px rgba(204,120,50,0.15)' : isQueue ? '0 0 8px rgba(179,120,186,0.15)' : 'none',
+                                          }}>
+                                            {group.map((block, bIdx) => (
+                                              <div key={bIdx} style={{
+                                                minWidth: '36px', padding: '0 8px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                                background: block.active ? 'linear-gradient(135deg,#2860c8,#3574f0)' : (block.sorted ? 'linear-gradient(135deg,#4a9a5a,#59a869)' : '#1e1f22'),
+                                                border: `1px solid ${block.active ? '#56a8f5' : (block.sorted ? '#59a869' : '#3c3f41')}`,
+                                                borderRadius: '5px', color: block.active || block.sorted ? '#fff' : '#a9b7c6',
+                                                fontWeight: 'bold', fontSize: '13px', fontFamily: 'var(--font-mono)',
+                                                transition: 'all 0.25s ease',
+                                                opacity: block.hidden ? 0.15 : 1,
+                                                boxShadow: block.active ? '0 0 10px rgba(53,116,240,0.6)' : (block.sorted ? '0 0 6px rgba(89,168,105,0.4)' : 'none'),
+                                                whiteSpace: 'nowrap',
+                                              }}>
+                                                {block.val}
+                                              </div>
+                                            ))}
+                                          </div>
+                                        ))}
+                                      </div>
                                     </div>
-                                  </div>
-                                ))}
+                                  );
+                                })}
                               </div>
                             )}
 
+                            {/* ── GRAPH VISUAL ── */}
                             {currentExplanation?.graphVisual && (() => {
-                              const nodes = currentExplanation.graphVisual.nodes;
+                              const gv = currentExplanation.graphVisual;
+                              const nodes = gv.nodes;
                               if (!nodes || nodes.length === 0) return null;
-                              const xs = nodes.map(n => n.x);
-                              const ys = nodes.map(n => n.y);
-                              const minX = Math.min(...xs);
-                              const maxX = Math.max(...xs);
-                              const minY = Math.min(...ys);
-                              const maxY = Math.max(...ys);
 
-                              const padding = 20;
-                              const width = 280;
-                              const height = 170;
+                              // Fenwick Tree fixed layout (8=root, 4/10=lvl1, 2/6/9=lvl2, 1/3/5/7=leaves)
+                              const fenwickLayout = {
+                                '8': {x:200,y:22}, '4':{x:90,y:78}, '10':{x:330,y:78},
+                                '2':{x:38,y:134}, '6':{x:150,y:134}, '9':{x:315,y:134},
+                                '1':{x:12,y:190}, '3':{x:70,y:190}, '5':{x:128,y:190}, '7':{x:190,y:190},
+                              };
+                              const isFenwick = nodes.length >= 8 && nodes.every(n => fenwickLayout[n.id]);
 
-                              const rangeX = maxX - minX || 1;
-                              const rangeY = maxY - minY || 1;
-
-                              const scaleX = (width - 2 * padding) / rangeX;
-                              const scaleY = (height - 2 * padding) / rangeY;
+                              // Auto-scale for non-Fenwick graphs
+                              const xs = nodes.map(n => n.x); const ys = nodes.map(n => n.y);
+                              const minX = Math.min(...xs), maxX = Math.max(...xs);
+                              const minY = Math.min(...ys), maxY = Math.max(...ys);
+                              const pad = 28;
+                              const svgW = isFenwick ? 390 : 340;
+                              const svgH = isFenwick ? 210 : 220;
+                              const rangeX = maxX - minX || 1, rangeY = maxY - minY || 1;
+                              const scaleX = (svgW - 2*pad) / rangeX;
+                              const scaleY = (svgH - 2*pad) / rangeY;
                               const scale = Math.min(scaleX, scaleY);
+                              const nodeR = 16;
 
-                              const getX = (x) => padding + (x - minX) * scale + (width - 2 * padding - rangeX * scale) / 2;
-                              const getY = (y) => padding + (y - minY) * scale + (height - 2 * padding - rangeY * scale) / 2;
+                              const isDirected = (() => {
+                                if (gv && typeof gv.directed === 'boolean') return gv.directed;
+                                if (!category) return true;
+                                const lower = category.toLowerCase();
+                                if (lower.includes('basics') ||
+                                    lower.includes('dfs') ||
+                                    lower.includes('bfs') ||
+                                    lower.includes('mst') ||
+                                    lower.includes('lca') ||
+                                    lower.includes('tree')) {
+                                  return false;
+                                }
+                                return true;
+                              })();
+
+                              const getX = n => isFenwick ? fenwickLayout[n.id].x : (pad + (n.x - minX)*scale + (svgW - 2*pad - rangeX*scale)/2);
+                              const getY = n => isFenwick ? fenwickLayout[n.id].y : (pad + (n.y - minY)*scale + (svgH - 2*pad - rangeY*scale)/2);
+
+                              const markerId = `gv_${nodes.map(n=>n.id).join('')}`.replace(/[^a-zA-Z0-9_]/g,'_').slice(0,20);
 
                               return (
-                                <div style={{ position: 'relative', width: `${width}px`, height: `${height}px`, flexShrink: 0 }}>
-                                  <svg width={width} height={height} style={{ position: 'absolute', top: 0, left: 0 }}>
-                                    {currentExplanation.graphVisual.edges.map((edge, i) => {
-                                      const n1 = nodes.find(n => n.id === edge.source);
-                                      const n2 = nodes.find(n => n.id === edge.target);
-                                      if (!n1 || !n2) return null;
-                                      const isEdgeActive = edge.active;
+                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}>
+                                  <span style={{ color: '#555d6b', fontSize: '10px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                                    {gv.title || (isFenwick ? 'Dependențe AIB' : (isDirected ? 'Graf Orientat' : 'Graf Neorientat'))}
+                                  </span>
+                                  <div style={{ position: 'relative', width: `${svgW}px`, height: `${svgH}px`, flexShrink: 0 }}>
+                                    <svg width={svgW} height={svgH} style={{ position: 'absolute', top: 0, left: 0, overflow: 'visible' }}>
+                                      <defs>
+                                        <marker id={`${markerId}_a`} markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                                          <polygon points="0 0, 8 4, 0 8" fill="#3574f0" />
+                                        </marker>
+                                        <marker id={`${markerId}_n`} markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                                          <polygon points="0 0, 8 4, 0 8" fill="rgba(255,255,255,0.22)" />
+                                        </marker>
+                                        <marker id={`${markerId}_v`} markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                                          <polygon points="0 0, 8 4, 0 8" fill="#59a869" />
+                                        </marker>
+                                      </defs>
+                                      {gv.edges?.map((edge, i) => {
+                                        const n1 = nodes.find(n => n.id === edge.source);
+                                        const n2 = nodes.find(n => n.id === edge.target);
+                                        if (!n1 || !n2) return null;
+                                        const x1=getX(n1), y1=getY(n1), x2=getX(n2), y2=getY(n2);
+                                        const dx=x2-x1, dy=y2-y1;
+                                        const len=Math.sqrt(dx*dx+dy*dy)||1;
+                                        const ux=dx/len, uy=dy/len;
+                                        const sx=x1+ux*nodeR, sy=y1+uy*nodeR;
+                                        const targetPadding = isDirected ? (nodeR + 6) : nodeR;
+                                        const ex=x2-ux*targetPadding, ey=y2-uy*targetPadding;
+                                        const mx2=(sx+ex)/2, my2=(sy+ey)/2;
+                                        const isActive = edge.active;
+                                        const n2isVisited = n2.state === 'visited';
+                                        const markerRef = isActive ? `url(#${markerId}_a)` : (n2isVisited ? `url(#${markerId}_v)` : `url(#${markerId}_n)`);
+                                        const strokeColor = isActive ? '#3574f0' : (n2isVisited ? '#59a869' : 'rgba(255,255,255,0.15)');
+                                        return (
+                                          <g key={i}>
+                                            <line x1={sx} y1={sy} x2={ex} y2={ey}
+                                              stroke={strokeColor} strokeWidth={isActive ? 2.5 : 1.5}
+                                              markerEnd={isDirected ? markerRef : undefined}
+                                            />
+                                            {edge.weight != null && (
+                                              <text x={mx2} y={my2} textAnchor="middle" dominantBaseline="central"
+                                                fontSize="9" fontWeight="bold" fill={isActive ? '#ffc66d' : '#555d6b'}
+                                                fontFamily="var(--font-mono)"
+                                                style={{ paintOrder: 'stroke', stroke: '#1e1f22', strokeWidth: '3' }}
+                                              >{edge.weight}</text>
+                                            )}
+                                          </g>
+                                        );
+                                      })}
+                                    </svg>
+                                    {nodes.map(node => {
+                                      const isNodeActive = node.state === 'active' || node.active;
+                                      const isVisited = node.state === 'visited';
+                                      let bg = '#1e1f22', border = '#3c3f41', color = '#a9b7c6', shadow = 'none';
+                                      if (isNodeActive) { bg = 'linear-gradient(135deg,#2860c8,#3574f0)'; border = '#56a8f5'; color = '#fff'; shadow = '0 0 14px rgba(53,116,240,0.7)'; }
+                                      else if (isVisited) { bg = 'linear-gradient(135deg,#4a9a5a,#59a869)'; border = '#59a869'; color = '#fff'; shadow = '0 0 8px rgba(89,168,105,0.5)'; }
+                                      const cx = getX(node), cy = getY(node);
                                       return (
-                                        <line 
-                                          key={i} 
-                                          x1={getX(n1.x)} 
-                                          y1={getY(n1.y)} 
-                                          x2={getX(n2.x)} 
-                                          y2={getY(n2.y)} 
-                                          stroke={isEdgeActive ? '#3574f0' : 'rgba(255, 255, 255, 0.15)'} 
-                                          strokeWidth={isEdgeActive ? '4' : '2.5'} 
-                                        />
+                                        <div key={node.id} style={{ position: 'absolute', left: `${cx}px`, top: `${cy}px`, transform: 'translate(-50%,-50%)', width: `${nodeR*2}px`, height: `${nodeR*2}px`, zIndex: 2 }}>
+                                          {node.desc && (
+                                            <div style={{ position:'absolute', top:'-15px', left:'50%', transform:'translateX(-50%)', fontSize:'8px', color:'#8c929e', fontFamily:'var(--font-mono)', fontWeight:'bold', whiteSpace:'nowrap', pointerEvents:'none' }}>{node.desc}</div>
+                                          )}
+                                          <div style={{ width:'100%', height:'100%', borderRadius:'50%', display:'flex', alignItems:'center', justifyContent:'center', background: bg, border:`2px solid ${border}`, color, fontWeight:'bold', fontSize:'11px', transition:'all 0.25s ease', boxShadow: shadow }}>
+                                            {node.label}
+                                          </div>
+                                        </div>
                                       );
                                     })}
-                                  </svg>
-                                  {nodes.map(node => {
-                                     let bg = '#1e1f22';
-                                     let border = '#3c3f41';
-                                     let color = '#a9b7c6';
-                                     if (node.state === 'active' || node.active) { bg = '#3574f0'; border = '#56a8f5'; color = '#fff'; }
-                                     else if (node.state === 'visited') { bg = '#59a869'; border = '#59a869'; color = '#fff'; }
-                                     
-                                     const leftPos = getX(node.x);
-                                     const topPos = getY(node.y);
-                                     const hasDesc = !!node.desc;
-                                     
-                                     return (
-                                       <div key={node.id} style={{
-                                         position: 'absolute', 
-                                         left: `${leftPos}px`, 
-                                         top: `${topPos}px`, 
-                                         transform: 'translate(-50%, -50%)',
-                                         width: '28px', 
-                                         height: '28px',
-                                         zIndex: 2
-                                       }}>
-                                         {hasDesc && (
-                                           <div style={{
-                                             position: 'absolute',
-                                             top: '-15px',
-                                             left: '50%',
-                                             transform: 'translateX(-50%)',
-                                             fontSize: '8.5px',
-                                             color: '#8c929e',
-                                             fontFamily: 'var(--font-mono)',
-                                             fontWeight: 'bold',
-                                             whiteSpace: 'nowrap',
-                                             pointerEvents: 'none'
-                                           }}>
-                                             {node.desc}
-                                           </div>
-                                         )}
-                                         <div style={{
-                                           width: '100%',
-                                           height: '100%',
-                                           borderRadius: '50%',
-                                           display: 'flex', 
-                                           alignItems: 'center', 
-                                           justifyContent: 'center',
-                                           background: bg, 
-                                           border: `1px solid ${border}`, 
-                                           color: color, 
-                                           fontWeight: 'bold', 
-                                           fontSize: '11px',
-                                           transition: 'all 0.2s ease', 
-                                           boxShadow: (node.state === 'active' || node.active) ? '0 0 10px rgba(53, 116, 240, 0.5)' : 'none',
-                                           whiteSpace: 'nowrap'
-                                         }}>
-                                           {node.label}
-                                         </div>
-                                       </div>
-                                     );
-                                   })}
+                                  </div>
                                 </div>
                               );
                             })()}
                           </div>
 
-                          {currentExplanation?.visual && (
-                            <div style={{ fontSize: '12px', fontFamily: 'var(--font-mono)', color: '#6aab73', whiteSpace: 'pre-wrap', width: '100%', background: '#1a1b1c', padding: '8px', borderRadius: '6px', border: '1px solid #2b2d30', marginTop: '8px' }}>
-                              {formatText(currentExplanation.visual)}
-                            </div>
-                          )}
+                          {/* ── VISUAL (ASCII art / text) ── */}
+                          {currentExplanation?.visual && (() => {
+                            const raw = typeof currentExplanation.visual === 'string' ? currentExplanation.visual : String(currentExplanation.visual);
+                            // Colorize ASCII art: box chars=blue, numbers=yellow, LABELS=orange, arrows=green
+                            const colored = raw.replace(/[┌┐└┘├┤┬┴┼│─╔╗╚╝╠╣╦╩╬║═╳×]/g, c => `<span style="color:#3d8fd1;opacity:0.85">${c}</span>`)
+                              .replace(/\b(\d+)\b/g, '<span style="color:#ffc66d;font-weight:bold">$1</span>')
+                              .replace(/\b(TOP|BOTTOM|BOT|FRONT|BACK|PUSH|POP|LIFO|FIFO)\b/g, '<span style="color:#cc7832;font-weight:bold">$1</span>')
+                              .replace(/(←|→|↑|↓|⬆|⬇|✓|✗|↶|↷)/g, '<span style="color:#59a869">$1</span>')
+                              .replace(/\(([^)]+)\)/g, '(<span style="color:#b378ba">$1</span>)');
+                            return (
+                              <div style={{
+                                width: '100%',
+                                background: 'linear-gradient(135deg,#141517,#18191c)',
+                                border: '1px solid #2b2d30',
+                                borderRadius: '8px',
+                                padding: '12px 14px',
+                                fontSize: '13px',
+                                lineHeight: '1.7',
+                                fontFamily: 'var(--font-mono)',
+                                color: '#6aab73',
+                                whiteSpace: 'pre-wrap',
+                                boxShadow: 'inset 0 1px 4px rgba(0,0,0,0.3)',
+                                overflowX: 'auto',
+                              }} dangerouslySetInnerHTML={{ __html: colored }} />
+                            );
+                          })()}
 
+                          {/* ── EMPTY STATE ── */}
                           {!currentExplanation?.matrix && !currentExplanation?.blocksVisual && !currentExplanation?.graphVisual && !currentExplanation?.visual && (
-                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                              <span style={{ fontSize: '20px' }}>🖼️</span>
-                              <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: '12px', textAlign: 'center' }}>
-                                (Vizualizare indisponibilă)
+                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', opacity: 0.4 }}>
+                              <div style={{ fontSize: '28px', filter: 'grayscale(1)' }}>🖼️</div>
+                              <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '12px', textAlign: 'center' }}>
+                                Vizualizare indisponibilă
                               </span>
                             </div>
                           )}
@@ -1303,128 +1942,75 @@ const CategoryPresentation = ({ category, onClose, onNavigate }) => {
                         </div>
                       </div>
 
-                      {/* Bottom Row: Call Stack & Variables */}
-                      <div style={{ display: 'flex', gap: '16px', flex: 1, minHeight: '180px', flexDirection: 'row', flexWrap: 'wrap' }}>
-                        {/* Call Stack */}
-                        <div style={{ flex: 1, minWidth: '200px', display: 'flex', flexDirection: 'column' }}>
+                      {/* Restructured debugger content: Call Stack Row & Variables Row */}
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', flex: 1 }}>
+                        
+                        {/* Call Stack - Compact horizontal full-width row */}
+                        <div style={{ display: 'flex', flexDirection: 'column', width: '100%', borderBottom: '1px solid #2b2d30', paddingBottom: '12px', marginBottom: '4px' }}>
                           <div style={{ fontSize: '11px', color: '#888', fontWeight: 'bold', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                             Frames (Call Stack)
                           </div>
-                          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', overflowY: 'auto', flex: 1 }}>
+                          <div style={{ display: 'flex', flexDirection: 'row', gap: '8px', flexWrap: 'wrap', overflowX: 'auto', padding: '4px 0' }}>
                             {debugState.frames.map((frame, index) => (
                               <div 
                                 key={index} 
                                 style={{ 
                                   display: 'flex', 
                                   alignItems: 'center', 
-                                  gap: '8px', 
-                                  padding: '4px 8px', 
-                                  background: index === 0 ? '#2d2f34' : 'transparent',
-                                  borderLeft: index === 0 ? '3px solid #3574f0' : '3px solid transparent',
+                                  gap: '6px', 
+                                  padding: '4px 10px', 
+                                  background: index === 0 ? '#1e293b' : 'transparent',
+                                  border: index === 0 ? '1px solid #3574f0' : '1px solid #1e2030',
                                   color: index === 0 ? '#fff' : '#a9b7c6',
-                                  fontSize: '13px',
+                                  fontSize: '12px',
                                   fontFamily: 'var(--font-mono)',
-                                  borderRadius: '3px'
+                                  borderRadius: '6px',
+                                  boxShadow: index === 0 ? '0 2px 8px rgba(53, 116, 240, 0.2)' : 'none'
                                 }}
                               >
-                                <span style={{ color: '#3574f0' }}>⊞</span>
-                                <span>{frame.name}</span>
-                                <span style={{ color: 'rgba(255,255,255,0.3)', marginLeft: 'auto' }}>{frame.file}:{frame.line}</span>
+                                <span style={{ color: index === 0 ? '#3574f0' : '#888' }}>⊞</span>
+                                <span style={{ fontWeight: index === 0 ? '600' : 'normal' }}>{frame.name}</span>
+                                <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: '11px' }}>{frame.file}:{frame.line}</span>
                               </div>
                             ))}
                           </div>
                         </div>
 
-                        {/* Variables */}
-                        <div style={{ flex: 1.5, minWidth: '240px', display: 'flex', flexDirection: 'column' }}>
-                          <div style={{ fontSize: '11px', color: '#888', fontWeight: 'bold', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                            Variables
+                        {/* Variables: Local & Global side-by-side */}
+                        <div style={{ display: 'flex', gap: '20px', width: '100%', flexDirection: 'row', flexWrap: 'wrap' }}>
+                          {/* Local Variables Column */}
+                          <div style={{ flex: 1, minWidth: '240px', display: 'flex', flexDirection: 'column' }}>
+                            <div style={{ fontSize: '11px', color: '#888', fontWeight: 'bold', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                              Local Variables
+                            </div>
+                            <div style={{ display: 'flex', flexDirection: 'column', overflowY: 'auto', flex: 1, gap: '2px', maxHeight: '220px' }}>
+                              {debugState.vars && debugState.vars.length > 0 ? (
+                                debugState.vars.map(v => renderVariable(v))
+                              ) : (
+                                <span style={{ color: 'rgba(255,255,255,0.3)', fontStyle: 'italic', fontSize: '13px' }}>
+                                  No local variables active
+                                </span>
+                              )}
+                            </div>
                           </div>
-                          <div style={{ display: 'flex', flexDirection: 'column', overflowY: 'auto', flex: 1, gap: '2px' }}>
-                            {debugState.vars.length > 0 ? (
-                              debugState.vars.map(v => {
-                                const isExpandable = v.expandable;
-                                const isExpanded = !!expandedVars[v.name];
-                                
-                                return (
-                                  <div key={v.name} style={{ fontFamily: 'var(--font-mono)', fontSize: '13px', padding: '3px 0' }}>
-                                    <div 
-                                      style={{ 
-                                        display: 'flex', 
-                                        alignItems: 'center', 
-                                        gap: '4px', 
-                                        cursor: isExpandable ? 'pointer' : 'default',
-                                        padding: '2px 4px',
-                                        borderRadius: '3px',
-                                        background: 'transparent'
-                                      }} 
-                                      onClick={() => isExpandable && toggleVarExpand(v.name)}
-                                      onMouseOver={e => e.currentTarget.style.background = '#2d2f34'}
-                                      onMouseOut={e => e.currentTarget.style.background = 'transparent'}
-                                    >
-                                      <span style={{ color: 'rgba(255,255,255,0.3)', userSelect: 'none', width: '12px', fontSize: '10px' }}>
-                                        {isExpandable ? (isExpanded ? '▼' : '▶') : ''}
-                                      </span>
-                                      <span style={{ color: '#b378ba' }}>{'{x}'}</span>
-                                      <span style={{ color: '#9cdcfe', fontWeight: 600 }}> {v.name}</span>
-                                      <span style={{ color: 'rgba(255,255,255,0.35)' }}>: {v.type}</span>
-                                      <span style={{ color: '#a9b7c6', marginLeft: '6px' }}> = {v.val}</span>
-                                    </div>
-                                    
-                                    {isExpandable && isExpanded && (
-                                      <div style={{ paddingLeft: '24px', borderLeft: '1px dashed #3c3f41', marginTop: '2px', marginLeft: '10px' }}>
-                                        {v.name === 'arr' && (category.includes('Binary_Search') || category.includes('Divide_Conquer') ? [2, 5, 8, 12, 16, 23, 38, 56, 72, 91] : [10, 24, 8, 42, 17]).map((item, idx) => (
-                                          <div key={idx} style={{ padding: '2px 4px', display: 'flex', gap: '4px' }}>
-                                            <span style={{ color: 'rgba(255,255,255,0.3)', width: '12px' }}></span>
-                                            <span style={{ color: '#e06c75' }}>[{idx}]</span>: <span style={{ color: '#2ebfc6' }}>{item}</span>
-                                          </div>
-                                        ))}
-                                        {v.name === 'matrix' && [
-                                          { r: 0, vals: [1, 2, 3] },
-                                          { r: 1, vals: [4, 5, 6] }
-                                        ].map((row, idx) => (
-                                          <div key={idx} style={{ padding: '2px 4px', display: 'flex', gap: '4px' }}>
-                                            <span style={{ color: 'rgba(255,255,255,0.3)', width: '12px' }}></span>
-                                            <span style={{ color: '#e06c75' }}>[{idx}]</span>: <span style={{ color: '#a9b7c6' }}>{'{'}{row.vals.join(', ')}{'}'}</span>
-                                          </div>
-                                        ))}
-                                        {v.name === 'adj' && (
-                                          (category.endsWith('/DFS') || category === 'DFS') ? [
-                                            { u: 0, neighbors: [1, 2] },
-                                            { u: 1, neighbors: [0, 3, 4] },
-                                            { u: 2, neighbors: [0, 4] },
-                                            { u: 3, neighbors: [1] },
-                                            { u: 4, neighbors: [1, 2] }
-                                          ] : (category.endsWith('/BFS') || category === 'BFS') ? [
-                                            { u: 0, neighbors: [1, 2] },
-                                            { u: 1, neighbors: [0, 3, 4] },
-                                            { u: 2, neighbors: [0, 4] },
-                                            { u: 3, neighbors: [1, 5] },
-                                            { u: 4, neighbors: [1, 2, 5] },
-                                            { u: 5, neighbors: [3, 4] }
-                                          ] : [
-                                            { u: 0, neighbors: [1, 2] },
-                                            { u: 1, neighbors: [0, 2, 3] },
-                                            { u: 2, neighbors: [0, 1] }
-                                          ]
-                                        ).map((row, idx) => (
-                                          <div key={idx} style={{ padding: '2px 4px', display: 'flex', gap: '4px' }}>
-                                            <span style={{ color: 'rgba(255,255,255,0.3)', width: '12px' }}></span>
-                                            <span style={{ color: '#e06c75' }}>[{idx}]</span>: <span style={{ color: '#a9b7c6' }}>Node {row.u} → {JSON.stringify(row.neighbors)}</span>
-                                          </div>
-                                        ))}
-                                      </div>
-                                    )}
-                                  </div>
-                                );
-                              })
-                            ) : (
-                              <span style={{ color: 'rgba(255,255,255,0.3)', fontStyle: 'italic', fontSize: '13px' }}>
-                                No local variables active
-                              </span>
-                            )}
+
+                          {/* Global Variables Column */}
+                          <div style={{ flex: 1, minWidth: '240px', display: 'flex', flexDirection: 'column' }}>
+                            <div style={{ fontSize: '11px', color: '#888', fontWeight: 'bold', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                              Global Variables
+                            </div>
+                            <div style={{ display: 'flex', flexDirection: 'column', overflowY: 'auto', flex: 1, gap: '2px', maxHeight: '220px' }}>
+                              {debugState.globalVars && debugState.globalVars.length > 0 ? (
+                                debugState.globalVars.map(v => renderVariable(v))
+                              ) : (
+                                <span style={{ color: 'rgba(255,255,255,0.3)', fontStyle: 'italic', fontSize: '13px' }}>
+                                  No global variables active
+                                </span>
+                              )}
+                            </div>
                           </div>
                         </div>
+
                       </div>
                     </div>
                   )}

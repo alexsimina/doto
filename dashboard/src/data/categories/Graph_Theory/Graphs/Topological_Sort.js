@@ -66,7 +66,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 9,
+      "line": 3,
       "text": "Calculăm gradul de intrare. Adică de câte alte noduri depinde fiecare nod.",
       "blocksVisual": [
         {
@@ -163,7 +163,7 @@ int main() {
       }
     },
     {
-      "line": 17,
+      "line": 11,
       "text": "Nodurile 4 și 5 au inDegree 0. Pot fi executate primele! Le băgăm în coadă.",
       "blocksVisual": [
         {
@@ -252,7 +252,7 @@ int main() {
       }
     },
     {
-      "line": 24,
+      "line": 18,
       "text": "Scoatem 4. Îl adăugăm la rezultat.",
       "blocksVisual": [
         {
@@ -336,7 +336,7 @@ int main() {
       }
     },
     {
-      "line": 30,
+      "line": 24,
       "text": "Scădem inDegree pentru vecinii lui 4 (adică 0 și 1).",
       "blocksVisual": [
         {
@@ -433,7 +433,7 @@ int main() {
       }
     },
     {
-      "line": 24,
+      "line": 18,
       "text": "Scoatem 5. Îl adăugăm la rezultat.",
       "blocksVisual": [
         {
@@ -520,7 +520,7 @@ int main() {
       }
     },
     {
-      "line": 30,
+      "line": 24,
       "text": "Scădem inDegree pentru vecinii lui 5 (0 și 2). Noul inDegree pentru 0 devine 0! Pentru 2 devine 0!",
       "blocksVisual": [
         {
@@ -611,7 +611,7 @@ int main() {
       }
     },
     {
-      "line": 32,
+      "line": 26,
       "text": "Fiindcă 0 și 2 au atins 0 dependențe, le punem în coadă.",
       "blocksVisual": [
         {
@@ -702,7 +702,7 @@ int main() {
       }
     },
     {
-      "line": 24,
+      "line": 18,
       "text": "Scoatem 0. Acesta nu are vecini. Rezultat: [4, 5, 0].",
       "blocksVisual": [
         {
@@ -788,7 +788,7 @@ int main() {
       }
     },
     {
-      "line": 24,
+      "line": 18,
       "text": "Scoatem 2. Vecinul său e 3. Scădem inDegree-ul lui 3. Devine 0! Punem 3 în coadă.",
       "blocksVisual": [
         {
@@ -876,7 +876,7 @@ int main() {
       }
     },
     {
-      "line": 24,
+      "line": 18,
       "text": "Scoatem 3. Vecinul e 1. Scădem inDegree-ul lui 1. Devine 0! Punem 1 în coadă.",
       "blocksVisual": [
         {
@@ -965,7 +965,7 @@ int main() {
       }
     },
     {
-      "line": 24,
+      "line": 18,
       "text": "Scoatem 1. Nu are vecini. Am terminat!",
       "blocksVisual": [
         {

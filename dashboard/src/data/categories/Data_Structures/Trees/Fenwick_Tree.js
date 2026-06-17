@@ -58,7 +58,7 @@ int main() {
 `,
   explanations: [
   {
-    "line": 15,
+    "line": 7,
     "text": "Inițializăm structura Fenwick Tree (AIB). Avem un vector `tree` de dimensiune N+1 = 11, indexat de la 1, plin de 0. Relațiile de dependență sunt ilustrate în graf.",
     "blocksVisual": [
       {
@@ -227,7 +227,7 @@ int main() {
     }
   },
   {
-    "line": 27,
+    "line": 19,
     "text": "Pasul 1: update(3, 5). Pornim de la indexul 3.",
     "blocksVisual": [
       {
@@ -404,7 +404,7 @@ int main() {
     }
   },
   {
-    "line": 29,
+    "line": 21,
     "text": "Adunăm delta = 5 în tree[3]: din 0 devine 5.",
     "blocksVisual": [
       {
@@ -581,7 +581,7 @@ int main() {
     }
   },
   {
-    "line": 30,
+    "line": 22,
     "text": "Urcăm la superior: LSB(3) = 1. index devine 3 + 1 = 4.",
     "blocksVisual": [
       {
@@ -758,7 +758,7 @@ int main() {
     }
   },
   {
-    "line": 29,
+    "line": 21,
     "text": "Adunăm delta = 5 în tree[4]: din 0 devine 5.",
     "blocksVisual": [
       {
@@ -935,7 +935,7 @@ int main() {
     }
   },
   {
-    "line": 30,
+    "line": 22,
     "text": "Urcăm la superior: LSB(4) = 4. index devine 4 + 4 = 8.",
     "blocksVisual": [
       {
@@ -1112,7 +1112,7 @@ int main() {
     }
   },
   {
-    "line": 29,
+    "line": 21,
     "text": "Adunăm delta = 5 în tree[8]: din 0 devine 5.",
     "blocksVisual": [
       {
@@ -1289,7 +1289,7 @@ int main() {
     }
   },
   {
-    "line": 30,
+    "line": 22,
     "text": "Urcăm la superior: LSB(8) = 8. index devine 8 + 8 = 16 (depășește dimensiunea N=10, deci ne oprim).",
     "blocksVisual": [
       {
@@ -1458,7 +1458,7 @@ int main() {
     }
   },
   {
-    "line": 27,
+    "line": 19,
     "text": "Pasul 2: update(5, 2). Pornim de la indexul 5.",
     "blocksVisual": [
       {
@@ -1635,7 +1635,7 @@ int main() {
     }
   },
   {
-    "line": 29,
+    "line": 21,
     "text": "Adunăm delta = 2 în tree[5]: din 0 devine 2.",
     "blocksVisual": [
       {
@@ -1812,7 +1812,7 @@ int main() {
     }
   },
   {
-    "line": 30,
+    "line": 22,
     "text": "Urcăm la superior: LSB(5) = 1. index devine 5 + 1 = 6.",
     "blocksVisual": [
       {
@@ -1989,7 +1989,7 @@ int main() {
     }
   },
   {
-    "line": 29,
+    "line": 21,
     "text": "Adunăm delta = 2 în tree[6]: din 0 devine 2.",
     "blocksVisual": [
       {
@@ -2166,7 +2166,7 @@ int main() {
     }
   },
   {
-    "line": 30,
+    "line": 22,
     "text": "Urcăm la superior: LSB(6) = 2. index devine 6 + 2 = 8.",
     "blocksVisual": [
       {
@@ -2343,7 +2343,7 @@ int main() {
     }
   },
   {
-    "line": 29,
+    "line": 21,
     "text": "Adunăm delta = 2 în tree[8]: din 5 devine 7.",
     "blocksVisual": [
       {
@@ -2520,7 +2520,7 @@ int main() {
     }
   },
   {
-    "line": 30,
+    "line": 22,
     "text": "Urcăm la superior: LSB(8) = 8. index devine 8 + 8 = 16 (depășește dimensiunea N=10, deci ne oprim).",
     "blocksVisual": [
       {
@@ -2689,7 +2689,7 @@ int main() {
     }
   },
   {
-    "line": 27,
+    "line": 19,
     "text": "Pasul 3: update(6, 1). Pornim de la indexul 6.",
     "blocksVisual": [
       {
@@ -2866,7 +2866,7 @@ int main() {
     }
   },
   {
-    "line": 29,
+    "line": 21,
     "text": "Adunăm delta = 1 în tree[6]: din 2 devine 3.",
     "blocksVisual": [
       {
@@ -3043,7 +3043,7 @@ int main() {
     }
   },
   {
-    "line": 30,
+    "line": 22,
     "text": "Urcăm la superior: LSB(6) = 2. index devine 6 + 2 = 8.",
     "blocksVisual": [
       {
@@ -3220,7 +3220,7 @@ int main() {
     }
   },
   {
-    "line": 29,
+    "line": 21,
     "text": "Adunăm delta = 1 în tree[8]: din 7 devine 8.",
     "blocksVisual": [
       {
@@ -3397,7 +3397,7 @@ int main() {
     }
   },
   {
-    "line": 30,
+    "line": 22,
     "text": "Urcăm la superior: LSB(8) = 8. index devine 8 + 8 = 16 (depășește dimensiunea N=10, deci ne oprim).",
     "blocksVisual": [
       {
@@ -3566,7 +3566,7 @@ int main() {
     }
   },
   {
-    "line": 27,
+    "line": 19,
     "text": "Pasul 4: update(1, 4). Pornim de la indexul 1.",
     "blocksVisual": [
       {
@@ -3743,7 +3743,7 @@ int main() {
     }
   },
   {
-    "line": 29,
+    "line": 21,
     "text": "Adunăm delta = 4 în tree[1]: din 0 devine 4.",
     "blocksVisual": [
       {
@@ -3920,7 +3920,7 @@ int main() {
     }
   },
   {
-    "line": 30,
+    "line": 22,
     "text": "Urcăm la superior: LSB(1) = 1. index devine 1 + 1 = 2.",
     "blocksVisual": [
       {
@@ -4097,7 +4097,7 @@ int main() {
     }
   },
   {
-    "line": 29,
+    "line": 21,
     "text": "Adunăm delta = 4 în tree[2]: din 0 devine 4.",
     "blocksVisual": [
       {
@@ -4274,7 +4274,7 @@ int main() {
     }
   },
   {
-    "line": 30,
+    "line": 22,
     "text": "Urcăm la superior: LSB(2) = 2. index devine 2 + 2 = 4.",
     "blocksVisual": [
       {
@@ -4451,7 +4451,7 @@ int main() {
     }
   },
   {
-    "line": 29,
+    "line": 21,
     "text": "Adunăm delta = 4 în tree[4]: din 5 devine 9.",
     "blocksVisual": [
       {
@@ -4628,7 +4628,7 @@ int main() {
     }
   },
   {
-    "line": 30,
+    "line": 22,
     "text": "Urcăm la superior: LSB(4) = 4. index devine 4 + 4 = 8.",
     "blocksVisual": [
       {
@@ -4805,7 +4805,7 @@ int main() {
     }
   },
   {
-    "line": 29,
+    "line": 21,
     "text": "Adunăm delta = 4 în tree[8]: din 8 devine 12.",
     "blocksVisual": [
       {
@@ -4982,7 +4982,7 @@ int main() {
     }
   },
   {
-    "line": 30,
+    "line": 22,
     "text": "Urcăm la superior: LSB(8) = 8. index devine 8 + 8 = 16 (depășește dimensiunea N=10, deci ne oprim).",
     "blocksVisual": [
       {
@@ -5151,7 +5151,7 @@ int main() {
     }
   },
   {
-    "line": 35,
+    "line": 27,
     "text": "Calculăm suma pe prefix [1..6] cu query(6). Pornim de la index 6 cu sum = 0.",
     "blocksVisual": [
       {
@@ -5328,7 +5328,7 @@ int main() {
     }
   },
   {
-    "line": 38,
+    "line": 30,
     "text": "Adunăm valoarea din tree[6] (care este 3) la sumă. sum devine 3.",
     "blocksVisual": [
       {
@@ -5505,7 +5505,7 @@ int main() {
     }
   },
   {
-    "line": 39,
+    "line": 31,
     "text": "Coborâm spre 0: LSB(6) = 2. index devine 6 - 2 = 4.",
     "blocksVisual": [
       {
@@ -5682,7 +5682,7 @@ int main() {
     }
   },
   {
-    "line": 38,
+    "line": 30,
     "text": "Adunăm valoarea din tree[4] (care este 9) la sumă. sum devine 12.",
     "blocksVisual": [
       {
@@ -5859,7 +5859,7 @@ int main() {
     }
   },
   {
-    "line": 39,
+    "line": 31,
     "text": "Coborâm spre 0: LSB(4) = 4. index devine 4 - 4 = 0.",
     "blocksVisual": [
       {
@@ -6036,7 +6036,7 @@ int main() {
     }
   },
   {
-    "line": 45,
+    "line": 37,
     "text": "Calculăm suma pe intervalul [3, 6] folosind queryRange(3, 6) = query(6) - query(2).",
     "blocksVisual": [
       {
@@ -6210,7 +6210,7 @@ int main() {
     }
   },
   {
-    "line": 35,
+    "line": 27,
     "text": "Calculăm query(2) pentru a scădea prefixul [1..2]. Pornim de la index 2.",
     "blocksVisual": [
       {
@@ -6387,7 +6387,7 @@ int main() {
     }
   },
   {
-    "line": 38,
+    "line": 30,
     "text": "Adunăm tree[2] = 4 la sub-sumă. subSum devine 4.",
     "blocksVisual": [
       {
@@ -6564,7 +6564,7 @@ int main() {
     }
   },
   {
-    "line": 39,
+    "line": 31,
     "text": "Coborâm: LSB(2) = 2. index devine 2 - 2 = 0.",
     "blocksVisual": [
       {
@@ -6741,7 +6741,7 @@ int main() {
     }
   },
   {
-    "line": 46,
+    "line": 38,
     "text": "Finalizăm queryRange(3, 6): query(6) - query(2) = 12 - 4 = 8.",
     "blocksVisual": [
       {

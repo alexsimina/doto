@@ -53,7 +53,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 45,
+      "line": 39,
       "text": "Pasul 1: Începem funcția main. Definim matricea de coeficienți 3x4 care reprezintă sistemul de ecuații.",
       "matrix": {
         "headers": ["X1", "X2", "X3", "C"],
@@ -67,7 +67,7 @@ int main() {
       }
     },
     {
-      "line": 18,
+      "line": 12,
       "text": "Pasul 2: Intrăm în bucla principală pentru coloana i = 0. Căutăm cel mai bun pivot (valoare absolută maximă) pe coloana 0.",
       "matrix": {
         "headers": ["X1", "X2", "X3", "C"],
@@ -81,7 +81,7 @@ int main() {
       }
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "Pasul 3: Cel mai mare pivot pe coloana 0 este |-3| = 3 la linia 1. maxRow devine 1.",
       "matrix": {
         "headers": ["X1", "X2", "X3", "C"],
@@ -95,7 +95,7 @@ int main() {
       }
     },
     {
-      "line": 28,
+      "line": 22,
       "text": "Pasul 4: Interschimbăm (swap) linia i = 0 cu linia maxRow = 1 pentru a aduce pivotul pe diagonala principală.",
       "matrix": {
         "headers": ["X1", "X2", "X3", "C"],
@@ -109,7 +109,7 @@ int main() {
       }
     },
     {
-      "line": 31,
+      "line": 25,
       "text": "Pasul 5: Începem reducerea elementelor de sub pivot (coloana 0). Începem cu linia k = 1.",
       "matrix": {
         "headers": ["X1", "X2", "X3", "C"],
@@ -123,7 +123,7 @@ int main() {
       }
     },
     {
-      "line": 32,
+      "line": 26,
       "text": "Pasul 6: Calculăm factorul de reducere c = -a[1][0] / a[0][0] = -2 / -3 = 2/3 (aprox 0.67).",
       "matrix": {
         "headers": ["X1", "X2", "X3", "C"],
@@ -137,7 +137,7 @@ int main() {
       }
     },
     {
-      "line": 35,
+      "line": 29,
       "text": "Pasul 7: Elementul sub pivot a[1][0] este anulat forțat: a[1][0] = 0.",
       "matrix": {
         "headers": ["X1", "X2", "X3", "C"],
@@ -151,7 +151,7 @@ int main() {
       }
     },
     {
-      "line": 37,
+      "line": 31,
       "text": "Pasul 8: Actualizăm coloana 1 a liniei 1: a[1][1] += c * a[0][1] = 1.00 + (2/3) * (-1) = 0.33.",
       "matrix": {
         "headers": ["X1", "X2", "X3", "C"],
@@ -165,7 +165,7 @@ int main() {
       }
     },
     {
-      "line": 37,
+      "line": 31,
       "text": "Pasul 9: Actualizăm coloana 2 a liniei 1: a[1][2] += c * a[0][2] = -1.00 + (2/3) * 2 = 0.33.",
       "matrix": {
         "headers": ["X1", "X2", "X3", "C"],
@@ -179,7 +179,7 @@ int main() {
       }
     },
     {
-      "line": 37,
+      "line": 31,
       "text": "Pasul 10: Actualizăm termenul liber al liniei 1: a[1][3] += c * a[0][3] = 8.00 + (2/3) * (-11) = 0.67.",
       "matrix": {
         "headers": ["X1", "X2", "X3", "C"],
@@ -193,7 +193,7 @@ int main() {
       }
     },
     {
-      "line": 31,
+      "line": 25,
       "text": "Pasul 11: Trecem la linia k = 2 pentru eliminarea de sub pivot.",
       "matrix": {
         "headers": ["X1", "X2", "X3", "C"],
@@ -207,7 +207,7 @@ int main() {
       }
     },
     {
-      "line": 32,
+      "line": 26,
       "text": "Pasul 12: Calculăm factorul c = -a[2][0] / a[0][0] = -(-2) / -3 = -2/3 (aprox -0.67).",
       "matrix": {
         "headers": ["X1", "X2", "X3", "C"],
@@ -221,7 +221,7 @@ int main() {
       }
     },
     {
-      "line": 35,
+      "line": 29,
       "text": "Pasul 13: Elementul sub pivot a[2][0] devine 0.",
       "matrix": {
         "headers": ["X1", "X2", "X3", "C"],
@@ -235,7 +235,7 @@ int main() {
       }
     },
     {
-      "line": 37,
+      "line": 31,
       "text": "Pasul 14: Actualizăm coloana 1 a liniei 2: a[2][1] += c * a[0][1] = 1.00 + (-2/3) * (-1) = 1.67.",
       "matrix": {
         "headers": ["X1", "X2", "X3", "C"],
@@ -249,7 +249,7 @@ int main() {
       }
     },
     {
-      "line": 37,
+      "line": 31,
       "text": "Pasul 15: Actualizăm coloana 2 a liniei 2: a[2][2] += c * a[0][2] = 2.00 + (-2/3) * 2 = 0.67.",
       "matrix": {
         "headers": ["X1", "X2", "X3", "C"],
@@ -263,7 +263,7 @@ int main() {
       }
     },
     {
-      "line": 37,
+      "line": 31,
       "text": "Pasul 16: Actualizăm termenul liber al liniei 2: a[2][3] += c * a[0][3] = -3.00 + (-2/3) * (-11) = 4.33.",
       "matrix": {
         "headers": ["X1", "X2", "X3", "C"],
@@ -277,7 +277,7 @@ int main() {
       }
     },
     {
-      "line": 18,
+      "line": 12,
       "text": "Pasul 17: Trecem la coloana i = 1. Căutăm pivotul maxim pe coloana 1 sub linia 0 (linii 1 și 2).",
       "matrix": {
         "headers": ["X1", "X2", "X3", "C"],
@@ -291,7 +291,7 @@ int main() {
       }
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "Pasul 18: Valoarea maximă este 1.67 la linia 2. maxRow devine 2.",
       "matrix": {
         "headers": ["X1", "X2", "X3", "C"],
@@ -305,7 +305,7 @@ int main() {
       }
     },
     {
-      "line": 28,
+      "line": 22,
       "text": "Pasul 19: Interschimbăm linia 1 cu linia 2 pentru a aduce noul pivot pe diagonală.",
       "matrix": {
         "headers": ["X1", "X2", "X3", "C"],
@@ -319,7 +319,7 @@ int main() {
       }
     },
     {
-      "line": 32,
+      "line": 26,
       "text": "Pasul 20: Eliminăm sub noul pivot. Pentru linia k = 2, factorul de reducere c = -a[2][1] / a[1][1] = -0.33 / 1.67 = -0.20.",
       "matrix": {
         "headers": ["X1", "X2", "X3", "C"],
@@ -333,7 +333,7 @@ int main() {
       }
     },
     {
-      "line": 35,
+      "line": 29,
       "text": "Pasul 21: Elementul sub pivot a[2][1] devine 0.",
       "matrix": {
         "headers": ["X1", "X2", "X3", "C"],
@@ -347,7 +347,7 @@ int main() {
       }
     },
     {
-      "line": 37,
+      "line": 31,
       "text": "Pasul 22: Actualizăm coloana 2 a liniei 2: a[2][2] += c * a[1][2] = 0.33 + (-0.20) * 0.67 = 0.20.",
       "matrix": {
         "headers": ["X1", "X2", "X3", "C"],
@@ -361,7 +361,7 @@ int main() {
       }
     },
     {
-      "line": 37,
+      "line": 31,
       "text": "Pasul 23: Actualizăm termenul liber a liniei 2: a[2][3] += c * a[1][3] = 0.67 + (-0.20) * 4.33 = -0.20.",
       "matrix": {
         "headers": ["X1", "X2", "X3", "C"],
@@ -375,7 +375,7 @@ int main() {
       }
     },
     {
-      "line": 18,
+      "line": 12,
       "text": "Pasul 24: Coloana i = 2. Este ultima linie a matricii, deci nu mai există elemente dedesubt de eliminat.",
       "matrix": {
         "headers": ["X1", "X2", "X3", "C"],
@@ -389,7 +389,7 @@ int main() {
       }
     },
     {
-      "line": 51,
+      "line": 45,
       "text": "Pasul 25: Eliminarea Gaussiană este completă! Matricea este în formă eșalonată. Prin substituție inversă obținem: X3 = -1, X2 = 3, X1 = 2.",
       "matrix": {
         "headers": ["X1", "X2", "X3", "C"],

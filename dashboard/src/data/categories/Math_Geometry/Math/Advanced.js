@@ -41,7 +41,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 31,
+      "line": 26,
       "text": "Pasul 1: Începem programul din funcția main cu a = 34 și b = 21. Apelăm gcdExtended(34, 21, &x, &y).",
       "blocksVisual": [
         {
@@ -53,7 +53,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 9,
       "text": "Pasul 2: Apelul 1 - gcdExtended(34, 21). a = 34 (nenul). Calculăm recursiv cu b % a = 21 % 34 = 21 și a = 34.",
       "blocksVisual": [
         {
@@ -66,7 +66,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 9,
       "text": "Pasul 3: Apelul 2 - gcdExtended(21, 34). a = 21 (nenul). Calculăm recursiv cu b % a = 34 % 21 = 13 și a = 21.",
       "blocksVisual": [
         {
@@ -80,7 +80,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 9,
       "text": "Pasul 4: Apelul 3 - gcdExtended(13, 21). a = 13 (nenul). Calculăm recursiv cu b % a = 21 % 13 = 8 și a = 13.",
       "blocksVisual": [
         {
@@ -95,7 +95,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 9,
       "text": "Pasul 5: Apelul 4 - gcdExtended(8, 13). a = 8 (nenul). Calculăm recursiv cu b % a = 13 % 8 = 5 și a = 8.",
       "blocksVisual": [
         {
@@ -111,7 +111,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 9,
       "text": "Pasul 6: Apelul 5 - gcdExtended(5, 8). a = 5 (nenul). Calculăm recursiv cu b % a = 8 % 5 = 3 și a = 5.",
       "blocksVisual": [
         {
@@ -128,7 +128,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 9,
       "text": "Pasul 7: Apelul 6 - gcdExtended(3, 5). a = 3 (nenul). Calculăm recursiv cu b % a = 5 % 3 = 2 și a = 3.",
       "blocksVisual": [
         {
@@ -146,7 +146,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 9,
       "text": "Pasul 8: Apelul 7 - gcdExtended(2, 3). a = 2 (nenul). Calculăm recursiv cu b % a = 3 % 2 = 1 și a = 2.",
       "blocksVisual": [
         {
@@ -165,7 +165,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 9,
       "text": "Pasul 9: Apelul 8 - gcdExtended(1, 2). a = 1 (nenul). Calculăm recursiv cu b % a = 2 % 1 = 0 și a = 1.",
       "blocksVisual": [
         {
@@ -185,7 +185,7 @@ int main() {
       ]
     },
     {
-      "line": 15,
+      "line": 10,
       "text": "Pasul 10: Baza recursivității - a = 0. Întoarcem CMMDC = b = 1 și setăm coeficienții x1 = 0, y1 = 1.",
       "blocksVisual": [
         {
@@ -197,7 +197,7 @@ int main() {
       ]
     },
     {
-      "line": 24,
+      "line": 19,
       "text": "Pasul 11: Revenim la apelul gcdExtended(1, 2). Avem x1 = 0, y1 = 1. Noul x = y1 - (b / a) * x1 = 1 - (2 / 1) * 0 = 1. Noul y = x1 = 0.",
       "blocksVisual": [
         {
@@ -209,7 +209,7 @@ int main() {
       ]
     },
     {
-      "line": 24,
+      "line": 19,
       "text": "Pasul 12: Revenim la apelul gcdExtended(2, 3). Avem x1 = 1, y1 = 0. Noul x = 0 - (3 / 2) * 1 = -1. Noul y = 1.",
       "blocksVisual": [
         {
@@ -221,7 +221,7 @@ int main() {
       ]
     },
     {
-      "line": 24,
+      "line": 19,
       "text": "Pasul 13: Revenim la apelul gcdExtended(3, 5). Avem x1 = -1, y1 = 1. Noul x = 1 - (5 / 3) * (-1) = 2. Noul y = -1.",
       "blocksVisual": [
         {
@@ -233,7 +233,7 @@ int main() {
       ]
     },
     {
-      "line": 24,
+      "line": 19,
       "text": "Pasul 14: Revenim la apelul gcdExtended(5, 8). Avem x1 = 2, y1 = -1. Noul x = -1 - (8 / 5) * 2 = -3. Noul y = 2.",
       "blocksVisual": [
         {
@@ -245,7 +245,7 @@ int main() {
       ]
     },
     {
-      "line": 24,
+      "line": 19,
       "text": "Pasul 15: Revenim la apelul gcdExtended(8, 13). Avem x1 = -3, y1 = 2. Noul x = 2 - (13 / 8) * (-3) = 5. Noul y = -3.",
       "blocksVisual": [
         {
@@ -257,7 +257,7 @@ int main() {
       ]
     },
     {
-      "line": 24,
+      "line": 19,
       "text": "Pasul 16: Revenim la apelul gcdExtended(13, 21). Avem x1 = 5, y1 = -3. Noul x = -3 - (21 / 13) * 5 = -8. Noul y = 5.",
       "blocksVisual": [
         {
@@ -269,7 +269,7 @@ int main() {
       ]
     },
     {
-      "line": 24,
+      "line": 19,
       "text": "Pasul 17: Revenim la apelul gcdExtended(21, 34). Avem x1 = -8, y1 = 5. Noul x = 5 - (34 / 21) * (-8) = 13. Noul y = -8.",
       "blocksVisual": [
         {
@@ -281,7 +281,7 @@ int main() {
       ]
     },
     {
-      "line": 24,
+      "line": 19,
       "text": "Pasul 18: Revenim la apelul de vârf gcdExtended(34, 21). Avem x1 = 13, y1 = -8. Noul x = -8 - (21 / 34) * 13 = -8. Noul y = 13.",
       "blocksVisual": [
         {
@@ -293,7 +293,7 @@ int main() {
       ]
     },
     {
-      "line": 35,
+      "line": 30,
       "text": "Pasul 19: Funcția se termină și obținem g = 1 (CMMDC). Afișăm în consolă: CMMDC(34, 21) = 1.",
       "blocksVisual": [
         {
@@ -305,7 +305,7 @@ int main() {
       ]
     },
     {
-      "line": 36,
+      "line": 31,
       "text": "Pasul 20: Afișăm valorile coeficienților Bezout: X = -8, Y = 13.",
       "blocksVisual": [
         {
@@ -317,7 +317,7 @@ int main() {
       ]
     },
     {
-      "line": 37,
+      "line": 32,
       "text": "Pasul 21: Realizăm verificarea relației: 34 * (-8) + 21 * 13 = -272 + 273 = 1. Relația este validă!",
       "blocksVisual": [
         {

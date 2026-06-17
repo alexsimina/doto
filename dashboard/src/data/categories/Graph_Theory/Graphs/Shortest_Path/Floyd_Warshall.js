@@ -51,7 +51,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 9,
+      "line": 2,
       "text": "Se alege `k`, nodul intermediar, care va lua valori de la 0 la V-1. La pasul k=0, vedem dacă e mai avantajos să trecem prin nodul 0.",
       "blocksVisual": [
         {
@@ -119,7 +119,7 @@ int main() {
       }
     },
     {
-      "line": 15,
+      "line": 8,
       "text": "Pentru k=1 (nodul 1), algoritmul încearcă să vadă dacă trecerea prin 1 îmbunătățește distanța de la 0 la 2. dist[0][2] era INF. Acum devine dist[0][1] + dist[1][2] = 5 + 3 = 8.",
       "blocksVisual": [
         {
@@ -193,7 +193,7 @@ int main() {
       }
     },
     {
-      "line": 15,
+      "line": 8,
       "text": "La pasul k=2, încercăm să folosim 2 ca nod intermediar. dist[0][3] era 10 (drumul direct). Dar prin 2 avem dist[0][2] + dist[2][3] = 8 + 1 = 9. 9 este mai mic decât 10, așa că actualizăm dist[0][3] = 9!",
       "blocksVisual": [
         {
@@ -273,7 +273,7 @@ int main() {
       }
     },
     {
-      "line": 23,
+      "line": 16,
       "text": "La final, matricea conține lungimea celui mai scurt drum de la orice nod i la orice nod j.",
       "blocksVisual": [
         {

@@ -58,7 +58,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 14,
+      "line": 7,
       "text": "Punem nodul de start în Priority Queue (Heap).",
       "blocksVisual": [
         {
@@ -131,7 +131,7 @@ int main() {
       }
     },
     {
-      "line": 19,
+      "line": 12,
       "text": "Extragem din Heap muchia cu costul minim {0, 0}. Nodul 0 devine vizitat. TotalCost = 0.",
       "blocksVisual": [
         {
@@ -213,7 +213,7 @@ int main() {
       }
     },
     {
-      "line": 26,
+      "line": 19,
       "text": "Introducem vecinii lui 0 în Heap: nodul 1 (cost 4) și nodul 2 (cost 1).",
       "blocksVisual": [
         {
@@ -293,7 +293,7 @@ int main() {
       }
     },
     {
-      "line": 19,
+      "line": 12,
       "text": "La pasul următor, Heap-ul va extrage pe {1, 2}. Deci includem muchia 0-2 (cost 1) în MST. Nodul 2 devine vizitat. TotalCost = 1.",
       "blocksVisual": [
         {
@@ -367,7 +367,7 @@ int main() {
       }
     },
     {
-      "line": 26,
+      "line": 19,
       "text": "Adăugăm vecinii lui 2 în Heap: nodul 1 (cost 2) și nodul 3 (cost 8). Heap-ul sortează elementele automat.",
       "blocksVisual": [
         {
@@ -452,7 +452,7 @@ int main() {
       }
     },
     {
-      "line": 19,
+      "line": 12,
       "text": "Se extrage elementul minim: nodul 1 prin muchia de cost 2 (conectat la 2). Adăugăm 2 în MST. TotalCost devine 3.",
       "blocksVisual": [
         {
@@ -531,7 +531,7 @@ int main() {
       }
     },
     {
-      "line": 26,
+      "line": 19,
       "text": "Adăugăm vecinii lui 1: nodul 3 cu cost 5. Nodul 0 e deja în MST deci îl ignorăm. Heap are min {5, nodul 3}.",
       "blocksVisual": [
         {
@@ -616,7 +616,7 @@ int main() {
       }
     },
     {
-      "line": 21,
+      "line": 14,
       "text": "Când vom scoate elementul {4, nodul 1}, vom vedea pe linia 21 că inMST[1] e deja true, deci ignorăm muchia (continue)! După aceea, scoatem pe {5, 3} și includem nodul 3 în MST. Cost final = 8.",
       "blocksVisual": [
         {

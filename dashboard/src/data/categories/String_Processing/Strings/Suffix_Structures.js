@@ -57,7 +57,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 20,
+      "line": 15,
       "text": "Pasul 1: Generăm toate cele 6 sufixe ale stringului 'banana' cu indexul lor de pornire.",
       "blocksVisual": [
         {
@@ -71,7 +71,7 @@ int main() {
       ]
     },
     {
-      "line": 30,
+      "line": 25,
       "text": "Pasul 2: Începem sortarea. Comparăm sufixul 'banana' (index 0) cu 'anana' (index 1). 'anana' este mai mic lexicografic, deci le inversăm.",
       "blocksVisual": [
         {
@@ -85,7 +85,7 @@ int main() {
       ]
     },
     {
-      "line": 30,
+      "line": 25,
       "text": "Pasul 3: Comparăm sufixul 'banana' (index 0) cu 'nana' (index 2). 'banana' < 'nana', deci ordinea este corectă. Nu facem nicio schimbare.",
       "blocksVisual": [
         {
@@ -99,7 +99,7 @@ int main() {
       ]
     },
     {
-      "line": 30,
+      "line": 25,
       "text": "Pasul 4: Comparăm 'nana' (index 2) cu 'ana' (index 3). Deoarece 'ana' < 'nana', le inversăm.",
       "blocksVisual": [
         {
@@ -113,7 +113,7 @@ int main() {
       ]
     },
     {
-      "line": 30,
+      "line": 25,
       "text": "Pasul 5: Comparăm 'nana' (index 2) cu 'na' (index 4). Deoarece 'na' < 'nana', le inversăm.",
       "blocksVisual": [
         {
@@ -127,7 +127,7 @@ int main() {
       ]
     },
     {
-      "line": 30,
+      "line": 25,
       "text": "Pasul 6: Comparăm 'nana' (index 2) cu 'a' (index 5). Inversăm. Suffixul 'nana' (index 2) ajunge pe poziția sa finală la sfârșit.",
       "blocksVisual": [
         {
@@ -141,7 +141,7 @@ int main() {
       ]
     },
     {
-      "line": 30,
+      "line": 25,
       "text": "Pasul 7: Trecerea a doua. Comparăm 'anana' (index 1) cu 'banana' (index 0). Ordinea este corectă.",
       "blocksVisual": [
         {
@@ -155,7 +155,7 @@ int main() {
       ]
     },
     {
-      "line": 30,
+      "line": 25,
       "text": "Pasul 8: Comparăm 'banana' (index 0) cu 'ana' (index 3). Inversăm.",
       "blocksVisual": [
         {
@@ -169,7 +169,7 @@ int main() {
       ]
     },
     {
-      "line": 30,
+      "line": 25,
       "text": "Pasul 9: Comparăm 'banana' (index 0) cu 'na' (index 4). Ordinea este corectă.",
       "blocksVisual": [
         {
@@ -183,7 +183,7 @@ int main() {
       ]
     },
     {
-      "line": 30,
+      "line": 25,
       "text": "Pasul 10: Comparăm 'na' (index 4) cu 'a' (index 5). Inversăm. Suffixul 'na' (index 4) ajunge pe poziția sa finală.",
       "blocksVisual": [
         {
@@ -197,7 +197,7 @@ int main() {
       ]
     },
     {
-      "line": 30,
+      "line": 25,
       "text": "Pasul 11: Trecerea a treia. Comparăm 'anana' (index 1) cu 'ana' (index 3). Deoarece 'ana' < 'anana', le inversăm.",
       "blocksVisual": [
         {
@@ -211,7 +211,7 @@ int main() {
       ]
     },
     {
-      "line": 30,
+      "line": 25,
       "text": "Pasul 12: Comparăm 'anana' (index 1) cu 'banana' (index 0). Ordinea este corectă.",
       "blocksVisual": [
         {
@@ -225,7 +225,7 @@ int main() {
       ]
     },
     {
-      "line": 30,
+      "line": 25,
       "text": "Pasul 13: Comparăm 'banana' (index 0) cu 'a' (index 5). Inversăm. Suffixul 'banana' (index 0) își ocupă poziția finală.",
       "blocksVisual": [
         {
@@ -239,7 +239,7 @@ int main() {
       ]
     },
     {
-      "line": 30,
+      "line": 25,
       "text": "Pasul 14: Trecerea a patra. Comparăm 'ana' (index 3) cu 'anana' (index 1). Ordinea este corectă.",
       "blocksVisual": [
         {
@@ -253,7 +253,7 @@ int main() {
       ]
     },
     {
-      "line": 30,
+      "line": 25,
       "text": "Pasul 15: Comparăm 'anana' (index 1) cu 'a' (index 5). Inversăm. Suffixul 'anana' (index 1) își ocupă poziția finală.",
       "blocksVisual": [
         {
@@ -267,7 +267,7 @@ int main() {
       ]
     },
     {
-      "line": 30,
+      "line": 25,
       "text": "Pasul 16: Trecerea a cincea. Comparăm 'ana' (index 3) cu 'a' (index 5). Inversăm. Suffixele 'a' și 'ana' își ocupă pozițiile finale.",
       "blocksVisual": [
         {
@@ -281,7 +281,7 @@ int main() {
       ]
     },
     {
-      "line": 38,
+      "line": 33,
       "text": "Pasul 17: Extragem doar indicii din structura sortată. Obținem Suffix Array (SA): [5, 3, 1, 0, 4, 2].",
       "blocksVisual": [
         {
@@ -295,7 +295,7 @@ int main() {
       ]
     },
     {
-      "line": 40,
+      "line": 35,
       "text": "Pasul 18: Construim array-ul LCP (Longest Common Prefix). LCP[1] (între 'a' și 'ana') are valoarea 1. LCP[2] (între 'ana' și 'anana') are valoarea 3.",
       "blocksVisual": [
         {
@@ -309,7 +309,7 @@ int main() {
       ]
     },
     {
-      "line": 40,
+      "line": 35,
       "text": "Pasul 19: LCP[3] ('anana' vs 'banana') = 0, LCP[4] ('banana' vs 'na') = 0, LCP[5] ('na' vs 'nana') = 2. Array-ul LCP final este: [0, 1, 3, 0, 0, 2].",
       "blocksVisual": [
         {
@@ -323,7 +323,7 @@ int main() {
       ]
     },
     {
-      "line": 40,
+      "line": 35,
       "text": "Pasul 20: Structurile sunt finalizate. Putem răspunde la interogări de substringuri extrem de rapid, de exemplu numărul de substringuri unice: N*(N+1)/2 - suma(LCP) = 21 - 6 = 15.",
       "blocksVisual": [
         {

@@ -71,7 +71,7 @@ int main() {
 `,
   explanations: [
   {
-    "line": 16,
+    "line": 9,
     "text": "Pornim construcția Segment Tree pentru tabloul arr = {1, 3, 5, 7, 9, 11}. tree[1] corespunde rădăcinii și acoperă intervalul [0..5].",
     "blocksVisual": [
       {
@@ -226,7 +226,7 @@ int main() {
     }
   },
   {
-    "line": 23,
+    "line": 16,
     "text": "Apelăm recursiv build pe copilul stâng, nodul 2, care acoperă jumătatea [0..2].",
     "blocksVisual": [
       {
@@ -367,7 +367,7 @@ int main() {
     }
   },
   {
-    "line": 31,
+    "line": 24,
     "text": "Nodul 2 acoperă [0..2]. Copilul său stâng este nodul 4 care acoperă [0..1].",
     "blocksVisual": [
       {
@@ -508,7 +508,7 @@ int main() {
     }
   },
   {
-    "line": 31,
+    "line": 24,
     "text": "Nodul 4 acoperă [0..1]. Copilul său stâng este nodul 8, care fiind frunză ([0..0]), primește direct valoarea arr[0] = 1.",
     "blocksVisual": [
       {
@@ -649,7 +649,7 @@ int main() {
     }
   },
   {
-    "line": 32,
+    "line": 25,
     "text": "Copilul drept al nodului 4 este nodul 9. Fiind frunză ([1..1]), primește direct valoarea arr[1] = 3.",
     "blocksVisual": [
       {
@@ -790,7 +790,7 @@ int main() {
     }
   },
   {
-    "line": 35,
+    "line": 28,
     "text": "Calculăm valoarea nodului 4 ca suma copiilor săi: tree[4] = tree[8] + tree[9] = 1 + 3 = 4.",
     "blocksVisual": [
       {
@@ -932,7 +932,7 @@ int main() {
     }
   },
   {
-    "line": 25,
+    "line": 18,
     "text": "Copilul drept al nodului 2 este nodul 5, o frunză acoperind [2..2]. tree[5] = arr[2] = 5.",
     "blocksVisual": [
       {
@@ -1073,7 +1073,7 @@ int main() {
     }
   },
   {
-    "line": 35,
+    "line": 28,
     "text": "Calculăm valoarea nodului 2: tree[2] = tree[4] + tree[5] = 4 + 5 = 9.",
     "blocksVisual": [
       {
@@ -1215,7 +1215,7 @@ int main() {
     }
   },
   {
-    "line": 32,
+    "line": 25,
     "text": "Trecem la subarborele drept al rădăcinii: nodul 3 acoperă intervalul [3..5]. Apelăm build pe el.",
     "blocksVisual": [
       {
@@ -1356,7 +1356,7 @@ int main() {
     }
   },
   {
-    "line": 31,
+    "line": 24,
     "text": "Nodul 3 se împarte în nodul 6 [3..4]. Copilul stâng al lui 6 este frunza 12 ([3..3]), tree[12] = arr[3] = 7.",
     "blocksVisual": [
       {
@@ -1497,7 +1497,7 @@ int main() {
     }
   },
   {
-    "line": 32,
+    "line": 25,
     "text": "Copilul drept al lui 6 este frunza 13 ([4..4]), tree[13] = arr[4] = 9.",
     "blocksVisual": [
       {
@@ -1638,7 +1638,7 @@ int main() {
     }
   },
   {
-    "line": 35,
+    "line": 28,
     "text": "Calculăm valoarea nodului 6: tree[6] = tree[12] + tree[13] = 7 + 9 = 16.",
     "blocksVisual": [
       {
@@ -1780,7 +1780,7 @@ int main() {
     }
   },
   {
-    "line": 25,
+    "line": 18,
     "text": "Copilul drept al nodului 3 este frunza 7 ([5..5]). tree[7] = arr[5] = 11.",
     "blocksVisual": [
       {
@@ -1921,7 +1921,7 @@ int main() {
     }
   },
   {
-    "line": 35,
+    "line": 28,
     "text": "Calculăm valoarea nodului 3: tree[3] = tree[6] + tree[7] = 16 + 11 = 27.",
     "blocksVisual": [
       {
@@ -2063,7 +2063,7 @@ int main() {
     }
   },
   {
-    "line": 35,
+    "line": 28,
     "text": "În final, calculăm rădăcina: tree[1] = tree[2] + tree[3] = 9 + 27 = 36. Construcția este completă!",
     "blocksVisual": [
       {
@@ -2205,7 +2205,7 @@ int main() {
     }
   },
   {
-    "line": 69,
+    "line": 62,
     "text": "Facem interogarea query(1, 0, 5, 1, 3) pentru a găsi suma elementelor de pe indicii [1..3]. Vizităm rădăcina [0..5].",
     "blocksVisual": [
       {
@@ -2345,7 +2345,7 @@ int main() {
     }
   },
   {
-    "line": 59,
+    "line": 52,
     "text": "Nodul 1 [0..5] se suprapune parțial cu intervalul interogat [1..3]. Mergem la stânga (nodul 2 [0..2]).",
     "blocksVisual": [
       {
@@ -2486,7 +2486,7 @@ int main() {
     }
   },
   {
-    "line": 59,
+    "line": 52,
     "text": "Nodul 2 [0..2] se suprapune parțial cu [1..3]. Mergem la copilul stâng (nodul 4 [0..1]).",
     "blocksVisual": [
       {
@@ -2627,7 +2627,7 @@ int main() {
     }
   },
   {
-    "line": 54,
+    "line": 47,
     "text": "Nodul 4 [0..1] se suprapune parțial. Copilul stâng 8 [0..0] este total în afara lui [1..3], deci returnează 0.",
     "blocksVisual": [
       {
@@ -2768,7 +2768,7 @@ int main() {
     }
   },
   {
-    "line": 55,
+    "line": 48,
     "text": "Copilul drept al lui 4 este nodul 9 [1..1]. Este complet în interiorul lui [1..3], deci returnează tree[9] = 3.",
     "blocksVisual": [
       {
@@ -2909,7 +2909,7 @@ int main() {
     }
   },
   {
-    "line": 55,
+    "line": 48,
     "text": "Copilul drept al nodului 2 este nodul 5 [2..2]. Este complet în interiorul lui [1..3], deci returnează tree[5] = 5.",
     "blocksVisual": [
       {
@@ -3050,7 +3050,7 @@ int main() {
     }
   },
   {
-    "line": 61,
+    "line": 54,
     "text": "Nodul 2 adună răspunsurile copiilor săi: p1 (de la nodul 4) + p2 (de la nodul 5) = (0 + 3) + 5 = 8.",
     "blocksVisual": [
       {
@@ -3192,7 +3192,7 @@ int main() {
     }
   },
   {
-    "line": 60,
+    "line": 53,
     "text": "Ne întoarcem la rădăcină și vizităm subarborele drept: nodul 3 [3..5]. Are overlap parțial cu [1..3].",
     "blocksVisual": [
       {
@@ -3333,7 +3333,7 @@ int main() {
     }
   },
   {
-    "line": 59,
+    "line": 52,
     "text": "La nodul 3: Copilul stâng 6 [3..4] are overlap parțial. Mergem în jos. Frunza 12 [3..3] returnează 7 (complet în interior).",
     "blocksVisual": [
       {
@@ -3474,7 +3474,7 @@ int main() {
     }
   },
   {
-    "line": 54,
+    "line": 47,
     "text": "Frunza 13 [4..4] este complet în afara lui [1..3], deci returnează 0. Nodul 6 returnează 7.",
     "blocksVisual": [
       {
@@ -3615,7 +3615,7 @@ int main() {
     }
   },
   {
-    "line": 54,
+    "line": 47,
     "text": "Copilul drept al nodului 3 este 7 [5..5], aflat în afara lui [1..3] -> returnează 0. Nodul 3 returnează 7.",
     "blocksVisual": [
       {
@@ -3756,7 +3756,7 @@ int main() {
     }
   },
   {
-    "line": 61,
+    "line": 54,
     "text": "Rădăcina returnează suma finală a celor două ramuri: 8 (stânga) + 7 (dreapta) = 15.",
     "blocksVisual": [
       {
@@ -3899,7 +3899,7 @@ int main() {
     }
   },
   {
-    "line": 71,
+    "line": 64,
     "text": "Facem update(1, 0, 5, 1, 10) - adăugăm 10 la poziția 1. Drumul de actualizare coboară spre frunza [1..1] și crește valorile nodurilor părinte pe drum.",
     "blocksVisual": [
       {

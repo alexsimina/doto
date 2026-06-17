@@ -37,7 +37,7 @@ void printMaxActivities(vector<Activity>& arr) {
 `,
   "explanations": [
     {
-      "line": 22,
+      "line": 16,
       "text": "Apelăm printMaxActivities. Avem 5 activități nesortate: (3,5), (0,6), (1,4), (8,9), (5,7). Pe axa timpului, fiecare activitate ocupă un interval [start, finish].",
       "blocksVisual": [
         { "label": "Vector Inițial (nesortat)", "groups": [[{"val": "(3,5)"}, {"val": "(0,6)"}, {"val": "(1,4)"}, {"val": "(8,9)"}, {"val": "(5,7)"}]] }
@@ -54,7 +54,7 @@ void printMaxActivities(vector<Activity>& arr) {
       }
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "Sortăm activitățile după finish time (crescător) folosind cmp. Aceasta este cheia algoritmului Greedy: activitățile cu finish mai mic lasă mai mult timp liber pentru altele.",
       "blocksVisual": [
         { "label": "Sortare după finish time ↑", "groups": [[{"val": "cmp: finish asc", "active": true}]] }
@@ -71,7 +71,7 @@ void printMaxActivities(vector<Activity>& arr) {
       }
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "Rezultatul sortării: Activity 0→(1,4), Activity 1→(3,5), Activity 2→(0,6), Activity 3→(5,7), Activity 4→(8,9). Pe timeline (x=start*20+10, y=index*28+15), activitățile sunt ordonate după finish.",
       "blocksVisual": [
         { "label": "Vector Sortat (după finish)", "groups": [[{"val": "(1,4)", "sorted": true}, {"val": "(3,5)", "sorted": true}, {"val": "(0,6)", "sorted": true}, {"val": "(5,7)", "sorted": true}, {"val": "(8,9)", "sorted": true}]] }
@@ -88,7 +88,7 @@ void printMaxActivities(vector<Activity>& arr) {
       }
     },
     {
-      "line": 26,
+      "line": 20,
       "text": "Inițializăm i = 0. Prima activitate (1,4) este întotdeauna selectată — are cel mai mic finish time, deci lasă maximul de timp disponibil.",
       "blocksVisual": [
         { "label": "Vector Sortat", "groups": [[{"val": "(1,4)", "active": true}, {"val": "(3,5)"}, {"val": "(0,6)"}, {"val": "(5,7)"}, {"val": "(8,9)"}]] },
@@ -106,7 +106,7 @@ void printMaxActivities(vector<Activity>& arr) {
       }
     },
     {
-      "line": 27,
+      "line": 21,
       "text": "Selectăm Activity 0 (1,4) — prima activitate este mereu inclusă. Marcăm ca SELECTATĂ (verde). Setăm i = 0.",
       "blocksVisual": [
         { "label": "Selectate", "groups": [[{"val": "(1,4)", "sorted": true}]] },
@@ -124,7 +124,7 @@ void printMaxActivities(vector<Activity>& arr) {
       }
     },
     {
-      "line": 29,
+      "line": 23,
       "text": "Intrăm în bucla for cu j = 1. Evaluăm Activity 1: (3,5). Comparăm: arr[j].start=3 >= arr[i].finish=4?",
       "blocksVisual": [
         { "label": "Vector Sortat", "groups": [[{"val": "(1,4)", "sorted": true}, {"val": "(3,5)", "active": true}, {"val": "(0,6)"}, {"val": "(5,7)"}, {"val": "(8,9)"}]] },
@@ -142,7 +142,7 @@ void printMaxActivities(vector<Activity>& arr) {
       }
     },
     {
-      "line": 31,
+      "line": 25,
       "text": "Condiția 3 >= 4 este FALSĂ. Activity 1 (3,5) se suprapune cu Activity 0 (1,4) — 3 < 4 (Activity 1 începe înainte ca Activity 0 să se termine). O ignorăm.",
       "blocksVisual": [
         { "label": "Vector Sortat", "groups": [[{"val": "(1,4)", "sorted": true}, {"val": "(3,5)", "hidden": true}, {"val": "(0,6)"}, {"val": "(5,7)"}, {"val": "(8,9)"}]] },
@@ -160,7 +160,7 @@ void printMaxActivities(vector<Activity>& arr) {
       }
     },
     {
-      "line": 29,
+      "line": 23,
       "text": "Avansăm j = 2. Evaluăm Activity 2: (0,6). Comparăm: arr[j].start=0 >= arr[i].finish=4 (unde i=0, finish=4)?",
       "blocksVisual": [
         { "label": "Vector Sortat", "groups": [[{"val": "(1,4)", "sorted": true}, {"val": "(3,5)", "hidden": true}, {"val": "(0,6)", "active": true}, {"val": "(5,7)"}, {"val": "(8,9)"}]] },
@@ -178,7 +178,7 @@ void printMaxActivities(vector<Activity>& arr) {
       }
     },
     {
-      "line": 31,
+      "line": 25,
       "text": "Condiția 0 >= 4 este FALSĂ. Activity 2 (0,6) se suprapune masiv cu (1,4) — chiar începe la 0, mult înainte de finish=4. O ignorăm.",
       "blocksVisual": [
         { "label": "Vector Sortat", "groups": [[{"val": "(1,4)", "sorted": true}, {"val": "(3,5)", "hidden": true}, {"val": "(0,6)", "hidden": true}, {"val": "(5,7)"}, {"val": "(8,9)"}]] },
@@ -196,7 +196,7 @@ void printMaxActivities(vector<Activity>& arr) {
       }
     },
     {
-      "line": 29,
+      "line": 23,
       "text": "Avansăm j = 3. Evaluăm Activity 3: (5,7). Comparăm: arr[j].start=5 >= arr[i].finish=4 (finish al activității i=0)?",
       "blocksVisual": [
         { "label": "Vector Sortat", "groups": [[{"val": "(1,4)", "sorted": true}, {"val": "(3,5)", "hidden": true}, {"val": "(0,6)", "hidden": true}, {"val": "(5,7)", "active": true}, {"val": "(8,9)"}]] },
@@ -214,7 +214,7 @@ void printMaxActivities(vector<Activity>& arr) {
       }
     },
     {
-      "line": 31,
+      "line": 25,
       "text": "Condiția 5 >= 4 este ADEVĂRATĂ! Activity 3 (5,7) începe la 5, exact după ce Activity 0 s-a terminat la 4. Nu există suprapunere!",
       "blocksVisual": [
         { "label": "Vector Sortat", "groups": [[{"val": "(1,4)", "sorted": true}, {"val": "(3,5)", "hidden": true}, {"val": "(0,6)", "hidden": true}, {"val": "(5,7)", "sorted": true}, {"val": "(8,9)"}]] },
@@ -234,7 +234,7 @@ void printMaxActivities(vector<Activity>& arr) {
       }
     },
     {
-      "line": 32,
+      "line": 26,
       "text": "Selectăm Activity 3 (5,7)! O tipărim. Acum avem 2 activități selectate: (1,4) și (5,7).",
       "blocksVisual": [
         { "label": "Selectate până acum", "groups": [[{"val": "(1,4)", "sorted": true}, {"val": "(5,7)", "sorted": true}]] },
@@ -254,7 +254,7 @@ void printMaxActivities(vector<Activity>& arr) {
       }
     },
     {
-      "line": 33,
+      "line": 27,
       "text": "Actualizăm i = j = 3. De acum, referința pentru ultima activitate selectată este Activity 3 cu finish=7.",
       "blocksVisual": [
         { "label": "Vector Sortat", "groups": [[{"val": "(1,4)", "sorted": true}, {"val": "(3,5)", "hidden": true}, {"val": "(0,6)", "hidden": true}, {"val": "(5,7)", "active": true}, {"val": "(8,9)"}]] },
@@ -274,7 +274,7 @@ void printMaxActivities(vector<Activity>& arr) {
       }
     },
     {
-      "line": 29,
+      "line": 23,
       "text": "Avansăm j = 4. Evaluăm ultima activitate, Activity 4: (8,9). Comparăm: arr[j].start=8 >= arr[i].finish=7 (finish al activității i=3)?",
       "blocksVisual": [
         { "label": "Vector Sortat", "groups": [[{"val": "(1,4)", "sorted": true}, {"val": "(3,5)", "hidden": true}, {"val": "(0,6)", "hidden": true}, {"val": "(5,7)", "sorted": true}, {"val": "(8,9)", "active": true}]] },
@@ -294,7 +294,7 @@ void printMaxActivities(vector<Activity>& arr) {
       }
     },
     {
-      "line": 31,
+      "line": 25,
       "text": "Condiția 8 >= 7 este ADEVĂRATĂ! Activity 4 (8,9) începe la 8, după finalizarea Activity 3 la 7. Compatibile!",
       "blocksVisual": [
         { "label": "Vector Sortat", "groups": [[{"val": "(1,4)", "sorted": true}, {"val": "(3,5)", "hidden": true}, {"val": "(0,6)", "hidden": true}, {"val": "(5,7)", "sorted": true}, {"val": "(8,9)", "sorted": true}]] },
@@ -315,7 +315,7 @@ void printMaxActivities(vector<Activity>& arr) {
       }
     },
     {
-      "line": 32,
+      "line": 26,
       "text": "Selectăm Activity 4 (8,9)! Acum avem 3 activități selectate: (1,4), (5,7), (8,9). Actualizăm i = 4.",
       "blocksVisual": [
         { "label": "Selectate", "groups": [[{"val": "(1,4)", "sorted": true}, {"val": "(5,7)", "sorted": true}, {"val": "(8,9)", "sorted": true}]] },
@@ -336,7 +336,7 @@ void printMaxActivities(vector<Activity>& arr) {
       }
     },
     {
-      "line": 29,
+      "line": 23,
       "text": "Incrementăm j = 5. Condiția j < arr.size() (5 < 5) este FALSĂ. Ieșim din buclă. Algoritmul s-a terminat.",
       "blocksVisual": [
         { "label": "Bucla for", "groups": [[{"val": "j=5 >= size=5 → STOP"}]] },
@@ -357,7 +357,7 @@ void printMaxActivities(vector<Activity>& arr) {
       }
     },
     {
-      "line": 36,
+      "line": 30,
       "text": "De ce este această soluție optimă? Oricare altă combinație de activități non-suprapuse dă cel mult 3 activități. Alegerea Greedy (finish-time minim) garantează optimalul.",
       "blocksVisual": [
         { "label": "Soluție Optimă (3 activități)", "groups": [[{"val": "(1,4)", "sorted": true}, {"val": "(5,7)", "sorted": true}, {"val": "(8,9)", "sorted": true}]] },
@@ -378,7 +378,7 @@ void printMaxActivities(vector<Activity>& arr) {
       }
     },
     {
-      "line": 36,
+      "line": 30,
       "text": "Concluzie: Am selectat 3 activități compatibile folosind strategia Greedy: la fiecare pas alegem activitatea validă cu cel mai mic timp de terminare, maximizând numărul total de activități selectate.",
       "blocksVisual": [
         { "label": "Rezultat Final", "groups": [[{"val": "(1,4)", "sorted": true}, {"val": "(5,7)", "sorted": true}, {"val": "(8,9)", "sorted": true}]] }
@@ -398,7 +398,7 @@ void printMaxActivities(vector<Activity>& arr) {
       }
     },
     {
-      "line": 18,
+      "line": 12,
       "text": "Recapitulare complexitate: Sortarea ia O(N log N), parcurgerea bucla for ia O(N). Complexitate totală: O(N log N). Spațiu suplimentar: O(1) (in-place).",
       "blocksVisual": [
         { "label": "Timp: O(N log N) pentru sort", "groups": [[{"val": "sort O(N log N)", "active": true}]] },

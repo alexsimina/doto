@@ -32,7 +32,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 29,
+      "line": 23,
       "text": "Pasul 1: Intrăm în funcția main. Avem 3 stive cu dimensiunile {3, 4, 5}. Apelăm funcția playNim(stive).",
       "blocksVisual": [
         {
@@ -44,7 +44,7 @@ int main() {
       ]
     },
     {
-      "line": 13,
+      "line": 7,
       "text": "Pasul 2: Inițializăm variabila nimSum cu 0. Aceasta va acumula produsul XOR.",
       "blocksVisual": [
         {
@@ -56,7 +56,7 @@ int main() {
       ]
     },
     {
-      "line": 17,
+      "line": 11,
       "text": "Pasul 3: Facem XOR cu prima stivă (3). nimSum = 0 ^ 3 = 3.",
       "blocksVisual": [
         {
@@ -68,7 +68,7 @@ int main() {
       ]
     },
     {
-      "line": 17,
+      "line": 11,
       "text": "Pasul 4: Facem XOR cu a doua stivă (4). nimSum = 3 ^ 4 = 7 (binar: 011 ^ 100 = 111).",
       "blocksVisual": [
         {
@@ -80,7 +80,7 @@ int main() {
       ]
     },
     {
-      "line": 17,
+      "line": 11,
       "text": "Pasul 5: Facem XOR cu a treia stivă (5). nimSum = 7 ^ 5 = 2 (binar: 111 ^ 101 = 010).",
       "blocksVisual": [
         {
@@ -92,7 +92,7 @@ int main() {
       ]
     },
     {
-      "line": 20,
+      "line": 14,
       "text": "Pasul 6: Deoarece nimSum = 2 (> 0), primul jucător (Player 1) are o strategie de câștig sigură! Iată cum decurge jocul.",
       "blocksVisual": [
         {
@@ -104,7 +104,7 @@ int main() {
       ]
     },
     {
-      "line": 21,
+      "line": 15,
       "text": "Pasul 7 (Joc real - Jucătorul 1): Starea stivelor este {3, 4, 5}. Jucătorul 1 vrea să lase o sumă Nim = 0. Mutarea optimă: reduce Stiva 1 de la 3 la 1.",
       "blocksVisual": [
         {
@@ -116,7 +116,7 @@ int main() {
       ]
     },
     {
-      "line": 21,
+      "line": 15,
       "text": "Pasul 8 (Calcul XOR după Jucătorul 1): Suma Nim a noii stări {1, 4, 5} este 1 ^ 4 ^ 5 = 0. Jucătorul 2 este pus în dificultate.",
       "blocksVisual": [
         {
@@ -128,7 +128,7 @@ int main() {
       ]
     },
     {
-      "line": 21,
+      "line": 15,
       "text": "Pasul 9 (Joc real - Jucătorul 2): Jucătorul 2 mută din starea {1, 4, 5}. El ia 2 pietre din Stiva 2. Starea devine {1, 2, 5}.",
       "blocksVisual": [
         {
@@ -140,7 +140,7 @@ int main() {
       ]
     },
     {
-      "line": 21,
+      "line": 15,
       "text": "Pasul 10 (Calcul XOR după Jucătorul 2): Suma Nim a stării {1, 2, 5} este 1 ^ 2 ^ 5 = 6 (nenulă).",
       "blocksVisual": [
         {
@@ -152,7 +152,7 @@ int main() {
       ]
     },
     {
-      "line": 21,
+      "line": 15,
       "text": "Pasul 11 (Joc real - Jucătorul 1): Jucătorul 1 trebuie să readucă suma Nim la 0. El ia 2 pietre din Stiva 3. Starea devine {1, 2, 3}.",
       "blocksVisual": [
         {
@@ -164,7 +164,7 @@ int main() {
       ]
     },
     {
-      "line": 21,
+      "line": 15,
       "text": "Pasul 12 (Calcul XOR după Jucătorul 1): Suma Nim a stării {1, 2, 3} este 1 ^ 2 ^ 3 = 0. Jucătorul 2 primește din nou o stare cu NimSum = 0.",
       "blocksVisual": [
         {
@@ -176,7 +176,7 @@ int main() {
       ]
     },
     {
-      "line": 21,
+      "line": 15,
       "text": "Pasul 13 (Joc real - Jucătorul 2): Jucătorul 2 ia singura piatră din Stiva 1. Starea devine {0, 2, 3}.",
       "blocksVisual": [
         {
@@ -188,7 +188,7 @@ int main() {
       ]
     },
     {
-      "line": 21,
+      "line": 15,
       "text": "Pasul 14 (Calcul XOR după Jucătorul 2): Suma Nim a stării {0, 2, 3} este 0 ^ 2 ^ 3 = 1.",
       "blocksVisual": [
         {
@@ -200,7 +200,7 @@ int main() {
       ]
     },
     {
-      "line": 21,
+      "line": 15,
       "text": "Pasul 15 (Joc real - Jucătorul 1): Jucătorul 1 face XOR=0 luând 1 piatră din Stiva 3. Starea devine {0, 2, 2}.",
       "blocksVisual": [
         {
@@ -212,7 +212,7 @@ int main() {
       ]
     },
     {
-      "line": 21,
+      "line": 15,
       "text": "Pasul 16 (Calcul XOR după Jucătorul 1): Suma Nim a stării {0, 2, 2} este 0 ^ 2 ^ 2 = 0.",
       "blocksVisual": [
         {
@@ -224,7 +224,7 @@ int main() {
       ]
     },
     {
-      "line": 21,
+      "line": 15,
       "text": "Pasul 17 (Joc real - Jucătorul 2): Jucătorul 2 ia 1 piatră din Stiva 2. Starea devine {0, 1, 2}.",
       "blocksVisual": [
         {
@@ -236,7 +236,7 @@ int main() {
       ]
     },
     {
-      "line": 21,
+      "line": 15,
       "text": "Pasul 18 (Calcul XOR după Jucătorul 2): Suma Nim a stării {0, 1, 2} este 0 ^ 1 ^ 2 = 3.",
       "blocksVisual": [
         {
@@ -248,7 +248,7 @@ int main() {
       ]
     },
     {
-      "line": 21,
+      "line": 15,
       "text": "Pasul 19 (Joc real - Jucătorul 1): Jucătorul 1 ia 1 piatră din Stiva 3 pentru a o egala cu Stiva 2. Starea devine {0, 1, 1}.",
       "blocksVisual": [
         {
@@ -260,7 +260,7 @@ int main() {
       ]
     },
     {
-      "line": 21,
+      "line": 15,
       "text": "Pasul 20 (Calcul XOR după Jucătorul 1): Suma Nim este 0 ^ 1 ^ 1 = 0.",
       "blocksVisual": [
         {
@@ -272,7 +272,7 @@ int main() {
       ]
     },
     {
-      "line": 21,
+      "line": 15,
       "text": "Pasul 21 (Joc real - Jucătorul 2): Jucătorul 2 trebuie să ia singura piatră dintr-o stivă. El ia din Stiva 2. Starea devine {0, 0, 1}.",
       "blocksVisual": [
         {
@@ -284,7 +284,7 @@ int main() {
       ]
     },
     {
-      "line": 21,
+      "line": 15,
       "text": "Pasul 22 (Joc real - Jucătorul 1): Jucătorul 1 ia ultima piatră din Stiva 3. Starea devine {0, 0, 0}. Jucătorul 2 este la rând, nu mai are mutări valide și pierde. Jucătorul 1 Câștigă!",
       "blocksVisual": [
         {

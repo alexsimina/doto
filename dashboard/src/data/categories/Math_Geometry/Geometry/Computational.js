@@ -40,7 +40,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 22,
+      "line": 16,
       "text": "Pasul 1: Inițializăm punctul de origine A = (1, 1). Acesta va fi originea vectorilor noștri.",
       "graphVisual": {
         "nodes": [
@@ -50,7 +50,7 @@ int main() {
       }
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "Pasul 2: Definim punctul B = (3, 3). Împreună cu A, formează vectorul de referință AB.",
       "graphVisual": {
         "nodes": [
@@ -63,7 +63,7 @@ int main() {
       }
     },
     {
-      "line": 26,
+      "line": 20,
       "text": "Pasul 3: Definim primul punct de test C_Coliniar = (5, 5).",
       "graphVisual": {
         "nodes": [
@@ -77,7 +77,7 @@ int main() {
       }
     },
     {
-      "line": 30,
+      "line": 24,
       "text": "Pasul 4: Apelăm crossProduct(A, B, C_Coliniar). Se va evalua relația dintre vectorul AB și AC.",
       "graphVisual": {
         "nodes": [
@@ -92,7 +92,7 @@ int main() {
       }
     },
     {
-      "line": 18,
+      "line": 12,
       "text": "Pasul 5: Calculăm componentele vectorilor: (B.x - A.x) = 2 și (C.y - A.y) = 4. Primul produs este 2 * 4 = 8.",
       "blocksVisual": [
         {
@@ -106,7 +106,7 @@ int main() {
       ]
     },
     {
-      "line": 18,
+      "line": 12,
       "text": "Pasul 6: Calculăm celelalte componente: (B.y - A.y) = 2 și (C.x - A.x) = 4. Al doilea produs este 2 * 4 = 8.",
       "blocksVisual": [
         {
@@ -120,7 +120,7 @@ int main() {
       ]
     },
     {
-      "line": 18,
+      "line": 12,
       "text": "Pasul 7: Scădem produsele: 8 - 8 = 0. Rezultatul este 0.",
       "blocksVisual": [
         {
@@ -134,7 +134,7 @@ int main() {
       ]
     },
     {
-      "line": 30,
+      "line": 24,
       "text": "Pasul 8: crossProduct returnează 0. Punctul C_Coliniar se află pe dreapta determinată de A și B.",
       "graphVisual": {
         "nodes": [
@@ -149,7 +149,7 @@ int main() {
       }
     },
     {
-      "line": 27,
+      "line": 21,
       "text": "Pasul 9: Definim al doilea punct de test C_Stanga = (2, 4).",
       "graphVisual": {
         "nodes": [
@@ -163,7 +163,7 @@ int main() {
       }
     },
     {
-      "line": 31,
+      "line": 25,
       "text": "Pasul 10: Apelăm crossProduct(A, B, C_Stanga).",
       "graphVisual": {
         "nodes": [
@@ -178,7 +178,7 @@ int main() {
       }
     },
     {
-      "line": 18,
+      "line": 12,
       "text": "Pasul 11: Calculăm componentele vectorilor: (B.x - A.x) = 2 și (C.y - A.y) = 3. Primul produs este 2 * 3 = 6.",
       "blocksVisual": [
         {
@@ -192,7 +192,7 @@ int main() {
       ]
     },
     {
-      "line": 18,
+      "line": 12,
       "text": "Pasul 12: Calculăm celelalte componente: (B.y - A.y) = 2 și (C.x - A.x) = 1. Al doilea produs este 2 * 1 = 2.",
       "blocksVisual": [
         {
@@ -206,7 +206,7 @@ int main() {
       ]
     },
     {
-      "line": 18,
+      "line": 12,
       "text": "Pasul 13: Diferența este 6 - 2 = 4.",
       "blocksVisual": [
         {
@@ -220,7 +220,7 @@ int main() {
       ]
     },
     {
-      "line": 31,
+      "line": 25,
       "text": "Pasul 14: crossProduct returnează 4. Semnul pozitiv indică o virare la stânga (orientare trigonometrică / anti-orară).",
       "graphVisual": {
         "nodes": [
@@ -235,7 +235,7 @@ int main() {
       }
     },
     {
-      "line": 28,
+      "line": 22,
       "text": "Pasul 15: Definim al treilea punct de test C_Dreapta = (4, 2).",
       "graphVisual": {
         "nodes": [
@@ -249,7 +249,7 @@ int main() {
       }
     },
     {
-      "line": 32,
+      "line": 26,
       "text": "Pasul 16: Apelăm crossProduct(A, B, C_Dreapta).",
       "graphVisual": {
         "nodes": [
@@ -264,7 +264,7 @@ int main() {
       }
     },
     {
-      "line": 18,
+      "line": 12,
       "text": "Pasul 17: Calculăm componentele vectorilor: (B.x - A.x) = 2 și (C.y - A.y) = 1. Primul produs este 2 * 1 = 2.",
       "blocksVisual": [
         {
@@ -278,7 +278,7 @@ int main() {
       ]
     },
     {
-      "line": 18,
+      "line": 12,
       "text": "Pasul 18: Calculăm celelalte componente: (B.y - A.y) = 2 și (C.x - A.x) = 3. Al doilea produs este 2 * 3 = 6.",
       "blocksVisual": [
         {
@@ -292,7 +292,7 @@ int main() {
       ]
     },
     {
-      "line": 18,
+      "line": 12,
       "text": "Pasul 19: Diferența este 2 - 6 = -4.",
       "blocksVisual": [
         {
@@ -306,7 +306,7 @@ int main() {
       ]
     },
     {
-      "line": 32,
+      "line": 26,
       "text": "Pasul 20: crossProduct returnează -4. Semnul negativ indică o virare la dreapta (orientare orară).",
       "graphVisual": {
         "nodes": [
@@ -321,7 +321,7 @@ int main() {
       }
     },
     {
-      "line": 34,
+      "line": 28,
       "text": "Pasul 21: Afișăm primul rezultat în main: CP pt Coliniar: 0.",
       "blocksVisual": [
         {
@@ -335,7 +335,7 @@ int main() {
       ]
     },
     {
-      "line": 35,
+      "line": 29,
       "text": "Pasul 22: Afișăm al doilea rezultat: CP pt Stanga: 4.",
       "blocksVisual": [
         {
@@ -349,7 +349,7 @@ int main() {
       ]
     },
     {
-      "line": 36,
+      "line": 30,
       "text": "Pasul 23: Afișăm al treilea rezultat: CP pt Dreapta: -4. Execuția se termină cu succes!",
       "blocksVisual": [
         {

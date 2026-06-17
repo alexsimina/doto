@@ -59,7 +59,7 @@ int main() {
 `,
   explanations: [
   {
-    "line": 16,
+    "line": 11,
     "text": "Inițializăm structura DSU pentru 6 elemente (0..5). Fiecare element începe prin a fi propriul său părinte.",
     "blocksVisual": [
       {
@@ -131,7 +131,7 @@ int main() {
     }
   },
   {
-    "line": 33,
+    "line": 28,
     "text": "Apelăm unite(0, 2). Mai întâi căutăm reprezentantul lui 0 cu find(0) care returnează 0.",
     "blocksVisual": [
       {
@@ -203,7 +203,7 @@ int main() {
     }
   },
   {
-    "line": 34,
+    "line": 29,
     "text": "Căutăm reprezentantul lui 2 cu find(2) care returnează 2.",
     "blocksVisual": [
       {
@@ -275,7 +275,7 @@ int main() {
     }
   },
   {
-    "line": 44,
+    "line": 39,
     "text": "Deoarece sunt în mulțimi diferite și rangurile lor sunt egale, legăm 2 sub 0 (parent[2] = 0).",
     "blocksVisual": [
       {
@@ -353,7 +353,7 @@ int main() {
     }
   },
   {
-    "line": 33,
+    "line": 28,
     "text": "Apelăm unite(4, 2). find(4) returnează 4.",
     "blocksVisual": [
       {
@@ -431,7 +431,7 @@ int main() {
     }
   },
   {
-    "line": 34,
+    "line": 29,
     "text": "find(2) îl caută pe părintele lui 2, care este 0. Cum 0 e rădăcină, returnează 0.",
     "blocksVisual": [
       {
@@ -509,7 +509,7 @@ int main() {
     }
   },
   {
-    "line": 41,
+    "line": 36,
     "text": "Legăm 4 sub 0 (parent[4] = 0). Acum mulțimea lui 0 conține elementele {0, 2, 4}.",
     "blocksVisual": [
       {
@@ -592,7 +592,7 @@ int main() {
     }
   },
   {
-    "line": 33,
+    "line": 28,
     "text": "Apelăm unite(3, 1). find(3) returnează 3.",
     "blocksVisual": [
       {
@@ -675,7 +675,7 @@ int main() {
     }
   },
   {
-    "line": 34,
+    "line": 29,
     "text": "find(1) returnează 1.",
     "blocksVisual": [
       {
@@ -758,7 +758,7 @@ int main() {
     }
   },
   {
-    "line": 44,
+    "line": 39,
     "text": "Legăm 1 sub 3 (parent[1] = 3). Mulțimea lui 3 conține {3, 1}.",
     "blocksVisual": [
       {
@@ -846,7 +846,7 @@ int main() {
     }
   },
   {
-    "line": 33,
+    "line": 28,
     "text": "Apelăm unite(5, 3). find(5) returnează 5.",
     "blocksVisual": [
       {
@@ -934,7 +934,7 @@ int main() {
     }
   },
   {
-    "line": 34,
+    "line": 29,
     "text": "find(3) returnează 3.",
     "blocksVisual": [
       {
@@ -1022,7 +1022,7 @@ int main() {
     }
   },
   {
-    "line": 44,
+    "line": 39,
     "text": "Legăm 5 sub 3 (parent[5] = 3). Mulțimea lui 3 conține {3, 1, 5}.",
     "blocksVisual": [
       {
@@ -1115,7 +1115,7 @@ int main() {
     }
   },
   {
-    "line": 33,
+    "line": 28,
     "text": "Acum apelăm unite(0, 5). find(0) returnează 0.",
     "blocksVisual": [
       {
@@ -1208,7 +1208,7 @@ int main() {
     }
   },
   {
-    "line": 34,
+    "line": 29,
     "text": "find(5) ne trimite la 3, iar 3 la el însuși. Returnează 3.",
     "blocksVisual": [
       {
@@ -1301,7 +1301,7 @@ int main() {
     }
   },
   {
-    "line": 44,
+    "line": 39,
     "text": "Rangul lui 0 este mai mare sau egal, deci legăm rădăcina 3 sub 0 (parent[3] = 0). Mulțimile s-au unit!",
     "blocksVisual": [
       {
@@ -1399,7 +1399,7 @@ int main() {
     }
   },
   {
-    "line": 57,
+    "line": 52,
     "text": "Testăm dacă 4 și 1 sunt în aceeași mulțime. Apelăm find(4) care returnează direct rădăcina 0.",
     "blocksVisual": [
       {
@@ -1497,7 +1497,7 @@ int main() {
     }
   },
   {
-    "line": 57,
+    "line": 52,
     "text": "Apelăm find(1). Părintele lui 1 este 3. Cum 3 nu este propriul său părinte, continuăm căutarea recursivă.",
     "blocksVisual": [
       {
@@ -1595,7 +1595,7 @@ int main() {
     }
   },
   {
-    "line": 24,
+    "line": 19,
     "text": "Mergem la părintele lui 3, care este 0. Deoarece 0 este rădăcină (parent[0]=0), returnăm 0.",
     "blocksVisual": [
       {
@@ -1693,7 +1693,7 @@ int main() {
     }
   },
   {
-    "line": 28,
+    "line": 23,
     "text": "Aplicăm Compresia Drumului (Path Compression)! Setăm părintele lui 1 direct la rădăcina 0: parent[1] = 0.",
     "blocksVisual": [
       {
@@ -1791,7 +1791,7 @@ int main() {
     }
   },
   {
-    "line": 57,
+    "line": 52,
     "text": "Ambele find-uri au returnat 0! Elementele sunt în aceeași mulțime. Mesajul 'sunt conectate' este afișat.",
     "blocksVisual": [
       {

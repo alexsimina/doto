@@ -64,7 +64,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 41,
+      "line": 36,
       "text": "Pasul 1: Construim structura Trie primind cuvintele 'he', 'she', 'his', 'hers'. Rădăcina (Root) este creată pe nivelul 0.",
       "graphVisual": {
         "nodes": [
@@ -74,7 +74,7 @@ int main() {
       }
     },
     {
-      "line": 13,
+      "line": 8,
       "text": "Inserare 'he': Creăm nodul 1 ('h') sub Root, și nodul 2 ('e') sub nodul 1. Marcăm nodul 2 ca fiind capăt de cuvânt.",
       "graphVisual": {
         "nodes": [
@@ -89,7 +89,7 @@ int main() {
       }
     },
     {
-      "line": 13,
+      "line": 8,
       "text": "Inserare 'she': Creăm o ramură nouă din Root cu nodul 3 ('s'), apoi nodul 4 ('h') și nodul 5 ('e', capăt de cuvânt).",
       "graphVisual": {
         "nodes": [
@@ -110,7 +110,7 @@ int main() {
       }
     },
     {
-      "line": 13,
+      "line": 8,
       "text": "Inserare 'his': Folosim nodul 1 ('h') existent sub Root. Adăugăm nodul 6 ('i') sub 'h', și nodul 7 ('s', capăt) sub 'i'.",
       "graphVisual": {
         "nodes": [
@@ -135,7 +135,7 @@ int main() {
       }
     },
     {
-      "line": 13,
+      "line": 8,
       "text": "Inserare 'hers': Folosim prefixul 'he' existent (nodurile 1 și 2). Creăm nodul 8 ('r') sub nodul 2, și nodul 9 ('s', capăt) sub nodul 8.",
       "graphVisual": {
         "nodes": [
@@ -164,7 +164,7 @@ int main() {
       }
     },
     {
-      "line": 27,
+      "line": 22,
       "text": "Calcul failure links (BFS): Adăugăm în coadă copiii rădăcinii, adică nodurile 1 ('h') și 3 ('s'). Legăturile lor de eșec vor pointa spre Root (0).",
       "graphVisual": {
         "nodes": [
@@ -179,7 +179,7 @@ int main() {
       }
     },
     {
-      "line": 32,
+      "line": 27,
       "text": "BFS: Procesăm copiii nodului 1 ('h'). Pentru copilul său, nodul 2 ('e'): fail[2] = nxt[fail[1]]['e'] = nxt[0]['e'] = 0 (Root).",
       "graphVisual": {
         "nodes": [
@@ -193,7 +193,7 @@ int main() {
       }
     },
     {
-      "line": 32,
+      "line": 27,
       "text": "BFS: Procesăm următorul copil al nodului 1 ('h'): copilul 6 ('i'). fail[6] = nxt[fail[1]]['i'] = nxt[0]['i'] = 0.",
       "graphVisual": {
         "nodes": [
@@ -207,7 +207,7 @@ int main() {
       }
     },
     {
-      "line": 32,
+      "line": 27,
       "text": "BFS: Procesăm copiii nodului 3 ('s'): copilul 4 ('h'). fail[4] = nxt[fail[3]]['h'] = nxt[0]['h'] = 1 ('h' sub root). Failure link-ul lui 4 pointează spre 1.",
       "graphVisual": {
         "nodes": [
@@ -221,7 +221,7 @@ int main() {
       }
     },
     {
-      "line": 32,
+      "line": 27,
       "text": "BFS: Procesăm copiii nodului 2 ('e'): copilul 8 ('r'). fail[8] = nxt[fail[2]]['r'] = nxt[0]['r'] = 0.",
       "graphVisual": {
         "nodes": [
@@ -235,7 +235,7 @@ int main() {
       }
     },
     {
-      "line": 32,
+      "line": 27,
       "text": "BFS: Procesăm copiii nodului 6 ('i'): copilul 7 ('s'). fail[7] = nxt[fail[6]]['s'] = nxt[0]['s'] = 3 ('s' sub root). Legătura de eșec duce la nodul 3.",
       "graphVisual": {
         "nodes": [
@@ -249,7 +249,7 @@ int main() {
       }
     },
     {
-      "line": 32,
+      "line": 27,
       "text": "BFS: Procesăm copiii nodului 4 ('h'): copilul 5 ('e'). fail[5] = nxt[fail[4]]['e'] = nxt[1]['e'] = 2 ('e' sub 'h'). Legătura de eșec a lui 5 duce la nodul 2.",
       "graphVisual": {
         "nodes": [
@@ -263,7 +263,7 @@ int main() {
       }
     },
     {
-      "line": 32,
+      "line": 27,
       "text": "BFS: Procesăm copiii nodului 8 ('r'): copilul 9 ('s'). fail[9] = nxt[fail[8]]['s'] = nxt[0]['s'] = 3. Legătura de eșec a lui 9 pointează spre nodul 3.",
       "graphVisual": {
         "nodes": [
@@ -277,7 +277,7 @@ int main() {
       }
     },
     {
-      "line": 42,
+      "line": 37,
       "text": "Automatul DFA este complet construit. Acum începem căutarea în textul 'ahishers'. u = 0.",
       "graphVisual": {
         "nodes": [
@@ -287,7 +287,7 @@ int main() {
       }
     },
     {
-      "line": 51,
+      "line": 46,
       "text": "Căutare index 0 ('a'): u = nxt[0]['a'] = 0. Rămânem la Root.",
       "graphVisual": {
         "nodes": [
@@ -297,7 +297,7 @@ int main() {
       }
     },
     {
-      "line": 51,
+      "line": 46,
       "text": "Căutare index 1 ('h'): u = nxt[0]['h'] = 1. Trecem la nodul 1 ('h').",
       "graphVisual": {
         "nodes": [
@@ -308,7 +308,7 @@ int main() {
       }
     },
     {
-      "line": 51,
+      "line": 46,
       "text": "Căutare index 2 ('i'): u = nxt[1]['i'] = 6. Trecem la nodul 6 ('i').",
       "graphVisual": {
         "nodes": [
@@ -319,7 +319,7 @@ int main() {
       }
     },
     {
-      "line": 51,
+      "line": 46,
       "text": "Căutare index 3 ('s'): u = nxt[6]['s'] = 7. Trecem la nodul 7 ('s').",
       "graphVisual": {
         "nodes": [
@@ -330,7 +330,7 @@ int main() {
       }
     },
     {
-      "line": 54,
+      "line": 49,
       "text": "Nodul 7 are cnt[7] = 1, adică reprezintă cuvântul 'his'. Adăugăm 1 la matches. Mergem pe fail[7] = 3. matches = 1.",
       "graphVisual": {
         "nodes": [
@@ -341,7 +341,7 @@ int main() {
       }
     },
     {
-      "line": 51,
+      "line": 46,
       "text": "Căutare index 4 ('h'): u = nxt[7]['h'] = 4. Trecem la nodul 4 ('h' din subarborele 'she').",
       "graphVisual": {
         "nodes": [
@@ -351,7 +351,7 @@ int main() {
       }
     },
     {
-      "line": 51,
+      "line": 46,
       "text": "Căutare index 5 ('e'): u = nxt[4]['e'] = 5. Trecem la nodul 5 ('e' din subarborele 'she').",
       "graphVisual": {
         "nodes": [
@@ -361,7 +361,7 @@ int main() {
       }
     },
     {
-      "line": 54,
+      "line": 49,
       "text": "Nodul 5 este capăt de cuvânt ('she') -> matches = 2. Urmărim fail[5] = 2 ('he' - capăt de cuvânt) -> matches = 3. fail[2] = 0.",
       "graphVisual": {
         "nodes": [
@@ -372,7 +372,7 @@ int main() {
       }
     },
     {
-      "line": 51,
+      "line": 46,
       "text": "Căutare index 6 ('r') și index 7 ('s'): u ajunge la nodul 8 ('r'), apoi la nodul 9 ('s'). Găsim cuvântul 'hers'. matches devine 4. Căutare finalizată cu succes!",
       "graphVisual": {
         "nodes": [

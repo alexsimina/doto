@@ -65,7 +65,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 14,
+      "line": 9,
       "text": "Începem DFS-ul din nodul 1. Îi atribuim `tin[1] = 1`, `low[1] = 1`. Îl punem pe stivă.",
       "blocksVisual": [
         {
@@ -129,7 +129,7 @@ int main() {
       }
     },
     {
-      "line": 20,
+      "line": 15,
       "text": "Nodul 1 apelează recursiv pentru 2, apoi 2 pentru 3. Astfel, 2 și 3 primesc timer-uri succesive și intră pe stivă.",
       "blocksVisual": [
         {
@@ -202,7 +202,7 @@ int main() {
       }
     },
     {
-      "line": 24,
+      "line": 19,
       "text": "Din nodul 3 vedem muchia către 1. Nodul 1 e deja vizitat și pe stivă, deci avem o muchie de întoarcere (back edge). Actualizăm `low[3] = min(low[3], tin[1]) = 1`.",
       "blocksVisual": [
         {
@@ -271,7 +271,7 @@ int main() {
       }
     },
     {
-      "line": 20,
+      "line": 15,
       "text": "Tot din 3, DFS-ul continuă în 4. `tin[4] = 4, low[4] = 4`. Nodul 4 nu are muchii. Deoarece `low[4] == tin[4] == 4`, am găsit o SCC! O extragem din stivă: componenta este doar [4].",
       "blocksVisual": [
         {
@@ -338,7 +338,7 @@ int main() {
       }
     },
     {
-      "line": 21,
+      "line": 16,
       "text": "Ne întoarcem din 3 în 2. Actualizăm `low[2] = min(low[2], low[3]) = 1`. Ne întoarcem din 2 în 1. Actualizăm `low[1] = min(low[1], low[2]) = 1`.",
       "blocksVisual": [
         {
@@ -406,7 +406,7 @@ int main() {
       }
     },
     {
-      "line": 30,
+      "line": 25,
       "text": "Pentru nodul 1, avem `low[1] == tin[1] == 1`. Extragem toate elementele de pe stivă până dăm de 1. Componenta a doua este [3, 2, 1]!",
       "blocksVisual": [
         {

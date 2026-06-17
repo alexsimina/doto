@@ -34,7 +34,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 21,
+      "line": 13,
       "text": "Pornim programul. Inițializăm vectorul de valori val = [60, 100, 120] și greutăți wt = [10, 20, 30].",
       "blocksVisual": [
         {
@@ -47,7 +47,7 @@ int main() {
       ]
     },
     {
-      "line": 23,
+      "line": 15,
       "text": "Setăm capacitatea maximă a rucsacului W = 50.",
       "blocksVisual": [
         {
@@ -57,7 +57,7 @@ int main() {
       ]
     },
     {
-      "line": 25,
+      "line": 17,
       "text": "Apelăm funcția knapsack(W = 50, wt, val, n = 3).",
       "blocksVisual": [
         {
@@ -67,7 +67,7 @@ int main() {
       ]
     },
     {
-      "line": 9,
+      "line": 1,
       "text": "Inițializăm vectorul dp de dimensiune W + 1 cu valori de 0. dp[w] = 0.",
       "blocksVisual": [
         {
@@ -80,7 +80,7 @@ int main() {
       ]
     },
     {
-      "line": 12,
+      "line": 4,
       "text": "i = 0. Considerăm primul obiect (wt[0] = 10, val[0] = 60).",
       "blocksVisual": [
         {
@@ -90,7 +90,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 6,
       "text": "w = 50: dp[50] devine max(dp[50]=0, dp[40]+60 = 60). dp[50] = 60.",
       "blocksVisual": [
         {
@@ -103,7 +103,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 6,
       "text": "w = 40: dp[40] devine max(dp[40]=0, dp[30]+60 = 60). dp[40] = 60.",
       "blocksVisual": [
         {
@@ -116,7 +116,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 6,
       "text": "w = 30: dp[30] devine max(dp[30]=0, dp[20]+60 = 60). dp[30] = 60.",
       "blocksVisual": [
         {
@@ -129,7 +129,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 6,
       "text": "w = 20: dp[20] devine max(dp[20]=0, dp[10]+60 = 60). dp[20] = 60.",
       "blocksVisual": [
         {
@@ -142,7 +142,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 6,
       "text": "w = 10: dp[10] devine max(dp[10]=0, dp[0]+60 = 60). dp[10] = 60.",
       "blocksVisual": [
         {
@@ -155,7 +155,7 @@ int main() {
       ]
     },
     {
-      "line": 12,
+      "line": 4,
       "text": "i = 1. Considerăm al doilea obiect (wt[1] = 20, val[1] = 100).",
       "blocksVisual": [
         {
@@ -165,7 +165,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 6,
       "text": "w = 50: dp[50] devine max(dp[50]=60, dp[30]+100 = 60+100 = 160). dp[50] = 160.",
       "blocksVisual": [
         {
@@ -178,7 +178,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 6,
       "text": "w = 40: dp[40] devine max(dp[40]=60, dp[20]+100 = 60+100 = 160). dp[40] = 160.",
       "blocksVisual": [
         {
@@ -191,7 +191,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 6,
       "text": "w = 30: dp[30] devine max(dp[30]=60, dp[10]+100 = 60+100 = 160). dp[30] = 160.",
       "blocksVisual": [
         {
@@ -204,7 +204,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 6,
       "text": "w = 20: dp[20] devine max(dp[20]=60, dp[0]+100 = 100). dp[20] = 100.",
       "blocksVisual": [
         {
@@ -217,7 +217,7 @@ int main() {
       ]
     },
     {
-      "line": 12,
+      "line": 4,
       "text": "i = 2. Considerăm al treilea obiect (wt[2] = 30, val[2] = 120).",
       "blocksVisual": [
         {
@@ -227,7 +227,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 6,
       "text": "w = 50: dp[50] devine max(dp[50]=160, dp[20]+120 = 100+120 = 220). dp[50] = 220.",
       "blocksVisual": [
         {
@@ -240,7 +240,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 6,
       "text": "w = 40: dp[40] devine max(dp[40]=160, dp[10]+120 = 60+120 = 180). dp[40] = 180.",
       "blocksVisual": [
         {
@@ -253,7 +253,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 6,
       "text": "w = 30: dp[30] devine max(dp[30]=160, dp[0]+120 = 120). dp[30] = 160 (rămâne neschimbat).",
       "blocksVisual": [
         {
@@ -266,7 +266,7 @@ int main() {
       ]
     },
     {
-      "line": 18,
+      "line": 10,
       "text": "Toate obiectele au fost procesate. Returnăm dp[W] = dp[50] = 220.",
       "blocksVisual": [
         {
@@ -276,7 +276,7 @@ int main() {
       ]
     },
     {
-      "line": 25,
+      "line": 17,
       "text": "Afișăm rezultatul final: Valoare Maxima = 220.",
       "blocksVisual": [
         {

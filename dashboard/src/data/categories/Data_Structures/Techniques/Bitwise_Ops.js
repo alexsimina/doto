@@ -33,7 +33,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 10,
+      "line": 4,
       "text": "Reprezentarea binară: numerele sunt procesate la nivel de biți (0 și 1) în memoria calculatorului.",
       "blocksVisual": [
         {
@@ -45,7 +45,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 8,
       "text": "Avem o mulțime de N = 3 elemente distincte: A, B, C.",
       "blocksVisual": [
         {
@@ -57,7 +57,7 @@ int main() {
       ]
     },
     {
-      "line": 17,
+      "line": 11,
       "text": "Numărul total de submulțimi pentru N elemente este 2^N. Calculăm rapid folosind shiftare la stânga: (1 << 3) = 8.",
       "blocksVisual": [
         {
@@ -69,7 +69,7 @@ int main() {
       ]
     },
     {
-      "line": 19,
+      "line": 13,
       "text": "Începem bucla for. Inițializăm masca 'mask' = 0 (în binar: 000).",
       "blocksVisual": [
         {
@@ -81,7 +81,7 @@ int main() {
       ]
     },
     {
-      "line": 24,
+      "line": 18,
       "text": "mask = 0: Verificăm bitul 0 (1 << 0 = 1). Condiția (0 & 1) este Falsă.",
       "blocksVisual": [
         {
@@ -93,7 +93,7 @@ int main() {
       ]
     },
     {
-      "line": 24,
+      "line": 18,
       "text": "mask = 0: Verificăm bitul 1 (1 << 1 = 2). Condiția (0 & 2) este Falsă.",
       "blocksVisual": [
         {
@@ -105,7 +105,7 @@ int main() {
       ]
     },
     {
-      "line": 24,
+      "line": 18,
       "text": "mask = 0: Verificăm bitul 2 (1 << 2 = 4). Condiția (0 & 4) este Falsă.",
       "blocksVisual": [
         {
@@ -117,7 +117,7 @@ int main() {
       ]
     },
     {
-      "line": 20,
+      "line": 14,
       "text": "mask = 0: Niciun bit nu a fost setat. Afișăm submulțimea vidă { }.",
       "blocksVisual": [
         {
@@ -129,7 +129,7 @@ int main() {
       ]
     },
     {
-      "line": 19,
+      "line": 13,
       "text": "Trecem la următoarea mască: mask = 1 (în binar: 001).",
       "blocksVisual": [
         {
@@ -141,7 +141,7 @@ int main() {
       ]
     },
     {
-      "line": 24,
+      "line": 18,
       "text": "mask = 1: Verificăm bitul 0 (1 << 0 = 1). Condiția (1 & 1) este Adevărată! Selectăm 'A'.",
       "blocksVisual": [
         {
@@ -154,7 +154,7 @@ int main() {
       ]
     },
     {
-      "line": 24,
+      "line": 18,
       "text": "mask = 1: Verificăm bitul 1 (1 & 2 = 0 - Fals) și bitul 2 (1 & 4 = 0 - Fals).",
       "blocksVisual": [
         {
@@ -166,7 +166,7 @@ int main() {
       ]
     },
     {
-      "line": 20,
+      "line": 14,
       "text": "mask = 1: Afișăm submulțimea formată doar din elementul 'A': { A }.",
       "blocksVisual": [
         {
@@ -178,7 +178,7 @@ int main() {
       ]
     },
     {
-      "line": 19,
+      "line": 13,
       "text": "Trecem la mask = 2 (în binar: 010).",
       "blocksVisual": [
         {
@@ -190,7 +190,7 @@ int main() {
       ]
     },
     {
-      "line": 24,
+      "line": 18,
       "text": "mask = 2: Verificăm bitul 0 (2 & 1 = 0 - Fals). Verificăm bitul 1 (2 & 2 = 2 - Adevărat!). Selectăm 'B'.",
       "blocksVisual": [
         {
@@ -203,7 +203,7 @@ int main() {
       ]
     },
     {
-      "line": 24,
+      "line": 18,
       "text": "mask = 2: Verificăm bitul 2 (2 & 4 = 0 - Fals). Doar 'B' a fost selectat.",
       "blocksVisual": [
         {
@@ -215,7 +215,7 @@ int main() {
       ]
     },
     {
-      "line": 20,
+      "line": 14,
       "text": "mask = 2: Afișăm submulțimea { B }.",
       "blocksVisual": [
         {
@@ -227,7 +227,7 @@ int main() {
       ]
     },
     {
-      "line": 19,
+      "line": 13,
       "text": "Trecem la mask = 3 (în binar: 011).",
       "blocksVisual": [
         {
@@ -239,7 +239,7 @@ int main() {
       ]
     },
     {
-      "line": 24,
+      "line": 18,
       "text": "mask = 3: Verificăm bitul 0. 3 & 1 = 1 (Adevărat). Selectăm 'A'.",
       "blocksVisual": [
         {
@@ -252,7 +252,7 @@ int main() {
       ]
     },
     {
-      "line": 24,
+      "line": 18,
       "text": "mask = 3: Verificăm bitul 1. 3 & 2 = 2 (Adevărat). Selectăm 'B'. Bitul 2 este 0.",
       "blocksVisual": [
         {
@@ -265,7 +265,7 @@ int main() {
       ]
     },
     {
-      "line": 20,
+      "line": 14,
       "text": "mask = 3: Afișăm submulțimea { A, B }.",
       "blocksVisual": [
         {
@@ -277,7 +277,7 @@ int main() {
       ]
     },
     {
-      "line": 19,
+      "line": 13,
       "text": "Trecem la mask = 4 (în binar: 100). Doar bitul 2 este setat. Afișăm { C }.",
       "blocksVisual": [
         {
@@ -290,7 +290,7 @@ int main() {
       ]
     },
     {
-      "line": 19,
+      "line": 13,
       "text": "Trecem la mask = 5 (în binar: 101). Biții 0 și 2 sunt setați. Afișăm { A, C }.",
       "blocksVisual": [
         {
@@ -303,7 +303,7 @@ int main() {
       ]
     },
     {
-      "line": 19,
+      "line": 13,
       "text": "Trecem la mask = 6 (în binar: 110). Biții 1 și 2 sunt setați. Afișăm { B, C }.",
       "blocksVisual": [
         {
@@ -316,7 +316,7 @@ int main() {
       ]
     },
     {
-      "line": 19,
+      "line": 13,
       "text": "Trecem la ultima mască: mask = 7 (în binar: 111). Toți biții sunt setați.",
       "blocksVisual": [
         {
@@ -328,7 +328,7 @@ int main() {
       ]
     },
     {
-      "line": 20,
+      "line": 14,
       "text": "mask = 7: Toate cele 3 elemente sunt selectate. Afișăm { A, B, C }.",
       "blocksVisual": [
         {
@@ -340,7 +340,7 @@ int main() {
       ]
     },
     {
-      "line": 31,
+      "line": 25,
       "text": "Am parcurs toate cele 8 stări și am generat corect toate submulțimile posibile în O(2^N).",
       "blocksVisual": [
         {

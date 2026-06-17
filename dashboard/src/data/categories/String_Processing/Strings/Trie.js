@@ -66,7 +66,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 50,
+      "line": 43,
       "text": "Inițializăm structura Trie. Rădăcina (Root) este creată ca un nod gol.",
       "graphVisual": {
         "nodes": [
@@ -76,7 +76,7 @@ int main() {
       }
     },
     {
-      "line": 51,
+      "line": 44,
       "text": "Începem inserarea cuvântului 'cat'. Pornim de la nodul Rădăcină (Root).",
       "graphVisual": {
         "nodes": [
@@ -86,7 +86,7 @@ int main() {
       }
     },
     {
-      "line": 28,
+      "line": 21,
       "text": "Inserare 'cat': Verificăm dacă Root are un copil pentru caracterul 'c'. Deoarece nu are, creăm un nod nou.",
       "graphVisual": {
         "nodes": [
@@ -99,7 +99,7 @@ int main() {
       }
     },
     {
-      "line": 33,
+      "line": 26,
       "text": "Mutăm indicatorul curent la nodul nou creat pentru 'c'.",
       "graphVisual": {
         "nodes": [
@@ -112,7 +112,7 @@ int main() {
       }
     },
     {
-      "line": 28,
+      "line": 21,
       "text": "Inserare 'cat': Căutăm copilul pentru 'a' sub nodul 'c'. Negăsindu-l, creăm un nod nou.",
       "graphVisual": {
         "nodes": [
@@ -127,7 +127,7 @@ int main() {
       }
     },
     {
-      "line": 33,
+      "line": 26,
       "text": "Mutăm indicatorul curent la nodul 'a'.",
       "graphVisual": {
         "nodes": [
@@ -142,7 +142,7 @@ int main() {
       }
     },
     {
-      "line": 28,
+      "line": 21,
       "text": "Inserare 'cat': Căutăm copilul pentru 't' sub nodul 'a'. Deoarece nu există, creăm nodul.",
       "graphVisual": {
         "nodes": [
@@ -159,7 +159,7 @@ int main() {
       }
     },
     {
-      "line": 33,
+      "line": 26,
       "text": "Mutăm indicatorul la nodul 't'. Suntem la sfârșitul cuvântului 'cat'.",
       "graphVisual": {
         "nodes": [
@@ -176,7 +176,7 @@ int main() {
       }
     },
     {
-      "line": 35,
+      "line": 28,
       "text": "Marcăm nodul 't' ca fiind sfârșit de cuvânt (isEndOfWord = true). Cuvântul 'cat' a fost inserat.",
       "graphVisual": {
         "nodes": [
@@ -193,7 +193,7 @@ int main() {
       }
     },
     {
-      "line": 52,
+      "line": 45,
       "text": "Începem inserarea cuvântului 'car'. Pornim din nou de la nodul Rădăcină (Root).",
       "graphVisual": {
         "nodes": [
@@ -210,7 +210,7 @@ int main() {
       }
     },
     {
-      "line": 28,
+      "line": 21,
       "text": "Inserare 'car': Root are deja un copil pentru 'c' (nodul 1). Îl refolosim în loc să creăm altul.",
       "graphVisual": {
         "nodes": [
@@ -227,7 +227,7 @@ int main() {
       }
     },
     {
-      "line": 28,
+      "line": 21,
       "text": "Inserare 'car': Nodul 'c' are deja un copil pentru 'a' (nodul 2). Îl refolosim.",
       "graphVisual": {
         "nodes": [
@@ -244,7 +244,7 @@ int main() {
       }
     },
     {
-      "line": 28,
+      "line": 21,
       "text": "Inserare 'car': Căutăm copilul pentru 'r' sub nodul 'a'. Acesta nu există, așa că creăm un nod nou.",
       "graphVisual": {
         "nodes": [
@@ -263,7 +263,7 @@ int main() {
       }
     },
     {
-      "line": 33,
+      "line": 26,
       "text": "Mutăm indicatorul la noul nod 'r'.",
       "graphVisual": {
         "nodes": [
@@ -282,7 +282,7 @@ int main() {
       }
     },
     {
-      "line": 35,
+      "line": 28,
       "text": "Marcăm nodul 'r' ca sfârșit de cuvânt. Acum cuvintele 'cat' și 'car' împart prefixul comun 'ca'.",
       "graphVisual": {
         "nodes": [
@@ -301,7 +301,7 @@ int main() {
       }
     },
     {
-      "line": 53,
+      "line": 46,
       "text": "Începem inserarea cuvântului 'do'. Pornim de la nodul Rădăcină (Root).",
       "graphVisual": {
         "nodes": [
@@ -320,7 +320,7 @@ int main() {
       }
     },
     {
-      "line": 28,
+      "line": 21,
       "text": "Inserare 'do': Căutăm copilul 'd' sub Root. Acesta nu există, așa că creăm o ramură nouă în dreapta.",
       "graphVisual": {
         "nodes": [
@@ -341,7 +341,7 @@ int main() {
       }
     },
     {
-      "line": 33,
+      "line": 26,
       "text": "Mutăm indicatorul la nodul 'd'.",
       "graphVisual": {
         "nodes": [
@@ -362,7 +362,7 @@ int main() {
       }
     },
     {
-      "line": 28,
+      "line": 21,
       "text": "Inserare 'do': Căutăm copilul 'o' sub nodul 'd'. Deoarece nu există, creăm nodul.",
       "graphVisual": {
         "nodes": [
@@ -385,7 +385,7 @@ int main() {
       }
     },
     {
-      "line": 33,
+      "line": 26,
       "text": "Mutăm indicatorul la nodul 'o'.",
       "graphVisual": {
         "nodes": [
@@ -408,7 +408,7 @@ int main() {
       }
     },
     {
-      "line": 35,
+      "line": 28,
       "text": "Marcăm nodul 'o' ca fiind sfârșit de cuvânt. Toate cuvintele dicționarului au fost acum inserate în Trie.",
       "graphVisual": {
         "nodes": [
@@ -431,7 +431,7 @@ int main() {
       }
     },
     {
-      "line": 55,
+      "line": 48,
       "text": "Acum căutăm cuvântul 'cat' în Trie. Pornim din nou de la nodul Rădăcină (Root).",
       "graphVisual": {
         "nodes": [
@@ -454,7 +454,7 @@ int main() {
       }
     },
     {
-      "line": 40,
+      "line": 33,
       "text": "Căutare 'cat': Prima literă este 'c'. Root are un copil 'c' (nodul 1). Coborâm la el.",
       "graphVisual": {
         "nodes": [
@@ -477,7 +477,7 @@ int main() {
       }
     },
     {
-      "line": 40,
+      "line": 33,
       "text": "Căutare 'cat': A doua literă este 'a'. Nodul 'c' are un copil 'a' (nodul 2). Coborâm la el.",
       "graphVisual": {
         "nodes": [
@@ -500,7 +500,7 @@ int main() {
       }
     },
     {
-      "line": 40,
+      "line": 33,
       "text": "Căutare 'cat': A treia literă este 't'. Nodul 'a' are un copil 't' (nodul 3). Coborâm la el.",
       "graphVisual": {
         "nodes": [
@@ -523,7 +523,7 @@ int main() {
       }
     },
     {
-      "line": 45,
+      "line": 38,
       "text": "Căutare 'cat': Am terminat caracterele cuvântului. Nodul 't' (nodul 3) are isEndOfWord = true. Căutarea are succes, returnăm true.",
       "graphVisual": {
         "nodes": [
@@ -546,7 +546,7 @@ int main() {
       }
     },
     {
-      "line": 57,
+      "line": 50,
       "text": "Căutăm acum cuvântul 'ca' (prefix în dicționar). Pornim de la nodul Rădăcină (Root).",
       "graphVisual": {
         "nodes": [
@@ -569,7 +569,7 @@ int main() {
       }
     },
     {
-      "line": 40,
+      "line": 33,
       "text": "Căutare 'ca': Prima literă este 'c'. Coborâm la nodul 1 ('c', state: active).",
       "graphVisual": {
         "nodes": [
@@ -592,7 +592,7 @@ int main() {
       }
     },
     {
-      "line": 40,
+      "line": 33,
       "text": "Căutare 'ca': A doua literă este 'a'. Coborâm la nodul 2 ('a', state: active).",
       "graphVisual": {
         "nodes": [
@@ -615,7 +615,7 @@ int main() {
       }
     },
     {
-      "line": 45,
+      "line": 38,
       "text": "Căutare 'ca': Am parcurs toate literele. Nodul 2 ('a') nu este marcat ca sfârșit de cuvânt (isEndOfWord = false). Returnăm false (negăsit).",
       "graphVisual": {
         "nodes": [

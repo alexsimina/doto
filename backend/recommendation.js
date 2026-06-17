@@ -10,17 +10,18 @@ const TOPIC_HIERARCHY = [
   "Graphs/DFS",
   "Graphs/BFS",
   "Data_Structures/RMQ",
-  "Graphs/Shortest_Paths",
+  "Graphs/Shortest_Path",
   "Graphs/MST",
   "Trees/Fenwick_Tree",
   "Trees/Segment_Trees",
   "Graphs/SCC_Biconnected",
+  "Graphs/Eulerian_Hamiltonian",
   "Strings/Trie",
   "Strings/KMP",
   "Geometry/Computational",
   "Advanced_DP/CHT",
-  "Trees/LCA",
-  "Advanced_Graphs/Max_Flow",
+  "Graphs/LCA",
+  "Graphs/Max_Flow",
   "Strings/Aho_Corasick"
 ];
 

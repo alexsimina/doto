@@ -32,7 +32,7 @@ int main() {
 `,
   "explanations": [
   {
-    "line": 11,
+    "line": 5,
     "text": "Apelăm zTraversal(n = 8, r = 5, c = 2) pentru a găsi valoarea într-o matrice 8x8 la coordonatele (5, 2).",
     "matrix": {
       "headers": [
@@ -403,7 +403,7 @@ int main() {
     }
   },
   {
-    "line": 12,
+    "line": 6,
     "text": "Verificăm dacă n == 1. Deoarece n = 8, condiția este falsă și continuăm.",
     "matrix": {
       "headers": [
@@ -774,7 +774,7 @@ int main() {
     }
   },
   {
-    "line": 14,
+    "line": 8,
     "text": "Calculăm jumătatea dimensiunii: half = 8 / 2 = 4.",
     "matrix": {
       "headers": [
@@ -1145,7 +1145,7 @@ int main() {
     }
   },
   {
-    "line": 15,
+    "line": 9,
     "text": "Calculăm aria unui cadran: area = 4 * 4 = 16. Fiecare din cele 4 cadrane are câte 16 elemente.",
     "matrix": {
       "headers": [
@@ -1516,7 +1516,7 @@ int main() {
     }
   },
   {
-    "line": 17,
+    "line": 11,
     "text": "Testăm dacă suntem în cadranul stânga-sus: r < half && c < half (5 < 4 && 2 < 4). Condiția este falsă.",
     "matrix": {
       "headers": [
@@ -1695,7 +1695,7 @@ int main() {
     }
   },
   {
-    "line": 18,
+    "line": 12,
     "text": "Testăm dacă suntem în cadranul dreapta-sus: r < half && c >= half (5 < 4 && 2 >= 4). Condiția este falsă.",
     "matrix": {
       "headers": [
@@ -1874,7 +1874,7 @@ int main() {
     }
   },
   {
-    "line": 19,
+    "line": 13,
     "text": "Testăm dacă suntem în cadranul stânga-jos: r >= half && c < half (5 >= 4 && 2 < 4). Condiția este adevărată!",
     "matrix": {
       "headers": [
@@ -2053,7 +2053,7 @@ int main() {
     }
   },
   {
-    "line": 19,
+    "line": 13,
     "text": "Sărim primele 2 cadrane complete. Adunăm 2 * area = 32. Apelăm recursiv zTraversal(4, 5-4, 2) => zTraversal(4, 1, 2).",
     "matrix": {
       "headers": [
@@ -2232,7 +2232,7 @@ int main() {
     }
   },
   {
-    "line": 11,
+    "line": 5,
     "text": "Intrăm în noul apel: zTraversal(n = 4, r = 1, c = 2).",
     "matrix": {
       "headers": [
@@ -2411,7 +2411,7 @@ int main() {
     }
   },
   {
-    "line": 12,
+    "line": 6,
     "text": "Verificăm dacă n == 1. Deoarece n = 4, condiția este falsă.",
     "matrix": {
       "headers": [
@@ -2590,7 +2590,7 @@ int main() {
     }
   },
   {
-    "line": 14,
+    "line": 8,
     "text": "Calculăm jumătatea sub-matricei: half = 4 / 2 = 2.",
     "matrix": {
       "headers": [
@@ -2769,7 +2769,7 @@ int main() {
     }
   },
   {
-    "line": 15,
+    "line": 9,
     "text": "Calculăm aria sub-cadranului: area = 2 * 2 = 4.",
     "matrix": {
       "headers": [
@@ -2948,7 +2948,7 @@ int main() {
     }
   },
   {
-    "line": 17,
+    "line": 11,
     "text": "Testăm dacă suntem în cadranul stânga-sus: r < half && c < half (1 < 2 && 2 < 2). Condiția este falsă.",
     "matrix": {
       "headers": [
@@ -3079,7 +3079,7 @@ int main() {
     }
   },
   {
-    "line": 18,
+    "line": 12,
     "text": "Testăm dacă suntem în cadranul dreapta-sus: r < half && c >= half (1 < 2 && 2 >= 2). Condiția este adevărată!",
     "matrix": {
       "headers": [
@@ -3210,7 +3210,7 @@ int main() {
     }
   },
   {
-    "line": 18,
+    "line": 12,
     "text": "Sărim primul cadran complet. Adunăm 1 * area = 4. Apelăm recursiv zTraversal(2, 1, 2-2) => zTraversal(2, 1, 0).",
     "matrix": {
       "headers": [
@@ -3341,7 +3341,7 @@ int main() {
     }
   },
   {
-    "line": 11,
+    "line": 5,
     "text": "Intrăm în următorul apel recursiv: zTraversal(n = 2, r = 1, c = 0).",
     "matrix": {
       "headers": [
@@ -3472,7 +3472,7 @@ int main() {
     }
   },
   {
-    "line": 12,
+    "line": 6,
     "text": "Verificăm dacă n == 1. Deoarece n = 2, continuăm.",
     "matrix": {
       "headers": [
@@ -3603,7 +3603,7 @@ int main() {
     }
   },
   {
-    "line": 14,
+    "line": 8,
     "text": "Calculăm half = 2 / 2 = 1.",
     "matrix": {
       "headers": [
@@ -3734,7 +3734,7 @@ int main() {
     }
   },
   {
-    "line": 15,
+    "line": 9,
     "text": "Calculăm aria sub-cadranului: area = 1 * 1 = 1.",
     "matrix": {
       "headers": [
@@ -3865,7 +3865,7 @@ int main() {
     }
   },
   {
-    "line": 17,
+    "line": 11,
     "text": "Testăm dacă r < half && c < half (1 < 1 && 0 < 1). Fals.",
     "matrix": {
       "headers": [
@@ -3984,7 +3984,7 @@ int main() {
     }
   },
   {
-    "line": 18,
+    "line": 12,
     "text": "Testăm dacă r < half && c >= half (1 < 1 && 0 >= 1). Fals.",
     "matrix": {
       "headers": [
@@ -4103,7 +4103,7 @@ int main() {
     }
   },
   {
-    "line": 19,
+    "line": 13,
     "text": "Testăm dacă r >= half && c < half (1 >= 1 && 0 < 1). Condiția este adevărată!",
     "matrix": {
       "headers": [
@@ -4222,7 +4222,7 @@ int main() {
     }
   },
   {
-    "line": 19,
+    "line": 13,
     "text": "Sărim primele 2 cadrane complete. Adunăm 2 * area = 2. Apelăm recursiv zTraversal(1, 1-1, 0) => zTraversal(1, 0, 0).",
     "matrix": {
       "headers": [
@@ -4341,7 +4341,7 @@ int main() {
     }
   },
   {
-    "line": 11,
+    "line": 5,
     "text": "Intrăm în cazul de bază: zTraversal(n = 1, r = 0, c = 0).",
     "matrix": {
       "headers": [
@@ -4460,7 +4460,7 @@ int main() {
     }
   },
   {
-    "line": 12,
+    "line": 6,
     "text": "Deoarece n == 1, returnăm 0.",
     "matrix": {
       "headers": [
@@ -4579,7 +4579,7 @@ int main() {
     }
   },
   {
-    "line": 28,
+    "line": 22,
     "text": "Toate apelurile de pe stivă s-au evaluat și s-au însumat. Valoarea finală returnată este 38.",
     "matrix": {
       "headers": [

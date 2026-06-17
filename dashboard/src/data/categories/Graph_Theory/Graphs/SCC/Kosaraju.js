@@ -66,7 +66,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 36,
+      "line": 31,
       "text": "Pasul 1 (Kosaraju): Facem DFS pe graful normal pentru a înregistra timpul de finalizare al nodurilor într-o stivă.",
       "blocksVisual": [
         {
@@ -138,7 +138,7 @@ int main() {
       }
     },
     {
-      "line": 12,
+      "line": 7,
       "text": "Când un nod termină de explorat toți vecinii săi, îl punem în stivă. Primul nod care se blochează va fi jos, ultimul care se termină va fi în vârf.",
       "blocksVisual": [
         {
@@ -216,7 +216,7 @@ int main() {
       }
     },
     {
-      "line": 26,
+      "line": 21,
       "text": "Avem Graful Transpus (adjT), unde sensul tuturor muchiilor a fost inversat.",
       "blocksVisual": [
         {
@@ -288,7 +288,7 @@ int main() {
       }
     },
     {
-      "line": 43,
+      "line": 38,
       "text": "Pasul 2: Scoatem noduri din stivă. Extragem primul nod din stivă (cel cu timpul de finalizare maxim).",
       "blocksVisual": [
         {
@@ -360,7 +360,7 @@ int main() {
       }
     },
     {
-      "line": 47,
+      "line": 42,
       "text": "Facem un nou DFS pornind de la acest nod, dar pe Graful Transpus. Toate nodurile la care ajungem din el formează o Componentă Tare Conexă!",
       "blocksVisual": [
         {
@@ -436,7 +436,7 @@ int main() {
       }
     },
     {
-      "line": 49,
+      "line": 44,
       "text": "Am găsit un SCC. Continuăm procesul până când stiva e goală, ignorând nodurile deja vizitate în faza 2.",
       "blocksVisual": [
         {

@@ -423,5 +423,32 @@ int main() {
         "desc": "N^(N-2)"
       }
     ]
+  },
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+      let iVal = 0, jVal = 0;
+      if (stepIndex >= 3) iVal = 1;
+      if (stepIndex >= 6) iVal = 2;
+      if (stepIndex >= 8 && stepIndex <= 10) jVal = 1;
+      if (stepIndex >= 11) iVal = 3;
+      if (stepIndex >= 13) jVal = 1;
+      if (stepIndex >= 14) jVal = 2;
+      if (stepIndex >= 16) { iVal = 4; jVal = 0; }
+      if (stepIndex >= 18) jVal = 1;
+      if (stepIndex >= 19) jVal = 2;
+      if (stepIndex >= 20) jVal = 3;
+      globalVars.push({ name: 'numRows', type: 'int', val: '5', expandable: false });
+      globalVars.push({ name: 'triangle', type: 'vector<vector<int>>', val: `size=${iVal+1}`, expandable: false });
+      vars.push({ name: 'i', type: 'int', val: iVal, expandable: false });
+      if (stepIndex >= 8) vars.push({ name: 'j', type: 'int', val: jVal, expandable: false });
+      frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+      frames.unshift({ name: `pascalTriangle(numRows = 5)`, file: 'main.cpp', line: activeLine });
+      inlineVal = `i: ${iVal}, j: ${jVal}`;
+      return { vars, globalVars, frames, inlineVal };
+    }
   }
 };

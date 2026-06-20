@@ -382,5 +382,13 @@ int main() {
         "desc": "Formatare de text complexă cu reguli stricte de spațiere."
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "alphabet_size",
+    "type": "const int",
+    "val": "26",
+    "expandable": false
   }
+]
 };

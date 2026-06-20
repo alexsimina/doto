@@ -318,6 +318,61 @@ export const data = {
           ]
         }
       ]
+    },
+  ],
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+      let nodeVal = -1;
+      const eulerArr = [];
+      if (stepIndex >= 1) { nodeVal = 0; eulerArr.push(0); }
+      if (stepIndex >= 3) { nodeVal = 1; eulerArr.push(1); }
+      if (stepIndex >= 5) { nodeVal = 3; eulerArr.push(3); }
+      if (stepIndex >= 7) { eulerArr.push(1); }
+      if (stepIndex >= 9) { nodeVal = 4; eulerArr.push(4); }
+      if (stepIndex >= 11) { eulerArr.push(0); }
+      globalVars.push({ name: 'euler', type: 'std::vector<int>', val: eulerArr.length > 0 ? `[${eulerArr.join(', ')}]` : '[]', expandable: false });
+      globalVars.push({ name: 'st[MAXN][LOGN]', type: 'int[][]', val: 'Sparse Table for RMQ', expandable: false });
+      if (nodeVal !== -1) vars.push({ name: 'node', type: 'int', val: nodeVal, expandable: false });
+      frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+      frames.unshift({ name: stepIndex >= 9 ? 'queryLCA(u, v)' : `dfsEuler(node=${nodeVal !== -1 ? nodeVal : 0})`, file: 'solution.cpp', line: activeLine });
+      if (nodeVal !== -1) inlineVal = `node: ${nodeVal}`;
+      return { vars, globalVars, frames, inlineVal };
+    },
+    "getGraphVisual": (stepIndex) => {
+      let nodeVal = -1;
+      if (stepIndex >= 1) { nodeVal = 0; }
+      if (stepIndex >= 3) { nodeVal = 1; }
+      if (stepIndex >= 5) { nodeVal = 3; }
+      if (stepIndex >= 9) { nodeVal = 4; }
+
+      const staticNodes = [
+        { id: "1", x: 150, y: 50, label: "1" },
+        { id: "2", x: 100, y: 100, label: "2" },
+        { id: "3", x: 200, y: 100, label: "3" },
+        { id: "4", x: 50, y: 150, label: "4" },
+        { id: "5", x: 150, y: 150, label: "5" }
+      ];
+      const staticEdges = [
+        { source: "1", target: "2" },
+        { source: "1", target: "3" },
+        { source: "2", target: "4" },
+        { source: "2", target: "5" }
+      ];
+
+      return {
+        directed: false,
+        nodes: staticNodes.map(n => {
+          const idNum = parseInt(n.id);
+          let state = undefined;
+          if (idNum === nodeVal + 1) state = "active";
+          return { ...n, state };
+        }),
+        edges: staticEdges
+      };
     }
-  ]
+  }
 };

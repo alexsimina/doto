@@ -499,5 +499,13 @@ int main() {
         "desc": "Determinarea numărului de parole valide folosind programare dinamică pe stările automatului Aho-Corasick."
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "link",
+    "type": "int[MAX_STATES]",
+    "val": "Suffix failure links",
+    "expandable": false
   }
+]
 };

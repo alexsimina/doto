@@ -659,5 +659,13 @@ int main() {
         "desc": "Căutarea simultană a mai multor cuvinte într-o matrice folosind DFS combinat cu un Trie."
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "root",
+    "type": "TrieNode*",
+    "val": "0x7ffeb073",
+    "expandable": false
   }
+]
 };

@@ -6844,5 +6844,13 @@ export const data = {
         "desc": "AIB bidimensional pentru sume pe submatrice"
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "aib",
+    "type": "std::vector<int>",
+    "val": "Fenwick Tree binary representation",
+    "expandable": false
   }
+]
 };

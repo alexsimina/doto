@@ -1511,5 +1511,13 @@ export const data = {
         "desc": "Utilizarea vectorilor de frecvență glisanți (sliding window frequency)."
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "freq",
+    "type": "int[100005]",
+    "val": "Global frequency table",
+    "expandable": false
   }
+]
 };

@@ -283,5 +283,13 @@ int main() {
         "desc": "Mo's on Trees"
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "block_size",
+    "type": "int",
+    "val": "316",
+    "expandable": false
   }
+]
 };

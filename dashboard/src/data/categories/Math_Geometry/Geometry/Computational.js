@@ -395,5 +395,27 @@ int main() {
         "desc": "Divide et Impera sau Sweepline O(N log N)"
       }
     ]
+  },
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+      const pointA = { x: 1, y: 1 }, pointB = { x: 3, y: 3 };
+      globalVars.push({ name: 'A', type: 'Point', val: '{1, 1}', expandable: false });
+      globalVars.push({ name: 'B', type: 'Point', val: '{3, 3}', expandable: false });
+      let cpResult = 0;
+      let cName = 'C_Coliniar';
+      if (stepIndex <= 8) { cName = 'C_Coliniar'; cpResult = 0; }
+      else if (stepIndex <= 14) { cName = 'C_Stanga'; cpResult = 4; }
+      else { cName = 'C_Dreapta'; cpResult = -4; }
+      vars.push({ name: cName, type: 'Point', val: cName === 'C_Coliniar' ? '{5,5}' : cName === 'C_Stanga' ? '{2,4}' : '{4,2}', expandable: false });
+      if (stepIndex >= 4) vars.push({ name: 'cp', type: 'long long', val: cpResult, expandable: false });
+      frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+      if (stepIndex >= 4 && stepIndex <= 7) frames.unshift({ name: `crossProduct(A, B, ${cName})`, file: 'main.cpp', line: activeLine });
+      inlineVal = stepIndex >= 4 ? `cp: ${cpResult}` : null;
+      return { vars, globalVars, frames, inlineVal };
+    }
   }
 };

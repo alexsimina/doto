@@ -361,5 +361,36 @@ int main() {
         "desc": "Fibonacci uriaș cu matrici"
       }
     ]
+  },
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+      const gcdFrames = [
+        [34, 21], [21, 34], [13, 21], [8, 13], [5, 8], [3, 5], [2, 3], [1, 2], [0, 1]
+      ];
+      globalVars.push({ name: 'a', type: 'long long', val: '34', expandable: false });
+      globalVars.push({ name: 'b', type: 'long long', val: '21', expandable: false });
+      const depth = Math.min(stepIndex, 8);
+      for (let d = 0; d <= depth; d++) {
+        const f = gcdFrames[d];
+        frames.push({ name: `gcdExtended(${f[0]}, ${f[1]})`, file: 'main.cpp', line: d === depth ? activeLine : 15 });
+      }
+      frames.push({ name: 'main()', file: 'main.cpp', line: 26 });
+      frames.reverse();
+      if (stepIndex >= 10) {
+        const xVals = [null, 1, -1, 2, -3, 5, -8, 13, -8];
+        const yVals = [null, 0, 1, -1, 2, -3, 5, -8, 13];
+        const idx = Math.min(stepIndex - 10, 8);
+        if (idx >= 0) {
+          vars.push({ name: 'x', type: 'long long', val: xVals[idx] ?? 0, expandable: false });
+          vars.push({ name: 'y', type: 'long long', val: yVals[idx] ?? 1, expandable: false });
+        }
+      }
+      inlineVal = depth > 0 ? `depth: ${depth}` : null;
+      return { vars, globalVars, frames, inlineVal };
+    }
   }
 };

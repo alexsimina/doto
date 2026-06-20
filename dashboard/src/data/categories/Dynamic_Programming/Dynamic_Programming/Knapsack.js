@@ -308,5 +308,13 @@ int main() {
         "desc": "DP bazat pe 0/1 Knapsack"
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "dp",
+    "type": "int[105][1005]",
+    "val": "DP values grid",
+    "expandable": false
   }
+]
 };

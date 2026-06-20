@@ -234,5 +234,13 @@ int main() {
         "desc": "Necesită un Deque (mai avansat)"
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "CAPACITY",
+    "type": "const int",
+    "val": "1000",
+    "expandable": false
   }
+]
 };

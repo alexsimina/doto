@@ -491,5 +491,13 @@ export const data = {
         "desc": "Găsirea maximului pe ferestre glisante în timp liniar folosind un Deque monoton."
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "dq",
+    "type": "std::deque<int>",
+    "val": "Deque double-ended storage",
+    "expandable": false
   }
+]
 };

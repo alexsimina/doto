@@ -271,5 +271,13 @@ int main() {
         "desc": "Meet in the Middle pe Leetcode"
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "first_half",
+    "type": "std::vector<int>",
+    "val": "{0, 3, 5, 8, 12}",
+    "expandable": false
   }
+]
 };

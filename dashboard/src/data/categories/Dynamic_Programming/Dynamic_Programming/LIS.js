@@ -355,5 +355,13 @@ int main() {
         "desc": "2D LIS. Sortare + LIS O(N log N)"
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "dp",
+    "type": "std::vector<int>",
+    "val": "LIS lengths array",
+    "expandable": false
   }
+]
 };

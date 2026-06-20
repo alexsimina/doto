@@ -513,5 +513,30 @@ int main() {
         "desc": "Primes between L and R"
       }
     ]
+  },
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+      let p = 2;
+      if (stepIndex >= 14) p = 3;
+      if (stepIndex >= 22) p = 4;
+      if (stepIndex >= 23) p = 5;
+      globalVars.push({ name: 'estePrim', type: 'vector<bool>', val: '[2..20]', expandable: false });
+      globalVars.push({ name: 'n', type: 'int', val: '20', expandable: false });
+      if (stepIndex >= 2) vars.push({ name: 'p', type: 'int', val: p, expandable: false });
+      if (stepIndex >= 4 && stepIndex <= 23) {
+        let iVal = p * p;
+        if (stepIndex >= 12) iVal = 20;
+        if (stepIndex >= 14) iVal = 9;
+        vars.push({ name: 'i', type: 'int', val: iVal, expandable: false });
+      }
+      frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+      if (stepIndex >= 2) frames.unshift({ name: `ciurulLuiEratostene(n = 20)`, file: 'main.cpp', line: activeLine });
+      if (stepIndex >= 2) inlineVal = `p: ${p}`;
+      return { vars, globalVars, frames, inlineVal };
+    }
   }
 };

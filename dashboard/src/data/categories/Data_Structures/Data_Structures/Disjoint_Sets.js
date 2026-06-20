@@ -1868,5 +1868,19 @@ export const data = {
         "desc": "Sortare Offline + DSU"
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "parent",
+    "type": "std::vector<int>",
+    "val": "{0, 1, 2, 3, 4, 5}",
+    "expandable": true
+  },
+  {
+    "name": "rank",
+    "type": "std::vector<int>",
+    "val": "{0, 0, 0, 0, 0, 0}",
+    "expandable": true
   }
+]
 };

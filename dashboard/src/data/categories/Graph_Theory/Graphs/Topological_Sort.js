@@ -401,6 +401,84 @@ export const data = {
           ]
         }
       ]
+    },
+  ],
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+      const inDegCurr = [0, 0, 2, 1, 2];
+      const topOrder = [];
+      const qState = [];
+      let uVal = -1, vVal = -1;
+      if (stepIndex >= 4) { }
+      if (stepIndex >= 7) { qState.push(0); }
+      if (stepIndex >= 9) { qState.push(1); }
+      if (stepIndex >= 13) { uVal = 0; }
+      if (stepIndex >= 14) { if (qState.length) qState.shift(); topOrder.push(0); }
+      if (stepIndex >= 16) { vVal = 2; inDegCurr[2] = 1; }
+      if (stepIndex >= 19) { uVal = 1; topOrder.push(1); }
+      if (stepIndex >= 21) { inDegCurr[2] = 0; qState.push(2); vVal = 2; }
+      if (stepIndex >= 22) { uVal = 2; topOrder.push(2); }
+      if (stepIndex >= 23) { topOrder.push(3, 4); }
+      globalVars.push({ name: 'adj', type: 'std::vector<std::vector<int>>', val: '5-node DAG', expandable: true });
+      globalVars.push({ name: 'inDegree', type: 'std::vector<int>', val: `{${inDegCurr.join(', ')}}`, expandable: false });
+      if (uVal !== -1) vars.push({ name: 'u', type: 'int', val: uVal, expandable: false });
+      if (vVal !== -1) vars.push({ name: 'v', type: 'int', val: vVal, expandable: false });
+      vars.push({ name: 'q', type: 'std::queue<int>', val: qState.length > 0 ? `{${qState.join(', ')}}` : 'empty', expandable: false });
+      vars.push({ name: 'topOrder', type: 'std::vector<int>', val: topOrder.length > 0 ? `[${topOrder.join(', ')}]` : '[]', expandable: false });
+      frames.push({ name: 'main()', file: 'main.cpp', line: 44 });
+      if (stepIndex >= 1) frames.unshift({ name: 'topologicalSort(V=5, adj)', file: 'solution.cpp', line: activeLine });
+      if (uVal !== -1) inlineVal = `u: ${uVal}`;
+      else if (vVal !== -1) inlineVal = `v: ${vVal}`;
+      return { vars, globalVars, frames, inlineVal };
+    },
+    "getGraphVisual": (stepIndex) => {
+      const topOrder = [];
+      const qState = [];
+      let uVal = -1, vVal = -1;
+      if (stepIndex >= 7) { qState.push(0); }
+      if (stepIndex >= 9) { qState.push(1); }
+      if (stepIndex >= 13) { uVal = 0; }
+      if (stepIndex >= 14) { topOrder.push(0); }
+      if (stepIndex >= 16) { vVal = 2; }
+      if (stepIndex >= 19) { uVal = 1; topOrder.push(1); }
+      if (stepIndex >= 21) { qState.push(2); vVal = 2; }
+      if (stepIndex >= 22) { uVal = 2; topOrder.push(2); }
+      if (stepIndex >= 23) { topOrder.push(3, 4); }
+
+      const staticNodes = [
+        { id: "0", x: 50, y: 50, label: "0" },
+        { id: "1", x: 230, y: 50, label: "1" },
+        { id: "2", x: 140, y: 130, label: "2" },
+        { id: "3", x: 80, y: 200, label: "3" },
+        { id: "4", x: 200, y: 200, label: "4" }
+      ];
+      const staticEdges = [
+        { source: "0", target: "2" },
+        { source: "1", target: "2" },
+        { source: "2", target: "3" },
+        { source: "2", target: "4" },
+        { source: "3", target: "4" }
+      ];
+
+      return {
+        directed: true,
+        nodes: staticNodes.map(n => {
+          const idNum = parseInt(n.id);
+          let state = undefined;
+          if (idNum === uVal || idNum === vVal) state = "active";
+          else if (topOrder.includes(idNum)) state = "visited";
+          return { ...n, state };
+        }),
+        edges: staticEdges.map(e => {
+          const u = parseInt(e.source), v = parseInt(e.target);
+          const active = (u === uVal && v === vVal);
+          return { ...e, active };
+        })
+      };
     }
-  ]
+  }
 };

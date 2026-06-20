@@ -473,5 +473,13 @@ int main() {
         "desc": "Construirea unui șir inteligent și utilizarea KMP pentru a găsi cel mai lung prefix palindromic."
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "pi",
+    "type": "std::vector<int>",
+    "val": "{0, 0, 1, 2, 0, 1}",
+    "expandable": false
   }
+]
 };

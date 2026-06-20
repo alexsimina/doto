@@ -315,6 +315,76 @@ export const data = {
           ]
         }
       ]
+    },
+  ],
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+      const parent = [0, 1, 2, 3];
+      let mstCost = 0;
+      let uVal = -1, vVal = -1, wVal = -1;
+      if (stepIndex >= 4) { uVal = 2; vVal = 3; wVal = 4; parent[3] = 2; mstCost = 4; }
+      if (stepIndex >= 5) { uVal = 0; vVal = 3; wVal = 5; parent[0] = 2; mstCost = 9; }
+      if (stepIndex >= 6) { uVal = 0; vVal = 2; wVal = 6; }
+      if (stepIndex >= 7) { uVal = 0; vVal = 1; wVal = 10; parent[1] = 2; mstCost = 19; }
+      if (stepIndex >= 8) { uVal = 1; vVal = 3; wVal = 15; }
+      globalVars.push({ name: 'edges', type: 'std::vector<Edge>', val: '[2-3:4, 0-3:5, 0-2:6, 0-1:10, 1-3:15]', expandable: false });
+      globalVars.push({ name: 'parent (DSU)', type: 'std::vector<int>', val: `{${parent.join(', ')}}`, expandable: false });
+      vars.push({ name: 'mst_cost', type: 'int', val: mstCost, expandable: false });
+      if (uVal !== -1) vars.push({ name: 'e.u', type: 'int', val: uVal, expandable: false });
+      if (vVal !== -1) vars.push({ name: 'e.v', type: 'int', val: vVal, expandable: false });
+      if (wVal !== -1) vars.push({ name: 'e.w', type: 'int', val: wVal, expandable: false });
+      frames.push({ name: 'main()', file: 'main.cpp', line: 46 });
+      if (stepIndex >= 1) frames.unshift({ name: 'kruskal(V=4, edges)', file: 'solution.cpp', line: activeLine });
+      if (uVal !== -1) inlineVal = `e: ${uVal}-${vVal} w:${wVal}, mst: ${mstCost}`;
+      else inlineVal = `mst_cost: ${mstCost}`;
+      return { vars, globalVars, frames, inlineVal };
+    },
+    "getGraphVisual": (stepIndex) => {
+      let uVal = -1, vVal = -1;
+      if (stepIndex >= 4) { uVal = 2; vVal = 3; }
+      if (stepIndex >= 5) { uVal = 0; vVal = 3; }
+      if (stepIndex >= 6) { uVal = 0; vVal = 2; }
+      if (stepIndex >= 7) { uVal = 0; vVal = 1; }
+      if (stepIndex >= 8) { uVal = 1; vVal = 3; }
+
+      const staticNodes = [
+        { id: "0", x: 80, y: 50, label: "0" },
+        { id: "1", x: 200, y: 50, label: "1" },
+        { id: "2", x: 80, y: 160, label: "2" },
+        { id: "3", x: 200, y: 160, label: "3" }
+      ];
+      const staticEdges = [
+        { source: "0", target: "1", weight: 10 },
+        { source: "0", target: "2", weight: 6 },
+        { source: "0", target: "3", weight: 5 },
+        { source: "1", target: "3", weight: 15 },
+        { source: "2", target: "3", weight: 4 }
+      ];
+
+      return {
+        directed: false,
+        nodes: staticNodes.map(n => {
+          const idNum = parseInt(n.id);
+          let state = undefined;
+          if (idNum === uVal || idNum === vVal) state = "active";
+          else if (stepIndex >= 7) state = "visited";
+          else if (stepIndex >= 5 && (idNum === 0 || idNum === 2 || idNum === 3)) state = "visited";
+          else if (stepIndex >= 4 && (idNum === 2 || idNum === 3)) state = "visited";
+          return { ...n, state };
+        }),
+        edges: staticEdges.map(e => {
+          const u = parseInt(e.source), v = parseInt(e.target);
+          let active = false;
+          if (stepIndex >= 7 && ((u === 0 && v === 1) || (u === 0 && v === 3) || (u === 2 && v === 3))) active = true;
+          else if (stepIndex >= 5 && ((u === 0 && v === 3) || (u === 2 && v === 3))) active = true;
+          else if (stepIndex >= 4 && (u === 2 && v === 3)) active = true;
+          return { ...e, active };
+        })
+      };
     }
-  ]
+  }
 };

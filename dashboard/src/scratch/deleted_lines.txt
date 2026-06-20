@@ -1,0 +1,534 @@
+-  const globalVars = [];
+-  const cat = typeof category === 'string' ? category : '';
+-
+-  if (cat.includes('Number_Theory')) {
+-    globalVars.push({ name: 'MOD', type: 'const int', val: '1000000007', expandable: false });
+-    globalVars.push({ name: 'is_prime', type: 'bool[1000005]', val: '(Ciurul lui Eratostene pentru prime)', expandable: false });
+-  }
+-  else if (cat.includes('Combinatorics')) {
+-    globalVars.push({ name: 'MOD', type: 'const int', val: '1000000007', expandable: false });
+-    globalVars.push({ name: 'fact', type: 'int[100005]', val: '(Vector precalculare factoriale)', expandable: false });
+-  }
+-  else if (cat.includes('Computational') || cat.includes('Geometry')) {
+-    globalVars.push({ name: 'EPS', type: 'const double', val: '1e-9', expandable: false });
+-    globalVars.push({ name: 'INF', type: 'const double', val: '1e18', expandable: false });
+-  }
+-  else if (cat.includes('Math/Advanced')) {
+-    globalVars.push({ name: 'MOD', type: 'const int', val: '1000000007', expandable: false });
+-  }
+-  else if (cat.includes('Game_Theory')) {
+-    globalVars.push({ name: 'memo', type: 'int[10005]', val: '{-1, -1, -1, ...} (DP cache)', expandable: false });
+-  }
+-  else if (cat.includes('Linear_Algebra')) {
+-    globalVars.push({ name: 'MOD', type: 'const int', val: '1000000007', expandable: false });
+-  }
+-  else if (cat.includes('Data_Structures/Basics')) {
+-    globalVars.push({ name: 'CAPACITY', type: 'const int', val: '1000', expandable: false });
+-  }
+-  else if (cat.includes('Sorting')) {
+-    globalVars.push({ name: 'MAXN', type: 'const int', val: '100000', expandable: false });
+-  }
+-  else if (cat.includes('Two_Pointers')) {
+-    globalVars.push({ name: 'INF', type: 'const int', val: '1e9', expandable: false });
+-  }
+-  else if (cat === 'Strings') {
+-    globalVars.push({ name: 'alphabet_size', type: 'const int', val: '26', expandable: false });
+-  }
+-  else if (cat.includes('Strings/Trie')) {
+-    globalVars.push({ name: 'root', type: 'TrieNode*', val: '0x7ffeb073', expandable: false });
+-  }
+-  else if (cat.includes('Strings/KMP')) {
+-    globalVars.push({ name: 'pi', type: 'std::vector<int>', val: '{0, 0, 1, 2, 0, 1}', expandable: false });
+-  }
+-  else if (cat.includes('Strings/Aho_Corasick')) {
+-    globalVars.push({ name: 'link', type: 'int[MAX_STATES]', val: 'Suffix failure links', expandable: false });
+-  }
+-  else if (cat.includes('Strings/Suffix_Structures')) {
+-    globalVars.push({ name: 'sa', type: 'int[MAXN]', val: 'Suffix array representation', expandable: false });
+-  }
+-  else if (cat.includes('Backtracking')) {
+-    globalVars.push({ name: 'sol', type: 'int[20]', val: '{0, 0, 0, ...}', expandable: false });
+-    globalVars.push({ name: 'visited', type: 'bool[20]', val: '{false, false, ...}', expandable: false });
+-  }
+-  else if (cat.includes('Greedy')) {
+-    globalVars.push({ name: 'INF', type: 'const int', val: '1e9', expandable: false });
+-  }
+-  else if (cat.includes('Meet_in_the_Middle')) {
+-    globalVars.push({ name: 'first_half', type: 'std::vector<int>', val: '{0, 3, 5, 8, 12}', expandable: false });
+-  }
+-  else if (cat.includes('Square_Root_Decomp')) {
+-    globalVars.push({ name: 'block_size', type: 'int', val: '316', expandable: false });
+-    globalVars.push({ name: 'blocks', type: 'int[317]', val: 'Precomputed block sums', expandable: false });
+-  }
+-  else if (cat.includes('Mo_Algorithm')) {
+-    globalVars.push({ name: 'block_size', type: 'int', val: '316', expandable: false });
+-  }
+-  else if (cat.includes('Knapsack')) {
+-    globalVars.push({ name: 'dp', type: 'int[105][1005]', val: 'DP values grid', expandable: false });
+-  }
+-  else if (cat.includes('LCS')) {
+-    globalVars.push({ name: 'dp', type: 'int[1005][1005]', val: 'LCS length table', expandable: false });
+-  }
+-  else if (cat.includes('LIS')) {
+-    globalVars.push({ name: 'dp', type: 'std::vector<int>', val: 'LIS lengths array', expandable: false });
+-  }
+-  else if (cat.includes('Trees_Graphs') && cat.includes('DP')) {
+-    globalVars.push({ name: 'dp', type: 'int[MAXN][2]', val: 'DP states on trees/graphs', expandable: false });
+-  }
+-  else if (cat.includes('Exponential_States')) {
+-    globalVars.push({ name: 'dp', type: 'int[1 << N][N]', val: 'Bitmask DP table', expandable: false });
+-  }
+-  else if (cat.includes('CHT')) {
+-    globalVars.push({ name: 'hull', type: 'std::vector<Line>', val: 'Active lines in hull', expandable: false });
+-  }
+-  else if (cat.includes('Bitwise_Ops')) {
+-    globalVars.push({ name: 'BITS', type: 'const int', val: '32', expandable: false });
+-  }
+-  else if (cat.includes('Difference_Arrays')) {
+-    globalVars.push({ name: 'diff', type: 'std::vector<int>&', val: 'Vector of differences', expandable: false });
+-  }
+-  else if (cat.includes('RMQ')) {
+-    globalVars.push({ name: 'st', type: 'int[MAXN][LOGMAX]', val: 'Sparse Table grid', expandable: false });
+-  }
+-  else if (cat.includes('Disjoint_Sets')) {
+-    globalVars.push({ name: 'parent', type: 'std::vector<int>', val: '{0, 1, 2, 3, 4, 5}', expandable: true });
+-    globalVars.push({ name: 'rank', type: 'std::vector<int>', val: '{0, 0, 0, 0, 0, 0}', expandable: true });
+-  }
+-  else if (cat.includes('Fenwick_Tree')) {
+-    globalVars.push({ name: 'aib', type: 'std::vector<int>', val: 'Fenwick Tree binary representation', expandable: false });
+-  }
+-  else if (cat.includes('Segment_Trees')) {
+-    globalVars.push({ name: 'tree', type: 'std::vector<int>', val: 'size = 4N', expandable: false });
+-    globalVars.push({ name: 'lazy', type: 'std::vector<int>', val: 'size = 4N (lazy updates)', expandable: false });
+-  }
+-  else if (cat.includes('Frequency_Vectors')) {
+-    globalVars.push({ name: 'freq', type: 'int[100005]', val: 'Global frequency table', expandable: false });
+-  }
+-  else if (cat.includes('Stack')) {
+-    globalVars.push({ name: 'st', type: 'std::stack<int>', val: 'Main evaluation stack', expandable: false });
+-  }
+-  else if (cat.includes('Queue_Deque')) {
+-    globalVars.push({ name: 'dq', type: 'std::deque<int>', val: 'Deque double-ended storage', expandable: false });
+-  }
+-  else if (cat.includes('Priority_Queue')) {
+-    globalVars.push({ name: 'pq', type: 'std::priority_queue<int>', val: 'Priority Queue (max-heap)', expandable: false });
+-  }
+-  else if (cat.includes('Graphs/Basics')) {
+-    globalVars.push({ name: 'adj', type: 'std::vector<std::vector<int>>', val: 'Graph adjacency list', expandable: false });
+-  }
+-  else if (cat.includes('Topological_Sort')) {
+-    globalVars.push({ name: 'adj', type: 'std::vector<std::vector<int>>', val: 'Graph adjacency list', expandable: false });
+-    globalVars.push({ name: 'in_degree', type: 'std::vector<int>', val: 'In-degree array', expandable: false });
+-  }
+-  else if (cat.includes('SCC_Biconnected') || cat.includes('SCC')) {
+-    globalVars.push({ name: 'adj', type: 'std::vector<std::vector<int>>&', val: 'Graph adjacency list', expandable: false });
+-    globalVars.push({ name: 'dfn', type: 'int[MAXN]', val: 'Discovery times array', expandable: false });
+-    globalVars.push({ name: 'low', type: 'int[MAXN]', val: 'Low link values array', expandable: false });
+-  }
+-  else if (cat.includes('Eulerian_Hamiltonian') || cat.includes('Euler_Hamilton')) {
+-    globalVars.push({ name: 'adj', type: 'std::vector<std::vector<int>>&', val: 'Graph adjacency list', expandable: false });
+-    globalVars.push({ name: 'circuit', type: 'std::vector<int>', val: 'Constructed Eulerian circuit', expandable: false });
+-  }
+-  else if (cat.includes('Shortest_Path/Dijkstra')) {
+-    globalVars.push({ name: 'INF', type: 'const int', val: '1e9', expandable: false });
+-    globalVars.push({ name: 'dist', type: 'std::vector<int>', val: '{0, 10, 3, INF, INF}', expandable: false });
+-  }
+-  else if (cat.includes('Shortest_Path/Bellman_Ford')) {
+-    globalVars.push({ name: 'INF', type: 'const int', val: '1e9', expandable: false });
+-    globalVars.push({ name: 'dist', type: 'std::vector<int>', val: '{0, 6, 7, INF, INF}', expandable: false });
+-  }
+-  else if (cat.includes('Shortest_Path/Floyd_Warshall')) {
+-    globalVars.push({ name: 'INF', type: 'const int', val: '1e9', expandable: false });
+-    globalVars.push({ name: 'dist[105][105]', type: 'int[][]', val: 'Matrix of all-pairs shortest paths', expandable: false });
+-  }
+-  else if (cat.includes('Shortest_Path')) {
+-    globalVars.push({ name: 'INF', type: 'const int', val: '1e9', expandable: false });
+-  }
+-  else if (cat.includes('MST/Kruskal')) {
+-    globalVars.push({ name: 'edges', type: 'std::vector<Edge>', val: 'Sorted edges list', expandable: false });
+-    globalVars.push({ name: 'parent', type: 'std::vector<int>', val: 'DSU parents array', expandable: false });
+-  }
+-  else if (cat.includes('MST/Prim')) {
+-    globalVars.push({ name: 'adj', type: 'std::vector<std::vector<Edge>>&', val: 'Weighted graph adjacency list', expandable: false });
+-    globalVars.push({ name: 'visited', type: 'std::vector<bool>', val: 'MST inclusion states', expandable: false });
+-  }
+-  else if (cat.includes('MST')) {
+-    globalVars.push({ name: 'INF', type: 'const int', val: '1e9', expandable: false });
+-  }
+-  else if (cat.includes('SCC/Kosaraju')) {
+-    globalVars.push({ name: 'adj', type: 'std::vector<std::vector<int>>&', val: 'Graph adjacency list', expandable: false });
+-    globalVars.push({ name: 'adjT', type: 'std::vector<std::vector<int>>&', val: 'Transposed graph adjacency list', expandable: false });
+-  }
+-  else if (cat.includes('SCC/Tarjan')) {
+-    globalVars.push({ name: 'adj', type: 'std::vector<std::vector<int>>&', val: 'Graph adjacency list', expandable: false });
+-    globalVars.push({ name: 'ids', type: 'int[MAXN]', val: 'Node discovery IDs', expandable: false });
+-    globalVars.push({ name: 'low', type: 'int[MAXN]', val: 'Node lowest reachable links', expandable: false });
+-  }
+-  else if (cat.includes('Max_Flow/Edmonds_Karp')) {
+-    globalVars.push({ name: 'capacity', type: 'int[MAXN][MAXN]', val: 'Residual capacity matrix', expandable: false });
+-    globalVars.push({ name: 'parent', type: 'std::vector<int>', val: 'BFS path parents', expandable: false });
+-  }
+-  else if (cat.includes('Max_Flow/Dinic')) {
+-    globalVars.push({ name: 'level', type: 'int[MAXN]', val: 'Level graph nodes level', expandable: false });
+-    globalVars.push({ name: 'ptr', type: 'int[MAXN]', val: 'Next edge to explore in DFS', expandable: false });
+-  }
+-  else if (cat.includes('Max_Flow')) {
+-    globalVars.push({ name: 'INF', type: 'const int', val: '1e9', expandable: false });
+-  }
+-  else if (cat.includes('LCA/Binary_Lifting')) {
+-    globalVars.push({ name: 'up', type: 'int[MAXN][LOGN]', val: 'Binary lifting ancestor matrix', expandable: false });
+-    globalVars.push({ name: 'tin', type: 'int[MAXN]', val: 'DFS entrance times', expandable: false });
+-    globalVars.push({ name: 'tout', type: 'int[MAXN]', val: 'DFS exit times', expandable: false });
+-  else if (cat.includes('LCA/Euler_RMQ')) {
+-    globalVars.push({ name: 'euler', type: 'std::vector<int>', val: 'Euler path traversal nodes', expandable: false });
+-    globalVars.push({ name: 'depth', type: 'std::vector<int>', val: 'Nodes depth array', expandable: false });
+-  }
+-  else if (cat.includes('LCA')) {
+-    globalVars.push({ name: 'parent', type: 'int[MAXN]', val: 'Node parent nodes', expandable: false });
+-  }
+-  else {
+-    globalVars.push({ name: 'INF', type: 'const int', val: '1e9', expandable: false });
+-    globalVars.push({ name: 'MOD', type: 'const int', val: '1e9+7', expandable: false });
+-  return globalVars;
+-    frames: [...stack].reverse(),
+-  const cat = typeof category === 'string' ? category : '';
+-
+-  if (cat === 'Arrays') {
+-    frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+-    globalVars.push({ name: 'arr', type: 'std::vector<int>', val: '{10, 24, 8, 42, 17}', expandable: true });
+-    if (stepIndex >= 1) {
+-      let maxVal = 10;
+-      if (stepIndex >= 4) maxVal = 24;
+-      if (stepIndex >= 8) maxVal = 42;
+-      vars.push({ name: 'max_val', type: 'int', val: maxVal, expandable: false });
+-      if (activeLine === 9 || activeLine === 13 || activeLine === 15) inlineVal = `max_val: ${maxVal}`;
+-    }
+-    if (stepIndex >= 2 && stepIndex <= 10) {
+-      let iVal = 1;
+-      if (stepIndex >= 5) iVal = 2;
+-      if (stepIndex >= 7) iVal = 3;
+-      if (stepIndex >= 10) iVal = 4;
+-      vars.push({ name: 'i', type: 'int', val: iVal, expandable: false });
+-      if (activeLine === 11 || activeLine === 12) inlineVal = `i: ${iVal}, arr[i]: ${[10, 24, 8, 42, 17][iVal]}`;
+-    }
+-    if (stepIndex >= 11) {
+-      globalVars.push({ name: 'matrix', type: 'std::vector<std::vector<int>>', val: '{{1, 2, 3}, {4, 5, 6}}', expandable: true });
+-    }
+-    if (stepIndex >= 12) {
+-      let sumVal = 0;
+-      if (stepIndex === 13) sumVal = 1;
+-      if (stepIndex === 14) sumVal = 3;
+-      if (stepIndex === 15) sumVal = 6;
+-      if (stepIndex === 16) sumVal = 10;
+-      if (stepIndex === 17) sumVal = 15;
+-      if (stepIndex === 18) sumVal = 21;
+-      if (stepIndex === 19) sumVal = 21;
+-      vars.push({ name: 'sum', type: 'int', val: sumVal, expandable: false });
+-      if (activeLine === 22 || activeLine === 26 || activeLine === 32) inlineVal = `sum: ${sumVal}`;
+-    }
+-  }
+-  else if (cat.endsWith('Binary_Search') || cat === 'Binary_Search') {
+-    frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+-    globalVars.push({ name: 'arr', type: 'std::vector<int>&', val: '{2, 5, 8, 12, 16, 23, 38, 56, 72, 91}', expandable: true });
+-    globalVars.push({ name: 'target', type: 'int', val: '23', expandable: false });
+-
+-    let left = 0, right = 9, mid = -1;
+-    if (stepIndex >= 3) left = 5;
+-    if (stepIndex >= 6) right = 6;
+-    if (stepIndex >= 2 && stepIndex < 5) mid = 4;
+-    else if (stepIndex >= 5 && stepIndex < 8) mid = 7;
+-    else if (stepIndex >= 8) mid = 5;
+-
+-    vars.push({ name: 'left', type: 'int', val: left, expandable: false });
+-    vars.push({ name: 'right', type: 'int', val: right, expandable: false });
+-
+-    if (mid !== -1) {
+-      vars.push({ name: 'mid', type: 'int', val: mid, expandable: false });
+-      vars.push({ name: 'arr[mid]', type: 'int', val: [2, 5, 8, 12, 16, 23, 38, 56, 72, 91][mid], expandable: false });
+-    }
+-
+-    frames.unshift({ name: `binarySearch(arr, target = 23)`, file: 'solution.cpp', line: activeLine });
+-    
+-    if (activeLine === 13 || activeLine === 14) inlineVal = `left: ${left}, right: ${right}`;
+-    if (activeLine === 17) inlineVal = `mid: ${mid}`;
+-    if (activeLine === 19 || activeLine === 23) inlineVal = `arr[mid]: ${[2, 5, 8, 12, 16, 23, 38, 56, 72, 91][mid]}, target: 23`;
+-    if (activeLine === 24) inlineVal = `left: ${left}`;
+-    if (activeLine === 26) inlineVal = `right: ${right}`;
+-  }
+-  else if (cat.endsWith('/DFS') || cat === 'DFS') {
+-    let nodeVal = -1;
+-    let neighborVal = -1;
+-    let visitedArray = [false, false, false, false, false];
+-    let activeStack = [];
+-    
+-    if (stepIndex >= 1) { visitedArray[0] = true; nodeVal = 0; activeStack = [0]; }
+-    if (stepIndex >= 4) { visitedArray[1] = true; nodeVal = 1; activeStack = [1, 0]; }
+-    if (stepIndex >= 7) { visitedArray[3] = true; nodeVal = 3; activeStack = [3, 1, 0]; }
+-    if (stepIndex >= 10) { nodeVal = 1; activeStack = [1, 0]; }
+-    if (stepIndex >= 12) { visitedArray[4] = true; nodeVal = 4; activeStack = [4, 1, 0]; }
+-    if (stepIndex >= 14) { visitedArray[2] = true; nodeVal = 2; activeStack = [2, 4, 1, 0]; }
+-    if (stepIndex >= 16) { nodeVal = 0; activeStack = [0]; }
+-    
+-    if (stepIndex === 3) neighborVal = 1;
+-    if (stepIndex === 6) neighborVal = 3;
+-    if (stepIndex === 11) neighborVal = 4;
+-    
+-    globalVars.push({ name: 'adj', type: 'std::vector<std::vector<int>>&', val: 'size = 5', expandable: true });
+-    globalVars.push({ name: 'visited', type: 'std::vector<bool>&', val: `{${visitedArray.map(b => b ? 'true' : 'false').join(', ')}}`, expandable: false });
+-    if (nodeVal !== -1) vars.push({ name: 'node', type: 'int', val: nodeVal, expandable: false });
+-    if (neighborVal !== -1) vars.push({ name: 'neighbor', type: 'int', val: neighborVal, expandable: false });
+-    
+-    frames.push({ name: 'main()', file: 'main.cpp', line: 36 });
+-    activeStack.forEach((n, idx) => {
+-      frames.unshift({ name: `dfs(node = ${n}, adj, visited)`, file: 'dfs.cpp', line: idx === 0 ? activeLine : 18 });
+-    });
+-    
+-    if (nodeVal !== -1) {
+-      inlineVal = `node: ${nodeVal}`;
+-      if (neighborVal !== -1) inlineVal += `, neighbor: ${neighborVal}`;
+-    }
+-  }
+-  else if (cat.endsWith('/BFS') || cat === 'BFS') {
+-    let nodeVal = -1;
+-    let visitedArray = [false, false, false, false, false, false];
+-    let qArray = [];
+-    
+-    if (stepIndex >= 1) { visitedArray[0] = true; }
+-    if (stepIndex >= 2) { qArray = [0]; }
+-    if (stepIndex >= 4) { qArray = []; nodeVal = 0; }
+-    if (stepIndex >= 5) { visitedArray[1] = true; visitedArray[2] = true; qArray = [1, 2]; }
+-    if (stepIndex >= 6) { qArray = [2]; nodeVal = 1; }
+-    if (stepIndex >= 7) { visitedArray[3] = true; visitedArray[4] = true; qArray = [2, 3, 4]; }
+-    if (stepIndex >= 8) { qArray = [3, 4]; nodeVal = 2; }
+-    if (stepIndex >= 10) { visitedArray[5] = true; qArray = [4, 5]; nodeVal = 3; }
+-    if (stepIndex >= 11) { qArray = []; nodeVal = 5; }
+-    
+-    globalVars.push({ name: 'adj', type: 'std::vector<std::vector<int>>&', val: 'size = 6', expandable: true });
+-    globalVars.push({ name: 'visited', type: 'std::vector<bool>', val: `{${visitedArray.map(b => b ? 'true' : 'false').join(', ')}}`, expandable: false });
+-    vars.push({ name: 'q', type: 'std::queue<int>', val: qArray.length > 0 ? `{${qArray.join(', ')}}` : 'empty', expandable: false });
+-    if (nodeVal !== -1) vars.push({ name: 'node', type: 'int', val: nodeVal, expandable: false });
+-    
+-    frames.push({ name: 'main()', file: 'main.cpp', line: 36 });
+-    if (stepIndex >= 1) {
+-      frames.unshift({ name: `bfs(start = 0, adj, V = 6)`, file: 'solution.cpp', line: activeLine });
+-    }
+-    
+-    if (nodeVal !== -1) {
+-      inlineVal = `node: ${nodeVal}`;
+-    } else if (stepIndex >= 1) {
+-      inlineVal = `start: 0`;
+-    }
+-  }
+-  else if (cat.includes('Math/Number_Theory')) {
+-    // Sieve of Eratosthenes debugger state
+-    let p = 2;
+-    if (stepIndex >= 14) p = 3;
+-    if (stepIndex >= 22) p = 4;
+-    if (stepIndex >= 23) p = 5;
+-    const sieveArr = [2,3,5,7,11,13,17,19];
+-    const eliminated = [4,6,8,9,10,12,14,15,16,18,20];
+-    globalVars.push({ name: 'estePrim', type: 'vector<bool>', val: '[2..20]', expandable: false });
+-    globalVars.push({ name: 'n', type: 'int', val: '20', expandable: false });
+-    if (stepIndex >= 2) vars.push({ name: 'p', type: 'int', val: p, expandable: false });
+-    if (stepIndex >= 4 && stepIndex <= 23) {
+-      let iVal = p * p;
+-      if (stepIndex >= 12) iVal = 20;
+-      if (stepIndex >= 14) iVal = 9;
+-      vars.push({ name: 'i', type: 'int', val: iVal, expandable: false });
+-    }
+-    frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+-    if (stepIndex >= 2) frames.unshift({ name: `ciurulLuiEratostene(n = 20)`, file: 'main.cpp', line: activeLine });
+-    if (stepIndex >= 2) inlineVal = `p: ${p}`;
+-  }
+-  else if (cat.includes('Math/Combinatorics')) {
+-    // Pascal Triangle debugger state
+-    let iVal = 0, jVal = 0;
+-    if (stepIndex >= 3) iVal = 1;
+-    if (stepIndex >= 6) iVal = 2;
+-    if (stepIndex >= 8 && stepIndex <= 10) jVal = 1;
+-    if (stepIndex >= 11) iVal = 3;
+-    if (stepIndex >= 13) jVal = 1;
+-    if (stepIndex >= 14) jVal = 2;
+-    if (stepIndex >= 16) { iVal = 4; jVal = 0; }
+-    if (stepIndex >= 18) jVal = 1;
+-    if (stepIndex >= 19) jVal = 2;
+-    if (stepIndex >= 20) jVal = 3;
+-    globalVars.push({ name: 'numRows', type: 'int', val: '5', expandable: false });
+-    globalVars.push({ name: 'triangle', type: 'vector<vector<int>>', val: `size=${iVal+1}`, expandable: false });
+-    vars.push({ name: 'i', type: 'int', val: iVal, expandable: false });
+-    if (stepIndex >= 8) vars.push({ name: 'j', type: 'int', val: jVal, expandable: false });
+-    frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+-    frames.unshift({ name: `pascalTriangle(numRows = 5)`, file: 'main.cpp', line: activeLine });
+-    inlineVal = `i: ${iVal}, j: ${jVal}`;
+-  }
+-  else if (cat.includes('Geometry/Computational')) {
+-    // Cross product debugger state
+-    const pointA = { x: 1, y: 1 }, pointB = { x: 3, y: 3 };
+-    globalVars.push({ name: 'A', type: 'Point', val: '{1, 1}', expandable: false });
+-    globalVars.push({ name: 'B', type: 'Point', val: '{3, 3}', expandable: false });
+-    let cpResult = 0;
+-    let cName = 'C_Coliniar';
+-    if (stepIndex <= 8) { cName = 'C_Coliniar'; cpResult = 0; }
+-    else if (stepIndex <= 14) { cName = 'C_Stanga'; cpResult = 4; }
+-    else { cName = 'C_Dreapta'; cpResult = -4; }
+-    vars.push({ name: cName, type: 'Point', val: cName === 'C_Coliniar' ? '{5,5}' : cName === 'C_Stanga' ? '{2,4}' : '{4,2}', expandable: false });
+-    if (stepIndex >= 4) vars.push({ name: 'cp', type: 'long long', val: cpResult, expandable: false });
+-    frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+-    if (stepIndex >= 4 && stepIndex <= 7) frames.unshift({ name: `crossProduct(A, B, ${cName})`, file: 'main.cpp', line: activeLine });
+-    inlineVal = stepIndex >= 4 ? `cp: ${cpResult}` : null;
+-  }
+-  else if (cat.includes('Math/Advanced')) {
+-    // Extended GCD debugger state
+-    const gcdFrames = [
+-      [34, 21], [21, 34], [13, 21], [8, 13], [5, 8], [3, 5], [2, 3], [1, 2], [0, 1]
+-    ];
+-    globalVars.push({ name: 'a', type: 'long long', val: '34', expandable: false });
+-    globalVars.push({ name: 'b', type: 'long long', val: '21', expandable: false });
+-    const depth = Math.min(stepIndex, 8);
+-    for (let d = 0; d <= depth; d++) {
+-      const f = gcdFrames[d];
+-      frames.push({ name: `gcdExtended(${f[0]}, ${f[1]})`, file: 'main.cpp', line: d === depth ? activeLine : 15 });
+-    }
+-    frames.push({ name: 'main()', file: 'main.cpp', line: 26 });
+-    frames.reverse();
+-    if (stepIndex >= 10) {
+-      const xVals = [null, 1, -1, 2, -3, 5, -8, 13, -8];
+-      const yVals = [null, 0, 1, -1, 2, -3, 5, -8, 13];
+-      const idx = Math.min(stepIndex - 10, 8);
+-      if (idx >= 0) {
+-        vars.push({ name: 'x', type: 'long long', val: xVals[idx] ?? 0, expandable: false });
+-        vars.push({ name: 'y', type: 'long long', val: yVals[idx] ?? 1, expandable: false });
+-    inlineVal = depth > 0 ? `depth: ${depth}` : null;
+-  }
+-  else if (cat.includes('Math/Game_Theory')) {
+-    // Nim game debugger state
+-    let nimSum = 0;
+-    if (stepIndex >= 2) nimSum = 3;  // after XOR with stiva1
+-    if (stepIndex >= 3) nimSum = 7;  // after XOR with stiva2 (3^4=7)
+-    if (stepIndex >= 4) nimSum = 2;  // after XOR with stiva3 (7^5=2)
+-    globalVars.push({ name: 'stive', type: 'vector<int>', val: '{3, 4, 5}', expandable: false });
+-    vars.push({ name: 'nimSum', type: 'int', val: nimSum, expandable: false });
+-    frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+-    if (stepIndex >= 1) frames.unshift({ name: `playNim(stive)`, file: 'main.cpp', line: activeLine });
+-    inlineVal = `nimSum: ${nimSum}`;
+-  }
+-  else if (cat.includes('Math/Linear_Algebra')) {
+-    // Gaussian Elimination debugger state
+-    let iVal = 0, kVal = 0, maxRow = 0;
+-    if (stepIndex >= 3) maxRow = 1;
+-    if (stepIndex >= 4) { iVal = 0; kVal = 1; }
+-    if (stepIndex >= 8) { iVal = 1; kVal = 0; maxRow = 1; }
+-    globalVars.push({ name: 'n', type: 'int', val: '3', expandable: false });
+-    globalVars.push({ name: 'a', type: 'vector<vector<double>>', val: '3x4 matrix', expandable: false });
+-    vars.push({ name: 'i', type: 'int', val: iVal, expandable: false });
+-    if (stepIndex >= 3) vars.push({ name: 'maxRow', type: 'int', val: maxRow, expandable: false });
+-    if (stepIndex >= 4) vars.push({ name: 'k', type: 'int', val: kVal, expandable: false });
+-    frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+-    if (stepIndex >= 1) frames.unshift({ name: `gaussianElimination(a)`, file: 'main.cpp', line: activeLine });
+-    inlineVal = `i: ${iVal}`;
+-  }
+-  else {
+-    // Dynamic simulated engine fallback
+-    const dynamicState = getDynamicCallStackAndVars(category, stepIndex, activeLine, explanationText);
+-    vars.push(...dynamicState.vars);
+-    frames.push(...dynamicState.frames);
+-    inlineVal = dynamicState.inlineVal;
+-  // Populate globalVars if still empty
+-  const cat = typeof category === 'string' ? category : '';
+-  if (cat === 'Arrays') {
+-    if (lineNum === 8 && stepIndex >= 0) return 'arr: {10, 24, 8, 42, 17}';
+-    if (lineNum === 9 && stepIndex >= 1) {
+-      return `max_val: ${stepIndex >= 8 ? 42 : (stepIndex >= 4 ? 24 : 10)}`;
+-    }
+-    if (lineNum === 11 && stepIndex >= 2 && stepIndex <= 10) {
+-      let iVal = 1;
+-      if (stepIndex >= 5) iVal = 2;
+-      if (stepIndex >= 7) iVal = 3;
+-      if (stepIndex >= 10) iVal = 4;
+-      return `i: ${iVal}`;
+-    }
+-    if (lineNum === 12 && stepIndex >= 2 && stepIndex <= 10) {
+-      let iVal = 1;
+-      let maxVal = 10;
+-      if (stepIndex >= 5) { iVal = 2; maxVal = 24; }
+-      if (stepIndex >= 7) { iVal = 3; maxVal = 24; }
+-      if (stepIndex >= 10) { iVal = 4; maxVal = 42; }
+-      const arrVals = [10, 24, 8, 42, 17];
+-      return `arr[i]: ${arrVals[iVal]}, max_val: ${maxVal}`;
+-    }
+-    if (lineNum === 13 && stepIndex >= 1) {
+-      return `max_val: ${stepIndex >= 8 ? 42 : (stepIndex >= 4 ? 24 : 10)}`;
+-    }
+-    if (lineNum === 20 && stepIndex >= 11) return 'matrix: {{1,2,3},{4,5,6}}';
+-    if (lineNum === 24 && stepIndex >= 13 && stepIndex <= 18) {
+-      let iVal = stepIndex >= 16 ? 1 : 0;
+-      return `i: ${iVal}`;
+-    }
+-    if (lineNum === 25 && stepIndex >= 13 && stepIndex <= 18) {
+-      let iVal = stepIndex >= 16 ? 1 : 0;
+-      let jVal = (stepIndex - 13) % 3;
+-      if (stepIndex >= 16) jVal = (stepIndex - 16) % 3;
+-      return `i: ${iVal}, j: ${jVal}`;
+-    }
+-    if (lineNum === 26 && stepIndex >= 12) {
+-      let sumVal = 0;
+-      if (stepIndex === 13) sumVal = 1;
+-      if (stepIndex === 14) sumVal = 3;
+-      if (stepIndex === 15) sumVal = 6;
+-      if (stepIndex === 16) sumVal = 10;
+-      if (stepIndex === 17) sumVal = 15;
+-      if (stepIndex === 18) sumVal = 21;
+-      if (stepIndex === 19) sumVal = 21;
+-      return `sum: ${sumVal}`;
+-    }
+-  }
+-  else if (cat.endsWith('/DFS') || cat === 'DFS') {
+-    let nodeVal = -1;
+-    let neighborVal = -1;
+-    if (stepIndex >= 1) nodeVal = 0;
+-    if (stepIndex >= 4) nodeVal = 1;
+-    if (stepIndex >= 7) nodeVal = 3;
+-    if (stepIndex >= 10) nodeVal = 1;
+-    if (stepIndex >= 12) nodeVal = 4;
+-    if (stepIndex >= 14) nodeVal = 2;
+-    if (stepIndex >= 16) nodeVal = 0;
+-    
+-    if (stepIndex === 3) neighborVal = 1;
+-    if (stepIndex === 6) neighborVal = 3;
+-    if (stepIndex === 11) neighborVal = 4;
+-
+-    if ((lineNum === 12 || lineNum === 13 || lineNum === 14 || lineNum === 16) && nodeVal !== -1) {
+-      return `node: ${nodeVal}`;
+-    }
+-    if ((lineNum === 17 || lineNum === 18) && neighborVal !== -1) {
+-      return `neighbor: ${neighborVal}`;
+-    }
+-  }
+-  else if (cat.endsWith('/BFS') || cat === 'BFS') {
+-    let nodeVal = -1;
+-    let qArray = [];
+-    if (stepIndex >= 2) qArray = [0];
+-    if (stepIndex >= 4) { qArray = []; nodeVal = 0; }
+-    if (stepIndex >= 5) { qArray = [1, 2]; nodeVal = 0; }
+-    if (stepIndex >= 6) { qArray = [2]; nodeVal = 1; }
+-    if (stepIndex >= 7) { qArray = [2, 3, 4]; nodeVal = 1; }
+-    if (stepIndex >= 8) { qArray = [3, 4]; nodeVal = 2; }
+-    if (stepIndex >= 10) { qArray = [4, 5]; nodeVal = 3; }
+-    if (stepIndex >= 11) { qArray = []; nodeVal = 5; }
+-
+-    if (lineNum === 13 || lineNum === 17 || lineNum === 18) {
+-      return `start: 0`;
+-    }
+-    if (lineNum === 20) {
+-      return `q.size(): ${qArray.length}`;
+-    }
+-    if ((lineNum === 21 || lineNum === 22 || lineNum === 24 || lineNum === 26) && nodeVal !== -1) {
+-      return `node: ${nodeVal}`;
+-    }
+-    if ((lineNum === 27 || lineNum === 28 || lineNum === 29) && nodeVal !== -1) {
+-      return `node: ${nodeVal}, q.size(): ${qArray.length}`;
+-    }
+-                          <div style={{ display: 'flex', gap: '16px', width: '100%', justifyContent: 'center', alignItems: 'center', flexDirection: (currentExplanation?.blocksVisual && currentExplanation?.graphVisual) ? 'column' : 'row', flexWrap: 'wrap' }}>
+-                            {currentExplanation?.graphVisual && (() => {
+-                              const gv = currentExplanation.graphVisual;
+-                          {!currentExplanation?.matrix && !currentExplanation?.blocksVisual && !currentExplanation?.graphVisual && !currentExplanation?.visual && (

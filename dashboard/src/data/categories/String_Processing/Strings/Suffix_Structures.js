@@ -468,5 +468,13 @@ int main() {
         "desc": "Căutarea celui mai lung subșir duplicat prin găsirea elementului maxim din vectorul LCP."
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "sa",
+    "type": "int[MAXN]",
+    "val": "Suffix array representation",
+    "expandable": false
   }
+]
 };

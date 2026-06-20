@@ -327,5 +327,13 @@ int main() {
         "desc": "Utilizarea tehnicii scanline împreună cu un vector sau map de diferențe pentru culori."
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "diff",
+    "type": "std::vector<int>&",
+    "val": "Vector of differences",
+    "expandable": false
   }
+]
 };

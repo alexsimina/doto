@@ -671,5 +671,13 @@ int main() {
         "desc": "O capodoperă a DP-ului pe biti combinata cu stringuri"
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "dp",
+    "type": "int[1 << N][N]",
+    "val": "Bitmask DP table",
+    "expandable": false
   }
+]
 };

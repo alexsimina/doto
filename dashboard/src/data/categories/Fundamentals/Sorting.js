@@ -586,5 +586,13 @@ int main() {
         "desc": "Radix/Bucket Sort"
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "MAXN",
+    "type": "const int",
+    "val": "100000",
+    "expandable": false
   }
+]
 };

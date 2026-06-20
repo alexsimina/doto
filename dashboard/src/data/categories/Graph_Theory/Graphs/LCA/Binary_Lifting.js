@@ -274,6 +274,68 @@ export const data = {
           ]
         }
       ]
+    },
+  ],
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+      let nodeVal = -1, depthVal = -1, ansVal = -1;
+      if (stepIndex >= 1) { nodeVal = 0; depthVal = 0; }
+      if (stepIndex >= 3) { nodeVal = 1; depthVal = 1; }
+      if (stepIndex >= 5) { nodeVal = 3; depthVal = 2; }
+      if (stepIndex >= 7) { nodeVal = 4; depthVal = 2; }
+      if (stepIndex >= 9) { ansVal = 1; }
+      if (stepIndex >= 11) { ansVal = 0; }
+      globalVars.push({ name: 'up[MAXN][LOGN]', type: 'int[][]', val: 'Binary lifting ancestor table', expandable: false });
+      globalVars.push({ name: 'depth', type: 'int[MAXN]', val: '{0, 1, 1, 2, 2}', expandable: false });
+      if (nodeVal !== -1) vars.push({ name: 'node', type: 'int', val: nodeVal, expandable: false });
+      if (depthVal !== -1) vars.push({ name: 'dep', type: 'int', val: depthVal, expandable: false });
+      if (ansVal !== -1) vars.push({ name: 'lca', type: 'int', val: ansVal, expandable: false });
+      frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+      frames.unshift({ name: stepIndex >= 9 ? 'lca(u, v)' : `dfs(node=${nodeVal !== -1 ? nodeVal : 0}, parent, dep)`, file: 'solution.cpp', line: activeLine });
+      if (ansVal !== -1) inlineVal = `lca: ${ansVal}`;
+      else if (nodeVal !== -1) inlineVal = `node: ${nodeVal}, depth: ${depthVal}`;
+      return { vars, globalVars, frames, inlineVal };
+    },
+    "getGraphVisual": (stepIndex) => {
+      let nodeVal = -1, ansVal = -1;
+      if (stepIndex >= 1) { nodeVal = 0; }
+      if (stepIndex >= 3) { nodeVal = 1; }
+      if (stepIndex >= 5) { nodeVal = 3; }
+      if (stepIndex >= 7) { nodeVal = 4; }
+      if (stepIndex >= 9) { ansVal = 1; }
+      if (stepIndex >= 11) { ansVal = 0; }
+
+      const staticNodes = [
+        { id: "1", x: 150, y: 50, label: "1" },
+        { id: "2", x: 100, y: 100, label: "2" },
+        { id: "3", x: 200, y: 100, label: "3" },
+        { id: "4", x: 50, y: 150, label: "4" },
+        { id: "5", x: 150, y: 150, label: "5" },
+        { id: "6", x: 250, y: 150, label: "6" }
+      ];
+      const staticEdges = [
+        { source: "1", target: "2" },
+        { source: "1", target: "3" },
+        { source: "2", target: "4" },
+        { source: "2", target: "5" },
+        { source: "3", target: "6" }
+      ];
+
+      return {
+        directed: false,
+        nodes: staticNodes.map(n => {
+          const idNum = parseInt(n.id);
+          let state = undefined;
+          if (idNum === nodeVal + 1) state = "active";
+          else if (idNum === ansVal + 1) state = "visited";
+          return { ...n, state };
+        }),
+        edges: staticEdges
+      };
     }
-  ]
+  }
 };

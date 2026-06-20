@@ -1,0 +1,896 @@
+{
+  "BFS": {
+    "title": "",
+    "directed": true,
+    "nodes": [
+      {
+        "id": "0",
+        "x": 140,
+        "y": 30,
+        "label": "0"
+      },
+      {
+        "id": "1",
+        "x": 80,
+        "y": 90,
+        "label": "1"
+      },
+      {
+        "id": "2",
+        "x": 200,
+        "y": 90,
+        "label": "2"
+      },
+      {
+        "id": "3",
+        "x": 50,
+        "y": 150,
+        "label": "3"
+      },
+      {
+        "id": "4",
+        "x": 110,
+        "y": 150,
+        "label": "4"
+      },
+      {
+        "id": "5",
+        "x": 80,
+        "y": 200,
+        "label": "5"
+      }
+    ],
+    "edges": [
+      {
+        "source": "0",
+        "target": "1"
+      },
+      {
+        "source": "0",
+        "target": "2"
+      },
+      {
+        "source": "1",
+        "target": "3"
+      },
+      {
+        "source": "1",
+        "target": "4"
+      },
+      {
+        "source": "3",
+        "target": "5"
+      },
+      {
+        "source": "4",
+        "target": "5"
+      }
+    ]
+  },
+  "DFS": {
+    "title": "",
+    "directed": true,
+    "nodes": [
+      {
+        "id": "0",
+        "x": 140,
+        "y": 40,
+        "label": "0"
+      },
+      {
+        "id": "1",
+        "x": 80,
+        "y": 110,
+        "label": "1"
+      },
+      {
+        "id": "2",
+        "x": 200,
+        "y": 110,
+        "label": "2"
+      },
+      {
+        "id": "3",
+        "x": 50,
+        "y": 180,
+        "label": "3"
+      },
+      {
+        "id": "4",
+        "x": 110,
+        "y": 180,
+        "label": "4"
+      }
+    ],
+    "edges": [
+      {
+        "source": "0",
+        "target": "1"
+      },
+      {
+        "source": "0",
+        "target": "2"
+      },
+      {
+        "source": "1",
+        "target": "3"
+      },
+      {
+        "source": "1",
+        "target": "4"
+      }
+    ]
+  },
+  "Euler_Hamilton": {
+    "title": "",
+    "directed": true,
+    "nodes": [
+      {
+        "id": "0",
+        "x": 80,
+        "y": 60,
+        "label": "0"
+      },
+      {
+        "id": "1",
+        "x": 200,
+        "y": 60,
+        "label": "1"
+      },
+      {
+        "id": "2",
+        "x": 140,
+        "y": 130,
+        "label": "2"
+      },
+      {
+        "id": "3",
+        "x": 80,
+        "y": 200,
+        "label": "3"
+      },
+      {
+        "id": "4",
+        "x": 200,
+        "y": 200,
+        "label": "4"
+      }
+    ],
+    "edges": [
+      {
+        "source": "0",
+        "target": "1"
+      },
+      {
+        "source": "1",
+        "target": "2"
+      },
+      {
+        "source": "2",
+        "target": "0"
+      },
+      {
+        "source": "2",
+        "target": "3"
+      },
+      {
+        "source": "3",
+        "target": "4"
+      },
+      {
+        "source": "4",
+        "target": "2"
+      }
+    ]
+  },
+  "Binary_Lifting": {
+    "title": "",
+    "directed": true,
+    "nodes": [
+      {
+        "id": "1",
+        "x": 150,
+        "y": 50,
+        "label": "1"
+      },
+      {
+        "id": "2",
+        "x": 100,
+        "y": 100,
+        "label": "2"
+      },
+      {
+        "id": "3",
+        "x": 200,
+        "y": 100,
+        "label": "3"
+      },
+      {
+        "id": "4",
+        "x": 50,
+        "y": 150,
+        "label": "4"
+      },
+      {
+        "id": "5",
+        "x": 150,
+        "y": 150,
+        "label": "5"
+      },
+      {
+        "id": "6",
+        "x": 250,
+        "y": 150,
+        "label": "6"
+      }
+    ],
+    "edges": [
+      {
+        "source": "1",
+        "target": "2"
+      },
+      {
+        "source": "1",
+        "target": "3"
+      },
+      {
+        "source": "2",
+        "target": "4"
+      },
+      {
+        "source": "2",
+        "target": "5"
+      },
+      {
+        "source": "3",
+        "target": "6"
+      }
+    ]
+  },
+  "Euler_RMQ": {
+    "title": "",
+    "directed": true,
+    "nodes": [
+      {
+        "id": "1",
+        "x": 150,
+        "y": 50,
+        "label": "1"
+      },
+      {
+        "id": "2",
+        "x": 100,
+        "y": 100,
+        "label": "2"
+      },
+      {
+        "id": "3",
+        "x": 200,
+        "y": 100,
+        "label": "3"
+      },
+      {
+        "id": "4",
+        "x": 50,
+        "y": 150,
+        "label": "4"
+      },
+      {
+        "id": "5",
+        "x": 150,
+        "y": 150,
+        "label": "5"
+      }
+    ],
+    "edges": [
+      {
+        "source": "1",
+        "target": "2"
+      },
+      {
+        "source": "1",
+        "target": "3"
+      },
+      {
+        "source": "2",
+        "target": "4"
+      },
+      {
+        "source": "2",
+        "target": "5"
+      }
+    ]
+  },
+  "Kruskal": {
+    "title": "",
+    "directed": true,
+    "nodes": [
+      {
+        "id": "0",
+        "x": 80,
+        "y": 50,
+        "label": "0"
+      },
+      {
+        "id": "1",
+        "x": 200,
+        "y": 50,
+        "label": "1"
+      },
+      {
+        "id": "2",
+        "x": 80,
+        "y": 160,
+        "label": "2"
+      },
+      {
+        "id": "3",
+        "x": 200,
+        "y": 160,
+        "label": "3"
+      }
+    ],
+    "edges": [
+      {
+        "source": "2",
+        "target": "3"
+      },
+      {
+        "source": "0",
+        "target": "3"
+      },
+      {
+        "source": "0",
+        "target": "1"
+      }
+    ]
+  },
+  "Prim": {
+    "title": "",
+    "directed": true,
+    "nodes": [
+      {
+        "id": "0",
+        "x": 100,
+        "y": 50,
+        "label": "0"
+      },
+      {
+        "id": "1",
+        "x": 200,
+        "y": 50,
+        "label": "1"
+      },
+      {
+        "id": "2",
+        "x": 100,
+        "y": 150,
+        "label": "2"
+      },
+      {
+        "id": "3",
+        "x": 200,
+        "y": 150,
+        "label": "3"
+      }
+    ],
+    "edges": [
+      {
+        "source": "0",
+        "target": "1"
+      },
+      {
+        "source": "0",
+        "target": "2"
+      },
+      {
+        "source": "1",
+        "target": "2"
+      },
+      {
+        "source": "1",
+        "target": "3"
+      },
+      {
+        "source": "2",
+        "target": "3"
+      }
+    ]
+  },
+  "Dinic": {
+    "title": "",
+    "directed": true,
+    "nodes": [
+      {
+        "id": "0",
+        "x": 50,
+        "y": 100,
+        "label": "S (0)"
+      },
+      {
+        "id": "1",
+        "x": 150,
+        "y": 50,
+        "label": "1"
+      },
+      {
+        "id": "2",
+        "x": 150,
+        "y": 150,
+        "label": "2"
+      },
+      {
+        "id": "3",
+        "x": 250,
+        "y": 100,
+        "label": "T (3)"
+      }
+    ],
+    "edges": [
+      {
+        "source": "0",
+        "target": "1"
+      },
+      {
+        "source": "0",
+        "target": "2"
+      },
+      {
+        "source": "1",
+        "target": "2"
+      },
+      {
+        "source": "1",
+        "target": "3"
+      },
+      {
+        "source": "2",
+        "target": "3"
+      }
+    ]
+  },
+  "Edmonds_Karp": {
+    "title": "",
+    "directed": true,
+    "nodes": [
+      {
+        "id": "0",
+        "x": 50,
+        "y": 110,
+        "label": "0"
+      },
+      {
+        "id": "1",
+        "x": 120,
+        "y": 50,
+        "label": "1"
+      },
+      {
+        "id": "2",
+        "x": 120,
+        "y": 170,
+        "label": "2"
+      },
+      {
+        "id": "3",
+        "x": 200,
+        "y": 50,
+        "label": "3"
+      },
+      {
+        "id": "4",
+        "x": 200,
+        "y": 170,
+        "label": "4"
+      },
+      {
+        "id": "5",
+        "x": 260,
+        "y": 110,
+        "label": "5"
+      }
+    ],
+    "edges": [
+      {
+        "source": "0",
+        "target": "1"
+      },
+      {
+        "source": "0",
+        "target": "2"
+      },
+      {
+        "source": "1",
+        "target": "2"
+      },
+      {
+        "source": "1",
+        "target": "3"
+      },
+      {
+        "source": "2",
+        "target": "1"
+      },
+      {
+        "source": "2",
+        "target": "4"
+      },
+      {
+        "source": "3",
+        "target": "2"
+      },
+      {
+        "source": "3",
+        "target": "5"
+      },
+      {
+        "source": "4",
+        "target": "3"
+      },
+      {
+        "source": "4",
+        "target": "5"
+      }
+    ]
+  },
+  "Kosaraju": {
+    "title": "",
+    "directed": true,
+    "nodes": [
+      {
+        "id": "0",
+        "x": 140,
+        "y": 60,
+        "label": "0"
+      },
+      {
+        "id": "1",
+        "x": 80,
+        "y": 120,
+        "label": "1"
+      },
+      {
+        "id": "2",
+        "x": 200,
+        "y": 120,
+        "label": "2"
+      },
+      {
+        "id": "3",
+        "x": 140,
+        "y": 180,
+        "label": "3"
+      },
+      {
+        "id": "4",
+        "x": 230,
+        "y": 180,
+        "label": "4"
+      }
+    ],
+    "edges": [
+      {
+        "source": "0",
+        "target": "2"
+      },
+      {
+        "source": "2",
+        "target": "1"
+      },
+      {
+        "source": "1",
+        "target": "0"
+      },
+      {
+        "source": "0",
+        "target": "3"
+      },
+      {
+        "source": "3",
+        "target": "4"
+      },
+      {
+        "source": "2",
+        "target": "0"
+      },
+      {
+        "source": "1",
+        "target": "2"
+      },
+      {
+        "source": "0",
+        "target": "1"
+      },
+      {
+        "source": "3",
+        "target": "0"
+      },
+      {
+        "source": "4",
+        "target": "3"
+      }
+    ]
+  },
+  "Tarjan": {
+    "title": "",
+    "directed": true,
+    "nodes": [
+      {
+        "id": "1",
+        "x": 100,
+        "y": 50,
+        "label": "1"
+      },
+      {
+        "id": "2",
+        "x": 200,
+        "y": 50,
+        "label": "2"
+      },
+      {
+        "id": "3",
+        "x": 150,
+        "y": 150,
+        "label": "3"
+      },
+      {
+        "id": "4",
+        "x": 250,
+        "y": 150,
+        "label": "4"
+      }
+    ],
+    "edges": [
+      {
+        "source": "1",
+        "target": "2"
+      },
+      {
+        "source": "2",
+        "target": "3"
+      },
+      {
+        "source": "3",
+        "target": "1"
+      },
+      {
+        "source": "3",
+        "target": "4"
+      }
+    ]
+  },
+  "Bellman_Ford": {
+    "title": "",
+    "directed": true,
+    "nodes": [
+      {
+        "id": "0",
+        "x": 50,
+        "y": 100,
+        "label": "0"
+      },
+      {
+        "id": "1",
+        "x": 150,
+        "y": 50,
+        "label": "1"
+      },
+      {
+        "id": "2",
+        "x": 150,
+        "y": 150,
+        "label": "2"
+      },
+      {
+        "id": "3",
+        "x": 250,
+        "y": 100,
+        "label": "3"
+      }
+    ],
+    "edges": [
+      {
+        "source": "0",
+        "target": "1"
+      },
+      {
+        "source": "0",
+        "target": "2"
+      },
+      {
+        "source": "2",
+        "target": "1"
+      },
+      {
+        "source": "1",
+        "target": "3"
+      }
+    ]
+  },
+  "Dijkstra": {
+    "title": "",
+    "directed": true,
+    "nodes": [
+      {
+        "id": "0",
+        "x": 50,
+        "y": 110,
+        "label": "0"
+      },
+      {
+        "id": "1",
+        "x": 140,
+        "y": 50,
+        "label": "1"
+      },
+      {
+        "id": "2",
+        "x": 140,
+        "y": 170,
+        "label": "2"
+      },
+      {
+        "id": "3",
+        "x": 230,
+        "y": 50,
+        "label": "3"
+      },
+      {
+        "id": "4",
+        "x": 230,
+        "y": 170,
+        "label": "4"
+      }
+    ],
+    "edges": [
+      {
+        "source": "0",
+        "target": "1"
+      },
+      {
+        "source": "0",
+        "target": "2"
+      },
+      {
+        "source": "1",
+        "target": "3"
+      },
+      {
+        "source": "2",
+        "target": "1"
+      },
+      {
+        "source": "2",
+        "target": "3"
+      },
+      {
+        "source": "2",
+        "target": "4"
+      },
+      {
+        "source": "4",
+        "target": "3"
+      }
+    ]
+  },
+  "Floyd_Warshall": {
+    "title": "",
+    "directed": true,
+    "nodes": [
+      {
+        "id": "0",
+        "x": 100,
+        "y": 50,
+        "label": "0"
+      },
+      {
+        "id": "1",
+        "x": 200,
+        "y": 50,
+        "label": "1"
+      },
+      {
+        "id": "2",
+        "x": 200,
+        "y": 150,
+        "label": "2"
+      },
+      {
+        "id": "3",
+        "x": 100,
+        "y": 150,
+        "label": "3"
+      }
+    ],
+    "edges": [
+      {
+        "source": "0",
+        "target": "1"
+      },
+      {
+        "source": "0",
+        "target": "3"
+      },
+      {
+        "source": "1",
+        "target": "2"
+      },
+      {
+        "source": "2",
+        "target": "3"
+      },
+      {
+        "source": "0",
+        "target": "2"
+      }
+    ]
+  },
+  "Topological_Sort": {
+    "title": "",
+    "directed": true,
+    "nodes": [
+      {
+        "id": "0",
+        "x": 140,
+        "y": 130,
+        "label": "0"
+      },
+      {
+        "id": "1",
+        "x": 200,
+        "y": 200,
+        "label": "1"
+      },
+      {
+        "id": "2",
+        "x": 80,
+        "y": 130,
+        "label": "2"
+      },
+      {
+        "id": "3",
+        "x": 80,
+        "y": 200,
+        "label": "3"
+      },
+      {
+        "id": "4",
+        "x": 230,
+        "y": 50,
+        "label": "4"
+      },
+      {
+        "id": "5",
+        "x": 50,
+        "y": 50,
+        "label": "5"
+      }
+    ],
+    "edges": [
+      {
+        "source": "5",
+        "target": "0"
+      },
+      {
+        "source": "5",
+        "target": "2"
+      },
+      {
+        "source": "4",
+        "target": "0"
+      },
+      {
+        "source": "4",
+        "target": "1"
+      },
+      {
+        "source": "2",
+        "target": "3"
+      },
+      {
+        "source": "3",
+        "target": "1"
+      }
+    ]
+  }
+}

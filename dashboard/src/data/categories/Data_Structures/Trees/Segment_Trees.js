@@ -4009,5 +4009,19 @@ export const data = {
         "desc": "RMQ pe Segment Tree cu Lazy"
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "tree",
+    "type": "std::vector<int>",
+    "val": "size = 4N",
+    "expandable": false
+  },
+  {
+    "name": "lazy",
+    "type": "std::vector<int>",
+    "val": "size = 4N (lazy updates)",
+    "expandable": false
   }
+]
 };

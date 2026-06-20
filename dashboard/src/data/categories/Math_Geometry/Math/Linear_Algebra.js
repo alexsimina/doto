@@ -430,5 +430,26 @@ int main() {
         "desc": "Inversarea matricilor prin Gauss-Jordan"
       }
     ]
+  },
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+      let iVal = 0, kVal = 0, maxRow = 0;
+      if (stepIndex >= 3) maxRow = 1;
+      if (stepIndex >= 4) { iVal = 0; kVal = 1; }
+      if (stepIndex >= 8) { iVal = 1; kVal = 0; maxRow = 1; }
+      globalVars.push({ name: 'n', type: 'int', val: '3', expandable: false });
+      globalVars.push({ name: 'a', type: 'vector<vector<double>>', val: '3x4 matrix', expandable: false });
+      vars.push({ name: 'i', type: 'int', val: iVal, expandable: false });
+      if (stepIndex >= 3) vars.push({ name: 'maxRow', type: 'int', val: maxRow, expandable: false });
+      if (stepIndex >= 4) vars.push({ name: 'k', type: 'int', val: kVal, expandable: false });
+      frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+      if (stepIndex >= 1) frames.unshift({ name: `gaussianElimination(a)`, file: 'main.cpp', line: activeLine });
+      inlineVal = `i: ${iVal}`;
+      return { vars, globalVars, frames, inlineVal };
+    }
   }
 };

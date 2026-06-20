@@ -323,5 +323,23 @@ int main() {
         "desc": "Regula ultimului obiect"
       }
     ]
+  },
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+      let nimSum = 0;
+      if (stepIndex >= 2) nimSum = 3;
+      if (stepIndex >= 3) nimSum = 7;
+      if (stepIndex >= 4) nimSum = 2;
+      globalVars.push({ name: 'stive', type: 'vector<int>', val: '{3, 4, 5}', expandable: false });
+      vars.push({ name: 'nimSum', type: 'int', val: nimSum, expandable: false });
+      frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+      if (stepIndex >= 1) frames.unshift({ name: `playNim(stive)`, file: 'main.cpp', line: activeLine });
+      inlineVal = `nimSum: ${nimSum}`;
+      return { vars, globalVars, frames, inlineVal };
+    }
   }
 };

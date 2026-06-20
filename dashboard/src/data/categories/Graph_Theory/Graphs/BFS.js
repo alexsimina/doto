@@ -547,6 +547,148 @@ export const data = {
           ]
         }
       ]
+    },
+  ],
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+      let nodeVal = -1;
+      let neighborVal = -1;
+      let visitedArray = [false, false, false, false, false];
+      let qArray = [];
+      if (stepIndex >= 3) { visitedArray[0] = true; }
+      if (stepIndex >= 4) { qArray = [0]; }
+      if (stepIndex >= 6) { nodeVal = 0; }
+      if (stepIndex >= 7) { qArray = []; }
+      if (stepIndex >= 9) { neighborVal = 1; }
+      if (stepIndex >= 11) { visitedArray[1] = true; neighborVal = -1; }
+      if (stepIndex >= 12) { qArray = [1]; }
+      if (stepIndex >= 13) { neighborVal = 2; }
+      if (stepIndex >= 15) { visitedArray[2] = true; neighborVal = -1; }
+      if (stepIndex >= 16) { qArray = [1, 2]; }
+      if (stepIndex >= 18) { nodeVal = 1; }
+      if (stepIndex >= 19) { qArray = [2]; }
+      if (stepIndex >= 21) { neighborVal = 0; }
+      if (stepIndex >= 22) { neighborVal = -1; }
+      if (stepIndex >= 23) { neighborVal = 3; }
+      if (stepIndex >= 25) { visitedArray[3] = true; neighborVal = -1; }
+      if (stepIndex >= 26) { qArray = [2, 3]; }
+      if (stepIndex >= 27) { neighborVal = 4; }
+      if (stepIndex >= 28) { visitedArray[4] = true; qArray = [2, 3, 4]; neighborVal = -1; }
+      if (stepIndex >= 29) { qArray = [3, 4]; nodeVal = 2; }
+      if (stepIndex >= 30) { qArray = [4]; nodeVal = 3; }
+      if (stepIndex >= 31) { qArray = []; nodeVal = 4; }
+
+      globalVars.push({ name: 'adj', type: 'std::vector<std::vector<int>>&', val: 'size = 5', expandable: true });
+      globalVars.push({ name: 'visited', type: 'std::vector<bool>', val: `{${visitedArray.map(b => b ? 'true' : 'false').join(', ')}}`, expandable: false });
+      vars.push({ name: 'q', type: 'std::queue<int>', val: qArray.length > 0 ? `{${qArray.join(', ')}}` : 'empty', expandable: false });
+      if (nodeVal !== -1) vars.push({ name: 'node', type: 'int', val: nodeVal, expandable: false });
+      if (neighborVal !== -1) vars.push({ name: 'neighbor', type: 'int', val: neighborVal, expandable: false });
+
+      frames.push({ name: 'main()', file: 'main.cpp', line: 33 });
+      if (stepIndex >= 1) {
+        frames.unshift({ name: `bfs(start = 0, adj, V = 5)`, file: 'solution.cpp', line: activeLine });
+      }
+
+      if (nodeVal !== -1) {
+        inlineVal = `node: ${nodeVal}`;
+        if (neighborVal !== -1) inlineVal += `, neighbor: ${neighborVal}`;
+      } else if (stepIndex >= 3) {
+        inlineVal = `start: 0`;
+      }
+      return { vars, globalVars, frames, inlineVal };
+    },
+    "getInlineValueForLine": (stepIndex, lineNum) => {
+      let nodeVal = -1;
+      let qArray = [];
+      if (stepIndex >= 4) { qArray = [0]; }
+      if (stepIndex >= 7) { qArray = []; nodeVal = 0; }
+      if (stepIndex >= 12) { qArray = [1]; nodeVal = 0; }
+      if (stepIndex >= 16) { qArray = [1, 2]; nodeVal = 0; }
+      if (stepIndex >= 19) { qArray = [2]; nodeVal = 1; }
+      if (stepIndex >= 26) { qArray = [2, 3]; nodeVal = 1; }
+      if (stepIndex >= 28) { qArray = [2, 3, 4]; nodeVal = 1; }
+      if (stepIndex >= 29) { qArray = [3, 4]; nodeVal = 2; }
+      if (stepIndex >= 30) { qArray = [4]; nodeVal = 3; }
+      if (stepIndex >= 31) { qArray = []; nodeVal = 4; }
+
+      if (lineNum === 7 || lineNum === 8 || lineNum === 12) {
+        return `start: 0`;
+      }
+      if (lineNum === 14) {
+        return `q.size(): ${qArray.length}`;
+      }
+      if ((lineNum === 15 || lineNum === 16 || lineNum === 17) && nodeVal !== -1) {
+        return `node: ${nodeVal}`;
+      }
+      if ((lineNum === 19 || lineNum === 20 || lineNum === 22) && nodeVal !== -1) {
+        return `node: ${nodeVal}, q.size(): ${qArray.length}`;
+      }
+      return null;
+    },
+    "getGraphVisual": (stepIndex) => {
+      let nodeVal = -1;
+      let neighborVal = -1;
+      let visitedArray = [false, false, false, false, false, false];
+      let qArray = [];
+      if (stepIndex >= 3) { visitedArray[0] = true; }
+      if (stepIndex >= 4) { qArray = [0]; }
+      if (stepIndex >= 6) { nodeVal = 0; }
+      if (stepIndex >= 7) { qArray = []; }
+      if (stepIndex >= 9) { neighborVal = 1; }
+      if (stepIndex >= 11) { visitedArray[1] = true; neighborVal = -1; }
+      if (stepIndex >= 12) { qArray = [1]; }
+      if (stepIndex >= 13) { neighborVal = 2; }
+      if (stepIndex >= 15) { visitedArray[2] = true; neighborVal = -1; }
+      if (stepIndex >= 16) { qArray = [1, 2]; }
+      if (stepIndex >= 18) { nodeVal = 1; }
+      if (stepIndex >= 19) { qArray = [2]; }
+      if (stepIndex >= 21) { neighborVal = 0; }
+      if (stepIndex >= 22) { neighborVal = -1; }
+      if (stepIndex >= 23) { neighborVal = 3; }
+      if (stepIndex >= 25) { visitedArray[3] = true; neighborVal = -1; }
+      if (stepIndex >= 26) { qArray = [2, 3]; }
+      if (stepIndex >= 27) { neighborVal = 4; }
+      if (stepIndex >= 28) { visitedArray[4] = true; qArray = [2, 3, 4]; neighborVal = -1; }
+      if (stepIndex >= 29) { qArray = [3, 4]; nodeVal = 2; }
+      if (stepIndex >= 30) { qArray = [4]; nodeVal = 3; }
+      if (stepIndex >= 31) { qArray = []; nodeVal = 4; }
+
+      const staticNodes = [
+        { id: "0", x: 140, y: 30, label: "0" },
+        { id: "1", x: 80, y: 90, label: "1" },
+        { id: "2", x: 200, y: 90, label: "2" },
+        { id: "3", x: 50, y: 150, label: "3" },
+        { id: "4", x: 110, y: 150, label: "4" },
+        { id: "5", x: 80, y: 200, label: "5" }
+      ];
+      const staticEdges = [
+        { source: "0", target: "1" },
+        { source: "0", target: "2" },
+        { source: "1", target: "3" },
+        { source: "1", target: "4" },
+        { source: "3", target: "5" },
+        { source: "4", target: "5" }
+      ];
+
+      return {
+        directed: false,
+        nodes: staticNodes.map(n => {
+          const idNum = parseInt(n.id);
+          let state = undefined;
+          if (idNum === nodeVal) state = "active";
+          else if (visitedArray[idNum]) state = "visited";
+          return { ...n, state };
+        }),
+        edges: staticEdges.map(e => {
+          const u = parseInt(e.source), v = parseInt(e.target);
+          const active = (u === nodeVal && v === neighborVal) || (v === nodeVal && u === neighborVal);
+          return { ...e, active };
+        })
+      };
     }
-  ]
+  }
 };

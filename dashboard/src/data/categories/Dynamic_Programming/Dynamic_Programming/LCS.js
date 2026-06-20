@@ -439,5 +439,13 @@ int main() {
         "desc": "Combinația a doua string-uri"
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "dp",
+    "type": "int[1005][1005]",
+    "val": "LCS length table",
+    "expandable": false
   }
+]
 };

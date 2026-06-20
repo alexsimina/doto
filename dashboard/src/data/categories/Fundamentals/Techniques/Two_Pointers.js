@@ -432,5 +432,13 @@ int main() {
         "desc": "Varianta O(1) space cu Two Pointers"
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "INF",
+    "type": "const int",
+    "val": "1e9",
+    "expandable": false
   }
+]
 };

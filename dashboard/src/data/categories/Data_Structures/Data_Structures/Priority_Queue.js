@@ -525,5 +525,13 @@ export const data = {
         "desc": "Îmbinarea eficientă a k liste sortate folosind o coadă cu priorități."
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "pq",
+    "type": "std::priority_queue<int>",
+    "val": "Priority Queue (max-heap)",
+    "expandable": false
   }
+]
 };

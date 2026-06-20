@@ -236,5 +236,40 @@ int main() {
         "desc": "Minimizați maximul (BS + Greedy)"
       }
     ]
+  },
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+      frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+      globalVars.push({ name: 'arr', type: 'std::vector<int>&', val: '{2, 5, 8, 12, 16, 23, 38, 56, 72, 91}', expandable: true });
+      globalVars.push({ name: 'target', type: 'int', val: '23', expandable: false });
+
+      let left = 0, right = 9, mid = -1;
+      if (stepIndex >= 3) left = 5;
+      if (stepIndex >= 6) right = 6;
+      if (stepIndex >= 2 && stepIndex < 5) mid = 4;
+      else if (stepIndex >= 5 && stepIndex < 8) mid = 7;
+      else if (stepIndex >= 8) mid = 5;
+
+      vars.push({ name: 'left', type: 'int', val: left, expandable: false });
+      vars.push({ name: 'right', type: 'int', val: right, expandable: false });
+
+      if (mid !== -1) {
+        vars.push({ name: 'mid', type: 'int', val: mid, expandable: false });
+        vars.push({ name: 'arr[mid]', type: 'int', val: [2, 5, 8, 12, 16, 23, 38, 56, 72, 91][mid], expandable: false });
+      }
+
+      frames.unshift({ name: `binarySearch(arr, target = 23)`, file: 'solution.cpp', line: activeLine });
+      
+      if (activeLine === 13 || activeLine === 14) inlineVal = `left: ${left}, right: ${right}`;
+      if (activeLine === 17) inlineVal = `mid: ${mid}`;
+      if (activeLine === 19 || activeLine === 23) inlineVal = `arr[mid]: ${[2, 5, 8, 12, 16, 23, 38, 56, 72, 91][mid]}, target: 23`;
+      if (activeLine === 24) inlineVal = `left: ${left}`;
+      if (activeLine === 26) inlineVal = `right: ${right}`;
+      return { vars, globalVars, frames, inlineVal };
+    }
   }
 };

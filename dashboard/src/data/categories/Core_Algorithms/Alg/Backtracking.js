@@ -691,5 +691,19 @@ int main() {
         "desc": "Backtracking pe grila"
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "sol",
+    "type": "int[20]",
+    "val": "{0, 0, 0, ...}",
+    "expandable": false
+  },
+  {
+    "name": "visited",
+    "type": "bool[20]",
+    "val": "{false, false, ...}",
+    "expandable": false
   }
+]
 };

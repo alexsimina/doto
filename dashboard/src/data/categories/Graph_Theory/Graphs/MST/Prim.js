@@ -332,6 +332,79 @@ export const data = {
           ]
         }
       ]
+    },
+  ],
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+      const inMST = [false, false, false, false];
+      let uVal = -1, costVal = -1, totalCost = 0;
+      const pqState = [];
+      if (stepIndex >= 2) { pqState.push('{0,0}'); }
+      if (stepIndex >= 3) { uVal = 0; costVal = 0; inMST[0] = true; pqState.length = 0; }
+      if (stepIndex >= 4) { pqState.push('{1,2}'); pqState.push('{4,1}'); }
+      if (stepIndex >= 5) { uVal = 2; costVal = 1; inMST[2] = true; totalCost = 1; pqState.length = 0; }
+      if (stepIndex >= 6) { pqState.push('{2,1}'); pqState.push('{8,3}'); }
+      if (stepIndex >= 7) { uVal = 1; costVal = 2; inMST[1] = true; totalCost = 3; }
+      if (stepIndex >= 8) { pqState.push('{5,3}'); }
+      if (stepIndex >= 9) { uVal = 3; costVal = 5; inMST[3] = true; totalCost = 8; }
+      globalVars.push({ name: 'adj[]', type: 'vector<pii>[MAXN]', val: '4-node weighted graph', expandable: true });
+      globalVars.push({ name: 'inMST', type: 'bool[MAXN]', val: `{${inMST.map(b => b ? 'T' : 'F').join(', ')}}`, expandable: false });
+      vars.push({ name: 'pq', type: 'priority_queue<pii>', val: pqState.length > 0 ? pqState.join(', ') : 'empty', expandable: false });
+      vars.push({ name: 'totalCost', type: 'int', val: totalCost, expandable: false });
+      if (uVal !== -1) vars.push({ name: 'u', type: 'int', val: uVal, expandable: false });
+      if (costVal !== -1) vars.push({ name: 'cost', type: 'int', val: costVal, expandable: false });
+      frames.push({ name: 'main()', file: 'main.cpp', line: 37 });
+      if (stepIndex >= 1) frames.unshift({ name: 'prim(start=0, V=4)', file: 'solution.cpp', line: activeLine });
+      if (uVal !== -1) inlineVal = `u: ${uVal}, cost: ${costVal}, total: ${totalCost}`;
+      else inlineVal = `totalCost: ${totalCost}`;
+      return { vars, globalVars, frames, inlineVal };
+    },
+    "getGraphVisual": (stepIndex) => {
+      let uVal = -1;
+      if (stepIndex >= 3) { uVal = 0; }
+      if (stepIndex >= 5) { uVal = 2; }
+      if (stepIndex >= 7) { uVal = 1; }
+      if (stepIndex >= 9) { uVal = 3; }
+
+      const staticNodes = [
+        { id: "0", x: 100, y: 50, label: "0" },
+        { id: "1", x: 200, y: 50, label: "1" },
+        { id: "2", x: 100, y: 150, label: "2" },
+        { id: "3", x: 200, y: 150, label: "3" }
+      ];
+      const staticEdges = [
+        { source: "0", target: "1", weight: 4 },
+        { source: "0", target: "2", weight: 1 },
+        { source: "1", target: "2", weight: 2 },
+        { source: "1", target: "3", weight: 5 },
+        { source: "2", target: "3", weight: 8 }
+      ];
+
+      return {
+        directed: false,
+        nodes: staticNodes.map(n => {
+          const idNum = parseInt(n.id);
+          let state = undefined;
+          if (idNum === uVal) state = "active";
+          else if (stepIndex >= 9) state = "visited";
+          else if (stepIndex >= 7 && idNum !== 3) state = "visited";
+          else if (stepIndex >= 5 && (idNum === 0 || idNum === 2)) state = "visited";
+          else if (stepIndex >= 3 && idNum === 0) state = "visited";
+          return { ...n, state };
+        }),
+        edges: staticEdges.map(e => {
+          const u = parseInt(e.source), v = parseInt(e.target);
+          let active = false;
+          if (stepIndex >= 9 && ((u === 0 && v === 2) || (u === 1 && v === 2) || (u === 1 && v === 3))) active = true;
+          else if (stepIndex >= 7 && ((u === 0 && v === 2) || (u === 1 && v === 2))) active = true;
+          else if (stepIndex >= 5 && (u === 0 && v === 2)) active = true;
+          return { ...e, active };
+        })
+      };
     }
-  ]
+  }
 };

@@ -304,6 +304,75 @@ export const data = {
           ]
         }
       ]
+    },
+  ],
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+      const dist = [0, 1000000000, 1000000000, 1000000000];
+      let iVal = 1, jVal = 0;
+      let uVal = -1, vVal = -1, wVal = -1;
+      if (stepIndex >= 1) { dist[0] = 0; }
+      if (stepIndex >= 3) { uVal = 0; vVal = 1; wVal = 4; dist[1] = 4; }
+      if (stepIndex >= 4) { jVal = 1; uVal = 0; vVal = 2; wVal = 5; dist[2] = 5; }
+      if (stepIndex >= 5) { jVal = 2; uVal = 2; vVal = 1; wVal = -2; dist[1] = 3; }
+      if (stepIndex >= 6) { jVal = 3; uVal = 1; vVal = 3; wVal = 3; dist[3] = 6; }
+      if (stepIndex >= 7) { iVal = 2; jVal = 0; }
+      globalVars.push({ name: 'INF', type: 'const int', val: '1e9', expandable: false });
+      globalVars.push({ name: 'dist', type: 'std::vector<int>', val: `{${dist.map(d => d >= 1000000000 ? 'INF' : d).join(', ')}}`, expandable: false });
+      if (uVal !== -1) vars.push({ name: 'u', type: 'int', val: uVal, expandable: false });
+      if (vVal !== -1) vars.push({ name: 'v', type: 'int', val: vVal, expandable: false });
+      if (wVal !== -1) vars.push({ name: 'weight', type: 'int', val: wVal, expandable: false });
+      vars.push({ name: 'i', type: 'int', val: iVal, expandable: false });
+      vars.push({ name: 'j', type: 'int', val: jVal, expandable: false });
+      frames.push({ name: 'main()', file: 'main.cpp', line: 42 });
+      if (stepIndex >= 1) frames.unshift({ name: 'bellmanFord(V=4, E=4, start=0)', file: 'solution.cpp', line: activeLine });
+      if (uVal !== -1) inlineVal = `u: ${uVal}, v: ${vVal}, w: ${wVal}`;
+      else inlineVal = `i: ${iVal}`;
+      return { vars, globalVars, frames, inlineVal };
+    },
+    "getGraphVisual": (stepIndex) => {
+      const dist = [0, 1e9, 1e9, 1e9];
+      let uVal = -1, vVal = -1, wVal = -1;
+      if (stepIndex >= 1) { dist[0] = 0; }
+      if (stepIndex >= 3) { uVal = 0; vVal = 1; wVal = 4; dist[1] = 4; }
+      if (stepIndex >= 4) { uVal = 0; vVal = 2; wVal = 5; dist[2] = 5; }
+      if (stepIndex >= 5) { uVal = 2; vVal = 1; wVal = -2; dist[1] = 3; }
+      if (stepIndex >= 6) { uVal = 1; vVal = 3; wVal = 3; dist[3] = 6; }
+
+      const staticNodes = [
+        { id: "0", x: 50, y: 100, label: "0" },
+        { id: "1", x: 150, y: 50, label: "1" },
+        { id: "2", x: 150, y: 150, label: "2" },
+        { id: "3", x: 250, y: 100, label: "3" }
+      ];
+      const staticEdges = [
+        { source: "0", target: "1", weight: 4 },
+        { source: "0", target: "2", weight: 5 },
+        { source: "2", target: "1", weight: -2 },
+        { source: "1", target: "3", weight: 3 }
+      ];
+
+      return {
+        directed: true,
+        nodes: staticNodes.map(n => {
+          const idNum = parseInt(n.id);
+          let state = undefined;
+          if (idNum === uVal || idNum === vVal) state = "active";
+          else if (dist[idNum] < 1e9) state = "visited";
+          
+          const desc = `d=${dist[idNum] >= 1e9 ? 'INF' : dist[idNum]}`;
+          return { ...n, state, desc };
+        }),
+        edges: staticEdges.map(e => {
+          const u = parseInt(e.source), v = parseInt(e.target);
+          const active = (u === uVal && v === vVal);
+          return { ...e, active };
+        })
+      };
     }
-  ]
+  }
 };

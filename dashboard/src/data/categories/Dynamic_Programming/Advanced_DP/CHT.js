@@ -336,5 +336,13 @@ int main() {
         "desc": "CHT cu Li Chao Tree."
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "hull",
+    "type": "std::vector<Line>",
+    "val": "Active lines in hull",
+    "expandable": false
   }
+]
 };

@@ -3391,5 +3391,13 @@ export const data = {
         "desc": "Aplicații avansate 2D RMQ"
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "st",
+    "type": "int[MAXN][LOGMAX]",
+    "val": "Sparse Table grid",
+    "expandable": false
   }
+]
 };

@@ -468,6 +468,82 @@ export const data = {
           ]
         }
       ]
+    },
+  ],
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+      let passVal = 1, nodeVal = -1;
+      const visited = [false, false, false, false, false];
+      const finishOrder = [];
+      if (stepIndex >= 3) { visited[0] = true; nodeVal = 0; }
+      if (stepIndex >= 5) { visited[1] = true; nodeVal = 1; finishOrder.push(1); }
+      if (stepIndex >= 7) { visited[2] = true; nodeVal = 2; finishOrder.push(2); }
+      if (stepIndex >= 9) { visited[3] = true; nodeVal = 3; finishOrder.push(3); }
+      if (stepIndex >= 11) { visited[4] = true; nodeVal = 4; finishOrder.push(4, 0); passVal = 2; }
+      globalVars.push({ name: 'adj', type: 'std::vector<std::vector<int>>', val: 'Original directed graph', expandable: true });
+      globalVars.push({ name: 'adjT', type: 'std::vector<std::vector<int>>', val: 'Transposed graph', expandable: true });
+      globalVars.push({ name: 'visited', type: 'std::vector<bool>', val: `{${visited.map(b => b ? 'T' : 'F').join(', ')}}`, expandable: false });
+      vars.push({ name: 'pass', type: 'int', val: passVal, expandable: false });
+      if (nodeVal !== -1) vars.push({ name: 'node', type: 'int', val: nodeVal, expandable: false });
+      vars.push({ name: 'finishOrder', type: 'std::vector<int>', val: finishOrder.length > 0 ? `[${finishOrder.join(', ')}]` : '[]', expandable: false });
+      frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+      if (stepIndex >= 3) frames.unshift({ name: `dfs1(${nodeVal !== -1 ? nodeVal : 0}, adj, visited)`, file: 'solution.cpp', line: activeLine });
+      if (nodeVal !== -1) inlineVal = `node: ${nodeVal}, pass: ${passVal}`;
+      return { vars, globalVars, frames, inlineVal };
+    },
+    "getGraphVisual": (stepIndex) => {
+      let passVal = 1, nodeVal = -1;
+      const visited = [false, false, false, false, false];
+      if (stepIndex >= 3) { visited[0] = true; nodeVal = 0; }
+      if (stepIndex >= 5) { visited[1] = true; nodeVal = 1; }
+      if (stepIndex >= 7) { visited[2] = true; nodeVal = 2; }
+      if (stepIndex >= 9) { visited[3] = true; nodeVal = 3; }
+      if (stepIndex >= 11) { visited[4] = true; nodeVal = 4; passVal = 2; }
+
+      const staticNodes = [
+        { id: "0", x: 140, y: 60, label: "0" },
+        { id: "1", x: 80, y: 120, label: "1" },
+        { id: "2", x: 200, y: 120, label: "2" },
+        { id: "3", x: 140, y: 180, label: "3" },
+        { id: "4", x: 230, y: 180, label: "4" }
+      ];
+
+      const forwardEdges = [
+        { source: "0", target: "2" },
+        { source: "2", target: "1" },
+        { source: "1", target: "0" },
+        { source: "0", target: "3" },
+        { source: "3", target: "4" }
+      ];
+      
+      const transposedEdges = [
+        { source: "2", target: "0" },
+        { source: "1", target: "2" },
+        { source: "0", target: "1" },
+        { source: "3", target: "0" },
+        { source: "4", target: "3" }
+      ];
+
+      return {
+        title: passVal === 1 ? "Graf Original" : "Graf Transpus (adjT)",
+        directed: true,
+        nodes: staticNodes.map(n => {
+          const idNum = parseInt(n.id);
+          let state = undefined;
+          if (idNum === nodeVal) state = "active";
+          else if (visited[idNum]) state = "visited";
+          return { ...n, state };
+        }),
+        edges: (passVal === 1 ? forwardEdges : transposedEdges).map(e => {
+          const u = parseInt(e.source);
+          const active = (u === nodeVal);
+          return { ...e, active };
+        })
+      };
     }
-  ]
+  }
 };

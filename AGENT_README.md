@@ -61,15 +61,30 @@ The root contains numerous CommonJS (`.cjs`) utility scripts and JSON data files
      - **Console Tab**: Collects step-by-step logs from the debugger run.
 
 7. **Category Debugger States**:
-   - `getCategoryDebuggerState` handles custom state mappings for `Arrays`, `Divide_Conquer`, `Binary_Search`, and `Graphs/DFS/BFS`.
-   - For all other categories, a **dynamic regex parser** fallback extracts variables from the explanation text (matching patterns like `name = value`, `name este value`, `name devine value`) to populate the Variables list and inline labels.
+   - Instead of hardcoding debugger states inside `CategoryPresentation.jsx`, each custom topic contains a `"debugger"` block directly in its JS data file.
+   - The frontend reads state details dynamically via `data?.debugger` or static variables from `data?.globalVars`.
+   - For all other categories without a custom debugger block, a **dynamic regex parser** fallback in `CategoryPresentation.jsx` extracts variables from the explanation text (matching patterns like `name = value`, `name este value`, `name devine value`) to populate the Variables list and inline labels.
 
 8. **Polymorphic Database Schemas (Matrices/Arrays)**:
    - Handle variations in matrix definitions gracefully. Matrix representations inside data files might use `matrix.data` or `matrix.rows`.
    - Cells in the matrix/array can be primitives (e.g., `5`) or objects (e.g., `{ val: 5 }`). Always use defensive checks (like `cell && typeof cell === 'object' ? cell.val : cell`) to avoid React render crashes (`Objects are not valid as a React child`).
 
-9. Transitional Chapters: Categories that act as transitions to sub-algorithms (e.g., Shortest Path branching into Dijkstra, Bellman-Ford) are automatically detected in `CategoryPresentation.jsx` based on the presence of subcategories. For these, the UI hides the code and problem sections and instead displays a "Subcapitole / Algoritmi" interactive grid.
-10. Testing: E2E tests go to `/e2e_tests`.
+9. **Dynamic Graph & Tree Visualizations**:
+   - Graph Theory topics (except Basics which has static definitions) generate their visualizations dynamically using the `getGraphVisual(stepIndex)` function in their `"debugger"` block.
+   - This function returns an object structured as:
+     ```javascript
+     {
+       directed: boolean, // true for directed graphs (with arrows), false for undirected
+       title: string,     // Optional title (e.g., "Graf Transpus")
+       nodes: Array<{ id, x, y, label, state?: 'active'|'visited', desc?: string }>,
+       edges: Array<{ source, target, weight?: number|string, active?: boolean }>
+     }
+     ```
+   - Node and edge highlight states (`active`, `visited`) and edge weights/labels are calculated dynamically based on the current step's variables.
+   - **Segment Tree & Tree/Graph DP Visualizations**: This same dynamic graph model is used to represent tree structures like **Segment Trees** and trees/graphs in **Dynamic Programming** (e.g., DP on Trees/Graphs). For Segment Trees, node intervals (e.g., `[start..end]`) are rendered above each node using the `desc` property. In Tree/Graph DP, this `desc` property is highly recommended to show subproblem intervals, active states, or calculated DP values for specific tree nodes/intervals.
+
+10. **Transitional Chapters**: Categories that act as transitions to sub-algorithms (e.g., Shortest Path branching into Dijkstra, Bellman-Ford) are automatically detected in `CategoryPresentation.jsx` based on the presence of subcategories. For these, the UI hides the code and problem sections and instead displays a "Subcapitole / Algoritmi" interactive grid.
+11. **Testing**: E2E tests go to `/e2e_tests`.
 
 ---
 
@@ -110,4 +125,32 @@ Concrete implementation of a specific algorithm with debugger steps.
   - `explanations`: Array of step objects (typically 20+ steps) for the CLion-style debugger:
     - `line`: The 1-indexed line number in `code` currently being executed.
     - `text`: Detailed explanation of the step in Romanian.
-    - `blocksVisual` / `graphVisual` / `matrixVisual`: State visualization structure representing active variables or visual containers.
+    - `blocksVisual` (Optional): Used to visualize 1D structures like arrays, vectors, stacks, queues, and DSU sets. Formatted as an array of rows:
+      ```json
+      [
+        {
+          "label": "Stack (stive)", // Optional label (triggers Stack/Queue styling if containing those words)
+          "groups": [
+            [
+              { "val": "10", "active": true, "sorted": false, "hidden": false }
+            ]
+          ]
+        }
+      ]
+      ```
+    - `matrix` (Optional): Used to visualize 2D structures like DP tables, matrices, or Sparse Tables (RMQ). Formatted as:
+      ```json
+      {
+        "title": "RMQ Table",
+        "headers": ["", "0", "1", "2"],
+        "rows": [
+          ["0", "1", "2", "3"]
+        ]
+      }
+      ```
+    - **Note on Multi-Visual Support**: A single debugger step can contain **multiple visualizations concurrently** (e.g., combining `blocksVisual` for vector/stack visualization, `matrix` for DP state, and/or a dynamically generated graph from `getGraphVisual`). When multiple visualization keys exist at the same step, the frontend displays them stacked together (e.g., rendering both a vector/blocks layout and a graph vertically).
+  - `debugger` (Optional): A block containing custom execution trace handlers:
+    - `getDebuggerState(stepIndex, activeLine, explanationText)`: returns `{ vars, globalVars, frames, inlineVal }`.
+    - `getInlineValueForLine(stepIndex, lineNum)`: returns inline labels next to code lines.
+    - `getGraphVisual(stepIndex)`: returns dynamic graph configuration (used for Graph Theory topics).
+

@@ -817,5 +817,94 @@ int main() {
         "desc": "Parcurgere și optimizare pe o matrice"
       }
     ]
+  },
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+      frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+      globalVars.push({ name: 'arr', type: 'std::vector<int>', val: '{10, 24, 8, 42, 17}', expandable: true });
+      if (stepIndex >= 1) {
+        let maxVal = 10;
+        if (stepIndex >= 4) maxVal = 24;
+        if (stepIndex >= 8) maxVal = 42;
+        vars.push({ name: 'max_val', type: 'int', val: maxVal, expandable: false });
+        if (activeLine === 9 || activeLine === 13 || activeLine === 15) inlineVal = `max_val: ${maxVal}`;
+      }
+      if (stepIndex >= 2 && stepIndex <= 10) {
+        let iVal = 1;
+        if (stepIndex >= 5) iVal = 2;
+        if (stepIndex >= 7) iVal = 3;
+        if (stepIndex >= 10) iVal = 4;
+        vars.push({ name: 'i', type: 'int', val: iVal, expandable: false });
+        if (activeLine === 11 || activeLine === 12) inlineVal = `i: ${iVal}, arr[i]: ${[10, 24, 8, 42, 17][iVal]}`;
+      }
+      if (stepIndex >= 11) {
+        globalVars.push({ name: 'matrix', type: 'std::vector<std::vector<int>>', val: '{{1, 2, 3}, {4, 5, 6}}', expandable: true });
+      }
+      if (stepIndex >= 12) {
+        let sumVal = 0;
+        if (stepIndex === 13) sumVal = 1;
+        if (stepIndex === 14) sumVal = 3;
+        if (stepIndex === 15) sumVal = 6;
+        if (stepIndex === 16) sumVal = 10;
+        if (stepIndex === 17) sumVal = 15;
+        if (stepIndex === 18) sumVal = 21;
+        if (stepIndex === 19) sumVal = 21;
+        vars.push({ name: 'sum', type: 'int', val: sumVal, expandable: false });
+        if (activeLine === 22 || activeLine === 26 || activeLine === 32) inlineVal = `sum: ${sumVal}`;
+      }
+      return { vars, globalVars, frames, inlineVal };
+    },
+    "getInlineValueForLine": (stepIndex, lineNum) => {
+      if (lineNum === 8 && stepIndex >= 0) return 'arr: {10, 24, 8, 42, 17}';
+      if (lineNum === 9 && stepIndex >= 1) {
+        return `max_val: ${stepIndex >= 8 ? 42 : (stepIndex >= 4 ? 24 : 10)}`;
+      }
+      if (lineNum === 11 && stepIndex >= 2 && stepIndex <= 10) {
+        let iVal = 1;
+        if (stepIndex >= 5) iVal = 2;
+        if (stepIndex >= 7) iVal = 3;
+        if (stepIndex >= 10) iVal = 4;
+        return `i: ${iVal}`;
+      }
+      if (lineNum === 12 && stepIndex >= 2 && stepIndex <= 10) {
+        let iVal = 1;
+        let maxVal = 10;
+        if (stepIndex >= 5) { iVal = 2; maxVal = 24; }
+        if (stepIndex >= 7) { iVal = 3; maxVal = 24; }
+        if (stepIndex >= 10) { iVal = 4; maxVal = 42; }
+        const arrVals = [10, 24, 8, 42, 17];
+        return `arr[i]: ${arrVals[iVal]}, max_val: ${maxVal}`;
+      }
+      if (lineNum === 13 && stepIndex >= 1) {
+        return `max_val: ${stepIndex >= 8 ? 42 : (stepIndex >= 4 ? 24 : 10)}`;
+      }
+      if (lineNum === 20 && stepIndex >= 11) return 'matrix: {{1,2,3},{4,5,6}}';
+      if (lineNum === 24 && stepIndex >= 13 && stepIndex <= 18) {
+        let iVal = stepIndex >= 16 ? 1 : 0;
+        return `i: ${iVal}`;
+      }
+      if (lineNum === 25 && stepIndex >= 13 && stepIndex <= 18) {
+        let iVal = stepIndex >= 16 ? 1 : 0;
+        let jVal = (stepIndex - 13) % 3;
+        if (stepIndex >= 16) jVal = (stepIndex - 16) % 3;
+        return `i: ${iVal}, j: ${jVal}`;
+      }
+      if (lineNum === 26 && stepIndex >= 12) {
+        let sumVal = 0;
+        if (stepIndex === 13) sumVal = 1;
+        if (stepIndex === 14) sumVal = 3;
+        if (stepIndex === 15) sumVal = 6;
+        if (stepIndex === 16) sumVal = 10;
+        if (stepIndex === 17) sumVal = 15;
+        if (stepIndex === 18) sumVal = 21;
+        if (stepIndex === 19) sumVal = 21;
+        return `sum: ${sumVal}`;
+      }
+      return null;
+    }
   }
 };

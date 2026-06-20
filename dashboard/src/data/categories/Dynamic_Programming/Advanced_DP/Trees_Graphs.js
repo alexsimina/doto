@@ -485,5 +485,13 @@ int main() {
         "desc": "Combinație Greedy și DP pe intervale de arbori"
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "dp",
+    "type": "int[MAXN][2]",
+    "val": "DP states on trees/graphs",
+    "expandable": false
   }
+]
 };

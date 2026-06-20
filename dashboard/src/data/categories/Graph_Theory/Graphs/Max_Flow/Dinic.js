@@ -313,6 +313,86 @@ export const data = {
           ]
         }
       ]
+    },
+  ],
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+      let flowVal = 0;
+      const level = [-1, -1, -1, -1];
+      if (stepIndex >= 2) { level[0] = 0; level[1] = 1; level[2] = 1; level[3] = 2; }
+      if (stepIndex >= 4) { flowVal = 10; }
+      if (stepIndex >= 6) { flowVal = 20; }
+      globalVars.push({ name: 'level', type: 'int[MAXN]', val: `{${level.map(v => v === -1 ? '-' : v).join(', ')}}`, expandable: false });
+      globalVars.push({ name: 'ptr', type: 'int[MAXN]', val: 'Next edge pointer per node', expandable: false });
+      vars.push({ name: 'flow', type: 'int', val: flowVal, expandable: false });
+      frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+      if (stepIndex >= 1) frames.unshift({ name: 'dinicMaxFlow(source=0, sink=3)', file: 'solution.cpp', line: activeLine });
+      inlineVal = `flow: ${flowVal}`;
+      return { vars, globalVars, frames, inlineVal };
+    },
+    "getGraphVisual": (stepIndex) => {
+      let flowVal = 0;
+      const level = [-1, -1, -1, -1];
+      if (stepIndex >= 2) { level[0] = 0; level[1] = 1; level[2] = 1; level[3] = 2; }
+      if (stepIndex >= 4) { flowVal = 10; }
+      if (stepIndex >= 6) { flowVal = 20; }
+
+      const staticNodes = [
+        { id: "0", x: 50, y: 100, label: "S (0)" },
+        { id: "1", x: 150, y: 50, label: "1" },
+        { id: "2", x: 150, y: 150, label: "2" },
+        { id: "3", x: 250, y: 100, label: "T (3)" }
+      ];
+      const staticEdges = [
+        { source: "0", target: "1", weight: "0/3" },
+        { source: "0", target: "2", weight: "0/2" },
+        { source: "1", target: "2", weight: "0/1" },
+        { source: "1", target: "3", weight: "0/2" },
+        { source: "2", target: "3", weight: "0/3" }
+      ];
+
+      let f01 = 0, f02 = 0, f12 = 0, f13 = 0, f23 = 0;
+      if (stepIndex >= 4 && stepIndex < 6) {
+        f01 = 2; f13 = 2;
+      } else if (stepIndex >= 6 && stepIndex < 8) {
+        f01 = 2; f13 = 2; f02 = 2; f23 = 2;
+      } else if (stepIndex >= 8) {
+        f01 = 3; f12 = 1; f23 = 3; f13 = 2; f02 = 2;
+      }
+
+      return {
+        directed: true,
+        nodes: staticNodes.map(n => {
+          const idNum = parseInt(n.id);
+          let state = undefined;
+          if (stepIndex >= 2 && level[idNum] !== -1) state = "visited";
+          let safeDesc = undefined;
+          if (stepIndex >= 2) {
+             safeDesc = "L=" + (level[idNum] !== -1 ? level[idNum] : "-");
+          }
+          return { ...n, state, desc: safeDesc };
+        }),
+        edges: staticEdges.map(e => {
+          let flow = 0;
+          let cap = 0;
+          if (e.source === "0" && e.target === "1") { flow = f01; cap = 3; }
+          else if (e.source === "0" && e.target === "2") { flow = f02; cap = 2; }
+          else if (e.source === "1" && e.target === "2") { flow = f12; cap = 1; }
+          else if (e.source === "1" && e.target === "3") { flow = f13; cap = 2; }
+          else if (e.source === "2" && e.target === "3") { flow = f23; cap = 3; }
+          
+          let active = false;
+          if (stepIndex >= 4 && stepIndex < 6 && (e.source === "0" && e.target === "1" || e.source === "1" && e.target === "3")) active = true;
+          if (stepIndex >= 6 && stepIndex < 8 && (e.source === "0" && e.target === "2" || e.source === "2" && e.target === "3")) active = true;
+          if (stepIndex >= 8 && (e.source === "0" && e.target === "1" || e.source === "1" && e.target === "2" || e.source === "2" && e.target === "3")) active = true;
+
+          return { ...e, weight: `${flow}/${cap}`, active };
+        })
+      };
     }
-  ]
+  }
 };

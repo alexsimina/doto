@@ -303,5 +303,19 @@ int main() {
         "desc": "Sarături din bloc în bloc pe CF"
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "block_size",
+    "type": "int",
+    "val": "316",
+    "expandable": false
+  },
+  {
+    "name": "blocks",
+    "type": "int[317]",
+    "val": "Precomputed block sums",
+    "expandable": false
   }
+]
 };

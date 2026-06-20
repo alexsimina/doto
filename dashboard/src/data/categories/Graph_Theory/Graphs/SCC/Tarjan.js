@@ -399,6 +399,75 @@ export const data = {
           ]
         }
       ]
+    },
+  ],
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+      let nodeVal = -1, idVal = 0;
+      const ids = [-1, -1, -1, -1, -1];
+      const low = [-1, -1, -1, -1, -1];
+      if (stepIndex >= 1) { nodeVal = 0; ids[0] = 0; low[0] = 0; idVal = 1; }
+      if (stepIndex >= 3) { nodeVal = 1; ids[1] = 1; low[1] = 1; idVal = 2; }
+      if (stepIndex >= 5) { nodeVal = 3; ids[3] = 2; low[3] = 2; idVal = 3; }
+      if (stepIndex >= 9) { nodeVal = 2; ids[2] = 3; low[2] = 1; idVal = 4; }
+      if (stepIndex >= 13) { nodeVal = 4; ids[4] = 4; low[4] = 0; idVal = 5; }
+      globalVars.push({ name: 'adj', type: 'std::vector<std::vector<int>>&', val: 'Directed graph', expandable: true });
+      globalVars.push({ name: 'ids', type: 'std::vector<int>', val: `{${ids.map(v => v === -1 ? '-' : v).join(', ')}}`, expandable: false });
+      globalVars.push({ name: 'low', type: 'std::vector<int>', val: `{${low.map(v => v === -1 ? '-' : v).join(', ')}}`, expandable: false });
+      if (nodeVal !== -1) vars.push({ name: 'node', type: 'int', val: nodeVal, expandable: false });
+      vars.push({ name: 'id', type: 'int', val: idVal, expandable: false });
+      frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+      if (stepIndex >= 1) frames.unshift({ name: `tarjanDFS(node=${nodeVal !== -1 ? nodeVal : 0})`, file: 'solution.cpp', line: activeLine });
+      if (nodeVal !== -1) inlineVal = `node: ${nodeVal}, id: ${idVal}`;
+      return { vars, globalVars, frames, inlineVal };
+    },
+    "getGraphVisual": (stepIndex) => {
+      let nodeVal = -1;
+      const ids = [-1, -1, -1, -1];
+      const low = [-1, -1, -1, -1];
+      if (stepIndex >= 1) { nodeVal = 1; ids[0] = 1; low[0] = 1; }
+      if (stepIndex >= 3) { nodeVal = 2; ids[1] = 2; low[1] = 2; }
+      if (stepIndex >= 5) { nodeVal = 3; ids[2] = 3; low[2] = 3; }
+      if (stepIndex >= 9) { nodeVal = 2; ids[1] = 2; low[1] = 1; }
+      if (stepIndex >= 13) { nodeVal = 4; ids[3] = 4; low[3] = 4; }
+
+      const staticNodes = [
+        { id: "1", x: 100, y: 50, label: "1" },
+        { id: "2", x: 200, y: 50, label: "2" },
+        { id: "3", x: 150, y: 150, label: "3" },
+        { id: "4", x: 250, y: 150, label: "4" }
+      ];
+      const staticEdges = [
+        { source: "1", target: "2" },
+        { source: "2", target: "3" },
+        { source: "3", target: "1" },
+        { source: "3", target: "4" }
+      ];
+
+      return {
+        directed: true,
+        nodes: staticNodes.map(n => {
+          const idNum = parseInt(n.id);
+          let state = undefined;
+          if (idNum === nodeVal) state = "active";
+          else if (ids[idNum - 1] !== -1) state = "visited";
+          
+          let desc = undefined;
+          if (ids[idNum - 1] !== -1) {
+            desc = `id/low: ${ids[idNum - 1]}/${low[idNum - 1]}`;
+          }
+          return { ...n, state, desc };
+        }),
+        edges: staticEdges.map(e => {
+          const u = parseInt(e.source);
+          const active = (u === nodeVal);
+          return { ...e, active };
+        })
+      };
     }
-  ]
+  }
 };

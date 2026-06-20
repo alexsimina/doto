@@ -1094,6 +1094,70 @@ export const data = {
           ]
         ]
       }
+    },
+  ],
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+      let kVal = 0, iVal = 0, jVal = 0;
+      if (stepIndex >= 3) kVal = 1;
+      if (stepIndex >= 5) { iVal = 1; jVal = 0; }
+      if (stepIndex >= 7) kVal = 2;
+      if (stepIndex >= 9) { iVal = 0; jVal = 1; }
+      globalVars.push({ name: 'INF', type: 'const int', val: '1e9', expandable: false });
+      globalVars.push({ name: 'dist[4][4]', type: 'int[][]', val: 'All-pairs distance matrix', expandable: false });
+      vars.push({ name: 'k', type: 'int', val: kVal, expandable: false });
+      vars.push({ name: 'i', type: 'int', val: iVal, expandable: false });
+      vars.push({ name: 'j', type: 'int', val: jVal, expandable: false });
+      frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+      if (stepIndex >= 1) frames.unshift({ name: 'floydWarshall(V=4, dist)', file: 'solution.cpp', line: activeLine });
+      inlineVal = `k: ${kVal}, i: ${iVal}, j: ${jVal}`;
+      return { vars, globalVars, frames, inlineVal };
+    },
+    "getGraphVisual": (stepIndex) => {
+      let kVal = 0, iVal = 0, jVal = 0;
+      if (stepIndex >= 3) kVal = 1;
+      if (stepIndex >= 5) { iVal = 1; jVal = 0; }
+      if (stepIndex >= 7) kVal = 2;
+      if (stepIndex >= 9) { iVal = 0; jVal = 1; }
+
+      const staticNodes = [
+        { id: "0", x: 100, y: 50, label: "0" },
+        { id: "1", x: 200, y: 50, label: "1" },
+        { id: "2", x: 200, y: 150, label: "2" },
+        { id: "3", x: 100, y: 150, label: "3" }
+      ];
+      const staticEdges = [
+        { source: "0", target: "1", weight: 5 },
+        { source: "0", target: "3", weight: 10 },
+        { source: "1", target: "2", weight: 3 },
+        { source: "2", target: "3", weight: 1 }
+      ];
+
+      const edgesList = [...staticEdges];
+      if (stepIndex >= 3) {
+        edgesList.push({ source: "0", target: "2", weight: 8 });
+      }
+
+      return {
+        directed: true,
+        nodes: staticNodes.map(n => {
+          const idNum = parseInt(n.id);
+          let state = undefined;
+          if (idNum === kVal) state = "active";
+          else if (idNum === iVal || idNum === jVal) state = "visited";
+          return { ...n, state };
+        }),
+        edges: edgesList.map(e => {
+          const u = parseInt(e.source), v = parseInt(e.target);
+          let active = false;
+          if ((u === iVal && v === kVal) || (u === kVal && v === jVal)) active = true;
+          return { ...e, active };
+        })
+      };
     }
-  ]
+  }
 };

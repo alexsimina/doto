@@ -535,5 +535,13 @@ export const data = {
         "desc": "Determinarea ariei maxime a unui dreptunghi într-o histogramă folosind stivă monotonă."
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "st",
+    "type": "std::stack<int>",
+    "val": "Main evaluation stack",
+    "expandable": false
   }
+]
 };

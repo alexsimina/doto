@@ -431,5 +431,13 @@ int main() {
         "desc": "Trie + Bitwise"
       }
     ]
+  },
+  "globalVars": [
+  {
+    "name": "BITS",
+    "type": "const int",
+    "val": "32",
+    "expandable": false
   }
+]
 };

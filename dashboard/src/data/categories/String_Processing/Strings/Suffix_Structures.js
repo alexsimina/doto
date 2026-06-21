@@ -470,11 +470,105 @@ int main() {
     ]
   },
   "globalVars": [
-  {
-    "name": "sa",
-    "type": "int[MAXN]",
-    "val": "Suffix array representation",
-    "expandable": false
+    {
+      "name": "sa",
+      "type": "std::vector<int>",
+      "val": "{5, 3, 1, 0, 4, 2}",
+      "expandable": false
+    }
+  ],
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const trace = [
+        { "stack": ["main()"], "vars": [] },
+        { "stack": ["main()"], "vars": [{ "name": "txt", "type": "std::string", "val": "\"banana\"" }] },
+        { "stack": ["buildSuffixArray(txt)", "main()"], "vars": [{ "name": "txt", "type": "std::string", "val": "\"banana\"" }] },
+        { "stack": ["buildSuffixArray(txt)", "main()"], "vars": [{ "name": "txt", "type": "std::string", "val": "\"banana\"" }, { "name": "n", "type": "int", "val": "6" }] },
+        { "stack": ["buildSuffixArray(txt)", "main()"], "vars": [{ "name": "txt", "type": "std::string", "val": "\"banana\"" }, { "name": "n", "type": "int", "val": "6" }, { "name": "suffixes", "type": "std::vector<Suffix>", "val": "size=6" }] },
+        { "stack": ["buildSuffixArray(txt)", "main()"], "vars": [{ "name": "suffixes", "type": "std::vector<Suffix>", "val": "size=6" }, { "name": "i", "type": "int", "val": "0" }] },
+        { "stack": ["buildSuffixArray(txt)", "main()"], "vars": [{ "name": "suffixes", "type": "std::vector<Suffix>", "val": "size=6" }, { "name": "i", "type": "int", "val": "0" }] },
+        { "stack": ["buildSuffixArray(txt)", "main()"], "vars": [{ "name": "suffixes", "type": "std::vector<Suffix>", "val": "size=6" }, { "name": "i", "type": "int", "val": "0" }] },
+        { "stack": ["buildSuffixArray(txt)", "main()"], "vars": [{ "name": "suffixes", "type": "std::vector<Suffix>", "val": "size=6" }, { "name": "i", "type": "int", "val": "1" }] },
+        { "stack": ["buildSuffixArray(txt)", "main()"], "vars": [{ "name": "suffixes", "type": "std::vector<Suffix>", "val": "size=6" }, { "name": "i", "type": "int", "val": "2" }] },
+        { "stack": ["buildSuffixArray(txt)", "main()"], "vars": [{ "name": "suffixes", "type": "std::vector<Suffix>", "val": "size=6" }, { "name": "i", "type": "int", "val": "3" }] },
+        { "stack": ["buildSuffixArray(txt)", "main()"], "vars": [{ "name": "suffixes", "type": "std::vector<Suffix>", "val": "size=6" }, { "name": "i", "type": "int", "val": "4" }] },
+        { "stack": ["buildSuffixArray(txt)", "main()"], "vars": [{ "name": "suffixes", "type": "std::vector<Suffix>", "val": "size=6" }, { "name": "i", "type": "int", "val": "5" }] },
+        { "stack": ["buildSuffixArray(txt)", "main()"], "vars": [{ "name": "suffixes", "type": "std::vector<Suffix>", "val": "size=6" }] },
+        { "stack": ["cmp(a, b)", "buildSuffixArray(txt)", "main()"], "vars": [{ "name": "a", "type": "const Suffix&", "val": "{index=0, suff=\"banana\"}" }, { "name": "b", "type": "const Suffix&", "val": "{index=1, suff=\"anana\"}" }] },
+        { "stack": ["cmp(a, b)", "buildSuffixArray(txt)", "main()"], "vars": [] },
+        { "stack": ["buildSuffixArray(txt)", "main()"], "vars": [{ "name": "suffixes", "type": "std::vector<Suffix>", "val": "size=6 {\"a\", \"ana\", \"anana\", \"banana\", \"na\", \"nana\"}" }] },
+        { "stack": ["buildSuffixArray(txt)", "main()"], "vars": [{ "name": "suffixes", "type": "std::vector<Suffix>", "val": "size=6" }, { "name": "sa", "type": "std::vector<int>", "val": "size=6 {0, 0, 0, 0, 0, 0}" }] },
+        { "stack": ["buildSuffixArray(txt)", "main()"], "vars": [{ "name": "suffixes", "type": "std::vector<Suffix>", "val": "size=6" }, { "name": "sa", "type": "std::vector<int>", "val": "size=6" }, { "name": "i", "type": "int", "val": "0" }] },
+        { "stack": ["buildSuffixArray(txt)", "main()"], "vars": [{ "name": "suffixes", "type": "std::vector<Suffix>", "val": "size=6" }, { "name": "sa", "type": "std::vector<int>", "val": "size=6 {5, 0, 0, 0, 0, 0}" }, { "name": "i", "type": "int", "val": "0" }] },
+        { "stack": ["buildSuffixArray(txt)", "main()"], "vars": [{ "name": "sa", "type": "std::vector<int>", "val": "size=6 {5, 3, 0, 0, 0, 0}" }, { "name": "i", "type": "int", "val": "1" }] },
+        { "stack": ["buildSuffixArray(txt)", "main()"], "vars": [{ "name": "sa", "type": "std::vector<int>", "val": "size=6 {5, 3, 1, 0, 0, 0}" }, { "name": "i", "type": "int", "val": "2" }] },
+        { "stack": ["buildSuffixArray(txt)", "main()"], "vars": [{ "name": "sa", "type": "std::vector<int>", "val": "size=6 {5, 3, 1, 0, 0, 0}" }, { "name": "i", "type": "int", "val": "3" }] },
+        { "stack": ["buildSuffixArray(txt)", "main()"], "vars": [{ "name": "sa", "type": "std::vector<int>", "val": "size=6 {5, 3, 1, 0, 4, 0}" }, { "name": "i", "type": "int", "val": "4" }] },
+        { "stack": ["buildSuffixArray(txt)", "main()"], "vars": [{ "name": "sa", "type": "std::vector<int>", "val": "size=6 {5, 3, 1, 0, 4, 2}" }, { "name": "i", "type": "int", "val": "5" }] },
+        { "stack": ["buildSuffixArray(txt)", "main()"], "vars": [{ "name": "sa", "type": "std::vector<int>", "val": "size=6 {5, 3, 1, 0, 4, 2}" }] },
+        { "stack": ["main()"], "vars": [{ "name": "txt", "type": "std::string", "val": "\"banana\"" }, { "name": "sa", "type": "std::vector<int>", "val": "{5, 3, 1, 0, 4, 2}" }] },
+        { "stack": ["main()"], "vars": [{ "name": "txt", "type": "std::string", "val": "\"banana\"" }, { "name": "sa", "type": "std::vector<int>", "val": "{5, 3, 1, 0, 4, 2}" }] },
+        { "stack": ["main()"], "vars": [{ "name": "sa", "type": "std::vector<int>", "val": "{5, 3, 1, 0, 4, 2}" }, { "name": "i", "type": "int", "val": "0" }] },
+        { "stack": ["main()"], "vars": [{ "name": "sa", "type": "std::vector<int>", "val": "{5, 3, 1, 0, 4, 2}" }, { "name": "i", "type": "int", "val": "1" }] },
+        { "stack": ["main()"], "vars": [{ "name": "sa", "type": "std::vector<int>", "val": "{5, 3, 1, 0, 4, 2}" }] },
+        { "stack": ["main()"], "vars": [] }
+      ];
+      const curr = trace[stepIndex] || trace[trace.length - 1];
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+
+      curr.stack.forEach(frameName => {
+        frames.push({ "name": frameName, "file": "solution.cpp", "line": activeLine });
+      });
+
+      curr.vars.forEach(v => {
+        vars.push({ "name": v.name, "type": v.type, "val": v.val, "expandable": false });
+      });
+
+      let inlineVal = curr.vars.length > 0 ? `${curr.vars[0].name}: ${curr.vars[0].val}` : "";
+      return { vars, globalVars, frames, inlineVal };
+    },
+    "getInlineValueForLine": (stepIndex, lineNum) => {
+      const mappings = {
+        0: { line: 39, val: "main()" },
+        1: { line: 40, val: "txt: \"banana\"" },
+        2: { line: 41, val: "buildSuffixArray()" },
+        3: { line: 19, val: "n: 6" },
+        4: { line: 20, val: "suffixes: size 6" },
+        5: { line: 23, val: "i: 0" },
+        6: { line: 24, val: "index: 0" },
+        7: { line: 25, val: "suff: \"banana\"" },
+        8: { line: 25, val: "i: 1" },
+        9: { line: 25, val: "i: 2" },
+        10: { line: 25, val: "i: 3" },
+        11: { line: 25, val: "i: 4" },
+        12: { line: 25, val: "i: 5" },
+        13: { line: 29, val: "sorting..." },
+        14: { line: 14, val: "a.suff vs b.suff" },
+        15: { line: 15, val: "comparison return" },
+        16: { line: 29, val: "sorted!" },
+        17: { line: 32, val: "sa initialized" },
+        18: { line: 33, val: "i: 0" },
+        19: { line: 34, val: "sa[0]: 5" },
+        20: { line: 34, val: "sa[1]: 3" },
+        21: { line: 34, val: "sa[2]: 1" },
+        22: { line: 34, val: "sa[3]: 0" },
+        23: { line: 34, val: "sa[4]: 4" },
+        24: { line: 34, val: "sa[5]: 2" },
+        25: { line: 36, val: "return sa" },
+        26: { line: 41, val: "sa loaded" },
+        27: { line: 43, val: "stdout: 'Suffix Array:'" },
+        28: { line: 45, val: "sa[0]: 5" },
+        29: { line: 45, val: "sa[1]: 3" },
+        30: { line: 45, val: "printed all" },
+        31: { line: 47, val: "return 0" }
+      };
+      const mapping = mappings[stepIndex];
+      if (mapping && mapping.line === lineNum) {
+        return mapping.val;
+      }
+      return null;
+    }
   }
-]
 };

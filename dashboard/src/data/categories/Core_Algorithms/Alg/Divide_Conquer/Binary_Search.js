@@ -47,147 +47,147 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 6,
+      "line": 13,
       "text": "Începe execuția funcției binarySearch pentru a căuta target = 3.",
       "blocksVisual": [
         { "label": "Vectorul", "groups": [[{"val": 2}, {"val": 5}, {"val": 8}, {"val": 12}, {"val": 16}, {"val": 23}, {"val": 38}, {"val": 56}, {"val": 72}, {"val": 91}]] }
       ]
     },
     {
-      "line": 7,
+      "line": 13,
       "text": "Inițializăm marginea stângă: left = 0.",
       "blocksVisual": [
         { "label": "left = 0", "groups": [[{"val": 2, "active": true}, {"val": 5}, {"val": 8}, {"val": 12}, {"val": 16}, {"val": 23}, {"val": 38}, {"val": 56}, {"val": 72}, {"val": 91}]] }
       ]
     },
     {
-      "line": 8,
+      "line": 14,
       "text": "Inițializăm marginea dreaptă: right = 9 (ultimul index).",
       "blocksVisual": [
         { "label": "Interval", "groups": [[{"val": 2, "active": true}, {"val": 5}, {"val": 8}, {"val": 12}, {"val": 16}, {"val": 23}, {"val": 38}, {"val": 56}, {"val": 72}, {"val": 91, "active": true}]] }
       ]
     },
     {
-      "line": 10,
+      "line": 16,
       "text": "Verificăm condiția buclei: left <= right (0 <= 9) este adevărată.",
       "blocksVisual": [
         { "label": "Valid", "groups": [[{"val": "left <= right"}]] }
       ]
     },
     {
-      "line": 11,
+      "line": 17,
       "text": "Calculăm mijlocul intervalului: mid = 0 + (9 - 0) / 2 = 4.",
       "blocksVisual": [
         { "label": "Mijloc (mid = 4)", "groups": [[{"val": 2}, {"val": 5}, {"val": 8}, {"val": 12}, {"val": 16, "sorted": true}, {"val": 23}, {"val": 38}, {"val": 56}, {"val": 72}, {"val": 91}]] }
       ]
     },
     {
-      "line": 13,
+      "line": 19,
       "text": "Verificăm dacă arr[mid] == target. Deoarece arr[4] = 16 și target = 3, condiția este falsă.",
       "blocksVisual": [
         { "label": "Comparație", "groups": [[{"val": "16 == 3", "active": true}]] }
       ]
     },
     {
-      "line": 17,
+      "line": 26,
       "text": "Deoarece arr[mid] > target (16 > 3), elementul se poate afla doar în stânga. Mutăm right = mid - 1 = 3.",
       "blocksVisual": [
         { "label": "Actualizare", "groups": [[{"val": "right = 3", "active": true}]] }
       ]
     },
     {
-      "line": 10,
+      "line": 16,
       "text": "Reluăm bucla. Verificăm condiția: left <= right (0 <= 3) este adevărată.",
       "blocksVisual": [
         { "label": "Noul Interval", "groups": [[{"val": 2, "active": true}, {"val": 5}, {"val": 8}, {"val": 12, "active": true}, {"val": 16, "hidden": true}, {"val": 23, "hidden": true}, {"val": 38, "hidden": true}, {"val": 56, "hidden": true}, {"val": 72, "hidden": true}, {"val": 91, "hidden": true}]] }
       ]
     },
     {
-      "line": 11,
+      "line": 17,
       "text": "Calculăm noul mijloc: mid = 0 + (3 - 0) / 2 = 1.",
       "blocksVisual": [
         { "label": "Mijloc (mid = 1)", "groups": [[{"val": 2}, {"val": 5, "sorted": true}, {"val": 8}, {"val": 12}]] }
       ]
     },
     {
-      "line": 13,
+      "line": 19,
       "text": "Verificăm dacă arr[1] == target (5 == 3). Este fals.",
       "blocksVisual": [
         { "label": "Comparație", "groups": [[{"val": "5 == 3", "active": true}]] }
       ]
     },
     {
-      "line": 17,
+      "line": 26,
       "text": "Deoarece arr[mid] > target (5 > 3), mutăm marginea dreaptă la stânga: right = mid - 1 = 0.",
       "blocksVisual": [
         { "label": "Actualizare", "groups": [[{"val": "right = 0", "active": true}]] }
       ]
     },
     {
-      "line": 10,
+      "line": 16,
       "text": "Reluăm bucla. Condiția: left <= right (0 <= 0) este adevărată.",
       "blocksVisual": [
         { "label": "Interval", "groups": [[{"val": 2, "active": true}, {"val": 5, "hidden": true}, {"val": 8, "hidden": true}, {"val": 12, "hidden": true}]] }
       ]
     },
     {
-      "line": 11,
+      "line": 17,
       "text": "Calculăm mijlocul: mid = 0 + (0 - 0) / 2 = 0.",
       "blocksVisual": [
         { "label": "Mijloc (mid = 0)", "groups": [[{"val": 2, "sorted": true}]] }
       ]
     },
     {
-      "line": 13,
+      "line": 19,
       "text": "Verificăm dacă arr[0] == target (2 == 3). Este fals.",
       "blocksVisual": [
         { "label": "Comparație", "groups": [[{"val": "2 == 3", "active": true}]] }
       ]
     },
     {
-      "line": 17,
+      "line": 24,
       "text": "Deoarece arr[mid] < target (2 < 3), mutăm marginea stângă la dreapta: left = mid + 1 = 1.",
       "blocksVisual": [
         { "label": "Actualizare", "groups": [[{"val": "left = 1", "active": true}]] }
       ]
     },
     {
-      "line": 10,
+      "line": 16,
       "text": "Verificăm condiția buclei: left <= right (1 <= 0) este falsă. Căutarea pentru target = 3 s-a terminat (negăsit).",
       "blocksVisual": [
         { "label": "Stop", "groups": [[{"val": "Incomplet / Negăsit", "active": true}]] }
       ]
     },
     {
-      "line": 24,
+      "line": 30,
       "text": "Returnăm -1 deoarece elementul 3 nu există în vector.",
       "blocksVisual": [
         { "label": "Retur", "groups": [[{"val": -1}]] }
       ]
     },
     {
-      "line": 6,
+      "line": 13,
       "text": "Acum pornim o nouă căutare pentru target = 23. Inițializăm left = 0, right = 9.",
       "blocksVisual": [
         { "label": "Interval Inițial", "groups": [[{"val": 2, "active": true}, {"val": 5}, {"val": 8}, {"val": 12}, {"val": 16}, {"val": 23}, {"val": 38}, {"val": 56}, {"val": 72}, {"val": 91, "active": true}]] }
       ]
     },
     {
-      "line": 11,
+      "line": 24,
       "text": "Calculăm mijlocul: mid = 0 + (9 - 0) / 2 = 4 (valoarea 16). Deoarece 16 < 23, setăm left = mid + 1 = 5.",
       "blocksVisual": [
         { "label": "Stânga exclusă", "groups": [[{"val": 2, "hidden": true}, {"val": 5, "hidden": true}, {"val": 8, "hidden": true}, {"val": 12, "hidden": true}, {"val": 16, "hidden": true}, {"val": 23, "active": true}, {"val": 38}, {"val": 56}, {"val": 72}, {"val": 91, "active": true}]] }
       ]
     },
     {
-      "line": 11,
+      "line": 26,
       "text": "Calculăm noul mijloc: mid = 5 + (9 - 5) / 2 = 7 (valoarea 56). Deoarece 56 > 23, setăm right = mid - 1 = 6.",
       "blocksVisual": [
         { "label": "Dreapta exclusă", "groups": [[{"val": 2, "hidden": true}, {"val": 5, "hidden": true}, {"val": 8, "hidden": true}, {"val": 12, "hidden": true}, {"val": 16, "hidden": true}, {"val": 23, "active": true}, {"val": 38, "active": true}, {"val": 56, "hidden": true}, {"val": 72, "hidden": true}, {"val": 91, "hidden": true}]] }
       ]
     },
     {
-      "line": 11,
+      "line": 20,
       "text": "Calculăm noul mijloc: mid = 5 + (6 - 5) / 2 = 5 (valoarea 23). Deoarece arr[5] == target (23 == 23), am găsit elementul și returnăm indexul 5.",
       "blocksVisual": [
         { "label": "Succes!", "groups": [[{"val": 23, "sorted": true}]] }
@@ -237,39 +237,90 @@ int main() {
       }
     ]
   },
-  "debugger": {
-    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+  globalVars: [],
+  debugger: {
+    getDebuggerState: (stepIndex, activeLine, explanationText) => {
       const vars = [];
       const globalVars = [];
       const frames = [];
       let inlineVal = null;
-      frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
-      globalVars.push({ name: 'arr', type: 'std::vector<int>&', val: '{2, 5, 8, 12, 16, 23, 38, 56, 72, 91}', expandable: true });
-      globalVars.push({ name: 'target', type: 'int', val: '23', expandable: false });
 
-      let left = 0, right = 9, mid = -1;
-      if (stepIndex >= 3) left = 5;
-      if (stepIndex >= 6) right = 6;
-      if (stepIndex >= 2 && stepIndex < 5) mid = 4;
-      else if (stepIndex >= 5 && stepIndex < 8) mid = 7;
-      else if (stepIndex >= 8) mid = 5;
+      const stepData = [
+        { target: 3,  left: 0, right: 9, mid: -1 }, // 0
+        { target: 3,  left: 0, right: 9, mid: -1 }, // 1
+        { target: 3,  left: 0, right: 9, mid: -1 }, // 2
+        { target: 3,  left: 0, right: 9, mid: -1 }, // 3
+        { target: 3,  left: 0, right: 9, mid: 4 },  // 4
+        { target: 3,  left: 0, right: 9, mid: 4 },  // 5
+        { target: 3,  left: 0, right: 3, mid: 4 },  // 6
+        { target: 3,  left: 0, right: 3, mid: 4 },  // 7
+        { target: 3,  left: 0, right: 3, mid: 1 },  // 8
+        { target: 3,  left: 0, right: 3, mid: 1 },  // 9
+        { target: 3,  left: 0, right: 0, mid: 1 },  // 10
+        { target: 3,  left: 0, right: 0, mid: 1 },  // 11
+        { target: 3,  left: 0, right: 0, mid: 0 },  // 12
+        { target: 3,  left: 0, right: 0, mid: 0 },  // 13
+        { target: 3,  left: 1, right: 0, mid: 0 },  // 14
+        { target: 3,  left: 1, right: 0, mid: 0 },  // 15
+        { target: 3,  left: 1, right: 0, mid: -1 }, // 16
+        { target: 23, left: 0, right: 9, mid: -1 }, // 17
+        { target: 23, left: 5, right: 9, mid: 4 },  // 18
+        { target: 23, left: 5, right: 6, mid: 7 },  // 19
+        { target: 23, left: 5, right: 6, mid: 5 }   // 20
+      ];
 
-      vars.push({ name: 'left', type: 'int', val: left, expandable: false });
-      vars.push({ name: 'right', type: 'int', val: right, expandable: false });
+      const curr = stepData[stepIndex] || stepData[stepData.length - 1];
 
-      if (mid !== -1) {
-        vars.push({ name: 'mid', type: 'int', val: mid, expandable: false });
-        vars.push({ name: 'arr[mid]', type: 'int', val: [2, 5, 8, 12, 16, 23, 38, 56, 72, 91][mid], expandable: false });
+      frames.push({ name: "binarySearch(const vector<int>& arr, target = " + curr.target + ")", file: "solution.cpp", line: activeLine });
+      frames.push({ name: "main()", file: "main.cpp", line: 37 });
+
+      vars.push({ name: "arr", type: "const std::vector<int>&", val: "size = 10", expandable: true });
+      vars.push({ name: "target", type: "int", val: curr.target.toString(), expandable: false });
+      vars.push({ name: "left", type: "int", val: curr.left.toString(), expandable: false });
+      vars.push({ name: "right", type: "int", val: curr.right.toString(), expandable: false });
+
+      if (curr.mid !== -1) {
+        vars.push({ name: "mid", type: "int", val: curr.mid.toString(), expandable: false });
+        vars.push({ name: "arr[mid]", type: "int", val: [2, 5, 8, 12, 16, 23, 38, 56, 72, 91][curr.mid].toString(), expandable: false });
       }
 
-      frames.unshift({ name: `binarySearch(arr, target = 23)`, file: 'solution.cpp', line: activeLine });
-      
-      if (activeLine === 13 || activeLine === 14) inlineVal = `left: ${left}, right: ${right}`;
-      if (activeLine === 17) inlineVal = `mid: ${mid}`;
-      if (activeLine === 19 || activeLine === 23) inlineVal = `arr[mid]: ${[2, 5, 8, 12, 16, 23, 38, 56, 72, 91][mid]}, target: 23`;
-      if (activeLine === 24) inlineVal = `left: ${left}`;
-      if (activeLine === 26) inlineVal = `right: ${right}`;
+      inlineVal = "left: " + curr.left + ", right: " + curr.right;
+      if (curr.mid !== -1) inlineVal += ", mid: " + curr.mid;
+
       return { vars, globalVars, frames, inlineVal };
+    },
+    getInlineValueForLine: (stepIndex, lineNum) => {
+      const stepData = [
+        { target: 3,  left: 0, right: 9, mid: -1 }, // 0
+        { target: 3,  left: 0, right: 9, mid: -1 }, // 1
+        { target: 3,  left: 0, right: 9, mid: -1 }, // 2
+        { target: 3,  left: 0, right: 9, mid: -1 }, // 3
+        { target: 3,  left: 0, right: 9, mid: 4 },  // 4
+        { target: 3,  left: 0, right: 9, mid: 4 },  // 5
+        { target: 3,  left: 0, right: 3, mid: 4 },  // 6
+        { target: 3,  left: 0, right: 3, mid: 4 },  // 7
+        { target: 3,  left: 0, right: 3, mid: 1 },  // 8
+        { target: 3,  left: 0, right: 3, mid: 1 },  // 9
+        { target: 3,  left: 0, right: 0, mid: 1 },  // 10
+        { target: 3,  left: 0, right: 0, mid: 1 },  // 11
+        { target: 3,  left: 0, right: 0, mid: 0 },  // 12
+        { target: 3,  left: 0, right: 0, mid: 0 },  // 13
+        { target: 3,  left: 1, right: 0, mid: 0 },  // 14
+        { target: 3,  left: 1, right: 0, mid: 0 },  // 15
+        { target: 3,  left: 1, right: 0, mid: -1 }, // 16
+        { target: 23, left: 0, right: 9, mid: -1 }, // 17
+        { target: 23, left: 5, right: 9, mid: 4 },  // 18
+        { target: 23, left: 5, right: 6, mid: 7 },  // 19
+        { target: 23, left: 5, right: 6, mid: 5 }   // 20
+      ];
+      const curr = stepData[stepIndex];
+      if (!curr) return null;
+      if (lineNum >= 12 && lineNum <= 30) {
+        let res = "left: " + curr.left + ", right: " + curr.right;
+        if (curr.mid !== -1) res += ", mid: " + curr.mid;
+        return res;
+      }
+      return null;
     }
   }
 };

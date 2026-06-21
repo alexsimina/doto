@@ -965,7 +965,14 @@ const CategoryPresentation = ({ category, onClose, onNavigate }) => {
       return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}>
           <span style={{ color: '#555d6b', fontSize: isLarge ? '12px' : '10px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-            {gv.title || (isFenwick ? 'Dependențe AIB' : (isDirected ? 'Graf Orientat' : 'Graf Neorientat'))}
+            {gv.title || (() => {
+              if (isFenwick) return 'Dependențe AIB';
+              const lowerCat = category ? category.toLowerCase() : '';
+              if (lowerCat.includes('segment_trees')) return 'Arbore de Intervale';
+              if (lowerCat.includes('trees_graphs')) return 'Arbore / DP pe Arbori';
+              if (lowerCat.includes('tree')) return 'Structură de Arbore';
+              return isDirected ? 'Graf Orientat' : 'Graf Neorientat';
+            })()}
           </span>
           <div style={{ position: 'relative', width: `${svgW}px`, height: `${svgH}px`, flexShrink: 0 }}>
             <svg width={svgW} height={svgH} style={{ position: 'absolute', top: 0, left: 0, overflow: 'visible' }}>

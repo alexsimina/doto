@@ -492,12 +492,100 @@ export const data = {
       }
     ]
   },
-  "globalVars": [
-  {
-    "name": "dq",
-    "type": "std::deque<int>",
-    "val": "Deque double-ended storage",
-    "expandable": false
+  globalVars: [],
+  debugger: {
+    getDebuggerState: (stepIndex, activeLine, explanationText) => {
+      const trace = [
+        { q: [], dq: [] },
+        { q: [10], dq: [] },
+        { q: [10, 20], dq: [] },
+        { q: [10, 20, 30], dq: [] },
+        { q: [10, 20, 30, 40], dq: [] },
+        { q: [10, 20, 30, 40], primul: 10, dq: [] },
+        { q: [20, 30, 40], primul: 10, dq: [] },
+        { q: [20, 30, 40], primul: 10, al_doilea: 20, dq: [] },
+        { q: [30, 40], primul: 10, al_doilea: 20, dq: [] },
+        { q: [30, 40], dq: [] },
+        { q: [30, 40], dq: [100] },
+        { q: [30, 40], dq: [50, 100] },
+        { q: [30, 40], dq: [50, 100, 150] },
+        { q: [30, 40], dq: [25, 50, 100, 150] },
+        { q: [30, 40], dq: [25, 50, 100, 150], front_val: 25 },
+        { q: [30, 40], dq: [25, 50, 100, 150], front_val: 25, back_val: 150 },
+        { q: [30, 40], dq: [50, 100, 150], front_val: 25, back_val: 150 },
+        { q: [30, 40], dq: [50, 100], front_val: 25, back_val: 150 },
+        { q: [30, 40], dq: [100], front_val: 25, back_val: 150 },
+        { q: [30, 40], dq: [], front_val: 25, back_val: 150 },
+        { q: [30, 40], dq: [], front_val: 25, back_val: 150 }
+      ];
+      const curr = trace[stepIndex] || trace[trace.length - 1];
+      const vars = [];
+      const globalVars = [];
+      const frames = [
+        { name: "main()", file: "main.cpp", line: activeLine }
+      ];
+
+      if (activeLine >= 10 && activeLine <= 20) {
+        const qVal = "size = " + curr.q.length + " {" + curr.q.join(", ") + "}";
+        vars.push({ name: "q", type: "std::queue<int>", val: qVal, expandable: curr.q.length > 0 });
+        if (curr.primul !== undefined) {
+          vars.push({ name: "primul", type: "int", val: curr.primul.toString(), expandable: false });
+        }
+        if (curr.al_doilea !== undefined) {
+          vars.push({ name: "al_doilea", type: "int", val: curr.al_doilea.toString(), expandable: false });
+        }
+      } else if (activeLine >= 22) {
+        const dqVal = "size = " + curr.dq.length + " {" + curr.dq.join(", ") + "}";
+        vars.push({ name: "dq", type: "std::deque<int>", val: dqVal, expandable: curr.dq.length > 0 });
+        if (curr.front_val !== undefined) {
+          vars.push({ name: "front_val", type: "int", val: curr.front_val.toString(), expandable: false });
+        }
+        if (curr.back_val !== undefined) {
+          vars.push({ name: "back_val", type: "int", val: curr.back_val.toString(), expandable: false });
+        }
+      }
+
+      let inlineVal = "";
+      if (activeLine >= 10 && activeLine <= 20) {
+        inlineVal = "q: {" + curr.q.join(",") + "}";
+      } else if (activeLine >= 22) {
+        inlineVal = "dq: {" + curr.dq.join(",") + "}";
+      }
+      return { vars, globalVars, frames, inlineVal };
+    },
+    getInlineValueForLine: (stepIndex, lineNum) => {
+      const trace = [
+        { q: [], dq: [] },
+        { q: [10], dq: [] },
+        { q: [10, 20], dq: [] },
+        { q: [10, 20, 30], dq: [] },
+        { q: [10, 20, 30, 40], dq: [] },
+        { q: [10, 20, 30, 40], primul: 10, dq: [] },
+        { q: [20, 30, 40], primul: 10, dq: [] },
+        { q: [20, 30, 40], primul: 10, al_doilea: 20, dq: [] },
+        { q: [30, 40], primul: 10, al_doilea: 20, dq: [] },
+        { q: [30, 40], dq: [] },
+        { q: [30, 40], dq: [100] },
+        { q: [30, 40], dq: [50, 100] },
+        { q: [30, 40], dq: [50, 100, 150] },
+        { q: [30, 40], dq: [25, 50, 100, 150] },
+        { q: [30, 40], dq: [25, 50, 100, 150], front_val: 25 },
+        { q: [30, 40], dq: [25, 50, 100, 150], front_val: 25, back_val: 150 },
+        { q: [30, 40], dq: [50, 100, 150], front_val: 25, back_val: 150 },
+        { q: [30, 40], dq: [50, 100], front_val: 25, back_val: 150 },
+        { q: [30, 40], dq: [100], front_val: 25, back_val: 150 },
+        { q: [30, 40], dq: [], front_val: 25, back_val: 150 },
+        { q: [30, 40], dq: [], front_val: 25, back_val: 150 }
+      ];
+      const curr = trace[stepIndex];
+      if (!curr) return null;
+      if (lineNum >= 10 && lineNum <= 20) {
+        return "q: {" + curr.q.join(",") + "}";
+      }
+      if (lineNum >= 22 && lineNum <= 34) {
+        return "dq: {" + curr.dq.join(",") + "}";
+      }
+      return null;
+    }
   }
-]
 };

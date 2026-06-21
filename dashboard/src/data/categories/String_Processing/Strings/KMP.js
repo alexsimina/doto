@@ -1,6 +1,6 @@
 export const data = {
   "presentation": "### Prezentare Generală\n\nAlgoritmul **KMP (Knuth-Morris-Pratt)** este un algoritm liniar clasic pentru căutarea unui șablon (pattern) de lungime $M$ într-un text de lungime $N$. \n\nÎn abordarea naivă (brute-force), când apare o nepotrivire (mismatch) între text și șablon, glisăm șablonul cu o singură poziție la dreapta și reluăm căutarea de la capăt. Acest lucru poate duce la o complexitate în cel mai rău caz de $\\mathcal{O}(N \\cdot M)$.\n\nKMP evită această recalculare redundantă utilizând informațiile acumulate în timpul potrivirilor parțiale anterioare. Ideea principală este că, atunci când o nepotrivire apare pe poziția $j$ din șablon, știm deja exact ce caractere se află în text pe pozițiile anterioare. Astfel, putem glisa șablonul direct la o poziție sigură, definită de cel mai lung prefix al șablonului care este, în același timp, și sufix al potrivirii parțiale.\n\n### Vectorul de Failure (Prefix Array / $\\pi$)\n\nÎnainte de căutare, preprocesăm șablonul pentru a construi vectorul de prefix $\\pi$ (sau LPS - Longest Proper Prefix which is also Suffix). Pentru fiecare index $i$, $\\pi[i]$ reprezintă lungimea celui mai lung prefix propriu al subșirului $pat[0..i]$ care este și sufix al acestuia:\n$$\\pi[i] = \\max \\{ k : pat[0..k-1] = pat[i-k+1..i] \\text{ și } k < i + 1 \\}$$",
-  "complexity": "### Complexitate\n\nFie $N$ lungimea textului și $M$ lungimea șablonului.\n\n- **Timp:** \n  - **Preprocesare ($\n  \\pi$):** $\\mathcal{O}(M)$ deoarece pointerii care parcurg șablonul avansează monoton sau scad prin salturi.\n  - **Căutare:** $\\mathcal{O}(N)$ deoarece pointerul pe text nu merge niciodată înapoi. Fiecare caracter din text este comparat de cel mult $2$ ori în medie.\n  - **Total:** $\\mathcal{O}(N + M)$ - o îmbunătățire uriașă față de $\\mathcal{O}(N \\cdot M)$.\n- **Spațiu:**\n  - $\\mathcal{O}(M)$ memorie auxiliară pentru stocarea vectorului $\\pi$.",
+  "complexity": "### Complexitate\n\nFie $N$ lungimea textului și $M$ lungimea șablonului.\n\n- **Timp:** \n  - **Preprocesare ($\\pi$):** $\\mathcal{O}(M)$ deoarece pointerii care parcurg șablonul avansează monoton sau scad prin salturi.\n  - **Căutare:** $\\mathcal{O}(N)$ deoarece pointerul pe text nu merge niciodată înapoi. Fiecare caracter din text este comparat de cel mult $2$ ori în medie.\n  - **Total:** $\\mathcal{O}(N + M)$ - o îmbunătățire uriașă față de $\\mathcal{O}(N \\cdot M)$.\n- **Spațiu:**\n  - $\\mathcal{O}(M)$ memorie auxiliară pentru stocarea vectorului $\\pi$.",
   "variations": "### Variații și Edge Cases\n\n1. **Aflarea Perioadei unui Șir:** Dacă lungimea șablonului $M$ se divide la $M - \\pi[M-1]$, atunci șirul este periodic, iar lungimea celei mai mici perioade este exact $M - \\pi[M-1]$.\n2. **Algoritmul Z:** O alternativă la fel de rapidă (tot $\\mathcal{O}(N + M)$), dar care calculează valorile de potrivire direct față de prefixul principal al întregului șir.\n3. **Căutare pe Fluxuri (Streaming):** Datorită faptului că pointerul pe text avansează strict monoton, KMP poate căuta tipare în fișiere uriașe citite caracter cu caracter, fără a încărca tot fișierul în memorie.",
   "applications": "### Aplicații\n\n- **Funcții de căutare în editoare (Ctrl+F):** Implementări extrem de rapide pentru regăsirea cuvintelor în documente lungi.\n- **Bioinformatică:** Alinierea secvențelor genetice scurte în genomi complecși.\n- **Filtrarea conținutului:** Detectarea de cuvinte cheie în pachetele de rețea care tranzitează un router în timp real.",
   code: `#include <iostream>
@@ -475,11 +475,109 @@ int main() {
     ]
   },
   "globalVars": [
-  {
-    "name": "pi",
-    "type": "std::vector<int>",
-    "val": "{0, 0, 1, 2, 0, 1}",
-    "expandable": false
+    {
+      "name": "pi",
+      "type": "std::vector<int>",
+      "val": "{0, 0, 1, 2, 0, 1, 2, 3, 4}",
+      "expandable": false
+    }
+  ],
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const trace = [
+        { "stack": ["main()"], "vars": [] },
+        { "stack": ["main()"], "vars": [{ "name": "txt", "type": "std::string", "val": "\"ABABDABACDABABCABAB\"" }] },
+        { "stack": ["main()"], "vars": [{ "name": "txt", "type": "std::string", "val": "\"ABABDABACDABABCABAB\"" }, { "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }] },
+        { "stack": ["kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "txt", "type": "std::string", "val": "\"ABABDABACDABABCABAB\"" }, { "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }] },
+        { "stack": ["computePi(pat)", "kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }] },
+        { "stack": ["computePi(pat)", "kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "m", "type": "int", "val": "9" }] },
+        { "stack": ["computePi(pat)", "kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "m", "type": "int", "val": "9" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 0, 0, 0, 0, 0, 0, 0}" }] },
+        { "stack": ["computePi(pat)", "kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "m", "type": "int", "val": "9" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 0, 0, 0, 0, 0, 0, 0}" }, { "name": "j", "type": "int", "val": "0" }] },
+        { "stack": ["computePi(pat)", "kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "m", "type": "int", "val": "9" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 0, 0, 0, 0, 0, 0, 0}" }, { "name": "j", "type": "int", "val": "0" }, { "name": "i", "type": "int", "val": "1" }] },
+        { "stack": ["computePi(pat)", "kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "m", "type": "int", "val": "9" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 0, 0, 0, 0, 0, 0, 0}" }, { "name": "j", "type": "int", "val": "0" }, { "name": "i", "type": "int", "val": "1" }] },
+        { "stack": ["computePi(pat)", "kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "m", "type": "int", "val": "9" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 0, 0, 0, 0, 0, 0, 0}" }, { "name": "j", "type": "int", "val": "0" }, { "name": "i", "type": "int", "val": "1" }] },
+        { "stack": ["computePi(pat)", "kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "m", "type": "int", "val": "9" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 0, 0, 0, 0, 0, 0, 0}" }, { "name": "j", "type": "int", "val": "0" }, { "name": "i", "type": "int", "val": "2" }] },
+        { "stack": ["computePi(pat)", "kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "m", "type": "int", "val": "9" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 0, 0, 0, 0, 0, 0, 0}" }, { "name": "j", "type": "int", "val": "1" }, { "name": "i", "type": "int", "val": "2" }] },
+        { "stack": ["computePi(pat)", "kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "m", "type": "int", "val": "9" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 1, 0, 0, 0, 0, 0, 0}" }, { "name": "j", "type": "int", "val": "1" }, { "name": "i", "type": "int", "val": "2" }] },
+        { "stack": ["computePi(pat)", "kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "m", "type": "int", "val": "9" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 1, 0, 0, 0, 0, 0, 0}" }, { "name": "j", "type": "int", "val": "2" }, { "name": "i", "type": "int", "val": "3" }] },
+        { "stack": ["computePi(pat)", "kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "m", "type": "int", "val": "9" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 1, 2, 0, 0, 0, 0, 0}" }, { "name": "j", "type": "int", "val": "2" }, { "name": "i", "type": "int", "val": "3" }] },
+        { "stack": ["computePi(pat)", "kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "m", "type": "int", "val": "9" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 1, 2, 0, 0, 0, 0, 0}" }, { "name": "j", "type": "int", "val": "2" }, { "name": "i", "type": "int", "val": "4" }] },
+        { "stack": ["computePi(pat)", "kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "m", "type": "int", "val": "9" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 1, 2, 0, 0, 0, 0, 0}" }, { "name": "j", "type": "int", "val": "0" }, { "name": "i", "type": "int", "val": "4" }] },
+        { "stack": ["computePi(pat)", "kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "m", "type": "int", "val": "9" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 1, 2, 0, 0, 0, 0, 0}" }, { "name": "j", "type": "int", "val": "0" }, { "name": "i", "type": "int", "val": "4" }] },
+        { "stack": ["computePi(pat)", "kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "m", "type": "int", "val": "9" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 1, 2, 0, 1, 2, 3, 4}" }] },
+        { "stack": ["computePi(pat)", "kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 1, 2, 0, 1, 2, 3, 4}" }] },
+        { "stack": ["kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "txt", "type": "std::string", "val": "\"ABABDABACDABABCABAB\"" }, { "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 1, 2, 0, 1, 2, 3, 4}" }, { "name": "n", "type": "int", "val": "19" }] },
+        { "stack": ["kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "txt", "type": "std::string", "val": "\"ABABDABACDABABCABAB\"" }, { "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 1, 2, 0, 1, 2, 3, 4}" }, { "name": "n", "type": "int", "val": "19" }, { "name": "m", "type": "int", "val": "9" }] },
+        { "stack": ["kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "txt", "type": "std::string", "val": "\"ABABDABACDABABCABAB\"" }, { "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 1, 2, 0, 1, 2, 3, 4}" }, { "name": "n", "type": "int", "val": "19" }, { "name": "m", "type": "int", "val": "9" }, { "name": "j", "type": "int", "val": "0" }] },
+        { "stack": ["kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "txt", "type": "std::string", "val": "\"ABABDABACDABABCABAB\"" }, { "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 1, 2, 0, 1, 2, 3, 4}" }, { "name": "j", "type": "int", "val": "0" }, { "name": "i", "type": "int", "val": "0" }] },
+        { "stack": ["kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "txt", "type": "std::string", "val": "\"ABABDABACDABABCABAB\"" }, { "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 1, 2, 0, 1, 2, 3, 4}" }, { "name": "j", "type": "int", "val": "1" }, { "name": "i", "type": "int", "val": "0" }] },
+        { "stack": ["kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "txt", "type": "std::string", "val": "\"ABABDABACDABABCABAB\"" }, { "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 1, 2, 0, 1, 2, 3, 4}" }, { "name": "j", "type": "int", "val": "4" }, { "name": "i", "type": "int", "val": "3" }] },
+        { "stack": ["kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "txt", "type": "std::string", "val": "\"ABABDABACDABABCABAB\"" }, { "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 1, 2, 0, 1, 2, 3, 4}" }, { "name": "j", "type": "int", "val": "4" }, { "name": "i", "type": "int", "val": "4" }] },
+        { "stack": ["kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "txt", "type": "std::string", "val": "\"ABABDABACDABABCABAB\"" }, { "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 1, 2, 0, 1, 2, 3, 4}" }, { "name": "j", "type": "int", "val": "0" }, { "name": "i", "type": "int", "val": "4" }] },
+        { "stack": ["kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "txt", "type": "std::string", "val": "\"ABABDABACDABABCABAB\"" }, { "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 1, 2, 0, 1, 2, 3, 4}" }, { "name": "j", "type": "int", "val": "9" }, { "name": "i", "type": "int", "val": "18" }] },
+        { "stack": ["kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "txt", "type": "std::string", "val": "\"ABABDABACDABABCABAB\"" }, { "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 1, 2, 0, 1, 2, 3, 4}" }, { "name": "j", "type": "int", "val": "9" }, { "name": "i", "type": "int", "val": "18" }] },
+        { "stack": ["kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "txt", "type": "std::string", "val": "\"ABABDABACDABABCABAB\"" }, { "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 1, 2, 0, 1, 2, 3, 4}" }, { "name": "j", "type": "int", "val": "9" }, { "name": "i", "type": "int", "val": "18" }] },
+        { "stack": ["kmpSearch(pat, txt)", "main()"], "vars": [{ "name": "txt", "type": "std::string", "val": "\"ABABDABACDABABCABAB\"" }, { "name": "pat", "type": "std::string", "val": "\"ABABCABAB\"" }, { "name": "pi", "type": "std::vector<int>", "val": "size=9 {0, 0, 1, 2, 0, 1, 2, 3, 4}" }, { "name": "j", "type": "int", "val": "4" }, { "name": "i", "type": "int", "val": "18" }] },
+        { "stack": ["main()"], "vars": [] }
+      ];
+      const curr = trace[stepIndex] || trace[trace.length - 1];
+      const vars = [];
+      const globalVars = [{ "name": "pi", "type": "std::vector<int>", "val": "{0, 0, 1, 2, 0, 1, 2, 3, 4}", "expandable": false }];
+      const frames = [];
+
+      curr.stack.forEach(frameName => {
+        frames.push({ "name": frameName, "file": "solution.cpp", "line": activeLine });
+      });
+
+      curr.vars.forEach(v => {
+        vars.push({ "name": v.name, "type": v.type, "val": v.val, "expandable": false });
+      });
+
+      let inlineVal = curr.vars.length > 0 ? `${curr.vars[0].name}: ${curr.vars[0].val}` : "";
+      return { vars, globalVars, frames, inlineVal };
+    },
+    "getInlineValueForLine": (stepIndex, lineNum) => {
+      const mappings = {
+        0: { line: 49, val: "main()" },
+        1: { line: 50, val: "txt: \"ABABDABACDABABCABAB\"" },
+        2: { line: 51, val: "pat: \"ABABCABAB\"" },
+        3: { line: 52, val: "kmpSearch()" },
+        4: { line: 30, val: "computePi(pat)" },
+        5: { line: 13, val: "m: 9" },
+        6: { line: 14, val: "pi: size=9" },
+        7: { line: 15, val: "j: 0" },
+        8: { line: 17, val: "i: 1" },
+        9: { line: 18, val: "pat[1] != pat[0]" },
+        10: { line: 24, val: "pi[1]: 0" },
+        11: { line: 17, val: "i: 2" },
+        12: { line: 22, val: "j: 1" },
+        13: { line: 24, val: "pi[2]: 1" },
+        14: { line: 17, val: "i: 3" },
+        15: { line: 24, val: "pi[3]: 2" },
+        16: { line: 17, val: "i: 4" },
+        17: { line: 19, val: "j: 0" },
+        18: { line: 24, val: "pi[4]: 0" },
+        19: { line: 17, val: "i: 5..8" },
+        20: { line: 26, val: "return pi" },
+        21: { line: 31, val: "n: 19" },
+        22: { line: 32, val: "m: 9" },
+        23: { line: 33, val: "j: 0" },
+        24: { line: 35, val: "i: 0" },
+        25: { line: 39, val: "j: 1" },
+        26: { line: 35, val: "i: 1..3" },
+        27: { line: 36, val: "txt[4] != pat[4]" },
+        28: { line: 37, val: "j: 0" },
+        29: { line: 35, val: "i: 10..18" },
+        30: { line: 42, val: "j: 9 (match)" },
+        31: { line: 43, val: "stdout: 10" },
+        32: { line: 44, val: "j: 4" },
+        33: { line: 53, val: "return 0" }
+      };
+      const mapping = mappings[stepIndex];
+      if (mapping && mapping.line === lineNum) {
+        return mapping.val;
+      }
+      return null;
+    }
   }
-]
 };

@@ -431,25 +431,80 @@ int main() {
       }
     ]
   },
-  "debugger": {
+    "debugger": {
     "getDebuggerState": (stepIndex, activeLine, explanationText) => {
       const vars = [];
       const globalVars = [];
       const frames = [];
       let inlineVal = null;
-      let iVal = 0, kVal = 0, maxRow = 0;
-      if (stepIndex >= 3) maxRow = 1;
-      if (stepIndex >= 4) { iVal = 0; kVal = 1; }
-      if (stepIndex >= 8) { iVal = 1; kVal = 0; maxRow = 1; }
+      
+      let iVal = 0;
+      if (stepIndex >= 16 && stepIndex <= 22) iVal = 1;
+      if (stepIndex >= 23) iVal = 2;
+      
+      let maxRow = 0;
+      if (stepIndex >= 2 && stepIndex <= 16) maxRow = 1;
+      if (stepIndex >= 17) maxRow = 2;
+      
+      let kVal = null;
+      if (stepIndex === 2) kVal = 1;
+      if (stepIndex >= 4 && stepIndex <= 9) kVal = 1;
+      if (stepIndex >= 10 && stepIndex <= 15) kVal = 2;
+      if (stepIndex === 17) kVal = 2;
+      if (stepIndex >= 19 && stepIndex <= 22) kVal = 2;
+      
+      let cVal = null;
+      if (stepIndex >= 5 && stepIndex <= 9) cVal = 0.67;
+      if (stepIndex >= 11 && stepIndex <= 15) cVal = -0.67;
+      if (stepIndex >= 19 && stepIndex <= 22) cVal = -0.20;
+
       globalVars.push({ name: 'n', type: 'int', val: '3', expandable: false });
       globalVars.push({ name: 'a', type: 'vector<vector<double>>', val: '3x4 matrix', expandable: false });
-      vars.push({ name: 'i', type: 'int', val: iVal, expandable: false });
-      if (stepIndex >= 3) vars.push({ name: 'maxRow', type: 'int', val: maxRow, expandable: false });
-      if (stepIndex >= 4) vars.push({ name: 'k', type: 'int', val: kVal, expandable: false });
-      frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
-      if (stepIndex >= 1) frames.unshift({ name: `gaussianElimination(a)`, file: 'main.cpp', line: activeLine });
-      inlineVal = `i: ${iVal}`;
+      
+      if (stepIndex >= 1 && stepIndex <= 23) {
+        vars.push({ name: 'i', type: 'int', val: iVal, expandable: false });
+        vars.push({ name: 'maxRow', type: 'int', val: maxRow, expandable: false });
+        if (kVal !== null) {
+          vars.push({ name: 'k', type: 'int', val: kVal, expandable: false });
+        }
+        if (cVal !== null) {
+          vars.push({ name: 'c', type: 'double', val: cVal, expandable: false });
+        }
+      }
+      
+      frames.push({ name: 'main()', file: 'main.cpp', line: stepIndex === 0 ? 39 : (stepIndex === 24 ? 45 : 44) });
+      if (stepIndex >= 1 && stepIndex <= 23) {
+        frames.unshift({ name: `gaussianElimination(a)`, file: 'main.cpp', line: activeLine });
+      }
+      
+      inlineVal = stepIndex >= 1 && stepIndex <= 23 ? `i: ${iVal}` : null;
       return { vars, globalVars, frames, inlineVal };
+    },
+    "getInlineValueForLine": (stepIndex, lineNum) => {
+      let iVal = 0;
+      if (stepIndex >= 16 && stepIndex <= 22) iVal = 1;
+      if (stepIndex >= 23) iVal = 2;
+      
+      let maxRow = 0;
+      if (stepIndex >= 2 && stepIndex <= 16) maxRow = 1;
+      if (stepIndex >= 17) maxRow = 2;
+      
+      let kVal = null;
+      if (stepIndex === 2) kVal = 1;
+      if (stepIndex >= 4 && stepIndex <= 9) kVal = 1;
+      if (stepIndex >= 10 && stepIndex <= 15) kVal = 2;
+      if (stepIndex === 17) kVal = 2;
+      if (stepIndex >= 19 && stepIndex <= 22) kVal = 2;
+      
+      let cVal = null;
+      if (stepIndex >= 5 && stepIndex <= 9) cVal = 0.67;
+      if (stepIndex >= 11 && stepIndex <= 15) cVal = -0.67;
+      if (stepIndex >= 19 && stepIndex <= 22) cVal = -0.20;
+
+      if (lineNum === 12) return `i: ${iVal}`;
+      if (lineNum === 14 || lineNum === 17) return `maxRow: ${maxRow}`;
+      if ((lineNum === 15 || lineNum === 25) && kVal !== null) return `k: ${kVal}`;
+      if (lineNum === 26 && cVal !== null) return `c: ${cVal}`;
+      return null;
     }
-  }
-};
+  }};

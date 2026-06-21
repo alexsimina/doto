@@ -35,7 +35,12 @@ Testing framework and cases for the application.
 - `runner.js`: The main test runner script.
 - `/cases/`: Directory containing specific E2E test cases.
 
-### 5. Root Directory (`/`) Data & Scripts
+### 5. `/validation_tools` (Validation Scripts)
+Scripts to validate the syntax, structure, and execution of category configuration JS files.
+- `validate_syntax.cjs`: Syntax and structural validation tool for category data configuration JS files.
+- `bracket_counter.cjs`: Helper script to count and match brackets and strings in files.
+
+### 6. Root Directory (`/`) Data & Scripts
 The root contains numerous CommonJS (`.cjs`) utility scripts and JSON data files. These are primarily used for processing, parsing, fixing, and injecting algorithmic and mathematical content.
 
 ---
@@ -82,6 +87,7 @@ The root contains numerous CommonJS (`.cjs`) utility scripts and JSON data files
      ```
    - Node and edge highlight states (`active`, `visited`) and edge weights/labels are calculated dynamically based on the current step's variables.
    - **Segment Tree & Tree/Graph DP Visualizations**: This same dynamic graph model is used to represent tree structures like **Segment Trees** and trees/graphs in **Dynamic Programming** (e.g., DP on Trees/Graphs). For Segment Trees, node intervals (e.g., `[start..end]`) are rendered above each node using the `desc` property. In Tree/Graph DP, this `desc` property is highly recommended to show subproblem intervals, active states, or calculated DP values for specific tree nodes/intervals.
+   - **Dynamic Titles for Trees**: The UI dynamically resolves tree categories to render clean titles in the graph header. Segment Trees show `"Arbore de Intervale"`, DP on Trees/Graphs shows `"Arbore / DP pe Arbori"`, and other tree topics show `"Structură de Arbore"`, separating them from standard `"Graf Orientat"` / `"Graf Neorientat"`.
 
 10. **Transitional Chapters**: Categories that act as transitions to sub-algorithms (e.g., Shortest Path branching into Dijkstra, Bellman-Ford) are automatically detected in `CategoryPresentation.jsx` based on the presence of subcategories. For these, the UI hides the code and problem sections and instead displays a "Subcapitole / Algoritmi" interactive grid.
 11. **Testing**: E2E tests go to `/e2e_tests`.
@@ -153,4 +159,114 @@ Concrete implementation of a specific algorithm with debugger steps.
     - `getDebuggerState(stepIndex, activeLine, explanationText)`: returns `{ vars, globalVars, frames, inlineVal }`.
     - `getInlineValueForLine(stepIndex, lineNum)`: returns inline labels next to code lines.
     - `getGraphVisual(stepIndex)`: returns dynamic graph configuration (used for Graph Theory topics).
+
+---
+
+## 🌳 Syllabus Tree Sections & Topics
+
+Below is the list of all domains (sections) and topics in the syllabus tree, mapped to their configuration files:
+
+### 1. Math & Geometry (ID: `math` | 🧮)
+* **Math/Number_Theory** (Node ID: `math1`) — [Number_Theory.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Math_Geometry/Math/Number_Theory.js)
+* **Math/Combinatorics** (Node ID: `comb`) — [Combinatorics.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Math_Geometry/Math/Combinatorics.js)
+* **Geometry/Computational** (Node ID: `geom`) — [Computational.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Math_Geometry/Geometry/Computational.js)
+* **Math/Advanced** (Node ID: `advmath`) — [Advanced.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Math_Geometry/Math/Advanced.js)
+* **Math/Game_Theory** (Node ID: `game_theory`) — [Game_Theory.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Math_Geometry/Math/Game_Theory.js)
+* **Math/Linear_Algebra** (Node ID: `linalg`) — [Linear_Algebra.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Math_Geometry/Math/Linear_Algebra.js)
+
+### 2. Fundamentals (ID: `fund` | 📚)
+* **Data_Structures/Basics** (Node ID: `ds_basics`) — [Basics.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Fundamentals/Data_Structures/Basics.js)
+* **Arrays** (Node ID: `arr`) — [Arrays.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Fundamentals/Arrays.js)
+* **Sorting** (Node ID: `sort`) — [Sorting.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Fundamentals/Sorting.js)
+* **Techniques/Two_Pointers** (Node ID: `twoptr`) — [Two_Pointers.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Fundamentals/Techniques/Two_Pointers.js)
+
+### 3. String Processing (ID: `str` | 🔤)
+* **Strings** (Node ID: `str`) — [Strings.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/String_Processing/Strings.js)
+* **Strings/Trie** (Node ID: `trie`) — [Trie.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/String_Processing/Strings/Trie.js)
+* **Strings/KMP** (Node ID: `kmp`) — [KMP.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/String_Processing/Strings/KMP.js)
+* **Strings/Aho_Corasick** (Node ID: `aho`) — [Aho_Corasick.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/String_Processing/Strings/Aho_Corasick.js)
+* **Strings/Suffix_Structures** (Node ID: `suffix`) — [Suffix_Structures.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/String_Processing/Strings/Suffix_Structures.js)
+
+### 4. Dynamic Programming (ID: `dp` | 🧠)
+* **Dynamic_Programming** (Node ID: `dp`) — [Dynamic_Programming.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Dynamic_Programming/Dynamic_Programming.js)
+* **Dynamic_Programming/Knapsack** (Node ID: `dp_knapsack`) — [Knapsack.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Dynamic_Programming/Dynamic_Programming/Knapsack.js)
+* **Dynamic_Programming/LCS** (Node ID: `dp_lcs`) — [LCS.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Dynamic_Programming/Dynamic_Programming/LCS.js)
+* **Dynamic_Programming/LIS** (Node ID: `dp_lis`) — [LIS.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Dynamic_Programming/Dynamic_Programming/LIS.js)
+* **Advanced_DP/Trees_Graphs** (Node ID: `dp_trees`) — [Trees_Graphs.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Dynamic_Programming/Advanced_DP/Trees_Graphs.js)
+* **Advanced_DP/Exponential_States** (Node ID: `dp_exp`) — [Exponential_States.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Dynamic_Programming/Advanced_DP/Exponential_States.js)
+* **Advanced_DP/CHT** (Node ID: `cht`) — [CHT.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Dynamic_Programming/Advanced_DP/CHT.js)
+
+### 5. Core Algorithms (ID: `alg` | ⚡)
+* **Alg/Backtracking** (Node ID: `bkt`) — [Backtracking.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Core_Algorithms/Alg/Backtracking.js)
+* **Alg/Greedy** (Node ID: `greedy`) — [Greedy.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Core_Algorithms/Alg/Greedy.js)
+* **Alg/Divide_Conquer** (Node ID: `dq`) — [Divide_Conquer.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Core_Algorithms/Alg/Divide_Conquer.js)
+* **Alg/Divide_Conquer/Binary_Search** (Node ID: `dq_bin`) — [Binary_Search.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Core_Algorithms/Alg/Divide_Conquer/Binary_Search.js)
+* **Alg/Divide_Conquer/Merge_Sort** (Node ID: `dq_merge`) — [Merge_Sort.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Core_Algorithms/Alg/Divide_Conquer/Merge_Sort.js)
+* **Alg/Divide_Conquer/Quick_Sort** (Node ID: `dq_quick`) — [Quick_Sort.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Core_Algorithms/Alg/Divide_Conquer/Quick_Sort.js)
+* **Alg/Divide_Conquer/Z_Traversal** (Node ID: `dq_z`) — [Z_Traversal.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Core_Algorithms/Alg/Divide_Conquer/Z_Traversal.js)
+* **Alg/Square_Root_Decomp** (Node ID: `sqrtd`) — [Square_Root_Decomp.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Core_Algorithms/Alg/Square_Root_Decomp.js)
+* **Alg/Meet_in_the_Middle** (Node ID: `meetinmid`) — [Meet_in_the_Middle.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Core_Algorithms/Alg/Meet_in_the_Middle.js)
+* **Alg/Mo_Algorithm** (Node ID: `mo`) — [Mo_Algorithm.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Core_Algorithms/Alg/Mo_Algorithm.js)
+
+### 6. Data Structures (ID: `ds` | 🗃️)
+* **Techniques/Bitwise_Ops** (Node ID: `bits`) — [Bitwise_Ops.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Data_Structures/Techniques/Bitwise_Ops.js)
+* **Techniques/Difference_Arrays** (Node ID: `diffarr`) — [Difference_Arrays.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Data_Structures/Techniques/Difference_Arrays.js)
+* **Data_Structures/RMQ** (Node ID: `rmq`) — [RMQ.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Data_Structures/Data_Structures/RMQ.js)
+* **Data_Structures/Disjoint_Sets** (Node ID: `dsu`) — [Disjoint_Sets.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Data_Structures/Data_Structures/Disjoint_Sets.js)
+* **Trees/Fenwick_Tree** (Node ID: `aib`) — [Fenwick_Tree.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Data_Structures/Trees/Fenwick_Tree.js)
+* **Trees/Segment_Trees** (Node ID: `seg`) — [Segment_Trees.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Data_Structures/Trees/Segment_Trees.js)
+* **Data_Structures/Frequency_Vectors** (Node ID: `ds_frequency`) — [Frequency_Vectors.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Data_Structures/Data_Structures/Frequency_Vectors.js)
+* **Data_Structures/Stack** (Node ID: `ds_stack`) — [Stack.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Data_Structures/Data_Structures/Stack.js)
+* **Data_Structures/Queue_Deque** (Node ID: `ds_queue_deque`) — [Queue_Deque.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Data_Structures/Data_Structures/Queue_Deque.js)
+* **Data_Structures/Priority_Queue** (Node ID: `ds_priority_queue`) — [Priority_Queue.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Data_Structures/Data_Structures/Priority_Queue.js)
+
+### 7. Graph Theory (ID: `graph` | 🕸️)
+* **Graphs/Basics** (Node ID: `graph_basics`) — [Basics.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Basics.js)
+* **Graphs/DFS** (Node ID: `dfs`) — [DFS.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/DFS.js)
+* **Graphs/BFS** (Node ID: `bfs`) — [BFS.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/BFS.js)
+* **Graphs/MST** (Node ID: `mst`) — [MST.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/MST.js)
+* **Graphs/Topological_Sort** (Node ID: `topsort`) — [Topological_Sort.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Topological_Sort.js)
+* **Graphs/SCC_Biconnected** (Node ID: `scc`) — [SCC.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/SCC.js)
+* **Graphs/Eulerian_Hamiltonian** (Node ID: `eulerhamilton`) — [Euler_Hamilton.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Euler_Hamilton.js)
+* **Graphs/Shortest_Path** (Node ID: `sp`) — [Shortest_Path.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Shortest_Path.js)
+* **Graphs/Max_Flow** (Node ID: `maxflow`) — [Max_Flow.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Max_Flow.js)
+* **Graphs/LCA** (Node ID: `lca`) — [LCA.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/LCA.js)
+* **Graphs/Shortest_Path/Dijkstra** (Node ID: `sp_dijkstra`) — [Dijkstra.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Shortest_Path/Dijkstra.js)
+* **Graphs/Shortest_Path/Bellman_Ford** (Node ID: `sp_bf`) — [Bellman_Ford.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Shortest_Path/Bellman_Ford.js)
+* **Graphs/Shortest_Path/Floyd_Warshall** (Node ID: `sp_fw`) — [Floyd_Warshall.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Shortest_Path/Floyd_Warshall.js)
+* **Graphs/MST/Kruskal** (Node ID: `mst_kruskal`) — [Kruskal.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/MST/Kruskal.js)
+* **Graphs/MST/Prim** (Node ID: `mst_prim`) — [Prim.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/MST/Prim.js)
+* **Graphs/SCC/Kosaraju** (Node ID: `scc_kosaraju`) — [Kosaraju.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/SCC/Kosaraju.js)
+* **Graphs/SCC/Tarjan** (Node ID: `scc_tarjan`) — [Tarjan.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/SCC/Tarjan.js)
+* **Graphs/Max_Flow/Edmonds_Karp** (Node ID: `maxflow_ek`) — [Edmonds_Karp.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Max_Flow/Edmonds_Karp.js)
+* **Graphs/Max_Flow/Dinic** (Node ID: `maxflow_dinic`) — [Dinic.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Max_Flow/Dinic.js)
+* **Graphs/LCA/Binary_Lifting** (Node ID: `lca_bin`) — [Binary_Lifting.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/LCA/Binary_Lifting.js)
+* **Graphs/LCA/Euler_RMQ** (Node ID: `lca_rmq`) — [Euler_RMQ.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/LCA/Euler_RMQ.js)
+
+---
+
+## 🧪 Validation & Syntax Checks
+
+To guarantee that any changes made to the syllabus category files are syntactically and structurally correct (and conform to the React dashboard expectations), you should run the validation tools located in the `/validation_tools` directory.
+
+### 1. `validate_syntax.cjs`
+This script checks one or more category JS configuration files. It validates that critical fields (like `presentation`, `explanations`, `problems`) are present, and checks the signature and run-time execution of the custom `debugger` hooks (`getDebuggerState` and `getInlineValueForLine`).
+
+- **Usage (All files in a category directory):**
+  ```cmd
+  node validation_tools/validate_syntax.cjs
+  ```
+- **Usage (Targeted files):**
+  ```cmd
+  node validation_tools/validate_syntax.cjs dashboard/src/data/categories/Math_Geometry/Math/Advanced.js
+  ```
+
+### 2. `bracket_counter.cjs`
+A utility script used to inspect balanced brackets (braces, parentheses, brackets) and unclosed strings/comments. It helps catch syntax errors, mismatched JSON structures, or template literal string leaks.
+
+- **Usage:**
+  ```cmd
+  node validation_tools/bracket_counter.cjs <path_to_file.js>
+  ```
+
 

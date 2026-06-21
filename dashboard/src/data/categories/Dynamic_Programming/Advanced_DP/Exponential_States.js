@@ -49,7 +49,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 30,
+      "line": 37,
       "text": "Pornim programul cu n = 4 orașe și matricea de distanțe.",
       "graphVisual": {
         "nodes": [
@@ -69,7 +69,7 @@ int main() {
       }
     },
     {
-      "line": 39,
+      "line": 46,
       "text": "Apelăm funcția tsp(mask = 1, pos = 0) - am vizitat orașul 0 (0001 binar), ne aflăm în 0.",
       "graphVisual": {
         "nodes": [
@@ -89,7 +89,7 @@ int main() {
       }
     },
     {
-      "line": 14,
+      "line": 21,
       "text": "Verificăm dp[1][0]. Este -1 (necalculat).",
       "graphVisual": {
         "nodes": [
@@ -109,7 +109,7 @@ int main() {
       }
     },
     {
-      "line": 21,
+      "line": 28,
       "text": "Tranziție: încercăm să mergem la orașul 1. Apelăm tsp(mask = 3, pos = 1). (3 în binar: 0011).",
       "graphVisual": {
         "nodes": [
@@ -129,7 +129,7 @@ int main() {
       }
     },
     {
-      "line": 21,
+      "line": 28,
       "text": "Din orașul 1, încercăm să mergem la orașul 2. Apelăm tsp(mask = 7, pos = 2). (7 în binar: 0111).",
       "graphVisual": {
         "nodes": [
@@ -149,7 +149,7 @@ int main() {
       }
     },
     {
-      "line": 21,
+      "line": 28,
       "text": "Din orașul 2, încercăm să mergem la orașul 3. Apelăm tsp(mask = 15, pos = 3). (15 în binar: 1111).",
       "graphVisual": {
         "nodes": [
@@ -169,7 +169,7 @@ int main() {
       }
     },
     {
-      "line": 11,
+      "line": 17,
       "text": "mask = 15 (toate orașele vizitate). Returnăm costul de întoarcere în 0: dist[3][0] = 25.",
       "graphVisual": {
         "nodes": [
@@ -189,7 +189,7 @@ int main() {
       }
     },
     {
-      "line": 21,
+      "line": 28,
       "text": "Revenim în tsp(7, 2). Variabila newAns = dist[2][3] + 25 = 10 + 25 = 35. Deoarece 3 e singurul unvisited, ans = 35.",
       "graphVisual": {
         "nodes": [
@@ -209,7 +209,7 @@ int main() {
       }
     },
     {
-      "line": 26,
+      "line": 33,
       "text": "Salvăm în cache rezultatul: dp[7][2] = 35 și îl returnăm.",
       "graphVisual": {
         "nodes": [
@@ -229,7 +229,7 @@ int main() {
       }
     },
     {
-      "line": 21,
+      "line": 28,
       "text": "Revenim în tsp(3, 1). newAns = dist[1][2] + dp[7][2] = 30 + 35 = 65. ans = 65.",
       "graphVisual": {
         "nodes": [
@@ -249,7 +249,7 @@ int main() {
       }
     },
     {
-      "line": 21,
+      "line": 28,
       "text": "Din orașul 1, încercăm și cealaltă opțiune nevizitată: orașul 3. Apelăm tsp(mask = 11, pos = 3). (11: 1011).",
       "graphVisual": {
         "nodes": [
@@ -269,7 +269,7 @@ int main() {
       }
     },
     {
-      "line": 21,
+      "line": 28,
       "text": "Din orașul 3, mergem la singurul nevizitat: orașul 2. Apelăm tsp(mask = 15, pos = 2). (15: 1111).",
       "graphVisual": {
         "nodes": [
@@ -289,7 +289,7 @@ int main() {
       }
     },
     {
-      "line": 11,
+      "line": 17,
       "text": "mask = 15 (toate vizitate). Returnăm costul de întoarcere: dist[2][0] = 42.",
       "graphVisual": {
         "nodes": [
@@ -309,7 +309,7 @@ int main() {
       }
     },
     {
-      "line": 21,
+      "line": 28,
       "text": "Revenim în tsp(11, 3). newAns = dist[3][2] + 42 = 10 + 42 = 52. Retinem dp[11][3] = 52.",
       "graphVisual": {
         "nodes": [
@@ -329,7 +329,7 @@ int main() {
       }
     },
     {
-      "line": 21,
+      "line": 28,
       "text": "Revenim în tsp(3, 1). A doua opțiune costă dist[1][3] + dp[11][3] = 34 + 52 = 86. min(65, 86) = 65. Salvăm dp[3][1] = 65.",
       "graphVisual": {
         "nodes": [
@@ -349,7 +349,7 @@ int main() {
       }
     },
     {
-      "line": 21,
+      "line": 28,
       "text": "Revenim în tsp(1, 0). Prima tranziție (orașul 1) a costat dist[0][1] + dp[3][1] = 20 + 65 = 85. ans = 85.",
       "graphVisual": {
         "nodes": [
@@ -369,7 +369,7 @@ int main() {
       }
     },
     {
-      "line": 21,
+      "line": 28,
       "text": "Din orașul 0, încercăm a doua opțiune: orașul 2. Apelăm tsp(mask = 5, pos = 2). (5 în binar: 0101).",
       "graphVisual": {
         "nodes": [
@@ -389,7 +389,7 @@ int main() {
       }
     },
     {
-      "line": 21,
+      "line": 28,
       "text": "Din orașul 2, încercăm orașul 1. Apelăm tsp(mask = 7, pos = 1). (7 în binar: 0111).",
       "graphVisual": {
         "nodes": [
@@ -409,7 +409,7 @@ int main() {
       }
     },
     {
-      "line": 14,
+      "line": 21,
       "text": "Verificăm în cache dp[7][1]. Este -1.",
       "graphVisual": {
         "nodes": [
@@ -429,7 +429,7 @@ int main() {
       }
     },
     {
-      "line": 21,
+      "line": 28,
       "text": "Din orașul 1, mergem la orașul 3. Apelăm tsp(mask = 15, pos = 3).",
       "graphVisual": {
         "nodes": [
@@ -449,7 +449,7 @@ int main() {
       }
     },
     {
-      "line": 11,
+      "line": 17,
       "text": "mask = 15. Returnăm dist[3][0] = 25.",
       "graphVisual": {
         "nodes": [
@@ -469,7 +469,7 @@ int main() {
       }
     },
     {
-      "line": 26,
+      "line": 33,
       "text": "Revenim în tsp(7, 1). Costul este dist[1][3] + 25 = 34 + 25 = 59. Salvăm dp[7][1] = 59.",
       "graphVisual": {
         "nodes": [
@@ -489,7 +489,7 @@ int main() {
       }
     },
     {
-      "line": 21,
+      "line": 28,
       "text": "Revenim în tsp(5, 2). Prima tranziție (orașul 1) a costat dist[2][1] + dp[7][1] = 30 + 59 = 89. ans = 89.",
       "graphVisual": {
         "nodes": [
@@ -509,7 +509,7 @@ int main() {
       }
     },
     {
-      "line": 21,
+      "line": 28,
       "text": "Din orașul 2, încercăm a doua tranziție: orașul 3. Apelăm tsp(mask = 13, pos = 3). (13 în binar: 1101).",
       "graphVisual": {
         "nodes": [
@@ -529,7 +529,7 @@ int main() {
       }
     },
     {
-      "line": 21,
+      "line": 28,
       "text": "Din orașul 3, mergem la singurul nevizitat: orașul 1. Apelăm tsp(mask = 15, pos = 1).",
       "graphVisual": {
         "nodes": [
@@ -549,7 +549,7 @@ int main() {
       }
     },
     {
-      "line": 11,
+      "line": 17,
       "text": "mask = 15. Returnăm dist[1][0] = 20.",
       "graphVisual": {
         "nodes": [
@@ -569,7 +569,7 @@ int main() {
       }
     },
     {
-      "line": 26,
+      "line": 33,
       "text": "Revenim în tsp(13, 3). Costul este dist[3][1] + 20 = 34 + 20 = 54. Salvăm dp[13][3] = 54.",
       "graphVisual": {
         "nodes": [
@@ -589,7 +589,7 @@ int main() {
       }
     },
     {
-      "line": 21,
+      "line": 28,
       "text": "Revenim în tsp(5, 2). A doua opțiune costă dist[2][3] + dp[13][3] = 10 + 54 = 64. min(89, 64) = 64. Salvăm dp[5][2] = 64.",
       "graphVisual": {
         "nodes": [
@@ -609,7 +609,7 @@ int main() {
       }
     },
     {
-      "line": 21,
+      "line": 28,
       "text": "Revenim în tsp(1, 0). Opțiunea 2 (orașul 2) a costat dist[0][2] + dp[5][2] = 42 + 64 = 106. min(85, 106) = 85.",
       "graphVisual": {
         "nodes": [
@@ -629,7 +629,7 @@ int main() {
       }
     },
     {
-      "line": 39,
+      "line": 46,
       "text": "După verificarea tuturor drumurilor, drumul minim are costul 85. Traseul optim: 0 -> 1 -> 2 -> 3 -> 0.",
       "graphVisual": {
         "nodes": [
@@ -680,4 +680,110 @@ int main() {
     "expandable": false
   }
 ]
+,
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+
+      globalVars.push({ name: "dist", type: "std::vector<std::vector<int>>&", val: "size = 4 x 4", expandable: true });
+
+      frames.push({ name: "main()", file: "main.cpp", line: (stepIndex === 0) ? 37 : (stepIndex >= 29 ? 46 : 46) });
+
+      let activeStack = [];
+      // we map stepIndex to recursive TSP stack frames: [mask, pos]
+      if (stepIndex === 1 || stepIndex === 2) activeStack = [[1, 0]];
+      else if (stepIndex === 3) activeStack = [[1, 0]]; // calling (3, 1)
+      else if (stepIndex === 4) activeStack = [[1, 0], [3, 1]]; // calling (7, 2)
+      else if (stepIndex === 5) activeStack = [[1, 0], [3, 1], [7, 2]]; // calling (15, 3)
+      else if (stepIndex === 6) activeStack = [[1, 0], [3, 1], [7, 2], [15, 3]];
+      else if (stepIndex === 7) activeStack = [[1, 0], [3, 1], [7, 2], [15, 3]];
+      else if (stepIndex === 8) activeStack = [[1, 0], [3, 1], [7, 2], [15, 3]];
+      else if (stepIndex === 9) activeStack = [[1, 0], [3, 1], [7, 2]];
+      else if (stepIndex === 10) activeStack = [[1, 0], [3, 1]];
+      else if (stepIndex === 11) activeStack = [[1, 0], [3, 1]]; // calling (11, 3)
+      else if (stepIndex === 12) activeStack = [[1, 0], [3, 1], [11, 3]]; // calling (15, 2)
+      else if (stepIndex === 13) activeStack = [[1, 0], [3, 1], [11, 3], [15, 2]];
+      else if (stepIndex === 14) activeStack = [[1, 0], [3, 1], [11, 3], [15, 2]];
+      else if (stepIndex === 15) activeStack = [[1, 0], [3, 1], [11, 3], [15, 2]];
+      else if (stepIndex === 16) activeStack = [[1, 0], [3, 1], [11, 3]];
+      else if (stepIndex === 17) activeStack = [[1, 0], [3, 1]];
+      else if (stepIndex === 18) activeStack = [[1, 0], [3, 1]]; // dp hit check
+      else if (stepIndex === 19) activeStack = [[1, 0], [3, 1]];
+      else if (stepIndex === 20) activeStack = [[1, 0], [3, 1], [15, 3]]; // calling (15, 3) from another path
+      else if (stepIndex === 21) activeStack = [[1, 0], [3, 1], [15, 3]];
+      else if (stepIndex === 22) activeStack = [[1, 0], [3, 1]];
+      else if (stepIndex === 23) activeStack = [[1, 0]];
+      else if (stepIndex === 24) activeStack = [[1, 0]]; // calling (5, 2)
+      else if (stepIndex === 25) activeStack = [[1, 0], [5, 2]]; // calling (15, 3)
+      else if (stepIndex === 26) activeStack = [[1, 0], [5, 2], [15, 3]];
+      else if (stepIndex === 27) activeStack = [[1, 0], [5, 2]];
+      else if (stepIndex === 28) activeStack = [[1, 0]];
+
+      activeStack.forEach(([maskVal, posVal], idx) => {
+        let line = 28;
+        if (idx === activeStack.length - 1) line = activeLine;
+        frames.unshift({ name: `tsp(mask = ${maskVal}, pos = ${posVal}, n = 4, dist, dp)`, file: "solution.cpp", line: line });
+      });
+
+      if (activeStack.length > 0) {
+        const [maskVal, posVal] = activeStack[activeStack.length - 1];
+        const binaryStr = maskVal.toString(2).padStart(4, '0');
+        vars.push({ name: "mask", type: "int (binary)", val: `${maskVal} (0b${binaryStr})`, expandable: false });
+        vars.push({ name: "pos", type: "int", val: posVal.toString(), expandable: false });
+        
+        let ans = 1000000000;
+        if (stepIndex === 6) ans = 25; // dist[3][0]
+        else if (stepIndex === 8) ans = 35; // dist[2][3] + dist[3][0] = 10 + 25 = 35
+        
+        vars.push({ name: "ans", type: "int", val: ans === 1000000000 ? "INF" : ans.toString(), expandable: false });
+        inlineVal = `mask: ${maskVal} (0b${binaryStr}), pos: ${posVal}`;
+      }
+
+      let dpGrid = "size = 16 x 4";
+      globalVars.push({ name: "dp", type: "std::vector<std::vector<int>>", val: dpGrid, expandable: true });
+
+      return { vars, globalVars, frames, inlineVal };
+    },
+    "getInlineValueForLine": (stepIndex, lineNum) => {
+      let activeStack = [];
+      if (stepIndex === 1 || stepIndex === 2) activeStack = [[1, 0]];
+      else if (stepIndex === 3) activeStack = [[1, 0]];
+      else if (stepIndex === 4) activeStack = [[1, 0], [3, 1]];
+      else if (stepIndex === 5) activeStack = [[1, 0], [3, 1], [7, 2]];
+      else if (stepIndex === 6) activeStack = [[1, 0], [3, 1], [7, 2], [15, 3]];
+      else if (stepIndex === 7) activeStack = [[1, 0], [3, 1], [7, 2], [15, 3]];
+      else if (stepIndex === 8) activeStack = [[1, 0], [3, 1], [7, 2], [15, 3]];
+      else if (stepIndex === 9) activeStack = [[1, 0], [3, 1], [7, 2]];
+      else if (stepIndex === 10) activeStack = [[1, 0], [3, 1]];
+      else if (stepIndex === 11) activeStack = [[1, 0], [3, 1]];
+      else if (stepIndex === 12) activeStack = [[1, 0], [3, 1], [11, 3]];
+      else if (stepIndex === 13) activeStack = [[1, 0], [3, 1], [11, 3], [15, 2]];
+      else if (stepIndex === 14) activeStack = [[1, 0], [3, 1], [11, 3], [15, 2]];
+      else if (stepIndex === 15) activeStack = [[1, 0], [3, 1], [11, 3], [15, 2]];
+      else if (stepIndex === 16) activeStack = [[1, 0], [3, 1], [11, 3]];
+      else if (stepIndex === 17) activeStack = [[1, 0], [3, 1]];
+      else if (stepIndex === 18) activeStack = [[1, 0], [3, 1]];
+      else if (stepIndex === 19) activeStack = [[1, 0], [3, 1]];
+      else if (stepIndex === 20) activeStack = [[1, 0], [3, 1], [15, 3]];
+      else if (stepIndex === 21) activeStack = [[1, 0], [3, 1], [15, 3]];
+      else if (stepIndex === 22) activeStack = [[1, 0], [3, 1]];
+      else if (stepIndex === 23) activeStack = [[1, 0]];
+      else if (stepIndex === 24) activeStack = [[1, 0]];
+      else if (stepIndex === 25) activeStack = [[1, 0], [5, 2]];
+      else if (stepIndex === 26) activeStack = [[1, 0], [5, 2], [15, 3]];
+      else if (stepIndex === 27) activeStack = [[1, 0], [5, 2]];
+      else if (stepIndex === 28) activeStack = [[1, 0]];
+
+      if (activeStack.length > 0) {
+        const [maskVal, posVal] = activeStack[activeStack.length - 1];
+        if (lineNum === 17 || lineNum === 18 || lineNum === 21 || lineNum === 25 || lineNum === 27 || lineNum === 28 || lineNum === 33) {
+          return `mask: ${maskVal}, pos: ${posVal}`;
+        }
+      }
+      return null;
+    }
+  }
 };

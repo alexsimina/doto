@@ -150,7 +150,7 @@ export const data = {
       }
     },
     {
-      "line": 26,
+      "line": 25,
       "text": "Căutăm reprezentantul lui 2 cu find(2) care returnează 2.",
       "blocksVisual": [
         {
@@ -378,7 +378,7 @@ export const data = {
       }
     },
     {
-      "line": 26,
+      "line": 21,
       "text": "find(2) îl caută pe părintele lui 2, care este 0. Cum 0 e rădăcină, returnează 0.",
       "blocksVisual": [
         {
@@ -456,7 +456,7 @@ export const data = {
       }
     },
     {
-      "line": 34,
+      "line": 30,
       "text": "Legăm 4 sub 0 (parent[4] = 0). Acum mulțimea lui 0 conține elementele {0, 2, 4}.",
       "blocksVisual": [
         {
@@ -622,7 +622,7 @@ export const data = {
       }
     },
     {
-      "line": 26,
+      "line": 25,
       "text": "find(1) returnează 1.",
       "blocksVisual": [
         {
@@ -881,7 +881,7 @@ export const data = {
       }
     },
     {
-      "line": 26,
+      "line": 25,
       "text": "find(3) returnează 3.",
       "blocksVisual": [
         {
@@ -1155,7 +1155,7 @@ export const data = {
       }
     },
     {
-      "line": 26,
+      "line": 21,
       "text": "find(5) ne trimite la 3, iar 3 la el însuși. Returnează 3.",
       "blocksVisual": [
         {
@@ -1444,7 +1444,7 @@ export const data = {
       }
     },
     {
-      "line": 49,
+      "line": 21,
       "text": "Apelăm find(1). Părintele lui 1 este 3. Cum 3 nu este propriul său părinte, continuăm căutarea recursivă.",
       "blocksVisual": [
         {
@@ -1869,18 +1869,96 @@ export const data = {
       }
     ]
   },
-  "globalVars": [
-  {
-    "name": "parent",
-    "type": "std::vector<int>",
-    "val": "{0, 1, 2, 3, 4, 5}",
-    "expandable": true
-  },
-  {
-    "name": "rank",
-    "type": "std::vector<int>",
-    "val": "{0, 0, 0, 0, 0, 0}",
-    "expandable": true
+  globalVars: [],
+  debugger: {
+    getDebuggerState: (stepIndex, activeLine, explanationText) => {
+      const trace = [
+        { parent: [0, 1, 2, 3, 4, 5], rank: [0, 0, 0, 0, 0, 0], stack: [] },
+        { parent: [0, 1, 2, 3, 4, 5], rank: [0, 0, 0, 0, 0, 0], stack: ["unite(0, 2)"] },
+        { parent: [0, 1, 2, 3, 4, 5], rank: [0, 0, 0, 0, 0, 0], stack: ["find(2)", "unite(0, 2)"], i: 0, j: 2 },
+        { parent: [0, 1, 0, 3, 4, 5], rank: [1, 0, 0, 0, 0, 0], stack: ["unite(0, 2)"], i: 0, j: 2, rootI: 0, rootJ: 2 },
+        { parent: [0, 1, 0, 3, 4, 5], rank: [1, 0, 0, 0, 0, 0], stack: ["unite(4, 2)"] },
+        { parent: [0, 1, 0, 3, 4, 5], rank: [1, 0, 0, 0, 0, 0], stack: ["find(2)", "unite(4, 2)"], i: 4, j: 2 },
+        { parent: [0, 1, 0, 3, 0, 5], rank: [1, 0, 0, 0, 0, 0], stack: ["unite(4, 2)"], i: 4, j: 2, rootI: 4, rootJ: 0 },
+        { parent: [0, 1, 0, 3, 0, 5], rank: [1, 0, 0, 0, 0, 0], stack: ["unite(3, 1)"] },
+        { parent: [0, 1, 0, 3, 0, 5], rank: [1, 0, 0, 0, 0, 0], stack: ["find(1)", "unite(3, 1)"], i: 3, j: 1 },
+        { parent: [0, 3, 0, 3, 0, 5], rank: [1, 0, 0, 1, 0, 0], stack: ["unite(3, 1)"], i: 3, j: 1, rootI: 3, rootJ: 1 },
+        { parent: [0, 3, 0, 3, 0, 5], rank: [1, 0, 0, 1, 0, 0], stack: ["unite(5, 3)"] },
+        { parent: [0, 3, 0, 3, 0, 5], rank: [1, 0, 0, 1, 0, 0], stack: ["find(3)", "unite(5, 3)"], i: 5, j: 3 },
+        { parent: [0, 3, 0, 3, 0, 3], rank: [1, 0, 0, 1, 0, 0], stack: ["unite(5, 3)"], i: 5, j: 3, rootI: 5, rootJ: 3 },
+        { parent: [0, 3, 0, 3, 0, 3], rank: [1, 0, 0, 1, 0, 0], stack: ["unite(0, 5)"] },
+        { parent: [0, 3, 0, 3, 0, 3], rank: [1, 0, 0, 1, 0, 0], stack: ["find(5)", "unite(0, 5)"], i: 0, j: 5 },
+        { parent: [0, 3, 0, 0, 0, 3], rank: [1, 0, 0, 1, 0, 0], stack: ["unite(0, 5)"], i: 0, j: 5, rootI: 0, rootJ: 3 },
+        { parent: [0, 3, 0, 0, 0, 3], rank: [1, 0, 0, 1, 0, 0], stack: [] },
+        { parent: [0, 3, 0, 0, 0, 3], rank: [1, 0, 0, 1, 0, 0], stack: ["find(1)"] },
+        { parent: [0, 3, 0, 0, 0, 3], rank: [1, 0, 0, 1, 0, 0], stack: ["find(3)", "find(1)"] },
+        { parent: [0, 0, 0, 0, 0, 3], rank: [1, 0, 0, 1, 0, 0], stack: ["find(1)"] },
+        { parent: [0, 0, 0, 0, 0, 3], rank: [1, 0, 0, 1, 0, 0], stack: [] }
+      ];
+      const curr = trace[stepIndex] || trace[trace.length - 1];
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+
+      curr.stack.forEach(frameName => {
+        frames.push({ name: frameName, file: "solution.cpp", line: activeLine });
+      });
+      frames.push({ name: "main()", file: "main.cpp", line: (stepIndex <= 15) ? (41 + Math.floor(stepIndex / 4)) : 49 });
+
+      const parentStr = "{" + curr.parent.join(", ") + "}";
+      const rankStr = "{" + curr.rank.join(", ") + "}";
+      globalVars.push({ name: "dsu.parent", type: "std::vector<int>", val: parentStr, expandable: true });
+      globalVars.push({ name: "dsu.rank", type: "std::vector<int>", val: rankStr, expandable: true });
+
+      if (curr.i !== undefined) {
+        vars.push({ name: "i", type: "int", val: curr.i.toString(), expandable: false });
+      }
+      if (curr.j !== undefined) {
+        vars.push({ name: "j", type: "int", val: curr.j.toString(), expandable: false });
+      }
+      if (curr.rootI !== undefined) {
+        vars.push({ name: "rootI", type: "int", val: curr.rootI.toString(), expandable: false });
+      }
+      if (curr.rootJ !== undefined) {
+        vars.push({ name: "rootJ", type: "int", val: curr.rootJ.toString(), expandable: false });
+      }
+
+      let inlineVal = "parent: " + parentStr;
+      return { vars, globalVars, frames, inlineVal };
+    },
+    getInlineValueForLine: (stepIndex, lineNum) => {
+      const trace = [
+        { parent: [0, 1, 2, 3, 4, 5], rank: [0, 0, 0, 0, 0, 0], stack: [] },
+        { parent: [0, 1, 2, 3, 4, 5], rank: [0, 0, 0, 0, 0, 0], stack: ["unite(0, 2)"] },
+        { parent: [0, 1, 2, 3, 4, 5], rank: [0, 0, 0, 0, 0, 0], stack: ["find(2)", "unite(0, 2)"], i: 0, j: 2 },
+        { parent: [0, 1, 0, 3, 4, 5], rank: [1, 0, 0, 0, 0, 0], stack: ["unite(0, 2)"], i: 0, j: 2, rootI: 0, rootJ: 2 },
+        { parent: [0, 1, 0, 3, 4, 5], rank: [1, 0, 0, 0, 0, 0], stack: ["unite(4, 2)"] },
+        { parent: [0, 1, 0, 3, 4, 5], rank: [1, 0, 0, 0, 0, 0], stack: ["find(2)", "unite(4, 2)"], i: 4, j: 2 },
+        { parent: [0, 1, 0, 3, 0, 5], rank: [1, 0, 0, 0, 0, 0], stack: ["unite(4, 2)"], i: 4, j: 2, rootI: 4, rootJ: 0 },
+        { parent: [0, 1, 0, 3, 0, 5], rank: [1, 0, 0, 0, 0, 0], stack: ["unite(3, 1)"] },
+        { parent: [0, 1, 0, 3, 0, 5], rank: [1, 0, 0, 0, 0, 0], stack: ["find(1)", "unite(3, 1)"], i: 3, j: 1 },
+        { parent: [0, 3, 0, 3, 0, 5], rank: [1, 0, 0, 1, 0, 0], stack: ["unite(3, 1)"], i: 3, j: 1, rootI: 3, rootJ: 1 },
+        { parent: [0, 3, 0, 3, 0, 5], rank: [1, 0, 0, 1, 0, 0], stack: ["unite(5, 3)"] },
+        { parent: [0, 3, 0, 3, 0, 5], rank: [1, 0, 0, 1, 0, 0], stack: ["find(3)", "unite(5, 3)"], i: 5, j: 3 },
+        { parent: [0, 3, 0, 3, 0, 3], rank: [1, 0, 0, 1, 0, 0], stack: ["unite(5, 3)"], i: 5, j: 3, rootI: 5, rootJ: 3 },
+        { parent: [0, 3, 0, 3, 0, 3], rank: [1, 0, 0, 1, 0, 0], stack: ["unite(0, 5)"] },
+        { parent: [0, 3, 0, 3, 0, 3], rank: [1, 0, 0, 1, 0, 0], stack: ["find(5)", "unite(0, 5)"], i: 0, j: 5 },
+        { parent: [0, 3, 0, 0, 0, 3], rank: [1, 0, 0, 1, 0, 0], stack: ["unite(0, 5)"], i: 0, j: 5, rootI: 0, rootJ: 3 },
+        { parent: [0, 3, 0, 0, 0, 3], rank: [1, 0, 0, 1, 0, 0], stack: [] },
+        { parent: [0, 3, 0, 0, 0, 3], rank: [1, 0, 0, 1, 0, 0], stack: ["find(1)"] },
+        { parent: [0, 3, 0, 0, 0, 3], rank: [1, 0, 0, 1, 0, 0], stack: ["find(3)", "find(1)"] },
+        { parent: [0, 0, 0, 0, 0, 3], rank: [1, 0, 0, 1, 0, 0], stack: ["find(1)"] },
+        { parent: [0, 0, 0, 0, 0, 3], rank: [1, 0, 0, 1, 0, 0], stack: [] }
+      ];
+      const curr = trace[stepIndex];
+      if (!curr) return null;
+      if (lineNum >= 18 && lineNum <= 37) {
+        let res = "";
+        if (curr.i !== undefined) res += "i: " + curr.i;
+        if (curr.j !== undefined) res += ", j: " + curr.j;
+        return res || null;
+      }
+      return null;
+    }
   }
-]
 };

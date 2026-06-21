@@ -27,7 +27,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 8,
+      "line": 13,
       "text": "Inițializăm numărul de elemente $N = 3$. Aceasta înseamnă că vom genera $2^3 = 8$ submulțimi.",
       "blocksVisual": [
         {
@@ -39,7 +39,7 @@ int main() {
       ]
     },
     {
-      "line": 9,
+      "line": 14,
       "text": "Definim mulțimea inițială de caractere: {'A', 'B', 'C'}.",
       "blocksVisual": [
         {
@@ -51,7 +51,7 @@ int main() {
       ]
     },
     {
-      "line": 10,
+      "line": 15,
       "text": "Calculăm totalul de submulțimi: $2^3 = 8$, folosind operatorul de shiftare la stânga: $1 \\ll 3 = 8$.",
       "blocksVisual": [
         {
@@ -63,7 +63,7 @@ int main() {
       ]
     },
     {
-      "line": 11,
+      "line": 16,
       "text": "Începem iterarea măștilor de la `mask = 0` (în binar `000`) până la `total_submultimi - 1` (adică 7, în binar `111`).",
       "blocksVisual": [
         {
@@ -75,7 +75,7 @@ int main() {
       ]
     },
     {
-      "line": 12,
+      "line": 17,
       "text": "Afișăm începutul submulțimii curente, reprezentată de acolada deschisă '{ '.",
       "blocksVisual": [
         {
@@ -87,7 +87,7 @@ int main() {
       ]
     },
     {
-      "line": 13,
+      "line": 18,
       "text": "Pentru masca curentă, iterăm prin toți cei $N=3$ biți de la pozițiile $0, 1, 2$.",
       "blocksVisual": [
         {
@@ -99,7 +99,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 19,
       "text": "Verificăm dacă bitul $0$ este setat în `mask = 0` făcând AND logic cu $1 \\ll 0$: `000 & 001 = 0` (Fals).",
       "blocksVisual": [
         {
@@ -111,7 +111,7 @@ int main() {
       ]
     },
     {
-      "line": 13,
+      "line": 18,
       "text": "Incrementăm indicele bitului la $i = 1$.",
       "blocksVisual": [
         {
@@ -123,7 +123,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 19,
       "text": "Verificăm dacă bitul $1$ este setat în `mask = 0`: `000 & 010 = 0` (Fals).",
       "blocksVisual": [
         {
@@ -135,7 +135,7 @@ int main() {
       ]
     },
     {
-      "line": 13,
+      "line": 18,
       "text": "Incrementăm indicele bitului la $i = 2$.",
       "blocksVisual": [
         {
@@ -147,7 +147,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 19,
       "text": "Verificăm dacă bitul $2$ este setat în `mask = 0`: `000 & 100 = 0` (Fals).",
       "blocksVisual": [
         {
@@ -159,7 +159,7 @@ int main() {
       ]
     },
     {
-      "line": 18,
+      "line": 23,
       "text": "Închidem acolada. Niciun element nu a fost selectat. Am afișat submulțimea vidă `{ }`.",
       "blocksVisual": [
         {
@@ -171,7 +171,7 @@ int main() {
       ]
     },
     {
-      "line": 11,
+      "line": 16,
       "text": "Trecem la următoarea mască: `mask = 1` (binar `001`).",
       "blocksVisual": [
         {
@@ -183,7 +183,7 @@ int main() {
       ]
     },
     {
-      "line": 12,
+      "line": 17,
       "text": "Afișăm începutul submulțimii: '{ '.",
       "blocksVisual": [
         {
@@ -195,7 +195,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 19,
       "text": "Verificăm dacă bitul $0$ este setat în `mask = 1`: `001 & 001 = 1` (Adevărat).",
       "blocksVisual": [
         {
@@ -207,7 +207,7 @@ int main() {
       ]
     },
     {
-      "line": 15,
+      "line": 20,
       "text": "Deoarece condiția este adevărată, afișăm `multime[0]` care este caracterul `'A'`.",
       "blocksVisual": [
         {
@@ -219,7 +219,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 19,
       "text": "Verificăm dacă bitul $1$ este setat în `mask = 1`: `001 & 010 = 0` (Fals).",
       "blocksVisual": [
         {
@@ -231,7 +231,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 19,
       "text": "Verificăm dacă bitul $2$ este setat în `mask = 1`: `001 & 100 = 0` (Fals).",
       "blocksVisual": [
         {
@@ -243,7 +243,7 @@ int main() {
       ]
     },
     {
-      "line": 18,
+      "line": 23,
       "text": "Închidem submulțimea pentru `mask = 1`, obținând `{ A }`.",
       "blocksVisual": [
         {
@@ -255,7 +255,7 @@ int main() {
       ]
     },
     {
-      "line": 11,
+      "line": 16,
       "text": "Trecem la `mask = 2` (binar `010`).",
       "blocksVisual": [
         {
@@ -267,7 +267,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 19,
       "text": "Verificăm biții pentru `mask = 2`. Pentru bitul $0$: `010 & 001 = 0` (Fals). Pentru bitul $1$: `010 & 010 = 2` (Adevărat!).",
       "blocksVisual": [
         {
@@ -279,7 +279,7 @@ int main() {
       ]
     },
     {
-      "line": 15,
+      "line": 20,
       "text": "Afișăm caracterul corespunzător poziției $1$, adică `'B'`.",
       "blocksVisual": [
         {
@@ -291,7 +291,7 @@ int main() {
       ]
     },
     {
-      "line": 18,
+      "line": 23,
       "text": "Închidem submulțimea pentru `mask = 2`, obținând `{ B }`.",
       "blocksVisual": [
         {
@@ -303,7 +303,7 @@ int main() {
       ]
     },
     {
-      "line": 11,
+      "line": 16,
       "text": "Trecem la `mask = 3` (binar `011`).",
       "blocksVisual": [
         {
@@ -315,7 +315,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 19,
       "text": "Pentru `mask = 3`, bitul $0$ (`011 & 001 = 1`) și bitul $1$ (`011 & 010 = 2`) sunt ambele setate (Adevărat). Bitul $2$ este 0.",
       "blocksVisual": [
         {
@@ -327,7 +327,7 @@ int main() {
       ]
     },
     {
-      "line": 15,
+      "line": 20,
       "text": "Afișăm caracterele corespunzătoare: `'A'` și `'B'`.",
       "blocksVisual": [
         {
@@ -339,7 +339,7 @@ int main() {
       ]
     },
     {
-      "line": 18,
+      "line": 23,
       "text": "Închidem submulțimea pentru `mask = 3`, rezultând `{ A B }`.",
       "blocksVisual": [
         {
@@ -351,7 +351,7 @@ int main() {
       ]
     },
     {
-      "line": 11,
+      "line": 16,
       "text": "Iterăm similar prin măștile următoare până la 7. Masca 7 (binar `111`) are toți biții setați.",
       "blocksVisual": [
         {
@@ -363,7 +363,7 @@ int main() {
       ]
     },
     {
-      "line": 15,
+      "line": 20,
       "text": "Pentru `mask = 7`, toți biții sunt setați, deci se vor afișa toate caracterele: `'A'`, `'B'` și `'C'`.",
       "blocksVisual": [
         {
@@ -375,7 +375,7 @@ int main() {
       ]
     },
     {
-      "line": 18,
+      "line": 23,
       "text": "Închidem submulțimea pentru `mask = 7`, rezultând `{ A B C }`.",
       "blocksVisual": [
         {
@@ -387,7 +387,7 @@ int main() {
       ]
     },
     {
-      "line": 20,
+      "line": 25,
       "text": "Programul se încheie cu succes, returnând 0.",
       "blocksVisual": [
         {
@@ -432,12 +432,111 @@ int main() {
       }
     ]
   },
-  "globalVars": [
-  {
-    "name": "BITS",
-    "type": "const int",
-    "val": "32",
-    "expandable": false
+  globalVars: [],
+  debugger: {
+    getDebuggerState: (stepIndex, activeLine, explanationText) => {
+      const trace = [
+        { mask: -1, i: -1, phase: "init" },
+        { mask: -1, i: -1, phase: "init" },
+        { mask: -1, i: -1, phase: "init" },
+        { mask: 0, i: -1, phase: "mask" },
+        { mask: 0, i: -1, phase: "mask" },
+        { mask: 0, i: 0, phase: "bit" },
+        { mask: 0, i: 0, phase: "bit" },
+        { mask: 0, i: 1, phase: "bit" },
+        { mask: 0, i: 1, phase: "bit" },
+        { mask: 0, i: 2, phase: "bit" },
+        { mask: 0, i: 2, phase: "bit" },
+        { mask: 0, i: -1, phase: "mask" },
+        { mask: 1, i: -1, phase: "mask" },
+        { mask: 1, i: -1, phase: "mask" },
+        { mask: 1, i: 0, phase: "bit" },
+        { mask: 1, i: 0, phase: "bit" },
+        { mask: 1, i: 1, phase: "bit" },
+        { mask: 1, i: 2, phase: "bit" },
+        { mask: 1, i: -1, phase: "mask" },
+        { mask: 2, i: -1, phase: "mask" },
+        { mask: 2, i: 1, phase: "bit" },
+        { mask: 2, i: 1, phase: "bit" },
+        { mask: 2, i: -1, phase: "mask" },
+        { mask: 3, i: -1, phase: "mask" },
+        { mask: 3, i: 0, phase: "bit" },
+        { mask: 3, i: 0, phase: "bit" },
+        { mask: 3, i: -1, phase: "mask" },
+        { mask: 7, i: -1, phase: "mask" },
+        { mask: 7, i: 2, phase: "bit" },
+        { mask: 7, i: -1, phase: "mask" },
+        { mask: 7, i: -1, phase: "end" }
+      ];
+      const curr = trace[stepIndex] || trace[trace.length - 1];
+      const vars = [];
+      const globalVars = [];
+      const frames = [
+        { name: "main()", file: "main.cpp", line: activeLine }
+      ];
+
+      vars.push({ name: "N", type: "int", val: "3", expandable: false });
+      vars.push({ name: "multime", type: "std::vector<char>", val: "size = 3 {'A', 'B', 'C'}", expandable: true });
+      
+      if (stepIndex >= 2) {
+        vars.push({ name: "total_submultimi", type: "int", val: "8", expandable: false });
+      }
+      if (curr.mask !== -1) {
+        vars.push({ name: "mask", type: "int", val: curr.mask + " (binar: " + curr.mask.toString(2).padStart(3, "0") + ")", expandable: false });
+      }
+      if (curr.i !== -1) {
+        vars.push({ name: "i", type: "int", val: curr.i.toString(), expandable: false });
+      }
+
+      let inlineVal = "";
+      if (curr.mask !== -1) {
+        inlineVal = "mask: " + curr.mask;
+        if (curr.i !== -1) inlineVal += ", i: " + curr.i;
+      }
+      return { vars, globalVars, frames, inlineVal };
+    },
+    getInlineValueForLine: (stepIndex, lineNum) => {
+      const trace = [
+        { mask: -1, i: -1 },
+        { mask: -1, i: -1 },
+        { mask: -1, i: -1 },
+        { mask: 0, i: -1 },
+        { mask: 0, i: -1 },
+        { mask: 0, i: 0 },
+        { mask: 0, i: 0 },
+        { mask: 0, i: 1 },
+        { mask: 0, i: 1 },
+        { mask: 0, i: 2 },
+        { mask: 0, i: 2 },
+        { mask: 0, i: -1 },
+        { mask: 1, i: -1 },
+        { mask: 1, i: -1 },
+        { mask: 1, i: 0 },
+        { mask: 1, i: 0 },
+        { mask: 1, i: 1 },
+        { mask: 1, i: 2 },
+        { mask: 1, i: -1 },
+        { mask: 2, i: -1 },
+        { mask: 2, i: 1 },
+        { mask: 2, i: 1 },
+        { mask: 2, i: -1 },
+        { mask: 3, i: -1 },
+        { mask: 3, i: 0 },
+        { mask: 3, i: 0 },
+        { mask: 3, i: -1 },
+        { mask: 7, i: -1 },
+        { mask: 7, i: 2 },
+        { mask: 7, i: -1 },
+        { mask: 7, i: -1 }
+      ];
+      const curr = trace[stepIndex];
+      if (!curr) return null;
+      if (lineNum >= 16 && lineNum <= 24) {
+        let res = "mask: " + curr.mask;
+        if (curr.i !== -1) res += ", i: " + curr.i;
+        return res;
+      }
+      return null;
+    }
   }
-]
 };

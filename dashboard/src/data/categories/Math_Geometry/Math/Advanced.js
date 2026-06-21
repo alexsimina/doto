@@ -362,7 +362,7 @@ int main() {
       }
     ]
   },
-  "debugger": {
+    "debugger": {
     "getDebuggerState": (stepIndex, activeLine, explanationText) => {
       const vars = [];
       const globalVars = [];
@@ -373,13 +373,19 @@ int main() {
       ];
       globalVars.push({ name: 'a', type: 'long long', val: '34', expandable: false });
       globalVars.push({ name: 'b', type: 'long long', val: '21', expandable: false });
-      const depth = Math.min(stepIndex, 8);
-      for (let d = 0; d <= depth; d++) {
-        const f = gcdFrames[d];
-        frames.push({ name: `gcdExtended(${f[0]}, ${f[1]})`, file: 'main.cpp', line: d === depth ? activeLine : 15 });
+      
+      if (stepIndex === 0) {
+        frames.push({ name: 'main()', file: 'main.cpp', line: activeLine });
+      } else {
+        const depth = Math.min(stepIndex, 8);
+        for (let d = 0; d <= depth; d++) {
+          const f = gcdFrames[d];
+          frames.push({ name: `gcdExtended(${f[0]}, ${f[1]})`, file: 'main.cpp', line: d === depth ? activeLine : 16 });
+        }
+        frames.push({ name: 'main()', file: 'main.cpp', line: 28 });
       }
-      frames.push({ name: 'main()', file: 'main.cpp', line: 26 });
       frames.reverse();
+      
       if (stepIndex >= 10) {
         const xVals = [null, 1, -1, 2, -3, 5, -8, 13, -8];
         const yVals = [null, 0, 1, -1, 2, -3, 5, -8, 13];
@@ -389,8 +395,28 @@ int main() {
           vars.push({ name: 'y', type: 'long long', val: yVals[idx] ?? 1, expandable: false });
         }
       }
+      const depth = Math.min(stepIndex, 8);
       inlineVal = depth > 0 ? `depth: ${depth}` : null;
       return { vars, globalVars, frames, inlineVal };
+    },
+    "getInlineValueForLine": (stepIndex, lineNum) => {
+      const gcdFrames = [
+        [34, 21], [21, 34], [13, 21], [8, 13], [5, 8], [3, 5], [2, 3], [1, 2], [0, 1]
+      ];
+      const depth = Math.min(stepIndex, 8);
+      if (lineNum === 9 && stepIndex <= 8) {
+        const f = gcdFrames[depth];
+        return `a: ${f[0]}, b: ${f[1]}`;
+      }
+      if (lineNum === 26 && stepIndex === 0) return 'a: 34, b: 21';
+      if (stepIndex >= 10) {
+        const xVals = [null, 1, -1, 2, -3, 5, -8, 13, -8];
+        const yVals = [null, 0, 1, -1, 2, -3, 5, -8, 13];
+        const idx = Math.min(stepIndex - 10, 8);
+        if (idx >= 0) {
+          if (lineNum === 19 || lineNum === 20) return `x: ${xVals[idx]}, y: ${yVals[idx]}`;
+        }
+      }
+      return null;
     }
-  }
-};
+  }};

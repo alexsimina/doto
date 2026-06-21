@@ -449,6 +449,24 @@ int main() {
       frames.unshift({ name: `pascalTriangle(numRows = 5)`, file: 'main.cpp', line: activeLine });
       inlineVal = `i: ${iVal}, j: ${jVal}`;
       return { vars, globalVars, frames, inlineVal };
+    },
+    "getInlineValueForLine": (stepIndex, lineNum) => {
+      let iVal = 0, jVal = 0;
+      if (stepIndex >= 3) iVal = 1;
+      if (stepIndex >= 6) iVal = 2;
+      if (stepIndex >= 8 && stepIndex <= 10) jVal = 1;
+      if (stepIndex >= 11) iVal = 3;
+      if (stepIndex >= 13) jVal = 1;
+      if (stepIndex >= 14) jVal = 2;
+      if (stepIndex >= 16) { iVal = 4; jVal = 0; }
+      if (stepIndex >= 18) jVal = 1;
+      if (stepIndex >= 19) jVal = 2;
+      if (stepIndex >= 20) jVal = 3;
+
+      if (lineNum === 9) return `i: ${iVal}`;
+      if (lineNum === 14 && stepIndex >= 8) return `j: ${jVal}`;
+      if (lineNum === 16 && stepIndex >= 9) return `triangle[${iVal}][${jVal}]: ${stepIndex === 9 ? 2 : (stepIndex === 13 ? 3 : (stepIndex === 14 ? 3 : (stepIndex === 18 ? 4 : (stepIndex === 19 ? 6 : 4))))}`;
+      return null;
     }
   }
 };

@@ -310,11 +310,100 @@ int main() {
     ]
   },
   "globalVars": [
-  {
-    "name": "dp",
-    "type": "int[105][1005]",
-    "val": "DP values grid",
-    "expandable": false
+    {
+      "name": "dp",
+      "type": "int[105][1005]",
+      "val": "DP values grid",
+      "expandable": false
+    }
+  ],
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+
+      globalVars.push({ name: "W", type: "int", val: "50", expandable: false });
+      globalVars.push({ name: "wt", type: "const std::vector<int>&", val: "{10, 20, 30}", expandable: false });
+      globalVars.push({ name: "val", type: "const std::vector<int>&", val: "{60, 100, 120}", expandable: false });
+
+      frames.push({ name: "main()", file: "main.cpp", line: (stepIndex <= 2) ? (21 + (stepIndex === 0 ? 0 : (stepIndex === 1 ? 2 : 4))) : (stepIndex === 20 ? 25 : 25) });
+
+      if (stepIndex >= 3 && stepIndex <= 19) {
+        frames.unshift({ name: "knapsack(W = 50, wt, val, n = 3)", file: "solution.cpp", line: activeLine });
+      }
+
+      if (stepIndex >= 3 && stepIndex <= 19) {
+        let i = -1;
+        let w = -1;
+        if (stepIndex >= 4 && stepIndex <= 9) { i = 0; }
+        else if (stepIndex >= 10 && stepIndex <= 14) { i = 1; }
+        else if (stepIndex >= 15 && stepIndex <= 18) { i = 2; }
+        
+        if (stepIndex === 5) w = 50;
+        else if (stepIndex === 6) w = 40;
+        else if (stepIndex === 7) w = 30;
+        else if (stepIndex === 8) w = 20;
+        else if (stepIndex === 9) w = 10;
+        else if (stepIndex === 11) w = 50;
+        else if (stepIndex === 12) w = 40;
+        else if (stepIndex === 13) w = 30;
+        else if (stepIndex === 14) w = 20;
+        else if (stepIndex === 16) w = 50;
+        else if (stepIndex === 17) w = 40;
+        else if (stepIndex === 18) w = 30;
+
+        if (i !== -1) vars.push({ name: "i", type: "int", val: i.toString(), expandable: false });
+        if (w !== -1) vars.push({ name: "w", type: "int", val: w.toString(), expandable: false });
+
+        let dpVal = "size = 51";
+        vars.push({ name: "dp", type: "std::vector<int>", val: dpVal, expandable: true });
+
+        if (i !== -1) {
+          vars.push({ name: "wt[i]", type: "int", val: [10, 20, 30][i].toString(), expandable: false });
+          vars.push({ name: "val[i]", type: "int", val: [60, 100, 120][i].toString(), expandable: false });
+        }
+
+        inlineVal = "";
+        if (i !== -1) inlineVal += `i: ${i}`;
+        if (w !== -1) inlineVal += `, w: ${w}`;
+      }
+
+      return { vars, globalVars, frames, inlineVal };
+    },
+    "getInlineValueForLine": (stepIndex, lineNum) => {
+      if (stepIndex >= 3 && stepIndex <= 19) {
+        let i = -1;
+        let w = -1;
+        if (stepIndex >= 4 && stepIndex <= 9) { i = 0; }
+        else if (stepIndex >= 10 && stepIndex <= 14) { i = 1; }
+        else if (stepIndex >= 15 && stepIndex <= 18) { i = 2; }
+        
+        if (stepIndex === 5) w = 50;
+        else if (stepIndex === 6) w = 40;
+        else if (stepIndex === 7) w = 30;
+        else if (stepIndex === 8) w = 20;
+        else if (stepIndex === 9) w = 10;
+        else if (stepIndex === 11) w = 50;
+        else if (stepIndex === 12) w = 40;
+        else if (stepIndex === 13) w = 30;
+        else if (stepIndex === 14) w = 20;
+        else if (stepIndex === 16) w = 50;
+        else if (stepIndex === 17) w = 40;
+        else if (stepIndex === 18) w = 30;
+
+        if (lineNum === 11 || lineNum === 17) {
+          return i !== -1 ? `i: ${i}` : null;
+        }
+        if (lineNum === 13 || lineNum === 14) {
+          let res = "";
+          if (i !== -1) res += `i: ${i}`;
+          if (w !== -1) res += `, w: ${w}`;
+          return res || null;
+        }
+      }
+      return null;
+    }
   }
-]
 };

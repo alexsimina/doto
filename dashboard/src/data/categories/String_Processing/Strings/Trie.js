@@ -661,11 +661,115 @@ int main() {
     ]
   },
   "globalVars": [
-  {
-    "name": "root",
-    "type": "TrieNode*",
-    "val": "0x7ffeb073",
-    "expandable": false
+    {
+      "name": "root",
+      "type": "TrieNode*",
+      "val": "0x7ffeb073",
+      "expandable": false
+    }
+  ],
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const trace = [
+        { "stack": ["main()"], "vars": [] },
+        { "stack": ["main()"], "vars": [] },
+        { "stack": ["insert(word=\"cat\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"cat\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb073 (root)" }] },
+        { "stack": ["insert(word=\"cat\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"cat\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb073 (root)" }, { "name": "c", "type": "char", "val": "'c'" }] },
+        { "stack": ["insert(word=\"cat\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"cat\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb073 (root)" }, { "name": "c", "type": "char", "val": "'c'" }, { "name": "index", "type": "int", "val": "2" }] },
+        { "stack": ["insert(word=\"cat\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"cat\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb073 (root)" }, { "name": "c", "type": "char", "val": "'c'" }, { "name": "index", "type": "int", "val": "2" }] },
+        { "stack": ["insert(word=\"cat\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"cat\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb0c0" }, { "name": "c", "type": "char", "val": "'c'" }, { "name": "index", "type": "int", "val": "2" }] },
+        { "stack": ["insert(word=\"cat\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"cat\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb0c0" }, { "name": "c", "type": "char", "val": "'a'" }] },
+        { "stack": ["insert(word=\"cat\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"cat\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb0c0" }, { "name": "c", "type": "char", "val": "'a'" }, { "name": "index", "type": "int", "val": "0" }] },
+        { "stack": ["insert(word=\"cat\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"cat\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb0c0" }, { "name": "c", "type": "char", "val": "'a'" }, { "name": "index", "type": "int", "val": "0" }] },
+        { "stack": ["insert(word=\"cat\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"cat\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb0e8" }, { "name": "c", "type": "char", "val": "'a'" }, { "name": "index", "type": "int", "val": "0" }] },
+        { "stack": ["insert(word=\"cat\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"cat\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb0e8" }, { "name": "c", "type": "char", "val": "'t'" }] },
+        { "stack": ["insert(word=\"cat\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"cat\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb0e8" }, { "name": "c", "type": "char", "val": "'t'" }, { "name": "index", "type": "int", "val": "19" }] },
+        { "stack": ["insert(word=\"cat\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"cat\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb110" }, { "name": "c", "type": "char", "val": "'t'" }, { "name": "index", "type": "int", "val": "19" }] },
+        { "stack": ["insert(word=\"cat\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"cat\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb110" }] },
+        { "stack": ["main()"], "vars": [] },
+        { "stack": ["insert(word=\"car\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"car\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb073 (root)" }, { "name": "c", "type": "char", "val": "'c'" }, { "name": "index", "type": "int", "val": "2" }] },
+        { "stack": ["insert(word=\"car\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"car\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb0c0" }, { "name": "c", "type": "char", "val": "'a'" }, { "name": "index", "type": "int", "val": "0" }] },
+        { "stack": ["insert(word=\"car\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"car\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb0e8" }, { "name": "c", "type": "char", "val": "'r'" }, { "name": "index", "type": "int", "val": "17" }] },
+        { "stack": ["insert(word=\"car\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"car\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb138" }] },
+        { "stack": ["main()"], "vars": [] },
+        { "stack": ["insert(word=\"do\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"do\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb073 (root)" }, { "name": "c", "type": "char", "val": "'d'" }, { "name": "index", "type": "int", "val": "3" }] },
+        { "stack": ["insert(word=\"do\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"do\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb160" }, { "name": "c", "type": "char", "val": "'o'" }, { "name": "index", "type": "int", "val": "14" }] },
+        { "stack": ["insert(word=\"do\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"do\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb188" }] },
+        { "stack": ["main()"], "vars": [] },
+        { "stack": ["search(word=\"cat\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"cat\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb073 (root)" }] },
+        { "stack": ["search(word=\"cat\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"cat\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb073 (root)" }, { "name": "c", "type": "char", "val": "'c'" }, { "name": "index", "type": "int", "val": "2" }] },
+        { "stack": ["search(word=\"cat\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"cat\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb0c0" }, { "name": "c", "type": "char", "val": "'a'" }, { "name": "index", "type": "int", "val": "0" }] },
+        { "stack": ["search(word=\"cat\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"cat\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb0e8" }, { "name": "c", "type": "char", "val": "'t'" }, { "name": "index", "type": "int", "val": "19" }] },
+        { "stack": ["search(word=\"cat\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"cat\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb110" }] },
+        { "stack": ["main()"], "vars": [] },
+        { "stack": ["search(word=\"ca\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"ca\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb073 (root)" }] },
+        { "stack": ["search(word=\"ca\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"ca\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb073 (root)" }, { "name": "c", "type": "char", "val": "'c'" }, { "name": "index", "type": "int", "val": "2" }] },
+        { "stack": ["search(word=\"ca\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"ca\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb0c0" }, { "name": "c", "type": "char", "val": "'a'" }, { "name": "index", "type": "int", "val": "0" }] },
+        { "stack": ["search(word=\"ca\")", "main()"], "vars": [{ "name": "word", "type": "std::string", "val": "\"ca\"" }, { "name": "node", "type": "TrieNode*", "val": "0x7ffeb0e8" }] },
+        { "stack": ["main()"], "vars": [] }
+      ];
+      const curr = trace[stepIndex] || trace[trace.length - 1];
+      const vars = [];
+      const globalVars = [{ "name": "root", "type": "TrieNode*", "val": "0x7ffeb073", "expandable": false }];
+      const frames = [];
+
+      curr.stack.forEach(frameName => {
+        const line = frameName.startsWith("insert") ? activeLine : (frameName.startsWith("search") ? activeLine : activeLine);
+        frames.push({ "name": frameName, "file": "solution.cpp", "line": line });
+      });
+
+      curr.vars.forEach(v => {
+        vars.push({ "name": v.name, "type": v.type, "val": v.val, "expandable": false });
+      });
+
+      let inlineVal = curr.vars.length > 0 ? `${curr.vars[0].name}: ${curr.vars[0].val}` : "";
+      return { vars, globalVars, frames, inlineVal };
+    },
+    "getInlineValueForLine": (stepIndex, lineNum) => {
+      // Inline values for root insert / search
+      const wordMap = {
+        0: { line: 54, val: "t: {}" },
+        1: { line: 55, val: "word: \"cat\"" },
+        2: { line: 31, val: "node: root" },
+        3: { line: 32, val: "c: 'c'" },
+        4: { line: 34, val: "index: 2" },
+        5: { line: 35, val: "new TrieNode()" },
+        6: { line: 37, val: "node: 0x7ffeb0c0" },
+        7: { line: 32, val: "c: 'a'" },
+        8: { line: 34, val: "index: 0" },
+        9: { line: 35, val: "new TrieNode()" },
+        10: { line: 37, val: "node: 0x7ffeb0e8" },
+        11: { line: 32, val: "c: 't'" },
+        12: { line: 35, val: "new TrieNode()" },
+        13: { line: 37, val: "node: 0x7ffeb110" },
+        14: { line: 39, val: "isEndOfWord: true" },
+        15: { line: 56, val: "word: \"car\"" },
+        16: { line: 34, val: "index: 2" },
+        17: { line: 34, val: "index: 0" },
+        18: { line: 35, val: "new TrieNode()" },
+        19: { line: 39, val: "isEndOfWord: true" },
+        20: { line: 57, val: "word: \"do\"" },
+        21: { line: 35, val: "new TrieNode()" },
+        22: { line: 35, val: "new TrieNode()" },
+        23: { line: 39, val: "isEndOfWord: true" },
+        24: { line: 59, val: "word: \"cat\"" },
+        25: { line: 43, val: "node: root" },
+        26: { line: 44, val: "c: 'c'" },
+        27: { line: 44, val: "c: 'a'" },
+        28: { line: 44, val: "c: 't'" },
+        29: { line: 49, val: "return true" },
+        30: { line: 60, val: "word: \"ca\"" },
+        31: { line: 43, val: "node: root" },
+        32: { line: 44, val: "c: 'c'" },
+        33: { line: 44, val: "c: 'a'" },
+        34: { line: 49, val: "return false" },
+        35: { line: 61, val: "return 0" }
+      };
+      const mapping = wordMap[stepIndex];
+      if (mapping && mapping.line === lineNum) {
+        return mapping.val;
+      }
+      return null;
+    }
   }
-]
 };

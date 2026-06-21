@@ -39,7 +39,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 28,
+      "line": 34,
       "text": "Pornim programul. Avem X = 'AGGTAB' (lungime m = 6) și Y = 'GXTXAYB' (lungime n = 7).",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -57,7 +57,7 @@ int main() {
       }
     },
     {
-      "line": 12,
+      "line": 18,
       "text": "Inițializăm matricea dp de dimensiuni 7x8 cu 0.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -75,7 +75,7 @@ int main() {
       }
     },
     {
-      "line": 15,
+      "line": 25,
       "text": "i = 1 (X[0] = 'A'), j = 1 (Y[0] = 'G'). Comparăm 'A' cu 'G'. Nu este match. dp[1][1] = max(dp[0][1]=0, dp[1][0]=0) = 0.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -93,7 +93,7 @@ int main() {
       }
     },
     {
-      "line": 15,
+      "line": 23,
       "text": "i = 1 (X[0] = 'A'), j = 5 (Y[4] = 'A'). MATCH! 'A' == 'A'. dp[1][5] = dp[0][4] + 1 = 1.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -111,7 +111,7 @@ int main() {
       }
     },
     {
-      "line": 15,
+      "line": 25,
       "text": "i = 1 (X[0] = 'A'), j = 7 (Y[6] = 'B'). Comparăm 'A' cu 'B'. Mismatch. dp[1][7] = max(dp[0][7]=0, dp[1][6]=1) = 1.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -129,7 +129,7 @@ int main() {
       }
     },
     {
-      "line": 15,
+      "line": 23,
       "text": "i = 2 (X[1] = 'G'), j = 1 (Y[0] = 'G'). MATCH! 'G' == 'G'. dp[2][1] = dp[1][0] + 1 = 1.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -147,7 +147,7 @@ int main() {
       }
     },
     {
-      "line": 15,
+      "line": 25,
       "text": "i = 2 (X[1] = 'G'), j = 2 (Y[1] = 'X'). Mismatch. dp[2][2] = max(dp[1][2]=0, dp[2][1]=1) = 1.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -165,7 +165,7 @@ int main() {
       }
     },
     {
-      "line": 15,
+      "line": 25,
       "text": "i = 2 (X[1] = 'G'), j = 5 (Y[4] = 'A'). Mismatch. dp[2][5] = max(dp[1][5]=1, dp[2][4]=1) = 1.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -183,7 +183,7 @@ int main() {
       }
     },
     {
-      "line": 15,
+      "line": 23,
       "text": "i = 3 (X[2] = 'G'), j = 1 (Y[0] = 'G'). MATCH! 'G' == 'G'. dp[3][1] = dp[2][0] + 1 = 1.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -201,7 +201,7 @@ int main() {
       }
     },
     {
-      "line": 15,
+      "line": 25,
       "text": "i = 3 (X[2] = 'G'), j = 3 (Y[2] = 'T'). Mismatch. dp[3][3] = max(dp[2][3]=1, dp[3][2]=1) = 1.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -219,7 +219,7 @@ int main() {
       }
     },
     {
-      "line": 15,
+      "line": 25,
       "text": "i = 4 (X[3] = 'T'), j = 1 (Y[0] = 'G'). Mismatch. dp[4][1] = max(dp[3][1]=1, dp[4][0]=0) = 1.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -237,7 +237,7 @@ int main() {
       }
     },
     {
-      "line": 15,
+      "line": 23,
       "text": "i = 4 (X[3] = 'T'), j = 3 (Y[2] = 'T'). MATCH! 'T' == 'T'. dp[4][3] = dp[3][2] + 1 = 1 + 1 = 2.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -255,7 +255,7 @@ int main() {
       }
     },
     {
-      "line": 15,
+      "line": 25,
       "text": "i = 4 (X[3] = 'T'), j = 4 (Y[3] = 'X'). Mismatch. dp[4][4] = max(dp[3][4]=1, dp[4][3]=2) = 2.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -273,7 +273,7 @@ int main() {
       }
     },
     {
-      "line": 15,
+      "line": 25,
       "text": "i = 5 (X[4] = 'A'), j = 3 (Y[2] = 'T'). Mismatch. dp[5][3] = max(dp[4][3]=2, dp[5][2]=1) = 2.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -291,7 +291,7 @@ int main() {
       }
     },
     {
-      "line": 15,
+      "line": 23,
       "text": "i = 5 (X[4] = 'A'), j = 5 (Y[4] = 'A'). MATCH! 'A' == 'A'. dp[5][5] = dp[4][4] + 1 = 2 + 1 = 3.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -309,7 +309,7 @@ int main() {
       }
     },
     {
-      "line": 15,
+      "line": 25,
       "text": "i = 5 (X[4] = 'A'), j = 6 (Y[5] = 'Y'). Mismatch. dp[5][6] = max(dp[4][6]=2, dp[5][5]=3) = 3.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -327,7 +327,7 @@ int main() {
       }
     },
     {
-      "line": 15,
+      "line": 25,
       "text": "i = 6 (X[5] = 'B'), j = 1 (Y[0] = 'G'). Mismatch. dp[6][1] = max(dp[5][1]=1, dp[6][0]=0) = 1.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -345,7 +345,7 @@ int main() {
       }
     },
     {
-      "line": 15,
+      "line": 25,
       "text": "i = 6 (X[5] = 'B'), j = 5 (Y[4] = 'A'). Mismatch. dp[6][5] = max(dp[5][5]=3, dp[6][4]=2) = 3.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -363,7 +363,7 @@ int main() {
       }
     },
     {
-      "line": 15,
+      "line": 23,
       "text": "i = 6 (X[5] = 'B'), j = 7 (Y[6] = 'B'). MATCH! 'B' == 'B'. dp[6][7] = dp[5][6] + 1 = 3 + 1 = 4.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -381,7 +381,7 @@ int main() {
       }
     },
     {
-      "line": 24,
+      "line": 30,
       "text": "Am parcurs toate caracterele. Răspunsul se află în dp[m][n] = dp[6][7] = 4.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -399,7 +399,7 @@ int main() {
       }
     },
     {
-      "line": 30,
+      "line": 36,
       "text": "Afișăm rezultatul final: Lungime LCS este 4.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -441,11 +441,128 @@ int main() {
     ]
   },
   "globalVars": [
-  {
-    "name": "dp",
-    "type": "int[1005][1005]",
-    "val": "LCS length table",
-    "expandable": false
+    {
+      "name": "dp",
+      "type": "int[1005][1005]",
+      "val": "LCS length table",
+      "expandable": false
+    }
+  ],
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+
+      globalVars.push({ name: "X", type: "std::string", val: "\"AGGTAB\"", expandable: false });
+      globalVars.push({ name: "Y", type: "std::string", val: "\"GXTXAYB\"", expandable: false });
+
+      frames.push({ name: "main()", file: "main.cpp", line: (stepIndex === 0) ? 34 : (stepIndex === 20 ? 36 : 36) });
+
+      if (stepIndex >= 1 && stepIndex <= 19) {
+        frames.unshift({ name: "lcs(X = \"AGGTAB\", Y = \"GXTXAYB\")", file: "solution.cpp", line: activeLine });
+      }
+
+      if (stepIndex >= 1 && stepIndex <= 19) {
+        let i = -1;
+        let j = -1;
+        
+        if (stepIndex >= 2 && stepIndex <= 4) i = 1;
+        else if (stepIndex >= 5 && stepIndex <= 7) i = 2;
+        else if (stepIndex >= 8 && stepIndex <= 9) i = 3;
+        else if (stepIndex >= 10 && stepIndex <= 12) i = 4;
+        else if (stepIndex >= 13 && stepIndex <= 15) i = 5;
+        else if (stepIndex >= 16 && stepIndex <= 18) i = 6;
+
+        if (stepIndex === 2) j = 1;
+        else if (stepIndex === 3) j = 5;
+        else if (stepIndex === 4) j = 7;
+        else if (stepIndex === 5) j = 1;
+        else if (stepIndex === 6) j = 2;
+        else if (stepIndex === 7) j = 5;
+        else if (stepIndex === 8) j = 1;
+        else if (stepIndex === 9) j = 3;
+        else if (stepIndex === 10) j = 1;
+        else if (stepIndex === 11) j = 3;
+        else if (stepIndex === 12) j = 4;
+        else if (stepIndex === 13) j = 3;
+        else if (stepIndex === 14) j = 5;
+        else if (stepIndex === 15) j = 6;
+        else if (stepIndex === 16) j = 1;
+        else if (stepIndex === 17) j = 5;
+        else if (stepIndex === 18) j = 7;
+
+        if (i !== -1) {
+          vars.push({ name: "i", type: "int", val: i.toString(), expandable: false });
+          vars.push({ name: "m", type: "int", val: "6", expandable: false });
+        }
+        if (j !== -1) {
+          vars.push({ name: "j", type: "int", val: j.toString(), expandable: false });
+          vars.push({ name: "n", type: "int", val: "7", expandable: false });
+        }
+
+        let dpVal = "size = 7 x 8";
+        vars.push({ name: "dp", type: "std::vector<std::vector<int>>", val: dpVal, expandable: true });
+
+        if (i !== -1 && j !== -1) {
+          vars.push({ name: "X[i-1]", type: "char", val: `'${"AGGTAB"[i-1]}'`, expandable: false });
+          vars.push({ name: "Y[j-1]", type: "char", val: `'${"GXTXAYB"[j-1]}'`, expandable: false });
+        }
+
+        inlineVal = "";
+        if (i !== -1) inlineVal += `i: ${i}`;
+        if (j !== -1) inlineVal += `, j: ${j}`;
+        if (i !== -1 && j !== -1) inlineVal += `, X[i-1]: '${"AGGTAB"[i-1]}', Y[j-1]: '${"GXTXAYB"[j-1]}'`;
+      }
+
+      return { vars, globalVars, frames, inlineVal };
+    },
+    "getInlineValueForLine": (stepIndex, lineNum) => {
+      if (stepIndex >= 1 && stepIndex <= 19) {
+        let i = -1;
+        let j = -1;
+        
+        if (stepIndex >= 2 && stepIndex <= 4) i = 1;
+        else if (stepIndex >= 5 && stepIndex <= 7) i = 2;
+        else if (stepIndex >= 8 && stepIndex <= 9) i = 3;
+        else if (stepIndex >= 10 && stepIndex <= 12) i = 4;
+        else if (stepIndex >= 13 && stepIndex <= 15) i = 5;
+        else if (stepIndex >= 16 && stepIndex <= 18) i = 6;
+
+        if (stepIndex === 2) j = 1;
+        else if (stepIndex === 3) j = 5;
+        else if (stepIndex === 4) j = 7;
+        else if (stepIndex === 5) j = 1;
+        else if (stepIndex === 6) j = 2;
+        else if (stepIndex === 7) j = 5;
+        else if (stepIndex === 8) j = 1;
+        else if (stepIndex === 9) j = 3;
+        else if (stepIndex === 10) j = 1;
+        else if (stepIndex === 11) j = 3;
+        else if (stepIndex === 12) j = 4;
+        else if (stepIndex === 13) j = 3;
+        else if (stepIndex === 14) j = 5;
+        else if (stepIndex === 15) j = 6;
+        else if (stepIndex === 16) j = 1;
+        else if (stepIndex === 17) j = 5;
+        else if (stepIndex === 18) j = 7;
+
+        if (lineNum === 20 || lineNum === 21) {
+          let res = "";
+          if (i !== -1) res += `i: ${i}`;
+          if (j !== -1) res += `, j: ${j}`;
+          return res || null;
+        }
+        if (lineNum === 22 || lineNum === 23 || lineNum === 25) {
+          let res = "";
+          if (i !== -1) res += `i: ${i}`;
+          if (j !== -1) res += `, j: ${j}`;
+          if (i !== -1 && j !== -1) res += `, X[i-1]: '${"AGGTAB"[i-1]}', Y[j-1]: '${"GXTXAYB"[j-1]}'`;
+          return res || null;
+        }
+      }
+      return null;
+    }
   }
-]
 };

@@ -501,11 +501,114 @@ int main() {
     ]
   },
   "globalVars": [
-  {
-    "name": "link",
-    "type": "int[MAX_STATES]",
-    "val": "Suffix failure links",
-    "expandable": false
+    {
+      "name": "fail",
+      "type": "int[MAXN]",
+      "val": "Suffix failure links",
+      "expandable": false
+    }
+  ],
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const trace = [
+        { "stack": ["main()"], "vars": [] },
+        { "stack": ["main()"], "vars": [] },
+        { "stack": ["insert(s=\"he\")", "main()"], "vars": [{ "name": "s", "type": "std::string", "val": "\"he\"" }, { "name": "u", "type": "int", "val": "0" }] },
+        { "stack": ["insert(s=\"he\")", "main()"], "vars": [{ "name": "s", "type": "std::string", "val": "\"he\"" }, { "name": "u", "type": "int", "val": "0" }, { "name": "c", "type": "char", "val": "'h'" }] },
+        { "stack": ["insert(s=\"he\")", "main()"], "vars": [{ "name": "s", "type": "std::string", "val": "\"he\"" }, { "name": "u", "type": "int", "val": "1" }] },
+        { "stack": ["insert(s=\"he\")", "main()"], "vars": [{ "name": "s", "type": "std::string", "val": "\"he\"" }, { "name": "u", "type": "int", "val": "1" }, { "name": "c", "type": "char", "val": "'e'" }] },
+        { "stack": ["insert(s=\"he\")", "main()"], "vars": [{ "name": "s", "type": "std::string", "val": "\"he\"" }, { "name": "u", "type": "int", "val": "2" }] },
+        { "stack": ["main()"], "vars": [] },
+        { "stack": ["main()"], "vars": [] },
+        { "stack": ["build()", "main()"], "vars": [{ "name": "q", "type": "std::queue<int>", "val": "size=2 {1, 3}" }] },
+        { "stack": ["build()", "main()"], "vars": [{ "name": "q", "type": "std::queue<int>", "val": "size=2 {1, 3}" }] },
+        { "stack": ["build()", "main()"], "vars": [{ "name": "u", "type": "int", "val": "1" }, { "name": "q", "type": "std::queue<int>", "val": "size=1 {3}" }] },
+        { "stack": ["build()", "main()"], "vars": [{ "name": "u", "type": "int", "val": "1" }, { "name": "i", "type": "int", "val": "4" }, { "name": "q", "type": "std::queue<int>", "val": "size=2 {3, 2}" }] },
+        { "stack": ["build()", "main()"], "vars": [{ "name": "u", "type": "int", "val": "1" }, { "name": "i", "type": "int", "val": "8" }, { "name": "q", "type": "std::queue<int>", "val": "size=3 {3, 2, 6}" }] },
+        { "stack": ["build()", "main()"], "vars": [{ "name": "u", "type": "int", "val": "3" }, { "name": "q", "type": "std::queue<int>", "val": "size=2 {2, 6}" }] },
+        { "stack": ["build()", "main()"], "vars": [{ "name": "u", "type": "int", "val": "3" }, { "name": "i", "type": "int", "val": "7" }, { "name": "q", "type": "std::queue<int>", "val": "size=3 {2, 6, 4}" }] },
+        { "stack": ["build()", "main()"], "vars": [{ "name": "u", "type": "int", "val": "2" }, { "name": "q", "type": "std::queue<int>", "val": "size=3 {6, 4, 8}" }] },
+        { "stack": ["build()", "main()"], "vars": [{ "name": "u", "type": "int", "val": "6" }, { "name": "q", "type": "std::queue<int>", "val": "size=3 {4, 8, 7}" }] },
+        { "stack": ["build()", "main()"], "vars": [{ "name": "u", "type": "int", "val": "4" }, { "name": "q", "type": "std::queue<int>", "val": "size=3 {8, 7, 5}" }] },
+        { "stack": ["build()", "main()"], "vars": [{ "name": "u", "type": "int", "val": "8" }, { "name": "q", "type": "std::queue<int>", "val": "size=3 {7, 5, 9}" }] },
+        { "stack": ["main()"], "vars": [{ "name": "text", "type": "std::string", "val": "\"ahishers\"" }] },
+        { "stack": ["main()"], "vars": [{ "name": "text", "type": "std::string", "val": "\"ahishers\"" }, { "name": "u", "type": "int", "val": "0" }, { "name": "matches", "type": "int", "val": "0" }] },
+        { "stack": ["main()"], "vars": [{ "name": "text", "type": "std::string", "val": "\"ahishers\"" }, { "name": "u", "type": "int", "val": "0" }, { "name": "matches", "type": "int", "val": "0" }, { "name": "c", "type": "char", "val": "'a'" }] },
+        { "stack": ["main()"], "vars": [{ "name": "text", "type": "std::string", "val": "\"ahishers\"" }, { "name": "u", "type": "int", "val": "1" }, { "name": "matches", "type": "int", "val": "0" }, { "name": "c", "type": "char", "val": "'h'" }] },
+        { "stack": ["main()"], "vars": [{ "name": "text", "type": "std::string", "val": "\"ahishers\"" }, { "name": "u", "type": "int", "val": "6" }, { "name": "matches", "type": "int", "val": "0" }, { "name": "c", "type": "char", "val": "'i'" }] },
+        { "stack": ["main()"], "vars": [{ "name": "text", "type": "std::string", "val": "\"ahishers\"" }, { "name": "u", "type": "int", "val": "7" }, { "name": "matches", "type": "int", "val": "0" }, { "name": "c", "type": "char", "val": "'s'" }] },
+        { "stack": ["main()"], "vars": [{ "name": "text", "type": "std::string", "val": "\"ahishers\"" }, { "name": "u", "type": "int", "val": "7" }, { "name": "matches", "type": "int", "val": "1" }, { "name": "temp", "type": "int", "val": "3" }] },
+        { "stack": ["main()"], "vars": [{ "name": "text", "type": "std::string", "val": "\"ahishers\"" }, { "name": "u", "type": "int", "val": "4" }, { "name": "matches", "type": "int", "val": "1" }, { "name": "c", "type": "char", "val": "'h'" }] },
+        { "stack": ["main()"], "vars": [{ "name": "text", "type": "std::string", "val": "\"ahishers\"" }, { "name": "u", "type": "int", "val": "5" }, { "name": "matches", "type": "int", "val": "1" }, { "name": "c", "type": "char", "val": "'e'" }] },
+        { "stack": ["main()"], "vars": [{ "name": "text", "type": "std::string", "val": "\"ahishers\"" }, { "name": "u", "type": "int", "val": "5" }, { "name": "matches", "type": "int", "val": "3" }, { "name": "temp", "type": "int", "val": "0" }] },
+        { "stack": ["main()"], "vars": [{ "name": "text", "type": "std::string", "val": "\"ahishers\"" }, { "name": "u", "type": "int", "val": "8" }, { "name": "matches", "type": "int", "val": "3" }, { "name": "c", "type": "char", "val": "'r'" }] },
+        { "stack": ["main()"], "vars": [{ "name": "text", "type": "std::string", "val": "\"ahishers\"" }, { "name": "u", "type": "int", "val": "9" }, { "name": "matches", "type": "int", "val": "3" }, { "name": "c", "type": "char", "val": "'s'" }] },
+        { "stack": ["main()"], "vars": [{ "name": "text", "type": "std::string", "val": "\"ahishers\"" }, { "name": "u", "type": "int", "val": "9" }, { "name": "matches", "type": "int", "val": "4" }, { "name": "temp", "type": "int", "val": "3" }] },
+        { "stack": ["main()"], "vars": [{ "name": "text", "type": "std::string", "val": "\"ahishers\"" }, { "name": "u", "type": "int", "val": "9" }, { "name": "matches", "type": "int", "val": "4" }] },
+        { "stack": ["main()"], "vars": [] }
+      ];
+      const curr = trace[stepIndex] || trace[trace.length - 1];
+      const vars = [];
+      const globalVars = [
+        { "name": "sz", "type": "int", "val": "9", "expandable": false },
+        { "name": "MAXN", "type": "const int", "val": "1000", "expandable": false }
+      ];
+      const frames = [];
+
+      curr.stack.forEach(frameName => {
+        frames.push({ "name": frameName, "file": "solution.cpp", "line": activeLine });
+      });
+
+      curr.vars.forEach(v => {
+        vars.push({ "name": v.name, "type": v.type, "val": v.val, "expandable": false });
+      });
+
+      let inlineVal = curr.vars.length > 0 ? `${curr.vars[0].name}: ${curr.vars[0].val}` : "";
+      return { vars, globalVars, frames, inlineVal };
+    },
+    "getInlineValueForLine": (stepIndex, lineNum) => {
+      const mappings = {
+        0: { line: 44, val: "main()" },
+        1: { line: 45, val: "insert(\"he\")" },
+        2: { line: 18, val: "u: 0" },
+        3: { line: 19, val: "c: 'h'" },
+        4: { line: 21, val: "u: 1" },
+        5: { line: 19, val: "c: 'e'" },
+        6: { line: 21, val: "u: 2" },
+        7: { line: 45, val: "insert(\"she\")" },
+        8: { line: 46, val: "build()" },
+        9: { line: 27, val: "queue initialized" },
+        10: { line: 31, val: "q.empty(): false" },
+        11: { line: 32, val: "u: 1" },
+        12: { line: 35, val: "fail[2]: 0" },
+        13: { line: 35, val: "fail[6]: 0" },
+        14: { line: 32, val: "u: 3" },
+        15: { line: 35, val: "fail[4]: 1" },
+        16: { line: 32, val: "u: 2" },
+        17: { line: 32, val: "u: 6" },
+        18: { line: 32, val: "u: 4" },
+        19: { line: 32, val: "u: 8" },
+        20: { line: 48, val: "text: \"ahishers\"" },
+        21: { line: 49, val: "matches: 0" },
+        22: { line: 50, val: "c: 'a'" },
+        23: { line: 50, val: "c: 'h'" },
+        24: { line: 50, val: "c: 'i'" },
+        25: { line: 50, val: "c: 's'" },
+        26: { line: 54, val: "matches: 1" },
+        27: { line: 50, val: "c: 'h'" },
+        28: { line: 50, val: "c: 'e'" },
+        29: { line: 54, val: "matches: 3" },
+        30: { line: 50, val: "c: 'r'" },
+        31: { line: 50, val: "c: 's'" },
+        32: { line: 54, val: "matches: 4" },
+        33: { line: 59, val: "stdout: 4" },
+        34: { line: 60, val: "return 0" }
+      };
+      const mapping = mappings[stepIndex];
+      if (mapping && mapping.line === lineNum) {
+        return mapping.val;
+      }
+      return null;
+    }
   }
-]
 };

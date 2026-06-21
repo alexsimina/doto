@@ -384,11 +384,67 @@ int main() {
     ]
   },
   "globalVars": [
-  {
-    "name": "alphabet_size",
-    "type": "const int",
-    "val": "26",
-    "expandable": false
+    {
+      "name": "alphabet_size",
+      "type": "const int",
+      "val": "26",
+      "expandable": false
+    }
+  ],
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const trace = [
+        { "text": "algoritmica", "pattern": "ritm", "pos": "18446744073709551615 (npos)", "sub": "" },
+        { "text": "algoritmica", "pattern": "ritm", "pos": "18446744073709551615 (npos)", "sub": "" },
+        { "text": "algoritmica", "pattern": "ritm", "pos": "18446744073709551615 (npos)", "sub": "" },
+        { "text": "algoritmica", "pattern": "ritm", "pos": "18446744073709551615 (npos)", "sub": "" },
+        { "text": "algoritmica", "pattern": "ritm", "pos": "18446744073709551615 (npos)", "sub": "" },
+        { "text": "algoritmica", "pattern": "ritm", "pos": "18446744073709551615 (npos)", "sub": "" },
+        { "text": "algoritmica", "pattern": "ritm", "pos": "18446744073709551615 (npos)", "sub": "" },
+        { "text": "algoritmica", "pattern": "ritm", "pos": "18446744073709551615 (npos)", "sub": "" },
+        { "text": "algoritmica", "pattern": "ritm", "pos": "18446744073709551615 (npos)", "sub": "" },
+        { "text": "algoritmica", "pattern": "ritm", "pos": "18446744073709551615 (npos)", "sub": "" },
+        { "text": "algoritmica", "pattern": "ritm", "pos": "4", "sub": "" },
+        { "text": "algoritmica", "pattern": "ritm", "pos": "4", "sub": "" },
+        { "text": "algoritmica", "pattern": "ritm", "pos": "4", "sub": "" },
+        { "text": "algoritmica", "pattern": "ritm", "pos": "4", "sub": "" },
+        { "text": "algoritmica", "pattern": "ritm", "pos": "4", "sub": "ritm" },
+        { "text": "algoritmica", "pattern": "ritm", "pos": "4", "sub": "ritm" },
+        { "text": "algoritmica", "pattern": "ritm", "pos": "4", "sub": "ritm" },
+        { "text": "algebraica", "pattern": "ritm", "pos": "4", "sub": "ritm" },
+        { "text": "algebraica", "pattern": "ritm", "pos": "4", "sub": "ritm" },
+        { "text": "algebraica", "pattern": "ritm", "pos": "4", "sub": "ritm" }
+      ];
+      const curr = trace[stepIndex] || trace[trace.length - 1];
+      const vars = [];
+      const globalVars = [];
+      const frames = [{ "name": "main()", "file": "main.cpp", "line": activeLine }];
+
+      if (stepIndex >= 0) {
+        vars.push({ "name": "text", "type": "std::string", "val": `"${curr.text}"`, "expandable": false });
+      }
+      if (stepIndex >= 1) {
+        vars.push({ "name": "pattern", "type": "std::string", "val": `"${curr.pattern}"`, "expandable": false });
+      }
+      if (stepIndex >= 10) {
+        vars.push({ "name": "pos", "type": "size_t", "val": curr.pos, "expandable": false });
+      }
+      if (stepIndex >= 14) {
+        vars.push({ "name": "sub", "type": "std::string", "val": `"${curr.sub}"`, "expandable": false });
+      }
+
+      globalVars.push({ "name": "alphabet_size", "type": "const int", "val": "26", "expandable": false });
+
+      let inlineVal = `text: "${curr.text}"`;
+      return { vars, globalVars, frames, inlineVal };
+    },
+    "getInlineValueForLine": (stepIndex, lineNum) => {
+      if (stepIndex === 0 && lineNum === 7) return 'text: "algoritmica"';
+      if (stepIndex === 1 && lineNum === 8) return 'pattern: "ritm"';
+      if (stepIndex >= 10 && stepIndex <= 12 && lineNum === 11) return 'pos: 4';
+      if (stepIndex === 14 && lineNum === 17) return 'sub: "ritm"';
+      if (stepIndex >= 17 && lineNum === 21) return 'text: "algebraica"';
+      return null;
+    }
   }
-]
 };

@@ -67,7 +67,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 47,
+      "line": 54,
       "text": "Inițializăm structura Convex Hull Trick. Vectorul de drepte (învelișul convex) este gol.",
       "blocksVisual": [
         {
@@ -77,7 +77,7 @@ int main() {
       ]
     },
     {
-      "line": 48,
+      "line": 55,
       "text": "Adăugăm prima linie: L1 (y = 4x + 0). Deque-ul devine: [4x + 0].",
       "blocksVisual": [
         {
@@ -87,7 +87,7 @@ int main() {
       ]
     },
     {
-      "line": 53,
+      "line": 60,
       "text": "Interogare la x = 1. Avem o singură linie în deque. eval(4x + 0) = 4.",
       "blocksVisual": [
         {
@@ -100,7 +100,7 @@ int main() {
       ]
     },
     {
-      "line": 49,
+      "line": 56,
       "text": "Adăugăm L2 (y = 3x + 2). Deque-ul devine: [4x + 0, 3x + 2]. Nu avem suficiente linii pentru o eliminare.",
       "blocksVisual": [
         {
@@ -110,7 +110,7 @@ int main() {
       ]
     },
     {
-      "line": 53,
+      "line": 60,
       "text": "Interogare la x = 1. Evaluăm ambele linii: L1(1) = 4, L2(1) = 5. Minimul este 4.",
       "blocksVisual": [
         {
@@ -123,7 +123,7 @@ int main() {
       ]
     },
     {
-      "line": 54,
+      "line": 61,
       "text": "Interogare la x = 2. Evaluăm: L1(2) = 8, L2(2) = 8. Minimul este 8.",
       "blocksVisual": [
         {
@@ -136,7 +136,7 @@ int main() {
       ]
     },
     {
-      "line": 55,
+      "line": 62,
       "text": "Interogare la x = 3. Evaluăm: L1(3) = 12, L2(3) = 11. Minimul este 11 (L2 devine mai bună decât L1).",
       "blocksVisual": [
         {
@@ -149,7 +149,7 @@ int main() {
       ]
     },
     {
-      "line": 50,
+      "line": 57,
       "text": "Adăugăm L3 (y = 2x + 5). Verificăm dacă L2 devine redundantă cu funcția is_redundant(L1, L2, L3).",
       "blocksVisual": [
         {
@@ -159,7 +159,7 @@ int main() {
       ]
     },
     {
-      "line": 13,
+      "line": 30,
       "text": "Intersecția L1 cu L2 e la x = 2. Intersecția L2 cu L3 e la x = 3. Deoarece 2 < 3, L2 este utilă. Păstrăm toate liniile: [4x + 0, 3x + 2, 2x + 5].",
       "blocksVisual": [
         {
@@ -345,4 +345,110 @@ int main() {
     "expandable": false
   }
 ]
+,
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+
+      frames.push({ name: "main()", file: "main.cpp", line: (stepIndex === 0) ? 54 : 60 });
+
+      // Check if we are inside add_line or query
+      let inAddLine = false;
+      let inQuery = false;
+
+      // add_line steps: 1, 3, 7, 8, 9, 11, 12, 14, 15, 16, 17, 18, 19
+      if ([1, 3, 7, 8, 9, 11, 12, 14, 15, 16, 17, 18, 19].includes(stepIndex)) {
+        inAddLine = true;
+      }
+      // query steps: 2, 4, 5, 6, 10, 13, 20, 21, 22
+      if ([2, 4, 5, 6, 10, 13, 20, 21, 22].includes(stepIndex)) {
+        inQuery = true;
+      }
+
+      if (inAddLine) {
+        frames.unshift({ name: "ConvexHullTrick::add_line(m, c)", file: "solution.cpp", line: activeLine });
+        let m = 0, c = 0;
+        if (stepIndex === 1) { m = 4; c = 0; }
+        else if (stepIndex === 3) { m = 3; c = 2; }
+        else if (stepIndex === 7 || stepIndex === 8 || stepIndex === 9) { m = 2; c = 5; }
+        else if (stepIndex === 11 || stepIndex === 12) { m = 1; c = 9; }
+        else if (stepIndex >= 14 && stepIndex <= 19) { m = 0; c = 10; }
+
+        vars.push({ name: "m", type: "long long", val: m.toString(), expandable: false });
+        vars.push({ name: "c", type: "long long", val: c.toString(), expandable: false });
+        vars.push({ name: "l", type: "Line", val: `{m = ${m}, c = ${c}}`, expandable: false });
+        inlineVal = `m: ${m}, c: ${c}`;
+      }
+
+      if (inQuery) {
+        frames.unshift({ name: "ConvexHullTrick::query(x)", file: "solution.cpp", line: activeLine });
+        let x = 1;
+        if (stepIndex === 2 || stepIndex === 4) x = 1;
+        else if (stepIndex === 5 || stepIndex === 20) x = 2;
+        else if (stepIndex === 6 || stepIndex === 21) x = 3;
+        else if (stepIndex === 10 || stepIndex === 22) x = 4;
+        else if (stepIndex === 13) x = 5;
+
+        vars.push({ name: "x", type: "long long", val: x.toString(), expandable: false });
+        
+        let best = 0;
+        if (stepIndex === 2 || stepIndex === 4) best = 4;
+        else if (stepIndex === 5 || stepIndex === 20) best = 8;
+        else if (stepIndex === 6 || stepIndex === 21) best = 11;
+        else if (stepIndex === 10) best = 13;
+        else if (stepIndex === 13) best = 14;
+        else if (stepIndex === 22) best = 10;
+
+        vars.push({ name: "best", type: "long long", val: best.toString(), expandable: false });
+        inlineVal = `x: ${x}, best: ${best}`;
+      }
+
+      // Add hull to globalVars or localVars
+      let hullLines = [];
+      if (stepIndex >= 1 && stepIndex <= 2) hullLines = ["y = 4x + 0"];
+      else if (stepIndex >= 3 && stepIndex <= 6) hullLines = ["y = 4x + 0", "y = 3x + 2"];
+      else if (stepIndex >= 7 && stepIndex <= 10) hullLines = ["y = 4x + 0", "y = 3x + 2", "y = 2x + 5"];
+      else if (stepIndex >= 11 && stepIndex <= 13) hullLines = ["y = 4x + 0", "y = 3x + 2", "y = 2x + 5", "y = x + 9"];
+      else if (stepIndex === 14 || stepIndex === 15) hullLines = ["y = 4x + 0", "y = 3x + 2", "y = 2x + 5", "y = x + 9"];
+      else if (stepIndex === 16 || stepIndex === 17) hullLines = ["y = 4x + 0", "y = 3x + 2", "y = 2x + 5"];
+      else if (stepIndex === 18 || stepIndex === 19) hullLines = ["y = 4x + 0", "y = 3x + 2"];
+      else if (stepIndex >= 20) hullLines = ["y = 4x + 0", "y = 3x + 2", "y = 10"];
+
+      globalVars.push({
+        name: "hull",
+        type: "std::vector<Line>",
+        val: `{${hullLines.join(", ")}}`,
+        expandable: false
+      });
+
+      return { vars, globalVars, frames, inlineVal };
+    },
+    "getInlineValueForLine": (stepIndex, lineNum) => {
+      let x = -1;
+      if ([2, 4].includes(stepIndex)) x = 1;
+      else if ([5, 20].includes(stepIndex)) x = 2;
+      else if ([6, 21].includes(stepIndex)) x = 3;
+      else if ([10, 22].includes(stepIndex)) x = 4;
+      else if (stepIndex === 13) x = 5;
+
+      if (x !== -1 && (lineNum === 35 || lineNum === 38 || lineNum === 41 || lineNum === 42 || lineNum === 49)) {
+        return `x: ${x}`;
+      }
+
+      let m = -1, c = -1;
+      if (stepIndex === 1) { m = 4; c = 0; }
+      else if (stepIndex === 3) { m = 3; c = 2; }
+      else if ([7, 8, 9].includes(stepIndex)) { m = 2; c = 5; }
+      else if ([11, 12].includes(stepIndex)) { m = 1; c = 9; }
+      else if (stepIndex >= 14 && stepIndex <= 19) { m = 0; c = 10; }
+
+      if (m !== -1 && (lineNum === 28 || lineNum === 29 || lineNum === 30 || lineNum === 33)) {
+        return `m: ${m}, c: ${c}`;
+      }
+      return null;
+    }
+  }
 };

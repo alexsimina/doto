@@ -30,7 +30,7 @@ int main() {
 `,
   "explanations": [
   {
-    "line": 5,
+    "line": 11,
     "text": "Apelăm zTraversal(n = 8, r = 5, c = 2) pentru a găsi valoarea într-o matrice 8x8 la coordonatele (5, 2).",
     "matrix": {
       "headers": [
@@ -401,7 +401,7 @@ int main() {
     }
   },
   {
-    "line": 6,
+    "line": 12,
     "text": "Verificăm dacă n == 1. Deoarece n = 8, condiția este falsă și continuăm.",
     "matrix": {
       "headers": [
@@ -772,7 +772,7 @@ int main() {
     }
   },
   {
-    "line": 8,
+    "line": 14,
     "text": "Calculăm jumătatea dimensiunii: half = 8 / 2 = 4.",
     "matrix": {
       "headers": [
@@ -1143,7 +1143,7 @@ int main() {
     }
   },
   {
-    "line": 9,
+    "line": 15,
     "text": "Calculăm aria unui cadran: area = 4 * 4 = 16. Fiecare din cele 4 cadrane are câte 16 elemente.",
     "matrix": {
       "headers": [
@@ -1514,7 +1514,7 @@ int main() {
     }
   },
   {
-    "line": 11,
+    "line": 17,
     "text": "Testăm dacă suntem în cadranul stânga-sus: r < half && c < half (5 < 4 && 2 < 4). Condiția este falsă.",
     "matrix": {
       "headers": [
@@ -1693,7 +1693,7 @@ int main() {
     }
   },
   {
-    "line": 12,
+    "line": 18,
     "text": "Testăm dacă suntem în cadranul dreapta-sus: r < half && c >= half (5 < 4 && 2 >= 4). Condiția este falsă.",
     "matrix": {
       "headers": [
@@ -1872,7 +1872,7 @@ int main() {
     }
   },
   {
-    "line": 13,
+    "line": 19,
     "text": "Testăm dacă suntem în cadranul stânga-jos: r >= half && c < half (5 >= 4 && 2 < 4). Condiția este adevărată!",
     "matrix": {
       "headers": [
@@ -2051,7 +2051,7 @@ int main() {
     }
   },
   {
-    "line": 13,
+    "line": 19,
     "text": "Sărim primele 2 cadrane complete. Adunăm 2 * area = 32. Apelăm recursiv zTraversal(4, 5-4, 2) => zTraversal(4, 1, 2).",
     "matrix": {
       "headers": [
@@ -2230,7 +2230,7 @@ int main() {
     }
   },
   {
-    "line": 5,
+    "line": 11,
     "text": "Intrăm în noul apel: zTraversal(n = 4, r = 1, c = 2).",
     "matrix": {
       "headers": [
@@ -2409,7 +2409,7 @@ int main() {
     }
   },
   {
-    "line": 6,
+    "line": 12,
     "text": "Verificăm dacă n == 1. Deoarece n = 4, condiția este falsă.",
     "matrix": {
       "headers": [
@@ -2588,7 +2588,7 @@ int main() {
     }
   },
   {
-    "line": 8,
+    "line": 14,
     "text": "Calculăm jumătatea sub-matricei: half = 4 / 2 = 2.",
     "matrix": {
       "headers": [
@@ -2767,7 +2767,7 @@ int main() {
     }
   },
   {
-    "line": 9,
+    "line": 15,
     "text": "Calculăm aria sub-cadranului: area = 2 * 2 = 4.",
     "matrix": {
       "headers": [
@@ -2946,7 +2946,7 @@ int main() {
     }
   },
   {
-    "line": 11,
+    "line": 17,
     "text": "Testăm dacă suntem în cadranul stânga-sus: r < half && c < half (1 < 2 && 2 < 2). Condiția este falsă.",
     "matrix": {
       "headers": [
@@ -3077,7 +3077,7 @@ int main() {
     }
   },
   {
-    "line": 12,
+    "line": 18,
     "text": "Testăm dacă suntem în cadranul dreapta-sus: r < half && c >= half (1 < 2 && 2 >= 2). Condiția este adevărată!",
     "matrix": {
       "headers": [
@@ -3208,7 +3208,7 @@ int main() {
     }
   },
   {
-    "line": 12,
+    "line": 18,
     "text": "Sărim primul cadran complet. Adunăm 1 * area = 4. Apelăm recursiv zTraversal(2, 1, 2-2) => zTraversal(2, 1, 0).",
     "matrix": {
       "headers": [
@@ -3339,7 +3339,7 @@ int main() {
     }
   },
   {
-    "line": 5,
+    "line": 11,
     "text": "Intrăm în următorul apel recursiv: zTraversal(n = 2, r = 1, c = 0).",
     "matrix": {
       "headers": [
@@ -3470,7 +3470,7 @@ int main() {
     }
   },
   {
-    "line": 6,
+    "line": 12,
     "text": "Verificăm dacă n == 1. Deoarece n = 2, continuăm.",
     "matrix": {
       "headers": [
@@ -3601,7 +3601,7 @@ int main() {
     }
   },
   {
-    "line": 8,
+    "line": 14,
     "text": "Calculăm half = 2 / 2 = 1.",
     "matrix": {
       "headers": [
@@ -3732,7 +3732,7 @@ int main() {
     }
   },
   {
-    "line": 9,
+    "line": 15,
     "text": "Calculăm aria sub-cadranului: area = 1 * 1 = 1.",
     "matrix": {
       "headers": [
@@ -3863,7 +3863,7 @@ int main() {
     }
   },
   {
-    "line": 11,
+    "line": 17,
     "text": "Testăm dacă r < half && c < half (1 < 1 && 0 < 1). Fals.",
     "matrix": {
       "headers": [
@@ -3982,7 +3982,7 @@ int main() {
     }
   },
   {
-    "line": 12,
+    "line": 18,
     "text": "Testăm dacă r < half && c >= half (1 < 1 && 0 >= 1). Fals.",
     "matrix": {
       "headers": [
@@ -4101,7 +4101,7 @@ int main() {
     }
   },
   {
-    "line": 13,
+    "line": 19,
     "text": "Testăm dacă r >= half && c < half (1 >= 1 && 0 < 1). Condiția este adevărată!",
     "matrix": {
       "headers": [
@@ -4220,7 +4220,7 @@ int main() {
     }
   },
   {
-    "line": 13,
+    "line": 19,
     "text": "Sărim primele 2 cadrane complete. Adunăm 2 * area = 2. Apelăm recursiv zTraversal(1, 1-1, 0) => zTraversal(1, 0, 0).",
     "matrix": {
       "headers": [
@@ -4339,7 +4339,7 @@ int main() {
     }
   },
   {
-    "line": 5,
+    "line": 11,
     "text": "Intrăm în cazul de bază: zTraversal(n = 1, r = 0, c = 0).",
     "matrix": {
       "headers": [
@@ -4458,7 +4458,7 @@ int main() {
     }
   },
   {
-    "line": 6,
+    "line": 12,
     "text": "Deoarece n == 1, returnăm 0.",
     "matrix": {
       "headers": [
@@ -4723,5 +4723,74 @@ int main() {
         "desc": "Grafică avansată"
       }
     ]
+  },
+  globalVars: [],
+  debugger: {
+    getDebuggerState: (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+
+      const stepData = [
+        { stack: [{n:8, r:5, c:2}], active: {n:8, r:5, c:2, half: -1, area: -1} }, // 0
+        { stack: [{n:8, r:5, c:2}], active: {n:8, r:5, c:2, half: -1, area: -1} }, // 1
+        { stack: [{n:8, r:5, c:2}], active: {n:8, r:5, c:2, half: 4,  area: -1} }, // 2
+        { stack: [{n:8, r:5, c:2}], active: {n:8, r:5, c:2, half: 4,  area: 16} }, // 3
+        { stack: [{n:8, r:5, c:2}], active: {n:8, r:5, c:2, half: 4,  area: 16} }, // 4
+        { stack: [{n:8, r:5, c:2}], active: {n:8, r:5, c:2, half: 4,  area: 16} }, // 5
+        { stack: [{n:8, r:5, c:2}], active: {n:8, r:5, c:2, half: 4,  area: 16} }, // 6
+        { stack: [{n:8, r:5, c:2}], active: {n:8, r:5, c:2, half: 4,  area: 16} }, // 7
+        { stack: [{n:4, r:1, c:2}, {n:8, r:5, c:2}], active: {n:4, r:1, c:2, half: -1, area: -1} }, // 8
+        { stack: [{n:4, r:1, c:2}, {n:8, r:5, c:2}], active: {n:4, r:1, c:2, half: -1, area: -1} }, // 9
+        { stack: [{n:4, r:1, c:2}, {n:8, r:5, c:2}], active: {n:4, r:1, c:2, half: 2,  area: -1} }, // 10
+        { stack: [{n:4, r:1, c:2}, {n:8, r:5, c:2}], active: {n:4, r:1, c:2, half: 2,  area: 4 } }, // 11
+        { stack: [{n:4, r:1, c:2}, {n:8, r:5, c:2}], active: {n:4, r:1, c:2, half: 2,  area: 4 } }, // 12
+        { stack: [{n:4, r:1, c:2}, {n:8, r:5, c:2}], active: {n:4, r:1, c:2, half: 2,  area: 4 } }, // 13
+        { stack: [{n:4, r:1, c:2}, {n:8, r:5, c:2}], active: {n:4, r:1, c:2, half: 2,  area: 4 } }, // 14
+        { stack: [{n:2, r:1, c:0}, {n:4, r:1, c:2}, {n:8, r:5, c:2}], active: {n:2, r:1, c:0, half: -1, area: -1} }, // 15
+        { stack: [{n:2, r:1, c:0}, {n:4, r:1, c:2}, {n:8, r:5, c:2}], active: {n:2, r:1, c:0, half: -1, area: -1} }, // 16
+        { stack: [{n:2, r:1, c:0}, {n:4, r:1, c:2}, {n:8, r:5, c:2}], active: {n:2, r:1, c:0, half: 1,  area: -1} }, // 17
+        { stack: [{n:2, r:1, c:0}, {n:4, r:1, c:2}, {n:8, r:5, c:2}], active: {n:2, r:1, c:0, half: 1,  area: 1 } }, // 18
+        { stack: [{n:2, r:1, c:0}, {n:4, r:1, c:2}, {n:8, r:5, c:2}], active: {n:2, r:1, c:0, half: 1,  area: 1 } }, // 19
+        { stack: [{n:2, r:1, c:0}, {n:4, r:1, c:2}, {n:8, r:5, c:2}], active: {n:2, r:1, c:0, half: 1,  area: 1 } }, // 20
+        { stack: [{n:2, r:1, c:0}, {n:4, r:1, c:2}, {n:8, r:5, c:2}], active: {n:2, r:1, c:0, half: 1,  area: 1 } }, // 21
+        { stack: [{n:2, r:1, c:0}, {n:4, r:1, c:2}, {n:8, r:5, c:2}], active: {n:2, r:1, c:0, half: 1,  area: 1 } }, // 22
+        { stack: [{n:1, r:0, c:0}, {n:2, r:1, c:0}, {n:4, r:1, c:2}, {n:8, r:5, c:2}], active: {n:1, r:0, c:0, half: -1, area: -1} }, // 23
+        { stack: [{n:1, r:0, c:0}, {n:2, r:1, c:0}, {n:4, r:1, c:2}, {n:8, r:5, c:2}], active: {n:1, r:0, c:0, half: -1, area: -1} }, // 24
+        { stack: [], active: null } // 25
+      ];
+
+      const curr = stepData[stepIndex] || stepData[stepData.length - 1];
+
+      if (curr.active) {
+        curr.stack.forEach((frame, idx) => {
+          frames.push({
+            name: "zTraversal(n = " + frame.n + ", r = " + frame.r + ", c = " + frame.c + ")",
+            file: "solution.cpp",
+            line: (idx === 0) ? activeLine : 19
+          });
+        });
+      }
+      frames.push({ name: "main()", file: "main.cpp", line: 27 });
+
+      if (curr.active) {
+        vars.push({ name: "n", type: "int", val: curr.active.n.toString(), expandable: false });
+        vars.push({ name: "r", type: "int", val: curr.active.r.toString(), expandable: false });
+        vars.push({ name: "c", type: "int", val: curr.active.c.toString(), expandable: false });
+        if (curr.active.half !== -1) {
+          vars.push({ name: "half", type: "int", val: curr.active.half.toString(), expandable: false });
+        }
+        if (curr.active.area !== -1) {
+          vars.push({ name: "area", type: "long long", val: curr.active.area.toString(), expandable: false });
+        }
+        inlineVal = "n: " + curr.active.n + ", r: " + curr.active.r + ", c: " + curr.active.c;
+      }
+
+      return { vars, globalVars, frames, inlineVal };
+    },
+    getInlineValueForLine: (stepIndex, lineNum) => {
+      return null;
+    }
   }
 };

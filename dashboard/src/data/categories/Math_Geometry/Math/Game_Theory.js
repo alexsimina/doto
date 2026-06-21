@@ -324,7 +324,7 @@ int main() {
       }
     ]
   },
-  "debugger": {
+    "debugger": {
     "getDebuggerState": (stepIndex, activeLine, explanationText) => {
       const vars = [];
       const globalVars = [];
@@ -336,10 +336,20 @@ int main() {
       if (stepIndex >= 4) nimSum = 2;
       globalVars.push({ name: 'stive', type: 'vector<int>', val: '{3, 4, 5}', expandable: false });
       vars.push({ name: 'nimSum', type: 'int', val: nimSum, expandable: false });
-      frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 1 });
+      frames.push({ name: 'main()', file: 'main.cpp', line: stepIndex === 0 ? activeLine : 29 });
       if (stepIndex >= 1) frames.unshift({ name: `playNim(stive)`, file: 'main.cpp', line: activeLine });
       inlineVal = `nimSum: ${nimSum}`;
       return { vars, globalVars, frames, inlineVal };
+    },
+    "getInlineValueForLine": (stepIndex, lineNum) => {
+      let nimSum = 0;
+      if (stepIndex >= 2) nimSum = 3;
+      if (stepIndex >= 3) nimSum = 7;
+      if (stepIndex >= 4) nimSum = 2;
+      
+      if (lineNum === 7) return `nimSum: ${nimSum}`;
+      if (lineNum === 11 && stepIndex >= 2 && stepIndex <= 4) return `val: ${stepIndex === 2 ? 3 : (stepIndex === 3 ? 4 : 5)}`;
+      if (lineNum === 15) return `nimSum: ${nimSum}`;
+      return null;
     }
-  }
-};
+  }};

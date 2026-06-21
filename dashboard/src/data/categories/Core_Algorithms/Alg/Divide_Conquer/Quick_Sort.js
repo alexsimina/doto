@@ -42,168 +42,168 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 22,
+      "line": 26,
       "text": "Apelăm quickSort pentru întreg intervalul (low=0, high=5). Vectorul nesortat este [10, 7, 8, 9, 1, 5].",
       "blocksVisual": [
         { "label": "Vectorul", "groups": [[{"val": 10}, {"val": 7}, {"val": 8}, {"val": 9}, {"val": 1}, {"val": 5}]] }
       ]
     },
     {
-      "line": 23,
+      "line": 27,
       "text": "Verificăm condiția low < high (0 < 5), care este adevărată.",
       "blocksVisual": [
         { "label": "Verificare", "groups": [[{"val": "0 < 5 (Adevărat)"}]] }
       ]
     },
     {
-      "line": 24,
+      "line": 28,
       "text": "Apelăm partition(arr, 0, 5) pentru a poziționa un element pivot la locul său final.",
       "blocksVisual": [
         { "label": "Partiționare", "groups": [[{"val": 10, "active": true}, {"val": 7, "active": true}, {"val": 8, "active": true}, {"val": 9, "active": true}, {"val": 1, "active": true}, {"val": 5, "active": true}]] }
       ]
     },
     {
-      "line": 7,
+      "line": 13,
       "text": "Alegem ultimul element ca pivot: pivot = arr[5] = 5.",
       "blocksVisual": [
         { "label": "Pivot = 5", "groups": [[{"val": 10}, {"val": 7}, {"val": 8}, {"val": 9}, {"val": 1}, {"val": 5, "sorted": true}]] }
       ]
     },
     {
-      "line": 8,
+      "line": 14,
       "text": "Inițializăm indicele elementului mai mic: i = low - 1 = -1.",
       "blocksVisual": [
         { "label": "Indice i", "groups": [[{"val": "i = -1"}]] }
       ]
     },
     {
-      "line": 10,
+      "line": 17,
       "text": "Intrăm în buclă. j = 0: Comparăm arr[0] (10) cu pivotul (5). Deoarece 10 > 5, nu facem nimic.",
       "blocksVisual": [
         { "label": "Comparație j=0", "groups": [[{"val": 10, "active": true}, {"val": 7}, {"val": 8}, {"val": 9}, {"val": 1}, {"val": 5}]] }
       ]
     },
     {
-      "line": 10,
+      "line": 17,
       "text": "j = 1: Comparăm arr[1] (7) cu pivotul (5). Deoarece 7 > 5, nu facem nimic.",
       "blocksVisual": [
         { "label": "Comparație j=1", "groups": [[{"val": 10}, {"val": 7, "active": true}, {"val": 8}, {"val": 9}, {"val": 1}, {"val": 5}]] }
       ]
     },
     {
-      "line": 10,
+      "line": 17,
       "text": "j = 2: Comparăm arr[2] (8) cu pivotul (5). Deoarece 8 > 5, nu facem nimic.",
       "blocksVisual": [
         { "label": "Comparație j=2", "groups": [[{"val": 10}, {"val": 7}, {"val": 8, "active": true}, {"val": 9}, {"val": 1}, {"val": 5}]] }
       ]
     },
     {
-      "line": 10,
+      "line": 17,
       "text": "j = 3: Comparăm arr[3] (9) cu pivotul (5). Deoarece 9 > 5, nu facem nimic.",
       "blocksVisual": [
         { "label": "Comparație j=3", "groups": [[{"val": 10}, {"val": 7}, {"val": 8}, {"val": 9, "active": true}, {"val": 1}, {"val": 5}]] }
       ]
     },
     {
-      "line": 10,
+      "line": 17,
       "text": "j = 4: Comparăm arr[4] (1) cu pivotul (5). Deoarece 1 < 5, incrementăm i la 0.",
       "blocksVisual": [
         { "label": "Comparație j=4", "groups": [[{"val": 10}, {"val": 7}, {"val": 8}, {"val": 9}, {"val": 1, "active": true}, {"val": 5}]] }
       ]
     },
     {
-      "line": 12,
+      "line": 19,
       "text": "Facem swap între arr[i] (arr[0] = 10) și arr[j] (arr[4] = 1). Vectorul devine [1, 7, 8, 9, 10, 5].",
       "blocksVisual": [
         { "label": "După swap j=4", "groups": [[{"val": 1, "sorted": true}, {"val": 7}, {"val": 8}, {"val": 9}, {"val": 10}, {"val": 5}]] }
       ]
     },
     {
-      "line": 15,
+      "line": 22,
       "text": "Ieșim din buclă. Facem swap între primul element mai mare (arr[1] = 7) și pivotul (arr[5] = 5).",
       "blocksVisual": [
         { "label": "Fixare Pivot", "groups": [[{"val": 1}, {"val": 5, "sorted": true}, {"val": 8}, {"val": 9}, {"val": 10}, {"val": 7}]] }
       ]
     },
     {
-      "line": 16,
+      "line": 23,
       "text": "Returnăm indicele pivotului: pi = 1.",
       "blocksVisual": [
         { "label": "Pivot returnat", "groups": [[{"val": "pi = 1"}]] }
       ]
     },
     {
-      "line": 24,
+      "line": 29,
       "text": "Apelăm recursiv quickSort(arr, low=0, pi-1=0). Deoarece low >= high (0 >= 0), apelul returnează imediat.",
       "blocksVisual": [
         { "label": "Jumătatea stângă sortată", "groups": [[{"val": 1, "sorted": true}, {"val": 5, "sorted": true}]] }
       ]
     },
     {
-      "line": 25,
+      "line": 30,
       "text": "Apelăm recursiv quickSort(arr, pi+1=2, high=5) pentru intervalul [8, 9, 10, 7].",
       "blocksVisual": [
         { "label": "Apel quickSort(2, 5)", "groups": [[{"val": 1, "hidden": true}, {"val": 5, "hidden": true}, {"val": 8, "active": true}, {"val": 9, "active": true}, {"val": 10, "active": true}, {"val": 7, "active": true}]] }
       ]
     },
     {
-      "line": 7,
+      "line": 13,
       "text": "Alegem noul pivot: pivot = arr[5] = 7.",
       "blocksVisual": [
         { "label": "Pivot = 7", "groups": [[{"val": 8}, {"val": 9}, {"val": 10}, {"val": 7, "sorted": true}]] }
       ]
     },
     {
-      "line": 10,
+      "line": 16,
       "text": "Iterăm j de la 2 la 4. Toate valorile (8, 9, 10) sunt mai mari ca 7. Niciun swap în buclă.",
       "blocksVisual": [
         { "label": "Iterare", "groups": [[{"val": 8}, {"val": 9}, {"val": 10}, {"val": 7}]] }
       ]
     },
     {
-      "line": 15,
+      "line": 22,
       "text": "Swap între arr[2] (8) și pivot (7). Vectorul devine [1, 5, 7, 9, 10, 8]. Pivotul 7 este acum la poziția finală index 2.",
       "blocksVisual": [
         { "label": "Pivot 7 fixat", "groups": [[{"val": 1, "sorted": true}, {"val": 5, "sorted": true}, {"val": 7, "sorted": true}, {"val": 9}, {"val": 10}, {"val": 8}]] }
       ]
     },
     {
-      "line": 24,
+      "line": 29,
       "text": "Apelăm quickSort pentru stânga lui 7 (low=2, high=1). Returnează imediat.",
       "blocksVisual": [
         { "label": "Retur stânga", "groups": [[{"val": "Niciun element"}]] }
       ]
     },
     {
-      "line": 25,
+      "line": 30,
       "text": "Apelăm quickSort pentru dreapta lui 7 (low=3, high=5). Intervalul este [9, 10, 8].",
       "blocksVisual": [
         { "label": "Apel quickSort(3, 5)", "groups": [[{"val": 9, "active": true}, {"val": 10, "active": true}, {"val": 8, "active": true}]] }
       ]
     },
     {
-      "line": 7,
+      "line": 22,
       "text": "Pentru sub-intervalul [9, 10, 8], pivotul este 8. Deoarece 9 > 8 și 10 > 8, după buclă facem swap între 9 și 8. Vectorul devine [1, 5, 7, 8, 10, 9].",
       "blocksVisual": [
         { "label": "Pivot 8 fixat", "groups": [[{"val": 1, "sorted": true}, {"val": 5, "sorted": true}, {"val": 7, "sorted": true}, {"val": 8, "sorted": true}, {"val": 10}, {"val": 9}]] }
       ]
     },
     {
-      "line": 25,
+      "line": 30,
       "text": "Apelăm quickSort pentru dreapta lui 8: low=4, high=5. Intervalul este [10, 9].",
       "blocksVisual": [
         { "label": "Apel quickSort(4, 5)", "groups": [[{"val": 10, "active": true}, {"val": 9, "active": true}]] }
       ]
     },
     {
-      "line": 7,
+      "line": 22,
       "text": "Pivotul este 9. Deoarece 10 > 9, facem swap între 10 și 9. Pivotul 9 este fixat.",
       "blocksVisual": [
         { "label": "Pivot 9 fixat", "groups": [[{"val": 1, "sorted": true}, {"val": 5, "sorted": true}, {"val": 7, "sorted": true}, {"val": 8, "sorted": true}, {"val": 9, "sorted": true}, {"val": 10}]] }
       ]
     },
     {
-      "line": 24,
+      "line": 31,
       "text": "Toate elementele au fost vizitate și partiționate corect. Vectorul este complet sortat!",
       "blocksVisual": [
         { "label": "Sortare Finalizată", "groups": [[{"val": 1, "sorted": true}, {"val": 5, "sorted": true}, {"val": 7, "sorted": true}, {"val": 8, "sorted": true}, {"val": 9, "sorted": true}, {"val": 10, "sorted": true}]] }
@@ -237,5 +237,77 @@ int main() {
         "desc": "Selecție de ordine"
       }
     ]
+  },
+  globalVars: [],
+  debugger: {
+    getDebuggerState: (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+
+      const stepData = [
+        { active: "quickSort", stack: [{l:0, h:5}], low: 0, high: 5 }, // 0
+        { active: "quickSort", stack: [{l:0, h:5}], low: 0, high: 5 }, // 1
+        { active: "quickSort", stack: [{l:0, h:5}], low: 0, high: 5 }, // 2
+        { active: "partition", stack: [{l:0, h:5}], low: 0, high: 5, pivot: 5, i: -1, j: -1 }, // 3
+        { active: "partition", stack: [{l:0, h:5}], low: 0, high: 5, pivot: 5, i: -1, j: -1 }, // 4
+        { active: "partition", stack: [{l:0, h:5}], low: 0, high: 5, pivot: 5, i: -1, j: 0 },  // 5
+        { active: "partition", stack: [{l:0, h:5}], low: 0, high: 5, pivot: 5, i: -1, j: 1 },  // 6
+        { active: "partition", stack: [{l:0, h:5}], low: 0, high: 5, pivot: 5, i: -1, j: 2 },  // 7
+        { active: "partition", stack: [{l:0, h:5}], low: 0, high: 5, pivot: 5, i: -1, j: 3 },  // 8
+        { active: "partition", stack: [{l:0, h:5}], low: 0, high: 5, pivot: 5, i: 0,  j: 4 },  // 9
+        { active: "partition", stack: [{l:0, h:5}], low: 0, high: 5, pivot: 5, i: 0,  j: 4 },  // 10
+        { active: "partition", stack: [{l:0, h:5}], low: 0, high: 5, pivot: 5, i: 0,  j: 5 },  // 11
+        { active: "partition", stack: [{l:0, h:5}], low: 0, high: 5, pivot: 5, i: 1,  j: 5 },  // 12
+        { active: "quickSort", stack: [{l:0, h:0}, {l:0, h:5}], low: 0, high: 0 }, // 13
+        { active: "quickSort", stack: [{l:2, h:5}, {l:0, h:5}], low: 2, high: 5 }, // 14
+        { active: "partition", stack: [{l:2, h:5}, {l:0, h:5}], low: 2, high: 5, pivot: 7, i: 1, j: -1 }, // 15
+        { active: "partition", stack: [{l:2, h:5}, {l:0, h:5}], low: 2, high: 5, pivot: 7, i: 1, j: 4 },  // 16
+        { active: "partition", stack: [{l:2, h:5}, {l:0, h:5}], low: 2, high: 5, pivot: 7, i: 2, j: 5 },  // 17
+        { active: "quickSort", stack: [{l:2, h:1}, {l:2, h:5}, {l:0, h:5}], low: 2, high: 1 }, // 18
+        { active: "quickSort", stack: [{l:3, h:5}, {l:2, h:5}, {l:0, h:5}], low: 3, high: 5 }, // 19
+        { active: "partition", stack: [{l:3, h:5}, {l:2, h:5}, {l:0, h:5}], low: 3, high: 5, pivot: 8, i: 3, j: 5 }, // 20
+        { active: "quickSort", stack: [{l:4, h:5}, {l:3, h:5}, {l:2, h:5}, {l:0, h:5}], low: 4, high: 5 }, // 21
+        { active: "partition", stack: [{l:4, h:5}, {l:3, h:5}, {l:2, h:5}, {l:0, h:5}], low: 4, high: 5, pivot: 9, i: 4, j: 5 }, // 22
+        { active: "quickSort", stack: [], low: 0, high: 5 } // 23
+      ];
+
+      const curr = stepData[stepIndex] || stepData[stepData.length - 1];
+
+      if (curr.active === "partition") {
+        frames.push({ name: "partition(arr, low=" + curr.low + ", high=" + curr.high + ")", file: "solution.cpp", line: activeLine });
+      }
+      curr.stack.forEach((frame) => {
+        frames.push({ name: "quickSort(arr, low=" + frame.l + ", high=" + frame.h + ")", file: "solution.cpp", line: 28 });
+      });
+      frames.push({ name: "main()", file: "main.cpp", line: 36 });
+
+      vars.push({ name: "arr", type: "std::vector<int>&", val: "size = 6", expandable: true });
+
+      if (curr.active === "quickSort") {
+        vars.push({ name: "low", type: "int", val: curr.low.toString(), expandable: false });
+        vars.push({ name: "high", type: "int", val: curr.high.toString(), expandable: false });
+        inlineVal = "low: " + curr.low + ", high: " + curr.high;
+      } else if (curr.active === "partition") {
+        vars.push({ name: "low", type: "int", val: curr.low.toString(), expandable: false });
+        vars.push({ name: "high", type: "int", val: curr.high.toString(), expandable: false });
+        vars.push({ name: "pivot", type: "int", val: curr.pivot.toString(), expandable: false });
+        vars.push({ name: "i", type: "int", val: curr.i.toString(), expandable: false });
+        if (curr.j !== -1) {
+          vars.push({ name: "j", type: "int", val: curr.j.toString(), expandable: false });
+        }
+        inlineVal = "pivot: " + curr.pivot + ", i: " + curr.i;
+        if (curr.j !== -1) inlineVal += ", j: " + curr.j;
+      }
+
+      return { vars, globalVars, frames, inlineVal };
+    },
+    getInlineValueForLine: (stepIndex, lineNum) => {
+      if (stepIndex >= 3 && stepIndex <= 12) {
+        if (lineNum >= 12 && lineNum <= 24) return "pivot: 5, i: 0";
+      }
+      return null;
+    }
   }
 };

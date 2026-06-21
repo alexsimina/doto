@@ -46,7 +46,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 20,
+      "line": 26,
       "text": "Inițializăm solve(row=0). Tabla 4x4 este complet goală. Vom încerca să plasăm câte o regină pe fiecare rând, coloană cu coloană.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -62,7 +62,7 @@ int main() {
       }
     },
     {
-      "line": 21,
+      "line": 27,
       "text": "Verificăm row == N: 0 == 4? NU. Condiția de bază nu este îndeplinită, deci continuăm cu plasarea reginei pe rândul 0.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "·", "active": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -78,7 +78,7 @@ int main() {
       }
     },
     {
-      "line": 27,
+      "line": 33,
       "text": "Testăm c=0 pentru rândul 0. Apelăm isValid(0,0). Tabla e goală, deci nu există conflicte. isValid = TRUE.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "?", "active": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -97,7 +97,7 @@ int main() {
       }
     },
     {
-      "line": 29,
+      "line": 34,
       "text": "Plasăm regina la (0,0): col[0]=0. Acum apelăm recursiv solve(1) pentru a plasa regina pe rândul 1.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -116,7 +116,7 @@ int main() {
       }
     },
     {
-      "line": 27,
+      "line": 33,
       "text": "solve(1): Testăm c=0 pentru rândul 1. isValid(1,0): col[0]=0 → conflict pe coloana 0! isValid = FALSE.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -137,7 +137,7 @@ int main() {
       }
     },
     {
-      "line": 27,
+      "line": 33,
       "text": "Testăm c=1 pentru rândul 1. isValid(1,1): col[0]=0 → diagonală! |0-1|==|0-1| → 1==1. Conflict diagonal! isValid = FALSE.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -160,7 +160,7 @@ int main() {
       }
     },
     {
-      "line": 27,
+      "line": 33,
       "text": "Testăm c=2 pentru rândul 1. isValid(1,2): coloana diferită (2≠0), diagonal: |0-1|=1, |0-2|=2 → 1≠2. Valid! isValid = TRUE.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -185,7 +185,7 @@ int main() {
       }
     },
     {
-      "line": 29,
+      "line": 34,
       "text": "Plasăm regina la (1,2): col[1]=2. Apelăm recursiv solve(2). Tabla arată: Q la (0,0) și (1,2).",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -210,7 +210,7 @@ int main() {
       }
     },
     {
-      "line": 27,
+      "line": 33,
       "text": "solve(2): Testăm c=0. isValid(2,0): col[0]=0 → conflict coloana 0! FALSE. Testăm c=1: col[1]=2, diagonal |1-2|=1, |2-1|=1 → 1==1, conflict! FALSE.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -235,7 +235,7 @@ int main() {
       }
     },
     {
-      "line": 27,
+      "line": 33,
       "text": "solve(2): Testăm c=2. col[1]=2 → conflict coloana 2! FALSE. Testăm c=3: col[0]=0, |0-2|=2,|0-3|=3 diferite; col[1]=2, |1-2|=1,|2-3|=1 → 1==1, conflict diagonal! FALSE.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -287,7 +287,7 @@ int main() {
       }
     },
     {
-      "line": 28,
+      "line": 33,
       "text": "isValid(1,3): col[0]=0 → coloana diferită (3≠0); diagonal: |0-1|=1, |0-3|=3 → 1≠3. Valid! Plasăm Q la (1,3): col[1]=3.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -310,7 +310,7 @@ int main() {
       }
     },
     {
-      "line": 30,
+      "line": 33,
       "text": "Apelăm solve(2) din nou. Testăm c=0: col[0]=0→conflict col! c=1: col[0]=0,|0-2|=2,|0-1|=1 ok; col[1]=3,|1-2|=1,|3-1|=2 ok. isValid(2,1)=TRUE!",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -335,7 +335,7 @@ int main() {
       }
     },
     {
-      "line": 29,
+      "line": 34,
       "text": "Plasăm Q la (2,1): col[2]=1. Apelăm solve(3). Tabla: Q la (0,0), (1,3), (2,1).",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -358,7 +358,7 @@ int main() {
       }
     },
     {
-      "line": 27,
+      "line": 33,
       "text": "solve(3): Testăm c=0. isValid(3,0): col[0]=0→conflict col! FALSE. Testăm c=1: col[2]=1→conflict col! FALSE. Testăm c=2: verificăm toate reginele...",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -387,7 +387,7 @@ int main() {
       }
     },
     {
-      "line": 28,
+      "line": 33,
       "text": "isValid(3,2): col[0]=0≠2; diag(0,3):|0-3|=3,|0-2|=2 ok. col[1]=3≠2; diag(1,3):|1-3|=2,|3-2|=1 ok. col[2]=1≠2; diag(2,3):|2-3|=1,|1-2|=1 → CONFLICT! FALSE.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -416,7 +416,7 @@ int main() {
       }
     },
     {
-      "line": 27,
+      "line": 33,
       "text": "Testăm c=3 pe rândul 3. isValid(3,3): col[1]=3→CONFLICT coloana! FALSE. Niciun c valid pe rândul 3 → BACKTRACK la solve(2).",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -485,7 +485,7 @@ int main() {
       }
     },
     {
-      "line": 29,
+      "line": 33,
       "text": "isValid(0,1) = TRUE (tabla goală). Plasăm Q la (0,1): col[0]=1. Apelăm solve(1). Explorăm ramura (0,1).",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
@@ -506,7 +506,7 @@ int main() {
       }
     },
     {
-      "line": 27,
+      "line": 33,
       "text": "solve(1) cu col[0]=1: Testăm c=0. isValid(1,0): col[0]=1≠0; diag:|0-1|=1,|1-0|=1→CONFLICT! c=1: col[0]=1→conflict col! c=2: diag:|0-1|=1,|1-2|=1→CONFLICT! Testăm c=3.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
@@ -527,7 +527,7 @@ int main() {
       }
     },
     {
-      "line": 29,
+      "line": 33,
       "text": "isValid(1,3): col[0]=1≠3; diag:|0-1|=1,|1-3|=2 ok. Valid! Plasăm Q la (1,3): col[1]=3. Apelăm solve(2).",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
@@ -548,7 +548,7 @@ int main() {
       }
     },
     {
-      "line": 27,
+      "line": 33,
       "text": "solve(2) cu (0,1),(1,3): Testăm c=0. isValid(2,0): col[0]=1≠0; diag(0,2):|0-2|=2,|1-0|=1 ok; col[1]=3≠0; diag(1,2):|1-2|=1,|3-0|=3 ok. isValid=TRUE!",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
@@ -571,7 +571,7 @@ int main() {
       }
     },
     {
-      "line": 29,
+      "line": 34,
       "text": "Plasăm Q la (2,0): col[2]=0. Apelăm solve(3). Tabla: Q la (0,1), (1,3), (2,0). Aproape de soluție!",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
@@ -594,7 +594,7 @@ int main() {
       }
     },
     {
-      "line": 27,
+      "line": 33,
       "text": "solve(3) cu (0,1),(1,3),(2,0): Testăm c=0: col[2]=0→CONFLICT! c=1: col[0]=1→CONFLICT col! c=2: isValid(3,2): col[0]=1≠2,diag(0,3):|0-3|=3,|1-2|=1ok; col[1]=3≠2,diag(1,3):|1-3|=2,|3-2|=1ok; col[2]=0≠2,diag(2,3):|2-3|=1,|0-2|=2ok. isValid=TRUE!",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
@@ -619,7 +619,7 @@ int main() {
       }
     },
     {
-      "line": 29,
+      "line": 34,
       "text": "Plasăm Q la (3,2): col[3]=2. Apelăm solve(4). Acum row==N (4==4) → SOLUȚIE GĂSITĂ! Prima soluție: col=[1,3,0,2] → Q la (0,1),(1,3),(2,0),(3,2).",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
@@ -644,7 +644,7 @@ int main() {
       }
     },
     {
-      "line": 21,
+      "line": 27,
       "text": "row==N: Tipărim 'Soluție găsită!'. Algoritmul continuă backtracking-ul pentru a găsi TOATE soluțiile. Tabla 4x4 are 2 soluții posibile.",
       "blocksVisual": [
         { "label": "Soluția 1: col=[1,3,0,2]", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
@@ -692,18 +692,118 @@ int main() {
       }
     ]
   },
-  "globalVars": [
-  {
-    "name": "sol",
-    "type": "int[20]",
-    "val": "{0, 0, 0, ...}",
-    "expandable": false
-  },
-  {
-    "name": "visited",
-    "type": "bool[20]",
-    "val": "{false, false, ...}",
-    "expandable": false
+  globalVars: [
+    { name: "N", type: "int", val: "4", expandable: false },
+    { name: "col", type: "std::vector<int>", val: "size = 4", expandable: true }
+  ],
+  debugger: {
+    getDebuggerState: (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [
+        { name: "N", type: "int", val: "4", expandable: false }
+      ];
+      const frames = [];
+      let inlineVal = null;
+
+      const stepData = [
+        { row: 0, c: -1, col: [-1, -1, -1, -1], stack: [0] }, // 0
+        { row: 0, c: -1, col: [-1, -1, -1, -1], stack: [0] }, // 1
+        { row: 0, c: 0, col: [-1, -1, -1, -1], stack: [0] },  // 2
+        { row: 0, c: 0, col: [0, -1, -1, -1], stack: [0] },   // 3
+        { row: 1, c: 0, col: [0, -1, -1, -1], stack: [1, 0] }, // 4
+        { row: 1, c: 1, col: [0, -1, -1, -1], stack: [1, 0] }, // 5
+        { row: 1, c: 2, col: [0, -1, -1, -1], stack: [1, 0] }, // 6
+        { row: 1, c: 2, col: [0, 2, -1, -1], stack: [1, 0] },  // 7
+        { row: 2, c: 0, col: [0, 2, -1, -1], stack: [2, 1, 0] }, // 8
+        { row: 2, c: 2, col: [0, 2, -1, -1], stack: [2, 1, 0] }, // 9
+        { row: 1, c: 3, col: [0, -1, -1, -1], stack: [1, 0] }, // 10
+        { row: 1, c: 3, col: [0, 3, -1, -1], stack: [1, 0] },  // 11
+        { row: 2, c: 1, col: [0, 3, -1, -1], stack: [2, 1, 0] }, // 12
+        { row: 2, c: 1, col: [0, 3, 1, -1], stack: [2, 1, 0] },  // 13
+        { row: 3, c: 0, col: [0, 3, 1, -1], stack: [3, 2, 1, 0] }, // 14
+        { row: 3, c: 2, col: [0, 3, 1, -1], stack: [3, 2, 1, 0] }, // 15
+        { row: 3, c: 3, col: [0, 3, 1, -1], stack: [3, 2, 1, 0] }, // 16
+        { row: 2, c: 2, col: [0, 3, -1, -1], stack: [2, 1, 0] }, // 17
+        { row: 0, c: 1, col: [-1, -1, -1, -1], stack: [0] }, // 18
+        { row: 0, c: 1, col: [1, -1, -1, -1], stack: [0] },  // 19
+        { row: 1, c: 0, col: [1, -1, -1, -1], stack: [1, 0] }, // 20
+        { row: 1, c: 3, col: [1, 3, -1, -1], stack: [1, 0] },  // 21
+        { row: 2, c: 0, col: [1, 3, -1, -1], stack: [2, 1, 0] }, // 22
+        { row: 2, c: 0, col: [1, 3, 0, -1], stack: [2, 1, 0] },  // 23
+        { row: 3, c: 2, col: [1, 3, 0, -1], stack: [3, 2, 1, 0] }, // 24
+        { row: 3, c: 2, col: [1, 3, 0, 2], stack: [3, 2, 1, 0] },  // 25
+        { row: 4, c: -1, col: [1, 3, 0, 2], stack: [4, 3, 2, 1, 0] } // 26
+      ];
+
+      const curr = stepData[stepIndex] || stepData[stepData.length - 1];
+
+      const colStr = "{" + curr.col.map(x => x === -1 ? "0" : x.toString()).join(", ") + "}";
+      globalVars.push({ name: "col", type: "std::vector<int>", val: colStr, expandable: true });
+
+      curr.stack.forEach((rVal) => {
+        frames.push({
+          name: "solve(row = " + rVal + ")",
+          file: "solution.cpp",
+          line: (rVal === curr.row) ? activeLine : 35
+        });
+      });
+      frames.push({ name: "main()", file: "main.cpp", line: 43 });
+
+      if (curr.row < 4) {
+        vars.push({ name: "row", type: "int", val: curr.row.toString(), expandable: false });
+      }
+      if (curr.c !== -1) {
+        vars.push({ name: "c", type: "int", val: curr.c.toString(), expandable: false });
+      }
+
+      inlineVal = "row: " + curr.row;
+      if (curr.c !== -1) {
+        inlineVal += ", c: " + curr.c;
+      }
+
+      return { vars, globalVars, frames, inlineVal };
+    },
+    getInlineValueForLine: (stepIndex, lineNum) => {
+      const stepData = [
+        { row: 0, c: -1 }, // 0
+        { row: 0, c: -1 }, // 1
+        { row: 0, c: 0 },  // 2
+        { row: 0, c: 0 },  // 3
+        { row: 1, c: 0 }, // 4
+        { row: 1, c: 1 }, // 5
+        { row: 1, c: 2 }, // 6
+        { row: 1, c: 2 },  // 7
+        { row: 2, c: 0 }, // 8
+        { row: 2, c: 2 }, // 9
+        { row: 1, c: 3 }, // 10
+        { row: 1, c: 3 },  // 11
+        { row: 2, c: 1 }, // 12
+        { row: 2, c: 1 },  // 13
+        { row: 3, c: 0 }, // 14
+        { row: 3, c: 2 }, // 15
+        { row: 3, c: 3 }, // 16
+        { row: 2, c: 2 }, // 17
+        { row: 0, c: 1 }, // 18
+        { row: 0, c: 1 },  // 19
+        { row: 1, c: 0 }, // 20
+        { row: 1, c: 3 },  // 21
+        { row: 2, c: 0 }, // 22
+        { row: 2, c: 0 },  // 23
+        { row: 3, c: 2 }, // 24
+        { row: 3, c: 2 },  // 25
+        { row: 4, c: -1 }  // 26
+      ];
+      const curr = stepData[stepIndex];
+      if (!curr) return null;
+      if (lineNum === 26 || lineNum === 27) {
+        return "row: " + curr.row;
+      }
+      if (lineNum === 32 || lineNum === 33 || lineNum === 34 || lineNum === 35) {
+        let val = "row: " + curr.row;
+        if (curr.c !== -1) val += ", c: " + curr.c;
+        return val;
+      }
+      return null;
+    }
   }
-]
 };

@@ -63,7 +63,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 15,
       "text": "i = 1 (arr[1] = 9), j = 0 (arr[0] = 10). Comparăm 9 > 10. False, deci dp[1] rămâne 1.",
       "blocksVisual": [
         {
@@ -76,7 +76,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 15,
       "text": "i = 2 (arr[2] = 2), j = 0 (arr[0] = 10). Comparăm 2 > 10. False, dp[2] rămâne 1.",
       "blocksVisual": [
         {
@@ -89,7 +89,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 15,
       "text": "i = 2 (arr[2] = 2), j = 1 (arr[1] = 9). Comparăm 2 > 9. False, dp[2] rămâne 1.",
       "blocksVisual": [
         {
@@ -102,8 +102,8 @@ int main() {
       ]
     },
     {
-      "line": 14,
-      "text": "i = 3 (arr[3] = 5), j = 0 (arr[0] = 10) și j = 1 (arr[1] = 9). Ambele fals.",
+      "line": 15,
+      "text": "i = 3 (arr[3] = 5), j = 0 (10) și j = 1 (9). Ambele fals.",
       "blocksVisual": [
         {
           "label": "i=3, j<2",
@@ -128,7 +128,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 15,
       "text": "i = 4 (arr[4] = 3), j = 0 (10) și j = 1 (9). Fals.",
       "blocksVisual": [
         {
@@ -154,7 +154,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 15,
       "text": "i = 4 (arr[4] = 3), j = 3 (arr[3] = 5). 3 > 5 este False. dp[4] rămâne 2.",
       "blocksVisual": [
         {
@@ -167,7 +167,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 15,
       "text": "i = 5 (arr[5] = 7), j = 0 (10) și j = 1 (9). False.",
       "blocksVisual": [
         {
@@ -219,7 +219,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 15,
       "text": "i = 6 (arr[6] = 101), j = 0 (10) și j = 1 (9). Ambele True. dp[6] devine max(1, dp[0]+1=2) = 2.",
       "blocksVisual": [
         {
@@ -310,7 +310,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 15,
       "text": "i = 7 (arr[7] = 18), j = 6 (arr[6] = 101). 18 > 101 este False. dp[7] rămâne 4.",
       "blocksVisual": [
         {
@@ -357,11 +357,139 @@ int main() {
     ]
   },
   "globalVars": [
-  {
-    "name": "dp",
-    "type": "std::vector<int>",
-    "val": "LIS lengths array",
-    "expandable": false
+    {
+      "name": "dp",
+      "type": "std::vector<int>",
+      "val": "LIS lengths array",
+      "expandable": false
+    }
+  ],
+  "debugger": {
+    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+
+      globalVars.push({ name: "arr", type: "std::vector<int>&", val: "{10, 9, 2, 5, 3, 7, 101, 18}", expandable: false });
+
+      frames.push({ name: "main()", file: "main.cpp", line: (stepIndex === 0) ? 27 : (stepIndex === 22 ? 28 : 28) });
+
+      if (stepIndex >= 1 && stepIndex <= 22) {
+        frames.unshift({ name: "lis(arr)", file: "solution.cpp", line: activeLine });
+      }
+
+      if (stepIndex >= 1 && stepIndex <= 21) {
+        let i = -1;
+        let j = -1;
+        let max_ans = 1;
+
+        if (stepIndex === 2) i = 1;
+        else if (stepIndex >= 3 && stepIndex <= 4) i = 2;
+        else if (stepIndex >= 5 && stepIndex <= 6) i = 3;
+        else if (stepIndex >= 7 && stepIndex <= 9) i = 4;
+        else if (stepIndex >= 10 && stepIndex <= 13) i = 5;
+        else if (stepIndex >= 14 && stepIndex <= 16) i = 6;
+        else if (stepIndex >= 17 && stepIndex <= 21) i = 7;
+
+        if (stepIndex === 2) j = 0;
+        else if (stepIndex === 3) j = 0;
+        else if (stepIndex === 4) j = 1;
+        else if (stepIndex === 5) j = 1;
+        else if (stepIndex === 6) j = 2;
+        else if (stepIndex === 7) j = 1;
+        else if (stepIndex === 8) j = 2;
+        else if (stepIndex === 9) j = 3;
+        else if (stepIndex === 10) j = 1;
+        else if (stepIndex === 11) j = 2;
+        else if (stepIndex === 12) j = 3;
+        else if (stepIndex === 13) j = 4;
+        else if (stepIndex === 14) j = 1;
+        else if (stepIndex === 15) j = 4;
+        else if (stepIndex === 16) j = 5;
+        else if (stepIndex === 17) j = 0;
+        else if (stepIndex === 18) j = 1;
+        else if (stepIndex === 19) j = 3;
+        else if (stepIndex === 20) j = 5;
+        else if (stepIndex === 21) j = 6;
+
+        if (stepIndex >= 6 && stepIndex <= 11) max_ans = 2;
+        else if (stepIndex >= 12 && stepIndex <= 15) max_ans = 3;
+        else if (stepIndex >= 16) max_ans = 4;
+
+        if (i !== -1) vars.push({ name: "i", type: "int", val: i.toString(), expandable: false });
+        if (j !== -1) vars.push({ name: "j", type: "int", val: j.toString(), expandable: false });
+
+        let dp = [1, 1, 1, 1, 1, 1, 1, 1];
+        if (stepIndex >= 6) dp[3] = 2;
+        if (stepIndex >= 8) dp[4] = 2;
+        if (stepIndex >= 11) dp[5] = 2;
+        if (stepIndex >= 12) dp[5] = 3;
+        if (stepIndex >= 14) dp[6] = 2;
+        if (stepIndex >= 15) dp[6] = 3;
+        if (stepIndex >= 16) dp[6] = 4;
+        if (stepIndex >= 17) dp[7] = 2;
+        if (stepIndex >= 18) dp[7] = 2;
+        if (stepIndex >= 19) dp[7] = 3;
+        if (stepIndex >= 20) dp[7] = 4;
+
+        vars.push({ name: "dp", type: "std::vector<int>", val: `{${dp.map(v => v.toString()).join(", ")}}`, expandable: false });
+        vars.push({ name: "max_ans", type: "int", val: max_ans.toString(), expandable: false });
+
+        if (i !== -1) vars.push({ name: "arr[i]", type: "int", val: [10, 9, 2, 5, 3, 7, 101, 18][i].toString(), expandable: false });
+        if (j !== -1) vars.push({ name: "arr[j]", type: "int", val: [10, 9, 2, 5, 3, 7, 101, 18][j].toString(), expandable: false });
+
+        inlineVal = "";
+        if (i !== -1) inlineVal += `i: ${i}`;
+        if (j !== -1) inlineVal += `, j: ${j}`;
+        inlineVal += `, max_ans: ${max_ans}`;
+      }
+
+      return { vars, globalVars, frames, inlineVal };
+    },
+    "getInlineValueForLine": (stepIndex, lineNum) => {
+      if (stepIndex >= 1 && stepIndex <= 21) {
+        let i = -1;
+        let j = -1;
+        
+        if (stepIndex === 2) i = 1;
+        else if (stepIndex >= 3 && stepIndex <= 4) i = 2;
+        else if (stepIndex >= 5 && stepIndex <= 6) i = 3;
+        else if (stepIndex >= 7 && stepIndex <= 9) i = 4;
+        else if (stepIndex >= 10 && stepIndex <= 13) i = 5;
+        else if (stepIndex >= 14 && stepIndex <= 16) i = 6;
+        else if (stepIndex >= 17 && stepIndex <= 21) i = 7;
+
+        if (stepIndex === 2) j = 0;
+        else if (stepIndex === 3) j = 0;
+        else if (stepIndex === 4) j = 1;
+        else if (stepIndex === 5) j = 1;
+        else if (stepIndex === 6) j = 2;
+        else if (stepIndex === 7) j = 1;
+        else if (stepIndex === 8) j = 2;
+        else if (stepIndex === 9) j = 3;
+        else if (stepIndex === 10) j = 1;
+        else if (stepIndex === 11) j = 2;
+        else if (stepIndex === 12) j = 3;
+        else if (stepIndex === 13) j = 4;
+        else if (stepIndex === 14) j = 1;
+        else if (stepIndex === 15) j = 4;
+        else if (stepIndex === 16) j = 5;
+        else if (stepIndex === 17) j = 0;
+        else if (stepIndex === 18) j = 1;
+        else if (stepIndex === 19) j = 3;
+        else if (stepIndex === 20) j = 5;
+        else if (stepIndex === 21) j = 6;
+
+        if (lineNum === 14) return i !== -1 ? `i: ${i}` : null;
+        if (lineNum === 15 || lineNum === 16 || lineNum === 17) {
+          let res = "";
+          if (i !== -1) res += `i: ${i}`;
+          if (j !== -1) res += `, j: ${j}`;
+          return res || null;
+        }
+      }
+      return null;
+    }
   }
-]
 };

@@ -526,12 +526,100 @@ export const data = {
       }
     ]
   },
-  "globalVars": [
-  {
-    "name": "pq",
-    "type": "std::priority_queue<int>",
-    "val": "Priority Queue (max-heap)",
-    "expandable": false
+  globalVars: [],
+  debugger: {
+    getDebuggerState: (stepIndex, activeLine, explanationText) => {
+      const trace = [
+        { max_pq: [], min_pq: [] },
+        { max_pq: [], min_pq: [] },
+        { max_pq: [], min_pq: [] },
+        { max_pq: [10], min_pq: [] },
+        { max_pq: [30, 10], min_pq: [] },
+        { max_pq: [30, 10, 20], min_pq: [] },
+        { max_pq: [40, 30, 20, 10], min_pq: [] },
+        { max_pq: [40, 30, 20, 10], max1: 40, min_pq: [] },
+        { max_pq: [30, 20, 10], max1: 40, min_pq: [] },
+        { max_pq: [30, 20, 10], max1: 40, max2: 30, min_pq: [] },
+        { max_pq: [20, 10], max1: 40, max2: 30, min_pq: [] },
+        { max_pq: [20, 10], max1: 40, max2: 30, min_pq: [] },
+        { max_pq: [20, 10], max1: 40, max2: 30, min_pq: [40] },
+        { max_pq: [20, 10], max1: 40, max2: 30, min_pq: [10, 40] },
+        { max_pq: [20, 10], max1: 40, max2: 30, min_pq: [10, 40, 30] },
+        { max_pq: [20, 10], max1: 40, max2: 30, min_pq: [10, 20, 30, 40] },
+        { max_pq: [20, 10], max1: 40, max2: 30, min_pq: [10, 20, 30, 40], min1: 10 },
+        { max_pq: [20, 10], max1: 40, max2: 30, min_pq: [20, 30, 40], min1: 10 },
+        { max_pq: [20, 10], max1: 40, max2: 30, min_pq: [20, 30, 40], min1: 10, min2: 20 },
+        { max_pq: [20, 10], max1: 40, max2: 30, min_pq: [30, 40], min1: 10, min2: 20 },
+        { max_pq: [20, 10], max1: 40, max2: 30, min_pq: [30, 40], min1: 10, min2: 20 }
+      ];
+      const curr = trace[stepIndex] || trace[trace.length - 1];
+      const vars = [];
+      const globalVars = [];
+      const frames = [
+        { name: "main()", file: "main.cpp", line: activeLine }
+      ];
+
+      if (activeLine >= 9 && activeLine <= 20) {
+        const pqVal = "size = " + curr.max_pq.length + " (top = " + (curr.max_pq[0] || "none") + ")";
+        vars.push({ name: "max_pq", type: "std::priority_queue<int>", val: pqVal, expandable: curr.max_pq.length > 0 });
+        if (curr.max1 !== undefined) {
+          vars.push({ name: "max1", type: "int", val: curr.max1.toString(), expandable: false });
+        }
+        if (curr.max2 !== undefined) {
+          vars.push({ name: "max2", type: "int", val: curr.max2.toString(), expandable: false });
+        }
+      } else if (activeLine >= 21) {
+        const pqVal = "size = " + curr.min_pq.length + " (top = " + (curr.min_pq[0] || "none") + ")";
+        vars.push({ name: "min_pq", type: "std::priority_queue<int, vector<int>, greater<int>>", val: pqVal, expandable: curr.min_pq.length > 0 });
+        if (curr.min1 !== undefined) {
+          vars.push({ name: "min1", type: "int", val: curr.min1.toString(), expandable: false });
+        }
+        if (curr.min2 !== undefined) {
+          vars.push({ name: "min2", type: "int", val: curr.min2.toString(), expandable: false });
+        }
+      }
+
+      let inlineVal = "";
+      if (activeLine >= 9 && activeLine <= 20) {
+        inlineVal = "max_pq: " + (curr.max_pq.length > 0 ? "{" + curr.max_pq.join(",") + "}" : "empty");
+      } else if (activeLine >= 21) {
+        inlineVal = "min_pq: " + (curr.min_pq.length > 0 ? "{" + curr.min_pq.join(",") + "}" : "empty");
+      }
+      return { vars, globalVars, frames, inlineVal };
+    },
+    getInlineValueForLine: (stepIndex, lineNum) => {
+      const trace = [
+        { max_pq: [], min_pq: [] },
+        { max_pq: [], min_pq: [] },
+        { max_pq: [], min_pq: [] },
+        { max_pq: [10], min_pq: [] },
+        { max_pq: [30, 10], min_pq: [] },
+        { max_pq: [30, 10, 20], min_pq: [] },
+        { max_pq: [40, 30, 20, 10], min_pq: [] },
+        { max_pq: [40, 30, 20, 10], max1: 40, min_pq: [] },
+        { max_pq: [30, 20, 10], max1: 40, min_pq: [] },
+        { max_pq: [30, 20, 10], max1: 40, max2: 30, min_pq: [] },
+        { max_pq: [20, 10], max1: 40, max2: 30, min_pq: [] },
+        { max_pq: [20, 10], max1: 40, max2: 30, min_pq: [] },
+        { max_pq: [20, 10], max1: 40, max2: 30, min_pq: [40] },
+        { max_pq: [20, 10], max1: 40, max2: 30, min_pq: [10, 40] },
+        { max_pq: [20, 10], max1: 40, max2: 30, min_pq: [10, 40, 30] },
+        { max_pq: [20, 10], max1: 40, max2: 30, min_pq: [10, 20, 30, 40] },
+        { max_pq: [20, 10], max1: 40, max2: 30, min_pq: [10, 20, 30, 40], min1: 10 },
+        { max_pq: [20, 10], max1: 40, max2: 30, min_pq: [20, 30, 40], min1: 10 },
+        { max_pq: [20, 10], max1: 40, max2: 30, min_pq: [20, 30, 40], min1: 10, min2: 20 },
+        { max_pq: [20, 10], max1: 40, max2: 30, min_pq: [30, 40], min1: 10, min2: 20 },
+        { max_pq: [20, 10], max1: 40, max2: 30, min_pq: [30, 40], min1: 10, min2: 20 }
+      ];
+      const curr = trace[stepIndex];
+      if (!curr) return null;
+      if (lineNum >= 9 && lineNum <= 20) {
+        return "max_pq: " + (curr.max_pq.length > 0 ? "{" + curr.max_pq.join(",") + "}" : "empty");
+      }
+      if (lineNum >= 21 && lineNum <= 31) {
+        return "min_pq: " + (curr.min_pq.length > 0 ? "{" + curr.min_pq.join(",") + "}" : "empty");
+      }
+      return null;
+    }
   }
-]
 };

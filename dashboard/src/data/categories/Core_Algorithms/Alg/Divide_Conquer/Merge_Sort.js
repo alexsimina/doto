@@ -56,70 +56,70 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 43,
+      "line": 37,
       "text": "Începem cu un vector inițial neordonat.",
       "blocksVisual": [
         { "label": "Vector Inițial", "groups": [[{"val": 38}, {"val": 27}, {"val": 43}, {"val": 3}]] }
       ]
     },
     {
-      "line": 44,
+      "line": 37,
       "text": "Apelăm mergeSort pentru întreg vectorul (left=0, right=3).",
       "blocksVisual": [
         { "label": "Apel mergeSort(0, 3)", "groups": [[{"val": 38, "active": true}, {"val": 27, "active": true}, {"val": 43, "active": true}, {"val": 3, "active": true}]] }
       ]
     },
     {
-      "line": 32,
+      "line": 38,
       "text": "Verificăm dacă left >= right. Deoarece 0 < 3, continuăm.",
       "blocksVisual": [
         { "label": "Verificare", "groups": [[{"val": "0 >= 3 (Fals)"}]] }
       ]
     },
     {
-      "line": 34,
+      "line": 40,
       "text": "Etapa DIVIDE: Calculăm mijlocul: mid = 0 + (3-0)/2 = 1.",
       "blocksVisual": [
         { "label": "Mijloc (mid = 1)", "groups": [[{"val": 38}, {"val": 27, "sorted": true}, {"val": 43}, {"val": 3}]] }
       ]
     },
     {
-      "line": 36,
+      "line": 42,
       "text": "Apelăm recursiv mergeSort pe prima jumătate (left=0, right=1).",
       "blocksVisual": [
         { "label": "Apel mergeSort(0, 1)", "groups": [[{"val": 38, "active": true}, {"val": 27, "active": true}, {"val": 43, "hidden": true}, {"val": 3, "hidden": true}]] }
       ]
     },
     {
-      "line": 34,
+      "line": 40,
       "text": "Calculăm mijlocul pentru acest subinterval: mid = 0 + (1-0)/2 = 0.",
       "blocksVisual": [
         { "label": "Mijloc (mid = 0)", "groups": [[{"val": 38, "sorted": true}, {"val": 27}]] }
       ]
     },
     {
-      "line": 36,
+      "line": 38,
       "text": "Apelăm mergeSort(0, 0). Acesta returnează imediat deoarece left >= right (0 >= 0).",
       "blocksVisual": [
         { "label": "Caz de bază (0, 0)", "groups": [[{"val": 38, "sorted": true}]] }
       ]
     },
     {
-      "line": 37,
+      "line": 38,
       "text": "Apelăm mergeSort(1, 1). Returnează de asemenea deoarece left >= right (1 >= 1).",
       "blocksVisual": [
         { "label": "Caz de bază (1, 1)", "groups": [[{"val": 27, "sorted": true}]] }
       ]
     },
     {
-      "line": 39,
+      "line": 45,
       "text": "Apelăm merge(arr, left=0, mid=0, right=1) pentru a interclasa sub-vectorii.",
       "blocksVisual": [
         { "label": "Interclasare stânga", "groups": [[{"val": 38, "active": true}, {"val": 27, "active": true}]] }
       ]
     },
     {
-      "line": 10,
+      "line": 16,
       "text": "Inițializăm vectorii auxiliari L = {38} și R = {27}.",
       "blocksVisual": [
         { "label": "L", "groups": [[{"val": 38}]] },
@@ -127,49 +127,49 @@ int main() {
       ]
     },
     {
-      "line": 16,
+      "line": 22,
       "text": "Intrăm în bucla while. Indicii i = 0, j = 0. Condiția i < 1 && j < 1 este adevărată.",
       "blocksVisual": [
         { "label": "Buclă", "groups": [[{"val": "i=0, j=0"}]] }
       ]
     },
     {
-      "line": 17,
+      "line": 23,
       "text": "Comparăm L[0] (38) cu R[0] (27). Deoarece 38 > 27, mergem pe ramura else.",
       "blocksVisual": [
         { "label": "Comparație", "groups": [[{"val": "38 <= 27 (Fals)"}]] }
       ]
     },
     {
-      "line": 21,
+      "line": 27,
       "text": "Copiem valoarea din R în vectorul original: arr[0] = 27. Incrementăm j la 1.",
       "blocksVisual": [
         { "label": "Vector Original", "groups": [[{"val": 27, "sorted": true}, {"val": 38}]] }
       ]
     },
     {
-      "line": 27,
+      "line": 33,
       "text": "Bucla while s-a terminat deoarece j = 1. Copiem elementele rămase din L: arr[1] = 38.",
       "blocksVisual": [
         { "label": "Vector interclasat (0, 1)", "groups": [[{"val": 27, "sorted": true}, {"val": 38, "sorted": true}]] }
       ]
     },
     {
-      "line": 37,
+      "line": 43,
       "text": "Revenim în apelul principal și apelăm mergeSort pe a doua jumătate (left=2, right=3).",
       "blocksVisual": [
         { "label": "Apel mergeSort(2, 3)", "groups": [[{"val": 27, "hidden": true}, {"val": 38, "hidden": true}, {"val": 43, "active": true}, {"val": 3, "active": true}]] }
       ]
     },
     {
-      "line": 39,
+      "line": 45,
       "text": "După apelurile recursive pentru 43 și 3, apelăm merge(arr, left=2, mid=2, right=3).",
       "blocksVisual": [
         { "label": "Interclasare dreapta", "groups": [[{"val": 43, "active": true}, {"val": 3, "active": true}]] }
       ]
     },
     {
-      "line": 10,
+      "line": 16,
       "text": "Inițializăm vectorii auxiliari: L = {43}, R = {3}.",
       "blocksVisual": [
         { "label": "L", "groups": [[{"val": 43}]] },
@@ -177,21 +177,21 @@ int main() {
       ]
     },
     {
-      "line": 17,
+      "line": 23,
       "text": "Comparăm L[0] (43) cu R[0] (3). Deoarece 43 > 3, copiem 3 în arr[2] și incrementăm j.",
       "blocksVisual": [
         { "label": "Vector Original", "groups": [[{"val": 27}, {"val": 38}, {"val": 3, "sorted": true}, {"val": 43}]] }
       ]
     },
     {
-      "line": 27,
+      "line": 33,
       "text": "Copiem elementele rămase din L: arr[3] = 43.",
       "blocksVisual": [
         { "label": "Vector interclasat (2, 3)", "groups": [[{"val": 3, "sorted": true}, {"val": 43, "sorted": true}]] }
       ]
     },
     {
-      "line": 39,
+      "line": 45,
       "text": "Acum că ambele jumătăți sunt sortate ([27, 38] și [3, 43]), apelăm merge(0, 1, 3).",
       "blocksVisual": [
         { "label": "Stânga", "groups": [[{"val": 27, "sorted": true}, {"val": 38, "sorted": true}]] },
@@ -199,7 +199,7 @@ int main() {
       ]
     },
     {
-      "line": 10,
+      "line": 16,
       "text": "Inițializăm L = {27, 38} și R = {3, 43}.",
       "blocksVisual": [
         { "label": "L", "groups": [[{"val": 27}, {"val": 38}]] },
@@ -207,28 +207,28 @@ int main() {
       ]
     },
     {
-      "line": 17,
+      "line": 23,
       "text": "Comparăm L[0] (27) cu R[0] (3). Deoarece 3 < 27, copiem 3 în arr[0]. j devine 1, k devine 1.",
       "blocksVisual": [
         { "label": "Alegem 3", "groups": [[{"val": 3, "sorted": true}, {"val": "?", "hidden": true}, {"val": "?", "hidden": true}, {"val": "?", "hidden": true}]] }
       ]
     },
     {
-      "line": 17,
+      "line": 23,
       "text": "Comparăm L[0] (27) cu R[1] (43). Deoarece 27 < 43, copiem 27 în arr[1]. i devine 1, k devine 2.",
       "blocksVisual": [
         { "label": "Alegem 27", "groups": [[{"val": 3, "sorted": true}, {"val": 27, "sorted": true}, {"val": "?", "hidden": true}, {"val": "?", "hidden": true}]] }
       ]
     },
     {
-      "line": 17,
+      "line": 23,
       "text": "Comparăm L[1] (38) cu R[1] (43). Deoarece 38 < 43, copiem 38 în arr[2]. i devine 2, k devine 3.",
       "blocksVisual": [
         { "label": "Alegem 38", "groups": [[{"val": 3, "sorted": true}, {"val": 27, "sorted": true}, {"val": 38, "sorted": true}, {"val": "?", "hidden": true}]] }
       ]
     },
     {
-      "line": 28,
+      "line": 34,
       "text": "L s-a terminat. Copiem elementele rămase din R: arr[3] = 43. Vectorul este complet sortat!",
       "blocksVisual": [
         { "label": "FINAL", "groups": [[{"val": 3, "sorted": true}, {"val": 27, "sorted": true}, {"val": 38, "sorted": true}, {"val": 43, "sorted": true}]] }
@@ -272,5 +272,82 @@ int main() {
         "desc": "Variație la Inversiuni"
       }
     ]
+  },
+  globalVars: [],
+  debugger: {
+    getDebuggerState: (stepIndex, activeLine, explanationText) => {
+      const vars = [];
+      const globalVars = [];
+      const frames = [];
+      let inlineVal = null;
+
+      const stepData = [
+        { stack: [], active: "main", left: 0, right: 3 }, // 0
+        { stack: [{l:0, r:3}], active: "mergeSort", left: 0, right: 3, mid: -1 }, // 1
+        { stack: [{l:0, r:3}], active: "mergeSort", left: 0, right: 3, mid: -1 }, // 2
+        { stack: [{l:0, r:3}], active: "mergeSort", left: 0, right: 3, mid: 1 },  // 3
+        { stack: [{l:0, r:1}, {l:0, r:3}], active: "mergeSort", left: 0, right: 1, mid: -1 }, // 4
+        { stack: [{l:0, r:1}, {l:0, r:3}], active: "mergeSort", left: 0, right: 1, mid: 0 },  // 5
+        { stack: [{l:0, r:0}, {l:0, r:1}, {l:0, r:3}], active: "mergeSort", left: 0, right: 0, mid: -1 }, // 6
+        { stack: [{l:1, r:1}, {l:0, r:1}, {l:0, r:3}], active: "mergeSort", left: 1, right: 1, mid: -1 }, // 7
+        { stack: [{l:0, r:1}, {l:0, r:3}], active: "mergeSort", left: 0, right: 1, mid: 0 }, // 8
+        { stack: [{l:0, r:1}, {l:0, r:3}], active: "merge", lStart: 0, lMid: 0, lEnd: 1, L: [38], R: [27], i: 0, j: 0, k: 0 }, // 9
+        { stack: [{l:0, r:1}, {l:0, r:3}], active: "merge", lStart: 0, lMid: 0, lEnd: 1, L: [38], R: [27], i: 0, j: 0, k: 0 }, // 10
+        { stack: [{l:0, r:1}, {l:0, r:3}], active: "merge", lStart: 0, lMid: 0, lEnd: 1, L: [38], R: [27], i: 0, j: 0, k: 0 }, // 11
+        { stack: [{l:0, r:1}, {l:0, r:3}], active: "merge", lStart: 0, lMid: 0, lEnd: 1, L: [38], R: [27], i: 0, j: 1, k: 1 }, // 12
+        { stack: [{l:0, r:1}, {l:0, r:3}], active: "merge", lStart: 0, lMid: 0, lEnd: 1, L: [38], R: [27], i: 1, j: 1, k: 2 }, // 13
+        { stack: [{l:2, r:3}, {l:0, r:3}], active: "mergeSort", left: 2, right: 3, mid: -1 }, // 14
+        { stack: [{l:2, r:3}, {l:0, r:3}], active: "mergeSort", left: 2, right: 3, mid: 2 },  // 15
+        { stack: [{l:2, r:3}, {l:0, r:3}], active: "merge", lStart: 2, lMid: 2, lEnd: 3, L: [43], R: [3], i: 0, j: 0, k: 2 }, // 16
+        { stack: [{l:2, r:3}, {l:0, r:3}], active: "merge", lStart: 2, lMid: 2, lEnd: 3, L: [43], R: [3], i: 0, j: 1, k: 3 }, // 17
+        { stack: [{l:2, r:3}, {l:0, r:3}], active: "merge", lStart: 2, lMid: 2, lEnd: 3, L: [43], R: [3], i: 1, j: 1, k: 4 }, // 18
+        { stack: [{l:0, r:3}], active: "mergeSort", left: 0, right: 3, mid: 1 }, // 19
+        { stack: [{l:0, r:3}], active: "merge", lStart: 0, lMid: 1, lEnd: 3, L: [27, 38], R: [3, 43], i: 0, j: 0, k: 0 }, // 20
+        { stack: [{l:0, r:3}], active: "merge", lStart: 0, lMid: 1, lEnd: 3, L: [27, 38], R: [3, 43], i: 0, j: 1, k: 1 }, // 21
+        { stack: [{l:0, r:3}], active: "merge", lStart: 0, lMid: 1, lEnd: 3, L: [27, 38], R: [3, 43], i: 1, j: 1, k: 2 }, // 22
+        { stack: [{l:0, r:3}], active: "merge", lStart: 0, lMid: 1, lEnd: 3, L: [27, 38], R: [3, 43], i: 2, j: 1, k: 3 }, // 23
+        { stack: [{l:0, r:3}], active: "merge", lStart: 0, lMid: 1, lEnd: 3, L: [27, 38], R: [3, 43], i: 2, j: 2, k: 4 }  // 24
+      ];
+
+      const curr = stepData[stepIndex] || stepData[stepData.length - 1];
+
+      if (curr.active === "merge") {
+        frames.push({ name: "merge(arr, left=" + curr.lStart + ", mid=" + curr.lMid + ", right=" + curr.lEnd + ")", file: "solution.cpp", line: activeLine });
+      }
+      curr.stack.forEach((frame) => {
+        frames.push({ name: "mergeSort(arr, left=" + frame.l + ", right=" + frame.r + ")", file: "solution.cpp", line: 42 });
+      });
+      frames.push({ name: "main()", file: "main.cpp", line: 50 });
+
+      vars.push({ name: "arr", type: "std::vector<int>&", val: "size = 4", expandable: true });
+
+      if (curr.active === "mergeSort") {
+        vars.push({ name: "left", type: "int", val: curr.left.toString(), expandable: false });
+        vars.push({ name: "right", type: "int", val: curr.right.toString(), expandable: false });
+        if (curr.mid !== -1) {
+          vars.push({ name: "mid", type: "int", val: curr.mid.toString(), expandable: false });
+        }
+        inlineVal = "left: " + curr.left + ", right: " + curr.right;
+        if (curr.mid !== -1) inlineVal += ", mid: " + curr.mid;
+      } else if (curr.active === "merge") {
+        vars.push({ name: "left", type: "int", val: curr.lStart.toString(), expandable: false });
+        vars.push({ name: "mid", type: "int", val: curr.lMid.toString(), expandable: false });
+        vars.push({ name: "right", type: "int", val: curr.lEnd.toString(), expandable: false });
+        vars.push({ name: "L", type: "std::vector<int>", val: "size = " + curr.L.length, expandable: true });
+        vars.push({ name: "R", type: "std::vector<int>", val: "size = " + curr.R.length, expandable: true });
+        vars.push({ name: "i", type: "int", val: curr.i.toString(), expandable: false });
+        vars.push({ name: "j", type: "int", val: curr.j.toString(), expandable: false });
+        vars.push({ name: "k", type: "int", val: curr.k.toString(), expandable: false });
+        inlineVal = "i: " + curr.i + ", j: " + curr.j + ", k: " + curr.k;
+      }
+
+      return { vars, globalVars, frames, inlineVal };
+    },
+    getInlineValueForLine: (stepIndex, lineNum) => {
+      if (stepIndex >= 9 && stepIndex <= 13) {
+        if (lineNum >= 12 && lineNum <= 35) return "i: 0, j: 0, k: 0";
+      }
+      return null;
+    }
   }
 };

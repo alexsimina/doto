@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import mockCategoryData from '../data/mockCategoryData';
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
 
 // HTML escaping helper for syntax highlighter
 const escapeHtml = (str) => {
@@ -151,80 +153,16 @@ const highlightCpp = (code) => {
   return result.join('');
 };
 
-const formatMathToHtml = (math) => {
-  let html = math
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
-
-  const replacements = [
-    { regex: /\\to(?![a-zA-Z])/g, value: '→' },
-    { regex: /\\cdot(?![a-zA-Z])/g, value: '·' },
-    { regex: /\\le(?![a-zA-Z])/g, value: '≤' },
-    { regex: /\\ge(?![a-zA-Z])/g, value: '≥' },
-    { regex: /\\ll(?![a-zA-Z])/g, value: '≪' },
-    { regex: /\\gg(?![a-zA-Z])/g, value: '≫' },
-    { regex: /\\pi(?![a-zA-Z])/g, value: 'π' },
-    { regex: /\\Sigma(?![a-zA-Z])/g, value: 'Σ' },
-    { regex: /\\sigma(?![a-zA-Z])/g, value: 'σ' },
-    { regex: /\\mathcal\{O\}/g, value: 'O' },
-    { regex: /\\mathcal\{([A-Za-z])\}/g, value: '$1' },
-    { regex: /\\max(?![a-zA-Z])/g, value: 'max' },
-    { regex: /\\min(?![a-zA-Z])/g, value: 'min' },
-    { regex: /\\infty(?![a-zA-Z])/g, value: '∞' },
-    { regex: /\\sum(?![a-zA-Z])/g, value: '∑' },
-    { regex: /\\deg(?![a-zA-Z])/g, value: 'deg' },
-    { regex: /\\theta(?![a-zA-Z])/g, value: 'θ' },
-    { regex: /\\alpha(?![a-zA-Z])/g, value: 'α' },
-    { regex: /\\beta(?![a-zA-Z])/g, value: 'β' },
-    { regex: /\\gamma(?![a-zA-Z])/g, value: 'γ' },
-    { regex: /\\omega(?![a-zA-Z])/g, value: 'ω' },
-    { regex: /\\Delta(?![a-zA-Z])/g, value: 'Δ' },
-    { regex: /\\phi(?![a-zA-Z])/g, value: 'φ' },
-    { regex: /\\cup(?![a-zA-Z])/g, value: '∪' },
-    { regex: /\\cap(?![a-zA-Z])/g, value: '∩' },
-    { regex: /\\subset(?![a-zA-Z])/g, value: '⊂' },
-    { regex: /\\subseteq/g, value: '⊆' },
-    { regex: /\\in(?![a-zA-Z])/g, value: '∈' },
-    { regex: /\\notin(?![a-zA-Z])/g, value: '∉' },
-    { regex: /\\times(?![a-zA-Z])/g, value: '×' },
-    { regex: /\\div(?![a-zA-Z])/g, value: '÷' },
-    { regex: /\\pm(?![a-zA-Z])/g, value: '±' },
-    { regex: /\\mp(?![a-zA-Z])/g, value: '∓' },
-    { regex: /\\approx(?![a-zA-Z])/g, value: '≈' },
-    { regex: /\\neq(?![a-zA-Z])/g, value: '≠' },
-    { regex: /\\equiv(?![a-zA-Z])/g, value: '≡' },
-    { regex: /\\log(?![a-zA-Z])/g, value: 'log' },
-    { regex: /\\quad(?![a-zA-Z])/g, value: '&nbsp;&nbsp;' },
-    { regex: /\\qquad(?![a-zA-Z])/g, value: '&nbsp;&nbsp;&nbsp;&nbsp;' },
-    { regex: /\\left(?![a-zA-Z])/g, value: '' },
-    { regex: /\\right(?![a-zA-Z])/g, value: '' },
-    { regex: /\\\{/g, value: '{' },
-    { regex: /\\\}/g, value: '}' },
-    { regex: /\\backslash/g, value: '\\' },
-    { regex: /\\pmod\s*\{([^}]+)\}/g, value: '(mod $1)' },
-    { regex: /\\pmod\s*([A-Za-z0-9_]+)/g, value: '(mod $1)' },
-  ];
-
-  replacements.forEach(r => {
-    html = html.replace(r.regex, r.value);
-  });
-
-  html = html.replace(/\\text\s*\{([^}]+)\}/g, '<span style="font-style: normal; font-family: system-ui, -apple-system, sans-serif;">$1</span>');
-  html = html.replace(/\\frac\s*\{([^}]+)\}\s*\{([^}]+)\}/g, '<sup style="font-size: 0.85em; vertical-align: 0.25em;">$1</sup>&frasl;<sub style="font-size: 0.85em; vertical-align: -0.15em;">$2</sub>');
-  html = html.replace(/\\sqrt\s*\{([^}]+)\}/g, '√$1');
-
-  let prev;
-  do {
-    prev = html;
-    html = html.replace(/([A-Za-z0-9_\]\)\}]|O)\^\{([^}]+)\}/g, '$1<sup style="font-size: 0.75em; vertical-align: 0.4em; margin-left: 0.05em;">$2</sup>');
-    html = html.replace(/([A-Za-z0-9_\]\)\}]|O)_\{([^}]+)\}/g, '$1<sub style="font-size: 0.75em; vertical-align: -0.2em; margin-left: 0.05em;">$2</sub>');
-  } while (html !== prev);
-
-  html = html.replace(/([A-Za-z0-9_\]\)\}]|O)\^([A-Za-z0-9])/g, '$1<sup style="font-size: 0.75em; vertical-align: 0.4em; margin-left: 0.05em;">$2</sup>');
-  html = html.replace(/([A-Za-z0-9_\]\)\}]|O)_([A-Za-z0-9])/g, '$1<sub style="font-size: 0.75em; vertical-align: -0.2em; margin-left: 0.05em;">$2</sub>');
-
-  return html;
+const formatMathToHtml = (math, isDisplay) => {
+  try {
+    return katex.renderToString(math, {
+      displayMode: isDisplay,
+      throwOnError: false
+    });
+  } catch (err) {
+    console.error("KaTeX rendering error:", err);
+    return math;
+  }
 };
 
 const renderNonMathInline = (text) => {
@@ -298,19 +236,11 @@ const formatText = (text) => {
                 key={idx}
                 style={{
                   display: 'block',
-                  textAlign: 'center',
                   margin: '16px 0',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '1.05em',
-                  color: '#a9b7c6',
                   overflowX: 'auto',
-                  whiteSpace: 'nowrap',
-                  background: 'rgba(0, 0, 0, 0.15)',
-                  padding: '12px',
-                  borderRadius: '6px',
-                  border: '1px solid #2b2d30'
+                  textAlign: 'center'
                 }}
-                dangerouslySetInnerHTML={{ __html: formatMathToHtml(math) }}
+                dangerouslySetInnerHTML={{ __html: formatMathToHtml(math, true) }}
               />
             );
           }
@@ -320,13 +250,9 @@ const formatText = (text) => {
               <span
                 key={idx}
                 style={{
-                  fontFamily: 'var(--font-mono)',
-                  color: '#a9b7c6',
-                  padding: '0 3px',
-                  fontSize: '0.95em',
-                  fontWeight: '500'
+                  padding: '0 2px'
                 }}
-                dangerouslySetInnerHTML={{ __html: formatMathToHtml(math) }}
+                dangerouslySetInnerHTML={{ __html: formatMathToHtml(math, false) }}
               />
             );
           }

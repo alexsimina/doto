@@ -52,7 +52,7 @@ int main() {
     },
     {
       "line": 15,
-      "text": "Calculăm totalul de submulțimi: $2^3 = 8$, folosind operatorul de shiftare la stânga: $1 \\ll 3 = 8$.",
+      "text": "Calculăm totalul de submulțimi: $2^3 = 8$, folosind operatorul de shiftare la stânga: $1 << 3 = 8$.",
       "blocksVisual": [
         {
           "label": "Calcule",
@@ -100,7 +100,7 @@ int main() {
     },
     {
       "line": 19,
-      "text": "Verificăm dacă bitul $0$ este setat în `mask = 0` făcând AND logic cu $1 \\ll 0$: `000 & 001 = 0` (Fals).",
+      "text": "Verificăm dacă bitul $0$ este setat în `mask = 0` făcând AND logic cu $1 << 0$: `000 & 001 = 0` (Fals).",
       "blocksVisual": [
         {
           "label": "Evaluare AND",

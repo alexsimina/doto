@@ -91,6 +91,11 @@ The root contains numerous CommonJS (`.cjs`) utility scripts and JSON data files
 
 10. **Transitional Chapters**: Categories that act as transitions to sub-algorithms (e.g., Shortest Path branching into Dijkstra, Bellman-Ford) are automatically detected in `CategoryPresentation.jsx` based on the presence of subcategories. For these, the UI hides the code and problem sections and instead displays a "Subcapitole / Algoritmi" interactive grid.
 11. **Testing**: E2E tests go to `/e2e_tests`.
+12. **Math/LaTeX Delimiter Parsing & Formatting**:
+    - To support math formulas inside category descriptions and complexities without adding external rendering packages, `CategoryPresentation.jsx` runs a custom LaTeX-to-HTML parser inside `formatText`.
+    - It splits text by math delimiters (`$$...$$` for display math, `$` for inline math) and translates LaTeX commands (e.g., `\to`, `\cdot`, `\le`, `\ge`, `\pi`, `\Sigma`, `\pmod`, `\ll`, `\gg`, `\sqrt`) to Unicode. Subscripts (`_`) and superscripts (`^`) are compiled to `<sub>` and `<sup>` elements.
+    - All mathematical formulas are formatted in monospace (`var(--font-mono)`) and editor text color (`#a9b7c6`) to match the IDE design scheme.
+    - If new LaTeX symbols need to be supported, append them to the replacements array in `formatMathToHtml` using negative lookaheads `(?![a-zA-Z])` to avoid prefix conflicts (like `\le` matching inside `\left`).
 
 ---
 

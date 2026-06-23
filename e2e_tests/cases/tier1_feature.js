@@ -573,3 +573,59 @@ exports.test_f5_demo_binary_search_exists_and_executes = async () => {
   await testDemoExecution('binary_search.cpp');
 };
 
+// --- New tests for syllabus extension ---
+exports.test_f3_lee_explanation = async () => {
+  const code = `
+// lee
+#include <iostream>
+#include <queue>
+using namespace std;
+int main() {
+    int grid[5][5] = {0};
+    int dist[5][5];
+    for(int i=0; i<5; i++)
+        for(int j=0; j<5; j++)
+            dist[i][j] = -1;
+    queue<pair<int, int>> q;
+    q.push({0, 0});
+    dist[0][0] = 0;
+    while(!q.empty()) {
+        int r = q.front().first;
+        int c = q.front().second;
+        q.pop();
+    }
+    return 0;
+}`;
+  const result = await sendCode(code);
+  assert.ok(result.explanation, 'Expected explanation field');
+  assert.match(result.explanation, /lee/i);
+  assertTraceConcepts(result, ['queue']);
+};
+
+exports.test_f2_fast_exponentiation_explanation = async () => {
+  const code = `
+// fast exponentiation
+#include <iostream>
+using namespace std;
+long long power(long long base, long long exp) {
+    long long res = 1;
+    base = base % 1000000007;
+    while (exp > 0) {
+        if (exp % 2 == 1) res = (res * base) % 1000000007;
+        base = (base * base) % 1000000007;
+        exp /= 2;
+    }
+    return res;
+}
+int main() {
+    long long p = power(2, 10);
+    int dividing = 1;
+    return 0;
+}`;
+  const result = await sendCode(code);
+  assert.ok(result.explanation, 'Expected explanation field');
+  assert.match(result.explanation, /fast exponentiation/i);
+  assertTraceConcepts(result, ['dividing']);
+};
+
+

@@ -98,6 +98,72 @@ The root contains numerous CommonJS (`.cjs`) utility scripts and JSON data files
 
 ---
 
+## 🎨 Debugger Visualizations (CRITICAL)
+
+> [!IMPORTANT]
+> **Understanding and Implementing Visualizations**
+> The application uses three primary visualization systems to animate code execution in the State Visualizer tab. A single debugger step can combine multiple visualizations concurrently (e.g. rendering both a `blocksVisual` vector and a dynamic graph). You must adhere strictly to these structures when adding/updating algorithm steps.
+
+### 1. 1D / Block Visualizations (`blocksVisual`)
+Used to visualize 1D structures like arrays, vectors, stacks, queues, and DSU parent sets.
+* **How it works:** It renders row-by-row horizontal grids. If a row's label contains the word `"Stack"` or `"Queue"`, special styling is applied (e.g., vertical stack piling or horizontal queue pipeline).
+* **Structure (JSON Array):**
+  ```json
+  [
+    {
+      "label": "Vector v", 
+      "groups": [
+        [
+          { "val": "10", "active": true, "sorted": false, "hidden": false }
+        ]
+      ]
+    }
+  ]
+  ```
+* **Attributes:**
+  - `val`: The text value displayed in the cell.
+  - `active`: Highlight cell (yellow/orange border) to denote it is currently being accessed.
+  - `sorted`: Highlight cell green to mark it as sorted.
+  - `hidden`: Render cell invisibly (useful for spacing out disjoint segments).
+
+### 2. 2D / Grid Visualizations (`matrix`)
+Used to visualize matrices, 2D dynamic programming tables, grid maps, or Sparse Tables (RMQ).
+* **How it works:** Renders an interactive spreadsheet-like grid with indexed column headers.
+* **Structure (JSON Object):**
+  ```json
+  {
+    "title": "DP Table",
+    "headers": ["", "0", "1", "2"],
+    "rows": [
+      ["0", "1", "2", "3"]
+    ]
+  }
+  ```
+* **Polymorphism Constraint:** Rows can contain either primitives (e.g., `"5"`) or objects (e.g., `{ val: "5", active: true }`). Always write defensive UI code checking for object structures before rendering to avoid React runtime crashes.
+
+### 3. Dynamic Graph & Tree Visualizations (`getGraphVisual`)
+Used for Graph Theory topics, MSTs, Shortest Paths, Trees, Segment Trees, and Tree/Graph DP.
+* **How it works:** Generates interactive node-link diagrams. Layout positions (`x`, `y`) must be manually defined in the node objects to ensure clear, non-overlapping layouts on the canvas.
+* **Structure (Returned by Javascript function `getGraphVisual(stepIndex)`):**
+  ```javascript
+  {
+    directed: false, // true for arrows, false for undirected lines
+    title: "Graf Curent", // Optional title displayed in the header
+    nodes: [
+      { id: "0", x: 80, y: 50, label: "0", state: "active", desc: "[0..3]" }
+    ],
+    edges: [
+      { source: "0", target: "1", weight: 10, active: true }
+    ]
+  }
+  ```
+* **Attributes:**
+  - `state` (Node): `"active"` (red border highlight), `"visited"` (green/blue visited highlight), or `undefined` (default).
+  - `desc` (Node): Text badge drawn above the node (used for node metrics or Segment Tree intervals).
+  - `active` (Edge): Highlights the edge in thick green (used to trace Dijkstra's shortest path, Kruskal/Prim MSTs, etc.).
+
+---
+
 ## 📚 Syllabus Category Structure (Theory, Transition, and Algorithm Nodes)
 
 Every topic in the syllabus tree corresponds to a JavaScript configuration file under `/dashboard/src/data/categories/` (e.g. `Basics.js`, `DFS.js`, `Shortest_Path.js`). Each file must export a `data` object with the following structure depending on its type:
@@ -177,12 +243,27 @@ Below is the list of all domains (sections) and topics in the syllabus tree, map
 * **Math/Advanced** (Node ID: `advmath`) — [Advanced.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Math_Geometry/Math/Advanced.js)
 * **Math/Game_Theory** (Node ID: `game_theory`) — [Game_Theory.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Math_Geometry/Math/Game_Theory.js)
 * **Math/Linear_Algebra** (Node ID: `linalg`) — [Linear_Algebra.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Math_Geometry/Math/Linear_Algebra.js)
+* **Math/Fast_Exponentiation** (Node ID: `math_fast_expo`) — [Fast_Exponentiation.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Math_Geometry/Math/Fast_Exponentiation.js)
+* **Math/Big_Integers** (Node ID: `math_bigint`) — [Big_Integers.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Math_Geometry/Math/Big_Integers.js)
+* **Math/Euler_Phi** (Node ID: `math_phi`) — [Euler_Phi.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Math_Geometry/Math/Euler_Phi.js)
+* **Math/PIE** (Node ID: `math_pie`) — [PIE.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Math_Geometry/Math/PIE.js)
+* **Math/Mobius** (Node ID: `math_mobius`) — [Mobius.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Math_Geometry/Math/Mobius.js)
+* **Math/Matrix_Exponentiation** (Node ID: `math_matrix_expo`) — [Matrix_Exponentiation.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Math_Geometry/Math/Matrix_Exponentiation.js)
+* **Geometry/Sweep_Line** (Node ID: `geom_sweepline`) — [Sweep_Line.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Math_Geometry/Geometry/Sweep_Line.js)
+* **Geometry/Convex_Hull** (Node ID: `geom_convexhull`) — [Convex_Hull.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Math_Geometry/Geometry/Convex_Hull.js)
 
 ### 2. Fundamentals (ID: `fund` | 📚)
 * **Data_Structures/Basics** (Node ID: `ds_basics`) — [Basics.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Fundamentals/Data_Structures/Basics.js)
 * **Arrays** (Node ID: `arr`) — [Arrays.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Fundamentals/Arrays.js)
 * **Sorting** (Node ID: `sort`) — [Sorting.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Fundamentals/Sorting.js)
 * **Techniques/Two_Pointers** (Node ID: `twoptr`) — [Two_Pointers.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Fundamentals/Techniques/Two_Pointers.js)
+* **Fundamentals/Digits** (Node ID: `fund_digits`) — [Digits.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Fundamentals/Digits.js)
+* **Fundamentals/Streaming** (Node ID: `fund_stream`) — [Streaming.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Fundamentals/Streaming.js)
+* **Fundamentals/Base_Conversion** (Node ID: `fund_bases`) — [Base_Conversion.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Fundamentals/Base_Conversion.js)
+* **Fundamentals/Simulations** (Node ID: `fund_sim`) — [Simulations.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Fundamentals/Simulations.js)
+* **Fundamentals/Functions** (Node ID: `fund_funcs`) — [Functions.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Fundamentals/Functions.js)
+* **Fundamentals/Structs** (Node ID: `fund_structs`) — [Structs.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Fundamentals/Structs.js)
+* **Fundamentals/STL** (Node ID: `fund_stl`) — [STL.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Fundamentals/STL.js)
 
 ### 3. String Processing (ID: `str` | 🔤)
 * **Strings** (Node ID: `str`) — [Strings.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/String_Processing/Strings.js)
@@ -211,6 +292,7 @@ Below is the list of all domains (sections) and topics in the syllabus tree, map
 * **Alg/Square_Root_Decomp** (Node ID: `sqrtd`) — [Square_Root_Decomp.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Core_Algorithms/Alg/Square_Root_Decomp.js)
 * **Alg/Meet_in_the_Middle** (Node ID: `meetinmid`) — [Meet_in_the_Middle.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Core_Algorithms/Alg/Meet_in_the_Middle.js)
 * **Alg/Mo_Algorithm** (Node ID: `mo`) — [Mo_Algorithm.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Core_Algorithms/Alg/Mo_Algorithm.js)
+* **Alg/Majority_Element** (Node ID: `alg_majority`) — [Majority_Element.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Core_Algorithms/Alg/Majority_Element.js)
 
 ### 6. Data Structures (ID: `ds` | 🗃️)
 * **Techniques/Bitwise_Ops** (Node ID: `bits`) — [Bitwise_Ops.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Data_Structures/Techniques/Bitwise_Ops.js)
@@ -246,6 +328,10 @@ Below is the list of all domains (sections) and topics in the syllabus tree, map
 * **Graphs/Max_Flow/Dinic** (Node ID: `maxflow_dinic`) — [Dinic.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Max_Flow/Dinic.js)
 * **Graphs/LCA/Binary_Lifting** (Node ID: `lca_bin`) — [Binary_Lifting.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/LCA/Binary_Lifting.js)
 * **Graphs/LCA/Euler_RMQ** (Node ID: `lca_rmq`) — [Euler_RMQ.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/LCA/Euler_RMQ.js)
+* **Graphs/Lee** (Node ID: `graph_lee`) — [Lee.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Lee.js)
+* **Graphs/Flood_Fill** (Node ID: `graph_fill`) — [Flood_Fill.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Flood_Fill.js)
+* **Graphs/Tree_Diameter** (Node ID: `graph_diameter`) — [Tree_Diameter.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Tree_Diameter.js)
+* **Graphs/Shortest_Path/Dial** (Node ID: `graph_dial`) — [Dial.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Shortest_Path/Dial.js)
 
 ---
 
@@ -272,5 +358,14 @@ A utility script used to inspect balanced brackets (braces, parentheses, bracket
   ```cmd
   node validation_tools/bracket_counter.cjs <path_to_file.js>
   ```
+
+### 3. `fix_latex_backslashes.cjs`
+A helper script to automatically find and fix over-escaped LaTeX backslashes (replacing 4 backslashes `\\\\` in the source file with 2 backslashes `\\` for correct browser-level KaTeX rendering inside template literals or double-quoted strings).
+
+- **Usage:**
+  ```cmd
+  node validation_tools/fix_latex_backslashes.cjs
+  ```
+
 
 

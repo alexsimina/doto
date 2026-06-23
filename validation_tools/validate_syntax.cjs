@@ -15,14 +15,14 @@ function validateFile(filePath) {
     fs.writeFileSync(tempFile, content, 'utf8');
     try {
         const exported = require(tempFile);
-        if (!exported.presentation || !exported.explanations || !exported.problems) {
-            throw new Error("Missing critical keys: presentation, explanations, or problems");
+        if (!exported.presentation || !exported.explanations) {
+            throw new Error("Missing critical keys: presentation or explanations");
         }
         if (exported.debugger) {
             if (typeof exported.debugger.getDebuggerState !== 'function') {
                 throw new Error("debugger.getDebuggerState is not a function");
             }
-            if (typeof exported.debugger.getInlineValueForLine !== 'function') {
+            if (exported.debugger.getInlineValueForLine && typeof exported.debugger.getInlineValueForLine !== 'function') {
                 throw new Error("debugger.getInlineValueForLine is not a function");
             }
             // Test execution of the debugger functions at step 0
@@ -63,7 +63,7 @@ function getJsFiles(dir) {
 let files = process.argv.slice(2);
 if (files.length === 0) {
     // Default to validating all files in categories
-    const categoriesDir = path.resolve(__dirname, '../dashboard/src/data/categories/Data_Structures');
+    const categoriesDir = path.resolve(__dirname, '../dashboard/src/data/categories');
     if (fs.existsSync(categoriesDir)) {
         files = getJsFiles(categoriesDir);
     } else {

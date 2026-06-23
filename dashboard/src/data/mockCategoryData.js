@@ -65,6 +65,34 @@ import { data as data_Graphs_Max_Flow_Dinic } from './categories/Graph_Theory/Gr
 import { data as data_Graphs_LCA_Binary_Lifting } from './categories/Graph_Theory/Graphs/LCA/Binary_Lifting.js';
 import { data as data_Graphs_LCA_Euler_RMQ } from './categories/Graph_Theory/Graphs/LCA/Euler_RMQ.js';
 
+// New Fundamentals imports
+import { data as data_Fundamentals_Digits } from './categories/Fundamentals/Digits.js';
+import { data as data_Fundamentals_Streaming } from './categories/Fundamentals/Streaming.js';
+import { data as data_Fundamentals_Base_Conversion } from './categories/Fundamentals/Base_Conversion.js';
+import { data as data_Fundamentals_Simulations } from './categories/Fundamentals/Simulations.js';
+import { data as data_Fundamentals_Functions } from './categories/Fundamentals/Functions.js';
+import { data as data_Fundamentals_Structs } from './categories/Fundamentals/Structs.js';
+import { data as data_Fundamentals_STL } from './categories/Fundamentals/STL.js';
+
+// New Math imports
+import { data as data_Math_Fast_Exponentiation } from './categories/Math_Geometry/Math/Fast_Exponentiation.js';
+import { data as data_Math_Big_Integers } from './categories/Math_Geometry/Math/Big_Integers.js';
+import { data as data_Math_Euler_Phi } from './categories/Math_Geometry/Math/Euler_Phi.js';
+import { data as data_Math_PIE } from './categories/Math_Geometry/Math/PIE.js';
+import { data as data_Math_Mobius } from './categories/Math_Geometry/Math/Mobius.js';
+import { data as data_Math_Matrix_Exponentiation } from './categories/Math_Geometry/Math/Matrix_Exponentiation.js';
+import { data as data_Geometry_Sweep_Line } from './categories/Math_Geometry/Geometry/Sweep_Line.js';
+import { data as data_Geometry_Convex_Hull } from './categories/Math_Geometry/Geometry/Convex_Hull.js';
+
+// New Graph imports
+import { data as data_Graphs_Lee } from './categories/Graph_Theory/Graphs/Lee.js';
+import { data as data_Graphs_Flood_Fill } from './categories/Graph_Theory/Graphs/Flood_Fill.js';
+import { data as data_Graphs_Tree_Diameter } from './categories/Graph_Theory/Graphs/Tree_Diameter.js';
+import { data as data_Graphs_Shortest_Path_Dial } from './categories/Graph_Theory/Graphs/Shortest_Path/Dial.js';
+
+// New Core Algorithms imports
+import { data as data_Alg_Majority_Element } from './categories/Core_Algorithms/Alg/Majority_Element.js';
+
 const mockCategoryData = {
   "Arrays": data_Arrays,
   "Alg/Divide_Conquer": data_Alg_Divide_Conquer,
@@ -134,6 +162,34 @@ const mockCategoryData = {
   "Graphs/Max_Flow/Dinic": data_Graphs_Max_Flow_Dinic,
   "Graphs/LCA/Binary_Lifting": data_Graphs_LCA_Binary_Lifting,
   "Graphs/LCA/Euler_RMQ": data_Graphs_LCA_Euler_RMQ,
+
+  // New Fundamentals Mappings
+  "Fundamentals/Digits": data_Fundamentals_Digits,
+  "Fundamentals/Streaming": data_Fundamentals_Streaming,
+  "Fundamentals/Base_Conversion": data_Fundamentals_Base_Conversion,
+  "Fundamentals/Simulations": data_Fundamentals_Simulations,
+  "Fundamentals/Functions": data_Fundamentals_Functions,
+  "Fundamentals/Structs": data_Fundamentals_Structs,
+  "Fundamentals/STL": data_Fundamentals_STL,
+
+  // New Math Mappings
+  "Math/Fast_Exponentiation": data_Math_Fast_Exponentiation,
+  "Math/Big_Integers": data_Math_Big_Integers,
+  "Math/Euler_Phi": data_Math_Euler_Phi,
+  "Math/PIE": data_Math_PIE,
+  "Math/Mobius": data_Math_Mobius,
+  "Math/Matrix_Exponentiation": data_Math_Matrix_Exponentiation,
+  "Geometry/Sweep_Line": data_Geometry_Sweep_Line,
+  "Geometry/Convex_Hull": data_Geometry_Convex_Hull,
+
+  // New Graph Mappings
+  "Graphs/Lee": data_Graphs_Lee,
+  "Graphs/Flood_Fill": data_Graphs_Flood_Fill,
+  "Graphs/Tree_Diameter": data_Graphs_Tree_Diameter,
+  "Graphs/Shortest_Path/Dial": data_Graphs_Shortest_Path_Dial,
+
+  // New Core Algorithms Mappings
+  "Alg/Majority_Element": data_Alg_Majority_Element,
 };
 
 export default mockCategoryData;

@@ -14,13 +14,13 @@ export const getCategoryIcon = (label) => {
 };
 
 export const domainGroups = [
-  { id: 'math', label: 'Math & Geometry', color: 'rgba(99, 102, 241, 0.03)', borderColor: 'rgba(99, 102, 241, 0.5)', icon: '🧮', nodes: ['math1', 'comb', 'geom', 'game_theory', 'linalg', 'advmath'] },
-  { id: 'fund', label: 'Fundamentals', color: 'rgba(139, 92, 246, 0.03)', borderColor: 'rgba(139, 92, 246, 0.5)', icon: '📚', nodes: ['ds_basics', 'arr', 'sort', 'twoptr'] },
+  { id: 'math', label: 'Math & Geometry', color: 'rgba(99, 102, 241, 0.03)', borderColor: 'rgba(99, 102, 241, 0.5)', icon: '🧮', nodes: ['math1', 'comb', 'geom', 'game_theory', 'linalg', 'advmath', 'math_fast_expo', 'math_bigint', 'math_phi', 'math_pie', 'math_mobius', 'math_matrix_expo', 'geom_sweepline', 'geom_convexhull'] },
+  { id: 'fund', label: 'Fundamentals', color: 'rgba(139, 92, 246, 0.03)', borderColor: 'rgba(139, 92, 246, 0.5)', icon: '📚', nodes: ['ds_basics', 'arr', 'sort', 'twoptr', 'fund_digits', 'fund_stream', 'fund_bases', 'fund_sim', 'fund_funcs', 'fund_structs', 'fund_stl'] },
   { id: 'str', label: 'String Processing', color: 'rgba(236, 72, 153, 0.03)', borderColor: 'rgba(236, 72, 153, 0.5)', icon: '🔤', nodes: ['str', 'trie', 'kmp', 'aho', 'suffix'] },
   { id: 'dp', label: 'Dynamic Programming', color: 'rgba(245, 158, 11, 0.03)', borderColor: 'rgba(245, 158, 11, 0.5)', icon: '🧠', nodes: ['dp', 'dp_knapsack', 'dp_lcs', 'dp_lis', 'dp_trees', 'dp_exp', 'cht'] },
-  { id: 'alg', label: 'Core Algorithms', color: 'rgba(16, 185, 129, 0.03)', borderColor: 'rgba(16, 185, 129, 0.5)', icon: '⚡', nodes: ['bkt', 'greedy', 'dq', 'dq_merge', 'dq_quick', 'dq_bin', 'dq_z', 'meetinmid', 'sqrtd', 'mo'] },
+  { id: 'alg', label: 'Core Algorithms', color: 'rgba(16, 185, 129, 0.03)', borderColor: 'rgba(16, 185, 129, 0.5)', icon: '⚡', nodes: ['bkt', 'greedy', 'dq', 'dq_merge', 'dq_quick', 'dq_bin', 'dq_z', 'meetinmid', 'sqrtd', 'mo', 'alg_majority'] },
   { id: 'ds', label: 'Data Structures', color: 'rgba(14, 165, 233, 0.03)', borderColor: 'rgba(14, 165, 233, 0.5)', icon: '🗃️', nodes: ['bits', 'diffarr', 'rmq', 'dsu', 'aib', 'seg', 'ds_frequency', 'ds_stack', 'ds_queue_deque', 'ds_priority_queue'] },
-  { id: 'graph', label: 'Graph Theory', color: 'rgba(244, 63, 94, 0.03)', borderColor: 'rgba(244, 63, 94, 0.5)', icon: '🕸️', nodes: ['graph_basics', 'dfs', 'bfs', 'topsort', 'scc', 'eulerhamilton', 'mst', 'sp', 'maxflow', 'lca', 'sp_dijkstra', 'sp_bf', 'sp_fw', 'mst_kruskal', 'mst_prim', 'scc_kosaraju', 'scc_tarjan', 'maxflow_ek', 'maxflow_dinic', 'lca_bin', 'lca_rmq'] }
+  { id: 'graph', label: 'Graph Theory', color: 'rgba(244, 63, 94, 0.03)', borderColor: 'rgba(244, 63, 94, 0.5)', icon: '🕸️', nodes: ['graph_basics', 'dfs', 'bfs', 'topsort', 'scc', 'eulerhamilton', 'mst', 'sp', 'maxflow', 'lca', 'sp_dijkstra', 'sp_bf', 'sp_fw', 'mst_kruskal', 'mst_prim', 'scc_kosaraju', 'scc_tarjan', 'maxflow_ek', 'maxflow_dinic', 'lca_bin', 'lca_rmq', 'graph_lee', 'graph_fill', 'graph_diameter', 'graph_dial'] }
 ];
 
 export const getNodeDomain = (nodeId) => {
@@ -105,7 +105,35 @@ export const rawNodes = [
     { id: 'maxflow_ek', label: 'Graphs/Max_Flow/Edmonds_Karp', x: 2065, y: 3483, status: null },
     { id: 'maxflow_dinic', label: 'Graphs/Max_Flow/Dinic', x: 2389, y: 3483, status: null },
     { id: 'lca_bin', label: 'Graphs/LCA/Binary_Lifting', x: 445, y: 3483, status: null },
-    { id: 'lca_rmq', label: 'Graphs/LCA/Euler_RMQ', x: 769, y: 3483, status: null }
+    { id: 'lca_rmq', label: 'Graphs/LCA/Euler_RMQ', x: 769, y: 3483, status: null },
+
+    // New Fundamentals Nodes
+    { id: 'fund_digits', label: 'Fundamentals/Digits', x: -283, y: 243, status: null },
+    { id: 'fund_stream', label: 'Fundamentals/Streaming', x: 283, y: 243, status: null },
+    { id: 'fund_bases', label: 'Fundamentals/Base_Conversion', x: -400, y: 360, status: null },
+    { id: 'fund_sim', label: 'Fundamentals/Simulations', x: 400, y: 360, status: null },
+    { id: 'fund_funcs', label: 'Fundamentals/Functions', x: -150, y: 120, status: null },
+    { id: 'fund_structs', label: 'Fundamentals/Structs', x: 150, y: 120, status: null },
+    { id: 'fund_stl', label: 'Fundamentals/STL', x: 0, y: 360, status: null },
+
+    // New Math Nodes
+    { id: 'math_fast_expo', label: 'Math/Fast_Exponentiation', x: -1458, y: 810, status: null },
+    { id: 'math_bigint', label: 'Math/Big_Integers', x: -1215, y: 810, status: null },
+    { id: 'math_phi', label: 'Math/Euler_Phi', x: -1701, y: 810, status: null },
+    { id: 'math_pie', label: 'Math/PIE', x: -1701, y: 1000, status: null },
+    { id: 'math_mobius', label: 'Math/Mobius', x: -1458, y: 1000, status: null },
+    { id: 'math_matrix_expo', label: 'Math/Matrix_Exponentiation', x: -1215, y: 1000, status: null },
+    { id: 'geom_sweepline', label: 'Geometry/Sweep_Line', x: -1701, y: 1200, status: null },
+    { id: 'geom_convexhull', label: 'Geometry/Convex_Hull', x: -1215, y: 1200, status: null },
+
+    // New Graph Nodes
+    { id: 'graph_lee', label: 'Graphs/Lee', x: 1200, y: 2600, status: null },
+    { id: 'graph_fill', label: 'Graphs/Flood_Fill', x: 600, y: 2600, status: null },
+    { id: 'graph_diameter', label: 'Graphs/Tree_Diameter', x: 600, y: 2835, status: null },
+    { id: 'graph_dial', label: 'Graphs/Shortest_Path/Dial', x: 1200, y: 3320, status: null },
+
+    // New Core Algorithms Nodes
+    { id: 'alg_majority', label: 'Alg/Majority_Element', x: 0, y: 810, status: null }
   ];
 
 export const rawEdges = [
@@ -195,5 +223,33 @@ export const rawEdges = [
     { from: 'ds_frequency', to: 'ds_stack' },
     { from: 'ds_stack', to: 'ds_queue_deque' },
     { from: 'ds_queue_deque', to: 'ds_priority_queue' },
-    { from: 'ds_priority_queue', to: 'sp_dijkstra' }
+    { from: 'ds_priority_queue', to: 'sp_dijkstra' },
+
+    // New Edges
+    { from: 'ds_basics', to: 'fund_funcs' },
+    { from: 'ds_basics', to: 'fund_structs' },
+    { from: 'fund_funcs', to: 'arr' },
+    { from: 'fund_structs', to: 'arr' },
+    { from: 'arr', to: 'fund_digits' },
+    { from: 'arr', to: 'fund_stream' },
+    { from: 'arr', to: 'fund_bases' },
+    { from: 'arr', to: 'fund_sim' },
+    { from: 'arr', to: 'fund_stl' },
+    { from: 'fund_stl', to: 'sort' },
+    { from: 'fund_digits', to: 'sort' },
+    { from: 'fund_stream', to: 'twoptr' },
+    { from: 'advmath', to: 'math_fast_expo' },
+    { from: 'math_fast_expo', to: 'math_phi' },
+    { from: 'math_fast_expo', to: 'math_bigint' },
+    { from: 'math_fast_expo', to: 'math_matrix_expo' },
+    { from: 'math_phi', to: 'math_pie' },
+    { from: 'math_phi', to: 'math_mobius' },
+    { from: 'geom', to: 'geom_sweepline' },
+    { from: 'geom', to: 'geom_convexhull' },
+    { from: 'graph_basics', to: 'graph_fill' },
+    { from: 'graph_basics', to: 'graph_lee' },
+    { from: 'dfs', to: 'graph_diameter' },
+    { from: 'sp', to: 'graph_dial' },
+    { from: 'arr', to: 'alg_majority' },
+    { from: 'alg_majority', to: 'greedy' }
   ];

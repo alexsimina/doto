@@ -29,9 +29,14 @@ int main() {
       text: "Inițializăm numărul $n$ cu valoarea $358$ pe care îl vom procesa.",
       blocksVisual: [
         {
-          label: "Variabile",
-          groups: [
-            [{ val: "n = 358", active: true }]
+          "label": "Variabile",
+          "groups": [
+            [
+              {
+                "val": "n = 358",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -41,10 +46,19 @@ int main() {
       text: "Inițializăm variabila $sum$ cu $0$. Aceasta va acumula suma cifrelor.",
       blocksVisual: [
         {
-          label: "Stare",
-          groups: [
-            [{ val: "n = 358" }],
-            [{ val: "sum = 0", active: true }]
+          "label": "Stare",
+          "groups": [
+            [
+              {
+                "val": "n = 358"
+              }
+            ],
+            [
+              {
+                "val": "sum = 0",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -54,10 +68,19 @@ int main() {
       text: "Inițializăm $reversed$ cu $0$. Aici vom construi inversul (răsturnatul) numărului.",
       blocksVisual: [
         {
-          label: "Stare",
-          groups: [
-            [{ val: "sum = 0" }],
-            [{ val: "reversed = 0", active: true }]
+          "label": "Stare",
+          "groups": [
+            [
+              {
+                "val": "sum = 0"
+              }
+            ],
+            [
+              {
+                "val": "reversed = 0",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -67,23 +90,41 @@ int main() {
       text: "Copiem valoarea lui $n$ în $temp$ pentru a nu distruge valoarea inițială în timpul procesării.",
       blocksVisual: [
         {
-          label: "Stare",
-          groups: [
-            [{ val: "temp = 358", active: true }],
-            [{ val: "sum = 0" }],
-            [{ val: "reversed = 0" }]
+          "label": "Stare",
+          "groups": [
+            [
+              {
+                "val": "temp = 358",
+                "active": true
+              }
+            ],
+            [
+              {
+                "val": "sum = 0"
+              }
+            ],
+            [
+              {
+                "val": "reversed = 0"
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 11,
-      text: "Verificăm dacă mai avem cifre de procesat ($temp > 0$). Deoarece $358 > 0$, intrăm în buclă.",
+      text: "Verificăm dacă $temp > 0$. $358 > 0$ este adevărat.",
       blocksVisual: [
         {
-          label: "Condiție",
-          groups: [
-            [{ val: "temp = 358 > 0 ?", active: true }]
+          "label": "Condiție",
+          "groups": [
+            [
+              {
+                "val": "358 > 0 ? Da",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -93,58 +134,87 @@ int main() {
       text: "Extragem ultima cifră a lui $temp$: $358 \\pmod{10} = 8$.",
       blocksVisual: [
         {
-          label: "Cifră extrasă",
-          groups: [
-            [{ val: "digit = 8", active: true }],
-            [{ val: "temp = 358" }]
+          "label": "Cifră extrasă",
+          "groups": [
+            [
+              {
+                "val": "digit = 8",
+                "active": true
+              }
+            ],
+            [
+              {
+                "val": "temp = 358"
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 13,
-      text: "Adăugăm cifra $8$ la suma cifrelor: $sum = 0 + 8 = 8$.",
+      text: "Adăugăm cifra $8$ la suma cifrelor: sum devine $8$.",
       blocksVisual: [
         {
-          label: "Suma actualizată",
-          groups: [
-            [{ val: "sum = 8", active: true }]
+          "label": "Suma actualizată",
+          "groups": [
+            [
+              {
+                "val": "sum = 8",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 14,
-      text: "Actualizăm răsturnatul: $reversed = 0 \\times 10 + 8 = 8$.",
+      text: "Actualizăm răsturnatul: reversed devine $8$.",
       blocksVisual: [
         {
-          label: "Răsturnat actualizat",
-          groups: [
-            [{ val: "reversed = 8", active: true }]
+          "label": "Răsturnat actualizat",
+          "groups": [
+            [
+              {
+                "val": "reversed = 8",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 15,
-      text: "Eliminăm ultima cifră a lui $temp$ prin împărțirea la $10$: $temp = 358 / 10 = 35$.",
+      text: "Eliminăm ultima cifră a lui $temp$ prin împărțirea la $10$: $temp = 35$.",
       blocksVisual: [
         {
-          label: "Valoare rămasă",
-          groups: [
-            [{ val: "temp = 35", active: true }]
+          "label": "Valoare rămasă",
+          "groups": [
+            [
+              {
+                "val": "temp = 35",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 11,
-      text: "Verificăm condiția: $temp = 35 > 0$, care este adevărată, deci continuăm.",
+      text: "Verificăm dacă $temp > 0$. $35 > 0$ este adevărat.",
       blocksVisual: [
         {
-          label: "Condiție",
-          groups: [
-            [{ val: "temp = 35 > 0 ?", active: true }]
+          "label": "Condiție",
+          "groups": [
+            [
+              {
+                "val": "35 > 0 ? Da",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -154,58 +224,87 @@ int main() {
       text: "Extragem ultima cifră a lui $temp$: $35 \\pmod{10} = 5$.",
       blocksVisual: [
         {
-          label: "Cifră extrasă",
-          groups: [
-            [{ val: "digit = 5", active: true }],
-            [{ val: "temp = 35" }]
+          "label": "Cifră extrasă",
+          "groups": [
+            [
+              {
+                "val": "digit = 5",
+                "active": true
+              }
+            ],
+            [
+              {
+                "val": "temp = 35"
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 13,
-      text: "Adăugăm cifra $5$ la sumă: $sum = 8 + 5 = 13$.",
+      text: "Adăugăm cifra $5$ la suma cifrelor: sum devine $13$.",
       blocksVisual: [
         {
-          label: "Suma actualizată",
-          groups: [
-            [{ val: "sum = 13", active: true }]
+          "label": "Suma actualizată",
+          "groups": [
+            [
+              {
+                "val": "sum = 13",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 14,
-      text: "Actualizăm răsturnatul: $reversed = 8 \\times 10 + 5 = 85$.",
+      text: "Actualizăm răsturnatul: reversed devine $85$.",
       blocksVisual: [
         {
-          label: "Răsturnat actualizat",
-          groups: [
-            [{ val: "reversed = 85", active: true }]
+          "label": "Răsturnat actualizat",
+          "groups": [
+            [
+              {
+                "val": "reversed = 85",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 15,
-      text: "Eliminăm ultima cifră a lui $temp$: $temp = 35 / 10 = 3$.",
+      text: "Eliminăm ultima cifră a lui $temp$ prin împărțirea la $10$: $temp = 3$.",
       blocksVisual: [
         {
-          label: "Valoare rămasă",
-          groups: [
-            [{ val: "temp = 3", active: true }]
+          "label": "Valoare rămasă",
+          "groups": [
+            [
+              {
+                "val": "temp = 3",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 11,
-      text: "Verificăm condiția: $temp = 3 > 0$, care este adevărată.",
+      text: "Verificăm dacă $temp > 0$. $3 > 0$ este adevărat.",
       blocksVisual: [
         {
-          label: "Condiție",
-          groups: [
-            [{ val: "temp = 3 > 0 ?", active: true }]
+          "label": "Condiție",
+          "groups": [
+            [
+              {
+                "val": "3 > 0 ? Da",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -215,58 +314,104 @@ int main() {
       text: "Extragem ultima cifră a lui $temp$: $3 \\pmod{10} = 3$.",
       blocksVisual: [
         {
-          label: "Cifră extrasă",
-          groups: [
-            [{ val: "digit = 3", active: true }],
-            [{ val: "temp = 3" }]
+          "label": "Cifră extrasă",
+          "groups": [
+            [
+              {
+                "val": "digit = 3",
+                "active": true
+              }
+            ],
+            [
+              {
+                "val": "temp = 3"
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 13,
-      text: "Adăugăm cifra $3$ la sumă: $sum = 13 + 3 = 16$.",
+      text: "Adăugăm cifra $3$ la suma cifrelor: sum devine $16$.",
       blocksVisual: [
         {
-          label: "Suma actualizată",
-          groups: [
-            [{ val: "sum = 16", active: true }]
+          "label": "Suma actualizată",
+          "groups": [
+            [
+              {
+                "val": "sum = 16",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 14,
-      text: "Actualizăm răsturnatul: $reversed = 85 \\times 10 + 3 = 853$.",
+      text: "Actualizăm răsturnatul: reversed devine $853$.",
       blocksVisual: [
         {
-          label: "Răsturnat actualizat",
-          groups: [
-            [{ val: "reversed = 853", active: true }]
+          "label": "Răsturnat actualizat",
+          "groups": [
+            [
+              {
+                "val": "reversed = 853",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 15,
-      text: "Eliminăm ultima cifră a lui $temp$: $temp = 3 / 10 = 0$.",
+      text: "Eliminăm ultima cifră a lui $temp$ prin împărțirea la $10$: $temp = 0$.",
       blocksVisual: [
         {
-          label: "Valoare rămasă",
-          groups: [
-            [{ val: "temp = 0", active: true }]
+          "label": "Valoare rămasă",
+          "groups": [
+            [
+              {
+                "val": "temp = 0",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 11,
-      text: "Verificăm condiția: $temp = 0 > 0$ este falsă. Ieșim din buclă.",
+      text: "Verificăm dacă $temp > 0$. $0 > 0$ este fals.",
       blocksVisual: [
         {
-          label: "Condiție",
-          groups: [
-            [{ val: "temp = 0 > 0 ? Fals", active: true }]
+          "label": "Condiție",
+          "groups": [
+            [
+              {
+                "val": "0 > 0 ? Fals",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      line: 18,
+      text: "Finalizăm programul cu succes.",
+      blocksVisual: [
+        {
+          "label": "Final",
+          "groups": [
+            [
+              {
+                "val": "return 0",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -297,96 +442,944 @@ int main() {
   },
   "debugger": {
     "getDebuggerState": (stepIndex, activeLine, explanationText) => {
-      const vars = [];
-      const globalVars = [];
-      const frames = [];
-      let inlineVal = null;
-
-      frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 6 });
-
-      if (stepIndex >= 0) {
-        vars.push({ name: 'n', type: 'int', val: 358, expandable: false });
-      }
-
-      let sumVal = 0;
-      if (stepIndex >= 1 && stepIndex <= 5) sumVal = 0;
-      else if (stepIndex >= 6 && stepIndex <= 10) sumVal = 8;
-      else if (stepIndex >= 11 && stepIndex <= 15) sumVal = 13;
-      else if (stepIndex >= 16) sumVal = 16;
-      if (stepIndex >= 1) {
-        vars.push({ name: 'sum', type: 'int', val: sumVal, expandable: false });
-      }
-
-      let revVal = 0;
-      if (stepIndex >= 2 && stepIndex <= 6) revVal = 0;
-      else if (stepIndex >= 7 && stepIndex <= 11) revVal = 8;
-      else if (stepIndex >= 12 && stepIndex <= 16) revVal = 85;
-      else if (stepIndex >= 17) revVal = 853;
-      if (stepIndex >= 2) {
-        vars.push({ name: 'reversed', type: 'int', val: revVal, expandable: false });
-      }
-
-      let tempVal = 358;
-      if (stepIndex >= 3 && stepIndex <= 7) tempVal = 358;
-      else if (stepIndex >= 8 && stepIndex <= 12) tempVal = 35;
-      else if (stepIndex >= 13 && stepIndex <= 17) tempVal = 3;
-      else if (stepIndex >= 18) tempVal = 0;
-      if (stepIndex >= 3) {
-        vars.push({ name: 'temp', type: 'int', val: tempVal, expandable: false });
-      }
-
-      let digitVal = null;
-      if (stepIndex >= 5 && stepIndex <= 7) digitVal = 8;
-      else if (stepIndex >= 10 && stepIndex <= 12) digitVal = 5;
-      else if (stepIndex >= 15 && stepIndex <= 17) digitVal = 3;
-      if (digitVal !== null) {
-        vars.push({ name: 'digit', type: 'int', val: digitVal, expandable: false });
-      }
-
-      if (activeLine === 6) inlineVal = "n: 358";
-      else if (activeLine === 7) inlineVal = `sum: ${sumVal}`;
-      else if (activeLine === 8) inlineVal = `reversed: ${revVal}`;
-      else if (activeLine === 9) inlineVal = `temp: ${tempVal}`;
-      else if (activeLine === 11) inlineVal = `temp: ${tempVal}`;
-      else if (activeLine === 12 && digitVal !== null) inlineVal = `digit: ${digitVal}`;
-      else if (activeLine === 13 && digitVal !== null) inlineVal = `digit: ${digitVal}, sum: ${sumVal}`;
-      else if (activeLine === 14 && digitVal !== null) inlineVal = `digit: ${digitVal}, reversed: ${revVal}`;
-      else if (activeLine === 15) inlineVal = `temp: ${tempVal}`;
-
-      return { vars, globalVars, frames, inlineVal };
+      const states = [
+        {
+          "vars": [
+            {
+              "name": "n",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 6
+            }
+          ],
+          "inlineVal": "n: 358"
+        },
+        {
+          "vars": [
+            {
+              "name": "n",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 7
+            }
+          ],
+          "inlineVal": "sum: 0"
+        },
+        {
+          "vars": [
+            {
+              "name": "n",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "reversed",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 8
+            }
+          ],
+          "inlineVal": "reversed: 0"
+        },
+        {
+          "vars": [
+            {
+              "name": "n",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "reversed",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "temp",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 9
+            }
+          ],
+          "inlineVal": "temp: 358"
+        },
+        {
+          "vars": [
+            {
+              "name": "n",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "reversed",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "temp",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 11
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "n",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "reversed",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "temp",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            },
+            {
+              "name": "digit",
+              "type": "int",
+              "val": 8,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 12
+            }
+          ],
+          "inlineVal": "digit: 8"
+        },
+        {
+          "vars": [
+            {
+              "name": "n",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 8,
+              "expandable": false
+            },
+            {
+              "name": "reversed",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "temp",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            },
+            {
+              "name": "digit",
+              "type": "int",
+              "val": 8,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 13
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "n",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 8,
+              "expandable": false
+            },
+            {
+              "name": "reversed",
+              "type": "int",
+              "val": 8,
+              "expandable": false
+            },
+            {
+              "name": "temp",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            },
+            {
+              "name": "digit",
+              "type": "int",
+              "val": 8,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 14
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "n",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 8,
+              "expandable": false
+            },
+            {
+              "name": "reversed",
+              "type": "int",
+              "val": 8,
+              "expandable": false
+            },
+            {
+              "name": "temp",
+              "type": "int",
+              "val": 35,
+              "expandable": false
+            },
+            {
+              "name": "digit",
+              "type": "int",
+              "val": 8,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 15
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "n",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 8,
+              "expandable": false
+            },
+            {
+              "name": "reversed",
+              "type": "int",
+              "val": 8,
+              "expandable": false
+            },
+            {
+              "name": "temp",
+              "type": "int",
+              "val": 35,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 11
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "n",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 8,
+              "expandable": false
+            },
+            {
+              "name": "reversed",
+              "type": "int",
+              "val": 8,
+              "expandable": false
+            },
+            {
+              "name": "temp",
+              "type": "int",
+              "val": 35,
+              "expandable": false
+            },
+            {
+              "name": "digit",
+              "type": "int",
+              "val": 5,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 12
+            }
+          ],
+          "inlineVal": "digit: 5"
+        },
+        {
+          "vars": [
+            {
+              "name": "n",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 13,
+              "expandable": false
+            },
+            {
+              "name": "reversed",
+              "type": "int",
+              "val": 8,
+              "expandable": false
+            },
+            {
+              "name": "temp",
+              "type": "int",
+              "val": 35,
+              "expandable": false
+            },
+            {
+              "name": "digit",
+              "type": "int",
+              "val": 5,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 13
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "n",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 13,
+              "expandable": false
+            },
+            {
+              "name": "reversed",
+              "type": "int",
+              "val": 85,
+              "expandable": false
+            },
+            {
+              "name": "temp",
+              "type": "int",
+              "val": 35,
+              "expandable": false
+            },
+            {
+              "name": "digit",
+              "type": "int",
+              "val": 5,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 14
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "n",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 13,
+              "expandable": false
+            },
+            {
+              "name": "reversed",
+              "type": "int",
+              "val": 85,
+              "expandable": false
+            },
+            {
+              "name": "temp",
+              "type": "int",
+              "val": 3,
+              "expandable": false
+            },
+            {
+              "name": "digit",
+              "type": "int",
+              "val": 5,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 15
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "n",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 13,
+              "expandable": false
+            },
+            {
+              "name": "reversed",
+              "type": "int",
+              "val": 85,
+              "expandable": false
+            },
+            {
+              "name": "temp",
+              "type": "int",
+              "val": 3,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 11
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "n",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 13,
+              "expandable": false
+            },
+            {
+              "name": "reversed",
+              "type": "int",
+              "val": 85,
+              "expandable": false
+            },
+            {
+              "name": "temp",
+              "type": "int",
+              "val": 3,
+              "expandable": false
+            },
+            {
+              "name": "digit",
+              "type": "int",
+              "val": 3,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 12
+            }
+          ],
+          "inlineVal": "digit: 3"
+        },
+        {
+          "vars": [
+            {
+              "name": "n",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 16,
+              "expandable": false
+            },
+            {
+              "name": "reversed",
+              "type": "int",
+              "val": 85,
+              "expandable": false
+            },
+            {
+              "name": "temp",
+              "type": "int",
+              "val": 3,
+              "expandable": false
+            },
+            {
+              "name": "digit",
+              "type": "int",
+              "val": 3,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 13
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "n",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 16,
+              "expandable": false
+            },
+            {
+              "name": "reversed",
+              "type": "int",
+              "val": 853,
+              "expandable": false
+            },
+            {
+              "name": "temp",
+              "type": "int",
+              "val": 3,
+              "expandable": false
+            },
+            {
+              "name": "digit",
+              "type": "int",
+              "val": 3,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 14
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "n",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 16,
+              "expandable": false
+            },
+            {
+              "name": "reversed",
+              "type": "int",
+              "val": 853,
+              "expandable": false
+            },
+            {
+              "name": "temp",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "digit",
+              "type": "int",
+              "val": 3,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 15
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "n",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 16,
+              "expandable": false
+            },
+            {
+              "name": "reversed",
+              "type": "int",
+              "val": 853,
+              "expandable": false
+            },
+            {
+              "name": "temp",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 11
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "n",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 16,
+              "expandable": false
+            },
+            {
+              "name": "reversed",
+              "type": "int",
+              "val": 853,
+              "expandable": false
+            },
+            {
+              "name": "temp",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 18
+            }
+          ],
+          "inlineVal": null
+        }
+      ];
+      if (stepIndex < 0) return { vars: [], globalVars: [], frames: [{ name: 'main()', file: 'main.cpp', line: activeLine || 6 }], inlineVal: null };
+      if (stepIndex >= states.length) stepIndex = states.length - 1;
+      const state = states[stepIndex];
+      return { vars: state.vars, globalVars: [], frames: state.frames, inlineVal: state.inlineVal };
     },
     "getInlineValueForLine": (stepIndex, lineNum) => {
-      if (lineNum === 6 && stepIndex >= 0) return 'n: 358';
-      
-      let sumVal = 0;
-      if (stepIndex >= 6 && stepIndex <= 10) sumVal = 8;
-      else if (stepIndex >= 11 && stepIndex <= 15) sumVal = 13;
-      else if (stepIndex >= 16) sumVal = 16;
-
-      let revVal = 0;
-      if (stepIndex >= 7 && stepIndex <= 11) revVal = 8;
-      else if (stepIndex >= 12 && stepIndex <= 16) revVal = 85;
-      else if (stepIndex >= 17) revVal = 853;
-
-      let tempVal = 358;
-      if (stepIndex >= 8 && stepIndex <= 12) tempVal = 35;
-      else if (stepIndex >= 13 && stepIndex <= 17) tempVal = 3;
-      else if (stepIndex >= 18) tempVal = 0;
-
-      let digitVal = null;
-      if (stepIndex >= 5 && stepIndex <= 7) digitVal = 8;
-      else if (stepIndex >= 10 && stepIndex <= 12) digitVal = 5;
-      else if (stepIndex >= 15 && stepIndex <= 17) digitVal = 3;
-
-      if (lineNum === 7 && stepIndex >= 1) return `sum: ${sumVal}`;
-      if (lineNum === 8 && stepIndex >= 2) return `reversed: ${revVal}`;
-      if (lineNum === 9 && stepIndex >= 3) return `temp: ${tempVal}`;
-      if (lineNum === 11 && stepIndex >= 4) return `temp: ${tempVal}`;
-      if (lineNum === 12 && digitVal !== null) return `digit: ${digitVal}`;
-      if (lineNum === 13 && digitVal !== null) return `digit: ${digitVal}, sum: ${sumVal}`;
-      if (lineNum === 14 && digitVal !== null) return `digit: ${digitVal}, reversed: ${revVal}`;
-      if (lineNum === 15 && stepIndex >= 8) return `temp: ${tempVal}`;
-      return null;
+      const states = [
+        {
+          "6": "n: 358"
+        },
+        {
+          "6": "n: 358",
+          "7": "sum: 0"
+        },
+        {
+          "6": "n: 358",
+          "7": "sum: 0",
+          "8": "reversed: 0"
+        },
+        {
+          "6": "n: 358",
+          "7": "sum: 0",
+          "8": "reversed: 0",
+          "9": "temp: 358"
+        },
+        {
+          "6": "n: 358",
+          "7": "sum: 0",
+          "8": "reversed: 0",
+          "9": "temp: 358"
+        },
+        {
+          "6": "n: 358",
+          "7": "sum: 0",
+          "8": "reversed: 0",
+          "9": "temp: 358",
+          "12": "digit: 8"
+        },
+        {
+          "6": "n: 358",
+          "7": "sum: 8",
+          "8": "reversed: 0",
+          "9": "temp: 358",
+          "12": "digit: 8"
+        },
+        {
+          "6": "n: 358",
+          "7": "sum: 8",
+          "8": "reversed: 8",
+          "9": "temp: 358",
+          "12": "digit: 8"
+        },
+        {
+          "6": "n: 358",
+          "7": "sum: 8",
+          "8": "reversed: 8",
+          "9": "temp: 35",
+          "12": "digit: 8"
+        },
+        {
+          "6": "n: 358",
+          "7": "sum: 8",
+          "8": "reversed: 8",
+          "9": "temp: 35"
+        },
+        {
+          "6": "n: 358",
+          "7": "sum: 8",
+          "8": "reversed: 8",
+          "9": "temp: 35",
+          "12": "digit: 5"
+        },
+        {
+          "6": "n: 358",
+          "7": "sum: 13",
+          "8": "reversed: 8",
+          "9": "temp: 35",
+          "12": "digit: 5"
+        },
+        {
+          "6": "n: 358",
+          "7": "sum: 13",
+          "8": "reversed: 85",
+          "9": "temp: 35",
+          "12": "digit: 5"
+        },
+        {
+          "6": "n: 358",
+          "7": "sum: 13",
+          "8": "reversed: 85",
+          "9": "temp: 3",
+          "12": "digit: 5"
+        },
+        {
+          "6": "n: 358",
+          "7": "sum: 13",
+          "8": "reversed: 85",
+          "9": "temp: 3"
+        },
+        {
+          "6": "n: 358",
+          "7": "sum: 13",
+          "8": "reversed: 85",
+          "9": "temp: 3",
+          "12": "digit: 3"
+        },
+        {
+          "6": "n: 358",
+          "7": "sum: 16",
+          "8": "reversed: 85",
+          "9": "temp: 3",
+          "12": "digit: 3"
+        },
+        {
+          "6": "n: 358",
+          "7": "sum: 16",
+          "8": "reversed: 853",
+          "9": "temp: 3",
+          "12": "digit: 3"
+        },
+        {
+          "6": "n: 358",
+          "7": "sum: 16",
+          "8": "reversed: 853",
+          "9": "temp: 0",
+          "12": "digit: 3"
+        },
+        {
+          "6": "n: 358",
+          "7": "sum: 16",
+          "8": "reversed: 853",
+          "9": "temp: 0"
+        },
+        {
+          "6": "n: 358",
+          "7": "sum: 16",
+          "8": "reversed: 853",
+          "9": "temp: 0"
+        }
+      ];
+      if (stepIndex < 0) return null;
+      if (stepIndex >= states.length) stepIndex = states.length - 1;
+      return states[stepIndex][lineNum] || null;
     }
   }
-};
+}
+;

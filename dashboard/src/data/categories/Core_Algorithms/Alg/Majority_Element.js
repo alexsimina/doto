@@ -36,503 +36,2012 @@ int main() {
 }
 `,
   explanations: [
-    {
-      line: 7,
-      text: "Definim vectorul $arr = \\{2, 2, 1, 1, 2\\}$ în care căutăm elementul majoritar.",
-      blocksVisual: [
-        {
-          label: "Vector (arr)",
-          groups: [
-            [{ val: "2", active: false }, { val: "2" }, { val: "1" }, { val: "1" }, { val: "2" }]
+  {
+    "line": 7,
+    "text": "Definim vectorul arr = {2, 2, 1, 1, 2}.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
           ]
-        },
-        {
-          label: "Parametri Boyer-Moore",
-          groups: [
-            [{ val: "candidate = -", active: false }, { val: "count = 0", active: false }]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = -1",
+              "active": false
+            },
+            {
+              "val": "count = 0",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      line: 8,
-      text: "Inițializăm candidatul cu o valoare fictivă ($-1$).",
-      blocksVisual: [
-        {
-          label: "Vector (arr)",
-          groups: [
-            [{ val: "2", active: false }, { val: "2" }, { val: "1" }, { val: "1" }, { val: "2" }]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 8,
+    "text": "Inițializăm candidate = -1.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
           ]
-        },
-        {
-          label: "Parametri Boyer-Moore",
-          groups: [
-            [{ val: "candidate = -1", active: true }, { val: "count = 0", active: false }]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = -1",
+              "active": false
+            },
+            {
+              "val": "count = 0",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      line: 9,
-      text: "Inițializăm contorul de voturi cu $0$.",
-      blocksVisual: [
-        {
-          label: "Vector (arr)",
-          groups: [
-            [{ val: "2", active: false }, { val: "2" }, { val: "1" }, { val: "1" }, { val: "2" }]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 9,
+    "text": "Inițializăm count = 0.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
           ]
-        },
-        {
-          label: "Parametri Boyer-Moore",
-          groups: [
-            [{ val: "candidate = -1", active: false }, { val: "count = 0", active: true }]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = -1",
+              "active": false
+            },
+            {
+              "val": "count = 0",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      line: 11,
-      text: "Începem parcurgerea vectorului. Primul element procesat este $x = 2$.",
-      blocksVisual: [
-        {
-          label: "Vector (arr)",
-          groups: [
-            [{ val: "2", active: true }, { val: "2" }, { val: "1" }, { val: "1" }, { val: "2" }]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 11,
+    "text": "Începem prima parcurgere a vectorului.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
           ]
-        },
-        {
-          label: "Parametri Boyer-Moore",
-          groups: [
-            [{ val: "candidate = -1", active: false }, { val: "count = 0", active: false }]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = -1",
+              "active": false
+            },
+            {
+              "val": "count = 0",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      line: 12,
-      text: "Deoarece contorul de voturi este $0$, desemnăm elementul curent ca nou candidat.",
-      blocksVisual: [
-        {
-          label: "Vector (arr)",
-          groups: [
-            [{ val: "2", active: true }, { val: "2" }, { val: "1" }, { val: "1" }, { val: "2" }]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 11,
+    "text": "x = arr[0] = 2.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
           ]
-        },
-        {
-          label: "Parametri Boyer-Moore",
-          groups: [
-            [{ val: "candidate = -1", active: false }, { val: "count = 0", active: true }]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = -1",
+              "active": false
+            },
+            {
+              "val": "count = 0",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      line: 13,
-      text: "Setăm `candidate = 2`.",
-      blocksVisual: [
-        {
-          label: "Vector (arr)",
-          groups: [
-            [{ val: "2", active: true }, { val: "2" }, { val: "1" }, { val: "1" }, { val: "2" }]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 12,
+    "text": "Verificăm dacă count == 0. (count este 0)",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
           ]
-        },
-        {
-          label: "Parametri Boyer-Moore",
-          groups: [
-            [{ val: "candidate = 2", active: true }, { val: "count = 0", active: false }]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = -1",
+              "active": false
+            },
+            {
+              "val": "count = 0",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      line: 14,
-      text: "Setăm contorul de voturi la $1$.",
-      blocksVisual: [
-        {
-          label: "Vector (arr)",
-          groups: [
-            [{ val: "2", active: true }, { val: "2" }, { val: "1" }, { val: "1" }, { val: "2" }]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 13,
+    "text": "candidate = 2.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
           ]
-        },
-        {
-          label: "Parametri Boyer-Moore",
-          groups: [
-            [{ val: "candidate = 2", active: false }, { val: "count = 1", active: true }]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 0",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      line: 11,
-      text: "Trecem la următorul element din vector: $x = 2$.",
-      blocksVisual: [
-        {
-          label: "Vector (arr)",
-          groups: [
-            [{ val: "2", active: false }, { val: "2", active: true }, { val: "1" }, { val: "1" }, { val: "2" }]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 14,
+    "text": "count = 1.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
           ]
-        },
-        {
-          label: "Parametri Boyer-Moore",
-          groups: [
-            [{ val: "candidate = 2", active: false }, { val: "count = 1", active: false }]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      line: 12,
-      text: "Verificăm dacă `count == 0`. Este fals (avem $1$ vot).",
-      blocksVisual: [
-        {
-          label: "Vector (arr)",
-          groups: [
-            [{ val: "2", active: false }, { val: "2", active: true }, { val: "1" }, { val: "1" }, { val: "2" }]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 11,
+    "text": "x = arr[1] = 2.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": true
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
           ]
-        },
-        {
-          label: "Parametri Boyer-Moore",
-          groups: [
-            [{ val: "candidate = 2", active: false }, { val: "count = 1", active: true }]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      line: 15,
-      text: "Verificăm dacă elementul curent este egal cu candidatul ($2 == 2$). Este adevărat.",
-      blocksVisual: [
-        {
-          label: "Vector (arr)",
-          groups: [
-            [{ val: "2", active: false }, { val: "2", active: true }, { val: "1" }, { val: "1" }, { val: "2" }]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 12,
+    "text": "Verificăm dacă count == 0. (count este 1)",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": true
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
           ]
-        },
-        {
-          label: "Parametri Boyer-Moore",
-          groups: [
-            [{ val: "candidate = 2", active: true }, { val: "count = 1", active: false }]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      line: 16,
-      text: "Incrementăm contorul de voturi: `count = 2`.",
-      blocksVisual: [
-        {
-          label: "Vector (arr)",
-          groups: [
-            [{ val: "2", active: false }, { val: "2", active: true }, { val: "1" }, { val: "1" }, { val: "2" }]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 15,
+    "text": "Verificăm dacă x == candidate. (2 == 2)",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": true
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
           ]
-        },
-        {
-          label: "Parametri Boyer-Moore",
-          groups: [
-            [{ val: "candidate = 2", active: false }, { val: "count = 2", active: true }]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      line: 11,
-      text: "Trecem la al treilea element din vector: $x = 1$.",
-      blocksVisual: [
-        {
-          label: "Vector (arr)",
-          groups: [
-            [{ val: "2", active: false }, { val: "2" }, { val: "1", active: true }, { val: "1" }, { val: "2" }]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 16,
+    "text": "count devine 2.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": true
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
           ]
-        },
-        {
-          label: "Parametri Boyer-Moore",
-          groups: [
-            [{ val: "candidate = 2", active: false }, { val: "count = 2", active: false }]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 2",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      line: 12,
-      text: "Deoarece contorul nu este zero și $x$ ($1$) este diferit de candidat ($2$), ajungem pe ramura `else`.",
-      blocksVisual: [
-        {
-          label: "Vector (arr)",
-          groups: [
-            [{ val: "2", active: false }, { val: "2" }, { val: "1", active: true }, { val: "1" }, { val: "2" }]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 11,
+    "text": "x = arr[2] = 1.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": true
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
           ]
-        },
-        {
-          label: "Parametri Boyer-Moore",
-          groups: [
-            [{ val: "candidate = 2", active: true }, { val: "count = 2", active: false }]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 2",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      line: 18,
-      text: "Decrementăm contorul de voturi, anulând un vot pentru candidatul curent: `count = 1`.",
-      blocksVisual: [
-        {
-          label: "Vector (arr)",
-          groups: [
-            [{ val: "2", active: false }, { val: "2" }, { val: "1", active: true }, { val: "1" }, { val: "2" }]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 12,
+    "text": "Verificăm dacă count == 0. (count este 2)",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": true
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
           ]
-        },
-        {
-          label: "Parametri Boyer-Moore",
-          groups: [
-            [{ val: "candidate = 2", active: false }, { val: "count = 1", active: true }]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 2",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      line: 11,
-      text: "Trecem la al patrulea element din vector: $x = 1$.",
-      blocksVisual: [
-        {
-          label: "Vector (arr)",
-          groups: [
-            [{ val: "2", active: false }, { val: "2" }, { val: "1" }, { val: "1", active: true }, { val: "2" }]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 15,
+    "text": "Verificăm dacă x == candidate. (1 == 2)",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": true
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
           ]
-        },
-        {
-          label: "Parametri Boyer-Moore",
-          groups: [
-            [{ val: "candidate = 2", active: false }, { val: "count = 1", active: false }]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 2",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      line: 12,
-      text: "Verificăm condițiile. `count` este $1$, iar $x = 1 \\neq candidate = 2$. Ajungem din nou pe ramura `else`.",
-      blocksVisual: [
-        {
-          label: "Vector (arr)",
-          groups: [
-            [{ val: "2", active: false }, { val: "2" }, { val: "1" }, { val: "1", active: true }, { val: "2" }]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 18,
+    "text": "count devine 1.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": true
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
           ]
-        },
-        {
-          label: "Parametri Boyer-Moore",
-          groups: [
-            [{ val: "candidate = 2", active: true }, { val: "count = 1", active: false }]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      line: 18,
-      text: "Decrementăm contorul de voturi: `count = 0`.",
-      blocksVisual: [
-        {
-          label: "Vector (arr)",
-          groups: [
-            [{ val: "2", active: false }, { val: "2" }, { val: "1" }, { val: "1", active: true }, { val: "2" }]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 11,
+    "text": "x = arr[3] = 1.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": true
+            },
+            {
+              "val": "2",
+              "active": false
+            }
           ]
-        },
-        {
-          label: "Parametri Boyer-Moore",
-          groups: [
-            [{ val: "candidate = 2", active: false }, { val: "count = 0", active: true }]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      line: 11,
-      text: "Trecem la ultimul element din vector: $x = 2$.",
-      blocksVisual: [
-        {
-          label: "Vector (arr)",
-          groups: [
-            [{ val: "2", active: false }, { val: "2" }, { val: "1" }, { val: "1" }, { val: "2", active: true }]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 12,
+    "text": "Verificăm dacă count == 0. (count este 1)",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": true
+            },
+            {
+              "val": "2",
+              "active": false
+            }
           ]
-        },
-        {
-          label: "Parametri Boyer-Moore",
-          groups: [
-            [{ val: "candidate = 2", active: false }, { val: "count = 0", active: false }]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      line: 12,
-      text: "Deoarece contorul de voturi a ajuns la $0$, resetăm candidatul.",
-      blocksVisual: [
-        {
-          label: "Vector (arr)",
-          groups: [
-            [{ val: "2", active: false }, { val: "2" }, { val: "1" }, { val: "1" }, { val: "2", active: true }]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 15,
+    "text": "Verificăm dacă x == candidate. (1 == 2)",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": true
+            },
+            {
+              "val": "2",
+              "active": false
+            }
           ]
-        },
-        {
-          label: "Parametri Boyer-Moore",
-          groups: [
-            [{ val: "candidate = 2", active: false }, { val: "count = 0", active: true }]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      line: 13,
-      text: "Setăm noul `candidate = 2`.",
-      blocksVisual: [
-        {
-          label: "Vector (arr)",
-          groups: [
-            [{ val: "2", active: false }, { val: "2" }, { val: "1" }, { val: "1" }, { val: "2", active: true }]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 18,
+    "text": "count devine 0.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": true
+            },
+            {
+              "val": "2",
+              "active": false
+            }
           ]
-        },
-        {
-          label: "Parametri Boyer-Moore",
-          groups: [
-            [{ val: "candidate = 2", active: true }, { val: "count = 0", active: false }]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 0",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      line: 14,
-      text: "Setăm `count = 1`. Am terminat prima parcurgere.",
-      blocksVisual: [
-        {
-          label: "Vector (arr)",
-          groups: [
-            [{ val: "2", active: false }, { val: "2" }, { val: "1" }, { val: "1" }, { val: "2", active: true }]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 11,
+    "text": "x = arr[4] = 2.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": true
+            }
           ]
-        },
-        {
-          label: "Parametri Boyer-Moore",
-          groups: [
-            [{ val: "candidate = 2", active: false }, { val: "count = 1", active: true }]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 0",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      line: 22,
-      text: "Inițializăm `actual_count = 0` pentru a verifica validitatea candidatului.",
-      blocksVisual: [
-        {
-          label: "Vector (arr)",
-          groups: [
-            [{ val: "2", active: false }, { val: "2" }, { val: "1" }, { val: "1" }, { val: "2" }]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 12,
+    "text": "Verificăm dacă count == 0. (count este 0)",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": true
+            }
           ]
-        },
-        {
-          label: "Parametri Boyer-Moore",
-          groups: [
-            [{ val: "candidate = 2", active: false }, { val: "actual_count = 0", active: true }]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 0",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      line: 23,
-      text: "Începem a doua parcurgere pentru a număra de câte ori apare candidatul ($2$) în vector. După parcurgerea completă a vectorului, vom găsi că valoarea $2$ apare de $3$ ori.",
-      blocksVisual: [
-        {
-          label: "Vector (arr)",
-          groups: [
-            [{ val: "2", active: true }, { val: "2", active: true }, { val: "1" }, { val: "1" }, { val: "2", active: true }]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 13,
+    "text": "candidate = 2.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": true
+            }
           ]
-        },
-        {
-          label: "Parametri Boyer-Moore",
-          groups: [
-            [{ val: "candidate = 2", active: false }, { val: "actual_count = 3", active: true }]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 0",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      line: 29,
-      text: "Verificăm dacă numărul de apariții ($3$) este strict mai mare decât jumătate din lungimea vectorului ($5 / 2 = 2$). Deoarece $3 > 2$, candidatul este un element majoritar valid.",
-      blocksVisual: [
-        {
-          label: "Decizie Finală",
-          groups: [
-            [{ val: "is_majority = true", active: true }]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 14,
+    "text": "count = 1.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": true
+            }
           ]
-        }
-      ]
-    }
-  ],
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 22,
+    "text": "Inițializăm actual_count = 0 pentru validare.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 23,
+    "text": "Începem a doua parcurgere a vectorului pentru a număra aparițiile candidatului.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 23,
+    "text": "x = arr[0] = 2.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 24,
+    "text": "Verificăm dacă x == candidate. (2 == 2)",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 25,
+    "text": "actual_count devine 1.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 23,
+    "text": "x = arr[1] = 2.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": true
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 24,
+    "text": "Verificăm dacă x == candidate. (2 == 2)",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": true
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 25,
+    "text": "actual_count devine 2.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": true
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 23,
+    "text": "x = arr[2] = 1.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": true
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 24,
+    "text": "Verificăm dacă x == candidate. (1 == 2)",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": true
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 23,
+    "text": "x = arr[3] = 1.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": true
+            },
+            {
+              "val": "2",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 24,
+    "text": "Verificăm dacă x == candidate. (1 == 2)",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": true
+            },
+            {
+              "val": "2",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 23,
+    "text": "x = arr[4] = 2.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 24,
+    "text": "Verificăm dacă x == candidate. (2 == 2)",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 25,
+    "text": "actual_count devine 3.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 29,
+    "text": "Calculăm is_majority = (actual_count > arr.size() / 2). (3 > 2).",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 30,
+    "text": "is_majority este true. Returnăm 0.",
+    "blocksVisual": [
+      {
+        "label": "Vector (arr)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Boyer-Moore",
+        "groups": [
+          [
+            {
+              "val": "candidate = 2",
+              "active": false
+            },
+            {
+              "val": "count = 1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  }
+],
   "debugger": {
+    
     "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const states = [{"line": 7,"locals":{"arr":[2,2,1,1,2],"candidate":-1,"count":0,"x":null,"actual_count":null,"is_majority":null}},{"line": 8,"locals":{"arr":[2,2,1,1,2],"candidate":-1,"count":0,"x":null,"actual_count":null,"is_majority":null}},{"line": 9,"locals":{"arr":[2,2,1,1,2],"candidate":-1,"count":0,"x":null,"actual_count":null,"is_majority":null}},{"line": 11,"locals":{"arr":[2,2,1,1,2],"candidate":-1,"count":0,"x":null,"actual_count":null,"is_majority":null}},{"line": 11,"locals":{"arr":[2,2,1,1,2],"candidate":-1,"count":0,"x":2,"actual_count":null,"is_majority":null}},{"line": 12,"locals":{"arr":[2,2,1,1,2],"candidate":-1,"count":0,"x":2,"actual_count":null,"is_majority":null}},{"line": 13,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":0,"x":2,"actual_count":null,"is_majority":null}},{"line": 14,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":null,"is_majority":null}},{"line": 11,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":null,"is_majority":null}},{"line": 12,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":null,"is_majority":null}},{"line": 15,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":null,"is_majority":null}},{"line": 16,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":2,"x":2,"actual_count":null,"is_majority":null}},{"line": 11,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":2,"x":1,"actual_count":null,"is_majority":null}},{"line": 12,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":2,"x":1,"actual_count":null,"is_majority":null}},{"line": 15,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":2,"x":1,"actual_count":null,"is_majority":null}},{"line": 18,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":1,"actual_count":null,"is_majority":null}},{"line": 11,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":1,"actual_count":null,"is_majority":null}},{"line": 12,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":1,"actual_count":null,"is_majority":null}},{"line": 15,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":1,"actual_count":null,"is_majority":null}},{"line": 18,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":0,"x":1,"actual_count":null,"is_majority":null}},{"line": 11,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":0,"x":2,"actual_count":null,"is_majority":null}},{"line": 12,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":0,"x":2,"actual_count":null,"is_majority":null}},{"line": 13,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":0,"x":2,"actual_count":null,"is_majority":null}},{"line": 14,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":null,"is_majority":null}},{"line": 22,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":null,"actual_count":0,"is_majority":null}},{"line": 23,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":null,"actual_count":0,"is_majority":null}},{"line": 23,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":0,"is_majority":null}},{"line": 24,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":0,"is_majority":null}},{"line": 25,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":1,"is_majority":null}},{"line": 23,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":1,"is_majority":null}},{"line": 24,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":1,"is_majority":null}},{"line": 25,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":2,"is_majority":null}},{"line": 23,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":1,"actual_count":2,"is_majority":null}},{"line": 24,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":1,"actual_count":2,"is_majority":null}},{"line": 23,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":1,"actual_count":2,"is_majority":null}},{"line": 24,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":1,"actual_count":2,"is_majority":null}},{"line": 23,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":2,"is_majority":null}},{"line": 24,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":2,"is_majority":null}},{"line": 25,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":3,"is_majority":null}},{"line": 29,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":null,"actual_count":3,"is_majority":null}},{"line": 30,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":null,"actual_count":3,"is_majority":true}}];
+      if (stepIndex >= states.length) stepIndex = states.length - 1;
+      const state = states[stepIndex];
+      const locals = state.locals;
       const vars = [];
       const globalVars = [];
-      const frames = [];
+      const frames = [{ name: "main()", file: "main.cpp", line: activeLine }];
+      
+      vars.push({ name: "arr", type: "vector<int>", val: "size = 5", expandable: true });
+      vars.push({ name: "candidate", type: "int", val: locals.candidate.toString() });
+      vars.push({ name: "count", type: "int", val: locals.count.toString() });
+      if (locals.x !== null) vars.push({ name: "x", type: "int", val: locals.x.toString() });
+      if (locals.actual_count !== null) vars.push({ name: "actual_count", type: "int", val: locals.actual_count.toString() });
+      if (locals.is_majority !== null) vars.push({ name: "is_majority", type: "bool", val: locals.is_majority.toString() });
+
       let inlineVal = null;
-
-      frames.push({ name: "main()", file: "main.cpp", line: activeLine });
-
-      vars.push({ name: "arr", type: "std::vector<int>", val: "size = 5", expandable: true });
-      if (stepIndex >= 1) {
-        let candVal = -1;
-        if (stepIndex >= 5 && stepIndex <= 18) candVal = 2;
-        if (stepIndex >= 19) candVal = 2;
-        vars.push({ name: "candidate", type: "int", val: candVal.toString(), expandable: false });
-      }
-      if (stepIndex >= 2) {
-        let countVal = 0;
-        if (stepIndex === 6 || stepIndex === 7 || stepIndex === 8 || stepIndex === 9 || stepIndex === 13 || stepIndex === 14 || stepIndex === 15 || stepIndex === 20) countVal = 1;
-        if (stepIndex === 10 || stepIndex === 11 || stepIndex === 12) countVal = 2;
-        if (stepIndex >= 21) countVal = 1;
-        vars.push({ name: "count", type: "int", val: countVal.toString(), expandable: false });
-      }
-
-      const loopIndices = {
-        3: 2, 4: 2, 5: 2, 6: 2,
-        7: 2, 8: 2, 9: 2, 10: 2,
-        11: 1, 12: 1, 13: 1,
-        14: 1, 15: 1, 16: 1,
-        17: 2, 18: 2, 19: 2, 20: 2
-      };
-      if (stepIndex in loopIndices) {
-        vars.push({ name: "x", type: "int", val: loopIndices[stepIndex].toString(), expandable: false });
-        inlineVal = `x: ${loopIndices[stepIndex]}`;
-      }
-
-      if (stepIndex >= 21) {
-        let actCount = 0;
-        if (stepIndex >= 22) actCount = 3;
-        vars.push({ name: "actual_count", type: "int", val: actCount.toString(), expandable: false });
-        if (stepIndex === 23) {
-          vars.push({ name: "is_majority", type: "bool", val: "true", expandable: false });
-        }
-        inlineVal = `actual_count: ${actCount}`;
+      if (locals.x !== null && activeLine >= 16 && activeLine <= 30) {
+          inlineVal = `x: ${locals.x}`;
+          if (activeLine === 18 || activeLine === 20 || activeLine === 29) {
+              inlineVal += `, candidate: ${locals.candidate}`;
+          }
       }
 
       return { vars, globalVars, frames, inlineVal };
     },
     "getInlineValueForLine": (stepIndex, lineNum) => {
-      if (lineNum === 12) return "arr.size(): 5";
-      const loopIndices = {
-        3: 2, 4: 2, 5: 2, 6: 2,
-        7: 2, 8: 2, 9: 2, 10: 2,
-        11: 1, 12: 1, 13: 1,
-        14: 1, 15: 1, 16: 1,
-        17: 2, 18: 2, 19: 2, 20: 2
-      };
-      if (stepIndex in loopIndices) {
-        if (lineNum === 16 || lineNum === 17 || lineNum === 20) {
-          return `x: ${loopIndices[stepIndex]}`;
-        }
-      }
-      if (stepIndex >= 21) {
-        if (lineNum === 28 || lineNum === 29 || lineNum === 30) {
-          let actCount = (stepIndex >= 22) ? 3 : 0;
-          return `actual_count: ${actCount}`;
-        }
-      }
+      const states = [{"line": 7,"locals":{"arr":[2,2,1,1,2],"candidate":-1,"count":0,"x":null,"actual_count":null,"is_majority":null}},{"line": 8,"locals":{"arr":[2,2,1,1,2],"candidate":-1,"count":0,"x":null,"actual_count":null,"is_majority":null}},{"line": 9,"locals":{"arr":[2,2,1,1,2],"candidate":-1,"count":0,"x":null,"actual_count":null,"is_majority":null}},{"line": 11,"locals":{"arr":[2,2,1,1,2],"candidate":-1,"count":0,"x":null,"actual_count":null,"is_majority":null}},{"line": 11,"locals":{"arr":[2,2,1,1,2],"candidate":-1,"count":0,"x":2,"actual_count":null,"is_majority":null}},{"line": 12,"locals":{"arr":[2,2,1,1,2],"candidate":-1,"count":0,"x":2,"actual_count":null,"is_majority":null}},{"line": 13,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":0,"x":2,"actual_count":null,"is_majority":null}},{"line": 14,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":null,"is_majority":null}},{"line": 11,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":null,"is_majority":null}},{"line": 12,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":null,"is_majority":null}},{"line": 15,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":null,"is_majority":null}},{"line": 16,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":2,"x":2,"actual_count":null,"is_majority":null}},{"line": 11,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":2,"x":1,"actual_count":null,"is_majority":null}},{"line": 12,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":2,"x":1,"actual_count":null,"is_majority":null}},{"line": 15,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":2,"x":1,"actual_count":null,"is_majority":null}},{"line": 18,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":1,"actual_count":null,"is_majority":null}},{"line": 11,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":1,"actual_count":null,"is_majority":null}},{"line": 12,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":1,"actual_count":null,"is_majority":null}},{"line": 15,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":1,"actual_count":null,"is_majority":null}},{"line": 18,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":0,"x":1,"actual_count":null,"is_majority":null}},{"line": 11,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":0,"x":2,"actual_count":null,"is_majority":null}},{"line": 12,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":0,"x":2,"actual_count":null,"is_majority":null}},{"line": 13,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":0,"x":2,"actual_count":null,"is_majority":null}},{"line": 14,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":null,"is_majority":null}},{"line": 22,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":null,"actual_count":0,"is_majority":null}},{"line": 23,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":null,"actual_count":0,"is_majority":null}},{"line": 23,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":0,"is_majority":null}},{"line": 24,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":0,"is_majority":null}},{"line": 25,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":1,"is_majority":null}},{"line": 23,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":1,"is_majority":null}},{"line": 24,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":1,"is_majority":null}},{"line": 25,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":2,"is_majority":null}},{"line": 23,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":1,"actual_count":2,"is_majority":null}},{"line": 24,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":1,"actual_count":2,"is_majority":null}},{"line": 23,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":1,"actual_count":2,"is_majority":null}},{"line": 24,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":1,"actual_count":2,"is_majority":null}},{"line": 23,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":2,"is_majority":null}},{"line": 24,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":2,"is_majority":null}},{"line": 25,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":2,"actual_count":3,"is_majority":null}},{"line": 29,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":null,"actual_count":3,"is_majority":null}},{"line": 30,"locals":{"arr":[2,2,1,1,2],"candidate":2,"count":1,"x":null,"actual_count":3,"is_majority":true}}];
+      if (stepIndex >= states.length) stepIndex = states.length - 1;
+      const state = states[stepIndex];
+      const locals = state.locals;
+      if (locals.x !== null && (lineNum === 11 || lineNum === 23)) return `x: ${locals.x}`;
       return null;
     }
+
   },
   problems: {
     easy: [

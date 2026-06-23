@@ -41,7 +41,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 13,
+      "line": 7,
       "text": "Inițializăm numărul de elemente $N = 5$.",
       "blocksVisual": [
         {
@@ -53,7 +53,7 @@ int main() {
       ]
     },
     {
-      "line": 14,
+      "line": 8,
       "text": "Inițializăm vectorul real `arr` cu 0. Dimensiunea este $N + 1$ (indexare de la 1).",
       "blocksVisual": [
         {
@@ -65,7 +65,7 @@ int main() {
       ]
     },
     {
-      "line": 15,
+      "line": 9,
       "text": "Inițializăm vectorul de diferențe `diff` cu 0. Are dimensiune $N + 2$ pentru a preveni erori la modificarea indicelui $R + 1$.",
       "blocksVisual": [
         {
@@ -77,7 +77,7 @@ int main() {
       ]
     },
     {
-      "line": 18,
+      "line": 12,
       "text": "Primul update: Adăugăm $10$ pe intervalul $[1, 3]$. Adăugăm $10$ la poziția de start $L=1$ a vectorului de diferențe.",
       "blocksVisual": [
         {
@@ -89,7 +89,7 @@ int main() {
       ]
     },
     {
-      "line": 19,
+      "line": 13,
       "text": "Pentru primul update, scădem $10$ la poziția imediat următoare intervalului $R + 1 = 4$: `diff[4] -= 10`.",
       "blocksVisual": [
         {
@@ -101,7 +101,7 @@ int main() {
       ]
     },
     {
-      "line": 22,
+      "line": 16,
       "text": "Al doilea update: Adăugăm $20$ pe intervalul $[2, 5]$. Adăugăm $20$ la poziția de start $L=2$: `diff[2] += 20`.",
       "blocksVisual": [
         {
@@ -113,7 +113,7 @@ int main() {
       ]
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "Pentru al doilea update, scădem $20$ la poziția imediat următoare $R + 1 = 6$: `diff[6] -= 20`.",
       "blocksVisual": [
         {
@@ -125,7 +125,7 @@ int main() {
       ]
     },
     {
-      "line": 26,
+      "line": 20,
       "text": "Al treilea update: Adăugăm $5$ pe intervalul $[3, 4]$. Adăugăm $5$ la poziția de start $L=3$: `diff[3] += 5`.",
       "blocksVisual": [
         {
@@ -137,7 +137,7 @@ int main() {
       ]
     },
     {
-      "line": 27,
+      "line": 21,
       "text": "Pentru al treilea update, scădem $5$ la poziția $R + 1 = 5$: `diff[5] -= 5`.",
       "blocksVisual": [
         {
@@ -149,7 +149,7 @@ int main() {
       ]
     },
     {
-      "line": 30,
+      "line": 24,
       "text": "Începem bucla de reconstrucție prin sume parțiale: `arr[i] = arr[i - 1] + diff[i]`. Pornim de la $i = 1$.",
       "blocksVisual": [
         {
@@ -161,7 +161,7 @@ int main() {
       ]
     },
     {
-      "line": 31,
+      "line": 25,
       "text": "Calculăm `arr[1] = arr[0] + diff[1] = 0 + 10 = 10`.",
       "blocksVisual": [
         {
@@ -173,7 +173,7 @@ int main() {
       ]
     },
     {
-      "line": 30,
+      "line": 24,
       "text": "Trecem la următoarea iterație: $i = 2$.",
       "blocksVisual": [
         {
@@ -185,7 +185,7 @@ int main() {
       ]
     },
     {
-      "line": 31,
+      "line": 25,
       "text": "Calculăm `arr[2] = arr[1] + diff[2] = 10 + 20 = 30`.",
       "blocksVisual": [
         {
@@ -197,7 +197,7 @@ int main() {
       ]
     },
     {
-      "line": 30,
+      "line": 24,
       "text": "Trecem la următoarea iterație: $i = 3$.",
       "blocksVisual": [
         {
@@ -209,7 +209,7 @@ int main() {
       ]
     },
     {
-      "line": 31,
+      "line": 25,
       "text": "Calculăm `arr[3] = arr[2] + diff[3] = 30 + 5 = 35`.",
       "blocksVisual": [
         {
@@ -221,7 +221,7 @@ int main() {
       ]
     },
     {
-      "line": 30,
+      "line": 24,
       "text": "Trecem la următoarea iterație: $i = 4$.",
       "blocksVisual": [
         {
@@ -233,7 +233,7 @@ int main() {
       ]
     },
     {
-      "line": 31,
+      "line": 25,
       "text": "Calculăm `arr[4] = arr[3] + diff[4] = 35 + (-10) = 25`.",
       "blocksVisual": [
         {
@@ -245,7 +245,7 @@ int main() {
       ]
     },
     {
-      "line": 30,
+      "line": 24,
       "text": "Trecem la ultima iterație a buclei de reconstrucție: $i = 5$.",
       "blocksVisual": [
         {
@@ -257,7 +257,7 @@ int main() {
       ]
     },
     {
-      "line": 31,
+      "line": 25,
       "text": "Calculăm `arr[5] = arr[4] + diff[5] = 25 + (-5) = 20`.",
       "blocksVisual": [
         {
@@ -269,7 +269,7 @@ int main() {
       ]
     },
     {
-      "line": 35,
+      "line": 29,
       "text": "Începem bucla de afișare pentru elementele finale, de la pozițiile $1$ la $5$.",
       "blocksVisual": [
         {
@@ -281,7 +281,7 @@ int main() {
       ]
     },
     {
-      "line": 36,
+      "line": 30,
       "text": "Afișăm valoarea finală de pe poziția curentă din `arr`.",
       "blocksVisual": [
         {
@@ -293,7 +293,7 @@ int main() {
       ]
     },
     {
-      "line": 39,
+      "line": 33,
       "text": "Programul returnează 0 și se încheie cu succes.",
       "blocksVisual": [
         {
@@ -382,7 +382,7 @@ int main() {
       ];
       const curr = trace[stepIndex];
       if (!curr) return null;
-      if (lineNum >= 30 && lineNum <= 36) {
+      if (lineNum >= 24 && lineNum <= 30) {
         return curr.i !== -1 ? "i: " + curr.i : null;
       }
       return null;

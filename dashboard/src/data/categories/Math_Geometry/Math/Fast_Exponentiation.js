@@ -43,220 +43,147 @@ int main() {
 }
 `,
   "explanations": [
-    {
-      "line": 20,
-      "text": "Apelăm funcția `fastExponentiation` cu baza $3$, exponentul $13$ și modulul $10$, calculând $3^{13} \\pmod{10}$.",
-      "blocksVisual": [
-        {
-          "label": "Parametri apel",
-          "groups": [
-            [
-              { "val": "base = 3", "active": true },
-              { "val": "exp = 13", "active": true },
-              { "val": "mod = 10", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 7,
-      "text": "Inițializăm `result` cu $1$. Această variabilă va acumula factorii de înmulțire când exponentul este impar.",
-      "blocksVisual": [
-        {
-          "label": "Stare",
-          "groups": [
-            [
-              { "val": "result = 1", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 8,
-      "text": "Aplicăm operația modulo pe baza inițială pentru a preveni depășirea limitelor: `base = 3 % 10 = 3`.",
-      "blocksVisual": [
-        {
-          "label": "Stare",
-          "groups": [
-            [
-              { "val": "base = 3", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 9,
-      "text": "Prima iterație a buclei `while`. Exponentul curent `exp = 13` este mai mare decât $0$, deci continuăm.",
-      "blocksVisual": [
-        {
-          "label": "Condiție buclă",
-          "groups": [
-            [
-              { "val": "exp = 13 > 0", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 11,
-      "text": "Deoarece `13` este impar, înmulțim rezultatul cu baza curentă și aplicăm modulo: `result = (1 * 3) % 10 = 3`.",
-      "blocksVisual": [
-        {
-          "label": "Actualizare result",
-          "groups": [
-            [
-              { "val": "result = 3", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 13,
-      "text": "Ridicăm baza la pătrat pentru următorul bit al exponentului: `base = (3 * 3) % 10 = 9`.",
-      "blocksVisual": [
-        {
-          "label": "Actualizare bază",
-          "groups": [
-            [
-              { "val": "base = 9", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 14,
-      "text": "Înjumătățim exponentul prin împărțire întreagă: `exp = 13 / 2 = 6`.",
-      "blocksVisual": [
-        {
-          "label": "Actualizare exponent",
-          "groups": [
-            [
-              { "val": "exp = 6", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 9,
-      "text": "A doua iterație. `exp = 6 > 0`. Fiind par (`6 % 2 == 0`), nu actualizăm `result`. Ridicăm baza la pătrat: `base = (9 * 9) % 10 = 1`.",
-      "blocksVisual": [
-        {
-          "label": "Stare iterația 2",
-          "groups": [
-            [
-              { "val": "exp = 6" },
-              { "val": "base = 1", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 14,
-      "text": "Înjumătățim exponentul: `exp = 6 / 2 = 3`.",
-      "blocksVisual": [
-        {
-          "label": "Actualizare exponent",
-          "groups": [
-            [
-              { "val": "exp = 3", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 9,
-      "text": "A treia iterație. `exp = 3 > 0` este impar, deci înmulțim rezultatul cu baza: `result = (3 * 1) % 10 = 3`.",
-      "blocksVisual": [
-        {
-          "label": "Stare iterația 3",
-          "groups": [
-            [
-              { "val": "result = 3", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 13,
-      "text": "Ridicăm baza la pătrat: `base = (1 * 1) % 10 = 1`.",
-      "blocksVisual": [
-        {
-          "label": "Actualizare bază",
-          "groups": [
-            [
-              { "val": "base = 1", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 14,
-      "text": "Înjumătățim exponentul: `exp = 3 / 2 = 1`.",
-      "blocksVisual": [
-        {
-          "label": "Actualizare exponent",
-          "groups": [
-            [
-              { "val": "exp = 1", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 9,
-      "text": "A patra iterație. `exp = 1 > 0` este impar, deci înmulțim: `result = (3 * 1) % 10 = 3`.",
-      "blocksVisual": [
-        {
-          "label": "Stare iterația 4",
-          "groups": [
-            [
-              { "val": "result = 3", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 14,
-      "text": "Înjumătățim exponentul final: `exp = 1 / 2 = 0`. Bucla `while` se va încheia deoarece condiția `exp > 0` devine falsă.",
-      "blocksVisual": [
-        {
-          "label": "Actualizare exponent",
-          "groups": [
-            [
-              { "val": "exp = 0", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 16,
-      "text": "Returnăm valoarea finală a variabilei `result`, adică $3$. Într-adevăr, $3^{13} = 1594323$, iar ultimul său cifră este $3$.",
-      "blocksVisual": [
-        {
-          "label": "Rezultat final",
-          "groups": [
-            [
-              { "val": "Ans = 3", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    }
-  ],
+  {
+    "line": 18,
+    "text": "Apelam fastExponentiation(3, 13, 10)",
+    "blocksVisual": []
+  },
+  {
+    "line": 5,
+    "text": "Intram in functie.",
+    "blocksVisual": []
+  },
+  {
+    "line": 6,
+    "text": "result = 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 7,
+    "text": "base = base % mod; base = 3",
+    "blocksVisual": []
+  },
+  {
+    "line": 8,
+    "text": "while (exp > 0)",
+    "blocksVisual": []
+  },
+  {
+    "line": 9,
+    "text": "if (exp % 2 == 1)",
+    "blocksVisual": []
+  },
+  {
+    "line": 10,
+    "text": "result = (result * base) % mod; result = 3",
+    "blocksVisual": []
+  },
+  {
+    "line": 12,
+    "text": "base = (base * base) % mod; base = 9",
+    "blocksVisual": []
+  },
+  {
+    "line": 13,
+    "text": "exp = exp / 2; exp = 6",
+    "blocksVisual": []
+  },
+  {
+    "line": 8,
+    "text": "while (exp > 0)",
+    "blocksVisual": []
+  },
+  {
+    "line": 9,
+    "text": "if (exp % 2 == 1)",
+    "blocksVisual": []
+  },
+  {
+    "line": 12,
+    "text": "base = (base * base) % mod; base = 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 13,
+    "text": "exp = exp / 2; exp = 3",
+    "blocksVisual": []
+  },
+  {
+    "line": 8,
+    "text": "while (exp > 0)",
+    "blocksVisual": []
+  },
+  {
+    "line": 9,
+    "text": "if (exp % 2 == 1)",
+    "blocksVisual": []
+  },
+  {
+    "line": 10,
+    "text": "result = (result * base) % mod; result = 3",
+    "blocksVisual": []
+  },
+  {
+    "line": 12,
+    "text": "base = (base * base) % mod; base = 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 13,
+    "text": "exp = exp / 2; exp = 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 8,
+    "text": "while (exp > 0)",
+    "blocksVisual": []
+  },
+  {
+    "line": 9,
+    "text": "if (exp % 2 == 1)",
+    "blocksVisual": []
+  },
+  {
+    "line": 10,
+    "text": "result = (result * base) % mod; result = 3",
+    "blocksVisual": []
+  },
+  {
+    "line": 12,
+    "text": "base = (base * base) % mod; base = 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 13,
+    "text": "exp = exp / 2; exp = 0",
+    "blocksVisual": []
+  },
+  {
+    "line": 8,
+    "text": "while (exp > 0)",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "return result",
+    "blocksVisual": []
+  },
+  {
+    "line": 19,
+    "text": "ans = 3",
+    "blocksVisual": []
+  },
+  {
+    "line": 20,
+    "text": "cout",
+    "blocksVisual": []
+  },
+  {
+    "line": 21,
+    "text": "return 0",
+    "blocksVisual": []
+  }
+],
   "problems": {
     "easy": [
       {
@@ -281,65 +208,15 @@ int main() {
     ]
   },
   "debugger": {
-    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
-      const vars = [];
-      const globalVars = [];
-      const frames = [];
-      let inlineVal = null;
-
-      const states = [
-        { f: [{ name: 'main()', file: 'main.cpp', line: 20 }], v: [] },
-        { f: [{ name: 'fastExponentiation(3, 13, 10)', file: 'main.cpp', line: 7 }, { name: 'main()', file: 'main.cpp', line: 20 }], v: [{ name: 'base', type: 'long long', val: 3 }, { name: 'exp', type: 'long long', val: 13 }, { name: 'mod', type: 'long long', val: 10 }, { name: 'result', type: 'long long', val: 1 }] },
-        { f: [{ name: 'fastExponentiation(3, 13, 10)', file: 'main.cpp', line: 8 }, { name: 'main()', file: 'main.cpp', line: 20 }], v: [{ name: 'base', type: 'long long', val: 3 }, { name: 'exp', type: 'long long', val: 13 }, { name: 'mod', type: 'long long', val: 10 }, { name: 'result', type: 'long long', val: 1 }] },
-        { f: [{ name: 'fastExponentiation(3, 13, 10)', file: 'main.cpp', line: 9 }, { name: 'main()', file: 'main.cpp', line: 20 }], v: [{ name: 'base', type: 'long long', val: 3 }, { name: 'exp', type: 'long long', val: 13 }, { name: 'mod', type: 'long long', val: 10 }, { name: 'result', type: 'long long', val: 1 }] },
-        { f: [{ name: 'fastExponentiation(3, 13, 10)', file: 'main.cpp', line: 11 }, { name: 'main()', file: 'main.cpp', line: 20 }], v: [{ name: 'base', type: 'long long', val: 3 }, { name: 'exp', type: 'long long', val: 13 }, { name: 'mod', type: 'long long', val: 10 }, { name: 'result', type: 'long long', val: 3 }] },
-        { f: [{ name: 'fastExponentiation(3, 13, 10)', file: 'main.cpp', line: 13 }, { name: 'main()', file: 'main.cpp', line: 20 }], v: [{ name: 'base', type: 'long long', val: 9 }, { name: 'exp', type: 'long long', val: 13 }, { name: 'mod', type: 'long long', val: 10 }, { name: 'result', type: 'long long', val: 3 }] },
-        { f: [{ name: 'fastExponentiation(3, 13, 10)', file: 'main.cpp', line: 14 }, { name: 'main()', file: 'main.cpp', line: 20 }], v: [{ name: 'base', type: 'long long', val: 9 }, { name: 'exp', type: 'long long', val: 6 }, { name: 'mod', type: 'long long', val: 10 }, { name: 'result', type: 'long long', val: 3 }] },
-        { f: [{ name: 'fastExponentiation(3, 13, 10)', file: 'main.cpp', line: 9 }, { name: 'main()', file: 'main.cpp', line: 20 }], v: [{ name: 'base', type: 'long long', val: 1 }, { name: 'exp', type: 'long long', val: 6 }, { name: 'mod', type: 'long long', val: 10 }, { name: 'result', type: 'long long', val: 3 }] },
-        { f: [{ name: 'fastExponentiation(3, 13, 10)', file: 'main.cpp', line: 14 }, { name: 'main()', file: 'main.cpp', line: 20 }], v: [{ name: 'base', type: 'long long', val: 1 }, { name: 'exp', type: 'long long', val: 3 }, { name: 'mod', type: 'long long', val: 10 }, { name: 'result', type: 'long long', val: 3 }] },
-        { f: [{ name: 'fastExponentiation(3, 13, 10)', file: 'main.cpp', line: 9 }, { name: 'main()', file: 'main.cpp', line: 20 }], v: [{ name: 'base', type: 'long long', val: 1 }, { name: 'exp', type: 'long long', val: 3 }, { name: 'mod', type: 'long long', val: 10 }, { name: 'result', type: 'long long', val: 3 }] },
-        { f: [{ name: 'fastExponentiation(3, 13, 10)', file: 'main.cpp', line: 13 }, { name: 'main()', file: 'main.cpp', line: 20 }], v: [{ name: 'base', type: 'long long', val: 1 }, { name: 'exp', type: 'long long', val: 3 }, { name: 'mod', type: 'long long', val: 10 }, { name: 'result', type: 'long long', val: 3 }] },
-        { f: [{ name: 'fastExponentiation(3, 13, 10)', file: 'main.cpp', line: 14 }, { name: 'main()', file: 'main.cpp', line: 20 }], v: [{ name: 'base', type: 'long long', val: 1 }, { name: 'exp', type: 'long long', val: 1 }, { name: 'mod', type: 'long long', val: 10 }, { name: 'result', type: 'long long', val: 3 }] },
-        { f: [{ name: 'fastExponentiation(3, 13, 10)', file: 'main.cpp', line: 9 }, { name: 'main()', file: 'main.cpp', line: 20 }], v: [{ name: 'base', type: 'long long', val: 1 }, { name: 'exp', type: 'long long', val: 1 }, { name: 'mod', type: 'long long', val: 10 }, { name: 'result', type: 'long long', val: 3 }] },
-        { f: [{ name: 'fastExponentiation(3, 13, 10)', file: 'main.cpp', line: 14 }, { name: 'main()', file: 'main.cpp', line: 20 }], v: [{ name: 'base', type: 'long long', val: 1 }, { name: 'exp', type: 'long long', val: 0 }, { name: 'mod', type: 'long long', val: 10 }, { name: 'result', type: 'long long', val: 3 }] },
-        { f: [{ name: 'fastExponentiation(3, 13, 10)', file: 'main.cpp', line: 16 }, { name: 'main()', file: 'main.cpp', line: 20 }], v: [{ name: 'base', type: 'long long', val: 1 }, { name: 'exp', type: 'long long', val: 0 }, { name: 'mod', type: 'long long', val: 10 }, { name: 'result', type: 'long long', val: 3 }] }
-      ];
-
+    "getDebuggerState": (stepIndex) => {
+      const states = [{"vars":[],"frames":[{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"Apel"},{"vars":[{"name":"base","type":"long long","val":"3","expandable":false},{"name":"exp","type":"long long","val":"13","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":null},{"vars":[{"name":"base","type":"long long","val":"3","expandable":false},{"name":"exp","type":"long long","val":"13","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"1","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"result = 1"},{"vars":[{"name":"base","type":"long long","val":"3","expandable":false},{"name":"exp","type":"long long","val":"13","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"1","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"base = 3"},{"vars":[{"name":"base","type":"long long","val":"3","expandable":false},{"name":"exp","type":"long long","val":"13","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"1","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"exp = 13"},{"vars":[{"name":"base","type":"long long","val":"3","expandable":false},{"name":"exp","type":"long long","val":"13","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"1","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":null},{"vars":[{"name":"base","type":"long long","val":"3","expandable":false},{"name":"exp","type":"long long","val":"13","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"result = 3"},{"vars":[{"name":"base","type":"long long","val":"9","expandable":false},{"name":"exp","type":"long long","val":"13","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"base = 9"},{"vars":[{"name":"base","type":"long long","val":"9","expandable":false},{"name":"exp","type":"long long","val":"6","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"exp = 6"},{"vars":[{"name":"base","type":"long long","val":"9","expandable":false},{"name":"exp","type":"long long","val":"6","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"exp = 6"},{"vars":[{"name":"base","type":"long long","val":"9","expandable":false},{"name":"exp","type":"long long","val":"6","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":null},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"6","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"base = 1"},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"3","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"exp = 3"},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"3","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"exp = 3"},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"3","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":null},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"3","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"result = 3"},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"3","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"base = 1"},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"1","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"exp = 1"},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"1","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"exp = 1"},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"1","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":null},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"1","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"result = 3"},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"1","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"base = 1"},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"0","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"exp = 0"},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"0","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"exp = 0"},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"0","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"return 3"},{"vars":[{"name":"ans","type":"long long","val":"3","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"ans = 3"},{"vars":[{"name":"ans","type":"long long","val":"3","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":null},{"vars":[{"name":"ans","type":"long long","val":"3","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":null}];
       const s = states[stepIndex] || states[states.length - 1];
-      s.v.forEach(v => vars.push({ ...v, expandable: false }));
-      s.f.forEach(fr => frames.push(fr));
-      if (stepIndex > 0 && stepIndex < 15) {
-        inlineVal = `base: ${vars.find(v => v.name === 'base')?.val}, exp: ${vars.find(v => v.name === 'exp')?.val}, result: ${vars.find(v => v.name === 'result')?.val}`;
-      }
-      return { vars, globalVars, frames, inlineVal };
+      return { vars: s.vars, globalVars: [], frames: s.frames, inlineVal: s.inlineVal };
     },
     "getInlineValueForLine": (stepIndex, lineNum) => {
-      const states = [
-        { base: 3, exp: 13, result: 1 }, // 0
-        { base: 3, exp: 13, result: 1 }, // 1
-        { base: 3, exp: 13, result: 1 }, // 2
-        { base: 3, exp: 13, result: 1 }, // 3
-        { base: 3, exp: 13, result: 3 }, // 4
-        { base: 9, exp: 13, result: 3 }, // 5
-        { base: 9, exp: 6, result: 3 }, // 6
-        { base: 1, exp: 6, result: 3 }, // 7
-        { base: 1, exp: 3, result: 3 }, // 8
-        { base: 1, exp: 3, result: 3 }, // 9
-        { base: 1, exp: 3, result: 3 }, // 10
-        { base: 1, exp: 1, result: 3 }, // 11
-        { base: 1, exp: 1, result: 3 }, // 12
-        { base: 1, exp: 0, result: 3 }, // 13
-        { base: 1, exp: 0, result: 3 }  // 14
-      ];
+      const states = [{"vars":[],"frames":[{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"Apel"},{"vars":[{"name":"base","type":"long long","val":"3","expandable":false},{"name":"exp","type":"long long","val":"13","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":null},{"vars":[{"name":"base","type":"long long","val":"3","expandable":false},{"name":"exp","type":"long long","val":"13","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"1","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"result = 1"},{"vars":[{"name":"base","type":"long long","val":"3","expandable":false},{"name":"exp","type":"long long","val":"13","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"1","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"base = 3"},{"vars":[{"name":"base","type":"long long","val":"3","expandable":false},{"name":"exp","type":"long long","val":"13","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"1","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"exp = 13"},{"vars":[{"name":"base","type":"long long","val":"3","expandable":false},{"name":"exp","type":"long long","val":"13","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"1","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":null},{"vars":[{"name":"base","type":"long long","val":"3","expandable":false},{"name":"exp","type":"long long","val":"13","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"result = 3"},{"vars":[{"name":"base","type":"long long","val":"9","expandable":false},{"name":"exp","type":"long long","val":"13","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"base = 9"},{"vars":[{"name":"base","type":"long long","val":"9","expandable":false},{"name":"exp","type":"long long","val":"6","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"exp = 6"},{"vars":[{"name":"base","type":"long long","val":"9","expandable":false},{"name":"exp","type":"long long","val":"6","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"exp = 6"},{"vars":[{"name":"base","type":"long long","val":"9","expandable":false},{"name":"exp","type":"long long","val":"6","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":null},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"6","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"base = 1"},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"3","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"exp = 3"},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"3","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"exp = 3"},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"3","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":null},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"3","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"result = 3"},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"3","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"base = 1"},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"1","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"exp = 1"},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"1","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"exp = 1"},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"1","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":null},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"1","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"result = 3"},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"1","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"base = 1"},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"0","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"exp = 0"},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"0","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"exp = 0"},{"vars":[{"name":"base","type":"long long","val":"1","expandable":false},{"name":"exp","type":"long long","val":"0","expandable":false},{"name":"mod","type":"long long","val":"10","expandable":false},{"name":"result","type":"long long","val":"3","expandable":false}],"frames":[{"name":"fastExponentiation(3, 13, 10)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"return 3"},{"vars":[{"name":"ans","type":"long long","val":"3","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":"ans = 3"},{"vars":[{"name":"ans","type":"long long","val":"3","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":null},{"vars":[{"name":"ans","type":"long long","val":"3","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 18}],"inlineVal":null}];
       const s = states[stepIndex] || states[states.length - 1];
-      if (lineNum === 7) return `result: ${s.result}`;
-      if (lineNum === 8) return `base: ${s.base}`;
-      if (lineNum === 9) return `exp: ${s.exp}`;
-      if (lineNum === 11) return `result: ${s.result}`;
-      if (lineNum === 13) return `base: ${s.base}`;
-      if (lineNum === 14) return `exp: ${s.exp}`;
-      if (lineNum === 16) return `result: ${s.result}`;
-      if (lineNum === 20) return `ans: 3`;
+      if (s.inlineVal && s.frames.length > 0 && s.frames[0].line === lineNum) return s.inlineVal;
       return null;
     }
   }

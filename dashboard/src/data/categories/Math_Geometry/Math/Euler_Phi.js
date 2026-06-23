@@ -49,178 +49,97 @@ int main() {
 }
 `,
   "explanations": [
-    {
-      "line": 23,
-      "text": "Apelăm funcția `eulerPhi(12)` pentru a calcula valoarea indicatorului $\\phi(12)$.",
-      "blocksVisual": [
-        {
-          "label": "Input",
-          "groups": [
-            [
-              { "val": "n = 12", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 7,
-      "text": "Inițializăm `result` cu valoarea lui $n$ ($12$). Pe măsură ce găsim factori primi distincti, vom reduce valoarea lui `result`.",
-      "blocksVisual": [
-        {
-          "label": "Stare",
-          "groups": [
-            [
-              { "val": "n = 12" },
-              { "val": "result = 12", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 8,
-      "text": "Pornim bucla `for` pentru a căuta factori primi începând cu $p = 2$. Condiția `p * p <= n` ($4 \\le 12$) este îndeplinită.",
-      "blocksVisual": [
-        {
-          "label": "Căutare factori",
-          "groups": [
-            [
-              { "val": "p = 2", "active": true },
-              { "val": "p*p = 4 <= 12?" }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 9,
-      "text": "Verificăm dacă $p = 2$ divide pe $n = 12$. Cum $12 \\pmod 2 == 0$, am găsit un factor prim distinct.",
-      "blocksVisual": [
-        {
-          "label": "Divizibilitate",
-          "groups": [
-            [
-              { "val": "12 % 2 == 0 (DA)", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 10,
-      "text": "Intrăm în bucla `while` pentru a elimina complet factorul prim $2$ din valoarea lui $n$.",
-      "blocksVisual": [
-        {
-          "label": "Buclă eliminare",
-          "groups": [
-            [
-              { "val": "n = 12" }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 11,
-      "text": "Împărțim repetat pe $n$ la $2$: $n = 12 / 2 = 6$, apoi $6 / 2 = 3$. Bucla se termină când $3 \\pmod 2 \\neq 0$.",
-      "blocksVisual": [
-        {
-          "label": "Actualizare n",
-          "groups": [
-            [
-              { "val": "n = 3", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 13,
-      "text": "Actualizăm `result` conform formulei pentru factorul prim $2$: `result = result - result / 2` $\\implies 12 - 6 = 6$.",
-      "blocksVisual": [
-        {
-          "label": "Actualizare result",
-          "groups": [
-            [
-              { "val": "result = 6", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 8,
-      "text": "Incrementăm $p$ la $3$. Verificăm condiția buclei: $p \\times p = 9$. Cum $9 > n$ ($9 > 3$, unde $3$ este valoarea curentă a lui $n$), bucla se oprește.",
-      "blocksVisual": [
-        {
-          "label": "Căutare factori",
-          "groups": [
-            [
-              { "val": "p = 3" },
-              { "val": "p*p = 9 <= 3? (NU)", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 16,
-      "text": "Ieșim din buclă și verificăm dacă valoarea rămasă pentru $n$ este $> 1$. În cazul nostru, $n = 3$, deci condiția este adevărată.",
-      "blocksVisual": [
-        {
-          "label": "Verificare rest",
-          "groups": [
-            [
-              { "val": "n = 3 > 1? (DA)", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 17,
-      "text": "Deoarece $n = 3$ este ultimul factor prim distinct, actualizăm indicatorul: `result = result - result / 3` $\\implies 6 - 2 = 4$.",
-      "blocksVisual": [
-        {
-          "label": "Actualizare finală",
-          "groups": [
-            [
-              { "val": "result = 4", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 19,
-      "text": "Returnăm valoarea indicatorului `result`, care este $4$.",
-      "blocksVisual": [
-        {
-          "label": "Rezultat",
-          "groups": [
-            [
-              { "val": "4", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 24,
-      "text": "Afișăm rezultatul $\\phi(12) = 4$. Într-adevăr, există $4$ numere mai mici decât 12 și prime cu el: $\\{1, 5, 7, 11\\}$.",
-      "blocksVisual": [
-        {
-          "label": "Output",
-          "groups": [
-            [
-              { "val": "phi(12) = 4", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    }
-  ],
+  {
+    "line": 21,
+    "text": "Apelam eulerPhi(12).",
+    "blocksVisual": []
+  },
+  {
+    "line": 5,
+    "text": "Intram in functie.",
+    "blocksVisual": []
+  },
+  {
+    "line": 6,
+    "text": "Initializam result = n",
+    "blocksVisual": []
+  },
+  {
+    "line": 7,
+    "text": "Verificam factor p = 2. 2*2 <= 12",
+    "blocksVisual": []
+  },
+  {
+    "line": 8,
+    "text": "Verificam daca n % p == 0: 12 % 2",
+    "blocksVisual": []
+  },
+  {
+    "line": 9,
+    "text": "Intram in bucla while(n % p == 0)",
+    "blocksVisual": []
+  },
+  {
+    "line": 10,
+    "text": "n /= p; n devine 6",
+    "blocksVisual": []
+  },
+  {
+    "line": 9,
+    "text": "Verificam while(n % p == 0)",
+    "blocksVisual": []
+  },
+  {
+    "line": 10,
+    "text": "n /= p; n devine 3",
+    "blocksVisual": []
+  },
+  {
+    "line": 9,
+    "text": "Verificam while(n % p == 0)",
+    "blocksVisual": []
+  },
+  {
+    "line": 12,
+    "text": "result -= result / p; result devine 6",
+    "blocksVisual": []
+  },
+  {
+    "line": 7,
+    "text": "p*p depaseste n. Iesim din bucla for.",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "Verificam daca n > 1: n = 3",
+    "blocksVisual": []
+  },
+  {
+    "line": 16,
+    "text": "n > 1, result -= result / n; result devine 4",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "Returnam result = 4",
+    "blocksVisual": []
+  },
+  {
+    "line": 22,
+    "text": "A primit 4 in ans",
+    "blocksVisual": []
+  },
+  {
+    "line": 23,
+    "text": "Afisam",
+    "blocksVisual": []
+  },
+  {
+    "line": 24,
+    "text": "Sfarsit",
+    "blocksVisual": []
+  }
+],
   "problems": {
     "easy": [
       {
@@ -245,48 +164,15 @@ int main() {
     ]
   },
   "debugger": {
-    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
-      const vars = [];
-      const globalVars = [];
-      const frames = [];
-      let inlineVal = null;
-
-      const states = [
-        { f: [{ name: 'main()', file: 'main.cpp', line: 23 }], v: [] },
-        { f: [{ name: 'eulerPhi(12)', file: 'main.cpp', line: 7 }, { name: 'main()', file: 'main.cpp', line: 23 }], v: [{ name: 'n', type: 'int', val: 12 }, { name: 'result', type: 'int', val: 12 }] },
-        { f: [{ name: 'eulerPhi(12)', file: 'main.cpp', line: 8 }, { name: 'main()', file: 'main.cpp', line: 23 }], v: [{ name: 'n', type: 'int', val: 12 }, { name: 'result', type: 'int', val: 12 }, { name: 'p', type: 'int', val: 2 }] },
-        { f: [{ name: 'eulerPhi(12)', file: 'main.cpp', line: 9 }, { name: 'main()', file: 'main.cpp', line: 23 }], v: [{ name: 'n', type: 'int', val: 12 }, { name: 'result', type: 'int', val: 12 }, { name: 'p', type: 'int', val: 2 }] },
-        { f: [{ name: 'eulerPhi(12)', file: 'main.cpp', line: 10 }, { name: 'main()', file: 'main.cpp', line: 23 }], v: [{ name: 'n', type: 'int', val: 12 }, { name: 'result', type: 'int', val: 12 }, { name: 'p', type: 'int', val: 2 }] },
-        { f: [{ name: 'eulerPhi(12)', file: 'main.cpp', line: 11 }, { name: 'main()', file: 'main.cpp', line: 23 }], v: [{ name: 'n', type: 'int', val: 3 }, { name: 'result', type: 'int', val: 12 }, { name: 'p', type: 'int', val: 2 }] },
-        { f: [{ name: 'eulerPhi(12)', file: 'main.cpp', line: 13 }, { name: 'main()', file: 'main.cpp', line: 23 }], v: [{ name: 'n', type: 'int', val: 3 }, { name: 'result', type: 'int', val: 6 }, { name: 'p', type: 'int', val: 2 }] },
-        { f: [{ name: 'eulerPhi(12)', file: 'main.cpp', line: 8 }, { name: 'main()', file: 'main.cpp', line: 23 }], v: [{ name: 'n', type: 'int', val: 3 }, { name: 'result', type: 'int', val: 6 }, { name: 'p', type: 'int', val: 3 }] },
-        { f: [{ name: 'eulerPhi(12)', file: 'main.cpp', line: 16 }, { name: 'main()', file: 'main.cpp', line: 23 }], v: [{ name: 'n', type: 'int', val: 3 }, { name: 'result', type: 'int', val: 6 }] },
-        { f: [{ name: 'eulerPhi(12)', file: 'main.cpp', line: 17 }, { name: 'main()', file: 'main.cpp', line: 23 }], v: [{ name: 'n', type: 'int', val: 3 }, { name: 'result', type: 'int', val: 4 }] },
-        { f: [{ name: 'eulerPhi(12)', file: 'main.cpp', line: 19 }, { name: 'main()', file: 'main.cpp', line: 23 }], v: [{ name: 'n', type: 'int', val: 3 }, { name: 'result', type: 'int', val: 4 }] },
-        { f: [{ name: 'main()', file: 'main.cpp', line: 24 }], v: [{ name: 'ans', type: 'int', val: 4 }] }
-      ];
-
+    "getDebuggerState": (stepIndex) => {
+      const states = [{"vars":[],"frames":[{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"Apel eulerPhi"},{"vars":[{"name":"n","type":"int","val":"12","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"n = 12"},{"vars":[{"name":"n","type":"int","val":"12","expandable":false},{"name":"result","type":"int","val":"12","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"result = 12"},{"vars":[{"name":"n","type":"int","val":"12","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"p = 2"},{"vars":[{"name":"n","type":"int","val":"12","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":null},{"vars":[{"name":"n","type":"int","val":"12","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":null},{"vars":[{"name":"n","type":"int","val":"6","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"n = 6"},{"vars":[{"name":"n","type":"int","val":"6","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":null},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"n = 3"},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":null},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"6","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"result = 6"},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"6","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":null},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"6","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":null},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"4","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"result = 4"},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"4","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"return 4"},{"vars":[{"name":"ans","type":"int","val":"4","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"ans = 4"},{"vars":[{"name":"ans","type":"int","val":"4","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"cout"},{"vars":[{"name":"ans","type":"int","val":"4","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"return 0"}];
       const s = states[stepIndex] || states[states.length - 1];
-      s.v.forEach(v => vars.push({ ...v, expandable: false }));
-      s.f.forEach(fr => frames.push(fr));
-      if (stepIndex > 0 && stepIndex < 11) {
-        inlineVal = `n: ${vars.find(v => v.name === 'n')?.val}, result: ${vars.find(v => v.name === 'result')?.val}`;
-      }
-      return { vars, globalVars, frames, inlineVal };
+      return { vars: s.vars, globalVars: [], frames: s.frames, inlineVal: s.inlineVal };
     },
     "getInlineValueForLine": (stepIndex, lineNum) => {
-      if (stepIndex === 0 && lineNum === 23) return 'n: 12';
-      if (stepIndex === 1 && lineNum === 7) return 'result: 12';
-      if (stepIndex === 2 && lineNum === 8) return 'p: 2, p*p <= n: true';
-      if (stepIndex === 3 && lineNum === 9) return 'n%p: 0';
-      if (stepIndex === 4 && lineNum === 10) return 'n%p: 0';
-      if (stepIndex === 5 && lineNum === 11) return 'n: 3';
-      if (stepIndex === 6 && lineNum === 13) return 'result: 6';
-      if (stepIndex === 7 && lineNum === 8) return 'p: 3, p*p <= n: false';
-      if (stepIndex === 8 && lineNum === 16) return 'n > 1: true';
-      if (stepIndex === 9 && lineNum === 17) return 'result: 4';
-      if (stepIndex === 10 && lineNum === 19) return 'result: 4';
-      if (stepIndex === 11 && lineNum === 24) return 'ans: 4';
+      const states = [{"vars":[],"frames":[{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"Apel eulerPhi"},{"vars":[{"name":"n","type":"int","val":"12","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"n = 12"},{"vars":[{"name":"n","type":"int","val":"12","expandable":false},{"name":"result","type":"int","val":"12","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"result = 12"},{"vars":[{"name":"n","type":"int","val":"12","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"p = 2"},{"vars":[{"name":"n","type":"int","val":"12","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":null},{"vars":[{"name":"n","type":"int","val":"12","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":null},{"vars":[{"name":"n","type":"int","val":"6","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"n = 6"},{"vars":[{"name":"n","type":"int","val":"6","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":null},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"n = 3"},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":null},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"6","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"result = 6"},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"6","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":null},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"6","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":null},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"4","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"result = 4"},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"4","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"return 4"},{"vars":[{"name":"ans","type":"int","val":"4","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"ans = 4"},{"vars":[{"name":"ans","type":"int","val":"4","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"cout"},{"vars":[{"name":"ans","type":"int","val":"4","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"return 0"}];
+      const s = states[stepIndex] || states[states.length - 1];
+      if (s.inlineVal && s.frames.length > 0 && s.frames[0].line === lineNum) return s.inlineVal;
       return null;
     }
   }

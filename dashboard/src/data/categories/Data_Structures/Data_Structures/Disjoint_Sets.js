@@ -6,7 +6,7 @@ export const data = {
   "code": "\n#include <iostream>\n#include <vector>\n\nusing namespace std;\n\nstruct DSU {\n    vector<int> parent;\n    vector<int> rank;\n\n    DSU(int n) {\n        parent.resize(n);\n        rank.resize(n, 0);\n        for (int i = 0; i < n; i++)\n            parent[i] = i; \n    }\n\n    int find(int i) {\n        if (parent[i] == i)\n            return i;\n        return parent[i] = find(parent[i]);\n    }\n\n    void unite(int i, int j) {\n        int rootI = find(i);\n        int rootJ = find(j);\n\n        if (rootI != rootJ) {\n            if (rank[rootI] < rank[rootJ]) {\n                parent[rootI] = rootJ;\n            } else if (rank[rootI] > rank[rootJ]) {\n                parent[rootJ] = rootI;\n            } else {\n                parent[rootJ] = rootI;\n                rank[rootI]++;\n            }\n        }\n    }\n};\n\nint main() {\n    DSU dsu(6);\n    dsu.unite(0, 2);\n    dsu.unite(4, 2);\n    dsu.unite(3, 1);\n    dsu.unite(5, 3);\n    dsu.unite(0, 5);\n    \n    if (dsu.find(4) == dsu.find(1))\n        cout << \"4 si 1 sunt in aceeasi multime (conectate)!\\n\";\n    \n    return 0;\n}\n",
   "explanations": [
     {
-      "line": 42,
+      "line": 36,
       "text": "Inițializăm structura DSU pentru 6 elemente (0..5). Fiecare element începe prin a fi propriul său părinte.",
       "blocksVisual": [
         {
@@ -78,7 +78,7 @@ export const data = {
       }
     },
     {
-      "line": 43,
+      "line": 37,
       "text": "Apelăm unite(0, 2). Mai întâi căutăm reprezentantul lui 0 cu find(0) care returnează 0.",
       "blocksVisual": [
         {
@@ -150,7 +150,7 @@ export const data = {
       }
     },
     {
-      "line": 25,
+      "line": 19,
       "text": "Căutăm reprezentantul lui 2 cu find(2) care returnează 2.",
       "blocksVisual": [
         {
@@ -222,7 +222,7 @@ export const data = {
       }
     },
     {
-      "line": 34,
+      "line": 28,
       "text": "Deoarece sunt în mulțimi diferite și rangurile lor sunt egale, legăm 2 sub 0 (parent[2] = 0).",
       "blocksVisual": [
         {
@@ -300,7 +300,7 @@ export const data = {
       }
     },
     {
-      "line": 44,
+      "line": 38,
       "text": "Apelăm unite(4, 2). find(4) returnează 4.",
       "blocksVisual": [
         {
@@ -378,7 +378,7 @@ export const data = {
       }
     },
     {
-      "line": 21,
+      "line": 15,
       "text": "find(2) îl caută pe părintele lui 2, care este 0. Cum 0 e rădăcină, returnează 0.",
       "blocksVisual": [
         {
@@ -456,7 +456,7 @@ export const data = {
       }
     },
     {
-      "line": 30,
+      "line": 24,
       "text": "Legăm 4 sub 0 (parent[4] = 0). Acum mulțimea lui 0 conține elementele {0, 2, 4}.",
       "blocksVisual": [
         {
@@ -539,7 +539,7 @@ export const data = {
       }
     },
     {
-      "line": 45,
+      "line": 39,
       "text": "Apelăm unite(3, 1). find(3) returnează 3.",
       "blocksVisual": [
         {
@@ -622,7 +622,7 @@ export const data = {
       }
     },
     {
-      "line": 25,
+      "line": 19,
       "text": "find(1) returnează 1.",
       "blocksVisual": [
         {
@@ -705,7 +705,7 @@ export const data = {
       }
     },
     {
-      "line": 34,
+      "line": 28,
       "text": "Legăm 1 sub 3 (parent[1] = 3). Mulțimea lui 3 conține {3, 1}.",
       "blocksVisual": [
         {
@@ -793,7 +793,7 @@ export const data = {
       }
     },
     {
-      "line": 46,
+      "line": 40,
       "text": "Apelăm unite(5, 3). find(5) returnează 5.",
       "blocksVisual": [
         {
@@ -881,7 +881,7 @@ export const data = {
       }
     },
     {
-      "line": 25,
+      "line": 19,
       "text": "find(3) returnează 3.",
       "blocksVisual": [
         {
@@ -969,7 +969,7 @@ export const data = {
       }
     },
     {
-      "line": 34,
+      "line": 28,
       "text": "Legăm 5 sub 3 (parent[5] = 3). Mulțimea lui 3 conține {3, 1, 5}.",
       "blocksVisual": [
         {
@@ -1062,7 +1062,7 @@ export const data = {
       }
     },
     {
-      "line": 47,
+      "line": 41,
       "text": "Acum apelăm unite(0, 5). find(0) returnează 0.",
       "blocksVisual": [
         {
@@ -1155,7 +1155,7 @@ export const data = {
       }
     },
     {
-      "line": 21,
+      "line": 15,
       "text": "find(5) ne trimite la 3, iar 3 la el însuși. Returnează 3.",
       "blocksVisual": [
         {
@@ -1248,7 +1248,7 @@ export const data = {
       }
     },
     {
-      "line": 34,
+      "line": 28,
       "text": "Rangul lui 0 este mai mare sau egal, deci legăm rădăcina 3 sub 0 (parent[3] = 0). Mulțimile s-au unit!",
       "blocksVisual": [
         {
@@ -1346,7 +1346,7 @@ export const data = {
       }
     },
     {
-      "line": 49,
+      "line": 43,
       "text": "Testăm dacă 4 și 1 sunt în aceeași mulțime. Apelăm find(4) care returnează direct rădăcina 0.",
       "blocksVisual": [
         {
@@ -1444,7 +1444,7 @@ export const data = {
       }
     },
     {
-      "line": 21,
+      "line": 15,
       "text": "Apelăm find(1). Părintele lui 1 este 3. Cum 3 nu este propriul său părinte, continuăm căutarea recursivă.",
       "blocksVisual": [
         {
@@ -1542,7 +1542,7 @@ export const data = {
       }
     },
     {
-      "line": 19,
+      "line": 13,
       "text": "Mergem la părintele lui 3, care este 0. Deoarece 0 este rădăcină (parent[0]=0), returnăm 0.",
       "blocksVisual": [
         {
@@ -1640,7 +1640,7 @@ export const data = {
       }
     },
     {
-      "line": 21,
+      "line": 15,
       "text": "Aplicăm Compresia Drumului (Path Compression)! Setăm părintele lui 1 direct la rădăcina 0: parent[1] = 0.",
       "blocksVisual": [
         {
@@ -1738,7 +1738,7 @@ export const data = {
       }
     },
     {
-      "line": 50,
+      "line": 44,
       "text": "Ambele find-uri au returnat 0! Elementele sunt în aceeași mulțime. Mesajul 'sunt conectate' este afișat.",
       "blocksVisual": [
         {
@@ -1952,7 +1952,7 @@ export const data = {
       ];
       const curr = trace[stepIndex];
       if (!curr) return null;
-      if (lineNum >= 18 && lineNum <= 37) {
+      if (lineNum >= 12 && lineNum <= 31) {
         let res = "";
         if (curr.i !== undefined) res += "i: " + curr.i;
         if (curr.j !== undefined) res += ", j: " + curr.j;

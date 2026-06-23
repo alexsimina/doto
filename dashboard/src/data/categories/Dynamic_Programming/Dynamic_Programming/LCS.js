@@ -39,7 +39,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 34,
+      "line": 28,
       "text": "Pornim programul. Avem X = 'AGGTAB' (lungime m = 6) și Y = 'GXTXAYB' (lungime n = 7).",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -57,7 +57,7 @@ int main() {
       }
     },
     {
-      "line": 18,
+      "line": 12,
       "text": "Inițializăm matricea dp de dimensiuni 7x8 cu 0.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -75,7 +75,7 @@ int main() {
       }
     },
     {
-      "line": 25,
+      "line": 19,
       "text": "i = 1 (X[0] = 'A'), j = 1 (Y[0] = 'G'). Comparăm 'A' cu 'G'. Nu este match. dp[1][1] = max(dp[0][1]=0, dp[1][0]=0) = 0.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -93,7 +93,7 @@ int main() {
       }
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "i = 1 (X[0] = 'A'), j = 5 (Y[4] = 'A'). MATCH! 'A' == 'A'. dp[1][5] = dp[0][4] + 1 = 1.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -111,7 +111,7 @@ int main() {
       }
     },
     {
-      "line": 25,
+      "line": 19,
       "text": "i = 1 (X[0] = 'A'), j = 7 (Y[6] = 'B'). Comparăm 'A' cu 'B'. Mismatch. dp[1][7] = max(dp[0][7]=0, dp[1][6]=1) = 1.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -129,7 +129,7 @@ int main() {
       }
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "i = 2 (X[1] = 'G'), j = 1 (Y[0] = 'G'). MATCH! 'G' == 'G'. dp[2][1] = dp[1][0] + 1 = 1.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -147,7 +147,7 @@ int main() {
       }
     },
     {
-      "line": 25,
+      "line": 19,
       "text": "i = 2 (X[1] = 'G'), j = 2 (Y[1] = 'X'). Mismatch. dp[2][2] = max(dp[1][2]=0, dp[2][1]=1) = 1.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -165,7 +165,7 @@ int main() {
       }
     },
     {
-      "line": 25,
+      "line": 19,
       "text": "i = 2 (X[1] = 'G'), j = 5 (Y[4] = 'A'). Mismatch. dp[2][5] = max(dp[1][5]=1, dp[2][4]=1) = 1.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -183,7 +183,7 @@ int main() {
       }
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "i = 3 (X[2] = 'G'), j = 1 (Y[0] = 'G'). MATCH! 'G' == 'G'. dp[3][1] = dp[2][0] + 1 = 1.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -201,7 +201,7 @@ int main() {
       }
     },
     {
-      "line": 25,
+      "line": 19,
       "text": "i = 3 (X[2] = 'G'), j = 3 (Y[2] = 'T'). Mismatch. dp[3][3] = max(dp[2][3]=1, dp[3][2]=1) = 1.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -219,7 +219,7 @@ int main() {
       }
     },
     {
-      "line": 25,
+      "line": 19,
       "text": "i = 4 (X[3] = 'T'), j = 1 (Y[0] = 'G'). Mismatch. dp[4][1] = max(dp[3][1]=1, dp[4][0]=0) = 1.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -237,7 +237,7 @@ int main() {
       }
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "i = 4 (X[3] = 'T'), j = 3 (Y[2] = 'T'). MATCH! 'T' == 'T'. dp[4][3] = dp[3][2] + 1 = 1 + 1 = 2.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -255,7 +255,7 @@ int main() {
       }
     },
     {
-      "line": 25,
+      "line": 19,
       "text": "i = 4 (X[3] = 'T'), j = 4 (Y[3] = 'X'). Mismatch. dp[4][4] = max(dp[3][4]=1, dp[4][3]=2) = 2.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -273,7 +273,7 @@ int main() {
       }
     },
     {
-      "line": 25,
+      "line": 19,
       "text": "i = 5 (X[4] = 'A'), j = 3 (Y[2] = 'T'). Mismatch. dp[5][3] = max(dp[4][3]=2, dp[5][2]=1) = 2.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -291,7 +291,7 @@ int main() {
       }
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "i = 5 (X[4] = 'A'), j = 5 (Y[4] = 'A'). MATCH! 'A' == 'A'. dp[5][5] = dp[4][4] + 1 = 2 + 1 = 3.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -309,7 +309,7 @@ int main() {
       }
     },
     {
-      "line": 25,
+      "line": 19,
       "text": "i = 5 (X[4] = 'A'), j = 6 (Y[5] = 'Y'). Mismatch. dp[5][6] = max(dp[4][6]=2, dp[5][5]=3) = 3.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -327,7 +327,7 @@ int main() {
       }
     },
     {
-      "line": 25,
+      "line": 19,
       "text": "i = 6 (X[5] = 'B'), j = 1 (Y[0] = 'G'). Mismatch. dp[6][1] = max(dp[5][1]=1, dp[6][0]=0) = 1.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -345,7 +345,7 @@ int main() {
       }
     },
     {
-      "line": 25,
+      "line": 19,
       "text": "i = 6 (X[5] = 'B'), j = 5 (Y[4] = 'A'). Mismatch. dp[6][5] = max(dp[5][5]=3, dp[6][4]=2) = 3.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -363,7 +363,7 @@ int main() {
       }
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "i = 6 (X[5] = 'B'), j = 7 (Y[6] = 'B'). MATCH! 'B' == 'B'. dp[6][7] = dp[5][6] + 1 = 3 + 1 = 4.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -381,7 +381,7 @@ int main() {
       }
     },
     {
-      "line": 30,
+      "line": 24,
       "text": "Am parcurs toate caracterele. Răspunsul se află în dp[m][n] = dp[6][7] = 4.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -399,7 +399,7 @@ int main() {
       }
     },
     {
-      "line": 36,
+      "line": 30,
       "text": "Afișăm rezultatul final: Lungime LCS este 4.",
       "matrix": {
         "headers": ["", "Ø", "G", "X", "T", "X", "A", "Y", "B"],
@@ -548,13 +548,13 @@ int main() {
         else if (stepIndex === 17) j = 5;
         else if (stepIndex === 18) j = 7;
 
-        if (lineNum === 20 || lineNum === 21) {
+        if (lineNum === 14 || lineNum === 15) {
           let res = "";
           if (i !== -1) res += `i: ${i}`;
           if (j !== -1) res += `, j: ${j}`;
           return res || null;
         }
-        if (lineNum === 22 || lineNum === 23 || lineNum === 25) {
+        if (lineNum === 16 || lineNum === 17 || lineNum === 19) {
           let res = "";
           if (i !== -1) res += `i: ${i}`;
           if (j !== -1) res += `, j: ${j}`;

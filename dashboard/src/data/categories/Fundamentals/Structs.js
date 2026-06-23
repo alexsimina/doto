@@ -46,9 +46,17 @@ int main() {
       text: "Declarăm variabila $s1$ de tipul `Student`.",
       blocksVisual: [
         {
-          label: "Student s1",
-          groups: [
-            [{ val: "name: \"\"", active: true }, { val: "grade: 0" }]
+          "label": "Student s1",
+          "groups": [
+            [
+              {
+                "val": "name: \"\"",
+                "active": true
+              },
+              {
+                "val": "grade: 0"
+              }
+            ]
           ]
         }
       ]
@@ -58,9 +66,17 @@ int main() {
       text: "Atribuim valoarea `\"Alex\"` membrului $name$ al structurii $s1$.",
       blocksVisual: [
         {
-          label: "Student s1",
-          groups: [
-            [{ val: "name: \"Alex\"", active: true }, { val: "grade: 0" }]
+          "label": "Student s1",
+          "groups": [
+            [
+              {
+                "val": "name: \"Alex\"",
+                "active": true
+              },
+              {
+                "val": "grade: 0"
+              }
+            ]
           ]
         }
       ]
@@ -70,9 +86,17 @@ int main() {
       text: "Atribuim valoarea $9$ membrului $grade$ al structurii $s1$.",
       blocksVisual: [
         {
-          label: "Student s1",
-          groups: [
-            [{ val: "name: \"Alex\"" }, { val: "grade: 9", active: true }]
+          "label": "Student s1",
+          "groups": [
+            [
+              {
+                "val": "name: \"Alex\""
+              },
+              {
+                "val": "grade: 9",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -82,9 +106,17 @@ int main() {
       text: "Declarăm variabila $s2$ de tipul `Student`.",
       blocksVisual: [
         {
-          label: "Student s2",
-          groups: [
-            [{ val: "name: \"\"", active: true }, { val: "grade: 0" }]
+          "label": "Student s2",
+          "groups": [
+            [
+              {
+                "val": "name: \"\"",
+                "active": true
+              },
+              {
+                "val": "grade: 0"
+              }
+            ]
           ]
         }
       ]
@@ -94,9 +126,17 @@ int main() {
       text: "Setăm numele studentului $s2$ ca fiind `\"Maria\"`.",
       blocksVisual: [
         {
-          label: "Student s2",
-          groups: [
-            [{ val: "name: \"Maria\"", active: true }, { val: "grade: 0" }]
+          "label": "Student s2",
+          "groups": [
+            [
+              {
+                "val": "name: \"Maria\"",
+                "active": true
+              },
+              {
+                "val": "grade: 0"
+              }
+            ]
           ]
         }
       ]
@@ -106,9 +146,17 @@ int main() {
       text: "Setăm nota studentului $s2$ ca fiind $10$.",
       blocksVisual: [
         {
-          label: "Student s2",
-          groups: [
-            [{ val: "name: \"Maria\"" }, { val: "grade: 10", active: true }]
+          "label": "Student s2",
+          "groups": [
+            [
+              {
+                "val": "name: \"Maria\""
+              },
+              {
+                "val": "grade: 10",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -118,9 +166,14 @@ int main() {
       text: "Declarăm un vector $classList$ capabil să stocheze elemente de tipul `Student`.",
       blocksVisual: [
         {
-          label: "Listă Clasă",
-          groups: [
-            [{ val: "classList: []", active: true }]
+          "label": "Listă Clasă",
+          "groups": [
+            [
+              {
+                "val": "classList: []",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -130,21 +183,34 @@ int main() {
       text: "Adăugăm studentul $s1$ la finalul vectorului $classList$.",
       blocksVisual: [
         {
-          label: "Listă Clasă",
-          groups: [
-            [{ val: "[0]: {Alex, 9}", active: true }]
+          "label": "Listă Clasă",
+          "groups": [
+            [
+              {
+                "val": "[0]: {Alex, 9}",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 23,
-      text: "Adăugăm studentul $s2$ la finalul vectorului $classList$. Acesta va fi la poziția $1$.",
+      text: "Adăugăm studentul $s2$ la finalul vectorului.",
       blocksVisual: [
         {
-          label: "Listă Clasă",
-          groups: [
-            [{ val: "[0]: {Alex, 9}" }, { val: "[1]: {Maria, 10}", active: true }]
+          "label": "Listă Clasă",
+          "groups": [
+            [
+              {
+                "val": "[0]: {Alex, 9}"
+              },
+              {
+                "val": "[1]: {Maria, 10}",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -154,9 +220,14 @@ int main() {
       text: "Inițializăm nota maximă cu nota primului student din listă: $maxGrade = 9$.",
       blocksVisual: [
         {
-          label: "Maxim",
-          groups: [
-            [{ val: "maxGrade = 9", active: true }]
+          "label": "Maxim",
+          "groups": [
+            [
+              {
+                "val": "maxGrade = 9",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -166,81 +237,118 @@ int main() {
       text: "Inițializăm numele studentului eminent cu cel al primului student: `topStudent = \"Alex\"`.",
       blocksVisual: [
         {
-          label: "Top Student",
-          groups: [
-            [{ val: "topStudent = \"Alex\"", active: true }]
+          "label": "Top Student",
+          "groups": [
+            [
+              {
+                "val": "topStudent = \"Alex\"",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 28,
-      text: "Începem parcurgerea clasei de la indexul $i = 1$ (Maria).",
+      text: "Începem parcurgerea clasei de la indexul $i = 1$.",
       blocksVisual: [
         {
-          label: "Index parcurgere",
-          groups: [
-            [{ val: "i = 1", active: true }]
+          "label": "Index parcurgere",
+          "groups": [
+            [
+              {
+                "val": "i = 1",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 29,
-      text: "Verificăm dacă nota studentului curent ($classList[1].grade = 10$) este mai mare decât $maxGrade$ ($9$). Condiția este adevărată.",
+      text: "Verificăm dacă nota studentului curent ($10$) este mai mare decât $maxGrade$ ($9$).",
       blocksVisual: [
         {
-          label: "Verificare",
-          groups: [
-            [{ val: "10 > 9 ? Da", active: true }]
+          "label": "Verificare",
+          "groups": [
+            [
+              {
+                "val": "10 > 9 ? Da",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 30,
-      text: "Actualizăm nota maximă cu nota Mariei: $maxGrade = 10$.",
+      text: "Actualizăm nota maximă: $maxGrade = 10$.",
       blocksVisual: [
         {
-          label: "Maxim actualizat",
-          groups: [
-            [{ val: "maxGrade = 10", active: true }]
+          "label": "Maxim actualizat",
+          "groups": [
+            [
+              {
+                "val": "maxGrade = 10",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 31,
-      text: "Actualizăm numele studentului eminent: `topStudent = \"Maria\"`.",
+      text: "Actualizăm numele studentului eminent: topStudent = \"Maria\".",
       blocksVisual: [
         {
-          label: "Top Student actualizat",
-          groups: [
-            [{ val: "topStudent = \"Maria\"", active: true }]
+          "label": "Top Student actualizat",
+          "groups": [
+            [
+              {
+                "val": "topStudent = \"Maria\"",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 28,
-      text: "Incrementăm $i$ la $2$. Condiția $i < classList.size()$ ($2 < 2$) devine falsă. Ieșim din buclă.",
+      text: "Incrementăm $i$ la $2$. Condiția devine falsă. Ieșim din buclă.",
       blocksVisual: [
         {
-          label: "Condiție buclă",
-          groups: [
-            [{ val: "2 < 2 ? Fals", active: true }]
+          "label": "Condiție buclă",
+          "groups": [
+            [
+              {
+                "val": "2 < 2 ? Fals",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 35,
-      text: "Finalizăm programul cu succes, având determinat studentul eminent: Maria cu nota $10$.",
+      text: "Finalizăm programul cu succes, având determinat studentul eminent: Maria cu nota 10.",
       blocksVisual: [
         {
-          label: "Rezultate Finale",
-          groups: [
-            [{ val: "topStudent = \"Maria\"" }, { val: "maxGrade = 10" }]
+          "label": "Rezultate Finale",
+          "groups": [
+            [
+              {
+                "val": "topStudent = \"Maria\""
+              },
+              {
+                "val": "maxGrade = 10"
+              }
+            ]
           ]
         }
       ]
@@ -271,94 +379,692 @@ int main() {
   },
   "debugger": {
     "getDebuggerState": (stepIndex, activeLine, explanationText) => {
-      const vars = [];
-      const globalVars = [];
-      const frames = [];
-      let inlineVal = null;
-
-      frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 13 });
-
-      let s1Val = '{name: "Alex", grade: 9}';
-      if (stepIndex === 0) s1Val = '{name: "", grade: 0}';
-      else if (stepIndex === 1) s1Val = '{name: "Alex", grade: 0}';
-
-      let s2Val = '{name: "Maria", grade: 10}';
-      if (stepIndex === 3) s2Val = '{name: "", grade: 0}';
-      else if (stepIndex === 4) s2Val = '{name: "Maria", grade: 0}';
-
-      let classListVal = '[]';
-      if (stepIndex === 7) classListVal = '[{name: "Alex", grade: 9}]';
-      else if (stepIndex >= 8) classListVal = '[{name: "Alex", grade: 9}, {name: "Maria", grade: 10}]';
-
-      let maxGradeVal = 9;
-      if (stepIndex >= 13) maxGradeVal = 10;
-
-      let topStudentVal = '"Alex"';
-      if (stepIndex >= 14) topStudentVal = '"Maria"';
-
-      if (stepIndex >= 0) {
-        vars.push({ name: 's1', type: 'Student', val: s1Val, expandable: true });
-      }
-      if (stepIndex >= 3) {
-        vars.push({ name: 's2', type: 'Student', val: s2Val, expandable: true });
-      }
-      if (stepIndex >= 6) {
-        vars.push({ name: 'classList', type: 'std::vector<Student>', val: classListVal, expandable: true });
-      }
-      if (stepIndex >= 9) {
-        vars.push({ name: 'maxGrade', type: 'int', val: maxGradeVal, expandable: false });
-      }
-      if (stepIndex >= 10) {
-        vars.push({ name: 'topStudent', type: 'std::string', val: topStudentVal, expandable: false });
-      }
-      if (stepIndex >= 11 && stepIndex <= 15) {
-        let iVal = stepIndex === 15 ? 2 : 1;
-        vars.push({ name: 'i', type: 'int', val: iVal, expandable: false });
-      }
-
-      if (activeLine === 13) inlineVal = "s1: {name: \"\", grade: 0}";
-      else if (activeLine === 14) inlineVal = "s1.name: \"Alex\"";
-      else if (activeLine === 15) inlineVal = "s1.grade: 9";
-      else if (activeLine === 17) inlineVal = "s2: {name: \"\", grade: 0}";
-      else if (activeLine === 18) inlineVal = "s2.name: \"Maria\"";
-      else if (activeLine === 19) inlineVal = "s2.grade: 10";
-      else if (activeLine === 21) inlineVal = "classList: []";
-      else if (activeLine === 22) inlineVal = "classList: [{name: \"Alex\", grade: 9}]";
-      else if (activeLine === 23) inlineVal = "classList: [{name: \"Alex\", grade: 9}, {name: \"Maria\", grade: 10}]";
-      else if (activeLine === 25) inlineVal = "maxGrade: 9";
-      else if (activeLine === 26) inlineVal = "topStudent: \"Alex\"";
-      else if (activeLine === 28) inlineVal = `i: ${stepIndex === 15 ? 2 : 1}`;
-      else if (activeLine === 29) inlineVal = `i: 1, classList[i].grade: 10, maxGrade: 9`;
-      else if (activeLine === 30) inlineVal = "maxGrade: 10";
-      else if (activeLine === 31) inlineVal = "topStudent: \"Maria\"";
-      else if (activeLine === 35) inlineVal = "topStudent: \"Maria\", maxGrade: 10";
-
-      return { vars, globalVars, frames, inlineVal };
+      const states = [
+        {
+          "vars": [
+            {
+              "name": "s1",
+              "type": "Student",
+              "val": "{name: \"\", grade: 0}",
+              "expandable": true
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 13
+            }
+          ],
+          "inlineVal": "s1: {name: \"\", grade: 0}"
+        },
+        {
+          "vars": [
+            {
+              "name": "s1",
+              "type": "Student",
+              "val": "{name: \"Alex\", grade: 0}",
+              "expandable": true
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 14
+            }
+          ],
+          "inlineVal": "s1: {name: \"Alex\", grade: 0}"
+        },
+        {
+          "vars": [
+            {
+              "name": "s1",
+              "type": "Student",
+              "val": "{name: \"Alex\", grade: 9}",
+              "expandable": true
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 15
+            }
+          ],
+          "inlineVal": "s1: {name: \"Alex\", grade: 9}"
+        },
+        {
+          "vars": [
+            {
+              "name": "s1",
+              "type": "Student",
+              "val": "{name: \"Alex\", grade: 9}",
+              "expandable": true
+            },
+            {
+              "name": "s2",
+              "type": "Student",
+              "val": "{name: \"\", grade: 0}",
+              "expandable": true
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 17
+            }
+          ],
+          "inlineVal": "s2: {name: \"\", grade: 0}"
+        },
+        {
+          "vars": [
+            {
+              "name": "s1",
+              "type": "Student",
+              "val": "{name: \"Alex\", grade: 9}",
+              "expandable": true
+            },
+            {
+              "name": "s2",
+              "type": "Student",
+              "val": "{name: \"Maria\", grade: 0}",
+              "expandable": true
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 18
+            }
+          ],
+          "inlineVal": "s2: {name: \"Maria\", grade: 0}"
+        },
+        {
+          "vars": [
+            {
+              "name": "s1",
+              "type": "Student",
+              "val": "{name: \"Alex\", grade: 9}",
+              "expandable": true
+            },
+            {
+              "name": "s2",
+              "type": "Student",
+              "val": "{name: \"Maria\", grade: 10}",
+              "expandable": true
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 19
+            }
+          ],
+          "inlineVal": "s2: {name: \"Maria\", grade: 10}"
+        },
+        {
+          "vars": [
+            {
+              "name": "s1",
+              "type": "Student",
+              "val": "{name: \"Alex\", grade: 9}",
+              "expandable": true
+            },
+            {
+              "name": "s2",
+              "type": "Student",
+              "val": "{name: \"Maria\", grade: 10}",
+              "expandable": true
+            },
+            {
+              "name": "classList",
+              "type": "std::vector<Student>",
+              "val": "[]",
+              "expandable": true
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 21
+            }
+          ],
+          "inlineVal": "classList: []"
+        },
+        {
+          "vars": [
+            {
+              "name": "s1",
+              "type": "Student",
+              "val": "{name: \"Alex\", grade: 9}",
+              "expandable": true
+            },
+            {
+              "name": "s2",
+              "type": "Student",
+              "val": "{name: \"Maria\", grade: 10}",
+              "expandable": true
+            },
+            {
+              "name": "classList",
+              "type": "std::vector<Student>",
+              "val": "[{name: \"Alex\", grade: 9}]",
+              "expandable": true
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 22
+            }
+          ],
+          "inlineVal": "classList: [{name: \"Alex\", grade: 9}]"
+        },
+        {
+          "vars": [
+            {
+              "name": "s1",
+              "type": "Student",
+              "val": "{name: \"Alex\", grade: 9}",
+              "expandable": true
+            },
+            {
+              "name": "s2",
+              "type": "Student",
+              "val": "{name: \"Maria\", grade: 10}",
+              "expandable": true
+            },
+            {
+              "name": "classList",
+              "type": "std::vector<Student>",
+              "val": "[{name: \"Alex\", grade: 9}, {name: \"Maria\", grade: 10}]",
+              "expandable": true
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 23
+            }
+          ],
+          "inlineVal": "classList: [{name: \"Alex\", grade: 9}, {name: \"Maria\", grade: 10}]"
+        },
+        {
+          "vars": [
+            {
+              "name": "s1",
+              "type": "Student",
+              "val": "{name: \"Alex\", grade: 9}",
+              "expandable": true
+            },
+            {
+              "name": "s2",
+              "type": "Student",
+              "val": "{name: \"Maria\", grade: 10}",
+              "expandable": true
+            },
+            {
+              "name": "classList",
+              "type": "std::vector<Student>",
+              "val": "[{name: \"Alex\", grade: 9}, {name: \"Maria\", grade: 10}]",
+              "expandable": true
+            },
+            {
+              "name": "maxGrade",
+              "type": "int",
+              "val": 9,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 25
+            }
+          ],
+          "inlineVal": "maxGrade: 9"
+        },
+        {
+          "vars": [
+            {
+              "name": "s1",
+              "type": "Student",
+              "val": "{name: \"Alex\", grade: 9}",
+              "expandable": true
+            },
+            {
+              "name": "s2",
+              "type": "Student",
+              "val": "{name: \"Maria\", grade: 10}",
+              "expandable": true
+            },
+            {
+              "name": "classList",
+              "type": "std::vector<Student>",
+              "val": "[{name: \"Alex\", grade: 9}, {name: \"Maria\", grade: 10}]",
+              "expandable": true
+            },
+            {
+              "name": "maxGrade",
+              "type": "int",
+              "val": 9,
+              "expandable": false
+            },
+            {
+              "name": "topStudent",
+              "type": "std::string",
+              "val": "\"Alex\"",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 26
+            }
+          ],
+          "inlineVal": "topStudent: \"Alex\""
+        },
+        {
+          "vars": [
+            {
+              "name": "s1",
+              "type": "Student",
+              "val": "{name: \"Alex\", grade: 9}",
+              "expandable": true
+            },
+            {
+              "name": "s2",
+              "type": "Student",
+              "val": "{name: \"Maria\", grade: 10}",
+              "expandable": true
+            },
+            {
+              "name": "classList",
+              "type": "std::vector<Student>",
+              "val": "[{name: \"Alex\", grade: 9}, {name: \"Maria\", grade: 10}]",
+              "expandable": true
+            },
+            {
+              "name": "maxGrade",
+              "type": "int",
+              "val": 9,
+              "expandable": false
+            },
+            {
+              "name": "topStudent",
+              "type": "std::string",
+              "val": "\"Alex\"",
+              "expandable": false
+            },
+            {
+              "name": "i",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 28
+            }
+          ],
+          "inlineVal": "i: 1"
+        },
+        {
+          "vars": [
+            {
+              "name": "s1",
+              "type": "Student",
+              "val": "{name: \"Alex\", grade: 9}",
+              "expandable": true
+            },
+            {
+              "name": "s2",
+              "type": "Student",
+              "val": "{name: \"Maria\", grade: 10}",
+              "expandable": true
+            },
+            {
+              "name": "classList",
+              "type": "std::vector<Student>",
+              "val": "[{name: \"Alex\", grade: 9}, {name: \"Maria\", grade: 10}]",
+              "expandable": true
+            },
+            {
+              "name": "maxGrade",
+              "type": "int",
+              "val": 9,
+              "expandable": false
+            },
+            {
+              "name": "topStudent",
+              "type": "std::string",
+              "val": "\"Alex\"",
+              "expandable": false
+            },
+            {
+              "name": "i",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 29
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "s1",
+              "type": "Student",
+              "val": "{name: \"Alex\", grade: 9}",
+              "expandable": true
+            },
+            {
+              "name": "s2",
+              "type": "Student",
+              "val": "{name: \"Maria\", grade: 10}",
+              "expandable": true
+            },
+            {
+              "name": "classList",
+              "type": "std::vector<Student>",
+              "val": "[{name: \"Alex\", grade: 9}, {name: \"Maria\", grade: 10}]",
+              "expandable": true
+            },
+            {
+              "name": "maxGrade",
+              "type": "int",
+              "val": 10,
+              "expandable": false
+            },
+            {
+              "name": "topStudent",
+              "type": "std::string",
+              "val": "\"Alex\"",
+              "expandable": false
+            },
+            {
+              "name": "i",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 30
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "s1",
+              "type": "Student",
+              "val": "{name: \"Alex\", grade: 9}",
+              "expandable": true
+            },
+            {
+              "name": "s2",
+              "type": "Student",
+              "val": "{name: \"Maria\", grade: 10}",
+              "expandable": true
+            },
+            {
+              "name": "classList",
+              "type": "std::vector<Student>",
+              "val": "[{name: \"Alex\", grade: 9}, {name: \"Maria\", grade: 10}]",
+              "expandable": true
+            },
+            {
+              "name": "maxGrade",
+              "type": "int",
+              "val": 10,
+              "expandable": false
+            },
+            {
+              "name": "topStudent",
+              "type": "std::string",
+              "val": "\"Maria\"",
+              "expandable": false
+            },
+            {
+              "name": "i",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 31
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "s1",
+              "type": "Student",
+              "val": "{name: \"Alex\", grade: 9}",
+              "expandable": true
+            },
+            {
+              "name": "s2",
+              "type": "Student",
+              "val": "{name: \"Maria\", grade: 10}",
+              "expandable": true
+            },
+            {
+              "name": "classList",
+              "type": "std::vector<Student>",
+              "val": "[{name: \"Alex\", grade: 9}, {name: \"Maria\", grade: 10}]",
+              "expandable": true
+            },
+            {
+              "name": "maxGrade",
+              "type": "int",
+              "val": 10,
+              "expandable": false
+            },
+            {
+              "name": "topStudent",
+              "type": "std::string",
+              "val": "\"Maria\"",
+              "expandable": false
+            },
+            {
+              "name": "i",
+              "type": "int",
+              "val": 2,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 28
+            }
+          ],
+          "inlineVal": "i: 2"
+        },
+        {
+          "vars": [
+            {
+              "name": "s1",
+              "type": "Student",
+              "val": "{name: \"Alex\", grade: 9}",
+              "expandable": true
+            },
+            {
+              "name": "s2",
+              "type": "Student",
+              "val": "{name: \"Maria\", grade: 10}",
+              "expandable": true
+            },
+            {
+              "name": "classList",
+              "type": "std::vector<Student>",
+              "val": "[{name: \"Alex\", grade: 9}, {name: \"Maria\", grade: 10}]",
+              "expandable": true
+            },
+            {
+              "name": "maxGrade",
+              "type": "int",
+              "val": 10,
+              "expandable": false
+            },
+            {
+              "name": "topStudent",
+              "type": "std::string",
+              "val": "\"Maria\"",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 35
+            }
+          ],
+          "inlineVal": null
+        }
+      ];
+      if (stepIndex < 0) return { vars: [], globalVars: [], frames: [{ name: 'main()', file: 'main.cpp', line: activeLine || 13 }], inlineVal: null };
+      if (stepIndex >= states.length) stepIndex = states.length - 1;
+      const state = states[stepIndex];
+      return { vars: state.vars, globalVars: [], frames: state.frames, inlineVal: state.inlineVal };
     },
     "getInlineValueForLine": (stepIndex, lineNum) => {
-      let maxGradeVal = 9;
-      if (stepIndex >= 13) maxGradeVal = 10;
-
-      let topStudentVal = '"Alex"';
-      if (stepIndex >= 14) topStudentVal = '"Maria"';
-
-      if (lineNum === 13 && stepIndex >= 0) return 's1: {name: "", grade: 0}';
-      if (lineNum === 14 && stepIndex >= 1) return 's1.name: "Alex"';
-      if (lineNum === 15 && stepIndex >= 2) return 's1.grade: 9';
-      if (lineNum === 17 && stepIndex >= 3) return 's2: {name: "", grade: 0}';
-      if (lineNum === 18 && stepIndex >= 4) return 's2.name: "Maria"';
-      if (lineNum === 19 && stepIndex >= 5) return 's2.grade: 10';
-      if (lineNum === 21 && stepIndex >= 6) return 'classList: []';
-      if (lineNum === 22 && stepIndex >= 7) return 'classList: [{name: "Alex", grade: 9}]';
-      if (lineNum === 23 && stepIndex >= 8) return 'classList: [{name: "Alex", grade: 9}, {name: "Maria", grade: 10}]';
-      if (lineNum === 25 && stepIndex >= 9) return 'maxGrade: 9';
-      if (lineNum === 26 && stepIndex >= 10) return 'topStudent: "Alex"';
-      if (lineNum === 28 && stepIndex >= 11) return `i: ${stepIndex === 15 ? 2 : 1}`;
-      if (lineNum === 29 && stepIndex >= 12) return 'i: 1, classList[i].grade: 10, maxGrade: 9';
-      if (lineNum === 30 && stepIndex >= 13) return 'maxGrade: 10';
-      if (lineNum === 31 && stepIndex >= 14) return 'topStudent: "Maria"';
-      if (lineNum === 35 && stepIndex >= 16) return `topStudent: ${topStudentVal}, maxGrade: ${maxGradeVal}`;
-      return null;
+      const states = [
+        {
+          "13": "s1: {name: \"\", grade: 0}"
+        },
+        {
+          "14": "s1: {name: \"Alex\", grade: 0}"
+        },
+        {
+          "15": "s1: {name: \"Alex\", grade: 9}"
+        },
+        {
+          "15": "s1: {name: \"Alex\", grade: 9}",
+          "17": "s2: {name: \"\", grade: 0}"
+        },
+        {
+          "15": "s1: {name: \"Alex\", grade: 9}",
+          "18": "s2: {name: \"Maria\", grade: 0}"
+        },
+        {
+          "15": "s1: {name: \"Alex\", grade: 9}",
+          "19": "s2: {name: \"Maria\", grade: 10}"
+        },
+        {
+          "15": "s1: {name: \"Alex\", grade: 9}",
+          "19": "s2: {name: \"Maria\", grade: 10}",
+          "21": "classList: []"
+        },
+        {
+          "15": "s1: {name: \"Alex\", grade: 9}",
+          "19": "s2: {name: \"Maria\", grade: 10}",
+          "22": "classList: [{name: \"Alex\", grade: 9}]"
+        },
+        {
+          "15": "s1: {name: \"Alex\", grade: 9}",
+          "19": "s2: {name: \"Maria\", grade: 10}",
+          "23": "classList: [{name: \"Alex\", grade: 9}, {name: \"Maria\", grade: 10}]"
+        },
+        {
+          "15": "s1: {name: \"Alex\", grade: 9}",
+          "19": "s2: {name: \"Maria\", grade: 10}",
+          "23": "classList: [{name: \"Alex\", grade: 9}, {name: \"Maria\", grade: 10}]",
+          "25": "maxGrade: 9"
+        },
+        {
+          "15": "s1: {name: \"Alex\", grade: 9}",
+          "19": "s2: {name: \"Maria\", grade: 10}",
+          "23": "classList: [{name: \"Alex\", grade: 9}, {name: \"Maria\", grade: 10}]",
+          "25": "maxGrade: 9",
+          "26": "topStudent: \"Alex\""
+        },
+        {
+          "15": "s1: {name: \"Alex\", grade: 9}",
+          "19": "s2: {name: \"Maria\", grade: 10}",
+          "23": "classList: [{name: \"Alex\", grade: 9}, {name: \"Maria\", grade: 10}]",
+          "25": "maxGrade: 9",
+          "26": "topStudent: \"Alex\"",
+          "28": "i: 1"
+        },
+        {
+          "15": "s1: {name: \"Alex\", grade: 9}",
+          "19": "s2: {name: \"Maria\", grade: 10}",
+          "23": "classList: [{name: \"Alex\", grade: 9}, {name: \"Maria\", grade: 10}]",
+          "25": "maxGrade: 9",
+          "26": "topStudent: \"Alex\"",
+          "28": "i: 1"
+        },
+        {
+          "15": "s1: {name: \"Alex\", grade: 9}",
+          "19": "s2: {name: \"Maria\", grade: 10}",
+          "23": "classList: [{name: \"Alex\", grade: 9}, {name: \"Maria\", grade: 10}]",
+          "25": "maxGrade: 10",
+          "26": "topStudent: \"Alex\"",
+          "28": "i: 1"
+        },
+        {
+          "15": "s1: {name: \"Alex\", grade: 9}",
+          "19": "s2: {name: \"Maria\", grade: 10}",
+          "23": "classList: [{name: \"Alex\", grade: 9}, {name: \"Maria\", grade: 10}]",
+          "25": "maxGrade: 10",
+          "26": "topStudent: \"Maria\"",
+          "28": "i: 1"
+        },
+        {
+          "15": "s1: {name: \"Alex\", grade: 9}",
+          "19": "s2: {name: \"Maria\", grade: 10}",
+          "23": "classList: [{name: \"Alex\", grade: 9}, {name: \"Maria\", grade: 10}]",
+          "25": "maxGrade: 10",
+          "26": "topStudent: \"Maria\"",
+          "28": "i: 2"
+        },
+        {
+          "15": "s1: {name: \"Alex\", grade: 9}",
+          "19": "s2: {name: \"Maria\", grade: 10}",
+          "23": "classList: [{name: \"Alex\", grade: 9}, {name: \"Maria\", grade: 10}]",
+          "25": "maxGrade: 10",
+          "26": "topStudent: \"Maria\""
+        }
+      ];
+      if (stepIndex < 0) return null;
+      if (stepIndex >= states.length) stepIndex = states.length - 1;
+      return states[stepIndex][lineNum] || null;
     }
   }
-};
+}
+;

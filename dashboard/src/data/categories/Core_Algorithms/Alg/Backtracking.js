@@ -46,7 +46,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 26,
+      "line": 20,
       "text": "Inițializăm solve(row=0). Tabla 4x4 este complet goală. Vom încerca să plasăm câte o regină pe fiecare rând, coloană cu coloană.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -62,7 +62,7 @@ int main() {
       }
     },
     {
-      "line": 27,
+      "line": 21,
       "text": "Verificăm row == N: 0 == 4? NU. Condiția de bază nu este îndeplinită, deci continuăm cu plasarea reginei pe rândul 0.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "·", "active": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -78,7 +78,7 @@ int main() {
       }
     },
     {
-      "line": 33,
+      "line": 27,
       "text": "Testăm c=0 pentru rândul 0. Apelăm isValid(0,0). Tabla e goală, deci nu există conflicte. isValid = TRUE.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "?", "active": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -97,7 +97,7 @@ int main() {
       }
     },
     {
-      "line": 34,
+      "line": 28,
       "text": "Plasăm regina la (0,0): col[0]=0. Acum apelăm recursiv solve(1) pentru a plasa regina pe rândul 1.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -116,7 +116,7 @@ int main() {
       }
     },
     {
-      "line": 33,
+      "line": 27,
       "text": "solve(1): Testăm c=0 pentru rândul 1. isValid(1,0): col[0]=0 → conflict pe coloana 0! isValid = FALSE.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -137,7 +137,7 @@ int main() {
       }
     },
     {
-      "line": 33,
+      "line": 27,
       "text": "Testăm c=1 pentru rândul 1. isValid(1,1): col[0]=0 → diagonală! |0-1|==|0-1| → 1==1. Conflict diagonal! isValid = FALSE.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -160,7 +160,7 @@ int main() {
       }
     },
     {
-      "line": 33,
+      "line": 27,
       "text": "Testăm c=2 pentru rândul 1. isValid(1,2): coloana diferită (2≠0), diagonal: |0-1|=1, |0-2|=2 → 1≠2. Valid! isValid = TRUE.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -185,7 +185,7 @@ int main() {
       }
     },
     {
-      "line": 34,
+      "line": 28,
       "text": "Plasăm regina la (1,2): col[1]=2. Apelăm recursiv solve(2). Tabla arată: Q la (0,0) și (1,2).",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -210,7 +210,7 @@ int main() {
       }
     },
     {
-      "line": 33,
+      "line": 27,
       "text": "solve(2): Testăm c=0. isValid(2,0): col[0]=0 → conflict coloana 0! FALSE. Testăm c=1: col[1]=2, diagonal |1-2|=1, |2-1|=1 → 1==1, conflict! FALSE.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -235,7 +235,7 @@ int main() {
       }
     },
     {
-      "line": 33,
+      "line": 27,
       "text": "solve(2): Testăm c=2. col[1]=2 → conflict coloana 2! FALSE. Testăm c=3: col[0]=0, |0-2|=2,|0-3|=3 diferite; col[1]=2, |1-2|=1,|2-3|=1 → 1==1, conflict diagonal! FALSE.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -264,7 +264,7 @@ int main() {
       }
     },
     {
-      "line": 32,
+      "line": 26,
       "text": "Nicio coloană validă pe rândul 2 (cu Q la (0,0) și (1,2)). solve(2) se termină → BACKTRACK la solve(1). Revenim și continuăm cu c=3 pe rândul 1.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -287,7 +287,7 @@ int main() {
       }
     },
     {
-      "line": 33,
+      "line": 27,
       "text": "isValid(1,3): col[0]=0 → coloana diferită (3≠0); diagonal: |0-1|=1, |0-3|=3 → 1≠3. Valid! Plasăm Q la (1,3): col[1]=3.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -310,7 +310,7 @@ int main() {
       }
     },
     {
-      "line": 33,
+      "line": 27,
       "text": "Apelăm solve(2) din nou. Testăm c=0: col[0]=0→conflict col! c=1: col[0]=0,|0-2|=2,|0-1|=1 ok; col[1]=3,|1-2|=1,|3-1|=2 ok. isValid(2,1)=TRUE!",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -335,7 +335,7 @@ int main() {
       }
     },
     {
-      "line": 34,
+      "line": 28,
       "text": "Plasăm Q la (2,1): col[2]=1. Apelăm solve(3). Tabla: Q la (0,0), (1,3), (2,1).",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -358,7 +358,7 @@ int main() {
       }
     },
     {
-      "line": 33,
+      "line": 27,
       "text": "solve(3): Testăm c=0. isValid(3,0): col[0]=0→conflict col! FALSE. Testăm c=1: col[2]=1→conflict col! FALSE. Testăm c=2: verificăm toate reginele...",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -387,7 +387,7 @@ int main() {
       }
     },
     {
-      "line": 33,
+      "line": 27,
       "text": "isValid(3,2): col[0]=0≠2; diag(0,3):|0-3|=3,|0-2|=2 ok. col[1]=3≠2; diag(1,3):|1-3|=2,|3-2|=1 ok. col[2]=1≠2; diag(2,3):|2-3|=1,|1-2|=1 → CONFLICT! FALSE.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -416,7 +416,7 @@ int main() {
       }
     },
     {
-      "line": 33,
+      "line": 27,
       "text": "Testăm c=3 pe rândul 3. isValid(3,3): col[1]=3→CONFLICT coloana! FALSE. Niciun c valid pe rândul 3 → BACKTRACK la solve(2).",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -441,7 +441,7 @@ int main() {
       }
     },
     {
-      "line": 32,
+      "line": 26,
       "text": "BACKTRACK la solve(2). Continuăm cu c=2,3 pe rândul 2. isValid(2,2): col[1]=3≠2, diag(1,2):|1-2|=1,|3-2|=1 CONFLICT! isValid(2,3): col[1]=3→conflict col! BACKTRACK la solve(1).",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}, {"val": "·"}]] },
@@ -464,7 +464,7 @@ int main() {
       }
     },
     {
-      "line": 32,
+      "line": 26,
       "text": "La solve(1), c=3 era ultima opțiune. Toate coloanele epuizate pe rândul 1 (cu Q la (0,0)) → BACKTRACK la solve(0). Continuăm cu c=1 pe rândul 0.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "?", "active": true}, {"val": "·"}, {"val": "·"}]] },
@@ -485,7 +485,7 @@ int main() {
       }
     },
     {
-      "line": 33,
+      "line": 27,
       "text": "isValid(0,1) = TRUE (tabla goală). Plasăm Q la (0,1): col[0]=1. Apelăm solve(1). Explorăm ramura (0,1).",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
@@ -506,7 +506,7 @@ int main() {
       }
     },
     {
-      "line": 33,
+      "line": 27,
       "text": "solve(1) cu col[0]=1: Testăm c=0. isValid(1,0): col[0]=1≠0; diag:|0-1|=1,|1-0|=1→CONFLICT! c=1: col[0]=1→conflict col! c=2: diag:|0-1|=1,|1-2|=1→CONFLICT! Testăm c=3.",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
@@ -527,7 +527,7 @@ int main() {
       }
     },
     {
-      "line": 33,
+      "line": 27,
       "text": "isValid(1,3): col[0]=1≠3; diag:|0-1|=1,|1-3|=2 ok. Valid! Plasăm Q la (1,3): col[1]=3. Apelăm solve(2).",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
@@ -548,7 +548,7 @@ int main() {
       }
     },
     {
-      "line": 33,
+      "line": 27,
       "text": "solve(2) cu (0,1),(1,3): Testăm c=0. isValid(2,0): col[0]=1≠0; diag(0,2):|0-2|=2,|1-0|=1 ok; col[1]=3≠0; diag(1,2):|1-2|=1,|3-0|=3 ok. isValid=TRUE!",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
@@ -571,7 +571,7 @@ int main() {
       }
     },
     {
-      "line": 34,
+      "line": 28,
       "text": "Plasăm Q la (2,0): col[2]=0. Apelăm solve(3). Tabla: Q la (0,1), (1,3), (2,0). Aproape de soluție!",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
@@ -594,7 +594,7 @@ int main() {
       }
     },
     {
-      "line": 33,
+      "line": 27,
       "text": "solve(3) cu (0,1),(1,3),(2,0): Testăm c=0: col[2]=0→CONFLICT! c=1: col[0]=1→CONFLICT col! c=2: isValid(3,2): col[0]=1≠2,diag(0,3):|0-3|=3,|1-2|=1ok; col[1]=3≠2,diag(1,3):|1-3|=2,|3-2|=1ok; col[2]=0≠2,diag(2,3):|2-3|=1,|0-2|=2ok. isValid=TRUE!",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
@@ -619,7 +619,7 @@ int main() {
       }
     },
     {
-      "line": 34,
+      "line": 28,
       "text": "Plasăm Q la (3,2): col[3]=2. Apelăm solve(4). Acum row==N (4==4) → SOLUȚIE GĂSITĂ! Prima soluție: col=[1,3,0,2] → Q la (0,1),(1,3),(2,0),(3,2).",
       "blocksVisual": [
         { "label": "Rând 0", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
@@ -644,7 +644,7 @@ int main() {
       }
     },
     {
-      "line": 27,
+      "line": 21,
       "text": "row==N: Tipărim 'Soluție găsită!'. Algoritmul continuă backtracking-ul pentru a găsi TOATE soluțiile. Tabla 4x4 are 2 soluții posibile.",
       "blocksVisual": [
         { "label": "Soluția 1: col=[1,3,0,2]", "groups": [[{"val": "·"}, {"val": "Q", "sorted": true}, {"val": "·"}, {"val": "·"}]] },
@@ -747,7 +747,7 @@ int main() {
           line: (rVal === curr.row) ? activeLine : 35
         });
       });
-      frames.push({ name: "main()", file: "main.cpp", line: 43 });
+      frames.push({ name: "main()", file: "main.cpp", line: 37 });
 
       if (curr.row < 4) {
         vars.push({ name: "row", type: "int", val: curr.row.toString(), expandable: false });
@@ -795,10 +795,10 @@ int main() {
       ];
       const curr = stepData[stepIndex];
       if (!curr) return null;
-      if (lineNum === 26 || lineNum === 27) {
+      if (lineNum === 20 || lineNum === 21) {
         return "row: " + curr.row;
       }
-      if (lineNum === 32 || lineNum === 33 || lineNum === 34 || lineNum === 35) {
+      if (lineNum === 26 || lineNum === 27 || lineNum === 28 || lineNum === 29) {
         let val = "row: " + curr.row;
         if (curr.c !== -1) val += ", c: " + curr.c;
         return val;

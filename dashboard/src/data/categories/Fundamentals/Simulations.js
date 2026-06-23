@@ -38,9 +38,17 @@ int main() {
       text: "Inițializăm linia de pornire a robotului: $row = 1$ (centrul unei matrice $3 \\times 3$).",
       blocksVisual: [
         {
-          label: "Poziție Robot",
-          groups: [
-            [{ val: "row = 1", active: true }, { val: "col = ?" }]
+          "label": "Poziție Robot",
+          "groups": [
+            [
+              {
+                "val": "row = 1",
+                "active": true
+              },
+              {
+                "val": "col = ?"
+              }
+            ]
           ]
         }
       ]
@@ -50,9 +58,17 @@ int main() {
       text: "Inițializăm coloana de pornire a robotului: $col = 1$.",
       blocksVisual: [
         {
-          label: "Poziție Robot",
-          groups: [
-            [{ val: "row = 1" }, { val: "col = 1", active: true }]
+          "label": "Poziție Robot",
+          "groups": [
+            [
+              {
+                "val": "row = 1"
+              },
+              {
+                "val": "col = 1",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -62,33 +78,108 @@ int main() {
       text: "Definim șirul de comenzi de mișcare: $commands = \"RULD\"$ (Dreapta, Sus, Stânga, Jos).",
       blocksVisual: [
         {
-          label: "Comenzi de rulat",
-          groups: [
-            [{ val: "R", active: true }, { val: "U" }, { val: "L" }, { val: "D" }]
+          "label": "Comenzi de rulat",
+          "groups": [
+            [
+              {
+                "val": "R",
+                "active": true
+              },
+              {
+                "val": "U"
+              },
+              {
+                "val": "L"
+              },
+              {
+                "val": "D"
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 15,
-      text: "Începem bucla și citim prima comandă: $cmd = 'R'$.",
+      text: "Citim comanda: $cmd = 'R'$.",
       blocksVisual: [
         {
-          label: "Comandă curentă",
-          groups: [
-            [{ val: "cmd = 'R'", active: true }]
+          "label": "Comandă curentă",
+          "groups": [
+            [
+              {
+                "val": "cmd = 'R'",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      line: 16,
+      text: "Verificăm `cmd == 'U' && row > 0`.",
+      blocksVisual: [
+        {
+          "label": "Verificare mișcare",
+          "groups": [
+            [
+              {
+                "val": "cmd == 'U' ? Nu",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      line: 18,
+      text: "Verificăm `cmd == 'D' && row < 2`.",
+      blocksVisual: [
+        {
+          "label": "Verificare mișcare",
+          "groups": [
+            [
+              {
+                "val": "cmd == 'D' ? Nu",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      line: 20,
+      text: "Verificăm `cmd == 'L' && col > 0`.",
+      blocksVisual: [
+        {
+          "label": "Verificare mișcare",
+          "groups": [
+            [
+              {
+                "val": "cmd == 'L' ? Nu",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 22,
-      text: "Comanda fiind $'R'$ și robotul nefiind pe ultima coloană ($col = 1 < 2$), condiția este adevărată.",
+      text: "Verificăm `cmd == 'R' && col < 2`.",
       blocksVisual: [
         {
-          label: "Verificare mișcare",
-          groups: [
-            [{ val: "cmd == 'R' && col < 2 ? Da", active: true }]
+          "label": "Verificare mișcare",
+          "groups": [
+            [
+              {
+                "val": "cmd == 'R' ? Da",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -98,33 +189,51 @@ int main() {
       text: "Mutăm robotul la dreapta prin incrementarea coloanei: $col = 2$.",
       blocksVisual: [
         {
-          label: "Poziție Robot",
-          groups: [
-            [{ val: "row = 1" }, { val: "col = 2", active: true }]
+          "label": "Poziție Robot",
+          "groups": [
+            [
+              {
+                "val": "row = 1"
+              },
+              {
+                "val": "col = 2",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 15,
-      text: "Trecem la a doua comandă: $cmd = 'U'$ (Sus).",
+      text: "Citim comanda: $cmd = 'U'$.",
       blocksVisual: [
         {
-          label: "Comandă curentă",
-          groups: [
-            [{ val: "cmd = 'U'", active: true }]
+          "label": "Comandă curentă",
+          "groups": [
+            [
+              {
+                "val": "cmd = 'U'",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 16,
-      text: "Verificăm dacă robotul se poate deplasa în sus: $cmd == 'U'$ și linia nu este prima ($row = 1 > 0$). Condiția este adevărată.",
+      text: "Verificăm `cmd == 'U' && row > 0`.",
       blocksVisual: [
         {
-          label: "Verificare mișcare",
-          groups: [
-            [{ val: "cmd == 'U' && row > 0 ? Da", active: true }]
+          "label": "Verificare mișcare",
+          "groups": [
+            [
+              {
+                "val": "cmd == 'U' ? Da",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -134,33 +243,85 @@ int main() {
       text: "Mutăm robotul în sus prin decrementarea liniei: $row = 0$.",
       blocksVisual: [
         {
-          label: "Poziție Robot",
-          groups: [
-            [{ val: "row = 0", active: true }, { val: "col = 2" }]
+          "label": "Poziție Robot",
+          "groups": [
+            [
+              {
+                "val": "row = 0",
+                "active": true
+              },
+              {
+                "val": "col = 2"
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 15,
-      text: "Trecem la a treia comandă: $cmd = 'L'$ (Stânga).",
+      text: "Citim comanda: $cmd = 'L'$.",
       blocksVisual: [
         {
-          label: "Comandă curentă",
-          groups: [
-            [{ val: "cmd = 'L'", active: true }]
+          "label": "Comandă curentă",
+          "groups": [
+            [
+              {
+                "val": "cmd = 'L'",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      line: 16,
+      text: "Verificăm `cmd == 'U' && row > 0`.",
+      blocksVisual: [
+        {
+          "label": "Verificare mișcare",
+          "groups": [
+            [
+              {
+                "val": "cmd == 'U' ? Nu",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      line: 18,
+      text: "Verificăm `cmd == 'D' && row < 2`.",
+      blocksVisual: [
+        {
+          "label": "Verificare mișcare",
+          "groups": [
+            [
+              {
+                "val": "cmd == 'D' ? Nu",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 20,
-      text: "Verificăm dacă robotul se poate deplasa la stânga ($col = 2 > 0$). Este adevărat.",
+      text: "Verificăm `cmd == 'L' && col > 0`.",
       blocksVisual: [
         {
-          label: "Verificare mișcare",
-          groups: [
-            [{ val: "cmd == 'L' && col > 0 ? Da", active: true }]
+          "label": "Verificare mișcare",
+          "groups": [
+            [
+              {
+                "val": "cmd == 'L' ? Da",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -170,33 +331,68 @@ int main() {
       text: "Mutăm robotul la stânga prin decrementarea coloanei: $col = 1$.",
       blocksVisual: [
         {
-          label: "Poziție Robot",
-          groups: [
-            [{ val: "row = 0" }, { val: "col = 1", active: true }]
+          "label": "Poziție Robot",
+          "groups": [
+            [
+              {
+                "val": "row = 0"
+              },
+              {
+                "val": "col = 1",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 15,
-      text: "Trecem la ultima comandă: $cmd = 'D'$ (Jos).",
+      text: "Citim comanda: $cmd = 'D'$.",
       blocksVisual: [
         {
-          label: "Comandă curentă",
-          groups: [
-            [{ val: "cmd = 'D'", active: true }]
+          "label": "Comandă curentă",
+          "groups": [
+            [
+              {
+                "val": "cmd = 'D'",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      line: 16,
+      text: "Verificăm `cmd == 'U' && row > 0`.",
+      blocksVisual: [
+        {
+          "label": "Verificare mișcare",
+          "groups": [
+            [
+              {
+                "val": "cmd == 'U' ? Nu",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 18,
-      text: "Verificăm dacă ne putem deplasa în jos: $row = 0 < 2$. Condiția este adevărată.",
+      text: "Verificăm `cmd == 'D' && row < 2`.",
       blocksVisual: [
         {
-          label: "Verificare mișcare",
-          groups: [
-            [{ val: "cmd == 'D' && row < 2 ? Da", active: true }]
+          "label": "Verificare mișcare",
+          "groups": [
+            [
+              {
+                "val": "cmd == 'D' ? Da",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -206,9 +402,17 @@ int main() {
       text: "Mutăm robotul în jos prin incrementarea liniei: $row = 1$.",
       blocksVisual: [
         {
-          label: "Poziție Robot",
-          groups: [
-            [{ val: "row = 1", active: true }, { val: "col = 1" }]
+          "label": "Poziție Robot",
+          "groups": [
+            [
+              {
+                "val": "row = 1",
+                "active": true
+              },
+              {
+                "val": "col = 1"
+              }
+            ]
           ]
         }
       ]
@@ -218,9 +422,16 @@ int main() {
       text: "Finalizăm simularea cu robotul revenit la poziția de start $(1, 1)$.",
       blocksVisual: [
         {
-          label: "Poziție Finală",
-          groups: [
-            [{ val: "row = 1" }, { val: "col = 1" }]
+          "label": "Poziție Finală",
+          "groups": [
+            [
+              {
+                "val": "row = 1"
+              },
+              {
+                "val": "col = 1"
+              }
+            ]
           ]
         }
       ]
@@ -251,86 +462,895 @@ int main() {
   },
   "debugger": {
     "getDebuggerState": (stepIndex, activeLine, explanationText) => {
-      const vars = [];
-      const globalVars = [];
-      const frames = [];
-      let inlineVal = null;
-
-      frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 9 });
-
-      let rowVal = 1;
-      if (stepIndex >= 8 && stepIndex <= 13) rowVal = 0;
-      else if (stepIndex >= 14) rowVal = 1;
-
-      let colVal = 1;
-      if (stepIndex >= 5 && stepIndex <= 10) colVal = 2;
-      else if (stepIndex >= 11) colVal = 1;
-
-      if (stepIndex >= 0) {
-        vars.push({ name: 'row', type: 'int', val: rowVal, expandable: false });
-      }
-      if (stepIndex >= 1) {
-        vars.push({ name: 'col', type: 'int', val: colVal, expandable: false });
-      }
-      if (stepIndex >= 2) {
-        vars.push({ name: 'commands', type: 'std::string', val: '"RULD"', expandable: false });
-      }
-
-      let cmdVal = null;
-      if (stepIndex >= 3 && stepIndex <= 5) cmdVal = 'R';
-      else if (stepIndex >= 6 && stepIndex <= 8) cmdVal = 'U';
-      else if (stepIndex >= 9 && stepIndex <= 11) cmdVal = 'L';
-      else if (stepIndex >= 12 && stepIndex <= 14) cmdVal = 'D';
-
-      if (cmdVal !== null) {
-        vars.push({ name: 'cmd', type: 'char', val: `'${cmdVal}'`, expandable: false });
-      }
-
-      if (activeLine === 9) inlineVal = "row: 1";
-      else if (activeLine === 10) inlineVal = `col: 1`;
-      else if (activeLine === 13) inlineVal = 'commands: "RULD"';
-      else if (activeLine === 15 && cmdVal !== null) inlineVal = `cmd: '${cmdVal}'`;
-      else if (activeLine === 16) inlineVal = `cmd: 'U', row: ${rowVal}`;
-      else if (activeLine === 17) inlineVal = `row: ${rowVal}`;
-      else if (activeLine === 18) inlineVal = `cmd: 'D', row: ${rowVal}`;
-      else if (activeLine === 19) inlineVal = `row: ${rowVal}`;
-      else if (activeLine === 20) inlineVal = `cmd: 'L', col: ${colVal}`;
-      else if (activeLine === 21) inlineVal = `col: ${colVal}`;
-      else if (activeLine === 22) inlineVal = `cmd: 'R', col: ${colVal}`;
-      else if (activeLine === 23) inlineVal = `col: ${colVal}`;
-      else if (activeLine === 27) inlineVal = `row: ${rowVal}, col: ${colVal}`;
-
-      return { vars, globalVars, frames, inlineVal };
+      const states = [
+        {
+          "vars": [
+            {
+              "name": "row",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 9
+            }
+          ],
+          "inlineVal": "row: 1"
+        },
+        {
+          "vars": [
+            {
+              "name": "row",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "col",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 10
+            }
+          ],
+          "inlineVal": "col: 1"
+        },
+        {
+          "vars": [
+            {
+              "name": "row",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "col",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "commands",
+              "type": "std::string",
+              "val": "\"RULD\"",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 13
+            }
+          ],
+          "inlineVal": "commands: \"RULD\""
+        },
+        {
+          "vars": [
+            {
+              "name": "row",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "col",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "commands",
+              "type": "std::string",
+              "val": "\"RULD\"",
+              "expandable": false
+            },
+            {
+              "name": "cmd",
+              "type": "char",
+              "val": "'R'",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 15
+            }
+          ],
+          "inlineVal": "cmd: 'R'"
+        },
+        {
+          "vars": [
+            {
+              "name": "row",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "col",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "commands",
+              "type": "std::string",
+              "val": "\"RULD\"",
+              "expandable": false
+            },
+            {
+              "name": "cmd",
+              "type": "char",
+              "val": "'R'",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 16
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "row",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "col",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "commands",
+              "type": "std::string",
+              "val": "\"RULD\"",
+              "expandable": false
+            },
+            {
+              "name": "cmd",
+              "type": "char",
+              "val": "'R'",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 18
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "row",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "col",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "commands",
+              "type": "std::string",
+              "val": "\"RULD\"",
+              "expandable": false
+            },
+            {
+              "name": "cmd",
+              "type": "char",
+              "val": "'R'",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 20
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "row",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "col",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "commands",
+              "type": "std::string",
+              "val": "\"RULD\"",
+              "expandable": false
+            },
+            {
+              "name": "cmd",
+              "type": "char",
+              "val": "'R'",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 22
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "row",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "col",
+              "type": "int",
+              "val": 2,
+              "expandable": false
+            },
+            {
+              "name": "commands",
+              "type": "std::string",
+              "val": "\"RULD\"",
+              "expandable": false
+            },
+            {
+              "name": "cmd",
+              "type": "char",
+              "val": "'R'",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 23
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "row",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "col",
+              "type": "int",
+              "val": 2,
+              "expandable": false
+            },
+            {
+              "name": "commands",
+              "type": "std::string",
+              "val": "\"RULD\"",
+              "expandable": false
+            },
+            {
+              "name": "cmd",
+              "type": "char",
+              "val": "'U'",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 15
+            }
+          ],
+          "inlineVal": "cmd: 'U'"
+        },
+        {
+          "vars": [
+            {
+              "name": "row",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "col",
+              "type": "int",
+              "val": 2,
+              "expandable": false
+            },
+            {
+              "name": "commands",
+              "type": "std::string",
+              "val": "\"RULD\"",
+              "expandable": false
+            },
+            {
+              "name": "cmd",
+              "type": "char",
+              "val": "'U'",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 16
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "row",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "col",
+              "type": "int",
+              "val": 2,
+              "expandable": false
+            },
+            {
+              "name": "commands",
+              "type": "std::string",
+              "val": "\"RULD\"",
+              "expandable": false
+            },
+            {
+              "name": "cmd",
+              "type": "char",
+              "val": "'U'",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 17
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "row",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "col",
+              "type": "int",
+              "val": 2,
+              "expandable": false
+            },
+            {
+              "name": "commands",
+              "type": "std::string",
+              "val": "\"RULD\"",
+              "expandable": false
+            },
+            {
+              "name": "cmd",
+              "type": "char",
+              "val": "'L'",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 15
+            }
+          ],
+          "inlineVal": "cmd: 'L'"
+        },
+        {
+          "vars": [
+            {
+              "name": "row",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "col",
+              "type": "int",
+              "val": 2,
+              "expandable": false
+            },
+            {
+              "name": "commands",
+              "type": "std::string",
+              "val": "\"RULD\"",
+              "expandable": false
+            },
+            {
+              "name": "cmd",
+              "type": "char",
+              "val": "'L'",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 16
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "row",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "col",
+              "type": "int",
+              "val": 2,
+              "expandable": false
+            },
+            {
+              "name": "commands",
+              "type": "std::string",
+              "val": "\"RULD\"",
+              "expandable": false
+            },
+            {
+              "name": "cmd",
+              "type": "char",
+              "val": "'L'",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 18
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "row",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "col",
+              "type": "int",
+              "val": 2,
+              "expandable": false
+            },
+            {
+              "name": "commands",
+              "type": "std::string",
+              "val": "\"RULD\"",
+              "expandable": false
+            },
+            {
+              "name": "cmd",
+              "type": "char",
+              "val": "'L'",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 20
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "row",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "col",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "commands",
+              "type": "std::string",
+              "val": "\"RULD\"",
+              "expandable": false
+            },
+            {
+              "name": "cmd",
+              "type": "char",
+              "val": "'L'",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 21
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "row",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "col",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "commands",
+              "type": "std::string",
+              "val": "\"RULD\"",
+              "expandable": false
+            },
+            {
+              "name": "cmd",
+              "type": "char",
+              "val": "'D'",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 15
+            }
+          ],
+          "inlineVal": "cmd: 'D'"
+        },
+        {
+          "vars": [
+            {
+              "name": "row",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "col",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "commands",
+              "type": "std::string",
+              "val": "\"RULD\"",
+              "expandable": false
+            },
+            {
+              "name": "cmd",
+              "type": "char",
+              "val": "'D'",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 16
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "row",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "col",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "commands",
+              "type": "std::string",
+              "val": "\"RULD\"",
+              "expandable": false
+            },
+            {
+              "name": "cmd",
+              "type": "char",
+              "val": "'D'",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 18
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "row",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "col",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "commands",
+              "type": "std::string",
+              "val": "\"RULD\"",
+              "expandable": false
+            },
+            {
+              "name": "cmd",
+              "type": "char",
+              "val": "'D'",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 19
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "row",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "col",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "commands",
+              "type": "std::string",
+              "val": "\"RULD\"",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 27
+            }
+          ],
+          "inlineVal": null
+        }
+      ];
+      if (stepIndex < 0) return { vars: [], globalVars: [], frames: [{ name: 'main()', file: 'main.cpp', line: activeLine || 9 }], inlineVal: null };
+      if (stepIndex >= states.length) stepIndex = states.length - 1;
+      const state = states[stepIndex];
+      return { vars: state.vars, globalVars: [], frames: state.frames, inlineVal: state.inlineVal };
     },
     "getInlineValueForLine": (stepIndex, lineNum) => {
-      let rowVal = 1;
-      if (stepIndex >= 8 && stepIndex <= 13) rowVal = 0;
-      else if (stepIndex >= 14) rowVal = 1;
-
-      let colVal = 1;
-      if (stepIndex >= 5 && stepIndex <= 10) colVal = 2;
-      else if (stepIndex >= 11) colVal = 1;
-
-      let cmdVal = null;
-      if (stepIndex >= 3 && stepIndex <= 5) cmdVal = 'R';
-      else if (stepIndex >= 6 && stepIndex <= 8) cmdVal = 'U';
-      else if (stepIndex >= 9 && stepIndex <= 11) cmdVal = 'L';
-      else if (stepIndex >= 12 && stepIndex <= 14) cmdVal = 'D';
-
-      if (lineNum === 9 && stepIndex >= 0) return 'row: 1';
-      if (lineNum === 10 && stepIndex >= 1) return 'col: 1';
-      if (lineNum === 13 && stepIndex >= 2) return 'commands: "RULD"';
-      if (lineNum === 15 && cmdVal !== null) return `cmd: '${cmdVal}'`;
-      if (lineNum === 16 && cmdVal !== null) return `cmd: '${cmdVal}', row: ${rowVal}`;
-      if (lineNum === 17) return `row: ${rowVal}`;
-      if (lineNum === 18 && cmdVal !== null) return `cmd: '${cmdVal}', row: ${rowVal}`;
-      if (lineNum === 19) return `row: ${rowVal}`;
-      if (lineNum === 20 && cmdVal !== null) return `cmd: '${cmdVal}', col: ${colVal}`;
-      if (lineNum === 21) return `col: ${colVal}`;
-      if (lineNum === 22 && cmdVal !== null) return `cmd: '${cmdVal}', col: ${colVal}`;
-      if (lineNum === 23) return `col: ${colVal}`;
-      if (lineNum === 27 && stepIndex >= 15) return `row: ${rowVal}, col: ${colVal}`;
-      return null;
+      const states = [
+        {
+          "9": "row: 1"
+        },
+        {
+          "9": "row: 1",
+          "10": "col: 1"
+        },
+        {
+          "9": "row: 1",
+          "10": "col: 1",
+          "13": "commands: \"RULD\""
+        },
+        {
+          "9": "row: 1",
+          "10": "col: 1",
+          "13": "commands: \"RULD\"",
+          "15": "cmd: 'R'"
+        },
+        {
+          "9": "row: 1",
+          "10": "col: 1",
+          "13": "commands: \"RULD\"",
+          "15": "cmd: 'R'"
+        },
+        {
+          "9": "row: 1",
+          "10": "col: 1",
+          "13": "commands: \"RULD\"",
+          "15": "cmd: 'R'"
+        },
+        {
+          "9": "row: 1",
+          "10": "col: 1",
+          "13": "commands: \"RULD\"",
+          "15": "cmd: 'R'"
+        },
+        {
+          "9": "row: 1",
+          "10": "col: 1",
+          "13": "commands: \"RULD\"",
+          "15": "cmd: 'R'"
+        },
+        {
+          "9": "row: 1",
+          "10": "col: 2",
+          "13": "commands: \"RULD\"",
+          "15": "cmd: 'R'"
+        },
+        {
+          "9": "row: 1",
+          "10": "col: 2",
+          "13": "commands: \"RULD\"",
+          "15": "cmd: 'U'"
+        },
+        {
+          "9": "row: 1",
+          "10": "col: 2",
+          "13": "commands: \"RULD\"",
+          "15": "cmd: 'U'"
+        },
+        {
+          "9": "row: 0",
+          "10": "col: 2",
+          "13": "commands: \"RULD\"",
+          "15": "cmd: 'U'"
+        },
+        {
+          "9": "row: 0",
+          "10": "col: 2",
+          "13": "commands: \"RULD\"",
+          "15": "cmd: 'L'"
+        },
+        {
+          "9": "row: 0",
+          "10": "col: 2",
+          "13": "commands: \"RULD\"",
+          "15": "cmd: 'L'"
+        },
+        {
+          "9": "row: 0",
+          "10": "col: 2",
+          "13": "commands: \"RULD\"",
+          "15": "cmd: 'L'"
+        },
+        {
+          "9": "row: 0",
+          "10": "col: 2",
+          "13": "commands: \"RULD\"",
+          "15": "cmd: 'L'"
+        },
+        {
+          "9": "row: 0",
+          "10": "col: 1",
+          "13": "commands: \"RULD\"",
+          "15": "cmd: 'L'"
+        },
+        {
+          "9": "row: 0",
+          "10": "col: 1",
+          "13": "commands: \"RULD\"",
+          "15": "cmd: 'D'"
+        },
+        {
+          "9": "row: 0",
+          "10": "col: 1",
+          "13": "commands: \"RULD\"",
+          "15": "cmd: 'D'"
+        },
+        {
+          "9": "row: 0",
+          "10": "col: 1",
+          "13": "commands: \"RULD\"",
+          "15": "cmd: 'D'"
+        },
+        {
+          "9": "row: 1",
+          "10": "col: 1",
+          "13": "commands: \"RULD\"",
+          "15": "cmd: 'D'"
+        },
+        {
+          "9": "row: 1",
+          "10": "col: 1",
+          "13": "commands: \"RULD\""
+        }
+      ];
+      if (stepIndex < 0) return null;
+      if (stepIndex >= states.length) stepIndex = states.length - 1;
+      return states[stepIndex][lineNum] || null;
     }
   }
-};
+}
+;

@@ -6,7 +6,7 @@ export const data = {
   "code": "#include <iostream>\n#include <vector>\n\nusing namespace std;\n\nvoid dfs(int node, vector<vector<int>>& adj, vector<bool>& visited) {\n    visited[node] = true;\n    cout << node << \" \";\n    \n    for (int neighbor : adj[node]) {\n        if (!visited[neighbor]) {\n            dfs(neighbor, adj, visited);\n        }\n    }\n}\n\nint main() {\n    int V = 5;\n    vector<vector<int>> adj = {\n        {1, 2},\n        {0, 3, 4},\n        {0, 4},\n        {1},\n        {1, 2}\n    };\n    vector<bool> visited(V, false);\n    dfs(0, adj, visited);\n    return 0;\n}\n",
   "explanations": [
     {
-      "line": 7,
+      "line": 6,
       "text": "Intrăm în funcția recursivă `dfs` pentru nodul 0.",
       "blocksVisual": [
         {
@@ -23,7 +23,7 @@ export const data = {
       ]
     },
     {
-      "line": 8,
+      "line": 7,
       "text": "Marcăm nodul 0 ca vizitat în vectorul `visited`.",
       "blocksVisual": [
         {
@@ -46,7 +46,7 @@ export const data = {
       ]
     },
     {
-      "line": 9,
+      "line": 8,
       "text": "Afișăm nodul 0.",
       "blocksVisual": [
         {
@@ -62,7 +62,7 @@ export const data = {
       ]
     },
     {
-      "line": 11,
+      "line": 10,
       "text": "Parcurgem lista de vecini ai nodului 0: [1, 2]. Primul vecin este 1.",
       "blocksVisual": [
         {
@@ -79,7 +79,7 @@ export const data = {
       ]
     },
     {
-      "line": 12,
+      "line": 11,
       "text": "Verificăm dacă vecinul 1 a fost vizitat. `visited[1]` este false.",
       "blocksVisual": [
         {
@@ -95,7 +95,7 @@ export const data = {
       ]
     },
     {
-      "line": 13,
+      "line": 12,
       "text": "Apelăm recursiv `dfs(1)`.",
       "blocksVisual": [
         {
@@ -115,7 +115,7 @@ export const data = {
       ]
     },
     {
-      "line": 7,
+      "line": 6,
       "text": "Pornim executarea `dfs(1)`.",
       "blocksVisual": [
         {
@@ -132,7 +132,7 @@ export const data = {
       ]
     },
     {
-      "line": 8,
+      "line": 7,
       "text": "Marcăm nodul 1 ca vizitat.",
       "blocksVisual": [
         {
@@ -155,7 +155,7 @@ export const data = {
       ]
     },
     {
-      "line": 9,
+      "line": 8,
       "text": "Afișăm nodul 1.",
       "blocksVisual": [
         {
@@ -171,7 +171,7 @@ export const data = {
       ]
     },
     {
-      "line": 11,
+      "line": 10,
       "text": "Parcurgem vecinii nodului 1: [0, 3, 4]. Primul vecin este 0.",
       "blocksVisual": [
         {
@@ -188,7 +188,7 @@ export const data = {
       ]
     },
     {
-      "line": 12,
+      "line": 11,
       "text": "Nodul 0 este vizitat, deci nu facem nimic.",
       "blocksVisual": [
         {
@@ -204,7 +204,7 @@ export const data = {
       ]
     },
     {
-      "line": 11,
+      "line": 10,
       "text": "Trecem la următorul vecin al nodului 1, care este 3.",
       "blocksVisual": [
         {
@@ -221,7 +221,7 @@ export const data = {
       ]
     },
     {
-      "line": 12,
+      "line": 11,
       "text": "Nodul 3 nu este vizitat.",
       "blocksVisual": [
         {
@@ -237,7 +237,7 @@ export const data = {
       ]
     },
     {
-      "line": 13,
+      "line": 12,
       "text": "Apelăm recursiv `dfs(3)`.",
       "blocksVisual": [
         {
@@ -260,7 +260,7 @@ export const data = {
       ]
     },
     {
-      "line": 8,
+      "line": 7,
       "text": "Marcăm nodul 3 ca vizitat.",
       "blocksVisual": [
         {
@@ -277,7 +277,7 @@ export const data = {
       ]
     },
     {
-      "line": 9,
+      "line": 8,
       "text": "Afișăm nodul 3.",
       "blocksVisual": [
         {
@@ -293,7 +293,7 @@ export const data = {
       ]
     },
     {
-      "line": 11,
+      "line": 10,
       "text": "Vecinii lui 3 sunt [1]. 1 este vizitat. Ne întoarcem din `dfs(3)`.",
       "blocksVisual": [
         {
@@ -313,7 +313,7 @@ export const data = {
       ]
     },
     {
-      "line": 11,
+      "line": 10,
       "text": "Revenim în `dfs(1)`. Următorul vecin nerezolvat este 4.",
       "blocksVisual": [
         {
@@ -330,7 +330,7 @@ export const data = {
       ]
     },
     {
-      "line": 13,
+      "line": 12,
       "text": "Apelăm recursiv `dfs(4)`.",
       "blocksVisual": [
         {
@@ -353,7 +353,7 @@ export const data = {
       ]
     },
     {
-      "line": 8,
+      "line": 7,
       "text": "Marcăm nodul 4 ca vizitat.",
       "blocksVisual": [
         {
@@ -370,7 +370,7 @@ export const data = {
       ]
     },
     {
-      "line": 9,
+      "line": 8,
       "text": "Afișăm nodul 4.",
       "blocksVisual": [
         {
@@ -386,7 +386,7 @@ export const data = {
       ]
     },
     {
-      "line": 11,
+      "line": 10,
       "text": "Parcurgem vecinii lui 4: [1, 2]. 1 este vizitat. Trecem la vecinul 2.",
       "blocksVisual": [
         {
@@ -403,7 +403,7 @@ export const data = {
       ]
     },
     {
-      "line": 13,
+      "line": 12,
       "text": "Nodul 2 nu este vizitat. Apelăm recursiv `dfs(2)`.",
       "blocksVisual": [
         {
@@ -429,7 +429,7 @@ export const data = {
       ]
     },
     {
-      "line": 8,
+      "line": 7,
       "text": "Marcăm 2 ca vizitat. Toate nodurile sunt acum vizitate. Algoritmul se întoarce succesiv din toate apelurile.",
       "blocksVisual": [
         {
@@ -474,7 +474,7 @@ export const data = {
       if (nodeVal !== -1) vars.push({ name: 'node', type: 'int', val: nodeVal, expandable: false });
       if (neighborVal !== -1) vars.push({ name: 'neighbor', type: 'int', val: neighborVal, expandable: false });
 
-      frames.push({ name: 'main()', file: 'main.cpp', line: 26 });
+      frames.push({ name: 'main()', file: 'main.cpp', line: 25 });
       activeStack.forEach((n, idx) => {
         frames.unshift({ name: `dfs(node = ${n}, adj, visited)`, file: 'dfs.cpp', line: idx === 0 ? activeLine : 11 });
       });
@@ -500,10 +500,10 @@ export const data = {
       if (stepIndex === 11 || stepIndex === 12) neighborVal = 3;
       if (stepIndex === 17) neighborVal = 4;
 
-      if ((lineNum === 7 || lineNum === 8 || lineNum === 9 || lineNum === 11) && nodeVal !== -1) {
+      if ((lineNum === 6 || lineNum === 7 || lineNum === 8 || lineNum === 10) && nodeVal !== -1) {
         return `node: ${nodeVal}`;
       }
-      if ((lineNum === 10 || lineNum === 11) && neighborVal !== -1) {
+      if ((lineNum === 9 || lineNum === 10) && neighborVal !== -1) {
         return `neighbor: ${neighborVal}`;
       }
       return null;

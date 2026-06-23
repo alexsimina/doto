@@ -6,7 +6,7 @@ export const data = {
   "code": "#include <iostream>\n#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nstruct DSU {\n    vector<int> parent, rank;\n    DSU(int n) {\n        parent.resize(n); rank.resize(n, 0);\n        for(int i=0; i<n; i++) parent[i] = i;\n    }\n    int find(int i) {\n        if (parent[i] == i) return i;\n        return parent[i] = find(parent[i]);\n    }\n    void unite(int i, int j) {\n        int rootI = find(i), rootJ = find(j);\n        if (rootI != rootJ) {\n            if (rank[rootI] < rank[rootJ]) parent[rootI] = rootJ;\n            else if (rank[rootI] > rank[rootJ]) parent[rootJ] = rootI;\n            else { parent[rootJ] = rootI; rank[rootI]++; }\n        }\n    }\n};\n\nstruct Edge { int u, v, weight; };\n\nint kruskal(int V, vector<Edge>& edges) {\n    sort(edges.begin(), edges.end(), [](Edge a, Edge b) {\n        return a.weight < b.weight;\n    });\n\n    DSU dsu(V);\n    int mst_cost = 0;\n    \n    for (Edge e : edges) {\n        if (dsu.find(e.u) != dsu.find(e.v)) {\n            dsu.unite(e.u, e.v);\n            mst_cost += e.weight;\n        }\n    }\n    return mst_cost;\n}\n\nint main() {\n    int V = 4;\n    vector<Edge> edges = {\n        {0, 1, 10}, {0, 2, 6}, {0, 3, 5},\n        {1, 3, 15}, {2, 3, 4}\n    };\n    kruskal(V, edges);\n    return 0;\n}\n",
   "explanations": [
     {
-      "line": 30,
+      "line": 29,
       "text": "Începem funcția `kruskal` pentru calcularea MST.",
       "blocksVisual": [
         {
@@ -22,7 +22,7 @@ export const data = {
       ]
     },
     {
-      "line": 31,
+      "line": 30,
       "text": "Sortează muchiile crescător. Ordinea devine: (2-3, w:4), (0-3, w:5), (0-2, w:6), (0-1, w:10), (1-3, w:15).",
       "blocksVisual": [
         {
@@ -50,7 +50,7 @@ export const data = {
       ]
     },
     {
-      "line": 35,
+      "line": 34,
       "text": "Inițializăm structura DSU. Fiecare nod are ca părinte pe el însuși.",
       "blocksVisual": [
         {
@@ -75,7 +75,7 @@ export const data = {
       ]
     },
     {
-      "line": 36,
+      "line": 35,
       "text": "Inițializăm costul total `mst_cost = 0`.",
       "blocksVisual": [
         {
@@ -91,7 +91,7 @@ export const data = {
       ]
     },
     {
-      "line": 38,
+      "line": 37,
       "text": "Iterăm prin muchii. Prima muchie considerată: 2->3 (pondere 4).",
       "blocksVisual": [
         {
@@ -108,12 +108,12 @@ export const data = {
       ]
     },
     {
-      "line": 39,
+      "line": 38,
       "text": "Apelăm `find(2)` și `find(3)` pentru a verifica dacă sunt deja conectate. Reprezentanții sunt 2 și 3. Mulțimi diferite!",
       "blocksVisual": []
     },
     {
-      "line": 40,
+      "line": 39,
       "text": "Unim mulțimile nodurilor 2 și 3. `parent[3]` devine 2.",
       "blocksVisual": [
         {
@@ -139,7 +139,7 @@ export const data = {
       ]
     },
     {
-      "line": 41,
+      "line": 40,
       "text": "Actualizăm costul MST: `mst_cost = 0 + 4 = 4`.",
       "blocksVisual": [
         {
@@ -156,7 +156,7 @@ export const data = {
       ]
     },
     {
-      "line": 38,
+      "line": 37,
       "text": "Trecem la a doua muchie din listă: 0->3 (pondere 5).",
       "blocksVisual": [
         {
@@ -173,12 +173,12 @@ export const data = {
       ]
     },
     {
-      "line": 39,
+      "line": 38,
       "text": "Verificăm reprezentanții: `find(0)` este 0, iar `find(3)` este 2. Mulțimi diferite!",
       "blocksVisual": []
     },
     {
-      "line": 40,
+      "line": 39,
       "text": "Unim cele două mulțimi. `parent[2]` devine 0.",
       "blocksVisual": [
         {
@@ -201,7 +201,7 @@ export const data = {
       ]
     },
     {
-      "line": 41,
+      "line": 40,
       "text": "Actualizăm costul MST: `mst_cost = 4 + 5 = 9`.",
       "blocksVisual": [
         {
@@ -218,7 +218,7 @@ export const data = {
       ]
     },
     {
-      "line": 38,
+      "line": 37,
       "text": "Trecem la a treia muchie: 0->2 (pondere 6).",
       "blocksVisual": [
         {
@@ -235,17 +235,17 @@ export const data = {
       ]
     },
     {
-      "line": 39,
+      "line": 38,
       "text": "Verificăm reprezentanții: `find(0)` este 0, iar `find(2)` este tot 0 (reprezentantul final prin legătura 2->0). Reprezentanții sunt egali!",
       "blocksVisual": []
     },
     {
-      "line": 38,
+      "line": 37,
       "text": "Muchiile 0 și 2 sunt deja în aceeași componentă conexă. Sărim muchia 0->2 pentru a nu forma un ciclu.",
       "blocksVisual": []
     },
     {
-      "line": 38,
+      "line": 37,
       "text": "Trecem la a patra muchie: 0->1 (pondere 10).",
       "blocksVisual": [
         {
@@ -262,12 +262,12 @@ export const data = {
       ]
     },
     {
-      "line": 39,
+      "line": 38,
       "text": "Verificăm reprezentanții: `find(0)` este 0, iar `find(1)` este 1. Sunt diferiți.",
       "blocksVisual": []
     },
     {
-      "line": 40,
+      "line": 39,
       "text": "Unim mulțimile: `parent[1]` devine 0.",
       "blocksVisual": [
         {
@@ -284,7 +284,7 @@ export const data = {
       ]
     },
     {
-      "line": 41,
+      "line": 40,
       "text": "Actualizăm costul: `mst_cost = 9 + 10 = 19`.",
       "blocksVisual": [
         {
@@ -301,7 +301,7 @@ export const data = {
       ]
     },
     {
-      "line": 44,
+      "line": 43,
       "text": "Toate nodurile au fost conectate în MST. Algoritmul returnează costul final de 19.",
       "blocksVisual": [
         {
@@ -337,7 +337,7 @@ export const data = {
       if (uVal !== -1) vars.push({ name: 'e.u', type: 'int', val: uVal, expandable: false });
       if (vVal !== -1) vars.push({ name: 'e.v', type: 'int', val: vVal, expandable: false });
       if (wVal !== -1) vars.push({ name: 'e.w', type: 'int', val: wVal, expandable: false });
-      frames.push({ name: 'main()', file: 'main.cpp', line: 46 });
+      frames.push({ name: 'main()', file: 'main.cpp', line: 45 });
       if (stepIndex >= 1) frames.unshift({ name: 'kruskal(V=4, edges)', file: 'solution.cpp', line: activeLine });
       if (uVal !== -1) inlineVal = `e: ${uVal}-${vVal} w:${wVal}, mst: ${mstCost}`;
       else inlineVal = `mst_cost: ${mstCost}`;

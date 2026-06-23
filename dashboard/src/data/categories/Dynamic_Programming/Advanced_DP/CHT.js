@@ -67,7 +67,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 54,
+      "line": 47,
       "text": "Inițializăm structura Convex Hull Trick. Vectorul de drepte (învelișul convex) este gol.",
       "blocksVisual": [
         {
@@ -77,7 +77,7 @@ int main() {
       ]
     },
     {
-      "line": 55,
+      "line": 48,
       "text": "Adăugăm prima linie: L1 (y = 4x + 0). Deque-ul devine: [4x + 0].",
       "blocksVisual": [
         {
@@ -87,7 +87,7 @@ int main() {
       ]
     },
     {
-      "line": 60,
+      "line": 53,
       "text": "Interogare la x = 1. Avem o singură linie în deque. eval(4x + 0) = 4.",
       "blocksVisual": [
         {
@@ -100,7 +100,7 @@ int main() {
       ]
     },
     {
-      "line": 56,
+      "line": 49,
       "text": "Adăugăm L2 (y = 3x + 2). Deque-ul devine: [4x + 0, 3x + 2]. Nu avem suficiente linii pentru o eliminare.",
       "blocksVisual": [
         {
@@ -110,7 +110,7 @@ int main() {
       ]
     },
     {
-      "line": 60,
+      "line": 53,
       "text": "Interogare la x = 1. Evaluăm ambele linii: L1(1) = 4, L2(1) = 5. Minimul este 4.",
       "blocksVisual": [
         {
@@ -123,7 +123,7 @@ int main() {
       ]
     },
     {
-      "line": 61,
+      "line": 54,
       "text": "Interogare la x = 2. Evaluăm: L1(2) = 8, L2(2) = 8. Minimul este 8.",
       "blocksVisual": [
         {
@@ -136,7 +136,7 @@ int main() {
       ]
     },
     {
-      "line": 62,
+      "line": 55,
       "text": "Interogare la x = 3. Evaluăm: L1(3) = 12, L2(3) = 11. Minimul este 11 (L2 devine mai bună decât L1).",
       "blocksVisual": [
         {
@@ -149,7 +149,7 @@ int main() {
       ]
     },
     {
-      "line": 57,
+      "line": 50,
       "text": "Adăugăm L3 (y = 2x + 5). Verificăm dacă L2 devine redundantă cu funcția is_redundant(L1, L2, L3).",
       "blocksVisual": [
         {
@@ -159,7 +159,7 @@ int main() {
       ]
     },
     {
-      "line": 30,
+      "line": 23,
       "text": "Intersecția L1 cu L2 e la x = 2. Intersecția L2 cu L3 e la x = 3. Deoarece 2 < 3, L2 este utilă. Păstrăm toate liniile: [4x + 0, 3x + 2, 2x + 5].",
       "blocksVisual": [
         {
@@ -169,7 +169,7 @@ int main() {
       ]
     },
     {
-      "line": 56,
+      "line": 49,
       "text": "Interogare la x = 4. Evaluăm: L1(4)=16, L2(4)=14, L3(4)=13. Minimul este L3(4) = 13.",
       "blocksVisual": [
         {
@@ -182,7 +182,7 @@ int main() {
       ]
     },
     {
-      "line": 51,
+      "line": 44,
       "text": "Adăugăm L4 (y = 1x + 9). Verificăm dacă L3 este redundantă cu is_redundant(L2, L3, L4).",
       "blocksVisual": [
         {
@@ -192,7 +192,7 @@ int main() {
       ]
     },
     {
-      "line": 13,
+      "line": 6,
       "text": "Intersecția L2 cu L3 este la x = 3. Intersecția L3 cu L4 este la x = 4. Deoarece 3 < 4, L3 este salvată. Deque: [4x+0, 3x+2, 2x+5, x+9].",
       "blocksVisual": [
         {
@@ -202,7 +202,7 @@ int main() {
       ]
     },
     {
-      "line": 57,
+      "line": 50,
       "text": "Interogare la x = 5. Evaluăm liniile. L4(5) = 14 este minimul.",
       "blocksVisual": [
         {
@@ -215,7 +215,7 @@ int main() {
       ]
     },
     {
-      "line": 52,
+      "line": 45,
       "text": "Adăugăm L5 (y = 0x + 10). Verificăm dacă L4 devine redundantă cu is_redundant(L3, L4, L5).",
       "blocksVisual": [
         {
@@ -225,7 +225,7 @@ int main() {
       ]
     },
     {
-      "line": 13,
+      "line": 6,
       "text": "Intersecția L3 cu L4 e la x = 4. Intersecția L4 cu L5 e la x = 1. Deoarece 1 < 4, L4 devine redundantă!",
       "blocksVisual": [
         {
@@ -235,7 +235,7 @@ int main() {
       ]
     },
     {
-      "line": 23,
+      "line": 16,
       "text": "Eliminăm L4 din deque. Deque actual: [4x + 0, 3x + 2, 2x + 5]. Acum verificăm L3 cu is_redundant(L2, L3, L5).",
       "blocksVisual": [
         {
@@ -245,7 +245,7 @@ int main() {
       ]
     },
     {
-      "line": 13,
+      "line": 6,
       "text": "Intersecția L2 cu L3 e la x = 3. Intersecția L3 cu L5 e la x = 2.5. Deoarece 2.5 < 3, L3 devine și ea redundantă!",
       "blocksVisual": [
         {
@@ -255,7 +255,7 @@ int main() {
       ]
     },
     {
-      "line": 23,
+      "line": 16,
       "text": "Eliminăm L3 din deque. Deque actual: [4x + 0, 3x + 2]. Acum verificăm L2 cu is_redundant(L1, L2, L5).",
       "blocksVisual": [
         {
@@ -265,7 +265,7 @@ int main() {
       ]
     },
     {
-      "line": 13,
+      "line": 6,
       "text": "Intersecția L1 cu L2 e la x = 2. Intersecția L2 cu L5 e la x = 2.67. Deoarece 2.67 > 2, L2 este utilă! Salvăm L5. Deque: [4x+0, 3x+2, 10].",
       "blocksVisual": [
         {
@@ -275,7 +275,7 @@ int main() {
       ]
     },
     {
-      "line": 54,
+      "line": 47,
       "text": "Interogare la x = 2. Minimul este L1(2) = 8.",
       "blocksVisual": [
         {
@@ -288,7 +288,7 @@ int main() {
       ]
     },
     {
-      "line": 55,
+      "line": 48,
       "text": "Interogare la x = 3. Minimul este L2(3) = 11.",
       "blocksVisual": [
         {
@@ -301,7 +301,7 @@ int main() {
       ]
     },
     {
-      "line": 56,
+      "line": 49,
       "text": "Interogare la x = 4. Minimul este L5(4) = 10.",
       "blocksVisual": [
         {
@@ -434,7 +434,7 @@ int main() {
       else if ([10, 22].includes(stepIndex)) x = 4;
       else if (stepIndex === 13) x = 5;
 
-      if (x !== -1 && (lineNum === 35 || lineNum === 38 || lineNum === 41 || lineNum === 42 || lineNum === 49)) {
+      if (x !== -1 && (lineNum === 28 || lineNum === 31 || lineNum === 34 || lineNum === 35 || lineNum === 42)) {
         return `x: ${x}`;
       }
 
@@ -445,7 +445,7 @@ int main() {
       else if ([11, 12].includes(stepIndex)) { m = 1; c = 9; }
       else if (stepIndex >= 14 && stepIndex <= 19) { m = 0; c = 10; }
 
-      if (m !== -1 && (lineNum === 28 || lineNum === 29 || lineNum === 30 || lineNum === 33)) {
+      if (m !== -1 && (lineNum === 21 || lineNum === 22 || lineNum === 23 || lineNum === 26)) {
         return `m: ${m}, c: ${c}`;
       }
       return null;

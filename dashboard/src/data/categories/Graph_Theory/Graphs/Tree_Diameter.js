@@ -84,299 +84,2218 @@ int main() {
 }
 `,
   "explanations": [
-    {
-      "line": 55,
-      "text": "Apelăm funcția `getTreeDiameter` cu un arbore de $6$ noduri. Arborele are structura: 1-2, 2-3, 2-4, 3-5, 4-6.",
-      "blocksVisual": [
-        {
-          "label": "Configurație",
-          "groups": [
-            [
-              { "val": "n = 6", "active": true }
-            ]
+  {
+    "line": 54,
+    "text": "Apelăm getTreeDiameter(6, adj).",
+    "blocksVisual": [
+      {
+        "label": "Main",
+        "groups": [
+          [
+            {
+              "val": "n = 6"
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 39,
-      "text": "Verificăm dacă arborele are noduri suficiente. Condiția `n <= 1` este falsă.",
-      "blocksVisual": [
-        {
-          "label": "Verificare trivialitate",
-          "groups": [
-            [
-              { "val": "n > 1", "active": true }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă n <= 1. (6 <= 1 e fals)",
+    "blocksVisual": [
+      {
+        "label": "Main",
+        "groups": [
+          [
+            {
+              "val": "n = 6"
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 40,
-      "text": "Apelăm prima parcurgere `bfs` din nodul arbitrar $1$ pentru a găsi cel mai îndepărtat nod.",
-      "blocksVisual": [
-        {
-          "label": "BFS 1",
-          "groups": [
-            [
-              { "val": "start = 1", "active": true }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 39,
+    "text": "Apelăm bfs(1, 6, adj).",
+    "blocksVisual": [
+      {
+        "label": "Main",
+        "groups": [
+          [
+            {
+              "val": "n = 6"
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 13,
-      "text": "Setăm distanța inițială a nodului sursă `dist[1] = 0`.",
-      "blocksVisual": [
-        {
-          "label": "Distanțe BFS 1",
-          "groups": [
-            [
-              { "val": "dist[1] = 0", "sorted": true }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 8,
+    "text": "Intrăm în BFS 1 cu start=1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 14,
-      "text": "Introducem nodul de pornire $1$ în coadă.",
-      "blocksVisual": [
-        {
-          "label": "Coada BFS 1",
-          "groups": [
-            [
-              { "val": "1", "sorted": true }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 9,
+    "text": "Inițializăm vectorul dist cu -1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 19,
-      "text": "Explorăm arborele nivel cu nivel. Din nodul $1$ ajungem la $2$ (dist. 1), apoi la $3$ și $4$ (dist. 2) și în cele din urmă la $5$ și $6$ (dist. 3).",
-      "blocksVisual": [
-        {
-          "label": "Coada BFS 1 (rulare)",
-          "groups": [
-            [
-              { "val": "dist[5] = 3" },
-              { "val": "dist[6] = 3" }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 10,
+    "text": "Inițializăm coada q.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 23,
-      "text": "În timpul parcurgerii, găsim nodul cu distanța maximă față de $1$. Acesta este nodul $5$ (sau $6$), având distanța $3$.",
-      "blocksVisual": [
-        {
-          "label": "Nod maxim BFS 1",
-          "groups": [
-            [
-              { "val": "nod = 5", "sorted": true },
-              { "val": "max_dist = 3" }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 12,
+    "text": "dist[1] = 0.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 35,
-      "text": "Prima funcție BFS se termină și returnează perechea `p1 = {5, 3}`.",
-      "blocksVisual": [
-        {
-          "label": "Rezultat BFS 1",
-          "groups": [
-            [
-              { "val": "farthest = 5" },
-              { "val": "dist = 3" }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 13,
+    "text": "q.push(1).",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [1]"
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 41,
-      "text": "Apelăm a doua parcurgere `bfs` pornind din nodul cel mai îndepărtat găsit la pasul anterior, adică din nodul $5$.",
-      "blocksVisual": [
-        {
-          "label": "BFS 2",
-          "groups": [
-            [
-              { "val": "start = 5", "active": true }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 15,
+    "text": "farthest_node = 1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [1]"
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 13,
-      "text": "Inițializăm distanța pentru noua sursă: `dist[5] = 0`.",
-      "blocksVisual": [
-        {
-          "label": "Distanțe BFS 2",
-          "groups": [
-            [
-              { "val": "dist[5] = 0", "sorted": true }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 16,
+    "text": "max_dist = 0.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [1]"
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 14,
-      "text": "Adăugăm nodul $5$ în coadă pentru a începe a doua etapă a algoritmului.",
-      "blocksVisual": [
-        {
-          "label": "Coada BFS 2",
-          "groups": [
-            [
-              { "val": "5", "sorted": true }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 18,
+    "text": "Începe bucla while (!q.empty()).",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [1]"
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 19,
-      "text": "Rulăm BFS din nodul $5$. Vizităm succesiv vecinii: $3$ (dist. 1), $2$ (dist. 2), $1$ și $4$ (dist. 3), și apoi $6$ (dist. 4).",
-      "blocksVisual": [
-        {
-          "label": "Vizitare BFS 2",
-          "groups": [
-            [
-              { "val": "dist[6] = 4", "sorted": true }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 19,
+    "text": "u = q.front() = 1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [1]"
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 23,
-      "text": "Aflăm nodul cu distanța maximă în această a doua parcurgere: acesta este nodul $6$, aflat la distanța $4$ de nodul $5$.",
-      "blocksVisual": [
-        {
-          "label": "Cel mai îndepărtat nod",
-          "groups": [
-            [
-              { "val": "nod = 6", "sorted": true },
-              { "val": "max_dist = 4", "sorted": true }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 20,
+    "text": "q.pop().",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 35,
-      "text": "Al doilea BFS returnează perechea `p2 = {6, 4}`.",
-      "blocksVisual": [
-        {
-          "label": "Rezultat BFS 2",
-          "groups": [
-            [
-              { "val": "farthest = 6" },
-              { "val": "dist = 4" }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 22,
+    "text": "Verificăm dacă dist[1] > max_dist (0 > 0).",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 42,
-      "text": "Returnăm distanța maximă găsită, adică $4$. Acesta este diametrul arborelui.",
-      "blocksVisual": [
-        {
-          "label": "Diametru",
-          "groups": [
-            [
-              { "val": "diameter = 4", "sorted": true }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Parcurgem vecinul v = 2 al lui 1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 56,
-      "text": "Afișăm diametrul arborelui pe ecran: $4$. Drumul diametral este $5-3-2-4-6$.",
-      "blocksVisual": [
-        {
-          "label": "Output",
-          "groups": [
-            [
-              { "val": "Diametru: 4", "sorted": true }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "Verificăm dist[2] == -1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
           ]
-        }
-      ]
-    }
-  ],
+        ]
+      }
+    ]
+  },
+  {
+    "line": 29,
+    "text": "dist[2] = 1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 30,
+    "text": "q.push(2).",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [2]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 19,
+    "text": "u = q.front() = 2.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [2]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 20,
+    "text": "q.pop().",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 22,
+    "text": "Verificăm dacă dist[2] > max_dist (1 > 0).",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 23,
+    "text": "max_dist = 1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 24,
+    "text": "farthest_node = 2.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Parcurgem vecinul v = 1 al lui 2.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "Verificăm dist[1] == -1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Parcurgem vecinul v = 3 al lui 2.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "Verificăm dist[3] == -1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 29,
+    "text": "dist[3] = 2.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 30,
+    "text": "q.push(3).",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [3]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Parcurgem vecinul v = 4 al lui 2.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [3]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "Verificăm dist[4] == -1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [3]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 29,
+    "text": "dist[4] = 2.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [3]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 30,
+    "text": "q.push(4).",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [3,4]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 19,
+    "text": "u = q.front() = 3.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [3,4]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 20,
+    "text": "q.pop().",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [4]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 22,
+    "text": "Verificăm dacă dist[3] > max_dist (2 > 1).",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [4]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 23,
+    "text": "max_dist = 2.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [4]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 24,
+    "text": "farthest_node = 3.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [4]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Parcurgem vecinul v = 2 al lui 3.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [4]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "Verificăm dist[2] == -1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [4]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Parcurgem vecinul v = 5 al lui 3.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [4]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "Verificăm dist[5] == -1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [4]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 29,
+    "text": "dist[5] = 3.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [4]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 30,
+    "text": "q.push(5).",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [4,5]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 19,
+    "text": "u = q.front() = 4.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [4,5]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 20,
+    "text": "q.pop().",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [5]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 22,
+    "text": "Verificăm dacă dist[4] > max_dist (2 > 2).",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [5]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Parcurgem vecinul v = 2 al lui 4.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [5]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "Verificăm dist[2] == -1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [5]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Parcurgem vecinul v = 6 al lui 4.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [5]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "Verificăm dist[6] == -1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [5]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 29,
+    "text": "dist[6] = 3.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [5]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 30,
+    "text": "q.push(6).",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [5,6]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 19,
+    "text": "u = q.front() = 5.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [5,6]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 20,
+    "text": "q.pop().",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [6]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 22,
+    "text": "Verificăm dacă dist[5] > max_dist (3 > 2).",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [6]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 23,
+    "text": "max_dist = 3.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [6]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 24,
+    "text": "farthest_node = 5.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [6]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Parcurgem vecinul v = 3 al lui 5.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [6]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "Verificăm dist[3] == -1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [6]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 19,
+    "text": "u = q.front() = 6.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = [6]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 20,
+    "text": "q.pop().",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 22,
+    "text": "Verificăm dacă dist[6] > max_dist (3 > 3).",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Parcurgem vecinul v = 4 al lui 6.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "Verificăm dist[4] == -1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 34,
+    "text": "Returnăm perechea {5, 3}.",
+    "blocksVisual": [
+      {
+        "label": "BFS 1",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 40,
+    "text": "Apelăm bfs(5, 6, adj).",
+    "blocksVisual": [
+      {
+        "label": "Main",
+        "groups": [
+          [
+            {
+              "val": "n = 6"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 8,
+    "text": "Intrăm în BFS 2 cu start=5.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 9,
+    "text": "Inițializăm vectorul dist cu -1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 10,
+    "text": "Inițializăm coada q.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 12,
+    "text": "dist[5] = 0.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 13,
+    "text": "q.push(5).",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [5]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 15,
+    "text": "farthest_node = 5.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [5]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 16,
+    "text": "max_dist = 0.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [5]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 18,
+    "text": "Începe bucla while (!q.empty()).",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [5]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 19,
+    "text": "u = q.front() = 5.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [5]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 20,
+    "text": "q.pop().",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 22,
+    "text": "Verificăm dacă dist[5] > max_dist (0 > 0).",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Parcurgem vecinul v = 3 al lui 5.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "Verificăm dist[3] == -1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 29,
+    "text": "dist[3] = 1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 30,
+    "text": "q.push(3).",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [3]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 19,
+    "text": "u = q.front() = 3.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [3]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 20,
+    "text": "q.pop().",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 22,
+    "text": "Verificăm dacă dist[3] > max_dist (1 > 0).",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 23,
+    "text": "max_dist = 1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 24,
+    "text": "farthest_node = 3.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Parcurgem vecinul v = 2 al lui 3.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "Verificăm dist[2] == -1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 29,
+    "text": "dist[2] = 2.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 30,
+    "text": "q.push(2).",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [2]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Parcurgem vecinul v = 5 al lui 3.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [2]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "Verificăm dist[5] == -1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [2]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 19,
+    "text": "u = q.front() = 2.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [2]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 20,
+    "text": "q.pop().",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 22,
+    "text": "Verificăm dacă dist[2] > max_dist (2 > 1).",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 23,
+    "text": "max_dist = 2.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 24,
+    "text": "farthest_node = 2.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Parcurgem vecinul v = 1 al lui 2.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "Verificăm dist[1] == -1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 29,
+    "text": "dist[1] = 3.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 30,
+    "text": "q.push(1).",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [1]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Parcurgem vecinul v = 3 al lui 2.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [1]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "Verificăm dist[3] == -1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [1]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Parcurgem vecinul v = 4 al lui 2.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [1]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "Verificăm dist[4] == -1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [1]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 29,
+    "text": "dist[4] = 3.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [1]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 30,
+    "text": "q.push(4).",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [1,4]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 19,
+    "text": "u = q.front() = 1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [1,4]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 20,
+    "text": "q.pop().",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [4]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 22,
+    "text": "Verificăm dacă dist[1] > max_dist (3 > 2).",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [4]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 23,
+    "text": "max_dist = 3.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [4]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 24,
+    "text": "farthest_node = 1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [4]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Parcurgem vecinul v = 2 al lui 1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [4]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "Verificăm dist[2] == -1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [4]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 19,
+    "text": "u = q.front() = 4.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [4]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 20,
+    "text": "q.pop().",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 22,
+    "text": "Verificăm dacă dist[4] > max_dist (3 > 3).",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Parcurgem vecinul v = 2 al lui 4.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "Verificăm dist[2] == -1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Parcurgem vecinul v = 6 al lui 4.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "Verificăm dist[6] == -1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 29,
+    "text": "dist[6] = 4.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 30,
+    "text": "q.push(6).",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [6]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 19,
+    "text": "u = q.front() = 6.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = [6]"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 20,
+    "text": "q.pop().",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 22,
+    "text": "Verificăm dacă dist[6] > max_dist (4 > 3).",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 23,
+    "text": "max_dist = 4.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 24,
+    "text": "farthest_node = 6.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Parcurgem vecinul v = 4 al lui 6.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "Verificăm dist[4] == -1.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 34,
+    "text": "Returnăm perechea {6, 4}.",
+    "blocksVisual": [
+      {
+        "label": "BFS 2",
+        "groups": [
+          [
+            {
+              "val": "q = []"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 41,
+    "text": "Returnăm p2.second = 4.",
+    "blocksVisual": [
+      {
+        "label": "Main",
+        "groups": [
+          [
+            {
+              "val": "n = 6"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 55,
+    "text": "Afișăm diametrul arborelui: 4.",
+    "blocksVisual": [
+      {
+        "label": "Main",
+        "groups": [
+          [
+            {
+              "val": "n = 6"
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 56,
+    "text": "Program finalizat.",
+    "blocksVisual": [
+      {
+        "label": "Main",
+        "groups": [
+          [
+            {
+              "val": "n = 6"
+            }
+          ]
+        ]
+      }
+    ]
+  }
+],
   "debugger": {
+    
     "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const states = [{"line": 54,"locals":{"n":6,"p1":null,"p2":null,"diameter":null},"stackFrames":[{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":0},{"line": 38,"locals":{"n":6,"p1":null,"p2":null,"diameter":null},"stackFrames":[{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 38},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":0},{"line": 39,"locals":{"n":6,"p1":null,"p2":null,"diameter":null},"stackFrames":[{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":0},{"line": 8,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 8},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":-1},{"line": 9,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 9},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":-1},{"line": 10,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 10},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":-1},{"line": 12,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 12},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":-1},{"line": 13,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[1],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 13},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":-1},{"line": 15,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":null,"u":null,"v":null},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[1],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 15},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":-1},{"line": 16,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":null,"v":null},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[1],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 16},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":-1},{"line": 18,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":null,"v":null},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[1],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 18},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":-1},{"line": 19,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":1,"v":null},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[1],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":1},{"line": 20,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":1,"v":null},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":1},{"line": 22,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":1,"v":null},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":1},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":1,"v":2},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":1},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":1,"v":2},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":1},{"line": 29,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":1,"v":2},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":1},{"line": 30,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":1,"v":2},"dist":[-1,0,1,-1,-1,-1,-1],"q":[2],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":1},{"line": 19,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":2,"v":2},"dist":[-1,0,1,-1,-1,-1,-1],"q":[2],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 20,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":2,"v":2},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 22,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":2,"v":2},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 23,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":1,"u":2,"v":2},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 23},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 24,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":2},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 24},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":1},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":1},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":3},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":3},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 29,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":3},"dist":[-1,0,1,2,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 30,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":3},"dist":[-1,0,1,2,-1,-1,-1],"q":[3],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":4},"dist":[-1,0,1,2,-1,-1,-1],"q":[3],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":4},"dist":[-1,0,1,2,-1,-1,-1],"q":[3],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 29,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":4},"dist":[-1,0,1,2,2,-1,-1],"q":[3],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 30,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":4},"dist":[-1,0,1,2,2,-1,-1],"q":[3,4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 19,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":3,"v":4},"dist":[-1,0,1,2,2,-1,-1],"q":[3,4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 20,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":3,"v":4},"dist":[-1,0,1,2,2,-1,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 22,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":3,"v":4},"dist":[-1,0,1,2,2,-1,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 23,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":3,"v":4},"dist":[-1,0,1,2,2,-1,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 23},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 24,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":3,"v":4},"dist":[-1,0,1,2,2,-1,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 24},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":3,"v":2},"dist":[-1,0,1,2,2,-1,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":3,"v":2},"dist":[-1,0,1,2,2,-1,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":3,"v":5},"dist":[-1,0,1,2,2,-1,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":3,"v":5},"dist":[-1,0,1,2,2,-1,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 29,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":3,"v":5},"dist":[-1,0,1,2,2,3,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 30,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":3,"v":5},"dist":[-1,0,1,2,2,3,-1],"q":[4,5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 19,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":5},"dist":[-1,0,1,2,2,3,-1],"q":[4,5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 20,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":5},"dist":[-1,0,1,2,2,3,-1],"q":[5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 22,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":5},"dist":[-1,0,1,2,2,3,-1],"q":[5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":2},"dist":[-1,0,1,2,2,3,-1],"q":[5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":2},"dist":[-1,0,1,2,2,3,-1],"q":[5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":6},"dist":[-1,0,1,2,2,3,-1],"q":[5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":6},"dist":[-1,0,1,2,2,3,-1],"q":[5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 29,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":6},"dist":[-1,0,1,2,2,3,3],"q":[5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 30,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":6},"dist":[-1,0,1,2,2,3,3],"q":[5,6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 19,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":5,"v":6},"dist":[-1,0,1,2,2,3,3],"q":[5,6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":5},{"line": 20,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":5,"v":6},"dist":[-1,0,1,2,2,3,3],"q":[6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":5},{"line": 22,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":5,"v":6},"dist":[-1,0,1,2,2,3,3],"q":[6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":5},{"line": 23,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":3,"u":5,"v":6},"dist":[-1,0,1,2,2,3,3],"q":[6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 23},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":5},{"line": 24,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":5,"v":6},"dist":[-1,0,1,2,2,3,3],"q":[6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 24},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":5},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":5,"v":3},"dist":[-1,0,1,2,2,3,3],"q":[6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":5},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":5,"v":3},"dist":[-1,0,1,2,2,3,3],"q":[6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":5},{"line": 19,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":6,"v":3},"dist":[-1,0,1,2,2,3,3],"q":[6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":6},{"line": 20,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":6,"v":3},"dist":[-1,0,1,2,2,3,3],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":6},{"line": 22,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":6,"v":3},"dist":[-1,0,1,2,2,3,3],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":6},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":6,"v":4},"dist":[-1,0,1,2,2,3,3],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":6},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":6,"v":4},"dist":[-1,0,1,2,2,3,3],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":6},{"line": 34,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":6,"v":4},"dist":[-1,0,1,2,2,3,3],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 34},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":6},{"line": 40,"locals":{"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null},"stackFrames":[{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":0},{"line": 8,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 8},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":-1},{"line": 9,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 9},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":-1},{"line": 10,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 10},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":-1},{"line": 12,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 12},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":-1},{"line": 13,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[5],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 13},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":-1},{"line": 15,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[5],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 15},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":-1},{"line": 16,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[5],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 16},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":-1},{"line": 18,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[5],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 18},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":-1},{"line": 19,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":5,"v":null},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[5],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":5},{"line": 20,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":5,"v":null},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":5},{"line": 22,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":5,"v":null},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":5},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":5,"v":3},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":5},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":5,"v":3},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":5},{"line": 29,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":5,"v":3},"dist":[-1,-1,-1,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":5},{"line": 30,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":5,"v":3},"dist":[-1,-1,-1,1,-1,0,-1],"q":[3],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":5},{"line": 19,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":3,"v":3},"dist":[-1,-1,-1,1,-1,0,-1],"q":[3],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 20,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":3,"v":3},"dist":[-1,-1,-1,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 22,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":3,"v":3},"dist":[-1,-1,-1,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 23,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":1,"u":3,"v":3},"dist":[-1,-1,-1,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 23},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 24,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":3,"v":3},"dist":[-1,-1,-1,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 24},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":3,"v":2},"dist":[-1,-1,-1,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":3,"v":2},"dist":[-1,-1,-1,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 29,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":3,"v":2},"dist":[-1,-1,2,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 30,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":3,"v":2},"dist":[-1,-1,2,1,-1,0,-1],"q":[2],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":3,"v":5},"dist":[-1,-1,2,1,-1,0,-1],"q":[2],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":3,"v":5},"dist":[-1,-1,2,1,-1,0,-1],"q":[2],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 19,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":2,"v":5},"dist":[-1,-1,2,1,-1,0,-1],"q":[2],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 20,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":2,"v":5},"dist":[-1,-1,2,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 22,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":2,"v":5},"dist":[-1,-1,2,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 23,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":2,"v":5},"dist":[-1,-1,2,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 23},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 24,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":5},"dist":[-1,-1,2,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 24},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":1},"dist":[-1,-1,2,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":1},"dist":[-1,-1,2,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 29,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":1},"dist":[-1,3,2,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 30,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":1},"dist":[-1,3,2,1,-1,0,-1],"q":[1],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":3},"dist":[-1,3,2,1,-1,0,-1],"q":[1],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":3},"dist":[-1,3,2,1,-1,0,-1],"q":[1],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":4},"dist":[-1,3,2,1,-1,0,-1],"q":[1],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":4},"dist":[-1,3,2,1,-1,0,-1],"q":[1],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 29,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":4},"dist":[-1,3,2,1,3,0,-1],"q":[1],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 30,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":4},"dist":[-1,3,2,1,3,0,-1],"q":[1,4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 19,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":1,"v":4},"dist":[-1,3,2,1,3,0,-1],"q":[1,4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":1},{"line": 20,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":1,"v":4},"dist":[-1,3,2,1,3,0,-1],"q":[4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":1},{"line": 22,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":1,"v":4},"dist":[-1,3,2,1,3,0,-1],"q":[4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":1},{"line": 23,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":3,"u":1,"v":4},"dist":[-1,3,2,1,3,0,-1],"q":[4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 23},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":1},{"line": 24,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":1,"v":4},"dist":[-1,3,2,1,3,0,-1],"q":[4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 24},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":1},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":1,"v":2},"dist":[-1,3,2,1,3,0,-1],"q":[4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":1},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":1,"v":2},"dist":[-1,3,2,1,3,0,-1],"q":[4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":1},{"line": 19,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":2},"dist":[-1,3,2,1,3,0,-1],"q":[4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 20,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":2},"dist":[-1,3,2,1,3,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 22,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":2},"dist":[-1,3,2,1,3,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":2},"dist":[-1,3,2,1,3,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":2},"dist":[-1,3,2,1,3,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":6},"dist":[-1,3,2,1,3,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":6},"dist":[-1,3,2,1,3,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 29,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":6},"dist":[-1,3,2,1,3,0,4],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 30,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":6},"dist":[-1,3,2,1,3,0,4],"q":[6],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 19,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":6,"v":6},"dist":[-1,3,2,1,3,0,4],"q":[6],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":6},{"line": 20,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":6,"v":6},"dist":[-1,3,2,1,3,0,4],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":6},{"line": 22,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":6,"v":6},"dist":[-1,3,2,1,3,0,4],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":6},{"line": 23,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":4,"u":6,"v":6},"dist":[-1,3,2,1,3,0,4],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 23},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":6},{"line": 24,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":6,"max_dist":4,"u":6,"v":6},"dist":[-1,3,2,1,3,0,4],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 24},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":6},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":6,"max_dist":4,"u":6,"v":4},"dist":[-1,3,2,1,3,0,4],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":6},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":6,"max_dist":4,"u":6,"v":4},"dist":[-1,3,2,1,3,0,4],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":6},{"line": 34,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":6,"max_dist":4,"u":6,"v":4},"dist":[-1,3,2,1,3,0,4],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 34},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":6},{"line": 41,"locals":{"n":6,"p1":{"first":5,"second":3},"p2":{"first":6,"second":4},"diameter":null},"stackFrames":[{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 41},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":0},{"line": 55,"locals":{"n":6,"p1":{"first":5,"second":3},"p2":{"first":6,"second":4},"diameter":4},"stackFrames":[{"name":"main()","file":"main.cpp","line": 55}],"bfsCallCount":0},{"line": 56,"locals":{"n":6,"p1":{"first":5,"second":3},"p2":{"first":6,"second":4},"diameter":4},"stackFrames":[{"name":"main()","file":"main.cpp","line": 56}],"bfsCallCount":0}];
+      if (stepIndex >= states.length) stepIndex = states.length - 1;
+      const state = states[stepIndex];
+      const locals = state.locals;
       const vars = [];
       const globalVars = [];
-      const frames = [];
-      let inlineVal = null;
-
-      if (stepIndex <= 2) {
-        frames.push({ name: "getTreeDiameter(n=6, adj)", file: "solution.cpp", line: activeLine });
-        frames.push({ name: "main()", file: "main.cpp", line: 81 });
-        vars.push({ name: "n", type: "int", val: "6", expandable: false });
-      } else if (stepIndex === 8) {
-        frames.push({ name: "getTreeDiameter(n=6, adj)", file: "solution.cpp", line: activeLine });
-        frames.push({ name: "main()", file: "main.cpp", line: 81 });
-        vars.push({ name: "n", type: "int", val: "6", expandable: false });
-        vars.push({ name: "p1", type: "std::pair<int,int>", val: "{first: 5, second: 3}", expandable: false });
-      } else if (stepIndex === 14) {
-        frames.push({ name: "getTreeDiameter(n=6, adj)", file: "solution.cpp", line: activeLine });
-        frames.push({ name: "main()", file: "main.cpp", line: 81 });
-        vars.push({ name: "n", type: "int", val: "6", expandable: false });
-        vars.push({ name: "p1", type: "std::pair<int,int>", val: "{first: 5, second: 3}", expandable: false });
-        vars.push({ name: "p2", type: "std::pair<int,int>", val: "{first: 6, second: 4}", expandable: false });
-      } else if (stepIndex === 15) {
-        frames.push({ name: "main()", file: "main.cpp", line: activeLine });
-        vars.push({ name: "n", type: "int", val: "6", expandable: false });
-        vars.push({ name: "diameter", type: "int", val: "4", expandable: false });
+      const frames = state.stackFrames;
+      
+      if (state.bfsCallCount === 0) {
+          vars.push({ name: "n", type: "int", val: "6" });
+          if (locals.p1) vars.push({ name: "p1", type: "pair<int,int>", val: `{${locals.p1.first}, ${locals.p1.second}}` });
+          if (locals.p2) vars.push({ name: "p2", type: "pair<int,int>", val: `{${locals.p2.first}, ${locals.p2.second}}` });
+          if (locals.diameter) vars.push({ name: "diameter", type: "int", val: locals.diameter.toString() });
       } else {
-        // Inside BFS 1 or BFS 2
-        const startVal = stepIndex <= 7 ? 1 : 5;
-        const callerLine = stepIndex <= 7 ? 66 : 67;
-        const farthest = stepIndex <= 7 ? 5 : 6;
-        const maxDist = stepIndex <= 7 ? 3 : 4;
+          vars.push({ name: "start", type: "int", val: locals.start.toString() });
+          vars.push({ name: "n", type: "int", val: "6" });
+          vars.push({ name: "dist", type: "vector<int>", val: "size = 7", expandable: true });
+          vars.push({ name: "q", type: "queue<int>", val: `[${state.q.join(',')}]` });
+          if (locals.farthest_node !== null) vars.push({ name: "farthest_node", type: "int", val: locals.farthest_node.toString() });
+          if (locals.max_dist !== null) vars.push({ name: "max_dist", type: "int", val: locals.max_dist.toString() });
+          if (locals.u !== null) vars.push({ name: "u", type: "int", val: locals.u.toString() });
+          if (locals.v !== null) vars.push({ name: "v", type: "int", val: locals.v.toString() });
+      }
 
-        frames.push({ name: `bfs(start=${startVal}, n=6, adj)`, file: "solution.cpp", line: activeLine });
-        frames.push({ name: "getTreeDiameter(n=6, adj)", file: "solution.cpp", line: callerLine });
-        frames.push({ name: "main()", file: "main.cpp", line: 81 });
-
-        vars.push({ name: "start", type: "int", val: startVal.toString(), expandable: false });
-        vars.push({ name: "n", type: "int", val: "6", expandable: false });
-        vars.push({ name: "dist", type: "std::vector<int>", val: "size = 7", expandable: true });
-        
-        let qVal = "empty";
-        if (stepIndex === 4 || stepIndex === 10) qVal = `{${startVal}}`;
-        else if (stepIndex === 5 || stepIndex === 11) qVal = `{...}`;
-        vars.push({ name: "q", type: "std::queue<int>", val: qVal, expandable: false });
-        vars.push({ name: "farthest_node", type: "int", val: farthest.toString(), expandable: false });
-        vars.push({ name: "max_dist", type: "int", val: maxDist.toString(), expandable: false });
-
-        inlineVal = `start: ${startVal}, max_dist: ${maxDist}`;
+      let inlineVal = null;
+      if (state.bfsCallCount > 0 && locals.u !== null && activeLine >= 46 && activeLine <= 60) {
+          inlineVal = `u: ${locals.u}`;
+          if (locals.v !== null && activeLine >= 54) inlineVal += `, v: ${locals.v}`;
       }
 
       return { vars, globalVars, frames, inlineVal };
     },
     "getInlineValueForLine": (stepIndex, lineNum) => {
-      if (lineNum === 65) return "n: 6";
-      if (lineNum === 66 && stepIndex >= 8) return "p1: {5, 3}";
-      if (lineNum === 67 && stepIndex >= 14) return "p2: {6, 4}";
-      if (lineNum === 39 || lineNum === 40 || lineNum === 42 || lineNum === 43) {
-        return `start: ${stepIndex <= 7 ? 1 : 5}`;
+      const states = [{"line": 54,"locals":{"n":6,"p1":null,"p2":null,"diameter":null},"stackFrames":[{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":0},{"line": 38,"locals":{"n":6,"p1":null,"p2":null,"diameter":null},"stackFrames":[{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 38},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":0},{"line": 39,"locals":{"n":6,"p1":null,"p2":null,"diameter":null},"stackFrames":[{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":0},{"line": 8,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 8},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":-1},{"line": 9,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 9},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":-1},{"line": 10,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 10},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":-1},{"line": 12,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 12},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":-1},{"line": 13,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[1],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 13},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":-1},{"line": 15,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":null,"u":null,"v":null},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[1],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 15},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":-1},{"line": 16,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":null,"v":null},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[1],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 16},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":-1},{"line": 18,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":null,"v":null},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[1],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 18},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":-1},{"line": 19,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":1,"v":null},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[1],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":1},{"line": 20,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":1,"v":null},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":1},{"line": 22,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":1,"v":null},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":1},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":1,"v":2},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":1},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":1,"v":2},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":1},{"line": 29,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":1,"v":2},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":1},{"line": 30,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":1,"v":2},"dist":[-1,0,1,-1,-1,-1,-1],"q":[2],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":1},{"line": 19,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":2,"v":2},"dist":[-1,0,1,-1,-1,-1,-1],"q":[2],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 20,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":2,"v":2},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 22,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":2,"v":2},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 23,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":1,"u":2,"v":2},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 23},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 24,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":2},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 24},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":1},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":1},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":3},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":3},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 29,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":3},"dist":[-1,0,1,2,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 30,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":3},"dist":[-1,0,1,2,-1,-1,-1],"q":[3],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":4},"dist":[-1,0,1,2,-1,-1,-1],"q":[3],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":4},"dist":[-1,0,1,2,-1,-1,-1],"q":[3],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 29,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":4},"dist":[-1,0,1,2,2,-1,-1],"q":[3],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 30,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":4},"dist":[-1,0,1,2,2,-1,-1],"q":[3,4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 19,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":3,"v":4},"dist":[-1,0,1,2,2,-1,-1],"q":[3,4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 20,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":3,"v":4},"dist":[-1,0,1,2,2,-1,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 22,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":3,"v":4},"dist":[-1,0,1,2,2,-1,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 23,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":3,"v":4},"dist":[-1,0,1,2,2,-1,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 23},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 24,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":3,"v":4},"dist":[-1,0,1,2,2,-1,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 24},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":3,"v":2},"dist":[-1,0,1,2,2,-1,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":3,"v":2},"dist":[-1,0,1,2,2,-1,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":3,"v":5},"dist":[-1,0,1,2,2,-1,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":3,"v":5},"dist":[-1,0,1,2,2,-1,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 29,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":3,"v":5},"dist":[-1,0,1,2,2,3,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 30,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":3,"v":5},"dist":[-1,0,1,2,2,3,-1],"q":[4,5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 19,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":5},"dist":[-1,0,1,2,2,3,-1],"q":[4,5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 20,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":5},"dist":[-1,0,1,2,2,3,-1],"q":[5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 22,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":5},"dist":[-1,0,1,2,2,3,-1],"q":[5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":2},"dist":[-1,0,1,2,2,3,-1],"q":[5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":2},"dist":[-1,0,1,2,2,3,-1],"q":[5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":6},"dist":[-1,0,1,2,2,3,-1],"q":[5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":6},"dist":[-1,0,1,2,2,3,-1],"q":[5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 29,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":6},"dist":[-1,0,1,2,2,3,3],"q":[5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 30,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":6},"dist":[-1,0,1,2,2,3,3],"q":[5,6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 19,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":5,"v":6},"dist":[-1,0,1,2,2,3,3],"q":[5,6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":5},{"line": 20,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":5,"v":6},"dist":[-1,0,1,2,2,3,3],"q":[6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":5},{"line": 22,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":5,"v":6},"dist":[-1,0,1,2,2,3,3],"q":[6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":5},{"line": 23,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":3,"u":5,"v":6},"dist":[-1,0,1,2,2,3,3],"q":[6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 23},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":5},{"line": 24,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":5,"v":6},"dist":[-1,0,1,2,2,3,3],"q":[6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 24},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":5},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":5,"v":3},"dist":[-1,0,1,2,2,3,3],"q":[6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":5},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":5,"v":3},"dist":[-1,0,1,2,2,3,3],"q":[6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":5},{"line": 19,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":6,"v":3},"dist":[-1,0,1,2,2,3,3],"q":[6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":6},{"line": 20,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":6,"v":3},"dist":[-1,0,1,2,2,3,3],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":6},{"line": 22,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":6,"v":3},"dist":[-1,0,1,2,2,3,3],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":6},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":6,"v":4},"dist":[-1,0,1,2,2,3,3],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":6},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":6,"v":4},"dist":[-1,0,1,2,2,3,3],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":6},{"line": 34,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":6,"v":4},"dist":[-1,0,1,2,2,3,3],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 34},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":6},{"line": 40,"locals":{"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null},"stackFrames":[{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":0},{"line": 8,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 8},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":-1},{"line": 9,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 9},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":-1},{"line": 10,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 10},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":-1},{"line": 12,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 12},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":-1},{"line": 13,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[5],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 13},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":-1},{"line": 15,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[5],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 15},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":-1},{"line": 16,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[5],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 16},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":-1},{"line": 18,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[5],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 18},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":-1},{"line": 19,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":5,"v":null},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[5],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":5},{"line": 20,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":5,"v":null},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":5},{"line": 22,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":5,"v":null},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":5},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":5,"v":3},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":5},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":5,"v":3},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":5},{"line": 29,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":5,"v":3},"dist":[-1,-1,-1,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":5},{"line": 30,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":5,"v":3},"dist":[-1,-1,-1,1,-1,0,-1],"q":[3],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":5},{"line": 19,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":3,"v":3},"dist":[-1,-1,-1,1,-1,0,-1],"q":[3],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 20,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":3,"v":3},"dist":[-1,-1,-1,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 22,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":3,"v":3},"dist":[-1,-1,-1,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 23,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":1,"u":3,"v":3},"dist":[-1,-1,-1,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 23},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 24,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":3,"v":3},"dist":[-1,-1,-1,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 24},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":3,"v":2},"dist":[-1,-1,-1,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":3,"v":2},"dist":[-1,-1,-1,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 29,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":3,"v":2},"dist":[-1,-1,2,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 30,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":3,"v":2},"dist":[-1,-1,2,1,-1,0,-1],"q":[2],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":3,"v":5},"dist":[-1,-1,2,1,-1,0,-1],"q":[2],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":3,"v":5},"dist":[-1,-1,2,1,-1,0,-1],"q":[2],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 19,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":2,"v":5},"dist":[-1,-1,2,1,-1,0,-1],"q":[2],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 20,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":2,"v":5},"dist":[-1,-1,2,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 22,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":2,"v":5},"dist":[-1,-1,2,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 23,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":2,"v":5},"dist":[-1,-1,2,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 23},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 24,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":5},"dist":[-1,-1,2,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 24},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":1},"dist":[-1,-1,2,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":1},"dist":[-1,-1,2,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 29,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":1},"dist":[-1,3,2,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 30,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":1},"dist":[-1,3,2,1,-1,0,-1],"q":[1],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":3},"dist":[-1,3,2,1,-1,0,-1],"q":[1],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":3},"dist":[-1,3,2,1,-1,0,-1],"q":[1],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":4},"dist":[-1,3,2,1,-1,0,-1],"q":[1],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":4},"dist":[-1,3,2,1,-1,0,-1],"q":[1],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 29,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":4},"dist":[-1,3,2,1,3,0,-1],"q":[1],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 30,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":4},"dist":[-1,3,2,1,3,0,-1],"q":[1,4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 19,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":1,"v":4},"dist":[-1,3,2,1,3,0,-1],"q":[1,4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":1},{"line": 20,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":1,"v":4},"dist":[-1,3,2,1,3,0,-1],"q":[4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":1},{"line": 22,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":1,"v":4},"dist":[-1,3,2,1,3,0,-1],"q":[4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":1},{"line": 23,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":3,"u":1,"v":4},"dist":[-1,3,2,1,3,0,-1],"q":[4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 23},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":1},{"line": 24,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":1,"v":4},"dist":[-1,3,2,1,3,0,-1],"q":[4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 24},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":1},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":1,"v":2},"dist":[-1,3,2,1,3,0,-1],"q":[4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":1},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":1,"v":2},"dist":[-1,3,2,1,3,0,-1],"q":[4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":1},{"line": 19,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":2},"dist":[-1,3,2,1,3,0,-1],"q":[4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 20,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":2},"dist":[-1,3,2,1,3,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 22,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":2},"dist":[-1,3,2,1,3,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":2},"dist":[-1,3,2,1,3,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":2},"dist":[-1,3,2,1,3,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":6},"dist":[-1,3,2,1,3,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":6},"dist":[-1,3,2,1,3,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 29,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":6},"dist":[-1,3,2,1,3,0,4],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 30,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":6},"dist":[-1,3,2,1,3,0,4],"q":[6],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 19,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":6,"v":6},"dist":[-1,3,2,1,3,0,4],"q":[6],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":6},{"line": 20,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":6,"v":6},"dist":[-1,3,2,1,3,0,4],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":6},{"line": 22,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":6,"v":6},"dist":[-1,3,2,1,3,0,4],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":6},{"line": 23,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":4,"u":6,"v":6},"dist":[-1,3,2,1,3,0,4],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 23},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":6},{"line": 24,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":6,"max_dist":4,"u":6,"v":6},"dist":[-1,3,2,1,3,0,4],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 24},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":6},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":6,"max_dist":4,"u":6,"v":4},"dist":[-1,3,2,1,3,0,4],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":6},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":6,"max_dist":4,"u":6,"v":4},"dist":[-1,3,2,1,3,0,4],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":6},{"line": 34,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":6,"max_dist":4,"u":6,"v":4},"dist":[-1,3,2,1,3,0,4],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 34},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":6},{"line": 41,"locals":{"n":6,"p1":{"first":5,"second":3},"p2":{"first":6,"second":4},"diameter":null},"stackFrames":[{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 41},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":0},{"line": 55,"locals":{"n":6,"p1":{"first":5,"second":3},"p2":{"first":6,"second":4},"diameter":4},"stackFrames":[{"name":"main()","file":"main.cpp","line": 55}],"bfsCallCount":0},{"line": 56,"locals":{"n":6,"p1":{"first":5,"second":3},"p2":{"first":6,"second":4},"diameter":4},"stackFrames":[{"name":"main()","file":"main.cpp","line": 56}],"bfsCallCount":0}];
+      if (stepIndex >= states.length) stepIndex = states.length - 1;
+      const state = states[stepIndex];
+      const locals = state.locals;
+      if (state.bfsCallCount > 0) {
+          if (lineNum === 19) return locals.u !== null ? `u: ${locals.u}` : null;
+          if (lineNum === 27) return locals.v !== null ? `v: ${locals.v}` : null;
       }
       return null;
     },
     "getGraphVisual": (stepIndex) => {
+      const states = [{"line": 54,"locals":{"n":6,"p1":null,"p2":null,"diameter":null},"stackFrames":[{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":0},{"line": 38,"locals":{"n":6,"p1":null,"p2":null,"diameter":null},"stackFrames":[{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 38},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":0},{"line": 39,"locals":{"n":6,"p1":null,"p2":null,"diameter":null},"stackFrames":[{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":0},{"line": 8,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 8},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":-1},{"line": 9,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 9},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":-1},{"line": 10,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 10},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":-1},{"line": 12,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 12},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":-1},{"line": 13,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[1],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 13},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":-1},{"line": 15,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":null,"u":null,"v":null},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[1],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 15},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":-1},{"line": 16,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":null,"v":null},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[1],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 16},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":-1},{"line": 18,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":null,"v":null},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[1],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 18},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":-1},{"line": 19,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":1,"v":null},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[1],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":1},{"line": 20,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":1,"v":null},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":1},{"line": 22,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":1,"v":null},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":1},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":1,"v":2},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":1},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":1,"v":2},"dist":[-1,0,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":1},{"line": 29,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":1,"v":2},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":1},{"line": 30,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":1,"v":2},"dist":[-1,0,1,-1,-1,-1,-1],"q":[2],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":1},{"line": 19,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":2,"v":2},"dist":[-1,0,1,-1,-1,-1,-1],"q":[2],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 20,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":2,"v":2},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 22,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":0,"u":2,"v":2},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 23,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":1,"max_dist":1,"u":2,"v":2},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 23},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 24,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":2},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 24},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":1},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":1},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":3},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":3},"dist":[-1,0,1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 29,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":3},"dist":[-1,0,1,2,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 30,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":3},"dist":[-1,0,1,2,-1,-1,-1],"q":[3],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":4},"dist":[-1,0,1,2,-1,-1,-1],"q":[3],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":4},"dist":[-1,0,1,2,-1,-1,-1],"q":[3],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 29,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":4},"dist":[-1,0,1,2,2,-1,-1],"q":[3],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 30,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":2,"v":4},"dist":[-1,0,1,2,2,-1,-1],"q":[3,4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":2},{"line": 19,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":3,"v":4},"dist":[-1,0,1,2,2,-1,-1],"q":[3,4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 20,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":3,"v":4},"dist":[-1,0,1,2,2,-1,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 22,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":1,"u":3,"v":4},"dist":[-1,0,1,2,2,-1,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 23,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":3,"v":4},"dist":[-1,0,1,2,2,-1,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 23},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 24,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":3,"v":4},"dist":[-1,0,1,2,2,-1,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 24},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":3,"v":2},"dist":[-1,0,1,2,2,-1,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":3,"v":2},"dist":[-1,0,1,2,2,-1,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":3,"v":5},"dist":[-1,0,1,2,2,-1,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":3,"v":5},"dist":[-1,0,1,2,2,-1,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 29,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":3,"v":5},"dist":[-1,0,1,2,2,3,-1],"q":[4],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 30,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":3,"v":5},"dist":[-1,0,1,2,2,3,-1],"q":[4,5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":3},{"line": 19,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":5},"dist":[-1,0,1,2,2,3,-1],"q":[4,5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 20,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":5},"dist":[-1,0,1,2,2,3,-1],"q":[5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 22,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":5},"dist":[-1,0,1,2,2,3,-1],"q":[5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":2},"dist":[-1,0,1,2,2,3,-1],"q":[5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":2},"dist":[-1,0,1,2,2,3,-1],"q":[5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":6},"dist":[-1,0,1,2,2,3,-1],"q":[5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":6},"dist":[-1,0,1,2,2,3,-1],"q":[5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 29,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":6},"dist":[-1,0,1,2,2,3,3],"q":[5],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 30,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":4,"v":6},"dist":[-1,0,1,2,2,3,3],"q":[5,6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":4},{"line": 19,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":5,"v":6},"dist":[-1,0,1,2,2,3,3],"q":[5,6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":5},{"line": 20,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":5,"v":6},"dist":[-1,0,1,2,2,3,3],"q":[6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":5},{"line": 22,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":5,"v":6},"dist":[-1,0,1,2,2,3,3],"q":[6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":5},{"line": 23,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":3,"max_dist":3,"u":5,"v":6},"dist":[-1,0,1,2,2,3,3],"q":[6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 23},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":5},{"line": 24,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":5,"v":6},"dist":[-1,0,1,2,2,3,3],"q":[6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 24},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":5},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":5,"v":3},"dist":[-1,0,1,2,2,3,3],"q":[6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":5},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":5,"v":3},"dist":[-1,0,1,2,2,3,3],"q":[6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":5},{"line": 19,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":6,"v":3},"dist":[-1,0,1,2,2,3,3],"q":[6],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":6},{"line": 20,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":6,"v":3},"dist":[-1,0,1,2,2,3,3],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":6},{"line": 22,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":6,"v":3},"dist":[-1,0,1,2,2,3,3],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":6},{"line": 27,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":6,"v":4},"dist":[-1,0,1,2,2,3,3],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":6},{"line": 28,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":6,"v":4},"dist":[-1,0,1,2,2,3,3],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":6},{"line": 34,"locals":{"start":1,"n":6,"p1":null,"p2":null,"diameter":null,"farthest_node":5,"max_dist":3,"u":6,"v":4},"dist":[-1,0,1,2,2,3,3],"q":[],"stackFrames":[{"name":"bfs(start=1, n=6, adj)","file":"solution.cpp","line": 34},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 39},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":1,"activeNode":6},{"line": 40,"locals":{"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null},"stackFrames":[{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":0},{"line": 8,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 8},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":-1},{"line": 9,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 9},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":-1},{"line": 10,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,-1,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 10},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":-1},{"line": 12,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 12},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":-1},{"line": 13,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":null,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[5],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 13},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":-1},{"line": 15,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":null,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[5],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 15},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":-1},{"line": 16,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[5],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 16},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":-1},{"line": 18,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":null,"v":null},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[5],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 18},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":-1},{"line": 19,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":5,"v":null},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[5],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":5},{"line": 20,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":5,"v":null},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":5},{"line": 22,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":5,"v":null},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":5},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":5,"v":3},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":5},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":5,"v":3},"dist":[-1,-1,-1,-1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":5},{"line": 29,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":5,"v":3},"dist":[-1,-1,-1,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":5},{"line": 30,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":5,"v":3},"dist":[-1,-1,-1,1,-1,0,-1],"q":[3],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":5},{"line": 19,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":3,"v":3},"dist":[-1,-1,-1,1,-1,0,-1],"q":[3],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 20,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":3,"v":3},"dist":[-1,-1,-1,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 22,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":0,"u":3,"v":3},"dist":[-1,-1,-1,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 23,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":5,"max_dist":1,"u":3,"v":3},"dist":[-1,-1,-1,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 23},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 24,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":3,"v":3},"dist":[-1,-1,-1,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 24},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":3,"v":2},"dist":[-1,-1,-1,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":3,"v":2},"dist":[-1,-1,-1,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 29,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":3,"v":2},"dist":[-1,-1,2,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 30,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":3,"v":2},"dist":[-1,-1,2,1,-1,0,-1],"q":[2],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":3,"v":5},"dist":[-1,-1,2,1,-1,0,-1],"q":[2],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":3,"v":5},"dist":[-1,-1,2,1,-1,0,-1],"q":[2],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":3},{"line": 19,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":2,"v":5},"dist":[-1,-1,2,1,-1,0,-1],"q":[2],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 20,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":2,"v":5},"dist":[-1,-1,2,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 22,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":1,"u":2,"v":5},"dist":[-1,-1,2,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 23,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":3,"max_dist":2,"u":2,"v":5},"dist":[-1,-1,2,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 23},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 24,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":5},"dist":[-1,-1,2,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 24},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":1},"dist":[-1,-1,2,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":1},"dist":[-1,-1,2,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 29,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":1},"dist":[-1,3,2,1,-1,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 30,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":1},"dist":[-1,3,2,1,-1,0,-1],"q":[1],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":3},"dist":[-1,3,2,1,-1,0,-1],"q":[1],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":3},"dist":[-1,3,2,1,-1,0,-1],"q":[1],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":4},"dist":[-1,3,2,1,-1,0,-1],"q":[1],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":4},"dist":[-1,3,2,1,-1,0,-1],"q":[1],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 29,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":4},"dist":[-1,3,2,1,3,0,-1],"q":[1],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 30,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":2,"v":4},"dist":[-1,3,2,1,3,0,-1],"q":[1,4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":2},{"line": 19,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":1,"v":4},"dist":[-1,3,2,1,3,0,-1],"q":[1,4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":1},{"line": 20,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":1,"v":4},"dist":[-1,3,2,1,3,0,-1],"q":[4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":1},{"line": 22,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":2,"u":1,"v":4},"dist":[-1,3,2,1,3,0,-1],"q":[4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":1},{"line": 23,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":2,"max_dist":3,"u":1,"v":4},"dist":[-1,3,2,1,3,0,-1],"q":[4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 23},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":1},{"line": 24,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":1,"v":4},"dist":[-1,3,2,1,3,0,-1],"q":[4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 24},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":1},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":1,"v":2},"dist":[-1,3,2,1,3,0,-1],"q":[4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":1},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":1,"v":2},"dist":[-1,3,2,1,3,0,-1],"q":[4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":1},{"line": 19,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":2},"dist":[-1,3,2,1,3,0,-1],"q":[4],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 20,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":2},"dist":[-1,3,2,1,3,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 22,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":2},"dist":[-1,3,2,1,3,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":2},"dist":[-1,3,2,1,3,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":2},"dist":[-1,3,2,1,3,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":6},"dist":[-1,3,2,1,3,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":6},"dist":[-1,3,2,1,3,0,-1],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 29,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":6},"dist":[-1,3,2,1,3,0,4],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 29},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 30,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":4,"v":6},"dist":[-1,3,2,1,3,0,4],"q":[6],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 30},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":4},{"line": 19,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":6,"v":6},"dist":[-1,3,2,1,3,0,4],"q":[6],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 19},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":6},{"line": 20,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":6,"v":6},"dist":[-1,3,2,1,3,0,4],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 20},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":6},{"line": 22,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":3,"u":6,"v":6},"dist":[-1,3,2,1,3,0,4],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 22},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":6},{"line": 23,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":1,"max_dist":4,"u":6,"v":6},"dist":[-1,3,2,1,3,0,4],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 23},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":6},{"line": 24,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":6,"max_dist":4,"u":6,"v":6},"dist":[-1,3,2,1,3,0,4],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 24},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":6},{"line": 27,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":6,"max_dist":4,"u":6,"v":4},"dist":[-1,3,2,1,3,0,4],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 27},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":6},{"line": 28,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":6,"max_dist":4,"u":6,"v":4},"dist":[-1,3,2,1,3,0,4],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 28},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":6},{"line": 34,"locals":{"start":5,"n":6,"p1":{"first":5,"second":3},"p2":null,"diameter":null,"farthest_node":6,"max_dist":4,"u":6,"v":4},"dist":[-1,3,2,1,3,0,4],"q":[],"stackFrames":[{"name":"bfs(start=5, n=6, adj)","file":"solution.cpp","line": 34},{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 40},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":2,"activeNode":6},{"line": 41,"locals":{"n":6,"p1":{"first":5,"second":3},"p2":{"first":6,"second":4},"diameter":null},"stackFrames":[{"name":"getTreeDiameter(n=6, adj)","file":"solution.cpp","line": 41},{"name":"main()","file":"main.cpp","line": 54}],"bfsCallCount":0},{"line": 55,"locals":{"n":6,"p1":{"first":5,"second":3},"p2":{"first":6,"second":4},"diameter":4},"stackFrames":[{"name":"main()","file":"main.cpp","line": 55}],"bfsCallCount":0},{"line": 56,"locals":{"n":6,"p1":{"first":5,"second":3},"p2":{"first":6,"second":4},"diameter":4},"stackFrames":[{"name":"main()","file":"main.cpp","line": 56}],"bfsCallCount":0}];
+      if (stepIndex >= states.length) stepIndex = states.length - 1;
+      const state = states[stepIndex];
+      
       const staticNodes = [
         { id: "1", x: 160, y: 170, label: "1" },
         { id: "2", x: 160, y: 100, label: "2" },
@@ -393,32 +2312,40 @@ int main() {
         { source: "4", target: "6" }
       ];
 
-      let activeNode = -1;
+      let activeNode = state.activeNode || -1;
       let visitedNodes = [];
       let diameterNodes = [];
 
-      if (stepIndex >= 2 && stepIndex <= 7) {
-        // BFS 1
-        activeNode = 1;
-        visitedNodes = [1, 2, 3, 4, 5, 6];
-      } else if (stepIndex >= 8 && stepIndex <= 13) {
-        // BFS 2
-        activeNode = 5;
-        visitedNodes = [5, 3, 2, 1, 4, 6];
-      } else if (stepIndex >= 14) {
-        // Path diameter highlighted
-        diameterNodes = [5, 3, 2, 4, 6];
+      if (state.bfsCallCount === 1) {
+          for (let i = 1; i <= 6; i++) {
+              if (state.dist[i] !== -1) visitedNodes.push(i);
+          }
+      } else if (state.bfsCallCount === 2) {
+          for (let i = 1; i <= 6; i++) {
+              if (state.dist[i] !== -1) visitedNodes.push(i);
+          }
+      }
+
+      if (state.line === 82 || state.line === 83) {
+          diameterNodes = [5, 3, 2, 4, 6];
+          activeNode = -1;
+          visitedNodes = [];
       }
 
       return {
         directed: false,
         nodes: staticNodes.map(n => {
           const idNum = parseInt(n.id);
-          let state = undefined;
-          if (diameterNodes.includes(idNum)) state = "active";
-          else if (idNum === activeNode) state = "active";
-          else if (visitedNodes.includes(idNum)) state = "visited";
-          return { ...n, state };
+          let nState = undefined;
+          if (diameterNodes.includes(idNum)) nState = "active";
+          else if (idNum === activeNode) nState = "active";
+          else if (visitedNodes.includes(idNum)) nState = "visited";
+          
+          let desc = "";
+          if (state.dist && state.dist[idNum] !== undefined && state.dist[idNum] !== -1) {
+              desc = `d=${state.dist[idNum]}`;
+          }
+          return { ...n, state: nState, desc };
         }),
         edges: staticEdges.map(e => {
           const u = parseInt(e.source), v = parseInt(e.target);
@@ -427,6 +2354,7 @@ int main() {
         })
       };
     }
+
   },
   "problems": {
     "easy": [

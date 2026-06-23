@@ -69,236 +69,472 @@ int main() {
 }
 `,
   "explanations": [
-    {
-      "line": 34,
-      "text": "Apelăm funcția `computeMobius(10)` pentru a precalcula valorile funcției Mobius de la $1$ la $10$.",
-      "blocksVisual": [
-        {
-          "label": "Apel",
-          "groups": [
-            [
-              { "val": "n = 10", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 8,
-      "text": "Inițializăm vectorul `mu` cu dimensiunea $11$, completat cu valori implicite de $0$.",
-      "blocksVisual": [
-        {
-          "label": "mu",
-          "groups": [
-            [
-              { "val": "0" }, { "val": "0" }, { "val": "0" }, { "val": "0" }, { "val": "0" },
-              { "val": "0" }, { "val": "0" }, { "val": "0" }, { "val": "0" }, { "val": "0" }, { "val": "0" }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 9,
-      "text": "Inițializăm vectorul `isPrime` cu `true` pentru a marca toate numerele ca fiind potențial prime.",
-      "blocksVisual": [
-        {
-          "label": "isPrime",
-          "groups": [
-            [
-              { "val": "T" }, { "val": "T" }, { "val": "T" }, { "val": "T" }, { "val": "T" },
-              { "val": "T" }, { "val": "T" }, { "val": "T" }, { "val": "T" }, { "val": "T" }, { "val": "T" }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 10,
-      "text": "Declarăm vectorul `primes` care va stoca numerele prime pe măsură ce le descoperim.",
-      "blocksVisual": [
-        {
-          "label": "Primes",
-          "groups": [
-            [
-              { "val": "vid" }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 12,
-      "text": "Setăm $\\mu(1) = 1$ prin definiție (1 nu are factori primi, deci $(-1)^0 = 1$).",
-      "blocksVisual": [
-        {
-          "label": "mu[1]",
-          "groups": [
-            [
-              { "val": "mu[1] = 1", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 13,
-      "text": "Începem bucla de la $i = 2$ până la $n$. Vizităm fiecare număr pentru a-i determina factorii primi.",
-      "blocksVisual": [
-        {
-          "label": "Index",
-          "groups": [
-            [
-              { "val": "i = 2", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 14,
-      "text": "Deoarece `isPrime[2]` este adevărat, $2$ este un număr prim. Intrăm în ramura de procesare prim.",
-      "blocksVisual": [
-        {
-          "label": "Verificare prim",
-          "groups": [
-            [
-              { "val": "isPrime[2] = T", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 15,
-      "text": "Adăugăm $2$ la vectorul `primes`.",
-      "blocksVisual": [
-        {
-          "label": "Vector primes",
-          "groups": [
-            [
-              { "val": "2", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 16,
-      "text": "Un număr prim are exact un factor prim, deci $\\mu(2) = (-1)^1 = -1$.",
-      "blocksVisual": [
-        {
-          "label": "mu[2]",
-          "groups": [
-            [
-              { "val": "mu[2] = -1", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 18,
-      "text": "Parcurgem numerele prime găsite până acum pentru a marca multiplii lui $i$ ca fiind compuși.",
-      "blocksVisual": [
-        {
-          "label": "Generare multipli",
-          "groups": [
-            [
-              { "val": "i = 2", "active": true },
-              { "val": "p = 2", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 20,
-      "text": "Marcăm $i \\times p = 4$ ca fiind compus: `isPrime[4] = false`.",
-      "blocksVisual": [
-        {
-          "label": "Marcare compus",
-          "groups": [
-            [
-              { "val": "isPrime[4] = F", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 21,
-      "text": "Verificăm divizibilitatea: `2 % 2 == 0` este adevărat. Asta înseamnă că multiplul $4$ conține factorul $p=2$ la pătrat ($2^2$).",
-      "blocksVisual": [
-        {
-          "label": "Divizibilitate p",
-          "groups": [
-            [
-              { "val": "i % p == 0 (DA)", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 22,
-      "text": "Deoarece $4$ se divide cu un pătrat perfect, setăm $\\mu(4) = 0$ și apelăm `break` pentru a opri multiplicarea.",
-      "blocksVisual": [
-        {
-          "label": "mu[4] si break",
-          "groups": [
-            [
-              { "val": "mu[4] = 0", "sorted": true },
-              { "val": "break", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 13,
-      "text": "Continuăm bucla. La $i = 3$, $3$ este prim $\\implies \\mu(3) = -1$. La $i = 3, p = 2$, marcăm $6$ ca fiind compus. Deoarece $3 \\pmod 2 \\neq 0$, setăm $\\mu(6) = -\\mu(3) = 1$ (are 2 factori primi distincți).",
-      "blocksVisual": [
-        {
-          "label": "Stare i = 3",
-          "groups": [
-            [
-              { "val": "mu[3] = -1" },
-              { "val": "mu[6] = 1", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 29,
-      "text": "După ce completăm vectorul până la valoarea $limit = 10$, returnăm rezultatul precalculat.",
-      "blocksVisual": [
-        {
-          "label": "Returnare",
-          "groups": [
-            [
-              { "val": "mu vector completat", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 36,
-      "text": "Afișăm valorile calculate: `mu` pentru 1..10 sunt `1, -1, -1, 0, -1, 1, -1, 0, 0, 1`.",
-      "blocksVisual": [
-        {
-          "label": "Afișare",
-          "groups": [
-            [
-              { "val": "Output tipărit", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    }
-  ],
+  {
+    "line": 32,
+    "text": "limit = 10",
+    "blocksVisual": []
+  },
+  {
+    "line": 33,
+    "text": "Apelam computeMobius(10)",
+    "blocksVisual": []
+  },
+  {
+    "line": 6,
+    "text": "Intram in functie.",
+    "blocksVisual": []
+  },
+  {
+    "line": 7,
+    "text": "mu initializat",
+    "blocksVisual": []
+  },
+  {
+    "line": 8,
+    "text": "isPrime initializat",
+    "blocksVisual": []
+  },
+  {
+    "line": 9,
+    "text": "primes initializat",
+    "blocksVisual": []
+  },
+  {
+    "line": 11,
+    "text": "mu[1] = 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 12,
+    "text": "for i=2",
+    "blocksVisual": []
+  },
+  {
+    "line": 13,
+    "text": "if (isPrime[i])",
+    "blocksVisual": []
+  },
+  {
+    "line": 14,
+    "text": "primes.push_back(2)",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "mu[2] = -1",
+    "blocksVisual": []
+  },
+  {
+    "line": 17,
+    "text": "for p=2",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "if (i * p > n)",
+    "blocksVisual": []
+  },
+  {
+    "line": 19,
+    "text": "isPrime[4] = false",
+    "blocksVisual": []
+  },
+  {
+    "line": 20,
+    "text": "if (i % p == 0)",
+    "blocksVisual": []
+  },
+  {
+    "line": 21,
+    "text": "mu[4] = 0",
+    "blocksVisual": []
+  },
+  {
+    "line": 22,
+    "text": "break p loop",
+    "blocksVisual": []
+  },
+  {
+    "line": 12,
+    "text": "for i=3",
+    "blocksVisual": []
+  },
+  {
+    "line": 13,
+    "text": "if (isPrime[i])",
+    "blocksVisual": []
+  },
+  {
+    "line": 14,
+    "text": "primes.push_back(3)",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "mu[3] = -1",
+    "blocksVisual": []
+  },
+  {
+    "line": 17,
+    "text": "for p=2",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "if (i * p > n)",
+    "blocksVisual": []
+  },
+  {
+    "line": 19,
+    "text": "isPrime[6] = false",
+    "blocksVisual": []
+  },
+  {
+    "line": 20,
+    "text": "if (i % p == 0)",
+    "blocksVisual": []
+  },
+  {
+    "line": 24,
+    "text": "mu[6] = -mu[i]",
+    "blocksVisual": []
+  },
+  {
+    "line": 17,
+    "text": "for p=3",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "if (i * p > n)",
+    "blocksVisual": []
+  },
+  {
+    "line": 19,
+    "text": "isPrime[9] = false",
+    "blocksVisual": []
+  },
+  {
+    "line": 20,
+    "text": "if (i % p == 0)",
+    "blocksVisual": []
+  },
+  {
+    "line": 21,
+    "text": "mu[9] = 0",
+    "blocksVisual": []
+  },
+  {
+    "line": 22,
+    "text": "break p loop",
+    "blocksVisual": []
+  },
+  {
+    "line": 12,
+    "text": "for i=4",
+    "blocksVisual": []
+  },
+  {
+    "line": 13,
+    "text": "if (isPrime[i])",
+    "blocksVisual": []
+  },
+  {
+    "line": 17,
+    "text": "for p=2",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "if (i * p > n)",
+    "blocksVisual": []
+  },
+  {
+    "line": 19,
+    "text": "isPrime[8] = false",
+    "blocksVisual": []
+  },
+  {
+    "line": 20,
+    "text": "if (i % p == 0)",
+    "blocksVisual": []
+  },
+  {
+    "line": 21,
+    "text": "mu[8] = 0",
+    "blocksVisual": []
+  },
+  {
+    "line": 22,
+    "text": "break p loop",
+    "blocksVisual": []
+  },
+  {
+    "line": 12,
+    "text": "for i=5",
+    "blocksVisual": []
+  },
+  {
+    "line": 13,
+    "text": "if (isPrime[i])",
+    "blocksVisual": []
+  },
+  {
+    "line": 14,
+    "text": "primes.push_back(5)",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "mu[5] = -1",
+    "blocksVisual": []
+  },
+  {
+    "line": 17,
+    "text": "for p=2",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "if (i * p > n)",
+    "blocksVisual": []
+  },
+  {
+    "line": 19,
+    "text": "isPrime[10] = false",
+    "blocksVisual": []
+  },
+  {
+    "line": 20,
+    "text": "if (i % p == 0)",
+    "blocksVisual": []
+  },
+  {
+    "line": 24,
+    "text": "mu[10] = -mu[i]",
+    "blocksVisual": []
+  },
+  {
+    "line": 17,
+    "text": "for p=3",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "if (i * p > n)",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "i*p > n, break",
+    "blocksVisual": []
+  },
+  {
+    "line": 12,
+    "text": "for i=6",
+    "blocksVisual": []
+  },
+  {
+    "line": 13,
+    "text": "if (isPrime[i])",
+    "blocksVisual": []
+  },
+  {
+    "line": 17,
+    "text": "for p=2",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "if (i * p > n)",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "i*p > n, break",
+    "blocksVisual": []
+  },
+  {
+    "line": 12,
+    "text": "for i=7",
+    "blocksVisual": []
+  },
+  {
+    "line": 13,
+    "text": "if (isPrime[i])",
+    "blocksVisual": []
+  },
+  {
+    "line": 14,
+    "text": "primes.push_back(7)",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "mu[7] = -1",
+    "blocksVisual": []
+  },
+  {
+    "line": 17,
+    "text": "for p=2",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "if (i * p > n)",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "i*p > n, break",
+    "blocksVisual": []
+  },
+  {
+    "line": 12,
+    "text": "for i=8",
+    "blocksVisual": []
+  },
+  {
+    "line": 13,
+    "text": "if (isPrime[i])",
+    "blocksVisual": []
+  },
+  {
+    "line": 17,
+    "text": "for p=2",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "if (i * p > n)",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "i*p > n, break",
+    "blocksVisual": []
+  },
+  {
+    "line": 12,
+    "text": "for i=9",
+    "blocksVisual": []
+  },
+  {
+    "line": 13,
+    "text": "if (isPrime[i])",
+    "blocksVisual": []
+  },
+  {
+    "line": 17,
+    "text": "for p=2",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "if (i * p > n)",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "i*p > n, break",
+    "blocksVisual": []
+  },
+  {
+    "line": 12,
+    "text": "for i=10",
+    "blocksVisual": []
+  },
+  {
+    "line": 13,
+    "text": "if (isPrime[i])",
+    "blocksVisual": []
+  },
+  {
+    "line": 17,
+    "text": "for p=2",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "if (i * p > n)",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "i*p > n, break",
+    "blocksVisual": []
+  },
+  {
+    "line": 28,
+    "text": "return mu",
+    "blocksVisual": []
+  },
+  {
+    "line": 33,
+    "text": "A primit mu",
+    "blocksVisual": []
+  },
+  {
+    "line": 34,
+    "text": "cout",
+    "blocksVisual": []
+  },
+  {
+    "line": 35,
+    "text": "afisare mu[1]",
+    "blocksVisual": []
+  },
+  {
+    "line": 35,
+    "text": "afisare mu[2]",
+    "blocksVisual": []
+  },
+  {
+    "line": 35,
+    "text": "afisare mu[3]",
+    "blocksVisual": []
+  },
+  {
+    "line": 35,
+    "text": "afisare mu[4]",
+    "blocksVisual": []
+  },
+  {
+    "line": 35,
+    "text": "afisare mu[5]",
+    "blocksVisual": []
+  },
+  {
+    "line": 35,
+    "text": "afisare mu[6]",
+    "blocksVisual": []
+  },
+  {
+    "line": 35,
+    "text": "afisare mu[7]",
+    "blocksVisual": []
+  },
+  {
+    "line": 35,
+    "text": "afisare mu[8]",
+    "blocksVisual": []
+  },
+  {
+    "line": 35,
+    "text": "afisare mu[9]",
+    "blocksVisual": []
+  },
+  {
+    "line": 35,
+    "text": "afisare mu[10]",
+    "blocksVisual": []
+  },
+  {
+    "line": 39,
+    "text": "return 0",
+    "blocksVisual": []
+  }
+],
   "problems": {
     "easy": [
       {
@@ -323,67 +559,15 @@ int main() {
     ]
   },
   "debugger": {
-    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
-      const vars = [];
-      const globalVars = [];
-      const frames = [];
-      let inlineVal = null;
-
-      const states = [
-        { f: [{ name: 'main()', file: 'main.cpp', line: 62 }], v: [] },
-        { f: [{ name: 'computeMobius(10)', file: 'main.cpp', line: 8 }, { name: 'main()', file: 'main.cpp', line: 62 }], v: [{ name: 'n', type: 'int', val: 10 }, { name: 'mu', type: 'vector<int>', val: '[0,0,0,0,0,0,0,0,0,0,0]' }] },
-        { f: [{ name: 'computeMobius(10)', file: 'main.cpp', line: 9 }, { name: 'main()', file: 'main.cpp', line: 62 }], v: [{ name: 'n', type: 'int', val: 10 }, { name: 'mu', type: 'vector<int>', val: '[0,0,0,0,0,0,0,0,0,0,0]' }, { name: 'isPrime', type: 'vector<bool>', val: '[1,1,1,1,1,1,1,1,1,1,1]' }] },
-        { f: [{ name: 'computeMobius(10)', file: 'main.cpp', line: 10 }, { name: 'main()', file: 'main.cpp', line: 62 }], v: [{ name: 'n', type: 'int', val: 10 }, { name: 'mu', type: 'vector<int>', val: '[0,0,0,0,0,0,0,0,0,0,0]' }, { name: 'isPrime', type: 'vector<bool>', val: '[1,1,1,1,1,1,1,1,1,1,1]' }, { name: 'primes', type: 'vector<int>', val: '[]' }] },
-        { f: [{ name: 'computeMobius(10)', file: 'main.cpp', line: 12 }, { name: 'main()', file: 'main.cpp', line: 62 }], v: [{ name: 'n', type: 'int', val: 10 }, { name: 'mu', type: 'vector<int>', val: '[0,1,0,0,0,0,0,0,0,0,0]' }, { name: 'isPrime', type: 'vector<bool>', val: '[1,1,1,1,1,1,1,1,1,1,1]' }, { name: 'primes', type: 'vector<int>', val: '[]' }] },
-        { f: [{ name: 'computeMobius(10)', file: 'main.cpp', line: 13 }, { name: 'main()', file: 'main.cpp', line: 62 }], v: [{ name: 'n', type: 'int', val: 10 }, { name: 'mu', type: 'vector<int>', val: '[0,1,0,0,0,0,0,0,0,0,0]' }, { name: 'isPrime', type: 'vector<bool>', val: '[1,1,1,1,1,1,1,1,1,1,1]' }, { name: 'primes', type: 'vector<int>', val: '[]' }, { name: 'i', type: 'int', val: 2 }] },
-        { f: [{ name: 'computeMobius(10)', file: 'main.cpp', line: 14 }, { name: 'main()', file: 'main.cpp', line: 62 }], v: [{ name: 'n', type: 'int', val: 10 }, { name: 'mu', type: 'vector<int>', val: '[0,1,0,0,0,0,0,0,0,0,0]' }, { name: 'isPrime', type: 'vector<bool>', val: '[1,1,1,1,1,1,1,1,1,1,1]' }, { name: 'primes', type: 'vector<int>', val: '[]' }, { name: 'i', type: 'int', val: 2 }] },
-        { f: [{ name: 'computeMobius(10)', file: 'main.cpp', line: 15 }, { name: 'main()', file: 'main.cpp', line: 62 }], v: [{ name: 'n', type: 'int', val: 10 }, { name: 'mu', type: 'vector<int>', val: '[0,1,0,0,0,0,0,0,0,0,0]' }, { name: 'isPrime', type: 'vector<bool>', val: '[1,1,1,1,1,1,1,1,1,1,1]' }, { name: 'primes', type: 'vector<int>', val: '[2]' }, { name: 'i', type: 'int', val: 2 }] },
-        { f: [{ name: 'computeMobius(10)', file: 'main.cpp', line: 16 }, { name: 'main()', file: 'main.cpp', line: 62 }], v: [{ name: 'n', type: 'int', val: 10 }, { name: 'mu', type: 'vector<int>', val: '[0,1,-1,0,0,0,0,0,0,0,0]' }, { name: 'isPrime', type: 'vector<bool>', val: '[1,1,1,1,1,1,1,1,1,1,1]' }, { name: 'primes', type: 'vector<int>', val: '[2]' }, { name: 'i', type: 'int', val: 2 }] },
-        { f: [{ name: 'computeMobius(10)', file: 'main.cpp', line: 18 }, { name: 'main()', file: 'main.cpp', line: 62 }], v: [{ name: 'n', type: 'int', val: 10 }, { name: 'mu', type: 'vector<int>', val: '[0,1,-1,0,0,0,0,0,0,0,0]' }, { name: 'isPrime', type: 'vector<bool>', val: '[1,1,1,1,1,1,1,1,1,1,1]' }, { name: 'primes', type: 'vector<int>', val: '[2]' }, { name: 'i', type: 'int', val: 2 }, { name: 'p', type: 'int', val: 2 }] },
-        { f: [{ name: 'computeMobius(10)', file: 'main.cpp', line: 20 }, { name: 'main()', file: 'main.cpp', line: 62 }], v: [{ name: 'n', type: 'int', val: 10 }, { name: 'mu', type: 'vector<int>', val: '[0,1,-1,0,0,0,0,0,0,0,0]' }, { name: 'isPrime', type: 'vector<bool>', val: '[1,1,1,0,1,1,1,1,1,1,1]' }, { name: 'primes', type: 'vector<int>', val: '[2]' }, { name: 'i', type: 'int', val: 2 }, { name: 'p', type: 'int', val: 2 }] },
-        { f: [{ name: 'computeMobius(10)', file: 'main.cpp', line: 21 }, { name: 'main()', file: 'main.cpp', line: 62 }], v: [{ name: 'n', type: 'int', val: 10 }, { name: 'mu', type: 'vector<int>', val: '[0,1,-1,0,0,0,0,0,0,0,0]' }, { name: 'isPrime', type: 'vector<bool>', val: '[1,1,1,0,1,1,1,1,1,1,1]' }, { name: 'primes', type: 'vector<int>', val: '[2]' }, { name: 'i', type: 'int', val: 2 }, { name: 'p', type: 'int', val: 2 }] },
-        { f: [{ name: 'computeMobius(10)', file: 'main.cpp', line: 22 }, { name: 'main()', file: 'main.cpp', line: 62 }], v: [{ name: 'n', type: 'int', val: 10 }, { name: 'mu', type: 'vector<int>', val: '[0,1,-1,0,0,0,0,0,0,0,0]' }, { name: 'isPrime', type: 'vector<bool>', val: '[1,1,1,0,1,1,1,1,1,1,1]' }, { name: 'primes', type: 'vector<int>', val: '[2]' }, { name: 'i', type: 'int', val: 2 }, { name: 'p', type: 'int', val: 2 }] },
-        { f: [{ name: 'computeMobius(10)', file: 'main.cpp', line: 13 }, { name: 'main()', file: 'main.cpp', line: 62 }], v: [{ name: 'n', type: 'int', val: 10 }, { name: 'mu', type: 'vector<int>', val: '[0,1,-1,-1,0,-1,1,-1,0,0,1]' }, { name: 'isPrime', type: 'vector<bool>', val: '[1,1,1,0,1,1,1,1,1,1,1]' }, { name: 'primes', type: 'vector<int>', val: '[2,3]' }, { name: 'i', type: 'int', val: 3 }] },
-        { f: [{ name: 'computeMobius(10)', file: 'main.cpp', line: 29 }, { name: 'main()', file: 'main.cpp', line: 62 }], v: [{ name: 'n', type: 'int', val: 10 }, { name: 'mu', type: 'vector<int>', val: '[0,1,-1,-1,0,-1,1,-1,0,0,1]' }, { name: 'isPrime', type: 'vector<bool>', val: '[1,1,1,0,0,1,0,1,0,0,0]' }, { name: 'primes', type: 'vector<int>', val: '[2,3,5,7]' }] },
-        { f: [{ name: 'main()', file: 'main.cpp', line: 36 }], v: [{ name: 'mu', type: 'vector<int>', val: '[0,1,-1,-1,0,-1,1,-1,0,0,1]' }] }
-      ];
-
+    "getDebuggerState": (stepIndex) => {
+      const states = [{"vars":[{"name":"limit","type":"int","val":"10","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"limit=10"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"Apel"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"n=10"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,0,0,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,1,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[]","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,0,0,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,1,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[]","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,0,0,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,1,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[]","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,0,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,1,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[]","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,0,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,1,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"i=2"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,0,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,1,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,0,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,1,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"primes_size=1"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,1,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"mu[2]=-1"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,1,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"p=2"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,1,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"break"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"i=3"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"primes_size=2"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"mu[3]=-1"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"p=2"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"p","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"p=3"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"p","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"p","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"p","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"p","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"p","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"break"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"i=4"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"p=2"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"break"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"i=5"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"primes_size=3"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"mu[5]=-1"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"p=2"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false},{"name":"p","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"p=3"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false},{"name":"p","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false},{"name":"p","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"break"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"6","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"i=6"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"6","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"6","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"p=2"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"6","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"6","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"break"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"i=7"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"primes_size=4"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"mu[7]=-1"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"p=2"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"break"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"8","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"i=8"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"8","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"8","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"p=2"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"8","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"8","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"break"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"9","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"i=9"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"9","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"9","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"p=2"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"9","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"9","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"break"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"10","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"i=10"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"10","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"10","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"p=2"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"10","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"10","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"break"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"10","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"return"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"mu primit"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null}];
       const s = states[stepIndex] || states[states.length - 1];
-      s.v.forEach(v => vars.push({ ...v, expandable: false }));
-      s.f.forEach(fr => frames.push(fr));
-      if (stepIndex > 0 && stepIndex < 15) {
-        inlineVal = "i: " + (vars.find(v => v.name === 'i')?.val || 'N/A') + ", primes.size(): " + (vars.find(v => v.name === 'primes')?.val ? eval(vars.find(v => v.name === 'primes').val).length : 0);
-      }
-      return { vars, globalVars, frames, inlineVal };
+      return { vars: s.vars, globalVars: [], frames: s.frames, inlineVal: s.inlineVal };
     },
     "getInlineValueForLine": (stepIndex, lineNum) => {
-      const varsAtStep = [
-        { i: 2, primes: '[]', mu: '[0,0,0,0,0,0,0,0,0,0,0]' },
-        { i: 2, primes: '[]', mu: '[0,0,0,0,0,0,0,0,0,0,0]' },
-        { i: 2, primes: '[]', mu: '[0,0,0,0,0,0,0,0,0,0,0]' },
-        { i: 2, primes: '[]', mu: '[0,0,0,0,0,0,0,0,0,0,0]' },
-        { i: 2, primes: '[]', mu: '[0,1,0,0,0,0,0,0,0,0,0]' },
-        { i: 2, primes: '[]', mu: '[0,1,0,0,0,0,0,0,0,0,0]' },
-        { i: 2, primes: '[]', mu: '[0,1,0,0,0,0,0,0,0,0,0]' },
-        { i: 2, primes: '[2]', mu: '[0,1,0,0,0,0,0,0,0,0,0]' },
-        { i: 2, primes: '[2]', mu: '[0,1,-1,0,0,0,0,0,0,0,0]' },
-        { i: 2, primes: '[2]', mu: '[0,1,-1,0,0,0,0,0,0,0,0]' },
-        { i: 2, primes: '[2]', mu: '[0,1,-1,0,0,0,0,0,0,0,0]' },
-        { i: 2, primes: '[2]', mu: '[0,1,-1,0,0,0,0,0,0,0,0]' },
-        { i: 2, primes: '[2]', mu: '[0,1,-1,0,0,0,0,0,0,0,0]' },
-        { i: 3, primes: '[2,3]', mu: '[0,1,-1,-1,0,-1,1,-1,0,0,1]' },
-        { i: 10, primes: '[2,3,5,7]', mu: '[0,1,-1,-1,0,-1,1,-1,0,0,1]' },
-        { i: 10, primes: '[2,3,5,7]', mu: '[0,1,-1,-1,0,-1,1,-1,0,0,1]' }
-      ];
-      const s = varsAtStep[stepIndex] || varsAtStep[varsAtStep.length - 1];
-      if (lineNum === 8) return "mu size: 11";
-      if (lineNum === 10) return "primes size: " + eval(s.primes).length;
-      if (lineNum === 12) return "mu[1]: 1";
-      if (lineNum === 13) return "i: " + s.i;
-      if (lineNum === 15) return "primes added: " + eval(s.primes).join(', ');
-      if (lineNum === 20) return "marked composite: " + (s.i * 2);
-      if (lineNum === 29) return "mu precomputed";
-      if (lineNum === 36) return "limit: 10";
+      const states = [{"vars":[{"name":"limit","type":"int","val":"10","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"limit=10"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"Apel"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"n=10"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,0,0,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,1,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[]","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,0,0,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,1,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[]","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,0,0,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,1,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[]","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,0,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,1,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[]","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,0,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,1,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"i=2"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,0,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,1,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,0,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,1,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"primes_size=1"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,1,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"mu[2]=-1"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,1,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"p=2"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,1,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"break"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"i=3"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,0,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"primes_size=2"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"mu[3]=-1"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"p=2"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,1,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,0,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"p","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"p=3"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,1,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"p","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"p","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"p","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"p","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"p","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"break"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"i=4"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"p=2"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,1,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"break"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"i=5"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,0,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"primes_size=3"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"mu[5]=-1"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"p=2"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,1]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,0]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false},{"name":"p","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"p=3"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false},{"name":"p","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false},{"name":"p","type":"int","val":"3","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"break"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"6","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"i=6"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"6","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"6","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"p=2"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"6","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"6","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"break"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"i=7"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,0,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"primes_size=4"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"mu[7]=-1"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"p=2"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"break"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"8","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"i=8"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"8","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"8","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"p=2"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"8","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"8","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"break"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"9","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"i=9"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"9","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"9","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"p=2"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"9","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"9","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"break"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"10","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"i=10"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"10","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"10","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"p=2"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"10","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"10","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"break"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"n","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false},{"name":"isPrime","type":"vector<bool>","val":"[1,1,1,1,0,1,0,1,0,0,0]","expandable":false},{"name":"primes","type":"vector<int>","val":"[2,3,5,7]","expandable":false},{"name":"i","type":"int","val":"10","expandable":false}],"frames":[{"name":"computeMobius(10)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"return"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":"mu primit"},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null},{"vars":[{"name":"limit","type":"int","val":"10","expandable":false},{"name":"mu","type":"vector<int>","val":"[0,1,-1,-1,0,-1,1,-1,0,0,1]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 31}],"inlineVal":null}];
+      const s = states[stepIndex] || states[states.length - 1];
+      if (s.inlineVal && s.frames.length > 0 && s.frames[0].line === lineNum) return s.inlineVal;
       return null;
     }
   }

@@ -47,147 +47,147 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 13,
+      "line": 7,
       "text": "Începe execuția funcției binarySearch pentru a căuta target = 3.",
       "blocksVisual": [
         { "label": "Vectorul", "groups": [[{"val": 2}, {"val": 5}, {"val": 8}, {"val": 12}, {"val": 16}, {"val": 23}, {"val": 38}, {"val": 56}, {"val": 72}, {"val": 91}]] }
       ]
     },
     {
-      "line": 13,
+      "line": 7,
       "text": "Inițializăm marginea stângă: left = 0.",
       "blocksVisual": [
         { "label": "left = 0", "groups": [[{"val": 2, "active": true}, {"val": 5}, {"val": 8}, {"val": 12}, {"val": 16}, {"val": 23}, {"val": 38}, {"val": 56}, {"val": 72}, {"val": 91}]] }
       ]
     },
     {
-      "line": 14,
+      "line": 8,
       "text": "Inițializăm marginea dreaptă: right = 9 (ultimul index).",
       "blocksVisual": [
         { "label": "Interval", "groups": [[{"val": 2, "active": true}, {"val": 5}, {"val": 8}, {"val": 12}, {"val": 16}, {"val": 23}, {"val": 38}, {"val": 56}, {"val": 72}, {"val": 91, "active": true}]] }
       ]
     },
     {
-      "line": 16,
+      "line": 10,
       "text": "Verificăm condiția buclei: left <= right (0 <= 9) este adevărată.",
       "blocksVisual": [
         { "label": "Valid", "groups": [[{"val": "left <= right"}]] }
       ]
     },
     {
-      "line": 17,
+      "line": 11,
       "text": "Calculăm mijlocul intervalului: mid = 0 + (9 - 0) / 2 = 4.",
       "blocksVisual": [
         { "label": "Mijloc (mid = 4)", "groups": [[{"val": 2}, {"val": 5}, {"val": 8}, {"val": 12}, {"val": 16, "sorted": true}, {"val": 23}, {"val": 38}, {"val": 56}, {"val": 72}, {"val": 91}]] }
       ]
     },
     {
-      "line": 19,
+      "line": 13,
       "text": "Verificăm dacă arr[mid] == target. Deoarece arr[4] = 16 și target = 3, condiția este falsă.",
       "blocksVisual": [
         { "label": "Comparație", "groups": [[{"val": "16 == 3", "active": true}]] }
       ]
     },
     {
-      "line": 26,
+      "line": 20,
       "text": "Deoarece arr[mid] > target (16 > 3), elementul se poate afla doar în stânga. Mutăm right = mid - 1 = 3.",
       "blocksVisual": [
         { "label": "Actualizare", "groups": [[{"val": "right = 3", "active": true}]] }
       ]
     },
     {
-      "line": 16,
+      "line": 10,
       "text": "Reluăm bucla. Verificăm condiția: left <= right (0 <= 3) este adevărată.",
       "blocksVisual": [
         { "label": "Noul Interval", "groups": [[{"val": 2, "active": true}, {"val": 5}, {"val": 8}, {"val": 12, "active": true}, {"val": 16, "hidden": true}, {"val": 23, "hidden": true}, {"val": 38, "hidden": true}, {"val": 56, "hidden": true}, {"val": 72, "hidden": true}, {"val": 91, "hidden": true}]] }
       ]
     },
     {
-      "line": 17,
+      "line": 11,
       "text": "Calculăm noul mijloc: mid = 0 + (3 - 0) / 2 = 1.",
       "blocksVisual": [
         { "label": "Mijloc (mid = 1)", "groups": [[{"val": 2}, {"val": 5, "sorted": true}, {"val": 8}, {"val": 12}]] }
       ]
     },
     {
-      "line": 19,
+      "line": 13,
       "text": "Verificăm dacă arr[1] == target (5 == 3). Este fals.",
       "blocksVisual": [
         { "label": "Comparație", "groups": [[{"val": "5 == 3", "active": true}]] }
       ]
     },
     {
-      "line": 26,
+      "line": 20,
       "text": "Deoarece arr[mid] > target (5 > 3), mutăm marginea dreaptă la stânga: right = mid - 1 = 0.",
       "blocksVisual": [
         { "label": "Actualizare", "groups": [[{"val": "right = 0", "active": true}]] }
       ]
     },
     {
-      "line": 16,
+      "line": 10,
       "text": "Reluăm bucla. Condiția: left <= right (0 <= 0) este adevărată.",
       "blocksVisual": [
         { "label": "Interval", "groups": [[{"val": 2, "active": true}, {"val": 5, "hidden": true}, {"val": 8, "hidden": true}, {"val": 12, "hidden": true}]] }
       ]
     },
     {
-      "line": 17,
+      "line": 11,
       "text": "Calculăm mijlocul: mid = 0 + (0 - 0) / 2 = 0.",
       "blocksVisual": [
         { "label": "Mijloc (mid = 0)", "groups": [[{"val": 2, "sorted": true}]] }
       ]
     },
     {
-      "line": 19,
+      "line": 13,
       "text": "Verificăm dacă arr[0] == target (2 == 3). Este fals.",
       "blocksVisual": [
         { "label": "Comparație", "groups": [[{"val": "2 == 3", "active": true}]] }
       ]
     },
     {
-      "line": 24,
+      "line": 18,
       "text": "Deoarece arr[mid] < target (2 < 3), mutăm marginea stângă la dreapta: left = mid + 1 = 1.",
       "blocksVisual": [
         { "label": "Actualizare", "groups": [[{"val": "left = 1", "active": true}]] }
       ]
     },
     {
-      "line": 16,
+      "line": 10,
       "text": "Verificăm condiția buclei: left <= right (1 <= 0) este falsă. Căutarea pentru target = 3 s-a terminat (negăsit).",
       "blocksVisual": [
         { "label": "Stop", "groups": [[{"val": "Incomplet / Negăsit", "active": true}]] }
       ]
     },
     {
-      "line": 30,
+      "line": 24,
       "text": "Returnăm -1 deoarece elementul 3 nu există în vector.",
       "blocksVisual": [
         { "label": "Retur", "groups": [[{"val": -1}]] }
       ]
     },
     {
-      "line": 13,
+      "line": 7,
       "text": "Acum pornim o nouă căutare pentru target = 23. Inițializăm left = 0, right = 9.",
       "blocksVisual": [
         { "label": "Interval Inițial", "groups": [[{"val": 2, "active": true}, {"val": 5}, {"val": 8}, {"val": 12}, {"val": 16}, {"val": 23}, {"val": 38}, {"val": 56}, {"val": 72}, {"val": 91, "active": true}]] }
       ]
     },
     {
-      "line": 24,
+      "line": 18,
       "text": "Calculăm mijlocul: mid = 0 + (9 - 0) / 2 = 4 (valoarea 16). Deoarece 16 < 23, setăm left = mid + 1 = 5.",
       "blocksVisual": [
         { "label": "Stânga exclusă", "groups": [[{"val": 2, "hidden": true}, {"val": 5, "hidden": true}, {"val": 8, "hidden": true}, {"val": 12, "hidden": true}, {"val": 16, "hidden": true}, {"val": 23, "active": true}, {"val": 38}, {"val": 56}, {"val": 72}, {"val": 91, "active": true}]] }
       ]
     },
     {
-      "line": 26,
+      "line": 20,
       "text": "Calculăm noul mijloc: mid = 5 + (9 - 5) / 2 = 7 (valoarea 56). Deoarece 56 > 23, setăm right = mid - 1 = 6.",
       "blocksVisual": [
         { "label": "Dreapta exclusă", "groups": [[{"val": 2, "hidden": true}, {"val": 5, "hidden": true}, {"val": 8, "hidden": true}, {"val": 12, "hidden": true}, {"val": 16, "hidden": true}, {"val": 23, "active": true}, {"val": 38, "active": true}, {"val": 56, "hidden": true}, {"val": 72, "hidden": true}, {"val": 91, "hidden": true}]] }
       ]
     },
     {
-      "line": 20,
+      "line": 14,
       "text": "Calculăm noul mijloc: mid = 5 + (6 - 5) / 2 = 5 (valoarea 23). Deoarece arr[5] == target (23 == 23), am găsit elementul și returnăm indexul 5.",
       "blocksVisual": [
         { "label": "Succes!", "groups": [[{"val": 23, "sorted": true}]] }
@@ -272,7 +272,7 @@ int main() {
       const curr = stepData[stepIndex] || stepData[stepData.length - 1];
 
       frames.push({ name: "binarySearch(const vector<int>& arr, target = " + curr.target + ")", file: "solution.cpp", line: activeLine });
-      frames.push({ name: "main()", file: "main.cpp", line: 37 });
+      frames.push({ name: "main()", file: "main.cpp", line: 31 });
 
       vars.push({ name: "arr", type: "const std::vector<int>&", val: "size = 10", expandable: true });
       vars.push({ name: "target", type: "int", val: curr.target.toString(), expandable: false });
@@ -315,7 +315,7 @@ int main() {
       ];
       const curr = stepData[stepIndex];
       if (!curr) return null;
-      if (lineNum >= 12 && lineNum <= 30) {
+      if (lineNum >= 6 && lineNum <= 24) {
         let res = "left: " + curr.left + ", right: " + curr.right;
         if (curr.mid !== -1) res += ", mid: " + curr.mid;
         return res;

@@ -92,434 +92,2688 @@ int main() {
 }
 `,
   "explanations": [
-    {
-      "line": 63,
-      "text": "Apelăm funcția `dial` cu $N = 4$ noduri, sursa în nodul $1$, graful definit prin liste de adiacență ponderate și costul maxim al unei muchii $max\\_weight = 7$.",
-      "blocksVisual": [
-        {
-          "label": "Apel",
-          "groups": [
-            [
-              { "val": "src = 1", "active": true },
-              { "val": "n = 4" },
-              { "val": "max_w = 7" }
-            ]
+  {
+    "line": 62,
+    "text": "Apelăm dial(1, 4, adj, 7).",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=0",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": true
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 16,
-      "text": "Inițializăm distanțele tuturor nodurilor cu infinit (`INF = 1e9`), iar pentru sursă setăm `dist[1] = 0`.",
-      "blocksVisual": [
-        {
-          "label": "Distanțe inițiale",
-          "groups": [
-            [
-              { "val": "dist[1]: 0", "active": true },
-              { "val": "dist[2]: INF" },
-              { "val": "dist[3]: INF" },
-              { "val": "dist[4]: INF" }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 15,
+    "text": "Inițializăm dist[i] = INF.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=0",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": true
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 20,
-      "text": "Calculăm numărul teoretic de bucket-uri: $num\\_buckets = 4 \\times 7 + 1 = 29$.",
-      "blocksVisual": [
-        {
-          "label": "Găleți alocate",
-          "groups": [
-            [
-              { "val": "29 bucket-uri", "active": true }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 16,
+    "text": "dist[1] = 0.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=0",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": true
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 21,
-      "text": "Creăm vectorul de liste `buckets` de dimensiune $29$. Fiecare bucket corespunde unei distanțe temporare posibile.",
-      "blocksVisual": [
-        {
-          "label": "Buckets (0..6) - Găleți vide",
-          "groups": [
-            [
-              { "val": "B[0]: {}" },
-              { "val": "B[1]: {}" },
-              { "val": "B[2]: {}" },
-              { "val": "B[3]: {}" },
-              { "val": "B[4]: {}" },
-              { "val": "B[5]: {}" },
-              { "val": "B[6]: {}" }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 19,
+    "text": "num_buckets = 29.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=0",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": true
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 23,
-      "text": "Adăugăm nodul sursă $1$ în primul bucket `buckets[0]`, deoarece distanța sa curentă este $0$.",
-      "blocksVisual": [
-        {
-          "label": "Buckets (0..6) - Nodul 1 adăugat",
-          "groups": [
-            [
-              { "val": "B[0]: {1}", "active": true },
-              { "val": "B[1]: {}" },
-              { "val": "B[2]: {}" },
-              { "val": "B[3]: {}" },
-              { "val": "B[4]: {}" },
-              { "val": "B[5]: {}" },
-              { "val": "B[6]: {}" }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 20,
+    "text": "Inițializăm vectorul buckets.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=0",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": true
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 24,
-      "text": "Inițializăm pointerul curent de scanare a bucket-urilor cu $idx = 0$.",
-      "blocksVisual": [
-        {
-          "label": "Buckets (0..6) - Scanare de la idx = 0",
-          "groups": [
-            [
-              { "val": "B[0]: {1}", "active": true },
-              { "val": "B[1]: {}" },
-              { "val": "B[2]: {}" },
-              { "val": "B[3]: {}" },
-              { "val": "B[4]: {}" },
-              { "val": "B[5]: {}" },
-              { "val": "B[6]: {}" }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 22,
+    "text": "buckets[0].push_back(1).",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=0",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {1}",
+              "active": true
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 26,
-      "text": "Pornim bucla principală. Aceasta se execută pentru a finaliza pe rând cele $N$ noduri ale grafului.",
-      "blocksVisual": [
-        {
-          "label": "Buckets (0..6)",
-          "groups": [
-            [
-              { "val": "B[0]: {1}" },
-              { "val": "B[1]: {}" },
-              { "val": "B[2]: {}" },
-              { "val": "B[3]: {}" },
-              { "val": "B[4]: {}" },
-              { "val": "B[5]: {}" },
-              { "val": "B[6]: {}" }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 23,
+    "text": "idx = 0.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=0",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {1}",
+              "active": true
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 28,
-      "text": "Căutăm cel mai mic index `idx` pentru care `buckets[idx]` nu este gol. Momentan `buckets[0]` conține nodul $1$, deci `idx` rămâne $0$.",
-      "blocksVisual": [
-        {
-          "label": "Buckets (0..6) - idx = 0 găsit",
-          "groups": [
-            [
-              { "val": "B[0]: {1}", "active": true },
-              { "val": "B[1]: {}" },
-              { "val": "B[2]: {}" },
-              { "val": "B[3]: {}" },
-              { "val": "B[4]: {}" },
-              { "val": "B[5]: {}" },
-              { "val": "B[6]: {}" }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 25,
+    "text": "Începe bucla (count = 0 < 4).",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=0",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {1}",
+              "active": true
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 34,
-      "text": "Extragem primul nod din bucket-ul curent: `u = 1`.",
-      "blocksVisual": [
-        {
-          "label": "Buckets (0..6) - Extragere u=1",
-          "groups": [
-            [
-              { "val": "B[0]: {1}", "active": true },
-              { "val": "B[1]: {}" },
-              { "val": "B[2]: {}" },
-              { "val": "B[3]: {}" },
-              { "val": "B[4]: {}" },
-              { "val": "B[5]: {}" },
-              { "val": "B[6]: {}" }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Căutăm următorul bucket ne-vid de la idx=0.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=0",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {1}",
+              "active": true
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 35,
-      "text": "Ștergem nodul $1$ din `buckets[0]`. Acesta devine acum un nod complet finalizat.",
-      "blocksVisual": [
-        {
-          "label": "Buckets (0..6) - B[0] golit",
-          "groups": [
-            [
-              { "val": "B[0]: {}" },
-              { "val": "B[1]: {}" },
-              { "val": "B[2]: {}" },
-              { "val": "B[3]: {}" },
-              { "val": "B[4]: {}" },
-              { "val": "B[5]: {}" },
-              { "val": "B[6]: {}" }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 31,
+    "text": "Verificăm idx == num_buckets.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=0",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {1}",
+              "active": true
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 37,
-      "text": "Incrementăm numărul de noduri finalizate: `count` devine $1$.",
-      "blocksVisual": [
-        {
-          "label": "Buckets (0..6)",
-          "groups": [
-            [
-              { "val": "B[0]: {}" },
-              { "val": "B[1]: {}" },
-              { "val": "B[2]: {}" },
-              { "val": "B[3]: {}" },
-              { "val": "B[4]: {}" },
-              { "val": "B[5]: {}" },
-              { "val": "B[6]: {}" }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 33,
+    "text": "u = buckets[0].front() = 1.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=0",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {1}",
+              "active": true
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 39,
-      "text": "Explorăm vecinii nodului $1$: vecinul $2$ (muchie de cost 2) și vecinul $3$ (muchie de cost 4).",
-      "blocksVisual": [
-        {
-          "label": "Buckets (0..6)",
-          "groups": [
-            [
-              { "val": "B[0]: {}" },
-              { "val": "B[1]: {}" },
-              { "val": "B[2]: {}" },
-              { "val": "B[3]: {}" },
-              { "val": "B[4]: {}" },
-              { "val": "B[5]: {}" },
-              { "val": "B[6]: {}" }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 34,
+    "text": "buckets[0].pop_front().",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=0",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": true
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 43,
-      "text": "Verificăm dacă putem relaxa distanțele vecinilor. Pentru nodul $2$, `0 + 2 = 2 < INF`, deci actualizăm distanța.",
-      "blocksVisual": [
-        {
-          "label": "Buckets (0..6)",
-          "groups": [
-            [
-              { "val": "B[0]: {}" },
-              { "val": "B[1]: {}" },
-              { "val": "B[2]: {}" },
-              { "val": "B[3]: {}" },
-              { "val": "B[4]: {}" },
-              { "val": "B[5]: {}" },
-              { "val": "B[6]: {}" }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 36,
+    "text": "count devine 1.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=0",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": true
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 48,
-      "text": "Setăm `dist[2] = 2` și inserăm nodul $2$ în `buckets[2]`.",
-      "blocksVisual": [
-        {
-          "label": "Buckets (0..6) - Nodul 2 adăugat în B[2]",
-          "groups": [
-            [
-              { "val": "B[0]: {}" },
-              { "val": "B[1]: {}" },
-              { "val": "B[2]: {2}", "sorted": true },
-              { "val": "B[3]: {}" },
-              { "val": "B[4]: {}" },
-              { "val": "B[5]: {}" },
-              { "val": "B[6]: {}" }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 38,
+    "text": "Parcurgem vecinii lui 1. Vectorul v=2, weight=2.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=0",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": true
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 49,
-      "text": "Similar, pentru nodul $3$, `0 + 4 = 4 < INF`. Actualizăm `dist[3] = 4` și îl inserăm în `buckets[4]`.",
-      "blocksVisual": [
-        {
-          "label": "Buckets (0..6) - Nodul 3 adăugat în B[4]",
-          "groups": [
-            [
-              { "val": "B[0]: {}" },
-              { "val": "B[1]: {}" },
-              { "val": "B[2]: {2}" },
-              { "val": "B[3]: {}" },
-              { "val": "B[4]: {3}", "sorted": true },
-              { "val": "B[5]: {}" },
-              { "val": "B[6]: {}" }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 42,
+    "text": "Verificăm dacă dist[1] + 2 < dist[2]. (2 < INF).",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=0",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": true
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 28,
-      "text": "La următoarea iterație, pointerul `idx` avansează succesiv la $1$ (gol), apoi la $2$, unde găsește nodul $2$ în `buckets[2]`. Relaxăm vecinul $3$ via $2$: `dist[2] + 1 = 3 < dist[3]` ($4$). Eliminăm nodul $3$ din `buckets[4]` și îl mutăm în `buckets[3]`.",
-      "blocksVisual": [
-        {
-          "label": "Buckets (0..6) - Mutare nod 3 la B[3]",
-          "groups": [
-            [
-              { "val": "B[0]: {}" },
-              { "val": "B[1]: {}" },
-              { "val": "B[2]: {}" },
-              { "val": "B[3]: {3}", "sorted": true },
-              { "val": "B[4]: {}" },
-              { "val": "B[5]: {}" },
-              { "val": "B[6]: {}" }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 43,
+    "text": "Verificăm dacă dist[2] != INF.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=0",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": true
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 53,
-      "text": "După ce toate nodurile accesibile au fost extrase și finalizate, returnăm vectorul distanțelor minime.",
-      "blocksVisual": [
-        {
-          "label": "Buckets (0..6) - Finalizare",
-          "groups": [
-            [
-              { "val": "B[0]: {}" },
-              { "val": "B[1]: {}" },
-              { "val": "B[2]: {}" },
-              { "val": "B[3]: {}" },
-              { "val": "B[4]: {}" },
-              { "val": "B[5]: {}" },
-              { "val": "B[6]: {}" }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 47,
+    "text": "dist[2] = 2.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=0",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": true
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 64,
-      "text": "Tipărim în consolă distanțele finale calculate de la nodul sursă 1.",
-      "blocksVisual": [
-        {
-          "label": "Afișare",
-          "groups": [
-            [
-              { "val": "Output tipărit", "sorted": true }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 48,
+    "text": "Adăugăm 2 în bucket[2].",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=0",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": true
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {2}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
           ]
-        }
-      ]
-    }
-  ],
+        ]
+      }
+    ]
+  },
+  {
+    "line": 38,
+    "text": "Parcurgem vecinii lui 1. Vectorul v=3, weight=4.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=0",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": true
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {2}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 42,
+    "text": "Verificăm dacă dist[1] + 4 < dist[3]. (4 < INF).",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=0",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": true
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {2}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 43,
+    "text": "Verificăm dacă dist[3] != INF.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=0",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": true
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {2}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 47,
+    "text": "dist[3] = 4.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=0",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": true
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {2}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 48,
+    "text": "Adăugăm 3 în bucket[4].",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=0",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": true
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {2}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {3}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Căutăm următorul bucket ne-vid de la idx=0.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=0",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": true
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {2}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {3}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "idx=1.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=1",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": true
+            },
+            {
+              "val": "B[2]: {2}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {3}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "idx=2.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=2",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {2}",
+              "active": true
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {3}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 31,
+    "text": "Verificăm idx == num_buckets.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=2",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {2}",
+              "active": true
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {3}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 33,
+    "text": "u = buckets[2].front() = 2.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=2",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {2}",
+              "active": true
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {3}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 34,
+    "text": "buckets[2].pop_front().",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=2",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": true
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {3}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 36,
+    "text": "count devine 2.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=2",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": true
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {3}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 38,
+    "text": "Parcurgem vecinii lui 2. Vectorul v=3, weight=1.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=2",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": true
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {3}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 42,
+    "text": "Verificăm dacă dist[2] + 1 < dist[3]. (3 < 4).",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=2",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": true
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {3}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 43,
+    "text": "Verificăm dacă dist[3] != INF.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=2",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": true
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {3}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 44,
+    "text": "Eliminăm nodul 3 din bucket[4].",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=2",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": true
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 47,
+    "text": "dist[3] = 3.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=2",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": true
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 48,
+    "text": "Adăugăm 3 în bucket[3].",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=2",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": true
+            },
+            {
+              "val": "B[3]: {3}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 38,
+    "text": "Parcurgem vecinii lui 2. Vectorul v=4, weight=7.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=2",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": true
+            },
+            {
+              "val": "B[3]: {3}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 42,
+    "text": "Verificăm dacă dist[2] + 7 < dist[4]. (9 < INF).",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=2",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": true
+            },
+            {
+              "val": "B[3]: {3}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 43,
+    "text": "Verificăm dacă dist[4] != INF.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=2",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": true
+            },
+            {
+              "val": "B[3]: {3}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 47,
+    "text": "dist[4] = 9.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=2",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": true
+            },
+            {
+              "val": "B[3]: {3}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 48,
+    "text": "Adăugăm 4 în bucket[9].",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=2",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": true
+            },
+            {
+              "val": "B[3]: {3}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Căutăm următorul bucket ne-vid de la idx=2.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=2",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": true
+            },
+            {
+              "val": "B[3]: {3}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "idx=3.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=3",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {3}",
+              "active": true
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 31,
+    "text": "Verificăm idx == num_buckets.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=3",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {3}",
+              "active": true
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 33,
+    "text": "u = buckets[3].front() = 3.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=3",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {3}",
+              "active": true
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 34,
+    "text": "buckets[3].pop_front().",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=3",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": true
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 36,
+    "text": "count devine 3.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=3",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": true
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 38,
+    "text": "Parcurgem vecinii lui 3. Vectorul v=4, weight=3.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=3",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": true
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 42,
+    "text": "Verificăm dacă dist[3] + 3 < dist[4]. (6 < 9).",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=3",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": true
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 43,
+    "text": "Verificăm dacă dist[4] != INF.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=3",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": true
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 44,
+    "text": "Eliminăm nodul 4 din bucket[9].",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=3",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": true
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 47,
+    "text": "dist[4] = 6.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=3",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": true
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 48,
+    "text": "Adăugăm 4 în bucket[6].",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=3",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": true
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {4}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Căutăm următorul bucket ne-vid de la idx=3.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=3",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": true
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {4}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "idx=4.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=4",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": true
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {4}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "idx=5.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=5",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": true
+            },
+            {
+              "val": "B[6]: {4}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 28,
+    "text": "idx=6.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=6",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {4}",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 31,
+    "text": "Verificăm idx == num_buckets.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=6",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {4}",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 33,
+    "text": "u = buckets[6].front() = 4.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=6",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {4}",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 34,
+    "text": "buckets[6].pop_front().",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=6",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 36,
+    "text": "count devine 4.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=6",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 52,
+    "text": "Returnăm vectorul dist.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=6",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 63,
+    "text": "Afișăm distanțele în main().",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=6",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 67,
+    "text": "Program finalizat.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=6",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
+  }
+],
   "debugger": {
+    
     "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const states = [{"line": 62,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,1000000000,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 15,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,1000000000,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 16,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 19,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 20,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 22,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 23,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 25,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["1","","","","","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":1,"bucketsStr":["","","2","","3","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":1,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","2","","3","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 44,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","3","","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 44,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":3,"bucketsStr":["","","","","","","4"]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":4,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":5,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","","4"]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","",""]},{"line": 52,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 63,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 67,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]}];
+      if (stepIndex >= states.length) stepIndex = states.length - 1;
+      const state = states[stepIndex];
+      const locals = state.locals;
       const vars = [];
       const globalVars = [];
       const frames = [];
-      let inlineVal = null;
-
-      const dist = [1000000000, 1000000000, 1000000000, 1000000000, 1000000000];
-      if (stepIndex >= 1) dist[1] = 0;
-      if (stepIndex >= 13) dist[2] = 2;
-      if (stepIndex >= 14) dist[3] = 4;
-      if (stepIndex >= 15) { dist[3] = 3; dist[4] = 6; }
-      if (stepIndex >= 16) { dist[4] = 6; }
-
-      if (stepIndex === 0 || stepIndex === 17) {
-        frames.push({ name: "main()", file: "main.cpp", line: activeLine });
-        vars.push({ name: "n", type: "int", val: "4", expandable: false });
-        if (stepIndex === 17) {
-          vars.push({ name: "dist", type: "std::vector<int>", val: `{INF, 0, 2, 3, 6}`, expandable: true });
-        }
+      
+      if (activeLine >= 80 && activeLine <= 91 && activeLine !== 86) {
+          frames.push({ name: "main()", file: "main.cpp", line: activeLine });
+          vars.push({ name: "n", type: "int", val: "4" });
+          if (activeLine > 86) vars.push({ name: "dist", type: "vector<int>", val: "size = 5", expandable: true });
       } else {
-        frames.push({ name: "dial(src=1, n=4, adj, max_weight=7)", file: "solution.cpp", line: activeLine });
-        frames.push({ name: "main()", file: "main.cpp", line: 86 });
-
-        vars.push({ name: "src", type: "int", val: "1", expandable: false });
-        vars.push({ name: "n", type: "int", val: "4", expandable: false });
-        vars.push({ name: "max_weight", type: "int", val: "7", expandable: false });
-        vars.push({ name: "dist", type: "std::vector<int>", val: `size = 5`, expandable: true });
-
-        if (stepIndex >= 2) vars.push({ name: "num_buckets", type: "int", val: "29", expandable: false });
-        if (stepIndex >= 3) vars.push({ name: "buckets", type: "vector<list<int>>", val: "size = 29", expandable: true });
-        if (stepIndex >= 5) {
-          let idxVal = 0;
-          if (stepIndex === 15) idxVal = 2;
-          if (stepIndex === 16) idxVal = 6;
-          vars.push({ name: "idx", type: "int", val: idxVal.toString(), expandable: false });
-        }
-        if (stepIndex >= 6) {
-          let countVal = 0;
-          if (stepIndex >= 10 && stepIndex <= 15) countVal = 1;
-          if (stepIndex === 16) countVal = 4;
-          vars.push({ name: "count", type: "int", val: countVal.toString(), expandable: false });
-        }
-        if (stepIndex >= 8 && stepIndex <= 14) {
-          vars.push({ name: "u", type: "int", val: "1", expandable: false });
-        } else if (stepIndex === 15) {
-          vars.push({ name: "u", type: "int", val: "2", expandable: false });
-        }
-
-        if (stepIndex >= 8 && stepIndex <= 14) {
-          inlineVal = "u: 1";
-        } else if (stepIndex === 15) {
-          inlineVal = "u: 2";
-        }
+          frames.push({ name: "dial(src, n, adj, max_weight)", file: "solution.cpp", line: activeLine });
+          frames.push({ name: "main()", file: "main.cpp", line: 62 });
+          
+          vars.push({ name: "src", type: "int", val: "1" });
+          vars.push({ name: "n", type: "int", val: "4" });
+          vars.push({ name: "max_weight", type: "int", val: "7" });
+          vars.push({ name: "dist", type: "vector<int>", val: "size = 5", expandable: true });
+          
+          if (locals.num_buckets !== null) vars.push({ name: "num_buckets", type: "int", val: locals.num_buckets.toString() });
+          if (locals.idx !== null) vars.push({ name: "idx", type: "int", val: locals.idx.toString() });
+          if (locals.count !== null) vars.push({ name: "count", type: "int", val: locals.count.toString() });
+          if (locals.u !== null) vars.push({ name: "u", type: "int", val: locals.u.toString() });
+          if (locals.v !== null) vars.push({ name: "v", type: "int", val: locals.v.toString() });
+          if (locals.weight !== null) vars.push({ name: "weight", type: "int", val: locals.weight.toString() });
       }
 
-      globalVars.push({ name: "INF", type: "const int", val: "1e9", expandable: false });
+      globalVars.push({ name: "INF", type: "const int", val: "1e9" });
+
+      let inlineVal = null;
+      if (locals.u !== null && activeLine >= 57 && activeLine <= 74) {
+          inlineVal = `u: ${locals.u}`;
+          if (locals.v !== null) inlineVal += `, v: ${locals.v}`;
+      }
+
       return { vars, globalVars, frames, inlineVal };
     },
     "getInlineValueForLine": (stepIndex, lineNum) => {
-      if (lineNum === 40) return "dist[1]: 0";
-      if (lineNum === 43) return "num_buckets: 29";
-      if (stepIndex >= 8 && stepIndex <= 14) {
-        if (lineNum === 57 || lineNum === 58 || lineNum === 60 || lineNum === 62) return "u: 1";
-      }
-      if (stepIndex === 15) {
-        if (lineNum === 57 || lineNum === 58 || lineNum === 60 || lineNum === 62) return "u: 2";
-      }
+      const states = [{"line": 62,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,1000000000,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 15,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,1000000000,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 16,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 19,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 20,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 22,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 23,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 25,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["1","","","","","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":1,"bucketsStr":["","","2","","3","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":1,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","2","","3","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 44,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","3","","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 44,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":3,"bucketsStr":["","","","","","","4"]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":4,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":5,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","","4"]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","",""]},{"line": 52,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 63,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 67,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]}];
+      if (stepIndex >= states.length) stepIndex = states.length - 1;
+      const state = states[stepIndex];
+      const locals = state.locals;
+      if (lineNum === 33 || lineNum === 38) return locals.u !== null ? `u: ${locals.u}` : null;
+      if (lineNum === 39) return locals.v !== null ? `v: ${locals.v}` : null;
       return null;
     },
     "getGraphVisual": (stepIndex) => {
-      const dist = [1e9, 1e9, 1e9, 1e9, 1e9];
-      let uVal = -1;
-
-      if (stepIndex >= 1) dist[1] = 0;
-      if (stepIndex >= 8 && stepIndex <= 14) uVal = 1;
-      if (stepIndex >= 13) dist[2] = 2;
-      if (stepIndex >= 14) dist[3] = 4;
-      if (stepIndex === 15) {
-        uVal = 2;
-        dist[3] = 3;
-        dist[4] = 6;
-      }
-      if (stepIndex >= 16) {
-        dist[4] = 6;
-      }
+      const states = [{"line": 62,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,1000000000,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 15,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,1000000000,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 16,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 19,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 20,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 22,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 23,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 25,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["1","","","","","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":1,"bucketsStr":["","","2","","3","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":1,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","2","","3","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 44,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","3","","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 44,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":3,"bucketsStr":["","","","","","","4"]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":4,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":5,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","","4"]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","",""]},{"line": 52,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 63,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 67,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]}];
+      if (stepIndex >= states.length) stepIndex = states.length - 1;
+      const state = states[stepIndex];
+      const dist = state.dist;
+      let uVal = state.uVal;
 
       const staticNodes = [
         { id: "1", x: 50, y: 110, label: "1" },
@@ -539,11 +2793,11 @@ int main() {
         directed: true,
         nodes: staticNodes.map(n => {
           const idNum = parseInt(n.id);
-          let state = undefined;
-          if (idNum === uVal) state = "active";
-          else if (dist[idNum] < 1e9) state = "visited";
+          let nState = undefined;
+          if (idNum === uVal) nState = "active";
+          else if (dist[idNum] < 1e9) nState = "visited";
           const desc = `d=${dist[idNum] >= 1e9 ? "INF" : dist[idNum]}`;
-          return { ...n, state, desc };
+          return { ...n, state: nState, desc };
         }),
         edges: staticEdges.map(e => {
           const u = parseInt(e.source);
@@ -552,6 +2806,7 @@ int main() {
         })
       };
     }
+
   },
   "problems": {
     "easy": [

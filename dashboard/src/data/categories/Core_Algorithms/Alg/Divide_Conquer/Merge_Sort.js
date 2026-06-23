@@ -56,70 +56,70 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 37,
+      "line": 31,
       "text": "Începem cu un vector inițial neordonat.",
       "blocksVisual": [
         { "label": "Vector Inițial", "groups": [[{"val": 38}, {"val": 27}, {"val": 43}, {"val": 3}]] }
       ]
     },
     {
-      "line": 37,
+      "line": 31,
       "text": "Apelăm mergeSort pentru întreg vectorul (left=0, right=3).",
       "blocksVisual": [
         { "label": "Apel mergeSort(0, 3)", "groups": [[{"val": 38, "active": true}, {"val": 27, "active": true}, {"val": 43, "active": true}, {"val": 3, "active": true}]] }
       ]
     },
     {
-      "line": 38,
+      "line": 32,
       "text": "Verificăm dacă left >= right. Deoarece 0 < 3, continuăm.",
       "blocksVisual": [
         { "label": "Verificare", "groups": [[{"val": "0 >= 3 (Fals)"}]] }
       ]
     },
     {
-      "line": 40,
+      "line": 34,
       "text": "Etapa DIVIDE: Calculăm mijlocul: mid = 0 + (3-0)/2 = 1.",
       "blocksVisual": [
         { "label": "Mijloc (mid = 1)", "groups": [[{"val": 38}, {"val": 27, "sorted": true}, {"val": 43}, {"val": 3}]] }
       ]
     },
     {
-      "line": 42,
+      "line": 36,
       "text": "Apelăm recursiv mergeSort pe prima jumătate (left=0, right=1).",
       "blocksVisual": [
         { "label": "Apel mergeSort(0, 1)", "groups": [[{"val": 38, "active": true}, {"val": 27, "active": true}, {"val": 43, "hidden": true}, {"val": 3, "hidden": true}]] }
       ]
     },
     {
-      "line": 40,
+      "line": 34,
       "text": "Calculăm mijlocul pentru acest subinterval: mid = 0 + (1-0)/2 = 0.",
       "blocksVisual": [
         { "label": "Mijloc (mid = 0)", "groups": [[{"val": 38, "sorted": true}, {"val": 27}]] }
       ]
     },
     {
-      "line": 38,
+      "line": 32,
       "text": "Apelăm mergeSort(0, 0). Acesta returnează imediat deoarece left >= right (0 >= 0).",
       "blocksVisual": [
         { "label": "Caz de bază (0, 0)", "groups": [[{"val": 38, "sorted": true}]] }
       ]
     },
     {
-      "line": 38,
+      "line": 32,
       "text": "Apelăm mergeSort(1, 1). Returnează de asemenea deoarece left >= right (1 >= 1).",
       "blocksVisual": [
         { "label": "Caz de bază (1, 1)", "groups": [[{"val": 27, "sorted": true}]] }
       ]
     },
     {
-      "line": 45,
+      "line": 39,
       "text": "Apelăm merge(arr, left=0, mid=0, right=1) pentru a interclasa sub-vectorii.",
       "blocksVisual": [
         { "label": "Interclasare stânga", "groups": [[{"val": 38, "active": true}, {"val": 27, "active": true}]] }
       ]
     },
     {
-      "line": 16,
+      "line": 10,
       "text": "Inițializăm vectorii auxiliari L = {38} și R = {27}.",
       "blocksVisual": [
         { "label": "L", "groups": [[{"val": 38}]] },
@@ -127,49 +127,49 @@ int main() {
       ]
     },
     {
-      "line": 22,
+      "line": 16,
       "text": "Intrăm în bucla while. Indicii i = 0, j = 0. Condiția i < 1 && j < 1 este adevărată.",
       "blocksVisual": [
         { "label": "Buclă", "groups": [[{"val": "i=0, j=0"}]] }
       ]
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "Comparăm L[0] (38) cu R[0] (27). Deoarece 38 > 27, mergem pe ramura else.",
       "blocksVisual": [
         { "label": "Comparație", "groups": [[{"val": "38 <= 27 (Fals)"}]] }
       ]
     },
     {
-      "line": 27,
+      "line": 21,
       "text": "Copiem valoarea din R în vectorul original: arr[0] = 27. Incrementăm j la 1.",
       "blocksVisual": [
         { "label": "Vector Original", "groups": [[{"val": 27, "sorted": true}, {"val": 38}]] }
       ]
     },
     {
-      "line": 33,
+      "line": 27,
       "text": "Bucla while s-a terminat deoarece j = 1. Copiem elementele rămase din L: arr[1] = 38.",
       "blocksVisual": [
         { "label": "Vector interclasat (0, 1)", "groups": [[{"val": 27, "sorted": true}, {"val": 38, "sorted": true}]] }
       ]
     },
     {
-      "line": 43,
+      "line": 37,
       "text": "Revenim în apelul principal și apelăm mergeSort pe a doua jumătate (left=2, right=3).",
       "blocksVisual": [
         { "label": "Apel mergeSort(2, 3)", "groups": [[{"val": 27, "hidden": true}, {"val": 38, "hidden": true}, {"val": 43, "active": true}, {"val": 3, "active": true}]] }
       ]
     },
     {
-      "line": 45,
+      "line": 39,
       "text": "După apelurile recursive pentru 43 și 3, apelăm merge(arr, left=2, mid=2, right=3).",
       "blocksVisual": [
         { "label": "Interclasare dreapta", "groups": [[{"val": 43, "active": true}, {"val": 3, "active": true}]] }
       ]
     },
     {
-      "line": 16,
+      "line": 10,
       "text": "Inițializăm vectorii auxiliari: L = {43}, R = {3}.",
       "blocksVisual": [
         { "label": "L", "groups": [[{"val": 43}]] },
@@ -177,21 +177,21 @@ int main() {
       ]
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "Comparăm L[0] (43) cu R[0] (3). Deoarece 43 > 3, copiem 3 în arr[2] și incrementăm j.",
       "blocksVisual": [
         { "label": "Vector Original", "groups": [[{"val": 27}, {"val": 38}, {"val": 3, "sorted": true}, {"val": 43}]] }
       ]
     },
     {
-      "line": 33,
+      "line": 27,
       "text": "Copiem elementele rămase din L: arr[3] = 43.",
       "blocksVisual": [
         { "label": "Vector interclasat (2, 3)", "groups": [[{"val": 3, "sorted": true}, {"val": 43, "sorted": true}]] }
       ]
     },
     {
-      "line": 45,
+      "line": 39,
       "text": "Acum că ambele jumătăți sunt sortate ([27, 38] și [3, 43]), apelăm merge(0, 1, 3).",
       "blocksVisual": [
         { "label": "Stânga", "groups": [[{"val": 27, "sorted": true}, {"val": 38, "sorted": true}]] },
@@ -199,7 +199,7 @@ int main() {
       ]
     },
     {
-      "line": 16,
+      "line": 10,
       "text": "Inițializăm L = {27, 38} și R = {3, 43}.",
       "blocksVisual": [
         { "label": "L", "groups": [[{"val": 27}, {"val": 38}]] },
@@ -207,28 +207,28 @@ int main() {
       ]
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "Comparăm L[0] (27) cu R[0] (3). Deoarece 3 < 27, copiem 3 în arr[0]. j devine 1, k devine 1.",
       "blocksVisual": [
         { "label": "Alegem 3", "groups": [[{"val": 3, "sorted": true}, {"val": "?", "hidden": true}, {"val": "?", "hidden": true}, {"val": "?", "hidden": true}]] }
       ]
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "Comparăm L[0] (27) cu R[1] (43). Deoarece 27 < 43, copiem 27 în arr[1]. i devine 1, k devine 2.",
       "blocksVisual": [
         { "label": "Alegem 27", "groups": [[{"val": 3, "sorted": true}, {"val": 27, "sorted": true}, {"val": "?", "hidden": true}, {"val": "?", "hidden": true}]] }
       ]
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "Comparăm L[1] (38) cu R[1] (43). Deoarece 38 < 43, copiem 38 în arr[2]. i devine 2, k devine 3.",
       "blocksVisual": [
         { "label": "Alegem 38", "groups": [[{"val": 3, "sorted": true}, {"val": 27, "sorted": true}, {"val": 38, "sorted": true}, {"val": "?", "hidden": true}]] }
       ]
     },
     {
-      "line": 34,
+      "line": 28,
       "text": "L s-a terminat. Copiem elementele rămase din R: arr[3] = 43. Vectorul este complet sortat!",
       "blocksVisual": [
         { "label": "FINAL", "groups": [[{"val": 3, "sorted": true}, {"val": 27, "sorted": true}, {"val": 38, "sorted": true}, {"val": 43, "sorted": true}]] }
@@ -315,9 +315,9 @@ int main() {
         frames.push({ name: "merge(arr, left=" + curr.lStart + ", mid=" + curr.lMid + ", right=" + curr.lEnd + ")", file: "solution.cpp", line: activeLine });
       }
       curr.stack.forEach((frame) => {
-        frames.push({ name: "mergeSort(arr, left=" + frame.l + ", right=" + frame.r + ")", file: "solution.cpp", line: 42 });
+        frames.push({ name: "mergeSort(arr, left=" + frame.l + ", right=" + frame.r + ")", file: "solution.cpp", line: 36 });
       });
-      frames.push({ name: "main()", file: "main.cpp", line: 50 });
+      frames.push({ name: "main()", file: "main.cpp", line: 44 });
 
       vars.push({ name: "arr", type: "std::vector<int>&", val: "size = 4", expandable: true });
 
@@ -345,7 +345,7 @@ int main() {
     },
     getInlineValueForLine: (stepIndex, lineNum) => {
       if (stepIndex >= 9 && stepIndex <= 13) {
-        if (lineNum >= 12 && lineNum <= 35) return "i: 0, j: 0, k: 0";
+        if (lineNum >= 6 && lineNum <= 29) return "i: 0, j: 0, k: 0";
       }
       return null;
     }

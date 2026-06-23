@@ -84,207 +84,347 @@ int main() {
 }
 `,
   "explanations": [
-    {
-      "line": 50,
-      "text": "Apelăm funcția `convexHull` cu vectorul de puncte trimis în consolă.",
-      "blocksVisual": [
-        {
-          "label": "Input",
-          "groups": [
-            [
-              { "val": "(0,3)" }, { "val": "(1,1)" }, { "val": "(2,2)" }, { "val": "(4,4)" },
-              { "val": "(0,0)" }, { "val": "(1,2)" }, { "val": "(3,1)" }, { "val": "(3,3)" }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 21,
-      "text": "Salvăm numărul total de puncte: `n = 8`.",
-      "blocksVisual": [
-        {
-          "label": "n",
-          "groups": [
-            [
-              { "val": "8", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 24,
-      "text": "Sortăm lexicografic punctele: mai întâi crescător după coordonata $X$, apoi după coordonata $Y$. Punctele sortate sunt: $\{(0,0), (0,3), (1,1), (1,2), (2,2), (3,1), (3,3), (4,4)\}$.",
-      "blocksVisual": [
-        {
-          "label": "Puncte sortate",
-          "groups": [
-            [
-              { "val": "(0,0)" }, { "val": "(0,3)" }, { "val": "(1,1)" }, { "val": "(1,2)" },
-              { "val": "(2,2)" }, { "val": "(3,1)" }, { "val": "(3,3)" }, { "val": "(4,4)" }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 25,
-      "text": "Inițializăm vectorul (stiva) `hull` care va stoca succesiv punctele înfășurătorii.",
-      "blocksVisual": [
-        {
-          "label": "hull",
-          "groups": [
-            [
-              { "val": "vid" }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 28,
-      "text": "Pornim bucla exterioară pentru a construi partea inferioară a înfășurătorii (Lower Hull), adăugând puncte de la stânga la dreapta.",
-      "blocksVisual": [
-        {
-          "label": "Lower Hull",
-          "groups": [
-            [
-              { "val": "Start Lower", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 29,
-      "text": "Cât timp stiva `hull` are cel puțin $2$ elemente și ultimele două elemente plus punctul curent fac o curbă la dreapta (sau sunt coliniare, cross product $\\le 0$), eliminăm ultimul punct din stivă.",
-      "blocksVisual": [
-        {
-          "label": "Verificare viraj",
-          "groups": [
-            [
-              { "val": "crossProduct <= 0?" }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 32,
-      "text": "Inserăm punctul curent `points[i]` în stivă. La finalul etapei Lower Hull, punctele selectate sunt: $\{(0,0), (3,1), (4,4)\}$.",
-      "blocksVisual": [
-        {
-          "label": "Lower Hull finalizat",
-          "groups": [
-            [
-              { "val": "(0,0)" }, { "val": "(3,1)" }, { "val": "(4,4)" }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 36,
-      "text": "Setăm limita `t = hull.size() + 1` (în acest caz $3+1 = 4$). Toate punctele adăugate în continuare trebuie să mențină dimensiunea stivei peste `t` pentru a nu altera Lower Hull.",
-      "blocksVisual": [
-        {
-          "label": "Limita t",
-          "groups": [
-            [
-              { "val": "t = 4", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 37,
-      "text": "Pornim bucla pentru a construi partea superioară a înfășurătorii (Upper Hull), parcurgând punctele de la dreapta la stânga, începând cu `n - 2`.",
-      "blocksVisual": [
-        {
-          "label": "Upper Hull",
-          "groups": [
-            [
-              { "val": "Start Upper", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 38,
-      "text": "Similar, eliminăm punctele care nu fac o curbă spre stânga (cross product $\\le 0$), dar de data aceasta raportat la limita `t`.",
-      "blocksVisual": [
-        {
-          "label": "Verificare viraj",
-          "groups": [
-            [
-              { "val": "crossProduct <= 0?" }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 41,
-      "text": "Adăugăm punctele în `hull`. Punctele adăugate în această fază vor fi cele din partea de sus: $(3,3)$, $(0,3)$ și din nou $(0,0)$.",
-      "blocksVisual": [
-        {
-          "label": "Upper Hull adăugat",
-          "groups": [
-            [
-              { "val": "(0,0)" }, { "val": "(3,1)" }, { "val": "(4,4)" },
-              { "val": "(3,3)" }, { "val": "(0,3)" }, { "val": "(0,0)" }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 44,
-      "text": "Eliminăm ultimul punct din stivă, deoarece este exact primul punct $(0,0)$ pe care l-am duplicat la închiderea poligonului.",
-      "blocksVisual": [
-        {
-          "label": "Set final stivă",
-          "groups": [
-            [
-              { "val": "(0,0)" }, { "val": "(3,1)" }, { "val": "(4,4)" },
-              { "val": "(3,3)" }, { "val": "(0,3)" }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 45,
-      "text": "Returnăm vectorul cu punctele înfășurătorii convexe în ordine trigonometrică.",
-      "blocksVisual": [
-        {
-          "label": "Valori returnate",
-          "groups": [
-            [
-              { "val": "5 puncte", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 52,
-      "text": "Parcurgem punctele înfășurătorii convexe și le afișăm pe ecran.",
-      "blocksVisual": [
-        {
-          "label": "Afișare",
-          "groups": [
-            [
-              { "val": "Output generat", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    }
-  ],
+  {
+    "line": 48,
+    "text": "Initializare pts",
+    "blocksVisual": []
+  },
+  {
+    "line": 49,
+    "text": "Apel convexHull",
+    "blocksVisual": []
+  },
+  {
+    "line": 20,
+    "text": "int n = points.size(); n = 8",
+    "blocksVisual": []
+  },
+  {
+    "line": 21,
+    "text": "if (n <= 3)",
+    "blocksVisual": []
+  },
+  {
+    "line": 23,
+    "text": "sort(points)",
+    "blocksVisual": []
+  },
+  {
+    "line": 24,
+    "text": "vector hull",
+    "blocksVisual": []
+  },
+  {
+    "line": 27,
+    "text": "lower hull for i=0",
+    "blocksVisual": []
+  },
+  {
+    "line": 31,
+    "text": "push_back points[i]",
+    "blocksVisual": []
+  },
+  {
+    "line": 27,
+    "text": "lower hull for i=1",
+    "blocksVisual": []
+  },
+  {
+    "line": 31,
+    "text": "push_back points[i]",
+    "blocksVisual": []
+  },
+  {
+    "line": 27,
+    "text": "lower hull for i=2",
+    "blocksVisual": []
+  },
+  {
+    "line": 28,
+    "text": "while hull.size()>=2 && crossProduct<=0",
+    "blocksVisual": []
+  },
+  {
+    "line": 29,
+    "text": "pop_back din hull",
+    "blocksVisual": []
+  },
+  {
+    "line": 31,
+    "text": "push_back points[i]",
+    "blocksVisual": []
+  },
+  {
+    "line": 27,
+    "text": "lower hull for i=3",
+    "blocksVisual": []
+  },
+  {
+    "line": 28,
+    "text": "while hull.size()>=2 && crossProduct<=0",
+    "blocksVisual": []
+  },
+  {
+    "line": 31,
+    "text": "push_back points[i]",
+    "blocksVisual": []
+  },
+  {
+    "line": 27,
+    "text": "lower hull for i=4",
+    "blocksVisual": []
+  },
+  {
+    "line": 28,
+    "text": "while hull.size()>=2 && crossProduct<=0",
+    "blocksVisual": []
+  },
+  {
+    "line": 29,
+    "text": "pop_back din hull",
+    "blocksVisual": []
+  },
+  {
+    "line": 28,
+    "text": "while hull.size()>=2 && crossProduct<=0",
+    "blocksVisual": []
+  },
+  {
+    "line": 29,
+    "text": "pop_back din hull",
+    "blocksVisual": []
+  },
+  {
+    "line": 31,
+    "text": "push_back points[i]",
+    "blocksVisual": []
+  },
+  {
+    "line": 27,
+    "text": "lower hull for i=5",
+    "blocksVisual": []
+  },
+  {
+    "line": 28,
+    "text": "while hull.size()>=2 && crossProduct<=0",
+    "blocksVisual": []
+  },
+  {
+    "line": 29,
+    "text": "pop_back din hull",
+    "blocksVisual": []
+  },
+  {
+    "line": 31,
+    "text": "push_back points[i]",
+    "blocksVisual": []
+  },
+  {
+    "line": 27,
+    "text": "lower hull for i=6",
+    "blocksVisual": []
+  },
+  {
+    "line": 28,
+    "text": "while hull.size()>=2 && crossProduct<=0",
+    "blocksVisual": []
+  },
+  {
+    "line": 31,
+    "text": "push_back points[i]",
+    "blocksVisual": []
+  },
+  {
+    "line": 27,
+    "text": "lower hull for i=7",
+    "blocksVisual": []
+  },
+  {
+    "line": 28,
+    "text": "while hull.size()>=2 && crossProduct<=0",
+    "blocksVisual": []
+  },
+  {
+    "line": 29,
+    "text": "pop_back din hull",
+    "blocksVisual": []
+  },
+  {
+    "line": 28,
+    "text": "while hull.size()>=2 && crossProduct<=0",
+    "blocksVisual": []
+  },
+  {
+    "line": 31,
+    "text": "push_back points[i]",
+    "blocksVisual": []
+  },
+  {
+    "line": 35,
+    "text": "int t = hull.size() + 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 36,
+    "text": "upper hull for i=6",
+    "blocksVisual": []
+  },
+  {
+    "line": 40,
+    "text": "push_back points[i]",
+    "blocksVisual": []
+  },
+  {
+    "line": 36,
+    "text": "upper hull for i=5",
+    "blocksVisual": []
+  },
+  {
+    "line": 37,
+    "text": "while hull.size()>=t && crossProduct<=0",
+    "blocksVisual": []
+  },
+  {
+    "line": 40,
+    "text": "push_back points[i]",
+    "blocksVisual": []
+  },
+  {
+    "line": 36,
+    "text": "upper hull for i=4",
+    "blocksVisual": []
+  },
+  {
+    "line": 37,
+    "text": "while hull.size()>=t && crossProduct<=0",
+    "blocksVisual": []
+  },
+  {
+    "line": 38,
+    "text": "pop_back din hull",
+    "blocksVisual": []
+  },
+  {
+    "line": 37,
+    "text": "while hull.size()>=t && crossProduct<=0",
+    "blocksVisual": []
+  },
+  {
+    "line": 38,
+    "text": "pop_back din hull",
+    "blocksVisual": []
+  },
+  {
+    "line": 40,
+    "text": "push_back points[i]",
+    "blocksVisual": []
+  },
+  {
+    "line": 36,
+    "text": "upper hull for i=3",
+    "blocksVisual": []
+  },
+  {
+    "line": 37,
+    "text": "while hull.size()>=t && crossProduct<=0",
+    "blocksVisual": []
+  },
+  {
+    "line": 38,
+    "text": "pop_back din hull",
+    "blocksVisual": []
+  },
+  {
+    "line": 40,
+    "text": "push_back points[i]",
+    "blocksVisual": []
+  },
+  {
+    "line": 36,
+    "text": "upper hull for i=2",
+    "blocksVisual": []
+  },
+  {
+    "line": 37,
+    "text": "while hull.size()>=t && crossProduct<=0",
+    "blocksVisual": []
+  },
+  {
+    "line": 40,
+    "text": "push_back points[i]",
+    "blocksVisual": []
+  },
+  {
+    "line": 36,
+    "text": "upper hull for i=1",
+    "blocksVisual": []
+  },
+  {
+    "line": 37,
+    "text": "while hull.size()>=t && crossProduct<=0",
+    "blocksVisual": []
+  },
+  {
+    "line": 38,
+    "text": "pop_back din hull",
+    "blocksVisual": []
+  },
+  {
+    "line": 37,
+    "text": "while hull.size()>=t && crossProduct<=0",
+    "blocksVisual": []
+  },
+  {
+    "line": 38,
+    "text": "pop_back din hull",
+    "blocksVisual": []
+  },
+  {
+    "line": 40,
+    "text": "push_back points[i]",
+    "blocksVisual": []
+  },
+  {
+    "line": 36,
+    "text": "upper hull for i=0",
+    "blocksVisual": []
+  },
+  {
+    "line": 37,
+    "text": "while hull.size()>=t && crossProduct<=0",
+    "blocksVisual": []
+  },
+  {
+    "line": 40,
+    "text": "push_back points[i]",
+    "blocksVisual": []
+  },
+  {
+    "line": 43,
+    "text": "hull.pop_back() pentru primul/ultimul punct duplicat",
+    "blocksVisual": []
+  },
+  {
+    "line": 44,
+    "text": "return hull",
+    "blocksVisual": []
+  },
+  {
+    "line": 49,
+    "text": "hull a fost primit",
+    "blocksVisual": []
+  },
+  {
+    "line": 50,
+    "text": "cout",
+    "blocksVisual": []
+  },
+  {
+    "line": 55,
+    "text": "return 0",
+    "blocksVisual": []
+  }
+],
   "problems": {
     "easy": [
       {
@@ -309,65 +449,15 @@ int main() {
     ]
   },
   "debugger": {
-    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
-      const vars = [];
-      const globalVars = [];
-      const frames = [];
-      let inlineVal = null;
-
-      const states = [
-        { f: [{ name: 'main()', file: 'main.cpp', line: 77 }], v: [] },
-        { f: [{ name: 'convexHull(pts)', file: 'main.cpp', line: 48 }, { name: 'main()', file: 'main.cpp', line: 77 }], v: [{ name: 'n', type: 'int', val: 8 }] },
-        { f: [{ name: 'convexHull(pts)', file: 'main.cpp', line: 51 }, { name: 'main()', file: 'main.cpp', line: 77 }], v: [{ name: 'n', type: 'int', val: 8 }] },
-        { f: [{ name: 'convexHull(pts)', file: 'main.cpp', line: 52 }, { name: 'main()', file: 'main.cpp', line: 77 }], v: [{ name: 'n', type: 'int', val: 8 }, { name: 'hull', type: 'vector<Point>', val: '[]' }] },
-        { f: [{ name: 'convexHull(pts)', file: 'main.cpp', line: 55 }, { name: 'main()', file: 'main.cpp', line: 77 }], v: [{ name: 'n', type: 'int', val: 8 }, { name: 'hull', type: 'vector<Point>', val: '[]' }, { name: 'i', type: 'int', val: 0 }] },
-        { f: [{ name: 'convexHull(pts)', file: 'main.cpp', line: 56 }, { name: 'main()', file: 'main.cpp', line: 77 }], v: [{ name: 'n', type: 'int', val: 8 }, { name: 'hull', type: 'vector<Point>', val: '[]' }, { name: 'i', type: 'int', val: 0 }] },
-        { f: [{ name: 'convexHull(pts)', file: 'main.cpp', line: 59 }, { name: 'main()', file: 'main.cpp', line: 77 }], v: [{ name: 'n', type: 'int', val: 8 }, { name: 'hull', type: 'vector<Point>', val: '[(0,0),(3,1),(4,4)]' }] },
-        { f: [{ name: 'convexHull(pts)', file: 'main.cpp', line: 63 }, { name: 'main()', file: 'main.cpp', line: 77 }], v: [{ name: 'n', type: 'int', val: 8 }, { name: 'hull', type: 'vector<Point>', val: '[(0,0),(3,1),(4,4)]' }, { name: 't', type: 'int', val: 4 }] },
-        { f: [{ name: 'convexHull(pts)', file: 'main.cpp', line: 64 }, { name: 'main()', file: 'main.cpp', line: 77 }], v: [{ name: 'n', type: 'int', val: 8 }, { name: 'hull', type: 'vector<Point>', val: '[(0,0),(3,1),(4,4)]' }, { name: 't', type: 'int', val: 4 }, { name: 'i', type: 'int', val: 6 }] },
-        { f: [{ name: 'convexHull(pts)', file: 'main.cpp', line: 65 }, { name: 'main()', file: 'main.cpp', line: 77 }], v: [{ name: 'n', type: 'int', val: 8 }, { name: 'hull', type: 'vector<Point>', val: '[(0,0),(3,1),(4,4)]' }, { name: 't', type: 'int', val: 4 }, { name: 'i', type: 'int', val: 6 }] },
-        { f: [{ name: 'convexHull(pts)', file: 'main.cpp', line: 68 }, { name: 'main()', file: 'main.cpp', line: 77 }], v: [{ name: 'n', type: 'int', val: 8 }, { name: 'hull', type: 'vector<Point>', val: '[(0,0),(3,1),(4,4),(3,3),(0,3),(0,0)]' }] },
-        { f: [{ name: 'convexHull(pts)', file: 'main.cpp', line: 71 }, { name: 'main()', file: 'main.cpp', line: 77 }], v: [{ name: 'n', type: 'int', val: 8 }, { name: 'hull', type: 'vector<Point>', val: '[(0,0),(3,1),(4,4),(3,3),(0,3)]' }] },
-        { f: [{ name: 'convexHull(pts)', file: 'main.cpp', line: 72 }, { name: 'main()', file: 'main.cpp', line: 77 }], v: [{ name: 'n', type: 'int', val: 8 }, { name: 'hull', type: 'vector<Point>', val: '[(0,0),(3,1),(4,4),(3,3),(0,3)]' }] },
-        { f: [{ name: 'main()', file: 'main.cpp', line: 79 }], v: [{ name: 'hull', type: 'vector<Point>', val: '[(0,0),(3,1),(4,4),(3,3),(0,3)]' }] }
-      ];
-
+    "getDebuggerState": (stepIndex) => {
+      const states = [{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"pts init"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"Apel"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"n=8"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"sorted"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[]","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull init"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[]","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=0"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\"]","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=1"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\"]","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=1"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(0,3)\"]","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=2"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(0,3)\"]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=2"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(0,3)\"]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\"]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(1,1)\"]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=2"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(1,1)\"]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=3"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(1,1)\"]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(1,1)\",\"(1,2)\"]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=3"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(1,1)\",\"(1,2)\"]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=4"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(1,1)\",\"(1,2)\"]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(1,1)\"]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(1,1)\"]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\"]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(2,2)\"]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=2"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(2,2)\"]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=5"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(2,2)\"]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\"]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\"]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=2"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\"]","expandable":false},{"name":"i","type":"int","val":"6","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=6"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\"]","expandable":false},{"name":"i","type":"int","val":"6","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"i","type":"int","val":"6","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=3"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=7"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\"]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\"]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\"]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=3"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\"]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"t=4"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\"]","expandable":false},{"name":"i","type":"int","val":"6","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=6"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(3,3)\"]","expandable":false},{"name":"i","type":"int","val":"6","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=4"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(3,3)\"]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=5"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(3,3)\"]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(3,3)\",\"(3,1)\"]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=5"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(3,3)\",\"(3,1)\"]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=4"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(3,3)\",\"(3,1)\"]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(3,3)\"]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(3,3)\"]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\"]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(2,2)\"]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=4"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(2,2)\"]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=3"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(2,2)\"]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\"]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(1,2)\"]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=4"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(1,2)\"]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=2"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(1,2)\"]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(1,2)\",\"(1,1)\"]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=5"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(1,2)\",\"(1,1)\"]","expandable":false},{"name":"i","type":"int","val":"1","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=1"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(1,2)\",\"(1,1)\"]","expandable":false},{"name":"i","type":"int","val":"1","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(1,2)\"]","expandable":false},{"name":"i","type":"int","val":"1","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(1,2)\"]","expandable":false},{"name":"i","type":"int","val":"1","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\"]","expandable":false},{"name":"i","type":"int","val":"1","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(0,3)\"]","expandable":false},{"name":"i","type":"int","val":"1","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=4"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(0,3)\"]","expandable":false},{"name":"i","type":"int","val":"0","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=0"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(0,3)\"]","expandable":false},{"name":"i","type":"int","val":"0","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(0,3)\",\"(0,0)\"]","expandable":false},{"name":"i","type":"int","val":"0","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=5"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(0,3)\"]","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(0,3)\"]","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(0,3)\"]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull primit"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(0,3)\"]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(0,3)\"]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null}];
       const s = states[stepIndex] || states[states.length - 1];
-      s.v.forEach(v => vars.push({ ...v, expandable: false }));
-      s.f.forEach(fr => frames.push(fr));
-      if (stepIndex > 0) {
-        inlineVal = "hull.size(): " + (vars.find(v => v.name === 'hull')?.val ? vars.find(v => v.name === 'hull').val.split('),(').length : 0);
-      }
-      return { vars, globalVars, frames, inlineVal };
+      return { vars: s.vars, globalVars: [], frames: s.frames, inlineVal: s.inlineVal };
     },
     "getInlineValueForLine": (stepIndex, lineNum) => {
-      const varsAtStep = [
-        { i: 0, hullSize: 0 },
-        { i: 0, hullSize: 0 },
-        { i: 0, hullSize: 0 },
-        { i: 0, hullSize: 0 },
-        { i: 0, hullSize: 0 },
-        { i: 0, hullSize: 0 },
-        { i: 7, hullSize: 3 },
-        { i: 7, hullSize: 3, t: 4 },
-        { i: 6, hullSize: 3, t: 4 },
-        { i: 6, hullSize: 3, t: 4 },
-        { i: 0, hullSize: 6 },
-        { i: 0, hullSize: 5 },
-        { i: 0, hullSize: 5 },
-        { i: 0, hullSize: 5 }
-      ];
-      const s = varsAtStep[stepIndex] || varsAtStep[varsAtStep.length - 1];
-      if (lineNum === 48) return "n: 8";
-      if (lineNum === 52) return "hull initialized";
-      if (lineNum === 55) return "i: " + s.i;
-      if (lineNum === 59) return "hull size: " + s.hullSize;
-      if (lineNum === 63) return "t: " + s.t;
-      if (lineNum === 64) return "i: " + s.i;
-      if (lineNum === 68) return "hull size: " + s.hullSize;
-      if (lineNum === 71) return "popped duplicate";
-      if (lineNum === 72) return "hull size: " + s.hullSize;
-      if (lineNum === 77) return "hull computed";
+      const states = [{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"pts init"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"Apel"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"n=8"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"sorted"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[]","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull init"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[]","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=0"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\"]","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=1"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\"]","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=1"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(0,3)\"]","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=2"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(0,3)\"]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=2"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(0,3)\"]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\"]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(1,1)\"]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=2"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(1,1)\"]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=3"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(1,1)\"]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(1,1)\",\"(1,2)\"]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=3"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(1,1)\",\"(1,2)\"]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=4"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(1,1)\",\"(1,2)\"]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(1,1)\"]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(1,1)\"]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\"]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(2,2)\"]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=2"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(2,2)\"]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=5"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(2,2)\"]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\"]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\"]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=2"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\"]","expandable":false},{"name":"i","type":"int","val":"6","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=6"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\"]","expandable":false},{"name":"i","type":"int","val":"6","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"i","type":"int","val":"6","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=3"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=7"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\"]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\"]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\"]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=3"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\"]","expandable":false},{"name":"i","type":"int","val":"7","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"t=4"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\"]","expandable":false},{"name":"i","type":"int","val":"6","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=6"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(3,3)\"]","expandable":false},{"name":"i","type":"int","val":"6","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=4"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(3,3)\"]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=5"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(3,3)\"]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(3,3)\",\"(3,1)\"]","expandable":false},{"name":"i","type":"int","val":"5","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=5"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(3,3)\",\"(3,1)\"]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=4"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(3,3)\",\"(3,1)\"]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(3,3)\"]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(3,3)\"]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\"]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(2,2)\"]","expandable":false},{"name":"i","type":"int","val":"4","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=4"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(2,2)\"]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=3"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(2,2)\"]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\"]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(1,2)\"]","expandable":false},{"name":"i","type":"int","val":"3","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=4"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(1,2)\"]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=2"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(1,2)\"]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(1,2)\",\"(1,1)\"]","expandable":false},{"name":"i","type":"int","val":"2","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=5"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(1,2)\",\"(1,1)\"]","expandable":false},{"name":"i","type":"int","val":"1","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=1"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(1,2)\",\"(1,1)\"]","expandable":false},{"name":"i","type":"int","val":"1","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(1,2)\"]","expandable":false},{"name":"i","type":"int","val":"1","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(1,2)\"]","expandable":false},{"name":"i","type":"int","val":"1","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\"]","expandable":false},{"name":"i","type":"int","val":"1","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(0,3)\"]","expandable":false},{"name":"i","type":"int","val":"1","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=4"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(0,3)\"]","expandable":false},{"name":"i","type":"int","val":"0","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"i=0"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(0,3)\"]","expandable":false},{"name":"i","type":"int","val":"0","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(0,3)\",\"(0,0)\"]","expandable":false},{"name":"i","type":"int","val":"0","expandable":false},{"name":"t","type":"int","val":"4","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull.size=5"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(0,3)\"]","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(0,0)\",\"(0,3)\",\"(1,1)\",\"(1,2)\",\"(2,2)\",\"(3,1)\",\"(3,3)\",\"(4,4)\"]","expandable":false},{"name":"n","type":"int","val":"8","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(0,3)\"]","expandable":false}],"frames":[{"name":"convexHull(pts)","file":"main.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(0,3)\"]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":"hull primit"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(0,3)\"]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(0,3)\",\"(1,1)\",\"(2,2)\",\"(4,4)\",\"(0,0)\",\"(1,2)\",\"(3,1)\",\"(3,3)\"]","expandable":false},{"name":"hull","type":"vector<Point>","val":"[\"(0,0)\",\"(3,1)\",\"(4,4)\",\"(0,3)\"]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 47}],"inlineVal":null}];
+      const s = states[stepIndex] || states[states.length - 1];
+      if (s.inlineVal && s.frames.length > 0 && s.frames[0].line === lineNum) return s.inlineVal;
       return null;
     },
     "getGraphVisual": (stepIndex) => {

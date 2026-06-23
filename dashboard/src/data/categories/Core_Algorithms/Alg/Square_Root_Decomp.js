@@ -62,7 +62,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 16,
+      "line": 10,
       "text": "Pornim cu vectorul de intrare input = {2, 1, 3, 4, 5, 8, 9, 2, 0}, N = 9. Aceasta este structura brută, fără nicio împărțire încă.",
       "blocksVisual": [
         { "label": "Array input [0-8]", "groups": [[{"val": 2}, {"val": 1}, {"val": 3}, {"val": 4}, {"val": 5}, {"val": 8}, {"val": 9}, {"val": 2}, {"val": 0}]] },
@@ -70,7 +70,7 @@ int main() {
       ]
     },
     {
-      "line": 18,
+      "line": 12,
       "text": "Calculăm dimensiunea blocului: blockSize = sqrt(9) = 3. Vectorul va fi împărțit în 3 blocuri egale de câte 3 elemente fiecare.",
       "blocksVisual": [
         { "label": "Block 0 [0-2]", "groups": [[{"val": 2}, {"val": 1}, {"val": 3}]] },
@@ -80,7 +80,7 @@ int main() {
       ]
     },
     {
-      "line": 20,
+      "line": 14,
       "text": "Alocăm vectorul de sume pe blocuri b[] cu (9+3-1)/3 = 3 intrări, inițializate cu 0. Fiecare b[k] va stoca suma elementelor din blocul k.",
       "blocksVisual": [
         { "label": "Block 0 [0-2]", "groups": [[{"val": 2}, {"val": 1}, {"val": 3}]] },
@@ -90,7 +90,7 @@ int main() {
       ]
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "i=0: input[0]=2 aparține blocului 0/3=0. Adunăm 2 la b[0]. b[0] devine 2.",
       "blocksVisual": [
         { "label": "Block 0 [0-2]", "groups": [[{"val": 2, "active": true}, {"val": 1}, {"val": 3}]] },
@@ -100,7 +100,7 @@ int main() {
       ]
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "i=1: input[1]=1 aparține blocului 1/3=0. Adunăm 1 la b[0]. b[0] devine 3.",
       "blocksVisual": [
         { "label": "Block 0 [0-2]", "groups": [[{"val": 2}, {"val": 1, "active": true}, {"val": 3}]] },
@@ -110,7 +110,7 @@ int main() {
       ]
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "i=2: input[2]=3 aparține blocului 2/3=0. Adunăm 3 la b[0]. b[0] devine 6. Blocul 0 este acum complet precalculat!",
       "blocksVisual": [
         { "label": "Block 0 [0-2]  ✓", "groups": [[{"val": 2, "sorted": true}, {"val": 1, "sorted": true}, {"val": 3, "active": true}]] },
@@ -120,7 +120,7 @@ int main() {
       ]
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "i=3: input[3]=4 aparține blocului 3/3=1. Adunăm 4 la b[1]. b[1] devine 4.",
       "blocksVisual": [
         { "label": "Block 0 [0-2]  ✓", "groups": [[{"val": 2, "sorted": true}, {"val": 1, "sorted": true}, {"val": 3, "sorted": true}]] },
@@ -130,7 +130,7 @@ int main() {
       ]
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "i=4: input[4]=5 aparține blocului 4/3=1. Adunăm 5 la b[1]. b[1] devine 9.",
       "blocksVisual": [
         { "label": "Block 0 [0-2]  ✓", "groups": [[{"val": 2, "sorted": true}, {"val": 1, "sorted": true}, {"val": 3, "sorted": true}]] },
@@ -140,7 +140,7 @@ int main() {
       ]
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "i=5: input[5]=8 aparține blocului 5/3=1. Adunăm 8 la b[1]. b[1] devine 17. Blocul 1 este complet!",
       "blocksVisual": [
         { "label": "Block 0 [0-2]  ✓", "groups": [[{"val": 2, "sorted": true}, {"val": 1, "sorted": true}, {"val": 3, "sorted": true}]] },
@@ -150,7 +150,7 @@ int main() {
       ]
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "i=6: input[6]=9 aparține blocului 6/3=2. Adunăm 9 la b[2]. b[2] devine 9.",
       "blocksVisual": [
         { "label": "Block 0 [0-2]  ✓", "groups": [[{"val": 2, "sorted": true}, {"val": 1, "sorted": true}, {"val": 3, "sorted": true}]] },
@@ -160,7 +160,7 @@ int main() {
       ]
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "i=7: input[7]=2 aparține blocului 7/3=2. Adunăm 2 la b[2]. b[2] devine 11.",
       "blocksVisual": [
         { "label": "Block 0 [0-2]  ✓", "groups": [[{"val": 2, "sorted": true}, {"val": 1, "sorted": true}, {"val": 3, "sorted": true}]] },
@@ -170,7 +170,7 @@ int main() {
       ]
     },
     {
-      "line": 23,
+      "line": 17,
       "text": "i=8: input[8]=0 aparține blocului 8/3=2. Adunăm 0 la b[2]. b[2] rămâne 11. Blocul 2 este complet. Preprocesarea s-a încheiat!",
       "blocksVisual": [
         { "label": "Block 0 [0-2]  ✓", "groups": [[{"val": 2, "sorted": true}, {"val": 1, "sorted": true}, {"val": 3, "sorted": true}]] },
@@ -180,7 +180,7 @@ int main() {
       ]
     },
     {
-      "line": 35,
+      "line": 29,
       "text": "Apelăm query(input, l=1, r=7). Vrem suma elementelor de la indexul 1 la 7 inclusiv. Intervalul [1,7] acoperă parțial Block 0, complet Block 1 și parțial Block 2.",
       "blocksVisual": [
         { "label": "Block 0 [0-2]  (parțial stânga)", "groups": [[{"val": 2, "hidden": true}, {"val": 1, "active": true}, {"val": 3, "active": true}]] },
@@ -190,7 +190,7 @@ int main() {
       ]
     },
     {
-      "line": 37,
+      "line": 31,
       "text": "Calculăm blocurile capetelor: c_l = 1/3 = 0 și c_r = 7/3 = 2. Deoarece c_l ≠ c_r, intrăm pe ramura else cu cele 3 faze: stânga parțial + blocuri complete + dreapta parțial.",
       "blocksVisual": [
         { "label": "Block 0 [0-2]  ← c_l=0", "groups": [[{"val": 2, "hidden": true}, {"val": 1, "active": true}, {"val": 3, "active": true}]] },
@@ -200,7 +200,7 @@ int main() {
       ]
     },
     {
-      "line": 45,
+      "line": 39,
       "text": "Faza 1 – capăt stâng parțial (Block 0): parcurgem de la l=1 la end=(0+1)*3−1=2. Adunăm input[1]=1 → sum=1.",
       "blocksVisual": [
         { "label": "Block 0 [0-2]  ← parcurgere parțială", "groups": [[{"val": 2, "hidden": true}, {"val": 1, "active": true}, {"val": 3}]] },
@@ -210,7 +210,7 @@ int main() {
       ]
     },
     {
-      "line": 45,
+      "line": 39,
       "text": "Continuăm capătul stâng: adunăm input[2]=3 → sum = 1+3 = 4. Capătul stâng parțial este finalizat.",
       "blocksVisual": [
         { "label": "Block 0 [0-2]  ✓ parțial gata", "groups": [[{"val": 2, "hidden": true}, {"val": 1, "sorted": true}, {"val": 3, "active": true}]] },
@@ -220,7 +220,7 @@ int main() {
       ]
     },
     {
-      "line": 48,
+      "line": 42,
       "text": "Faza 2 – blocuri complete: de la c_l+1=1 la c_r−1=1, adică doar Block 1. Adunăm direct b[1]=17 → sum = 4+17 = 21. O singură operație în loc de 3 iterații!",
       "blocksVisual": [
         { "label": "Block 0 [0-2]  ✓ parțial", "groups": [[{"val": 2, "hidden": true}, {"val": 1, "sorted": true}, {"val": 3, "sorted": true}]] },
@@ -230,7 +230,7 @@ int main() {
       ]
     },
     {
-      "line": 51,
+      "line": 45,
       "text": "Faza 3 – capăt drept parțial (Block 2): parcurgem de la c_r*3=6 la r=7. Adunăm input[6]=9 → sum = 21+9 = 30.",
       "blocksVisual": [
         { "label": "Block 0 [0-2]  ✓", "groups": [[{"val": 2, "hidden": true}, {"val": 1, "sorted": true}, {"val": 3, "sorted": true}]] },
@@ -240,7 +240,7 @@ int main() {
       ]
     },
     {
-      "line": 51,
+      "line": 45,
       "text": "Adunăm input[7]=2 → sum = 30+2 = 32. Capătul drept parțial este finalizat. Toate cele 3 faze s-au terminat!",
       "blocksVisual": [
         { "label": "Block 0 [0-2]  ✓", "groups": [[{"val": 2, "hidden": true}, {"val": 1, "sorted": true}, {"val": 3, "sorted": true}]] },
@@ -250,7 +250,7 @@ int main() {
       ]
     },
     {
-      "line": 53,
+      "line": 47,
       "text": "Returnăm suma finală: query(1, 7) = 32. Am folosit doar 5 operații: 2 pe capătul stâng + 1 bloc complet (b[1]=17, O(1)!) + 2 pe capătul drept, față de 7 iterate naiv!",
       "blocksVisual": [
         { "label": "Block 0 [0-2]  (2 op)", "groups": [[{"val": 2, "hidden": true}, {"val": 1, "sorted": true}, {"val": 3, "sorted": true}]] },
@@ -260,21 +260,21 @@ int main() {
       ]
     },
     {
-      "line": 57,
+      "line": 51,
       "text": "Intrăm în funcția main și definim vectorul de intrare input cu 9 elemente.",
       "blocksVisual": [
         { "label": "input", "groups": [[{"val": 2}, {"val": 1}, {"val": 3}, {"val": 4}, {"val": 5}, {"val": 8}, {"val": 9}, {"val": 2}, {"val": 0}]] }
       ]
     },
     {
-      "line": 58,
+      "line": 52,
       "text": "Apelăm funcția preprocess(input) pentru a precalcula sumele pe blocuri.",
       "blocksVisual": [
         { "label": "b[]", "groups": [[{"val": 6, "sorted": true}, {"val": 17, "sorted": true}, {"val": 11, "sorted": true}]] }
       ]
     },
     {
-      "line": 59,
+      "line": 53,
       "text": "Apelăm query(input, 1, 7) pentru a obține suma în timp O(sqrt(N)) și o afișăm la consolă.",
       "blocksVisual": [
         { "label": "Afișat", "groups": [[{"val": "32", "sorted": true}]] }
@@ -379,11 +379,11 @@ int main() {
     getInlineValueForLine: (stepIndex, lineNum) => {
       if (stepIndex >= 3 && stepIndex <= 11) {
         const i = stepIndex - 3;
-        if (lineNum === 22 || lineNum === 23) return "i: " + i;
+        if (lineNum === 16 || lineNum === 17) return "i: " + i;
       }
       if (stepIndex >= 12 && stepIndex <= 19) {
         let sum = (stepIndex >= 18) ? 32 : ((stepIndex === 17) ? 30 : ((stepIndex === 16) ? 21 : ((stepIndex === 15) ? 4 : ((stepIndex === 14) ? 1 : 0))));
-        if (lineNum === 35 || lineNum === 36 || lineNum === 45 || lineNum === 48 || lineNum === 51 || lineNum === 53) {
+        if (lineNum === 29 || lineNum === 30 || lineNum === 39 || lineNum === 42 || lineNum === 45 || lineNum === 47) {
           return "sum: " + sum;
         }
       }

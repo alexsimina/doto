@@ -44,7 +44,7 @@ int main() {
 `,
   "explanations": [
     {
-      "line": 31,
+      "line": 24,
       "text": "Pornim programul. Avem un arbore cu n = 5 noduri și rădăcina 0.",
       "graphVisual": {
         "nodes": [
@@ -63,7 +63,7 @@ int main() {
       }
     },
     {
-      "line": 40,
+      "line": 33,
       "text": "Apelăm dfs(0, -1) pentru a calcula dp de la rădăcina 0.",
       "graphVisual": {
         "nodes": [
@@ -82,7 +82,7 @@ int main() {
       }
     },
     {
-      "line": 14,
+      "line": 7,
       "text": "Inițializăm stările de bază pentru nodul 0: dp[0][0] = 0 și dp[0][1] = 1.",
       "graphVisual": {
         "nodes": [
@@ -101,7 +101,7 @@ int main() {
       }
     },
     {
-      "line": 20,
+      "line": 13,
       "text": "Din nodul 0, apelăm dfs(1, 0) pentru primul copil.",
       "graphVisual": {
         "nodes": [
@@ -120,7 +120,7 @@ int main() {
       }
     },
     {
-      "line": 14,
+      "line": 7,
       "text": "Inițializăm stările de bază pentru nodul 1: dp[1][0] = 0 și dp[1][1] = 1.",
       "graphVisual": {
         "nodes": [
@@ -139,7 +139,7 @@ int main() {
       }
     },
     {
-      "line": 20,
+      "line": 13,
       "text": "Din nodul 1, apelăm dfs(3, 1) pentru copilul 3.",
       "graphVisual": {
         "nodes": [
@@ -158,7 +158,7 @@ int main() {
       }
     },
     {
-      "line": 14,
+      "line": 7,
       "text": "Nodul 3 este frunză. Inițializăm dp[3][0] = 0 și dp[3][1] = 1.",
       "graphVisual": {
         "nodes": [
@@ -177,7 +177,7 @@ int main() {
       }
     },
     {
-      "line": 20,
+      "line": 13,
       "text": "dfs(3, 1) s-a terminat. Revenim în nodul 1 și apelăm dfs(4, 1) pentru copilul 4.",
       "graphVisual": {
         "nodes": [
@@ -196,7 +196,7 @@ int main() {
       }
     },
     {
-      "line": 14,
+      "line": 7,
       "text": "Nodul 4 este frunză. Inițializăm dp[4][0] = 0 și dp[4][1] = 1.",
       "graphVisual": {
         "nodes": [
@@ -215,7 +215,7 @@ int main() {
       }
     },
     {
-      "line": 20,
+      "line": 13,
       "text": "dfs(4, 1) s-a terminat. Revenim în nodul 1 pentru a agrega rezultatele copiilor săi.",
       "graphVisual": {
         "nodes": [
@@ -234,7 +234,7 @@ int main() {
       }
     },
     {
-      "line": 23,
+      "line": 16,
       "text": "Prelucrăm copilul 3 pentru nodul 1: dp[1][0] += max(dp[3][0]=0, dp[3][1]=1) = 1.",
       "graphVisual": {
         "nodes": [
@@ -253,7 +253,7 @@ int main() {
       }
     },
     {
-      "line": 26,
+      "line": 19,
       "text": "De asemenea, dacă includem nodul 1: dp[1][1] += dp[3][0] = 0. Momentan dp[1] = (1, 1).",
       "graphVisual": {
         "nodes": [
@@ -272,7 +272,7 @@ int main() {
       }
     },
     {
-      "line": 23,
+      "line": 16,
       "text": "Prelucrăm copilul 4 pentru nodul 1: dp[1][0] += max(dp[4][0]=0, dp[4][1]=1) = 1 + 1 = 2.",
       "graphVisual": {
         "nodes": [
@@ -291,7 +291,7 @@ int main() {
       }
     },
     {
-      "line": 26,
+      "line": 19,
       "text": "Și dacă includem nodul 1: dp[1][1] += dp[4][0] = 0. Final dp[1] = (2, 1). dfs(1) se întoarce.",
       "graphVisual": {
         "nodes": [
@@ -310,7 +310,7 @@ int main() {
       }
     },
     {
-      "line": 20,
+      "line": 13,
       "text": "Revenim în nodul 0. Prelucrăm rezultatele de la copilul 1: dp[0][0] += max(2, 1) = 2 și dp[0][1] += dp[1][0] = 2. dp[0] = (2, 3).",
       "graphVisual": {
         "nodes": [
@@ -329,7 +329,7 @@ int main() {
       }
     },
     {
-      "line": 20,
+      "line": 13,
       "text": "Apelăm acum dfs(2, 0) pentru al doilea copil al rădăcinii.",
       "graphVisual": {
         "nodes": [
@@ -348,7 +348,7 @@ int main() {
       }
     },
     {
-      "line": 14,
+      "line": 7,
       "text": "Nodul 2 este frunză. Inițializăm dp[2][0] = 0 și dp[2][1] = 1. dfs(2) se întoarce.",
       "graphVisual": {
         "nodes": [
@@ -367,7 +367,7 @@ int main() {
       }
     },
     {
-      "line": 20,
+      "line": 13,
       "text": "Revenim în nodul 0. Prelucrăm rezultatele de la copilul 2: dp[0][0] += max(dp[2][0]=0, dp[2][1]=1) = 2 + 1 = 3.",
       "graphVisual": {
         "nodes": [
@@ -386,7 +386,7 @@ int main() {
       }
     },
     {
-      "line": 26,
+      "line": 19,
       "text": "Și dacă includem nodul 0: dp[0][1] += dp[2][0] = 3 + 0 = 3. Final dp[0] = (3, 3).",
       "graphVisual": {
         "nodes": [
@@ -405,7 +405,7 @@ int main() {
       }
     },
     {
-      "line": 40,
+      "line": 33,
       "text": "Funcția recursivă dfs(0, -1) își încheie execuția. Matricea DP conține acum rezultatele optime pentru toate subarborile.",
       "graphVisual": {
         "nodes": [
@@ -424,7 +424,7 @@ int main() {
       }
     },
     {
-      "line": 42,
+      "line": 35,
       "text": "Rezultatul final este max(dp[0][0]=3, dp[0][1]=3) = 3. Alegem nodurile {0, 3, 4} pentru mulțimea independentă maximă.",
       "graphVisual": {
         "nodes": [
@@ -443,7 +443,7 @@ int main() {
       }
     },
     {
-      "line": 43,
+      "line": 36,
       "text": "Programul se termină cu succes, returnând 0.",
       "graphVisual": {
         "nodes": [
@@ -578,7 +578,7 @@ int main() {
 
       if (activeStack.length > 0) {
         const [uVal, pVal] = activeStack[activeStack.length - 1];
-        if (lineNum === 14 || lineNum === 15 || lineNum === 17 || lineNum === 23 || lineNum === 26) {
+        if (lineNum === 7 || lineNum === 8 || lineNum === 10 || lineNum === 16 || lineNum === 19) {
           return `u: ${uVal}, p: ${pVal}`;
         }
       }

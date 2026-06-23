@@ -33,9 +33,17 @@ int main() {
       text: "Inițializăm variabila $a$ cu valoarea $5$. Aceasta va fi transmisă prin valoare.",
       blocksVisual: [
         {
-          label: "Funcția main",
-          groups: [
-            [{ val: "a = 5", active: true }, { val: "b = ?" }]
+          "label": "Funcția main",
+          "groups": [
+            [
+              {
+                "val": "a = 5",
+                "active": true
+              },
+              {
+                "val": "b = ?"
+              }
+            ]
           ]
         }
       ]
@@ -45,9 +53,17 @@ int main() {
       text: "Inițializăm variabila $b$ cu valoarea $5$. Aceasta va fi transmisă prin referință.",
       blocksVisual: [
         {
-          label: "Funcția main",
-          groups: [
-            [{ val: "a = 5" }, { val: "b = 5", active: true }]
+          "label": "Funcția main",
+          "groups": [
+            [
+              {
+                "val": "a = 5"
+              },
+              {
+                "val": "b = 5",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -57,10 +73,19 @@ int main() {
       text: "Apelăm funcția `incrementByValue(a)`. Se creează o copie a valorii lui $a$ pe stivă.",
       blocksVisual: [
         {
-          label: "Apel incrementByValue",
-          groups: [
-            [{ val: "a = 5 (în main)" }],
-            [{ val: "Parametru x = 5 (copie pe stivă)", active: true }]
+          "label": "Apel incrementByValue",
+          "groups": [
+            [
+              {
+                "val": "a = 5 (în main)"
+              }
+            ],
+            [
+              {
+                "val": "Parametru x = 5 (copie pe stivă)",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -70,9 +95,14 @@ int main() {
       text: "Suntem în corpul funcției `incrementByValue`. Parametrul $x$ are valoarea copiată $5$.",
       blocksVisual: [
         {
-          label: "În incrementByValue",
-          groups: [
-            [{ val: "x = 5", active: true }]
+          "label": "În incrementByValue",
+          "groups": [
+            [
+              {
+                "val": "x = 5",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -82,9 +112,14 @@ int main() {
       text: "Incrementăm variabila locală $x$. Aceasta devine $6$.",
       blocksVisual: [
         {
-          label: "În incrementByValue",
-          groups: [
-            [{ val: "x = 6", active: true }]
+          "label": "În incrementByValue",
+          "groups": [
+            [
+              {
+                "val": "x = 6",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -94,10 +129,19 @@ int main() {
       text: "Funcția se încheie și copia locală $x$ este ștearsă din memorie. Revenim în main.",
       blocksVisual: [
         {
-          label: "Revenire în main",
-          groups: [
-            [{ val: "a = 5", active: true }],
-            [{ val: "b = 5" }]
+          "label": "Revenire în main",
+          "groups": [
+            [
+              {
+                "val": "a = 5",
+                "active": true
+              }
+            ],
+            [
+              {
+                "val": "b = 5"
+              }
+            ]
           ]
         }
       ]
@@ -107,10 +151,19 @@ int main() {
       text: "Apelăm `incrementByReference(b)`. Nu se face o copie; funcția va opera direct pe variabila $b$.",
       blocksVisual: [
         {
-          label: "Apel incrementByReference",
-          groups: [
-            [{ val: "b = 5 (în main)" }],
-            [{ val: "Referința x pointează către b", active: true }]
+          "label": "Apel incrementByReference",
+          "groups": [
+            [
+              {
+                "val": "b = 5 (în main)"
+              }
+            ],
+            [
+              {
+                "val": "Referința x pointează către b",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -120,9 +173,14 @@ int main() {
       text: "Suntem în `incrementByReference`. Parametrul $x$ este o poreclă (alias) pentru variabila $b$ din main.",
       blocksVisual: [
         {
-          label: "În incrementByReference",
-          groups: [
-            [{ val: "x (alias pentru b) = 5", active: true }]
+          "label": "În incrementByReference",
+          "groups": [
+            [
+              {
+                "val": "x (alias pentru b) = 5",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -132,9 +190,14 @@ int main() {
       text: "Incrementăm valoarea de la referința $x$. Deoarece $x$ este legat direct de $b$, valoarea lui $b$ din main devine $6$.",
       blocksVisual: [
         {
-          label: "În incrementByReference",
-          groups: [
-            [{ val: "x (alias pentru b) = 6", active: true }]
+          "label": "În incrementByReference",
+          "groups": [
+            [
+              {
+                "val": "x (alias pentru b) = 6",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -144,23 +207,40 @@ int main() {
       text: "Funcția se încheie. Revenim în main.",
       blocksVisual: [
         {
-          label: "Revenire în main",
-          groups: [
-            [{ val: "a = 5" }],
-            [{ val: "b = 6", active: true }]
+          "label": "Revenire în main",
+          "groups": [
+            [
+              {
+                "val": "a = 5"
+              }
+            ],
+            [
+              {
+                "val": "b = 6",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 22,
-      text: "Finalizăm programul. Se observă că $a$ a rămas $5$, în timp ce $b$ a devenit $6$.",
+      text: "Finalizăm programul cu succes. Se observă că $a$ a rămas $5$, în timp ce $b$ a devenit $6$.",
       blocksVisual: [
         {
-          label: "Stare Finală",
-          groups: [
-            [{ val: "a = 5" }],
-            [{ val: "b = 6" }]
+          "label": "Stare Finală",
+          "groups": [
+            [
+              {
+                "val": "a = 5"
+              }
+            ],
+            [
+              {
+                "val": "b = 6"
+              }
+            ]
           ]
         }
       ]
@@ -191,69 +271,309 @@ int main() {
   },
   "debugger": {
     "getDebuggerState": (stepIndex, activeLine, explanationText) => {
-      const vars = [];
-      const globalVars = [];
-      const frames = [];
-      let inlineVal = null;
-
-      const currentLine = activeLine || 16;
-
-      // Determine frame stack and vars based on the active line / stepIndex
-      if (currentLine === 6 || currentLine === 7 || currentLine === 8) {
-        // inside incrementByValue
-        frames.push({ name: 'incrementByValue(int)', file: 'main.cpp', line: currentLine });
-        frames.push({ name: 'main()', file: 'main.cpp', line: 19 });
-        let xVal = 5;
-        if (stepIndex >= 4) xVal = 6;
-        vars.push({ name: 'x', type: 'int', val: xVal, expandable: false });
-        inlineVal = `x: ${xVal}`;
-      } else if (currentLine === 11 || currentLine === 12 || currentLine === 13) {
-        // inside incrementByReference
-        frames.push({ name: 'incrementByReference(int&)', file: 'main.cpp', line: currentLine });
-        frames.push({ name: 'main()', file: 'main.cpp', line: 20 });
-        let xVal = 5;
-        if (stepIndex >= 8) xVal = 6;
-        vars.push({ name: 'x', type: 'int&', val: `&b (value: ${xVal})`, expandable: false });
-        inlineVal = `x: ${xVal}`;
-      } else {
-        // inside main
-        frames.push({ name: 'main()', file: 'main.cpp', line: currentLine });
-        if (stepIndex >= 0) {
-          vars.push({ name: 'a', type: 'int', val: 5, expandable: false });
+      const states = [
+        {
+          "vars": [
+            {
+              "name": "a",
+              "type": "int",
+              "val": 5,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 16
+            }
+          ],
+          "inlineVal": "a: 5"
+        },
+        {
+          "vars": [
+            {
+              "name": "a",
+              "type": "int",
+              "val": 5,
+              "expandable": false
+            },
+            {
+              "name": "b",
+              "type": "int",
+              "val": 5,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 17
+            }
+          ],
+          "inlineVal": "b: 5"
+        },
+        {
+          "vars": [
+            {
+              "name": "a",
+              "type": "int",
+              "val": 5,
+              "expandable": false
+            },
+            {
+              "name": "b",
+              "type": "int",
+              "val": 5,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 19
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "x",
+              "type": "int",
+              "val": 5,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "incrementByValue(int)",
+              "file": "main.cpp",
+              "line": 6
+            },
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 19
+            }
+          ],
+          "inlineVal": "x: 5"
+        },
+        {
+          "vars": [
+            {
+              "name": "x",
+              "type": "int",
+              "val": 6,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "incrementByValue(int)",
+              "file": "main.cpp",
+              "line": 7
+            },
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 19
+            }
+          ],
+          "inlineVal": "x: 6"
+        },
+        {
+          "vars": [
+            {
+              "name": "x",
+              "type": "int",
+              "val": 6,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "incrementByValue(int)",
+              "file": "main.cpp",
+              "line": 8
+            },
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 19
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "a",
+              "type": "int",
+              "val": 5,
+              "expandable": false
+            },
+            {
+              "name": "b",
+              "type": "int",
+              "val": 5,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 20
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "x",
+              "type": "int&",
+              "val": "&b (value: 5)",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "incrementByReference(int&)",
+              "file": "main.cpp",
+              "line": 11
+            },
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 20
+            }
+          ],
+          "inlineVal": "x: &b (value: 5)"
+        },
+        {
+          "vars": [
+            {
+              "name": "x",
+              "type": "int&",
+              "val": "&b (value: 6)",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "incrementByReference(int&)",
+              "file": "main.cpp",
+              "line": 12
+            },
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 20
+            }
+          ],
+          "inlineVal": "x: &b (value: 6)"
+        },
+        {
+          "vars": [
+            {
+              "name": "x",
+              "type": "int&",
+              "val": "&b (value: 6)",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "incrementByReference(int&)",
+              "file": "main.cpp",
+              "line": 13
+            },
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 20
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "a",
+              "type": "int",
+              "val": 5,
+              "expandable": false
+            },
+            {
+              "name": "b",
+              "type": "int",
+              "val": 6,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 22
+            }
+          ],
+          "inlineVal": null
         }
-        if (stepIndex >= 1) {
-          let bVal = 5;
-          if (stepIndex >= 8) bVal = 6;
-          vars.push({ name: 'b', type: 'int', val: bVal, expandable: false });
-        }
-        if (currentLine === 16) inlineVal = "a: 5";
-        else if (currentLine === 17) inlineVal = "b: 5";
-        else if (currentLine === 19) inlineVal = "a: 5, b: 5";
-        else if (currentLine === 20) inlineVal = `a: 5, b: ${stepIndex >= 8 ? 6 : 5}`;
-        else if (currentLine === 22) inlineVal = "a: 5, b: 6";
-      }
-
-      return { vars, globalVars, frames, inlineVal };
+      ];
+      if (stepIndex < 0) return { vars: [], globalVars: [], frames: [{ name: 'main()', file: 'main.cpp', line: activeLine || 16 }], inlineVal: null };
+      if (stepIndex >= states.length) stepIndex = states.length - 1;
+      const state = states[stepIndex];
+      return { vars: state.vars, globalVars: [], frames: state.frames, inlineVal: state.inlineVal };
     },
     "getInlineValueForLine": (stepIndex, lineNum) => {
-      let bVal = 5;
-      if (stepIndex >= 8) bVal = 6;
-
-      if (lineNum === 16 && stepIndex >= 0) return 'a: 5';
-      if (lineNum === 17 && stepIndex >= 1) return 'b: 5';
-      if (lineNum === 19 && stepIndex >= 2) return `a: 5, b: ${bVal}`;
-      if (lineNum === 20 && stepIndex >= 6) return `a: 5, b: ${bVal}`;
-      if (lineNum === 22 && stepIndex >= 10) return 'a: 5, b: 6';
-
-      if (lineNum === 6) return `x: ${stepIndex >= 4 ? 6 : 5}`;
-      if (lineNum === 7) return `x: ${stepIndex >= 4 ? 6 : 5}`;
-      if (lineNum === 8) return `x: 6`;
-
-      if (lineNum === 11) return `x: &b (value: ${stepIndex >= 8 ? 6 : 5})`;
-      if (lineNum === 12) return `x: &b (value: ${stepIndex >= 8 ? 6 : 5})`;
-      if (lineNum === 13) return `x: &b (value: 6)`;
-
-      return null;
+      const states = [
+        {
+          "16": "a: 5"
+        },
+        {
+          "16": "a: 5",
+          "17": "b: 5"
+        },
+        {
+          "16": "a: 5",
+          "17": "b: 5"
+        },
+        {
+          "6": "x: 5"
+        },
+        {
+          "7": "x: 6"
+        },
+        {
+          "7": "x: 6"
+        },
+        {
+          "16": "a: 5",
+          "17": "b: 5"
+        },
+        {
+          "11": "x: &b (value: 5)"
+        },
+        {
+          "12": "x: &b (value: 6)"
+        },
+        {
+          "12": "x: &b (value: 6)"
+        },
+        {
+          "16": "a: 5",
+          "17": "b: 6"
+        }
+      ];
+      if (stepIndex < 0) return null;
+      if (stepIndex >= states.length) stepIndex = states.length - 1;
+      return states[stepIndex][lineNum] || null;
     }
   }
-};
+}
+;

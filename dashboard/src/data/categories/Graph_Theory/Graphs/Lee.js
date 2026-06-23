@@ -82,1183 +82,18999 @@ int main() {
 }
 `,
   "explanations": [
-    {
-      "line": 56,
-      "text": "Apelăm funcția `leeAlgorithm` pentru o matrice $4 \\times 4$ cu sursa la coordonatele $(0, 0)$ și destinația la $(3, 3)$.",
-      "blocksVisual": [
-        {
-          "label": "Configurație",
-          "groups": [
-            [
-              { "val": "src = (0,0)", "active": true },
-              { "val": "dest = (3,3)", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 12,
-      "text": "Intrăm în funcția `leeAlgorithm` cu parametrii transmiși.",
-      "blocksVisual": [
-        {
-          "label": "Stare",
-          "groups": [
-            [
-              { "val": "src: (0,0)" },
-              { "val": "dest: (3,3)" }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 13,
-      "text": "Determină numărul de linii al matricei: `rows = 4`.",
-      "blocksVisual": [
-        {
-          "label": "rows",
-          "groups": [[{ "val": "4", "active": true }]]
-        }
-      ]
-    },
-    {
-      "line": 14,
-      "text": "Determină numărul de coloane al matricei: `cols = 4`.",
-      "blocksVisual": [
-        {
-          "label": "cols",
-          "groups": [[{ "val": "4", "active": true }]]
-        }
-      ]
-    },
-    {
-      "line": 15,
-      "text": "Verificăm dacă celulele de start și destinație nu sunt obstacole. Ambele sunt libere (valori $0$).",
-      "blocksVisual": [
-        {
-          "label": "Verificare celule",
-          "groups": [
-            [
-              { "val": "src liber: da", "active": true },
-              { "val": "dest liber: da", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 17,
-      "text": "Inițializăm matricea `dist` de dimensiuni $4 \\times 4$ cu valoarea $-1$ pentru a marca celulele nevizitate.",
-      "blocksVisual": [
-        {
-          "label": "Queue q",
-          "groups": [[]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist (Obstacole cu █)",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", -1, "█", -1, -1],
-          ["1", -1, -1, -1, "█"],
-          ["2", "█", -1, -1, -1],
-          ["3", -1, -1, "█", -1]
-        ],
-        "activeCells": [],
-        "highlightCells": []
+  {
+    "line": 55,
+    "text": "Apelăm funcția leeAlgorithm pentru grid, src=(0,0), dest=(3,3).",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
       }
-    },
-    {
-      "line": 18,
-      "text": "Inițializăm coada FIFO `q` pentru a gestiona ordinea de parcurgere BFS.",
-      "blocksVisual": [
-        {
-          "label": "Queue q (Coada)",
-          "groups": [[]]
-        }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
       ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", -1, "█", -1, -1],
-          ["1", -1, -1, -1, "█"],
-          ["2", "█", -1, -1, -1],
-          ["3", -1, -1, "█", -1]
+      "data": [
+        [
+          "0",
+          -1,
+          "█",
+          -1,
+          -1
         ],
-        "activeCells": [],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 20,
-      "text": "Setăm distanța celulei de start la $0$: `dist[0][0] = 0`.",
-      "blocksVisual": [
-        {
-          "label": "Queue q",
-          "groups": [[]]
-        }
+        [
+          "1",
+          -1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
       ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", -1, -1],
-          ["1", -1, -1, -1, "█"],
-          ["2", "█", -1, -1, -1],
-          ["3", -1, -1, "█", -1]
-        ],
-        "activeCells": [{"r": 0, "c": 0}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 21,
-      "text": "Adăugăm celula sursă $(0,0)$ în coada `q`.",
-      "blocksVisual": [
-        {
-          "label": "Queue q (Coada)",
-          "groups": [[{ "val": "(0,0)", "active": true }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", -1, -1],
-          ["1", -1, -1, -1, "█"],
-          ["2", "█", -1, -1, -1],
-          ["3", -1, -1, "█", -1]
-        ],
-        "activeCells": [{"r": 0, "c": 0}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 23,
-      "text": "Definim vectorul `dr = {-1, 1, 0, 0}` pentru deplasarea pe linii.",
-      "blocksVisual": [
-        {
-          "label": "Queue q",
-          "groups": [[{ "val": "(0,0)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", -1, -1],
-          ["1", -1, -1, -1, "█"],
-          ["2", "█", -1, -1, -1],
-          ["3", -1, -1, "█", -1]
-        ],
-        "activeCells": [{"r": 0, "c": 0}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 24,
-      "text": "Definim vectorul `dc = {0, 0, -1, 1}` pentru deplasarea pe coloane.",
-      "blocksVisual": [
-        {
-          "label": "Queue q",
-          "groups": [[{ "val": "(0,0)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", -1, -1],
-          ["1", -1, -1, -1, "█"],
-          ["2", "█", -1, -1, -1],
-          ["3", -1, -1, "█", -1]
-        ],
-        "activeCells": [{"r": 0, "c": 0}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 26,
-      "text": "Pornim bucla principală BFS. Aceasta rulează cât timp coada nu este goală.",
-      "blocksVisual": [
-        {
-          "label": "Queue q",
-          "groups": [[{ "val": "(0,0)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", -1, -1],
-          ["1", -1, -1, -1, "█"],
-          ["2", "█", -1, -1, -1],
-          ["3", -1, -1, "█", -1]
-        ],
-        "activeCells": [{"r": 0, "c": 0}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 27,
-      "text": "Extragem prima celulă din coadă: `curr = (0,0)`.",
-      "blocksVisual": [
-        {
-          "label": "Queue q",
-          "groups": [[{ "val": "(0,0)", "active": true }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", -1, -1],
-          ["1", -1, -1, -1, "█"],
-          ["2", "█", -1, -1, -1],
-          ["3", -1, -1, "█", -1]
-        ],
-        "activeCells": [{"r": 0, "c": 0}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 28,
-      "text": "Scoatem celula din coadă (operația pop). Coada devine goală.",
-      "blocksVisual": [
-        {
-          "label": "Queue q (Coada)",
-          "groups": [[]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", -1, -1],
-          ["1", -1, -1, -1, "█"],
-          ["2", "█", -1, -1, -1],
-          ["3", -1, -1, "█", -1]
-        ],
-        "activeCells": [{"r": 0, "c": 0}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 30,
-      "text": "Verificăm dacă `curr` este destinația $(3,3)$. Nu este, deci continuăm expansiunea.",
-      "blocksVisual": [
-        {
-          "label": "Queue q",
-          "groups": [[]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", -1, -1],
-          ["1", -1, -1, -1, "█"],
-          ["2", "█", -1, -1, -1],
-          ["3", -1, -1, "█", -1]
-        ],
-        "activeCells": [{"r": 0, "c": 0}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 34,
-      "text": "Iterăm prin cele 4 direcții. Evaluăm vecinul din dreapta $(0,1)$, dar este obstacol ('█'). Evaluăm vecinul de jos $(1,0)$, care este liber și nevizitat.",
-      "blocksVisual": [
-        {
-          "label": "Queue q",
-          "groups": [[]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", -1, -1],
-          ["1", -1, -1, -1, "█"],
-          ["2", "█", -1, -1, -1],
-          ["3", -1, -1, "█", -1]
-        ],
-        "activeCells": [{"r": 0, "c": 0}],
-        "highlightCells": [{"r": 1, "c": 0}]
-      }
-    },
-    {
-      "line": 40,
-      "text": "Setăm distanța minimă `dist[1][0] = dist[0][0] + 1 = 1`.",
-      "blocksVisual": [
-        {
-          "label": "Queue q",
-          "groups": [[]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", -1, -1],
-          ["1", 1, -1, -1, "█"],
-          ["2", "█", -1, -1, -1],
-          ["3", -1, -1, "█", -1]
-        ],
-        "activeCells": [{"r": 0, "c": 0}],
-        "highlightCells": [{"r": 1, "c": 0}]
-      }
-    },
-    {
-      "line": 41,
-      "text": "Adăugăm celula `(1,0)` în coadă.",
-      "blocksVisual": [
-        {
-          "label": "Queue q (Coada)",
-          "groups": [[{ "val": "(1,0)", "active": true }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", -1, -1],
-          ["1", 1, -1, -1, "█"],
-          ["2", "█", -1, -1, -1],
-          ["3", -1, -1, "█", -1]
-        ],
-        "activeCells": [{"r": 0, "c": 0}],
-        "highlightCells": [{"r": 1, "c": 0}]
-      }
-    },
-    {
-      "line": 26,
-      "text": "Următoarea iterație. Coada are 1 element: `(1,0)`.",
-      "blocksVisual": [
-        {
-          "label": "Queue q",
-          "groups": [[{ "val": "(1,0)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", -1, -1],
-          ["1", 1, -1, -1, "█"],
-          ["2", "█", -1, -1, -1],
-          ["3", -1, -1, "█", -1]
-        ],
-        "activeCells": [{"r": 1, "c": 0}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 27,
-      "text": "Extragem `curr = (1,0)`. Pop din coadă.",
-      "blocksVisual": [
-        {
-          "label": "Queue q (Coada)",
-          "groups": [[]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", -1, -1],
-          ["1", 1, -1, -1, "█"],
-          ["2", "█", -1, -1, -1],
-          ["3", -1, -1, "█", -1]
-        ],
-        "activeCells": [{"r": 1, "c": 0}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 40,
-      "text": "Explorăm vecinii lui `(1,0)`. Vecinul `(1,1)` este liber și nevizitat. Îi setăm distanța la `dist[1][1] = dist[1][0] + 1 = 2` și îl adăugăm în coadă.",
-      "blocksVisual": [
-        {
-          "label": "Queue q (Coada)",
-          "groups": [[{ "val": "(1,1)", "active": true }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", -1, -1],
-          ["1", 1, 2, -1, "█"],
-          ["2", "█", -1, -1, -1],
-          ["3", -1, -1, "█", -1]
-        ],
-        "activeCells": [{"r": 1, "c": 0}],
-        "highlightCells": [{"r": 1, "c": 1}]
-      }
-    },
-    {
-      "line": 26,
-      "text": "Următoarea iterație. Coada are 1 element: `(1,1)`.",
-      "blocksVisual": [
-        {
-          "label": "Queue q",
-          "groups": [[{ "val": "(1,1)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", -1, -1],
-          ["1", 1, 2, -1, "█"],
-          ["2", "█", -1, -1, -1],
-          ["3", -1, -1, "█", -1]
-        ],
-        "activeCells": [{"r": 1, "c": 1}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 27,
-      "text": "Extragem `curr = (1,1)`. Pop din coadă.",
-      "blocksVisual": [
-        {
-          "label": "Queue q (Coada)",
-          "groups": [[]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", -1, -1],
-          ["1", 1, 2, -1, "█"],
-          ["2", "█", -1, -1, -1],
-          ["3", -1, -1, "█", -1]
-        ],
-        "activeCells": [{"r": 1, "c": 1}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 40,
-      "text": "Explorăm vecinii lui `(1,1)`. Vecinii liberi și nevizitați sunt `(2,1)` și `(1,2)`. Setăm distanțele `dist[2][1] = 3`, `dist[1][2] = 3` și îi adăugăm în coadă.",
-      "blocksVisual": [
-        {
-          "label": "Queue q (Coada)",
-          "groups": [[{ "val": "(2,1)" }, { "val": "(1,2)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", -1, -1],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, -1, -1],
-          ["3", -1, -1, "█", -1]
-        ],
-        "activeCells": [{"r": 1, "c": 1}],
-        "highlightCells": [{"r": 2, "c": 1}, {"r": 1, "c": 2}]
-      }
-    },
-    {
-      "line": 26,
-      "text": "Următoarea iterație. Coada are 2 elemente: `[(2,1), (1,2)]`.",
-      "blocksVisual": [
-        {
-          "label": "Queue q",
-          "groups": [[{ "val": "(2,1)" }, { "val": "(1,2)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", -1, -1],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, -1, -1],
-          ["3", -1, -1, "█", -1]
-        ],
-        "activeCells": [{"r": 2, "c": 1}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 27,
-      "text": "Extragem `curr = (2,1)`. Pop din coadă. Coada rămâne: `[(1,2)]`.",
-      "blocksVisual": [
-        {
-          "label": "Queue q (Coada)",
-          "groups": [[{ "val": "(1,2)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", -1, -1],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, -1, -1],
-          ["3", -1, -1, "█", -1]
-        ],
-        "activeCells": [{"r": 2, "c": 1}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 40,
-      "text": "Explorăm vecinii lui `(2,1)`. Vecinii liberi și nevizitați sunt `(3,1)` și `(2,2)`. Setăm distanțele `dist[3][1] = 4`, `dist[2][2] = 4` și îi adăugăm în coadă.",
-      "blocksVisual": [
-        {
-          "label": "Queue q (Coada)",
-          "groups": [[{ "val": "(1,2)" }, { "val": "(3,1)" }, { "val": "(2,2)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", -1, -1],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, 4, -1],
-          ["3", -1, 4, "█", -1]
-        ],
-        "activeCells": [{"r": 2, "c": 1}],
-        "highlightCells": [{"r": 3, "c": 1}, {"r": 2, "c": 2}]
-      }
-    },
-    {
-      "line": 26,
-      "text": "Următoarea iterație. Coada are 3 elemente: `[(1,2), (3,1), (2,2)]`.",
-      "blocksVisual": [
-        {
-          "label": "Queue q",
-          "groups": [[{ "val": "(1,2)" }, { "val": "(3,1)" }, { "val": "(2,2)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", -1, -1],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, 4, -1],
-          ["3", -1, 4, "█", -1]
-        ],
-        "activeCells": [{"r": 1, "c": 2}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 27,
-      "text": "Extragem `curr = (1,2)`. Pop din coadă. Coada rămâne: `[(3,1), (2,2)]`.",
-      "blocksVisual": [
-        {
-          "label": "Queue q (Coada)",
-          "groups": [[{ "val": "(3,1)" }, { "val": "(2,2)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", -1, -1],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, 4, -1],
-          ["3", -1, 4, "█", -1]
-        ],
-        "activeCells": [{"r": 1, "c": 2}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 40,
-      "text": "Explorăm vecinii lui `(1,2)`. Vecinul liber și nevizitat este `(0,2)`. Setăm distanța `dist[0][2] = 4` și îl adăugăm în coadă.",
-      "blocksVisual": [
-        {
-          "label": "Queue q (Coada)",
-          "groups": [[{ "val": "(3,1)" }, { "val": "(2,2)" }, { "val": "(0,2)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", 4, -1],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, 4, -1],
-          ["3", -1, 4, "█", -1]
-        ],
-        "activeCells": [{"r": 1, "c": 2}],
-        "highlightCells": [{"r": 0, "c": 2}]
-      }
-    },
-    {
-      "line": 26,
-      "text": "Următoarea iterație. Coada are 3 elemente: `[(3,1), (2,2), (0,2)]`.",
-      "blocksVisual": [
-        {
-          "label": "Queue q",
-          "groups": [[{ "val": "(3,1)" }, { "val": "(2,2)" }, { "val": "(0,2)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", 4, -1],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, 4, -1],
-          ["3", -1, 4, "█", -1]
-        ],
-        "activeCells": [{"r": 3, "c": 1}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 27,
-      "text": "Extragem `curr = (3,1)`. Pop din coadă. Coada rămâne: `[(2,2), (0,2)]`.",
-      "blocksVisual": [
-        {
-          "label": "Queue q (Coada)",
-          "groups": [[{ "val": "(2,2)" }, { "val": "(0,2)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", 4, -1],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, 4, -1],
-          ["3", -1, 4, "█", -1]
-        ],
-        "activeCells": [{"r": 3, "c": 1}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 40,
-      "text": "Explorăm vecinii lui `(3,1)`. Vecinul liber și nevizitat este `(3,0)`. Setăm distanța `dist[3][0] = 5` și îl adăugăm în coadă.",
-      "blocksVisual": [
-        {
-          "label": "Queue q (Coada)",
-          "groups": [[{ "val": "(2,2)" }, { "val": "(0,2)" }, { "val": "(3,0)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", 4, -1],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, 4, -1],
-          ["3", 5, 4, "█", -1]
-        ],
-        "activeCells": [{"r": 3, "c": 1}],
-        "highlightCells": [{"r": 3, "c": 0}]
-      }
-    },
-    {
-      "line": 26,
-      "text": "Următoarea iterație. Coada are 3 elemente: `[(2,2), (0,2), (3,0)]`.",
-      "blocksVisual": [
-        {
-          "label": "Queue q",
-          "groups": [[{ "val": "(2,2)" }, { "val": "(0,2)" }, { "val": "(3,0)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", 4, -1],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, 4, -1],
-          ["3", 5, 4, "█", -1]
-        ],
-        "activeCells": [{"r": 2, "c": 2}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 27,
-      "text": "Extragem `curr = (2,2)`. Pop din coadă. Coada rămâne: `[(0,2), (3,0)]`.",
-      "blocksVisual": [
-        {
-          "label": "Queue q (Coada)",
-          "groups": [[{ "val": "(0,2)" }, { "val": "(3,0)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", 4, -1],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, 4, -1],
-          ["3", 5, 4, "█", -1]
-        ],
-        "activeCells": [{"r": 2, "c": 2}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 40,
-      "text": "Explorăm vecinii lui `(2,2)`. Vecinul liber și nevizitat este `(2,3)`. Setăm distanța `dist[2][3] = 5` și îl adăugăm în coadă.",
-      "blocksVisual": [
-        {
-          "label": "Queue q (Coada)",
-          "groups": [[{ "val": "(0,2)" }, { "val": "(3,0)" }, { "val": "(2,3)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", 4, -1],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, 4, 5],
-          ["3", 5, 4, "█", -1]
-        ],
-        "activeCells": [{"r": 2, "c": 2}],
-        "highlightCells": [{"r": 2, "c": 3}]
-      }
-    },
-    {
-      "line": 26,
-      "text": "Următoarea iterație. Coada are 3 elemente: `[(0,2), (3,0), (2,3)]`.",
-      "blocksVisual": [
-        {
-          "label": "Queue q",
-          "groups": [[{ "val": "(0,2)" }, { "val": "(3,0)" }, { "val": "(2,3)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", 4, -1],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, 4, 5],
-          ["3", 5, 4, "█", -1]
-        ],
-        "activeCells": [{"r": 0, "c": 2}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 27,
-      "text": "Extragem `curr = (0,2)`. Pop din coadă. Coada rămâne: `[(3,0), (2,3)]`.",
-      "blocksVisual": [
-        {
-          "label": "Queue q (Coada)",
-          "groups": [[{ "val": "(3,0)" }, { "val": "(2,3)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", 4, -1],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, 4, 5],
-          ["3", 5, 4, "█", -1]
-        ],
-        "activeCells": [{"r": 0, "c": 2}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 40,
-      "text": "Explorăm vecinii lui `(0,2)`. Vecinul liber și nevizitat este `(0,3)`. Setăm distanța `dist[0][3] = 5` și îl adăugăm în coadă.",
-      "blocksVisual": [
-        {
-          "label": "Queue q (Coada)",
-          "groups": [[{ "val": "(3,0)" }, { "val": "(2,3)" }, { "val": "(0,3)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", 4, 5],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, 4, 5],
-          ["3", 5, 4, "█", -1]
-        ],
-        "activeCells": [{"r": 0, "c": 2}],
-        "highlightCells": [{"r": 0, "c": 3}]
-      }
-    },
-    {
-      "line": 26,
-      "text": "Următoarea iterație. Coada are 3 elemente: `[(3,0), (2,3), (0,3)]`.",
-      "blocksVisual": [
-        {
-          "label": "Queue q",
-          "groups": [[{ "val": "(3,0)" }, { "val": "(2,3)" }, { "val": "(0,3)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", 4, 5],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, 4, 5],
-          ["3", 5, 4, "█", -1]
-        ],
-        "activeCells": [{"r": 3, "c": 0}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 27,
-      "text": "Extragem `curr = (3,0)`. Pop din coadă. Coada rămâne: `[(2,3), (0,3)]`.",
-      "blocksVisual": [
-        {
-          "label": "Queue q (Coada)",
-          "groups": [[{ "val": "(2,3)" }, { "val": "(0,3)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", 4, 5],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, 4, 5],
-          ["3", 5, 4, "█", -1]
-        ],
-        "activeCells": [{"r": 3, "c": 0}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 26,
-      "text": "Următoarea iterație. Coada are 2 elemente: `[(2,3), (0,3)]`.",
-      "blocksVisual": [
-        {
-          "label": "Queue q",
-          "groups": [[{ "val": "(2,3)" }, { "val": "(0,3)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", 4, 5],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, 4, 5],
-          ["3", 5, 4, "█", -1]
-        ],
-        "activeCells": [{"r": 2, "c": 3}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 27,
-      "text": "Extragem `curr = (2,3)`. Pop din coadă. Coada rămâne: `[(0,3)]`.",
-      "blocksVisual": [
-        {
-          "label": "Queue q (Coada)",
-          "groups": [[{ "val": "(0,3)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", 4, 5],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, 4, 5],
-          ["3", 5, 4, "█", -1]
-        ],
-        "activeCells": [{"r": 2, "c": 3}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 40,
-      "text": "Explorăm vecinii lui `(2,3)`. Vecinul liber și nevizitat este destinația `(3,3)`! Setăm distanța `dist[3][3] = dist[2][3] + 1 = 6` și îl adăugăm în coadă.",
-      "blocksVisual": [
-        {
-          "label": "Queue q (Coada)",
-          "groups": [[{ "val": "(0,3)" }, { "val": "(3,3)", "active": true }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", 4, 5],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, 4, 5],
-          ["3", 5, 4, "█", 6]
-        ],
-        "activeCells": [{"r": 2, "c": 3}],
-        "highlightCells": [{"r": 3, "c": 3}]
-      }
-    },
-    {
-      "line": 26,
-      "text": "Următoarea iterație. Coada are 2 elemente: `[(0,3), (3,3)]`.",
-      "blocksVisual": [
-        {
-          "label": "Queue q",
-          "groups": [[{ "val": "(0,3)" }, { "val": "(3,3)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", 4, 5],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, 4, 5],
-          ["3", 5, 4, "█", 6]
-        ],
-        "activeCells": [{"r": 0, "c": 3}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 27,
-      "text": "Extragem `curr = (0,3)`. Pop din coadă. Coada rămâne: `[(3,3)]`.",
-      "blocksVisual": [
-        {
-          "label": "Queue q (Coada)",
-          "groups": [[{ "val": "(3,3)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", 4, 5],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, 4, 5],
-          ["3", 5, 4, "█", 6]
-        ],
-        "activeCells": [{"r": 0, "c": 3}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 26,
-      "text": "Următoarea iterație. Coada are 1 element: `[(3,3)]`.",
-      "blocksVisual": [
-        {
-          "label": "Queue q",
-          "groups": [[{ "val": "(3,3)" }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", 4, 5],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, 4, 5],
-          ["3", 5, 4, "█", 6]
-        ],
-        "activeCells": [{"r": 3, "c": 3}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 27,
-      "text": "Extragem `curr = (3,3)`. Pop din coadă. Coada devine goală.",
-      "blocksVisual": [
-        {
-          "label": "Queue q (Coada)",
-          "groups": [[]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", 4, 5],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, 4, 5],
-          ["3", 5, 4, "█", 6]
-        ],
-        "activeCells": [{"r": 3, "c": 3}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 30,
-      "text": "Verificăm dacă `curr` este destinația $(3,3)$. Este adevărat! Am găsit cel mai scurt drum.",
-      "blocksVisual": [
-        {
-          "label": "Verificare destinație",
-          "groups": [[{ "val": "Destinație atinsă!", "active": true }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", 4, 5],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, 4, 5],
-          ["3", 5, 4, "█", 6]
-        ],
-        "activeCells": [{"r": 3, "c": 3}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 31,
-      "text": "Returnăm distanța minimă până la destinație: `dist[3][3] = 6`.",
-      "blocksVisual": [
-        {
-          "label": "Returnează",
-          "groups": [[{ "val": "6", "active": true }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", 4, 5],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, 4, 5],
-          ["3", 5, 4, "█", 6]
-        ],
-        "activeCells": [{"r": 3, "c": 3}],
-        "highlightCells": []
-      }
-    },
-    {
-      "line": 57,
-      "text": "Revenim în funcția `main`. Afișăm rezultatul drumului minim: 6.",
-      "blocksVisual": [
-        {
-          "label": "Rezultat",
-          "groups": [[{ "val": "Drum minim = 6", "active": true }]]
-        }
-      ],
-      "matrix": {
-        "title": "Matricea dist",
-        "headers": ["R/C", "0", "1", "2", "3"],
-        "data": [
-          ["0", 0, "█", 4, 5],
-          ["1", 1, 2, 3, "█"],
-          ["2", "█", 3, 4, 5],
-          ["3", 5, 4, "█", 6]
-        ],
-        "activeCells": [],
-        "highlightCells": []
-      }
+      "activeCells": [],
+      "highlightCells": []
     }
-  ],
+  },
+  {
+    "line": 12,
+    "text": "Obținem numărul de rânduri: rows = 4.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          -1,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          -1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 13,
+    "text": "Obținem numărul de coloane: cols = 4.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          -1,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          -1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 14,
+    "text": "Verificăm dacă sursa sau destinația este obstacol (1). Ambele sunt 0 (libere).",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          -1,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          -1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 16,
+    "text": "Inițializăm matricea dist cu valoarea -1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          -1,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          -1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 17,
+    "text": "Inițializăm coada q.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          -1,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          -1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 19,
+    "text": "Setăm distanța pentru sursă la 0: dist[0][0] = 0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          -1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 20,
+    "text": "Adăugăm sursa în coadă.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          -1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 22,
+    "text": "Definim dr = {-1, 1, 0, 0}.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          -1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 23,
+    "text": "Definim dc = {0, 0, -1, 1}.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          -1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 25,
+    "text": "Începem o iterație BFS. Coada are 1 elemente.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          -1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 26,
+    "text": "Extragem primul element din coadă: curr = (0, 0).",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          -1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 27,
+    "text": "Scoatem elementul din coadă.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          -1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 29,
+    "text": "Verificăm dacă curr este destinația (3,3). Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          -1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          -1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = -1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          -1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          -1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (-1, 0). În afara limitelor.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          -1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          -1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          -1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          -1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (1, 0). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          -1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Da.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          -1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ]
+    }
+  },
+  {
+    "line": 39,
+    "text": "Actualizăm dist[1][0] = 1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ]
+    }
+  },
+  {
+    "line": 40,
+    "text": "Adăugăm (1, 0) în coadă.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ]
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = -1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (0, -1). În afara limitelor.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (0, 1). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 0,
+          "c": 1
+        }
+      ]
+    }
+  },
+  {
+    "line": 25,
+    "text": "Începem o iterație BFS. Coada are 1 elemente.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 26,
+    "text": "Extragem primul element din coadă: curr = (1, 0).",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 27,
+    "text": "Scoatem elementul din coadă.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 29,
+    "text": "Verificăm dacă curr este destinația (3,3). Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (0, 0). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 0,
+          "c": 0
+        }
+      ]
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (2, 0). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 2,
+          "c": 0
+        }
+      ]
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = -1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (1, -1). În afara limitelor.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (1, 1). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Da.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          -1,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ]
+    }
+  },
+  {
+    "line": 39,
+    "text": "Actualizăm dist[1][1] = 2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ]
+    }
+  },
+  {
+    "line": 40,
+    "text": "Adăugăm (1, 1) în coadă.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ]
+    }
+  },
+  {
+    "line": 25,
+    "text": "Începem o iterație BFS. Coada are 1 elemente.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 26,
+    "text": "Extragem primul element din coadă: curr = (1, 1).",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 27,
+    "text": "Scoatem elementul din coadă.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 29,
+    "text": "Verificăm dacă curr este destinația (3,3). Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (0, 1). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 0,
+          "c": 1
+        }
+      ]
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (2, 1). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Da.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          -1,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ]
+    }
+  },
+  {
+    "line": 39,
+    "text": "Actualizăm dist[2][1] = 3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ]
+    }
+  },
+  {
+    "line": 40,
+    "text": "Adăugăm (2, 1) în coadă.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ]
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (1, 0). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 1,
+          "c": 0
+        }
+      ]
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (1, 2). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Da.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          -1,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ]
+    }
+  },
+  {
+    "line": 39,
+    "text": "Actualizăm dist[1][2] = 3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ]
+    }
+  },
+  {
+    "line": 40,
+    "text": "Adăugăm (1, 2) în coadă.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,1)"
+            },
+            {
+              "val": "(1,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ]
+    }
+  },
+  {
+    "line": 25,
+    "text": "Începem o iterație BFS. Coada are 2 elemente.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,1)"
+            },
+            {
+              "val": "(1,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 26,
+    "text": "Extragem primul element din coadă: curr = (2, 1).",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 27,
+    "text": "Scoatem elementul din coadă.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 29,
+    "text": "Verificăm dacă curr este destinația (3,3). Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (1, 1). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ]
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (3, 1). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Da.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          -1,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ]
+    }
+  },
+  {
+    "line": 39,
+    "text": "Actualizăm dist[3][1] = 4.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ]
+    }
+  },
+  {
+    "line": 40,
+    "text": "Adăugăm (3, 1) în coadă.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            },
+            {
+              "val": "(3,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ]
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            },
+            {
+              "val": "(3,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            },
+            {
+              "val": "(3,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            },
+            {
+              "val": "(3,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (2, 0). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            },
+            {
+              "val": "(3,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            },
+            {
+              "val": "(3,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 2,
+          "c": 0
+        }
+      ]
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            },
+            {
+              "val": "(3,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            },
+            {
+              "val": "(3,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            },
+            {
+              "val": "(3,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (2, 2). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            },
+            {
+              "val": "(3,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Da.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            },
+            {
+              "val": "(3,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          -1,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ]
+    }
+  },
+  {
+    "line": 39,
+    "text": "Actualizăm dist[2][2] = 4.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            },
+            {
+              "val": "(3,1)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ]
+    }
+  },
+  {
+    "line": 40,
+    "text": "Adăugăm (2, 2) în coadă.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            },
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ]
+    }
+  },
+  {
+    "line": 25,
+    "text": "Începem o iterație BFS. Coada are 3 elemente.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(1,2)"
+            },
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 26,
+    "text": "Extragem primul element din coadă: curr = (1, 2).",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 27,
+    "text": "Scoatem elementul din coadă.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 29,
+    "text": "Verificăm dacă curr este destinația (3,3). Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (0, 2). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Da.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          -1,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ]
+    }
+  },
+  {
+    "line": 39,
+    "text": "Actualizăm dist[0][2] = 4.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ]
+    }
+  },
+  {
+    "line": 40,
+    "text": "Adăugăm (0, 2) în coadă.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ]
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (2, 2). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ]
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (1, 1). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 1,
+          "c": 1
+        }
+      ]
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (1, 3). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 1,
+          "c": 3
+        }
+      ]
+    }
+  },
+  {
+    "line": 25,
+    "text": "Începem o iterație BFS. Coada are 3 elemente.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,1)"
+            },
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 26,
+    "text": "Extragem primul element din coadă: curr = (3, 1).",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 27,
+    "text": "Scoatem elementul din coadă.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 29,
+    "text": "Verificăm dacă curr este destinația (3,3). Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (2, 1). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ]
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 4.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (4, 1). În afara limitelor.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (3, 0). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Da.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          -1,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 3,
+          "c": 0
+        }
+      ]
+    }
+  },
+  {
+    "line": 39,
+    "text": "Actualizăm dist[3][0] = 5.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 3,
+          "c": 0
+        }
+      ]
+    }
+  },
+  {
+    "line": 40,
+    "text": "Adăugăm (3, 0) în coadă.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 3,
+          "c": 0
+        }
+      ]
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (3, 2). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 3,
+          "c": 2
+        }
+      ]
+    }
+  },
+  {
+    "line": 25,
+    "text": "Începem o iterație BFS. Coada are 3 elemente.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,2)"
+            },
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 26,
+    "text": "Extragem primul element din coadă: curr = (2, 2).",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 27,
+    "text": "Scoatem elementul din coadă.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 29,
+    "text": "Verificăm dacă curr este destinația (3,3). Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (1, 2). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ]
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (3, 2). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 3,
+          "c": 2
+        }
+      ]
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (2, 1). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 2,
+          "c": 1
+        }
+      ]
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (2, 3). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Da.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          -1
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ]
+    }
+  },
+  {
+    "line": 39,
+    "text": "Actualizăm dist[2][3] = 5.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ]
+    }
+  },
+  {
+    "line": 40,
+    "text": "Adăugăm (2, 3) în coadă.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ]
+    }
+  },
+  {
+    "line": 25,
+    "text": "Începem o iterație BFS. Coada are 3 elemente.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,2)"
+            },
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 26,
+    "text": "Extragem primul element din coadă: curr = (0, 2).",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 27,
+    "text": "Scoatem elementul din coadă.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 29,
+    "text": "Verificăm dacă curr este destinația (3,3). Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = -1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (-1, 2). În afara limitelor.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (1, 2). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 1,
+          "c": 2
+        }
+      ]
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (0, 1). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 0,
+          "c": 1
+        }
+      ]
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (0, 3). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Da.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          -1
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 0,
+          "c": 3
+        }
+      ]
+    }
+  },
+  {
+    "line": 39,
+    "text": "Actualizăm dist[0][3] = 5.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 0,
+          "c": 3
+        }
+      ]
+    }
+  },
+  {
+    "line": 40,
+    "text": "Adăugăm (0, 3) în coadă.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            },
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 0,
+          "c": 3
+        }
+      ]
+    }
+  },
+  {
+    "line": 25,
+    "text": "Începem o iterație BFS. Coada are 3 elemente.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,0)"
+            },
+            {
+              "val": "(2,3)"
+            },
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 26,
+    "text": "Extragem primul element din coadă: curr = (3, 0).",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,3)"
+            },
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 27,
+    "text": "Scoatem elementul din coadă.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,3)"
+            },
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 29,
+    "text": "Verificăm dacă curr este destinația (3,3). Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,3)"
+            },
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,3)"
+            },
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,3)"
+            },
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,3)"
+            },
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (2, 0). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,3)"
+            },
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,3)"
+            },
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 0
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 2,
+          "c": 0
+        }
+      ]
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,3)"
+            },
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 4.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,3)"
+            },
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,3)"
+            },
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (4, 0). În afara limitelor.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,3)"
+            },
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,3)"
+            },
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,3)"
+            },
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = -1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,3)"
+            },
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (3, -1). În afara limitelor.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,3)"
+            },
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,3)"
+            },
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,3)"
+            },
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,3)"
+            },
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (3, 1). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,3)"
+            },
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 0
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,3)"
+            },
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 0
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 3,
+          "c": 1
+        }
+      ]
+    }
+  },
+  {
+    "line": 25,
+    "text": "Începem o iterație BFS. Coada are 2 elemente.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(2,3)"
+            },
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 26,
+    "text": "Extragem primul element din coadă: curr = (2, 3).",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 27,
+    "text": "Scoatem elementul din coadă.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 29,
+    "text": "Verificăm dacă curr este destinația (3,3). Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (1, 3). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 1,
+          "c": 3
+        }
+      ]
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (3, 3). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Da.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          -1
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 3,
+          "c": 3
+        }
+      ]
+    }
+  },
+  {
+    "line": 39,
+    "text": "Actualizăm dist[3][3] = 6.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 3,
+          "c": 3
+        }
+      ]
+    }
+  },
+  {
+    "line": 40,
+    "text": "Adăugăm (3, 3) în coadă.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,3)"
+            },
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 3,
+          "c": 3
+        }
+      ]
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,3)"
+            },
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,3)"
+            },
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,3)"
+            },
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (2, 2). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,3)"
+            },
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,3)"
+            },
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 2,
+          "c": 2
+        }
+      ]
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,3)"
+            },
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,3)"
+            },
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 4.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,3)"
+            },
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (2, 4). În afara limitelor.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,3)"
+            },
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 2,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 25,
+    "text": "Începem o iterație BFS. Coada are 2 elemente.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(0,3)"
+            },
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 26,
+    "text": "Extragem primul element din coadă: curr = (0, 3).",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 27,
+    "text": "Scoatem elementul din coadă.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 29,
+    "text": "Verificăm dacă curr este destinația (3,3). Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = -1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (-1, 3). În afara limitelor.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 1.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (1, 3). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 3
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 1,
+          "c": 3
+        }
+      ]
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 2.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (0, 2). În limite.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 38,
+    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 3
+        }
+      ],
+      "highlightCells": [
+        {
+          "r": 0,
+          "c": 2
+        }
+      ]
+    }
+  },
+  {
+    "line": 33,
+    "text": "Explorăm vecinul i=3.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 34,
+    "text": "Calculăm nr = 0.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 35,
+    "text": "Calculăm nc = 4.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 37,
+    "text": "Verificăm limitele pentru (0, 4). În afara limitelor.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 0,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 25,
+    "text": "Începem o iterație BFS. Coada are 1 elemente.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          [
+            {
+              "val": "(3,3)"
+            }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 26,
+    "text": "Extragem primul element din coadă: curr = (3, 3).",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 27,
+    "text": "Scoatem elementul din coadă.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 29,
+    "text": "Verificăm dacă curr este destinația (3,3). Da, este destinația!",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 30,
+    "text": "Returnăm distanța minimă: 6.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [
+        {
+          "r": 3,
+          "c": 3
+        }
+      ],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 56,
+    "text": "Afișăm drumul minim.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [],
+      "highlightCells": []
+    }
+  },
+  {
+    "line": 57,
+    "text": "Program finalizat.",
+    "blocksVisual": [
+      {
+        "label": "Queue q",
+        "groups": [
+          []
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea dist",
+      "headers": [
+        "R/C",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "data": [
+        [
+          "0",
+          0,
+          "█",
+          4,
+          5
+        ],
+        [
+          "1",
+          1,
+          2,
+          3,
+          "█"
+        ],
+        [
+          "2",
+          "█",
+          3,
+          4,
+          5
+        ],
+        [
+          "3",
+          5,
+          4,
+          "█",
+          6
+        ]
+      ],
+      "activeCells": [],
+      "highlightCells": []
+    }
+  }
+],
   "debugger": {
+    
     "getDebuggerState": (stepIndex, activeLine, explanationText) => {
+      const states = [{"line": 55,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":null,"cols":null,"curr":null,"i":null,"nr":null,"nc":null},"q":[]},{"line": 12,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":null,"curr":null,"i":null,"nr":null,"nc":null},"q":[]},{"line": 13,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[]},{"line": 14,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[]},{"line": 16,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[]},{"line": 17,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[]},{"line": 19,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[]},{"line": 20,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[{"r":0,"c":0}]},{"line": 22,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[{"r":0,"c":0}]},{"line": 23,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[{"r":0,"c":0}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[{"r":0,"c":0}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":null,"nr":null,"nc":null},"q":[]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":null,"nr":null,"nc":null},"q":[]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":null,"nr":null,"nc":null},"q":[]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":0,"nr":null,"nc":null},"q":[]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":0,"nr":-1,"nc":0},"q":[]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":0,"nr":-1,"nc":0},"q":[]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":0,"nr":-1,"nc":0},"q":[]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":1,"nr":-1,"nc":0},"q":[]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":1,"nr":1,"nc":0},"q":[]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":1,"nr":1,"nc":0},"q":[]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":1,"nr":1,"nc":0},"q":[]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":1,"nr":1,"nc":0},"q":[]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":1,"nr":1,"nc":0},"q":[]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":1,"nr":1,"nc":0},"q":[{"r":1,"c":0}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":2,"nr":1,"nc":0},"q":[{"r":1,"c":0}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":2,"nr":0,"nc":-1},"q":[{"r":1,"c":0}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":2,"nr":0,"nc":-1},"q":[{"r":1,"c":0}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":2,"nr":0,"nc":-1},"q":[{"r":1,"c":0}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":3,"nr":0,"nc":-1},"q":[{"r":1,"c":0}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":3,"nr":0,"nc":1},"q":[{"r":1,"c":0}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":3,"nr":0,"nc":1},"q":[{"r":1,"c":0}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":3,"nr":0,"nc":1},"q":[{"r":1,"c":0}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":3,"nr":0,"nc":1},"q":[{"r":1,"c":0}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":3,"nr":0,"nc":1},"q":[{"r":1,"c":0}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":0,"nc":1},"q":[]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":0,"nc":1},"q":[]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":0,"nc":1},"q":[]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":0,"nr":0,"nc":1},"q":[]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":0,"nr":0,"nc":0},"q":[]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":0,"nr":0,"nc":0},"q":[]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":0,"nr":0,"nc":0},"q":[]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":0,"nr":0,"nc":0},"q":[]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":1,"nr":0,"nc":0},"q":[]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":1,"nr":2,"nc":0},"q":[]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":1,"nr":2,"nc":0},"q":[]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":1,"nr":2,"nc":0},"q":[]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":1,"nr":2,"nc":0},"q":[]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":2,"nr":2,"nc":0},"q":[]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":2,"nr":1,"nc":-1},"q":[]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":2,"nr":1,"nc":-1},"q":[]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":2,"nr":1,"nc":-1},"q":[]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":1,"nc":-1},"q":[]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":1,"nc":1},"q":[]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":1,"nc":1},"q":[]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":1,"nc":1},"q":[]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":1,"nc":1},"q":[]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":1,"nc":1},"q":[]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":1,"nc":1},"q":[{"r":1,"c":1}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":1,"nc":1},"q":[{"r":1,"c":1}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":1},"q":[]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":1},"q":[]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":1},"q":[]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":0,"nr":1,"nc":1},"q":[]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":0,"nr":0,"nc":1},"q":[]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":0,"nr":0,"nc":1},"q":[]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":0,"nr":0,"nc":1},"q":[]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":0,"nr":0,"nc":1},"q":[]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":1,"nr":0,"nc":1},"q":[]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":1,"nr":2,"nc":1},"q":[]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":1,"nr":2,"nc":1},"q":[]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":1,"nr":2,"nc":1},"q":[]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":1,"nr":2,"nc":1},"q":[]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":1,"nr":2,"nc":1},"q":[]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":1,"nr":2,"nc":1},"q":[{"r":2,"c":1}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":2,"nr":2,"nc":1},"q":[{"r":2,"c":1}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":2,"nr":1,"nc":0},"q":[{"r":2,"c":1}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":2,"nr":1,"nc":0},"q":[{"r":2,"c":1}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":2,"nr":1,"nc":0},"q":[{"r":2,"c":1}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":2,"nr":1,"nc":0},"q":[{"r":2,"c":1}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":0},"q":[{"r":2,"c":1}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":2,"c":1}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":2,"c":1}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":2,"c":1}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":2,"c":1}]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":2,"c":1}]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":2,"c":1},{"r":1,"c":2}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":2,"c":1},{"r":1,"c":2}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":1,"c":2}]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":1,"c":2}]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":1,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":0,"nr":1,"nc":2},"q":[{"r":1,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":0,"nr":1,"nc":1},"q":[{"r":1,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":0,"nr":1,"nc":1},"q":[{"r":1,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":0,"nr":1,"nc":1},"q":[{"r":1,"c":2}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":0,"nr":1,"nc":1},"q":[{"r":1,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":1,"nr":1,"nc":1},"q":[{"r":1,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":1,"nr":3,"nc":1},"q":[{"r":1,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":1,"nr":3,"nc":1},"q":[{"r":1,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":1,"nr":3,"nc":1},"q":[{"r":1,"c":2}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":1,"nr":3,"nc":1},"q":[{"r":1,"c":2}]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":1,"nr":3,"nc":1},"q":[{"r":1,"c":2}]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":1,"nr":3,"nc":1},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":2,"nr":3,"nc":1},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":2,"nr":2,"nc":0},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":2,"nr":2,"nc":0},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":2,"nr":2,"nc":0},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":2,"nr":2,"nc":0},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":2,"nc":0},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":2,"nc":2},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":2,"nc":2},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":2,"nc":2},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":2,"nc":2},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":2,"nc":2},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":2,"nc":2},"q":[{"r":1,"c":2},{"r":3,"c":1},{"r":2,"c":2}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":2,"nc":2},"q":[{"r":1,"c":2},{"r":3,"c":1},{"r":2,"c":2}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":0,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":0,"nr":0,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":0,"nr":0,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":0,"nr":0,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":0,"nr":0,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":0,"nr":0,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":0,"nr":0,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":1,"nr":0,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":1,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":1,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":1,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":1,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":2,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":2,"nr":1,"nc":1},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":2,"nr":1,"nc":1},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":2,"nr":1,"nc":1},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":2,"nr":1,"nc":1},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":1,"nc":1},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":1,"nc":3},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":1,"nc":3},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":1,"nc":3},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":1,"nc":3},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":1,"nc":3},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":1,"nc":3},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":1,"nc":3},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":1,"nc":3},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":0,"nr":1,"nc":3},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":0,"nr":2,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":0,"nr":2,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":0,"nr":2,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":0,"nr":2,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":1,"nr":2,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":1,"nr":4,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":1,"nr":4,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":1,"nr":4,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":2,"nr":4,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":2,"nr":3,"nc":0},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":2,"nr":3,"nc":0},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":2,"nr":3,"nc":0},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":2,"nr":3,"nc":0},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":2,"nr":3,"nc":0},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":2,"nr":3,"nc":0},"q":[{"r":2,"c":2},{"r":0,"c":2},{"r":3,"c":0}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":3,"nc":0},"q":[{"r":2,"c":2},{"r":0,"c":2},{"r":3,"c":0}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":3,"nc":2},"q":[{"r":2,"c":2},{"r":0,"c":2},{"r":3,"c":0}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":3,"nc":2},"q":[{"r":2,"c":2},{"r":0,"c":2},{"r":3,"c":0}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":3,"nc":2},"q":[{"r":2,"c":2},{"r":0,"c":2},{"r":3,"c":0}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":3,"nc":2},"q":[{"r":2,"c":2},{"r":0,"c":2},{"r":3,"c":0}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":3,"nc":2},"q":[{"r":2,"c":2},{"r":0,"c":2},{"r":3,"c":0}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":0,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":0,"nr":1,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":0,"nr":1,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":0,"nr":1,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":0,"nr":1,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":1,"nr":1,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":1,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":1,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":1,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":1,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":2,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":2,"nr":2,"nc":1},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":2,"nr":2,"nc":1},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":2,"nr":2,"nc":1},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":2,"nr":2,"nc":1},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":2,"nc":1},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":0,"c":2},{"r":3,"c":0},{"r":2,"c":3}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":0,"c":2},{"r":3,"c":0},{"r":2,"c":3}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":0,"nr":2,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":0,"nr":-1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":0,"nr":-1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":0,"nr":-1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":1,"nr":-1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":1,"nr":1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":1,"nr":1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":1,"nr":1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":1,"nr":1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":2,"nr":1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":2,"nr":0,"nc":1},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":2,"nr":0,"nc":1},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":2,"nr":0,"nc":1},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":2,"nr":0,"nc":1},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":0,"nc":1},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":0,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":0,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":0,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":0,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":0,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":0,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3},{"r":0,"c":3}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":0,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3},{"r":0,"c":3}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":0,"nc":3},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":0,"nc":3},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":0,"nc":3},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":0,"nr":0,"nc":3},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":0,"nr":2,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":0,"nr":2,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":0,"nr":2,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":0,"nr":2,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":1,"nr":2,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":1,"nr":4,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":1,"nr":4,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":1,"nr":4,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":2,"nr":4,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":2,"nr":3,"nc":-1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":2,"nr":3,"nc":-1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":2,"nr":3,"nc":-1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":3,"nc":-1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":3,"nc":1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":3,"nc":1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":3,"nc":1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":3,"nc":1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":3,"nc":1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":3,"nr":3,"nc":1},"q":[{"r":0,"c":3}]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":3,"nr":3,"nc":1},"q":[{"r":0,"c":3}]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":3,"nr":3,"nc":1},"q":[{"r":0,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":0,"nr":3,"nc":1},"q":[{"r":0,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":0,"nr":1,"nc":3},"q":[{"r":0,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":0,"nr":1,"nc":3},"q":[{"r":0,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":0,"nr":1,"nc":3},"q":[{"r":0,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":0,"nr":1,"nc":3},"q":[{"r":0,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":1,"nr":1,"nc":3},"q":[{"r":0,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":1,"nr":3,"nc":3},"q":[{"r":0,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":1,"nr":3,"nc":3},"q":[{"r":0,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":1,"nr":3,"nc":3},"q":[{"r":0,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":1,"nr":3,"nc":3},"q":[{"r":0,"c":3}]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":1,"nr":3,"nc":3},"q":[{"r":0,"c":3}]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":1,"nr":3,"nc":3},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":2,"nr":3,"nc":3},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":2,"nr":2,"nc":2},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":2,"nr":2,"nc":2},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":2,"nr":2,"nc":2},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":2,"nr":2,"nc":2},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":3,"nr":2,"nc":2},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":3,"nr":2,"nc":4},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":3,"nr":2,"nc":4},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":3,"nr":2,"nc":4},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":3,"nr":2,"nc":4},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":3,"nr":2,"nc":4},"q":[{"r":3,"c":3}]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":3,"nr":2,"nc":4},"q":[{"r":3,"c":3}]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":3,"nr":2,"nc":4},"q":[{"r":3,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":0,"nr":2,"nc":4},"q":[{"r":3,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":0,"nr":-1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":0,"nr":-1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":0,"nr":-1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":1,"nr":-1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":1,"nr":1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":1,"nr":1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":1,"nr":1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":1,"nr":1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":2,"nr":1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":2,"nr":0,"nc":2},"q":[{"r":3,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":2,"nr":0,"nc":2},"q":[{"r":3,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":2,"nr":0,"nc":2},"q":[{"r":3,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":2,"nr":0,"nc":2},"q":[{"r":3,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":3,"nr":0,"nc":2},"q":[{"r":3,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":3,"nr":0,"nc":4},"q":[{"r":3,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":3,"nr":0,"nc":4},"q":[{"r":3,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":3,"nr":0,"nc":4},"q":[{"r":3,"c":3}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":3,"nr":0,"nc":4},"q":[{"r":3,"c":3}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":3},"i":3,"nr":0,"nc":4},"q":[]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":3},"i":3,"nr":0,"nc":4},"q":[]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":3},"i":3,"nr":0,"nc":4},"q":[]},{"line": 30,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":3},"i":3,"nr":0,"nc":4},"q":[]},{"line": 56,"locals":{"ans":6,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":3},"i":3,"nr":0,"nc":4},"q":[]},{"line": 57,"locals":{"ans":6,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":3},"i":3,"nr":0,"nc":4},"q":[]}];
+      if (stepIndex >= states.length) stepIndex = states.length - 1;
+      const state = states[stepIndex];
+      const locals = state.locals;
       const vars = [];
       const globalVars = [];
       const frames = [];
-      let inlineVal = null;
+      
+      let qStr = "empty";
+      if (state.q.length > 0) {
+          qStr = state.q.map(e => `(${e.r},${e.c})`).join(", ");
+      }
 
-      globalVars.push({ name: "grid", type: "std::vector<std::vector<int>>", val: "size = 4 x 4", expandable: true });
-
-      if (stepIndex === 0 || stepIndex === 41) {
-        frames.push({ name: "main()", file: "main.cpp", line: activeLine });
-        if (stepIndex === 41) {
-          vars.push({ name: "ans", type: "int", val: "6", expandable: false });
-          inlineVal = "ans: 6";
-        }
+      if (activeLine >= 73 && activeLine <= 81 && activeLine !== 79) {
+          frames.push({ name: "main()", file: "main.cpp", line: activeLine });
+          vars.push({ name: "grid", type: "vector<vector<int>>", val: "size = 4x4", expandable: true });
+          if (locals.ans !== null) vars.push({ name: "ans", type: "int", val: locals.ans.toString() });
       } else {
-        frames.push({ name: "leeAlgorithm(grid, src={r:0,c:0}, dest={r:3,c:3})", file: "solution.cpp", line: activeLine });
-        frames.push({ name: "main()", file: "main.cpp", line: 79 });
+          frames.push({ name: "leeAlgorithm(grid, src, dest)", file: "solution.cpp", line: activeLine });
+          frames.push({ name: "main()", file: "main.cpp", line: 55 });
+          
+          vars.push({ name: "grid", type: "vector<vector<int>>&", val: "size = 4x4", expandable: true });
+          vars.push({ name: "src", type: "Cell", val: "{0, 0}" });
+          vars.push({ name: "dest", type: "Cell", val: "{3, 3}" });
+          if (locals.rows !== null) vars.push({ name: "rows", type: "int", val: "4" });
+          if (locals.cols !== null) vars.push({ name: "cols", type: "int", val: "4" });
+          vars.push({ name: "dist", type: "vector<vector<int>>", val: "size = 4x4", expandable: true });
+          vars.push({ name: "q", type: "queue<Cell>", val: qStr });
+          
+          if (locals.curr) {
+              vars.push({ name: "curr", type: "Cell", val: `{${locals.curr.r}, ${locals.curr.c}}` });
+          }
+          if (locals.i !== null) vars.push({ name: "i", type: "int", val: locals.i.toString() });
+          if (locals.nr !== null) vars.push({ name: "nr", type: "int", val: locals.nr.toString() });
+          if (locals.nc !== null) vars.push({ name: "nc", type: "int", val: locals.nc.toString() });
+      }
 
-        vars.push({ name: "src", type: "Cell", val: "{r:0, c:0}", expandable: false });
-        vars.push({ name: "dest", type: "Cell", val: "{r:3, c:3}", expandable: false });
-        
-        if (stepIndex >= 2) vars.push({ name: "rows", type: "int", val: "4", expandable: false });
-        if (stepIndex >= 3) vars.push({ name: "cols", type: "int", val: "4", expandable: false });
-        if (stepIndex >= 5) {
-          vars.push({ name: "dist", type: "std::vector<std::vector<int>>", val: "size = 4 x 4", expandable: true });
-        }
-        
-        const qStates = [
-          [], [], [], [], [], [], [], [], 
-          ["{r:0,c:0}"], ["{r:0,c:0}"], ["{r:0,c:0}"], ["{r:0,c:0}"], [], [], [], [], 
-          ["{r:1,c:0}"], ["{r:1,c:0}"], [], ["{r:1,c:1}"], ["{r:1,c:1}"], [], 
-          ["{r:2,c:1}", "{r:1,c:2}"], ["{r:1,c:2}"], 
-          ["{r:1,c:2}", "{r:3,c:1}", "{r:2,c:2}"], ["{r:3,c:1}", "{r:2,c:2}"], 
-          ["{r:3,c:1}", "{r:2,c:2}", "{r:0,c:2}"], ["{r:2,c:2}", "{r:0,c:2}"], 
-          ["{r:2,c:2}", "{r:0,c:2}", "{r:3,c:0}"], ["{r:0,c:2}", "{r:3,c:0}"], 
-          ["{r:0,c:2}", "{r:3,c:0}", "{r:2,c:3}"], ["{r:3,c:0}", "{r:2,c:3}"], 
-          ["{r:3,c:0}", "{r:2,c:3}", "{r:0,c:3}"], ["{r:2,c:3}", "{r:0,c:3}"], 
-          ["{r:0,c:3}"], ["{r:0,c:3}", "{r:3,c:3}"], ["{r:3,c:3}"], [], [], [], []
-        ];
-        
-        const qList = qStates[stepIndex] || [];
-        if (stepIndex >= 6) {
-          vars.push({ name: "q", type: "std::queue<Cell>", val: qList.length > 0 ? qList.join(", ") : "empty", expandable: false });
-        }
-
-        const currCells = [
-          null, null, null, null, null, null, null, null, null, null,
-          "{r:0,c:0}", "{r:0,c:0}", "{r:0,c:0}", "{r:0,c:0}", "{r:0,c:0}", "{r:0,c:0}", "{r:0,c:0}",
-          "{r:1,c:0}", "{r:1,c:0}", "{r:1,c:0}",
-          "{r:1,c:1}", "{r:1,c:1}",
-          "{r:2,c:1}", "{r:2,c:1}",
-          "{r:1,c:2}", "{r:1,c:2}",
-          "{r:3,c:1}", "{r:3,c:1}",
-          "{r:2,c:2}", "{r:2,c:2}",
-          "{r:0,c:2}", "{r:0,c:2}",
-          "{r:3,c:0}",
-          "{r:2,c:3}", "{r:2,c:3}",
-          "{r:0,c:3}",
-          "{r:3,c:3}", "{r:3,c:3}", "{r:3,c:3}", "{r:3,c:3}"
-        ];
-        const currVal = currCells[stepIndex];
-        if (currVal) {
-          vars.push({ name: "curr", type: "Cell", val: currVal, expandable: false });
-          inlineVal = `curr: ${currVal}`;
-        } else {
-          inlineVal = "src: {r:0,c:0}, dest: {r:3,c:3}";
-        }
+      let inlineVal = null;
+      if (locals.curr !== null && activeLine >= 49 && activeLine <= 68) {
+          inlineVal = `curr: {${locals.curr.r}, ${locals.curr.c}}`;
+          if (locals.nr !== null && locals.nc !== null) {
+              inlineVal += `, nr: ${locals.nr}, nc: ${locals.nc}`;
+          }
       }
 
       return { vars, globalVars, frames, inlineVal };
     },
     "getInlineValueForLine": (stepIndex, lineNum) => {
-      if (lineNum === 36 || lineNum === 37) {
-        return "grid.size(): 4";
-      }
-      const currCells = [
-        null, null, null, null, null, null, null, null, null, null,
-        "{r:0,c:0}", "{r:0,c:0}", "{r:0,c:0}", "{r:0,c:0}", "{r:0,c:0}", "{r:0,c:0}", "{r:0,c:0}",
-        "{r:1,c:0}", "{r:1,c:0}", "{r:1,c:0}",
-        "{r:1,c:1}", "{r:1,c:1}",
-        "{r:2,c:1}", "{r:2,c:1}",
-        "{r:1,c:2}", "{r:1,c:2}",
-        "{r:3,c:1}", "{r:3,c:1}",
-        "{r:2,c:2}", "{r:2,c:2}",
-        "{r:0,c:2}", "{r:0,c:2}",
-        "{r:3,c:0}",
-        "{r:2,c:3}", "{r:2,c:3}",
-        "{r:0,c:3}",
-        "{r:3,c:3}", "{r:3,c:3}", "{r:3,c:3}", "{r:3,c:3}"
-      ];
-      const currVal = currCells[stepIndex];
-      if (currVal && (lineNum === 50 || lineNum === 51 || lineNum === 53)) {
-        return `curr: ${currVal}`;
-      }
+      const states = [{"line": 55,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":null,"cols":null,"curr":null,"i":null,"nr":null,"nc":null},"q":[]},{"line": 12,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":null,"curr":null,"i":null,"nr":null,"nc":null},"q":[]},{"line": 13,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[]},{"line": 14,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[]},{"line": 16,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[]},{"line": 17,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[]},{"line": 19,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[]},{"line": 20,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[{"r":0,"c":0}]},{"line": 22,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[{"r":0,"c":0}]},{"line": 23,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[{"r":0,"c":0}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[{"r":0,"c":0}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":null,"nr":null,"nc":null},"q":[]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":null,"nr":null,"nc":null},"q":[]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":null,"nr":null,"nc":null},"q":[]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":0,"nr":null,"nc":null},"q":[]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":0,"nr":-1,"nc":0},"q":[]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":0,"nr":-1,"nc":0},"q":[]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":0,"nr":-1,"nc":0},"q":[]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":1,"nr":-1,"nc":0},"q":[]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":1,"nr":1,"nc":0},"q":[]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":1,"nr":1,"nc":0},"q":[]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":1,"nr":1,"nc":0},"q":[]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":1,"nr":1,"nc":0},"q":[]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":1,"nr":1,"nc":0},"q":[]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":1,"nr":1,"nc":0},"q":[{"r":1,"c":0}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":2,"nr":1,"nc":0},"q":[{"r":1,"c":0}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":2,"nr":0,"nc":-1},"q":[{"r":1,"c":0}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":2,"nr":0,"nc":-1},"q":[{"r":1,"c":0}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":2,"nr":0,"nc":-1},"q":[{"r":1,"c":0}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":3,"nr":0,"nc":-1},"q":[{"r":1,"c":0}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":3,"nr":0,"nc":1},"q":[{"r":1,"c":0}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":3,"nr":0,"nc":1},"q":[{"r":1,"c":0}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":3,"nr":0,"nc":1},"q":[{"r":1,"c":0}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":3,"nr":0,"nc":1},"q":[{"r":1,"c":0}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":3,"nr":0,"nc":1},"q":[{"r":1,"c":0}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":0,"nc":1},"q":[]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":0,"nc":1},"q":[]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":0,"nc":1},"q":[]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":0,"nr":0,"nc":1},"q":[]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":0,"nr":0,"nc":0},"q":[]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":0,"nr":0,"nc":0},"q":[]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":0,"nr":0,"nc":0},"q":[]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":0,"nr":0,"nc":0},"q":[]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":1,"nr":0,"nc":0},"q":[]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":1,"nr":2,"nc":0},"q":[]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":1,"nr":2,"nc":0},"q":[]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":1,"nr":2,"nc":0},"q":[]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":1,"nr":2,"nc":0},"q":[]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":2,"nr":2,"nc":0},"q":[]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":2,"nr":1,"nc":-1},"q":[]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":2,"nr":1,"nc":-1},"q":[]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":2,"nr":1,"nc":-1},"q":[]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":1,"nc":-1},"q":[]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":1,"nc":1},"q":[]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":1,"nc":1},"q":[]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":1,"nc":1},"q":[]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":1,"nc":1},"q":[]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":1,"nc":1},"q":[]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":1,"nc":1},"q":[{"r":1,"c":1}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":1,"nc":1},"q":[{"r":1,"c":1}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":1},"q":[]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":1},"q":[]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":1},"q":[]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":0,"nr":1,"nc":1},"q":[]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":0,"nr":0,"nc":1},"q":[]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":0,"nr":0,"nc":1},"q":[]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":0,"nr":0,"nc":1},"q":[]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":0,"nr":0,"nc":1},"q":[]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":1,"nr":0,"nc":1},"q":[]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":1,"nr":2,"nc":1},"q":[]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":1,"nr":2,"nc":1},"q":[]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":1,"nr":2,"nc":1},"q":[]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":1,"nr":2,"nc":1},"q":[]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":1,"nr":2,"nc":1},"q":[]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":1,"nr":2,"nc":1},"q":[{"r":2,"c":1}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":2,"nr":2,"nc":1},"q":[{"r":2,"c":1}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":2,"nr":1,"nc":0},"q":[{"r":2,"c":1}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":2,"nr":1,"nc":0},"q":[{"r":2,"c":1}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":2,"nr":1,"nc":0},"q":[{"r":2,"c":1}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":2,"nr":1,"nc":0},"q":[{"r":2,"c":1}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":0},"q":[{"r":2,"c":1}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":2,"c":1}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":2,"c":1}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":2,"c":1}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":2,"c":1}]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":2,"c":1}]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":2,"c":1},{"r":1,"c":2}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":2,"c":1},{"r":1,"c":2}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":1,"c":2}]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":1,"c":2}]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":1,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":0,"nr":1,"nc":2},"q":[{"r":1,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":0,"nr":1,"nc":1},"q":[{"r":1,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":0,"nr":1,"nc":1},"q":[{"r":1,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":0,"nr":1,"nc":1},"q":[{"r":1,"c":2}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":0,"nr":1,"nc":1},"q":[{"r":1,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":1,"nr":1,"nc":1},"q":[{"r":1,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":1,"nr":3,"nc":1},"q":[{"r":1,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":1,"nr":3,"nc":1},"q":[{"r":1,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":1,"nr":3,"nc":1},"q":[{"r":1,"c":2}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":1,"nr":3,"nc":1},"q":[{"r":1,"c":2}]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":1,"nr":3,"nc":1},"q":[{"r":1,"c":2}]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":1,"nr":3,"nc":1},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":2,"nr":3,"nc":1},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":2,"nr":2,"nc":0},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":2,"nr":2,"nc":0},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":2,"nr":2,"nc":0},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":2,"nr":2,"nc":0},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":2,"nc":0},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":2,"nc":2},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":2,"nc":2},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":2,"nc":2},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":2,"nc":2},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":2,"nc":2},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":2,"nc":2},"q":[{"r":1,"c":2},{"r":3,"c":1},{"r":2,"c":2}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":2,"nc":2},"q":[{"r":1,"c":2},{"r":3,"c":1},{"r":2,"c":2}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":0,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":0,"nr":0,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":0,"nr":0,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":0,"nr":0,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":0,"nr":0,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":0,"nr":0,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":0,"nr":0,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":1,"nr":0,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":1,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":1,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":1,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":1,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":2,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":2,"nr":1,"nc":1},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":2,"nr":1,"nc":1},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":2,"nr":1,"nc":1},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":2,"nr":1,"nc":1},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":1,"nc":1},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":1,"nc":3},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":1,"nc":3},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":1,"nc":3},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":1,"nc":3},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":1,"nc":3},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":1,"nc":3},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":1,"nc":3},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":1,"nc":3},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":0,"nr":1,"nc":3},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":0,"nr":2,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":0,"nr":2,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":0,"nr":2,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":0,"nr":2,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":1,"nr":2,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":1,"nr":4,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":1,"nr":4,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":1,"nr":4,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":2,"nr":4,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":2,"nr":3,"nc":0},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":2,"nr":3,"nc":0},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":2,"nr":3,"nc":0},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":2,"nr":3,"nc":0},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":2,"nr":3,"nc":0},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":2,"nr":3,"nc":0},"q":[{"r":2,"c":2},{"r":0,"c":2},{"r":3,"c":0}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":3,"nc":0},"q":[{"r":2,"c":2},{"r":0,"c":2},{"r":3,"c":0}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":3,"nc":2},"q":[{"r":2,"c":2},{"r":0,"c":2},{"r":3,"c":0}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":3,"nc":2},"q":[{"r":2,"c":2},{"r":0,"c":2},{"r":3,"c":0}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":3,"nc":2},"q":[{"r":2,"c":2},{"r":0,"c":2},{"r":3,"c":0}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":3,"nc":2},"q":[{"r":2,"c":2},{"r":0,"c":2},{"r":3,"c":0}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":3,"nc":2},"q":[{"r":2,"c":2},{"r":0,"c":2},{"r":3,"c":0}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":0,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":0,"nr":1,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":0,"nr":1,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":0,"nr":1,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":0,"nr":1,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":1,"nr":1,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":1,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":1,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":1,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":1,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":2,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":2,"nr":2,"nc":1},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":2,"nr":2,"nc":1},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":2,"nr":2,"nc":1},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":2,"nr":2,"nc":1},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":2,"nc":1},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":0,"c":2},{"r":3,"c":0},{"r":2,"c":3}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":0,"c":2},{"r":3,"c":0},{"r":2,"c":3}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":0,"nr":2,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":0,"nr":-1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":0,"nr":-1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":0,"nr":-1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":1,"nr":-1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":1,"nr":1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":1,"nr":1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":1,"nr":1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":1,"nr":1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":2,"nr":1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":2,"nr":0,"nc":1},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":2,"nr":0,"nc":1},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":2,"nr":0,"nc":1},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":2,"nr":0,"nc":1},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":0,"nc":1},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":0,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":0,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":0,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":0,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":0,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":0,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3},{"r":0,"c":3}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":0,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3},{"r":0,"c":3}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":0,"nc":3},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":0,"nc":3},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":0,"nc":3},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":0,"nr":0,"nc":3},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":0,"nr":2,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":0,"nr":2,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":0,"nr":2,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":0,"nr":2,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":1,"nr":2,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":1,"nr":4,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":1,"nr":4,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":1,"nr":4,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":2,"nr":4,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":2,"nr":3,"nc":-1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":2,"nr":3,"nc":-1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":2,"nr":3,"nc":-1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":3,"nc":-1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":3,"nc":1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":3,"nc":1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":3,"nc":1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":3,"nc":1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":3,"nc":1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":3,"nr":3,"nc":1},"q":[{"r":0,"c":3}]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":3,"nr":3,"nc":1},"q":[{"r":0,"c":3}]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":3,"nr":3,"nc":1},"q":[{"r":0,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":0,"nr":3,"nc":1},"q":[{"r":0,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":0,"nr":1,"nc":3},"q":[{"r":0,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":0,"nr":1,"nc":3},"q":[{"r":0,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":0,"nr":1,"nc":3},"q":[{"r":0,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":0,"nr":1,"nc":3},"q":[{"r":0,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":1,"nr":1,"nc":3},"q":[{"r":0,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":1,"nr":3,"nc":3},"q":[{"r":0,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":1,"nr":3,"nc":3},"q":[{"r":0,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":1,"nr":3,"nc":3},"q":[{"r":0,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":1,"nr":3,"nc":3},"q":[{"r":0,"c":3}]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":1,"nr":3,"nc":3},"q":[{"r":0,"c":3}]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":1,"nr":3,"nc":3},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":2,"nr":3,"nc":3},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":2,"nr":2,"nc":2},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":2,"nr":2,"nc":2},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":2,"nr":2,"nc":2},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":2,"nr":2,"nc":2},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":3,"nr":2,"nc":2},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":3,"nr":2,"nc":4},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":3,"nr":2,"nc":4},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":3,"nr":2,"nc":4},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":3,"nr":2,"nc":4},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":3,"nr":2,"nc":4},"q":[{"r":3,"c":3}]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":3,"nr":2,"nc":4},"q":[{"r":3,"c":3}]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":3,"nr":2,"nc":4},"q":[{"r":3,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":0,"nr":2,"nc":4},"q":[{"r":3,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":0,"nr":-1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":0,"nr":-1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":0,"nr":-1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":1,"nr":-1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":1,"nr":1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":1,"nr":1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":1,"nr":1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":1,"nr":1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":2,"nr":1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":2,"nr":0,"nc":2},"q":[{"r":3,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":2,"nr":0,"nc":2},"q":[{"r":3,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":2,"nr":0,"nc":2},"q":[{"r":3,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":2,"nr":0,"nc":2},"q":[{"r":3,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":3,"nr":0,"nc":2},"q":[{"r":3,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":3,"nr":0,"nc":4},"q":[{"r":3,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":3,"nr":0,"nc":4},"q":[{"r":3,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":3,"nr":0,"nc":4},"q":[{"r":3,"c":3}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":3,"nr":0,"nc":4},"q":[{"r":3,"c":3}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":3},"i":3,"nr":0,"nc":4},"q":[]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":3},"i":3,"nr":0,"nc":4},"q":[]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":3},"i":3,"nr":0,"nc":4},"q":[]},{"line": 30,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":3},"i":3,"nr":0,"nc":4},"q":[]},{"line": 56,"locals":{"ans":6,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":3},"i":3,"nr":0,"nc":4},"q":[]},{"line": 57,"locals":{"ans":6,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":3},"i":3,"nr":0,"nc":4},"q":[]}];
+      if (stepIndex >= states.length) stepIndex = states.length - 1;
+      const state = states[stepIndex];
+      const locals = state.locals;
+      if (lineNum === 26) return locals.curr ? `curr: {${locals.curr.r}, ${locals.curr.c}}` : null;
+      if (lineNum === 34) return locals.nr !== null ? `nr: ${locals.nr}` : null;
+      if (lineNum === 35) return locals.nc !== null ? `nc: ${locals.nc}` : null;
       return null;
     }
-  },
 
+  },
   "problems": {
     "easy": [
       {

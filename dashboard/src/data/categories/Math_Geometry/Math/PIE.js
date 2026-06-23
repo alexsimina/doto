@@ -62,357 +62,651 @@ int main() {
 }
 `,
   "explanations": [
-    {
-      "line": 35,
-      "text": "Apelăm funcția `countDivisible(30, {2, 3, 5})` pentru a găsi câte numere din intervalul $[1, 30]$ sunt divizibile cu cel puțin unul dintre numerele 2, 3 sau 5.",
-      "blocksVisual": [
-        {
-          "label": "Input",
-          "groups": [
-            [
-              { "val": "n = 30", "active": true },
-              { "val": "primes = {2, 3, 5}", "active": true }
-            ]
+  {
+    "line": 33,
+    "text": "Initializam vectorul de numere prime.",
+    "blocksVisual": [
+      {
+        "label": "Init",
+        "groups": [
+          [
+            {
+              "val": "primes = {2, 3, 5}",
+              "active": true
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 8,
-      "text": "Inițializăm variabila `count` cu $0$. Aceasta va cumula rezultatul conform formulei de Includere-Excludere.",
-      "blocksVisual": [
-        {
-          "label": "Stare",
-          "groups": [
-            [
-              { "val": "count = 0", "active": true }
-            ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 34,
+    "text": "Apelam countDivisible(30, primes).",
+    "blocksVisual": [
+      {
+        "label": "Apel",
+        "groups": [
+          [
+            {
+              "val": "n = 30",
+              "active": true
+            }
           ]
-        }
-      ]
-    },
-    {
-      "line": 9,
-      "text": "Salvați numărul de elemente din vectorul `primes`: `m = 3`.",
-      "blocksVisual": [
-        {
-          "label": "Dimensiune",
-          "groups": [
-            [
-              { "val": "m = 3", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 11,
-      "text": "Generăm toate subseturile nevide folosind o mască pe biți de la $1$ la $2^m - 1$ ($2^3 - 1 = 7$).",
-      "blocksVisual": [
-        {
-          "label": "Măști",
-          "groups": [
-            [
-              { "val": "mask de la 1 la 7", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 12,
-      "text": "Pentru fiecare mască, inițializăm valoarea produsului/LCM-ului `lcm` cu $1$.",
-      "blocksVisual": [
-        {
-          "label": "Produs inițial",
-          "groups": [
-            [
-              { "val": "lcm = 1", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 13,
-      "text": "Inițializăm `bits` cu $0$. `bits` va stoca numărul de elemente selectate din subsetul curent.",
-      "blocksVisual": [
-        {
-          "label": "Biți activați",
-          "groups": [
-            [
-              { "val": "bits = 0", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 15,
-      "text": "Parcurgem fiecare bit al măștii pentru a decide care numere prime din vector sunt incluse în intersecție.",
-      "blocksVisual": [
-        {
-          "label": "Parcurgere biți",
-          "groups": [
-            [
-              { "val": "i = 0..2", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 16,
-      "text": "Pentru `mask = 1` (în binar `001`), bitul $0$ este activ. Astfel, selectăm elementul `primes[0]` ($2$).",
-      "blocksVisual": [
-        {
-          "label": "Masca curentă",
-          "groups": [
-            [
-              { "val": "mask = 1 (001)", "active": true },
-              { "val": "primes[0] = 2 selectat" }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 17,
-      "text": "Înmulțim `lcm` cu $2$ și incrementăm contorul de biți la $1$.",
-      "blocksVisual": [
-        {
-          "label": "Actualizare",
-          "groups": [
-            [
-              { "val": "lcm = 2", "sorted": true },
-              { "val": "bits = 1", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 23,
-      "text": "Verificăm dacă numărul de elemente din subset (`bits = 1`) este impar. Deoarece $1 \\% 2 == 1$, adunăm contribuția acestui subset la `count`.",
-      "blocksVisual": [
-        {
-          "label": "Evaluare paritate",
-          "groups": [
-            [
-              { "val": "bits = 1 (impar)", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 24,
-      "text": "Adunăm numerele divizibile cu $2$: `count += 30 / 2 = 15`. `count` devine $15$.",
-      "blocksVisual": [
-        {
-          "label": "Adunare",
-          "groups": [
-            [
-              { "val": "count = 15", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 11,
-      "text": "Mergem la următoarea mască. Pentru un subset cu număr par de elemente, de exemplu `mask = 3` (în binar `011`), selectăm `primes[0]` ($2$) și `primes[1]` ($3$).",
-      "blocksVisual": [
-        {
-          "label": "Masca curentă",
-          "groups": [
-            [
-              { "val": "mask = 3 (011)", "active": true },
-              { "val": "lcm = 6" },
-              { "val": "bits = 2" }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 25,
-      "text": "Deoarece `bits = 2` este par, conform PIE trebuie să scădem contribuția intersecției pentru a evita dubla numărare.",
-      "blocksVisual": [
-        {
-          "label": "Evaluare paritate",
-          "groups": [
-            [
-              { "val": "bits = 2 (par)", "active": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 26,
-      "text": "Scădem numerele divizibile cu $6$: `count -= 30 / 6 = 5`. `count` devine $15 - 5 = 10$.",
-      "blocksVisual": [
-        {
-          "label": "Scădere",
-          "groups": [
-            [
-              { "val": "count = 10", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 11,
-      "text": "Procesăm similar toate măștile rămase până la $7$. La masca $7$ (binar `111`), avem `lcm = 30` și `bits = 3`. Fiind impar, adunăm `30 / 30 = 1`. Valoarea finală acumulată a lui `count` devine $22$.",
-      "blocksVisual": [
-        {
-          "label": "Finisare buclă",
-          "groups": [
-            [
-              { "val": "mask = 7", "active": true },
-              { "val": "lcm = 30" },
-              { "val": "count = 22", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 30,
-      "text": "Ieșim din buclă și returnăm rezultatul final: $22$ de numere sunt divizibile cu cel puțin unul dintre numerele 2, 3 sau 5.",
-      "blocksVisual": [
-        {
-          "label": "Rezultat",
-          "groups": [
-            [
-              { "val": "22", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "line": 36,
-      "text": "Afișăm rezultatul final în consolă: 22.",
-      "blocksVisual": [
-        {
-          "label": "Output",
-          "groups": [
-            [
-              { "val": "Divizibile: 22", "sorted": true }
-            ]
-          ]
-        }
-      ]
-    }
-  ],
+        ]
+      }
+    ]
+  },
+  {
+    "line": 6,
+    "text": "Intram in functie.",
+    "blocksVisual": []
+  },
+  {
+    "line": 7,
+    "text": "Initializam count cu 0.",
+    "blocksVisual": []
+  },
+  {
+    "line": 8,
+    "text": "Salvam dimensiunea vectorului m = 3.",
+    "blocksVisual": []
+  },
+  {
+    "line": 10,
+    "text": "Incepem iteratia cu mask = 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 11,
+    "text": "lcm = 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 12,
+    "text": "bits = 0",
+    "blocksVisual": []
+  },
+  {
+    "line": 14,
+    "text": "Parcurgem i = 0",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "Verificam bitul 0 din mask",
+    "blocksVisual": []
+  },
+  {
+    "line": 16,
+    "text": "Bit activ! Inmultim lcm cu 2. lcm devine 2",
+    "blocksVisual": []
+  },
+  {
+    "line": 17,
+    "text": "Incrementam bits la 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "Verificam daca lcm > n",
+    "blocksVisual": []
+  },
+  {
+    "line": 14,
+    "text": "Parcurgem i = 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "Verificam bitul 1 din mask",
+    "blocksVisual": []
+  },
+  {
+    "line": 14,
+    "text": "Parcurgem i = 2",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "Verificam bitul 2 din mask",
+    "blocksVisual": []
+  },
+  {
+    "line": 22,
+    "text": "Verificam paritatea numarului de biti.",
+    "blocksVisual": []
+  },
+  {
+    "line": 23,
+    "text": "Numar impar de biti, adunam la count. count = 15",
+    "blocksVisual": []
+  },
+  {
+    "line": 10,
+    "text": "Incepem iteratia cu mask = 2",
+    "blocksVisual": []
+  },
+  {
+    "line": 11,
+    "text": "lcm = 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 12,
+    "text": "bits = 0",
+    "blocksVisual": []
+  },
+  {
+    "line": 14,
+    "text": "Parcurgem i = 0",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "Verificam bitul 0 din mask",
+    "blocksVisual": []
+  },
+  {
+    "line": 14,
+    "text": "Parcurgem i = 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "Verificam bitul 1 din mask",
+    "blocksVisual": []
+  },
+  {
+    "line": 16,
+    "text": "Bit activ! Inmultim lcm cu 3. lcm devine 3",
+    "blocksVisual": []
+  },
+  {
+    "line": 17,
+    "text": "Incrementam bits la 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "Verificam daca lcm > n",
+    "blocksVisual": []
+  },
+  {
+    "line": 14,
+    "text": "Parcurgem i = 2",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "Verificam bitul 2 din mask",
+    "blocksVisual": []
+  },
+  {
+    "line": 22,
+    "text": "Verificam paritatea numarului de biti.",
+    "blocksVisual": []
+  },
+  {
+    "line": 23,
+    "text": "Numar impar de biti, adunam la count. count = 25",
+    "blocksVisual": []
+  },
+  {
+    "line": 10,
+    "text": "Incepem iteratia cu mask = 3",
+    "blocksVisual": []
+  },
+  {
+    "line": 11,
+    "text": "lcm = 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 12,
+    "text": "bits = 0",
+    "blocksVisual": []
+  },
+  {
+    "line": 14,
+    "text": "Parcurgem i = 0",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "Verificam bitul 0 din mask",
+    "blocksVisual": []
+  },
+  {
+    "line": 16,
+    "text": "Bit activ! Inmultim lcm cu 2. lcm devine 2",
+    "blocksVisual": []
+  },
+  {
+    "line": 17,
+    "text": "Incrementam bits la 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "Verificam daca lcm > n",
+    "blocksVisual": []
+  },
+  {
+    "line": 14,
+    "text": "Parcurgem i = 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "Verificam bitul 1 din mask",
+    "blocksVisual": []
+  },
+  {
+    "line": 16,
+    "text": "Bit activ! Inmultim lcm cu 3. lcm devine 6",
+    "blocksVisual": []
+  },
+  {
+    "line": 17,
+    "text": "Incrementam bits la 2",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "Verificam daca lcm > n",
+    "blocksVisual": []
+  },
+  {
+    "line": 14,
+    "text": "Parcurgem i = 2",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "Verificam bitul 2 din mask",
+    "blocksVisual": []
+  },
+  {
+    "line": 22,
+    "text": "Verificam paritatea numarului de biti.",
+    "blocksVisual": []
+  },
+  {
+    "line": 25,
+    "text": "Numar par de biti, scadem din count. count = 20",
+    "blocksVisual": []
+  },
+  {
+    "line": 10,
+    "text": "Incepem iteratia cu mask = 4",
+    "blocksVisual": []
+  },
+  {
+    "line": 11,
+    "text": "lcm = 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 12,
+    "text": "bits = 0",
+    "blocksVisual": []
+  },
+  {
+    "line": 14,
+    "text": "Parcurgem i = 0",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "Verificam bitul 0 din mask",
+    "blocksVisual": []
+  },
+  {
+    "line": 14,
+    "text": "Parcurgem i = 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "Verificam bitul 1 din mask",
+    "blocksVisual": []
+  },
+  {
+    "line": 14,
+    "text": "Parcurgem i = 2",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "Verificam bitul 2 din mask",
+    "blocksVisual": []
+  },
+  {
+    "line": 16,
+    "text": "Bit activ! Inmultim lcm cu 5. lcm devine 5",
+    "blocksVisual": []
+  },
+  {
+    "line": 17,
+    "text": "Incrementam bits la 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "Verificam daca lcm > n",
+    "blocksVisual": []
+  },
+  {
+    "line": 22,
+    "text": "Verificam paritatea numarului de biti.",
+    "blocksVisual": []
+  },
+  {
+    "line": 23,
+    "text": "Numar impar de biti, adunam la count. count = 26",
+    "blocksVisual": []
+  },
+  {
+    "line": 10,
+    "text": "Incepem iteratia cu mask = 5",
+    "blocksVisual": []
+  },
+  {
+    "line": 11,
+    "text": "lcm = 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 12,
+    "text": "bits = 0",
+    "blocksVisual": []
+  },
+  {
+    "line": 14,
+    "text": "Parcurgem i = 0",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "Verificam bitul 0 din mask",
+    "blocksVisual": []
+  },
+  {
+    "line": 16,
+    "text": "Bit activ! Inmultim lcm cu 2. lcm devine 2",
+    "blocksVisual": []
+  },
+  {
+    "line": 17,
+    "text": "Incrementam bits la 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "Verificam daca lcm > n",
+    "blocksVisual": []
+  },
+  {
+    "line": 14,
+    "text": "Parcurgem i = 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "Verificam bitul 1 din mask",
+    "blocksVisual": []
+  },
+  {
+    "line": 14,
+    "text": "Parcurgem i = 2",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "Verificam bitul 2 din mask",
+    "blocksVisual": []
+  },
+  {
+    "line": 16,
+    "text": "Bit activ! Inmultim lcm cu 5. lcm devine 10",
+    "blocksVisual": []
+  },
+  {
+    "line": 17,
+    "text": "Incrementam bits la 2",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "Verificam daca lcm > n",
+    "blocksVisual": []
+  },
+  {
+    "line": 22,
+    "text": "Verificam paritatea numarului de biti.",
+    "blocksVisual": []
+  },
+  {
+    "line": 25,
+    "text": "Numar par de biti, scadem din count. count = 23",
+    "blocksVisual": []
+  },
+  {
+    "line": 10,
+    "text": "Incepem iteratia cu mask = 6",
+    "blocksVisual": []
+  },
+  {
+    "line": 11,
+    "text": "lcm = 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 12,
+    "text": "bits = 0",
+    "blocksVisual": []
+  },
+  {
+    "line": 14,
+    "text": "Parcurgem i = 0",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "Verificam bitul 0 din mask",
+    "blocksVisual": []
+  },
+  {
+    "line": 14,
+    "text": "Parcurgem i = 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "Verificam bitul 1 din mask",
+    "blocksVisual": []
+  },
+  {
+    "line": 16,
+    "text": "Bit activ! Inmultim lcm cu 3. lcm devine 3",
+    "blocksVisual": []
+  },
+  {
+    "line": 17,
+    "text": "Incrementam bits la 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "Verificam daca lcm > n",
+    "blocksVisual": []
+  },
+  {
+    "line": 14,
+    "text": "Parcurgem i = 2",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "Verificam bitul 2 din mask",
+    "blocksVisual": []
+  },
+  {
+    "line": 16,
+    "text": "Bit activ! Inmultim lcm cu 5. lcm devine 15",
+    "blocksVisual": []
+  },
+  {
+    "line": 17,
+    "text": "Incrementam bits la 2",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "Verificam daca lcm > n",
+    "blocksVisual": []
+  },
+  {
+    "line": 22,
+    "text": "Verificam paritatea numarului de biti.",
+    "blocksVisual": []
+  },
+  {
+    "line": 25,
+    "text": "Numar par de biti, scadem din count. count = 21",
+    "blocksVisual": []
+  },
+  {
+    "line": 10,
+    "text": "Incepem iteratia cu mask = 7",
+    "blocksVisual": []
+  },
+  {
+    "line": 11,
+    "text": "lcm = 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 12,
+    "text": "bits = 0",
+    "blocksVisual": []
+  },
+  {
+    "line": 14,
+    "text": "Parcurgem i = 0",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "Verificam bitul 0 din mask",
+    "blocksVisual": []
+  },
+  {
+    "line": 16,
+    "text": "Bit activ! Inmultim lcm cu 2. lcm devine 2",
+    "blocksVisual": []
+  },
+  {
+    "line": 17,
+    "text": "Incrementam bits la 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "Verificam daca lcm > n",
+    "blocksVisual": []
+  },
+  {
+    "line": 14,
+    "text": "Parcurgem i = 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "Verificam bitul 1 din mask",
+    "blocksVisual": []
+  },
+  {
+    "line": 16,
+    "text": "Bit activ! Inmultim lcm cu 3. lcm devine 6",
+    "blocksVisual": []
+  },
+  {
+    "line": 17,
+    "text": "Incrementam bits la 2",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "Verificam daca lcm > n",
+    "blocksVisual": []
+  },
+  {
+    "line": 14,
+    "text": "Parcurgem i = 2",
+    "blocksVisual": []
+  },
+  {
+    "line": 15,
+    "text": "Verificam bitul 2 din mask",
+    "blocksVisual": []
+  },
+  {
+    "line": 16,
+    "text": "Bit activ! Inmultim lcm cu 5. lcm devine 30",
+    "blocksVisual": []
+  },
+  {
+    "line": 17,
+    "text": "Incrementam bits la 3",
+    "blocksVisual": []
+  },
+  {
+    "line": 18,
+    "text": "Verificam daca lcm > n",
+    "blocksVisual": []
+  },
+  {
+    "line": 22,
+    "text": "Verificam paritatea numarului de biti.",
+    "blocksVisual": []
+  },
+  {
+    "line": 23,
+    "text": "Numar impar de biti, adunam la count. count = 22",
+    "blocksVisual": []
+  },
+  {
+    "line": 29,
+    "text": "Returnam rezultatul final count = 22",
+    "blocksVisual": []
+  },
+  {
+    "line": 34,
+    "text": "Functia a returnat 22.",
+    "blocksVisual": []
+  },
+  {
+    "line": 35,
+    "text": "Afisam rezultatul.",
+    "blocksVisual": []
+  },
+  {
+    "line": 36,
+    "text": "Sfarsit program.",
+    "blocksVisual": []
+  }
+],
   "debugger": {
-    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
-      const vars = [];
-      const globalVars = [];
-      const frames = [];
-      let inlineVal = "";
-
-      globalVars.push({ name: "primes", type: "std::vector<long long>", val: "{2, 3, 5}", expandable: false });
-
-      if (stepIndex === 0) {
-        frames.push({ name: "main()", file: "main.cpp", line: 35 });
-        vars.push({ name: "n", type: "long long", val: "30", expandable: false });
-      } else if (stepIndex >= 1 && stepIndex <= 15) {
-        frames.push({ name: "countDivisible(30, primes)", file: "solution.cpp", line: activeLine });
-        frames.push({ name: "main()", file: "main.cpp", line: 35 });
-
-        vars.push({ name: "n", type: "long long", val: "30", expandable: false });
-        
-        let countVal = 0;
-        if (stepIndex >= 10 && stepIndex <= 11) countVal = 15;
-        else if (stepIndex >= 12 && stepIndex <= 13) countVal = 10;
-        else if (stepIndex >= 14) countVal = 22;
-        vars.push({ name: "count", type: "long long", val: countVal.toString(), expandable: false });
-
-        if (stepIndex >= 2) {
-          vars.push({ name: "m", type: "int", val: "3", expandable: false });
-        }
-
-        if (stepIndex >= 3) {
-          let maskVal = 1;
-          if (stepIndex >= 11 && stepIndex <= 13) maskVal = 3;
-          else if (stepIndex >= 14) maskVal = 7;
-          vars.push({ name: "mask", type: "int", val: `${maskVal} (binar: ${maskVal.toString(2).padStart(3, '0')})`, expandable: false });
-        }
-
-        if (stepIndex >= 4) {
-          let lcmVal = 1;
-          if (stepIndex === 8 || stepIndex === 9 || stepIndex === 10) lcmVal = 2;
-          else if (stepIndex >= 11 && stepIndex <= 13) lcmVal = 6;
-          else if (stepIndex >= 14) lcmVal = 30;
-          vars.push({ name: "lcm", type: "long long", val: lcmVal.toString(), expandable: false });
-        }
-
-        if (stepIndex >= 5) {
-          let bitsVal = 0;
-          if (stepIndex === 8 || stepIndex === 9 || stepIndex === 10) bitsVal = 1;
-          else if (stepIndex >= 11 && stepIndex <= 13) bitsVal = 2;
-          else if (stepIndex >= 14) bitsVal = 3;
-          vars.push({ name: "bits", type: "int", val: bitsVal.toString(), expandable: false });
-        }
-
-        if (stepIndex >= 6 && stepIndex <= 8) {
-          vars.push({ name: "i", type: "int", val: "0", expandable: false });
-        }
-      } else if (stepIndex === 16) {
-        frames.push({ name: "main()", file: "main.cpp", line: 36 });
-        vars.push({ name: "ans", type: "long long", val: "22", expandable: false });
-      }
-
-      if (stepIndex === 0) inlineVal = "Apel countDivisible(30)";
-      else if (stepIndex >= 1 && stepIndex <= 15) {
-        let countVal = 0;
-        if (stepIndex >= 10 && stepIndex <= 11) countVal = 15;
-        else if (stepIndex >= 12 && stepIndex <= 13) countVal = 10;
-        else if (stepIndex >= 14) countVal = 22;
-        inlineVal = `count: ${countVal}`;
-      } else if (stepIndex === 16) {
-        inlineVal = "ans: 22";
-      }
-
-      return { vars, globalVars, frames, inlineVal };
+    "getDebuggerState": (stepIndex) => {
+      const states = [{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"primes: {2, 3, 5}"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"Apel countDivisible"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"n: 30"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"count: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"m: 3"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"mask: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"count: 15"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"mask: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"3","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 3"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"3","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"3","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"3","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"3","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"3","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"3","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"count: 25"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"mask: 3"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"6","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 6"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"6","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"6","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"6","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"6","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"6","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"6","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"count: 20"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"mask: 4"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"5","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 5"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"5","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"5","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"5","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"5","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"count: 26"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"mask: 5"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"10","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 10"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"10","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"10","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"10","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"10","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"count: 23"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"mask: 6"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"3","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 3"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"3","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"3","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"3","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"3","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"15","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 15"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"15","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"15","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"15","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"15","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"count: 21"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"mask: 7"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"6","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 6"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"6","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"6","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"6","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"6","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"30","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 30"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"30","expandable":false},{"name":"bits","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 3"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"30","expandable":false},{"name":"bits","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"30","expandable":false},{"name":"bits","type":"int","val":"3","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 3"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"22","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"30","expandable":false},{"name":"bits","type":"int","val":"3","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"count: 22"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"22","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"return 22"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"ans","type":"long long","val":"22","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"ans = 22"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"ans","type":"long long","val":"22","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"cout"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"ans","type":"long long","val":"22","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"return 0"}];
+      const s = states[stepIndex] || states[states.length - 1];
+      return { vars: s.vars, globalVars: [], frames: s.frames, inlineVal: s.inlineVal };
     },
     "getInlineValueForLine": (stepIndex, lineNum) => {
-      if (stepIndex >= 1 && stepIndex <= 15) {
-        let countVal = 0;
-        if (stepIndex >= 10 && stepIndex <= 11) countVal = 15;
-        else if (stepIndex >= 12 && stepIndex <= 13) countVal = 10;
-        else if (stepIndex >= 14) countVal = 22;
-
-        if (lineNum === 8) return `count = ${countVal}`;
-        if (lineNum === 30) return `return ${countVal}`;
-
-        let maskVal = 1;
-        if (stepIndex >= 11 && stepIndex <= 13) maskVal = 3;
-        else if (stepIndex >= 14) maskVal = 7;
-
-        if (lineNum === 11) return `mask = ${maskVal}`;
-
-        let lcmVal = 1;
-        if (stepIndex === 8 || stepIndex === 9 || stepIndex === 10) lcmVal = 2;
-        else if (stepIndex >= 11 && stepIndex <= 13) lcmVal = 6;
-        else if (stepIndex >= 14) lcmVal = 30;
-
-        if (lineNum === 12) return `lcm = ${lcmVal}`;
-
-        let bitsVal = 0;
-        if (stepIndex === 8 || stepIndex === 9 || stepIndex === 10) bitsVal = 1;
-        else if (stepIndex >= 11 && stepIndex <= 13) bitsVal = 2;
-        else if (stepIndex >= 14) bitsVal = 3;
-
-        if (lineNum === 13) return `bits = ${bitsVal}`;
-      }
-      if (stepIndex === 16 && lineNum === 35) {
-        return "ans = 22";
-      }
+      const states = [{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"primes: {2, 3, 5}"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"Apel countDivisible"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"n: 30"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"count: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"m: 3"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"mask: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"0","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"1 (bin: 001)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"count: 15"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"mask: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"3","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 3"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"3","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"3","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"3","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"3","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"15","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"3","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"2 (bin: 010)","expandable":false},{"name":"lcm","type":"long long","val":"3","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"count: 25"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"mask: 3"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"6","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 6"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"6","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"6","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"6","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"6","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"25","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"6","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"3 (bin: 011)","expandable":false},{"name":"lcm","type":"long long","val":"6","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"count: 20"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"mask: 4"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"5","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 5"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"5","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"5","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"20","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"5","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"4 (bin: 100)","expandable":false},{"name":"lcm","type":"long long","val":"5","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"count: 26"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"mask: 5"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"10","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 10"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"10","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"10","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"26","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"10","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"5 (bin: 101)","expandable":false},{"name":"lcm","type":"long long","val":"10","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"count: 23"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"mask: 6"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"3","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 3"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"3","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"3","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"3","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"3","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"15","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 15"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"15","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"15","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"23","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"15","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"6 (bin: 110)","expandable":false},{"name":"lcm","type":"long long","val":"15","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"count: 21"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"mask: 7"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 0"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"1","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"0","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 1"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"2","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"6","expandable":false},{"name":"bits","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 6"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"6","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"6","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"1","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"6","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"i: 2"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"6","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"30","expandable":false},{"name":"bits","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"lcm: 30"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"30","expandable":false},{"name":"bits","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 3"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"30","expandable":false},{"name":"bits","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":null},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"21","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"30","expandable":false},{"name":"bits","type":"int","val":"3","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"bits: 3"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"22","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false},{"name":"lcm","type":"long long","val":"30","expandable":false},{"name":"bits","type":"int","val":"3","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"count: 22"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"n","type":"long long","val":"30","expandable":false},{"name":"count","type":"long long","val":"22","expandable":false},{"name":"m","type":"int","val":"3","expandable":false},{"name":"mask","type":"int","val":"7 (bin: 111)","expandable":false}],"frames":[{"name":"countDivisible(30, primes)","file":"main.cpp","line": 6},{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"return 22"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"ans","type":"long long","val":"22","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"ans = 22"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"ans","type":"long long","val":"22","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"cout"},{"vars":[{"name":"primes","type":"vector<long long>","val":"{2, 3, 5}","expandable":false},{"name":"ans","type":"long long","val":"22","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 33}],"inlineVal":"return 0"}];
+      const s = states[stepIndex] || states[states.length - 1];
+      if (s.inlineVal && s.frames.length > 0 && s.frames[0].line === lineNum) return s.inlineVal;
       return null;
     },
     "getGraphVisual": (stepIndex) => {

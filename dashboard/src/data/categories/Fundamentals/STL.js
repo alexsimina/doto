@@ -41,9 +41,14 @@ int main() {
       text: "Declarăm un vector de numere întregi $v$, inițial gol.",
       blocksVisual: [
         {
-          label: "Vector v",
-          groups: [
-            [{ val: "v: []", active: true }]
+          "label": "Vector v",
+          "groups": [
+            [
+              {
+                "val": "v: []",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -53,9 +58,14 @@ int main() {
       text: "Adăugăm elementul $10$ la finalul vectorului folosind `push_back`. Dimensiunea vectorului devine $1$.",
       blocksVisual: [
         {
-          label: "Vector v",
-          groups: [
-            [{ val: "10", active: true }]
+          "label": "Vector v",
+          "groups": [
+            [
+              {
+                "val": "10",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -65,9 +75,18 @@ int main() {
       text: "Inițializăm perechea $p$ cu valorile $1$ (pe prima poziție, `.first`) și `\"unu\"` (pe a doua poziție, `.second`).",
       blocksVisual: [
         {
-          label: "Pereche p",
-          groups: [
-            [{ val: "first: 1", active: true }, { val: "second: \"unu\"", active: true }]
+          "label": "Pereche p",
+          "groups": [
+            [
+              {
+                "val": "first: 1",
+                "active": true
+              },
+              {
+                "val": "second: \"unu\"",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -77,9 +96,14 @@ int main() {
       text: "Declarăm o mulțime ordonată $s$ pentru a păstra elemente întregi unice. În acest moment este goală.",
       blocksVisual: [
         {
-          label: "Mulțime s",
-          groups: [
-            [{ val: "s: {}", active: true }]
+          "label": "Mulțime s",
+          "groups": [
+            [
+              {
+                "val": "s: {}",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -89,9 +113,14 @@ int main() {
       text: "Inserăm valoarea $5$ în mulțime. $s$ devine $\\{5\\}$.",
       blocksVisual: [
         {
-          label: "Mulțime s",
-          groups: [
-            [{ val: "5", active: true }]
+          "label": "Mulțime s",
+          "groups": [
+            [
+              {
+                "val": "5",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -101,9 +130,13 @@ int main() {
       text: "Încercăm să inserăm din nou valoarea $5$. Deoarece elementele într-un `std::set` trebuie să fie unice, inserarea este ignorată. Mulțimea rămâne $\\{5\\}$.",
       blocksVisual: [
         {
-          label: "Mulțime s (ignorat duplicat)",
-          groups: [
-            [{ val: "5" }]
+          "label": "Mulțime s (ignorat duplicat)",
+          "groups": [
+            [
+              {
+                "val": "5"
+              }
+            ]
           ]
         }
       ]
@@ -113,9 +146,14 @@ int main() {
       text: "Declarăm un dicționar $m$ care asociază chei de tip șir de caractere cu valori întregi.",
       blocksVisual: [
         {
-          label: "Dicționar m",
-          groups: [
-            [{ val: "m: {}", active: true }]
+          "label": "Dicționar m",
+          "groups": [
+            [
+              {
+                "val": "m: {}",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -125,9 +163,14 @@ int main() {
       text: "Asociem cheii `\"mere\"` valoarea $3$. Dacă cheia nu exista, ea este creată.",
       blocksVisual: [
         {
-          label: "Dicționar m",
-          groups: [
-            [{ val: "\"mere\" -> 3", active: true }]
+          "label": "Dicționar m",
+          "groups": [
+            [
+              {
+                "val": "\"mere\" -> 3",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -137,9 +180,14 @@ int main() {
       text: "Accesăm primul element din vector: $v[0] = 10$.",
       blocksVisual: [
         {
-          label: "Citire Vector",
-          groups: [
-            [{ val: "val = 10", active: true }]
+          "label": "Citire Vector",
+          "groups": [
+            [
+              {
+                "val": "val = 10",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -149,9 +197,14 @@ int main() {
       text: "Obținem dimensiunea mulțimii $s$ folosind funcția `size()`. Valoarea returnată este $1$, deoarece duplicatul a fost ignorat.",
       blocksVisual: [
         {
-          label: "Dimensiune Mulțime",
-          groups: [
-            [{ val: "count = 1", active: true }]
+          "label": "Dimensiune Mulțime",
+          "groups": [
+            [
+              {
+                "val": "count = 1",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -161,9 +214,14 @@ int main() {
       text: "Căutăm și citim valoarea asociată cheii `\"mere\"` în dicționar. Obținem valoarea $3$.",
       blocksVisual: [
         {
-          label: "Citire Dicționar",
-          groups: [
-            [{ val: "mere_count = 3", active: true }]
+          "label": "Citire Dicționar",
+          "groups": [
+            [
+              {
+                "val": "mere_count = 3",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -173,9 +231,14 @@ int main() {
       text: "Finalizăm programul cu succes.",
       blocksVisual: [
         {
-          label: "Final",
-          groups: [
-            [{ val: "return 0", active: true }]
+          "label": "Final",
+          "groups": [
+            [
+              {
+                "val": "return 0",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -206,65 +269,510 @@ int main() {
   },
   "debugger": {
     "getDebuggerState": (stepIndex, activeLine, explanationText) => {
-      const vars = [];
-      const globalVars = [];
-      const frames = [];
-      let inlineVal = null;
-
-      frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 11 });
-
-      if (stepIndex >= 0) {
-        let vVal = stepIndex >= 1 ? '[10]' : '[]';
-        vars.push({ name: 'v', type: 'std::vector<int>', val: vVal, expandable: true });
-      }
-      if (stepIndex >= 2) {
-        vars.push({ name: 'p', type: 'std::pair<int, string>', val: '{first: 1, second: "unu"}', expandable: true });
-      }
-      if (stepIndex >= 3) {
-        let sVal = stepIndex >= 4 ? '{5}' : '{}';
-        vars.push({ name: 's', type: 'std::set<int>', val: sVal, expandable: true });
-      }
-      if (stepIndex >= 6) {
-        let mVal = stepIndex >= 7 ? '{"mere": 3}' : '{}';
-        vars.push({ name: 'm', type: 'std::map<string, int>', val: mVal, expandable: true });
-      }
-      if (stepIndex >= 8) {
-        vars.push({ name: 'val', type: 'int', val: 10, expandable: false });
-      }
-      if (stepIndex >= 9) {
-        vars.push({ name: 'count', type: 'int', val: 1, expandable: false });
-      }
-      if (stepIndex >= 10) {
-        vars.push({ name: 'mere_count', type: 'int', val: 3, expandable: false });
-      }
-
-      if (activeLine === 11) inlineVal = "v: []";
-      else if (activeLine === 12) inlineVal = "v: [10]";
-      else if (activeLine === 15) inlineVal = 'p: {first: 1, second: "unu"}';
-      else if (activeLine === 18) inlineVal = "s: {}";
-      else if (activeLine === 19) inlineVal = "s: {5}";
-      else if (activeLine === 20) inlineVal = "s: {5}";
-      else if (activeLine === 23) inlineVal = "m: {}";
-      else if (activeLine === 24) inlineVal = 'm: {"mere": 3}';
-      else if (activeLine === 26) inlineVal = "val: 10";
-      else if (activeLine === 27) inlineVal = "count: 1";
-      else if (activeLine === 28) inlineVal = "mere_count: 3";
-
-      return { vars, globalVars, frames, inlineVal };
+      const states = [
+        {
+          "vars": [
+            {
+              "name": "v",
+              "type": "std::vector<int>",
+              "val": "[]",
+              "expandable": true
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 11
+            }
+          ],
+          "inlineVal": "v: []"
+        },
+        {
+          "vars": [
+            {
+              "name": "v",
+              "type": "std::vector<int>",
+              "val": "[10]",
+              "expandable": true
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 12
+            }
+          ],
+          "inlineVal": "v: [10]"
+        },
+        {
+          "vars": [
+            {
+              "name": "v",
+              "type": "std::vector<int>",
+              "val": "[10]",
+              "expandable": true
+            },
+            {
+              "name": "p",
+              "type": "std::pair<int, string>",
+              "val": "{first: 1, second: \"unu\"}",
+              "expandable": true
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 15
+            }
+          ],
+          "inlineVal": "p: {first: 1, second: \"unu\"}"
+        },
+        {
+          "vars": [
+            {
+              "name": "v",
+              "type": "std::vector<int>",
+              "val": "[10]",
+              "expandable": true
+            },
+            {
+              "name": "p",
+              "type": "std::pair<int, string>",
+              "val": "{first: 1, second: \"unu\"}",
+              "expandable": true
+            },
+            {
+              "name": "s",
+              "type": "std::set<int>",
+              "val": "{}",
+              "expandable": true
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 18
+            }
+          ],
+          "inlineVal": "s: {}"
+        },
+        {
+          "vars": [
+            {
+              "name": "v",
+              "type": "std::vector<int>",
+              "val": "[10]",
+              "expandable": true
+            },
+            {
+              "name": "p",
+              "type": "std::pair<int, string>",
+              "val": "{first: 1, second: \"unu\"}",
+              "expandable": true
+            },
+            {
+              "name": "s",
+              "type": "std::set<int>",
+              "val": "{5}",
+              "expandable": true
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 19
+            }
+          ],
+          "inlineVal": "s: {5}"
+        },
+        {
+          "vars": [
+            {
+              "name": "v",
+              "type": "std::vector<int>",
+              "val": "[10]",
+              "expandable": true
+            },
+            {
+              "name": "p",
+              "type": "std::pair<int, string>",
+              "val": "{first: 1, second: \"unu\"}",
+              "expandable": true
+            },
+            {
+              "name": "s",
+              "type": "std::set<int>",
+              "val": "{5}",
+              "expandable": true
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 20
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "v",
+              "type": "std::vector<int>",
+              "val": "[10]",
+              "expandable": true
+            },
+            {
+              "name": "p",
+              "type": "std::pair<int, string>",
+              "val": "{first: 1, second: \"unu\"}",
+              "expandable": true
+            },
+            {
+              "name": "s",
+              "type": "std::set<int>",
+              "val": "{5}",
+              "expandable": true
+            },
+            {
+              "name": "m",
+              "type": "std::map<string, int>",
+              "val": "{}",
+              "expandable": true
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 23
+            }
+          ],
+          "inlineVal": "m: {}"
+        },
+        {
+          "vars": [
+            {
+              "name": "v",
+              "type": "std::vector<int>",
+              "val": "[10]",
+              "expandable": true
+            },
+            {
+              "name": "p",
+              "type": "std::pair<int, string>",
+              "val": "{first: 1, second: \"unu\"}",
+              "expandable": true
+            },
+            {
+              "name": "s",
+              "type": "std::set<int>",
+              "val": "{5}",
+              "expandable": true
+            },
+            {
+              "name": "m",
+              "type": "std::map<string, int>",
+              "val": "{\"mere\": 3}",
+              "expandable": true
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 24
+            }
+          ],
+          "inlineVal": "m: {\"mere\": 3}"
+        },
+        {
+          "vars": [
+            {
+              "name": "v",
+              "type": "std::vector<int>",
+              "val": "[10]",
+              "expandable": true
+            },
+            {
+              "name": "p",
+              "type": "std::pair<int, string>",
+              "val": "{first: 1, second: \"unu\"}",
+              "expandable": true
+            },
+            {
+              "name": "s",
+              "type": "std::set<int>",
+              "val": "{5}",
+              "expandable": true
+            },
+            {
+              "name": "m",
+              "type": "std::map<string, int>",
+              "val": "{\"mere\": 3}",
+              "expandable": true
+            },
+            {
+              "name": "val",
+              "type": "int",
+              "val": 10,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 26
+            }
+          ],
+          "inlineVal": "val: 10"
+        },
+        {
+          "vars": [
+            {
+              "name": "v",
+              "type": "std::vector<int>",
+              "val": "[10]",
+              "expandable": true
+            },
+            {
+              "name": "p",
+              "type": "std::pair<int, string>",
+              "val": "{first: 1, second: \"unu\"}",
+              "expandable": true
+            },
+            {
+              "name": "s",
+              "type": "std::set<int>",
+              "val": "{5}",
+              "expandable": true
+            },
+            {
+              "name": "m",
+              "type": "std::map<string, int>",
+              "val": "{\"mere\": 3}",
+              "expandable": true
+            },
+            {
+              "name": "val",
+              "type": "int",
+              "val": 10,
+              "expandable": false
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 27
+            }
+          ],
+          "inlineVal": "count: 1"
+        },
+        {
+          "vars": [
+            {
+              "name": "v",
+              "type": "std::vector<int>",
+              "val": "[10]",
+              "expandable": true
+            },
+            {
+              "name": "p",
+              "type": "std::pair<int, string>",
+              "val": "{first: 1, second: \"unu\"}",
+              "expandable": true
+            },
+            {
+              "name": "s",
+              "type": "std::set<int>",
+              "val": "{5}",
+              "expandable": true
+            },
+            {
+              "name": "m",
+              "type": "std::map<string, int>",
+              "val": "{\"mere\": 3}",
+              "expandable": true
+            },
+            {
+              "name": "val",
+              "type": "int",
+              "val": 10,
+              "expandable": false
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "mere_count",
+              "type": "int",
+              "val": 3,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 28
+            }
+          ],
+          "inlineVal": "mere_count: 3"
+        },
+        {
+          "vars": [
+            {
+              "name": "v",
+              "type": "std::vector<int>",
+              "val": "[10]",
+              "expandable": true
+            },
+            {
+              "name": "p",
+              "type": "std::pair<int, string>",
+              "val": "{first: 1, second: \"unu\"}",
+              "expandable": true
+            },
+            {
+              "name": "s",
+              "type": "std::set<int>",
+              "val": "{5}",
+              "expandable": true
+            },
+            {
+              "name": "m",
+              "type": "std::map<string, int>",
+              "val": "{\"mere\": 3}",
+              "expandable": true
+            },
+            {
+              "name": "val",
+              "type": "int",
+              "val": 10,
+              "expandable": false
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "mere_count",
+              "type": "int",
+              "val": 3,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 30
+            }
+          ],
+          "inlineVal": null
+        }
+      ];
+      if (stepIndex < 0) return { vars: [], globalVars: [], frames: [{ name: 'main()', file: 'main.cpp', line: activeLine || 11 }], inlineVal: null };
+      if (stepIndex >= states.length) stepIndex = states.length - 1;
+      const state = states[stepIndex];
+      return { vars: state.vars, globalVars: [], frames: state.frames, inlineVal: state.inlineVal };
     },
     "getInlineValueForLine": (stepIndex, lineNum) => {
-      if (lineNum === 11 && stepIndex >= 0) return 'v: []';
-      if (lineNum === 12 && stepIndex >= 1) return 'v: [10]';
-      if (lineNum === 15 && stepIndex >= 2) return 'p: {first: 1, second: "unu"}';
-      if (lineNum === 18 && stepIndex >= 3) return 's: {}';
-      if (lineNum === 19 && stepIndex >= 4) return 's: {5}';
-      if (lineNum === 20 && stepIndex >= 5) return 's: {5}';
-      if (lineNum === 23 && stepIndex >= 6) return 'm: {}';
-      if (lineNum === 24 && stepIndex >= 7) return 'm: {"mere": 3}';
-      if (lineNum === 26 && stepIndex >= 8) return 'val: 10';
-      if (lineNum === 27 && stepIndex >= 9) return 'count: 1';
-      if (lineNum === 28 && stepIndex >= 10) return 'mere_count: 3';
-      return null;
+      const states = [
+        {
+          "11": "v: []"
+        },
+        {
+          "12": "v: [10]"
+        },
+        {
+          "12": "v: [10]",
+          "15": "p: {first: 1, second: \"unu\"}"
+        },
+        {
+          "12": "v: [10]",
+          "15": "p: {first: 1, second: \"unu\"}",
+          "18": "s: {}"
+        },
+        {
+          "12": "v: [10]",
+          "15": "p: {first: 1, second: \"unu\"}",
+          "19": "s: {5}"
+        },
+        {
+          "12": "v: [10]",
+          "15": "p: {first: 1, second: \"unu\"}",
+          "19": "s: {5}"
+        },
+        {
+          "12": "v: [10]",
+          "15": "p: {first: 1, second: \"unu\"}",
+          "19": "s: {5}",
+          "23": "m: {}"
+        },
+        {
+          "12": "v: [10]",
+          "15": "p: {first: 1, second: \"unu\"}",
+          "19": "s: {5}",
+          "24": "m: {\"mere\": 3}"
+        },
+        {
+          "12": "v: [10]",
+          "15": "p: {first: 1, second: \"unu\"}",
+          "19": "s: {5}",
+          "24": "m: {\"mere\": 3}",
+          "26": "val: 10"
+        },
+        {
+          "12": "v: [10]",
+          "15": "p: {first: 1, second: \"unu\"}",
+          "19": "s: {5}",
+          "24": "m: {\"mere\": 3}",
+          "26": "val: 10",
+          "27": "count: 1"
+        },
+        {
+          "12": "v: [10]",
+          "15": "p: {first: 1, second: \"unu\"}",
+          "19": "s: {5}",
+          "24": "m: {\"mere\": 3}",
+          "26": "val: 10",
+          "27": "count: 1",
+          "28": "mere_count: 3"
+        },
+        {
+          "12": "v: [10]",
+          "15": "p: {first: 1, second: \"unu\"}",
+          "19": "s: {5}",
+          "24": "m: {\"mere\": 3}",
+          "26": "val: 10",
+          "27": "count: 1",
+          "28": "mere_count: 3"
+        }
+      ];
+      if (stepIndex < 0) return null;
+      if (stepIndex >= states.length) stepIndex = states.length - 1;
+      return states[stepIndex][lineNum] || null;
     }
   }
-};
+}
+;

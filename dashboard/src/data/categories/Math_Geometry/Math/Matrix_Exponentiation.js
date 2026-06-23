@@ -64,422 +64,147 @@ int main() {
 }
 `,
   "explanations": [
-    {
-      "line": 35,
-      "text": "Apelăm funcția `power(T, 5, 1000000007)` pentru a calcula matricea de tranziție Fibonacci $T$ ridicată la puterea $5$ modulo $10^9+7$.",
-      "blocksVisual": [
-        {
-          "label": "Apel",
-          "groups": [
-            [
-              { "val": "p = 5", "active": true },
-              { "val": "mod = 10^9+7" }
-            ]
-          ]
-        }
-      ],
-      "matrix": {
-        "title": "Matrice: A (baza) | T (tranzitie) | res (rezultat)",
-        "headers": ["A_00", "A_01", "|", "T_00", "T_01", "|", "res_00", "res_01"],
-        "rows": [
-          [{ "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": "-" }, { "val": "-" }],
-          [{ "val": 1 }, { "val": 0 }, { "val": "|" }, { "val": 1 }, { "val": 0 }, { "val": "|" }, { "val": "-" }, { "val": "-" }]
-        ]
-      }
-    },
-    {
-      "line": 22,
-      "text": "Inițializăm matricea `res` cu Matricea Identitate $I_2$: `{{1, 0}, {0, 1}}`. Aceasta acționează ca elementul neutru la înmulțirea matricelor.",
-      "blocksVisual": [
-        {
-          "label": "res",
-          "groups": [
-            [
-              { "val": "1" }, { "val": "0" }
-            ],
-            [
-              { "val": "0" }, { "val": "1" }
-            ]
-          ]
-        }
-      ],
-      "matrix": {
-        "title": "Matrice: A (baza) | T (tranzitie) | res (rezultat)",
-        "headers": ["A_00", "A_01", "|", "T_00", "T_01", "|", "res_00", "res_01"],
-        "rows": [
-          [{ "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": 1, "highlight": true }, { "val": 0, "highlight": true }],
-          [{ "val": 1 }, { "val": 0 }, { "val": "|" }, { "val": 1 }, { "val": 0 }, { "val": "|" }, { "val": 0, "highlight": true }, { "val": 1, "highlight": true }]
-        ]
-      }
-    },
-    {
-      "line": 23,
-      "text": "Intrăm în bucla `while`. Deoarece exponentul `p = 5` este strict mai mare decât $0$, bucla se va executa.",
-      "blocksVisual": [
-        {
-          "label": "Condiție",
-          "groups": [
-            [
-              { "val": "p = 5 > 0? DA", "active": true }
-            ]
-          ]
-        }
-      ],
-      "matrix": {
-        "title": "Matrice: A (baza) | T (tranzitie) | res (rezultat)",
-        "headers": ["A_00", "A_01", "|", "T_00", "T_01", "|", "res_00", "res_01"],
-        "rows": [
-          [{ "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": 1 }, { "val": 0 }],
-          [{ "val": 1 }, { "val": 0 }, { "val": "|" }, { "val": 1 }, { "val": 0 }, { "val": "|" }, { "val": 0 }, { "val": 1 }]
-        ]
-      }
-    },
-    {
-      "line": 24,
-      "text": "Verificăm dacă exponentul curent `p` este impar: `5 % 2 == 1` este adevărat.",
-      "blocksVisual": [
-        {
-          "label": "Paritate",
-          "groups": [
-            [
-              { "val": "5 % 2 = 1 (impar)", "active": true }
-            ]
-          ]
-        }
-      ],
-      "matrix": {
-        "title": "Matrice: A (baza) | T (tranzitie) | res (rezultat)",
-        "headers": ["A_00", "A_01", "|", "T_00", "T_01", "|", "res_00", "res_01"],
-        "rows": [
-          [{ "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": 1 }, { "val": 0 }],
-          [{ "val": 1 }, { "val": 0 }, { "val": "|" }, { "val": 1 }, { "val": 0 }, { "val": "|" }, { "val": 0 }, { "val": 1 }]
-        ]
-      }
-    },
-    {
-      "line": 25,
-      "text": "Înmulțim rezultatul curent cu matricea $A$: `res = multiply(res, A)`. `res` devine `{{1, 1}, {1, 0}}`.",
-      "blocksVisual": [
-        {
-          "label": "res după multiply",
-          "groups": [
-            [
-              { "val": "1", "sorted": true }, { "val": "1", "sorted": true }
-            ],
-            [
-              { "val": "1", "sorted": true }, { "val": "0", "sorted": true }
-            ]
-          ]
-        }
-      ],
-      "matrix": {
-        "title": "Matrice: A (baza) | T (tranzitie) | res (rezultat)",
-        "headers": ["A_00", "A_01", "|", "T_00", "T_01", "|", "res_00", "res_01"],
-        "rows": [
-          [{ "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": 1, "highlight": true }, { "val": 1, "highlight": true }],
-          [{ "val": 1 }, { "val": 0 }, { "val": "|" }, { "val": 1 }, { "val": 0 }, { "val": "|" }, { "val": 1, "highlight": true }, { "val": 0, "highlight": true }]
-        ]
-      }
-    },
-    {
-      "line": 27,
-      "text": "Ridicăm la pătrat matricea de bază: `A = multiply(A, A)`. Valoarea lui `A` devine `{{2, 1}, {1, 1}}`.",
-      "blocksVisual": [
-        {
-          "label": "A la pătrat",
-          "groups": [
-            [
-              { "val": "2", "sorted": true }, { "val": "1", "sorted": true }
-            ],
-            [
-              { "val": "1", "sorted": true }, { "val": "1", "sorted": true }
-            ]
-          ]
-        }
-      ],
-      "matrix": {
-        "title": "Matrice: A (baza) | T (tranzitie) | res (rezultat)",
-        "headers": ["A_00", "A_01", "|", "T_00", "T_01", "|", "res_00", "res_01"],
-        "rows": [
-          [{ "val": 2, "highlight": true }, { "val": 1, "highlight": true }, { "val": "|" }, { "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": 1 }, { "val": 1 }],
-          [{ "val": 1, "highlight": true }, { "val": 1, "highlight": true }, { "val": "|" }, { "val": 1 }, { "val": 0 }, { "val": "|" }, { "val": 1 }, { "val": 0 }]
-        ]
-      }
-    },
-    {
-      "line": 28,
-      "text": "Împărțim întreg exponentul `p` la $2$: `p = 5 / 2 = 2`.",
-      "blocksVisual": [
-        {
-          "label": "p actualizat",
-          "groups": [
-            [
-              { "val": "p = 2", "sorted": true }
-            ]
-          ]
-        }
-      ],
-      "matrix": {
-        "title": "Matrice: A (baza) | T (tranzitie) | res (rezultat)",
-        "headers": ["A_00", "A_01", "|", "T_00", "T_01", "|", "res_00", "res_01"],
-        "rows": [
-          [{ "val": 2 }, { "val": 1 }, { "val": "|" }, { "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": 1 }, { "val": 1 }],
-          [{ "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": 1 }, { "val": 0 }, { "val": "|" }, { "val": 1 }, { "val": 0 }]
-        ]
-      }
-    },
-    {
-      "line": 23,
-      "text": "Evaluăm din nou condiția buclei. Exponentul `p = 2 > 0` menține execuția buclei.",
-      "blocksVisual": [
-        {
-          "label": "Condiție",
-          "groups": [
-            [
-              { "val": "p = 2 > 0? DA", "active": true }
-            ]
-          ]
-        }
-      ],
-      "matrix": {
-        "title": "Matrice: A (baza) | T (tranzitie) | res (rezultat)",
-        "headers": ["A_00", "A_01", "|", "T_00", "T_01", "|", "res_00", "res_01"],
-        "rows": [
-          [{ "val": 2 }, { "val": 1 }, { "val": "|" }, { "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": 1 }, { "val": 1 }],
-          [{ "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": 1 }, { "val": 0 }, { "val": "|" }, { "val": 1 }, { "val": 0 }]
-        ]
-      }
-    },
-    {
-      "line": 24,
-      "text": "Verificăm paritatea lui `p = 2`. Deoarece este par, condiția `if` este falsă și nu se execută înmulțirea în `res`.",
-      "blocksVisual": [
-        {
-          "label": "Paritate",
-          "groups": [
-            [
-              { "val": "2 % 2 = 0 (par)", "active": true }
-            ]
-          ]
-        }
-      ],
-      "matrix": {
-        "title": "Matrice: A (baza) | T (tranzitie) | res (rezultat)",
-        "headers": ["A_00", "A_01", "|", "T_00", "T_01", "|", "res_00", "res_01"],
-        "rows": [
-          [{ "val": 2 }, { "val": 1 }, { "val": "|" }, { "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": 1 }, { "val": 1 }],
-          [{ "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": 1 }, { "val": 0 }, { "val": "|" }, { "val": 1 }, { "val": 0 }]
-        ]
-      }
-    },
-    {
-      "line": 27,
-      "text": "Ridicăm din nou matricea `A` la pătrat: `A = multiply(A, A)`. `A` devine `{{5, 3}, {3, 2}}`.",
-      "blocksVisual": [
-        {
-          "label": "A la pătrat",
-          "groups": [
-            [
-              { "val": "5", "sorted": true }, { "val": "3", "sorted": true }
-            ],
-            [
-              { "val": "3", "sorted": true }, { "val": "2", "sorted": true }
-            ]
-          ]
-        }
-      ],
-      "matrix": {
-        "title": "Matrice: A (baza) | T (tranzitie) | res (rezultat)",
-        "headers": ["A_00", "A_01", "|", "T_00", "T_01", "|", "res_00", "res_01"],
-        "rows": [
-          [{ "val": 5, "highlight": true }, { "val": 3, "highlight": true }, { "val": "|" }, { "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": 1 }, { "val": 1 }],
-          [{ "val": 3, "highlight": true }, { "val": 2, "highlight": true }, { "val": "|" }, { "val": 1 }, { "val": 0 }, { "val": "|" }, { "val": 1 }, { "val": 0 }]
-        ]
-      }
-    },
-    {
-      "line": 28,
-      "text": "Înjumătățim exponentul: `p = 2 / 2 = 1`.",
-      "blocksVisual": [
-        {
-          "label": "p actualizat",
-          "groups": [
-            [
-              { "val": "p = 1", "sorted": true }
-            ]
-          ]
-        }
-      ],
-      "matrix": {
-        "title": "Matrice: A (baza) | T (tranzitie) | res (rezultat)",
-        "headers": ["A_00", "A_01", "|", "T_00", "T_01", "|", "res_00", "res_01"],
-        "rows": [
-          [{ "val": 5 }, { "val": 3 }, { "val": "|" }, { "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": 1 }, { "val": 1 }],
-          [{ "val": 3 }, { "val": 2 }, { "val": "|" }, { "val": 1 }, { "val": 0 }, { "val": "|" }, { "val": 1 }, { "val": 0 }]
-        ]
-      }
-    },
-    {
-      "line": 23,
-      "text": "A treia iterație. Exponentul `p = 1 > 0` continuă bucla.",
-      "blocksVisual": [
-        {
-          "label": "Condiție",
-          "groups": [
-            [
-              { "val": "p = 1 > 0? DA", "active": true }
-            ]
-          ]
-        }
-      ],
-      "matrix": {
-        "title": "Matrice: A (baza) | T (tranzitie) | res (rezultat)",
-        "headers": ["A_00", "A_01", "|", "T_00", "T_01", "|", "res_00", "res_01"],
-        "rows": [
-          [{ "val": 5 }, { "val": 3 }, { "val": "|" }, { "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": 1 }, { "val": 1 }],
-          [{ "val": 3 }, { "val": 2 }, { "val": "|" }, { "val": 1 }, { "val": 0 }, { "val": "|" }, { "val": 1 }, { "val": 0 }]
-        ]
-      }
-    },
-    {
-      "line": 24,
-      "text": "Deoarece `p = 1` este impar, vom actualiza rezultatul.",
-      "blocksVisual": [
-        {
-          "label": "Paritate",
-          "groups": [
-            [
-              { "val": "1 % 2 = 1 (impar)", "active": true }
-            ]
-          ]
-        }
-      ],
-      "matrix": {
-        "title": "Matrice: A (baza) | T (tranzitie) | res (rezultat)",
-        "headers": ["A_00", "A_01", "|", "T_00", "T_01", "|", "res_00", "res_01"],
-        "rows": [
-          [{ "val": 5 }, { "val": 3 }, { "val": "|" }, { "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": 1 }, { "val": 1 }],
-          [{ "val": 3 }, { "val": 2 }, { "val": "|" }, { "val": 1 }, { "val": 0 }, { "val": "|" }, { "val": 1 }, { "val": 0 }]
-        ]
-      }
-    },
-    {
-      "line": 25,
-      "text": "Înmulțim `res` cu `A`: `res = multiply(res, A)`. Noua valoare din `res` devine `{{8, 5}, {5, 3}}`.",
-      "blocksVisual": [
-        {
-          "label": "res final",
-          "groups": [
-            [
-              { "val": "8", "sorted": true }, { "val": "5", "sorted": true }
-            ],
-            [
-              { "val": "5", "sorted": true }, { "val": "3", "sorted": true }
-            ]
-          ]
-        }
-      ],
-      "matrix": {
-        "title": "Matrice: A (baza) | T (tranzitie) | res (rezultat)",
-        "headers": ["A_00", "A_01", "|", "T_00", "T_01", "|", "res_00", "res_01"],
-        "rows": [
-          [{ "val": 5 }, { "val": 3 }, { "val": "|" }, { "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": 8, "highlight": true }, { "val": 5, "highlight": true }],
-          [{ "val": 3 }, { "val": 2 }, { "val": "|" }, { "val": 1 }, { "val": 0 }, { "val": "|" }, { "val": 5, "highlight": true }, { "val": 3, "highlight": true }]
-        ]
-      }
-    },
-    {
-      "line": 27,
-      "text": "Actualizăm `A` ridicându-l din nou la pătrat pentru consistență: `A` devine `{{34, 21}, {21, 13}}`.",
-      "blocksVisual": [
-        {
-          "label": "A actualizat",
-          "groups": [
-            [
-              { "val": "34" }, { "val": "21" }
-            ],
-            [
-              { "val": "21" }, { "val": "13" }
-            ]
-          ]
-        }
-      ],
-      "matrix": {
-        "title": "Matrice: A (baza) | T (tranzitie) | res (rezultat)",
-        "headers": ["A_00", "A_01", "|", "T_00", "T_01", "|", "res_00", "res_01"],
-        "rows": [
-          [{ "val": 34, "highlight": true }, { "val": 21, "highlight": true }, { "val": "|" }, { "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": 8 }, { "val": 5 }],
-          [{ "val": 21, "highlight": true }, { "val": 13, "highlight": true }, { "val": "|" }, { "val": 1 }, { "val": 0 }, { "val": "|" }, { "val": 5 }, { "val": 3 }]
-        ]
-      }
-    },
-    {
-      "line": 28,
-      "text": "Înjumătățim exponentul: `p = 1 / 2 = 0`.",
-      "blocksVisual": [
-        {
-          "label": "p actualizat",
-          "groups": [
-            [
-              { "val": "p = 0", "sorted": true }
-            ]
-          ]
-        }
-      ],
-      "matrix": {
-        "title": "Matrice: A (baza) | T (tranzitie) | res (rezultat)",
-        "headers": ["A_00", "A_01", "|", "T_00", "T_01", "|", "res_00", "res_01"],
-        "rows": [
-          [{ "val": 34 }, { "val": 21 }, { "val": "|" }, { "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": 8 }, { "val": 5 }],
-          [{ "val": 21 }, { "val": 13 }, { "val": "|" }, { "val": 1 }, { "val": 0 }, { "val": "|" }, { "val": 5 }, { "val": 3 }]
-        ]
-      }
-    },
-    {
-      "line": 23,
-      "text": "Deoarece `p = 0`, bucla `while` se încheie.",
-      "blocksVisual": [
-        {
-          "label": "Condiție",
-          "groups": [
-            [
-              { "val": "p = 0 (Oprire)", "active": true }
-            ]
-          ]
-        }
-      ],
-      "matrix": {
-        "title": "Matrice: A (baza) | T (tranzitie) | res (rezultat)",
-        "headers": ["A_00", "A_01", "|", "T_00", "T_01", "|", "res_00", "res_01"],
-        "rows": [
-          [{ "val": 34 }, { "val": 21 }, { "val": "|" }, { "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": 8 }, { "val": 5 }],
-          [{ "val": 21 }, { "val": 13 }, { "val": "|" }, { "val": 1 }, { "val": 0 }, { "val": "|" }, { "val": 5 }, { "val": 3 }]
-        ]
-      }
-    },
-    {
-      "line": 30,
-      "text": "Returnăm matricea rezultat `res`. Elementul de pe poziția `[0][0]` este al 6-lea număr Fibonacci ($F_6 = 8$).",
-      "blocksVisual": [
-        {
-          "label": "Rezultat",
-          "groups": [
-            [
-              { "val": "F_6 = 8", "sorted": true }
-            ]
-          ]
-        }
-      ],
-      "matrix": {
-        "title": "Matrice: A (baza) | T (tranzitie) | res (rezultat)",
-        "headers": ["A_00", "A_01", "|", "T_00", "T_01", "|", "res_00", "res_01"],
-        "rows": [
-          [{ "val": 34 }, { "val": 21 }, { "val": "|" }, { "val": 1 }, { "val": 1 }, { "val": "|" }, { "val": 8, "highlight": true }, { "val": 5 }],
-          [{ "val": 21 }, { "val": 13 }, { "val": "|" }, { "val": 1 }, { "val": 0 }, { "val": "|" }, { "val": 5 }, { "val": 3 }]
-        ]
-      }
-    }
-  ],
+  {
+    "line": 33,
+    "text": "Matricea T este initializata",
+    "blocksVisual": []
+  },
+  {
+    "line": 34,
+    "text": "Apelam power(T, 5, 1000000007)",
+    "blocksVisual": []
+  },
+  {
+    "line": 20,
+    "text": "Intram in functia power",
+    "blocksVisual": []
+  },
+  {
+    "line": 21,
+    "text": "Initializam res ca matrice identitate",
+    "blocksVisual": []
+  },
+  {
+    "line": 22,
+    "text": "while (p > 0)",
+    "blocksVisual": []
+  },
+  {
+    "line": 23,
+    "text": "if (p % 2 == 1)",
+    "blocksVisual": []
+  },
+  {
+    "line": 24,
+    "text": "Apelam multiply(res, A, mod)",
+    "blocksVisual": []
+  },
+  {
+    "line": 24,
+    "text": "res a fost actualizat",
+    "blocksVisual": []
+  },
+  {
+    "line": 26,
+    "text": "Apelam multiply(A, A, mod)",
+    "blocksVisual": []
+  },
+  {
+    "line": 26,
+    "text": "A a fost ridicat la patrat",
+    "blocksVisual": []
+  },
+  {
+    "line": 27,
+    "text": "p /= 2; p devine 2",
+    "blocksVisual": []
+  },
+  {
+    "line": 22,
+    "text": "while (p > 0)",
+    "blocksVisual": []
+  },
+  {
+    "line": 23,
+    "text": "if (p % 2 == 1)",
+    "blocksVisual": []
+  },
+  {
+    "line": 26,
+    "text": "Apelam multiply(A, A, mod)",
+    "blocksVisual": []
+  },
+  {
+    "line": 26,
+    "text": "A a fost ridicat la patrat",
+    "blocksVisual": []
+  },
+  {
+    "line": 27,
+    "text": "p /= 2; p devine 1",
+    "blocksVisual": []
+  },
+  {
+    "line": 22,
+    "text": "while (p > 0)",
+    "blocksVisual": []
+  },
+  {
+    "line": 23,
+    "text": "if (p % 2 == 1)",
+    "blocksVisual": []
+  },
+  {
+    "line": 24,
+    "text": "Apelam multiply(res, A, mod)",
+    "blocksVisual": []
+  },
+  {
+    "line": 24,
+    "text": "res a fost actualizat",
+    "blocksVisual": []
+  },
+  {
+    "line": 26,
+    "text": "Apelam multiply(A, A, mod)",
+    "blocksVisual": []
+  },
+  {
+    "line": 26,
+    "text": "A a fost ridicat la patrat",
+    "blocksVisual": []
+  },
+  {
+    "line": 27,
+    "text": "p /= 2; p devine 0",
+    "blocksVisual": []
+  },
+  {
+    "line": 22,
+    "text": "while (p > 0)",
+    "blocksVisual": []
+  },
+  {
+    "line": 29,
+    "text": "return res",
+    "blocksVisual": []
+  },
+  {
+    "line": 34,
+    "text": "A primit T_pow",
+    "blocksVisual": []
+  },
+  {
+    "line": 35,
+    "text": "cout",
+    "blocksVisual": []
+  },
+  {
+    "line": 36,
+    "text": "return 0",
+    "blocksVisual": []
+  }
+],
   "problems": {
     "easy": [
       {
@@ -504,70 +229,15 @@ int main() {
     ]
   },
   "debugger": {
-    "getDebuggerState": (stepIndex, activeLine, explanationText) => {
-      const vars = [];
-      const globalVars = [];
-      const frames = [];
-      let inlineVal = null;
-
-      const states = [
-        { f: [{ name: 'main()', file: 'main.cpp', line: 61 }], v: [] },
-        { f: [{ name: 'power(T, 5, 1000000007)', file: 'main.cpp', line: 22 }, { name: 'main()', file: 'main.cpp', line: 61 }], v: [{ name: 'p', type: 'long long', val: 5 }, { name: 'mod', type: 'long long', val: 1000000007 }, { name: 'res', type: 'Matrix', val: '[[1,0],[0,1]]' }] },
-        { f: [{ name: 'power(T, 5, 1000000007)', file: 'main.cpp', line: 23 }, { name: 'main()', file: 'main.cpp', line: 61 }], v: [{ name: 'p', type: 'long long', val: 5 }, { name: 'mod', type: 'long long', val: 1000000007 }, { name: 'res', type: 'Matrix', val: '[[1,0],[0,1]]' }] },
-        { f: [{ name: 'power(T, 5, 1000000007)', file: 'main.cpp', line: 24 }, { name: 'main()', file: 'main.cpp', line: 61 }], v: [{ name: 'p', type: 'long long', val: 5 }, { name: 'mod', type: 'long long', val: 1000000007 }, { name: 'res', type: 'Matrix', val: '[[1,0],[0,1]]' }] },
-        { f: [{ name: 'power(T, 5, 1000000007)', file: 'main.cpp', line: 25 }, { name: 'main()', file: 'main.cpp', line: 61 }], v: [{ name: 'p', type: 'long long', val: 5 }, { name: 'mod', type: 'long long', val: 1000000007 }, { name: 'res', type: 'Matrix', val: '[[1,1],[1,0]]' }] },
-        { f: [{ name: 'power(T, 5, 1000000007)', file: 'main.cpp', line: 27 }, { name: 'main()', file: 'main.cpp', line: 61 }], v: [{ name: 'p', type: 'long long', val: 5 }, { name: 'mod', type: 'long long', val: 1000000007 }, { name: 'res', type: 'Matrix', val: '[[1,1],[1,0]]' }, { name: 'A', type: 'Matrix', val: '[[2,1],[1,1]]' }] },
-        { f: [{ name: 'power(T, 5, 1000000007)', file: 'main.cpp', line: 28 }, { name: 'main()', file: 'main.cpp', line: 61 }], v: [{ name: 'p', type: 'long long', val: 2 }, { name: 'mod', type: 'long long', val: 1000000007 }, { name: 'res', type: 'Matrix', val: '[[1,1],[1,0]]' }, { name: 'A', type: 'Matrix', val: '[[2,1],[1,1]]' }] },
-        { f: [{ name: 'power(T, 5, 1000000007)', file: 'main.cpp', line: 23 }, { name: 'main()', file: 'main.cpp', line: 61 }], v: [{ name: 'p', type: 'long long', val: 2 }, { name: 'mod', type: 'long long', val: 1000000007 }, { name: 'res', type: 'Matrix', val: '[[1,1],[1,0]]' }, { name: 'A', type: 'Matrix', val: '[[2,1],[1,1]]' }] },
-        { f: [{ name: 'power(T, 5, 1000000007)', file: 'main.cpp', line: 24 }, { name: 'main()', file: 'main.cpp', line: 61 }], v: [{ name: 'p', type: 'long long', val: 2 }, { name: 'mod', type: 'long long', val: 1000000007 }, { name: 'res', type: 'Matrix', val: '[[1,1],[1,0]]' }, { name: 'A', type: 'Matrix', val: '[[2,1],[1,1]]' }] },
-        { f: [{ name: 'power(T, 5, 1000000007)', file: 'main.cpp', line: 27 }, { name: 'main()', file: 'main.cpp', line: 61 }], v: [{ name: 'p', type: 'long long', val: 2 }, { name: 'mod', type: 'long long', val: 1000000007 }, { name: 'res', type: 'Matrix', val: '[[1,1],[1,0]]' }, { name: 'A', type: 'Matrix', val: '[[5,3],[3,2]]' }] },
-        { f: [{ name: 'power(T, 5, 1000000007)', file: 'main.cpp', line: 28 }, { name: 'main()', file: 'main.cpp', line: 61 }], v: [{ name: 'p', type: 'long long', val: 1 }, { name: 'mod', type: 'long long', val: 1000000007 }, { name: 'res', type: 'Matrix', val: '[[1,1],[1,0]]' }, { name: 'A', type: 'Matrix', val: '[[5,3],[3,2]]' }] },
-        { f: [{ name: 'power(T, 5, 1000000007)', file: 'main.cpp', line: 23 }, { name: 'main()', file: 'main.cpp', line: 61 }], v: [{ name: 'p', type: 'long long', val: 1 }, { name: 'mod', type: 'long long', val: 1000000007 }, { name: 'res', type: 'Matrix', val: '[[1,1],[1,0]]' }, { name: 'A', type: 'Matrix', val: '[[5,3],[3,2]]' }] },
-        { f: [{ name: 'power(T, 5, 1000000007)', file: 'main.cpp', line: 24 }, { name: 'main()', file: 'main.cpp', line: 61 }], v: [{ name: 'p', type: 'long long', val: 1 }, { name: 'mod', type: 'long long', val: 1000000007 }, { name: 'res', type: 'Matrix', val: '[[1,1],[1,0]]' }, { name: 'A', type: 'Matrix', val: '[[5,3],[3,2]]' }] },
-        { f: [{ name: 'power(T, 5, 1000000007)', file: 'main.cpp', line: 25 }, { name: 'main()', file: 'main.cpp', line: 61 }], v: [{ name: 'p', type: 'long long', val: 1 }, { name: 'mod', type: 'long long', val: 1000000007 }, { name: 'res', type: 'Matrix', val: '[[8,5],[5,3]]' }, { name: 'A', type: 'Matrix', val: '[[5,3],[3,2]]' }] },
-        { f: [{ name: 'power(T, 5, 1000000007)', file: 'main.cpp', line: 27 }, { name: 'main()', file: 'main.cpp', line: 61 }], v: [{ name: 'p', type: 'long long', val: 1 }, { name: 'mod', type: 'long long', val: 1000000007 }, { name: 'res', type: 'Matrix', val: '[[8,5],[5,3]]' }, { name: 'A', type: 'Matrix', val: '[[34,21],[21,13]]' }] },
-        { f: [{ name: 'power(T, 5, 1000000007)', file: 'main.cpp', line: 28 }, { name: 'main()', file: 'main.cpp', line: 61 }], v: [{ name: 'p', type: 'long long', val: 0 }, { name: 'mod', type: 'long long', val: 1000000007 }, { name: 'res', type: 'Matrix', val: '[[8,5],[5,3]]' }, { name: 'A', type: 'Matrix', val: '[[34,21],[21,13]]' }] },
-        { f: [{ name: 'power(T, 5, 1000000007)', file: 'main.cpp', line: 23 }, { name: 'main()', file: 'main.cpp', line: 61 }], v: [{ name: 'p', type: 'long long', val: 0 }, { name: 'mod', type: 'long long', val: 1000000007 }, { name: 'res', type: 'Matrix', val: '[[8,5],[5,3]]' }, { name: 'A', type: 'Matrix', val: '[[34,21],[21,13]]' }] },
-        { f: [{ name: 'power(T, 5, 1000000007)', file: 'main.cpp', line: 30 }, { name: 'main()', file: 'main.cpp', line: 61 }], v: [{ name: 'p', type: 'long long', val: 0 }, { name: 'mod', type: 'long long', val: 1000000007 }, { name: 'res', type: 'Matrix', val: '[[8,5],[5,3]]' }, { name: 'A', type: 'Matrix', val: '[[34,21],[21,13]]' }] }
-      ];
-
+    "getDebuggerState": (stepIndex) => {
+      const states = [{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"T={{1,1},{1,0}}"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"Apel power"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"p","type":"long long","val":"5","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"p=5"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"p","type":"long long","val":"5","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,0],[0,1]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"res={{1,0},{0,1}}"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"p","type":"long long","val":"5","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,0],[0,1]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"p = 5"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"p","type":"long long","val":"5","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,0],[0,1]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"p = 5"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"p","type":"long long","val":"5","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,0],[0,1]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":null},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"p","type":"long long","val":"5","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,1],[1,0]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"res=[[1,1],[1,0]]"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"p","type":"long long","val":"5","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,1],[1,0]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":null},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[2,1],[1,1]]","expandable":false},{"name":"p","type":"long long","val":"5","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,1],[1,0]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"A=[[2,1],[1,1]]"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[2,1],[1,1]]","expandable":false},{"name":"p","type":"long long","val":"2","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,1],[1,0]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"p=2"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[2,1],[1,1]]","expandable":false},{"name":"p","type":"long long","val":"2","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,1],[1,0]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"p = 2"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[2,1],[1,1]]","expandable":false},{"name":"p","type":"long long","val":"2","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,1],[1,0]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"p = 2"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[2,1],[1,1]]","expandable":false},{"name":"p","type":"long long","val":"2","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,1],[1,0]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":null},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[5,3],[3,2]]","expandable":false},{"name":"p","type":"long long","val":"2","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,1],[1,0]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"A=[[5,3],[3,2]]"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[5,3],[3,2]]","expandable":false},{"name":"p","type":"long long","val":"1","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,1],[1,0]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"p=1"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[5,3],[3,2]]","expandable":false},{"name":"p","type":"long long","val":"1","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,1],[1,0]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"p = 1"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[5,3],[3,2]]","expandable":false},{"name":"p","type":"long long","val":"1","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,1],[1,0]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"p = 1"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[5,3],[3,2]]","expandable":false},{"name":"p","type":"long long","val":"1","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,1],[1,0]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":null},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[5,3],[3,2]]","expandable":false},{"name":"p","type":"long long","val":"1","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[8,5],[5,3]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"res=[[8,5],[5,3]]"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[5,3],[3,2]]","expandable":false},{"name":"p","type":"long long","val":"1","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[8,5],[5,3]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":null},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[34,21],[21,13]]","expandable":false},{"name":"p","type":"long long","val":"1","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[8,5],[5,3]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"A=[[34,21],[21,13]]"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[34,21],[21,13]]","expandable":false},{"name":"p","type":"long long","val":"0","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[8,5],[5,3]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"p=0"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[34,21],[21,13]]","expandable":false},{"name":"p","type":"long long","val":"0","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[8,5],[5,3]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"p = 0"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[34,21],[21,13]]","expandable":false},{"name":"p","type":"long long","val":"0","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[8,5],[5,3]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"return res"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"T_pow","type":"Matrix","val":"[[8,5],[5,3]]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"T_pow primit"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"T_pow","type":"Matrix","val":"[[8,5],[5,3]]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":null},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"T_pow","type":"Matrix","val":"[[8,5],[5,3]]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":null}];
       const s = states[stepIndex] || states[states.length - 1];
-      s.v.forEach(v => vars.push({ ...v, expandable: false }));
-      s.f.forEach(fr => frames.push(fr));
-      if (stepIndex > 0) {
-        inlineVal = "p: " + vars.find(v => v.name === 'p').val + ", res: " + vars.find(v => v.name === 'res').val;
-      }
-      return { vars, globalVars, frames, inlineVal };
+      return { vars: s.vars, globalVars: [], frames: s.frames, inlineVal: s.inlineVal };
     },
     "getInlineValueForLine": (stepIndex, lineNum) => {
-      const varsAtStep = [
-        { p: 5, res: '[[1,0],[0,1]]', A: '[[1,1],[1,0]]' },
-        { p: 5, res: '[[1,0],[0,1]]', A: '[[1,1],[1,0]]' },
-        { p: 5, res: '[[1,0],[0,1]]', A: '[[1,1],[1,0]]' },
-        { p: 5, res: '[[1,0],[0,1]]', A: '[[1,1],[1,0]]' },
-        { p: 5, res: '[[1,1],[1,0]]', A: '[[1,1],[1,0]]' },
-        { p: 5, res: '[[1,1],[1,0]]', A: '[[2,1],[1,1]]' },
-        { p: 2, res: '[[1,1],[1,0]]', A: '[[2,1],[1,1]]' },
-        { p: 2, res: '[[1,1],[1,0]]', A: '[[2,1],[1,1]]' },
-        { p: 2, res: '[[1,1],[1,0]]', A: '[[2,1],[1,1]]' },
-        { p: 2, res: '[[1,1],[1,0]]', A: '[[5,3],[3,2]]' },
-        { p: 1, res: '[[1,1],[1,0]]', A: '[[5,3],[3,2]]' },
-        { p: 1, res: '[[1,1],[1,0]]', A: '[[5,3],[3,2]]' },
-        { p: 1, res: '[[1,1],[1,0]]', A: '[[5,3],[3,2]]' },
-        { p: 1, res: '[[8,5],[5,3]]', A: '[[5,3],[3,2]]' },
-        { p: 1, res: '[[8,5],[5,3]]', A: '[[34,21],[21,13]]' },
-        { p: 0, res: '[[8,5],[5,3]]', A: '[[34,21],[21,13]]' },
-        { p: 0, res: '[[8,5],[5,3]]', A: '[[34,21],[21,13]]' },
-        { p: 0, res: '[[8,5],[5,3]]', A: '[[34,21],[21,13]]' }
-      ];
-      const s = varsAtStep[stepIndex] || varsAtStep[varsAtStep.length - 1];
-      if (lineNum === 22) return "res: " + s.res;
-      if (lineNum === 23) return "p: " + s.p;
-      if (lineNum === 25) return "res: " + s.res;
-      if (lineNum === 27) return "A: " + s.A;
-      if (lineNum === 28) return "p: " + s.p;
-      if (lineNum === 30) return "res: " + s.res;
-      if (lineNum === 35) return "T_pow: " + s.res;
+      const states = [{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"T={{1,1},{1,0}}"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"Apel power"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"p","type":"long long","val":"5","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"p=5"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"p","type":"long long","val":"5","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,0],[0,1]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"res={{1,0},{0,1}}"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"p","type":"long long","val":"5","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,0],[0,1]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"p = 5"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"p","type":"long long","val":"5","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,0],[0,1]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"p = 5"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"p","type":"long long","val":"5","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,0],[0,1]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":null},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"p","type":"long long","val":"5","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,1],[1,0]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"res=[[1,1],[1,0]]"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"p","type":"long long","val":"5","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,1],[1,0]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":null},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[2,1],[1,1]]","expandable":false},{"name":"p","type":"long long","val":"5","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,1],[1,0]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"A=[[2,1],[1,1]]"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[2,1],[1,1]]","expandable":false},{"name":"p","type":"long long","val":"2","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,1],[1,0]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"p=2"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[2,1],[1,1]]","expandable":false},{"name":"p","type":"long long","val":"2","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,1],[1,0]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"p = 2"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[2,1],[1,1]]","expandable":false},{"name":"p","type":"long long","val":"2","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,1],[1,0]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"p = 2"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[2,1],[1,1]]","expandable":false},{"name":"p","type":"long long","val":"2","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,1],[1,0]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":null},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[5,3],[3,2]]","expandable":false},{"name":"p","type":"long long","val":"2","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,1],[1,0]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"A=[[5,3],[3,2]]"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[5,3],[3,2]]","expandable":false},{"name":"p","type":"long long","val":"1","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,1],[1,0]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"p=1"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[5,3],[3,2]]","expandable":false},{"name":"p","type":"long long","val":"1","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,1],[1,0]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"p = 1"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[5,3],[3,2]]","expandable":false},{"name":"p","type":"long long","val":"1","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,1],[1,0]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"p = 1"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[5,3],[3,2]]","expandable":false},{"name":"p","type":"long long","val":"1","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[1,1],[1,0]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":null},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[5,3],[3,2]]","expandable":false},{"name":"p","type":"long long","val":"1","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[8,5],[5,3]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"res=[[8,5],[5,3]]"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[5,3],[3,2]]","expandable":false},{"name":"p","type":"long long","val":"1","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[8,5],[5,3]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":null},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[34,21],[21,13]]","expandable":false},{"name":"p","type":"long long","val":"1","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[8,5],[5,3]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"A=[[34,21],[21,13]]"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[34,21],[21,13]]","expandable":false},{"name":"p","type":"long long","val":"0","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[8,5],[5,3]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"p=0"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[34,21],[21,13]]","expandable":false},{"name":"p","type":"long long","val":"0","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[8,5],[5,3]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"p = 0"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"A","type":"Matrix","val":"[[34,21],[21,13]]","expandable":false},{"name":"p","type":"long long","val":"0","expandable":false},{"name":"mod","type":"long long","val":"1000000007","expandable":false},{"name":"res","type":"Matrix","val":"[[8,5],[5,3]]","expandable":false}],"frames":[{"name":"power(T, 5, 1000000007)","file":"main.cpp","line": 20},{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"return res"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"T_pow","type":"Matrix","val":"[[8,5],[5,3]]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":"T_pow primit"},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"T_pow","type":"Matrix","val":"[[8,5],[5,3]]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":null},{"vars":[{"name":"T","type":"Matrix","val":"{{1, 1}, {1, 0}}","expandable":false},{"name":"T_pow","type":"Matrix","val":"[[8,5],[5,3]]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 32}],"inlineVal":null}];
+      const s = states[stepIndex] || states[states.length - 1];
+      if (s.inlineVal && s.frames.length > 0 && s.frames[0].line === lineNum) return s.inlineVal;
       return null;
     }
   }

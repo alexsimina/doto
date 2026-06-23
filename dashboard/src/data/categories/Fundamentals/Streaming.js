@@ -30,12 +30,25 @@ int main() {
   explanations: [
     {
       line: 8,
-      text: "Definim un vector $stream$ pentru a simula citirea valorilor de la consolă una câte una.",
+      text: "Definim un vector $stream$ pentru a simula citirea valorilor de la consolă.",
       blocksVisual: [
         {
-          label: "Flux de intrare",
-          groups: [
-            [{ val: "4" }, { val: "-2" }, { val: "7" }, { val: "0 (stop)" }]
+          "label": "Flux de intrare",
+          "groups": [
+            [
+              {
+                "val": "4"
+              },
+              {
+                "val": "-2"
+              },
+              {
+                "val": "7"
+              },
+              {
+                "val": "0 (stop)"
+              }
+            ]
           ]
         }
       ]
@@ -45,9 +58,14 @@ int main() {
       text: "Inițializăm suma numerelor pozitive cu $0$.",
       blocksVisual: [
         {
-          label: "Suma",
-          groups: [
-            [{ val: "sum = 0", active: true }]
+          "label": "Suma",
+          "groups": [
+            [
+              {
+                "val": "sum = 0",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -57,57 +75,82 @@ int main() {
       text: "Inițializăm numărul de elemente pozitive găsite cu $0$.",
       blocksVisual: [
         {
-          label: "Contor",
-          groups: [
-            [{ val: "count = 0", active: true }]
+          "label": "Contor",
+          "groups": [
+            [
+              {
+                "val": "count = 0",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 12,
-      text: "Începem parcurgerea fluxului. Primul număr citit este $x = 4$.",
+      text: "Citim următorul număr din flux: $x = 4$.",
       blocksVisual: [
         {
-          label: "Element curent",
-          groups: [
-            [{ val: "x = 4", active: true }]
+          "label": "Element curent",
+          "groups": [
+            [
+              {
+                "val": "x = 4",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 13,
-      text: "Verificăm dacă numărul citit este valoarea de oprire $0$. Nu este.",
+      text: "Verificăm dacă $x$ este $0$. Nu este.",
       blocksVisual: [
         {
-          label: "Oprire?",
-          groups: [
-            [{ val: "4 == 0 ? Nu", active: true }]
+          "label": "Oprire?",
+          "groups": [
+            [
+              {
+                "val": "4 == 0 ? Nu",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 16,
-      text: "Verificăm dacă $x$ este strict pozitiv ($4 > 0$). Este adevărat.",
+      text: "Verificăm dacă $x$ este pozitiv ($4 > 0$). Este adevărat.",
       blocksVisual: [
         {
-          label: "Verificare",
-          groups: [
-            [{ val: "4 > 0 ? Da", active: true }]
+          "label": "Verificare",
+          "groups": [
+            [
+              {
+                "val": "4 > 0 ? Da",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 17,
-      text: "Adunăm valoarea $4$ la suma totală: $sum = 0 + 4 = 4$.",
+      text: "Adunăm valoarea $4$ la suma totală: $sum = 4$.",
       blocksVisual: [
         {
-          label: "Suma",
-          groups: [
-            [{ val: "sum = 4", active: true }]
+          "label": "Suma",
+          "groups": [
+            [
+              {
+                "val": "sum = 4",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -117,21 +160,31 @@ int main() {
       text: "Incrementăm contorul numerelor pozitive: $count = 1$.",
       blocksVisual: [
         {
-          label: "Contor",
-          groups: [
-            [{ val: "count = 1", active: true }]
+          "label": "Contor",
+          "groups": [
+            [
+              {
+                "val": "count = 1",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 12,
-      text: "Trecem la următorul număr din flux: $x = -2$.",
+      text: "Citim următorul număr din flux: $x = -2$.",
       blocksVisual: [
         {
-          label: "Element curent",
-          groups: [
-            [{ val: "x = -2", active: true }]
+          "label": "Element curent",
+          "groups": [
+            [
+              {
+                "val": "x = -2",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -141,21 +194,31 @@ int main() {
       text: "Verificăm dacă $x$ este $0$. Nu este.",
       blocksVisual: [
         {
-          label: "Oprire?",
-          groups: [
-            [{ val: "-2 == 0 ? Nu", active: true }]
+          "label": "Oprire?",
+          "groups": [
+            [
+              {
+                "val": "-2 == 0 ? Nu",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 16,
-      text: "Verificăm dacă $x$ este strict pozitiv ($-2 > 0$). Este fals.",
+      text: "Verificăm dacă $x$ este pozitiv ($-2 > 0$). Este fals.",
       blocksVisual: [
         {
-          label: "Verificare",
-          groups: [
-            [{ val: "-2 > 0 ? Nu", active: true }]
+          "label": "Verificare",
+          "groups": [
+            [
+              {
+                "val": "-2 > 0 ? Nu",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -165,9 +228,14 @@ int main() {
       text: "Citim următorul număr din flux: $x = 7$.",
       blocksVisual: [
         {
-          label: "Element curent",
-          groups: [
-            [{ val: "x = 7", active: true }]
+          "label": "Element curent",
+          "groups": [
+            [
+              {
+                "val": "x = 7",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -177,9 +245,14 @@ int main() {
       text: "Verificăm dacă $x$ este $0$. Nu este.",
       blocksVisual: [
         {
-          label: "Oprire?",
-          groups: [
-            [{ val: "7 == 0 ? Nu", active: true }]
+          "label": "Oprire?",
+          "groups": [
+            [
+              {
+                "val": "7 == 0 ? Nu",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -189,21 +262,31 @@ int main() {
       text: "Verificăm dacă $x$ este pozitiv ($7 > 0$). Este adevărat.",
       blocksVisual: [
         {
-          label: "Verificare",
-          groups: [
-            [{ val: "7 > 0 ? Da", active: true }]
+          "label": "Verificare",
+          "groups": [
+            [
+              {
+                "val": "7 > 0 ? Da",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 17,
-      text: "Adunăm valoarea $7$ la suma totală: $sum = 4 + 7 = 11$.",
+      text: "Adunăm valoarea $7$ la suma totală: $sum = 11$.",
       blocksVisual: [
         {
-          label: "Suma",
-          groups: [
-            [{ val: "sum = 11", active: true }]
+          "label": "Suma",
+          "groups": [
+            [
+              {
+                "val": "sum = 11",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -213,9 +296,14 @@ int main() {
       text: "Incrementăm contorul numerelor pozitive: $count = 2$.",
       blocksVisual: [
         {
-          label: "Contor",
-          groups: [
-            [{ val: "count = 2", active: true }]
+          "label": "Contor",
+          "groups": [
+            [
+              {
+                "val": "count = 2",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -225,21 +313,31 @@ int main() {
       text: "Citim următorul număr din flux: $x = 0$.",
       blocksVisual: [
         {
-          label: "Element curent",
-          groups: [
-            [{ val: "x = 0", active: true }]
+          "label": "Element curent",
+          "groups": [
+            [
+              {
+                "val": "x = 0",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 13,
-      text: "Verificăm dacă valoarea citită este egală cu $0$. De data aceasta este adevărat.",
+      text: "Verificăm dacă $x$ este $0$. Este adevărat.",
       blocksVisual: [
         {
-          label: "Oprire?",
-          groups: [
-            [{ val: "0 == 0 ? Da", active: true }]
+          "label": "Oprire?",
+          "groups": [
+            [
+              {
+                "val": "0 == 0 ? Da",
+                "active": true
+              }
+            ]
           ]
         }
       ]
@@ -249,22 +347,35 @@ int main() {
       text: "Întrerupem bucla folosind instrucțiunea `break`.",
       blocksVisual: [
         {
-          label: "Ieșire din buclă",
-          groups: [
-            [{ val: "break", active: true }]
+          "label": "Ieșire din buclă",
+          "groups": [
+            [
+              {
+                "val": "break",
+                "active": true
+              }
+            ]
           ]
         }
       ]
     },
     {
       line: 22,
-      text: "Finalizăm programul cu succes. Variabilele finale sunt $sum = 11$ și $count = 2$.",
+      text: "Finalizăm programul. Variabilele finale sunt $sum = 11$ și $count = 2$.",
       blocksVisual: [
         {
-          label: "Stare finală",
-          groups: [
-            [{ val: "sum = 11" }],
-            [{ val: "count = 2" }]
+          "label": "Stare finală",
+          "groups": [
+            [
+              {
+                "val": "sum = 11"
+              }
+            ],
+            [
+              {
+                "val": "count = 2"
+              }
+            ]
           ]
         }
       ]
@@ -295,80 +406,811 @@ int main() {
   },
   "debugger": {
     "getDebuggerState": (stepIndex, activeLine, explanationText) => {
-      const vars = [];
-      const globalVars = [];
-      const frames = [];
-      let inlineVal = null;
-
-      frames.push({ name: 'main()', file: 'main.cpp', line: activeLine || 8 });
-
-      let sumVal = 0;
-      if (stepIndex >= 6 && stepIndex <= 13) sumVal = 4;
-      else if (stepIndex >= 14) sumVal = 11;
-
-      let countVal = 0;
-      if (stepIndex >= 7 && stepIndex <= 14) countVal = 1;
-      else if (stepIndex >= 15) countVal = 2;
-
-      if (stepIndex >= 0) {
-        vars.push({ name: 'stream', type: 'std::vector<int>', val: '{4, -2, 7, 0}', expandable: true });
-      }
-      if (stepIndex >= 1) {
-        vars.push({ name: 'sum', type: 'int', val: sumVal, expandable: false });
-      }
-      if (stepIndex >= 2) {
-        vars.push({ name: 'count', type: 'int', val: countVal, expandable: false });
-      }
-
-      let xVal = null;
-      if (stepIndex >= 3 && stepIndex <= 7) xVal = 4;
-      else if (stepIndex >= 8 && stepIndex <= 10) xVal = -2;
-      else if (stepIndex >= 11 && stepIndex <= 15) xVal = 7;
-      else if (stepIndex >= 16 && stepIndex <= 18) xVal = 0;
-
-      if (xVal !== null) {
-        vars.push({ name: 'x', type: 'int', val: xVal, expandable: false });
-      }
-
-      if (activeLine === 8) inlineVal = "stream: {4, -2, 7, 0}";
-      else if (activeLine === 9) inlineVal = "sum: 0";
-      else if (activeLine === 10) inlineVal = "count: 0";
-      else if (activeLine === 12 && xVal !== null) inlineVal = `x: ${xVal}`;
-      else if (activeLine === 13 && xVal !== null) inlineVal = `x: ${xVal}`;
-      else if (activeLine === 14) inlineVal = "x: 0";
-      else if (activeLine === 16 && xVal !== null) inlineVal = `x: ${xVal}`;
-      else if (activeLine === 17 && xVal !== null) inlineVal = `x: ${xVal}, sum: ${sumVal}`;
-      else if (activeLine === 18) inlineVal = `count: ${countVal}`;
-      else if (activeLine === 22) inlineVal = `sum: 11, count: 2`;
-
-      return { vars, globalVars, frames, inlineVal };
+      const states = [
+        {
+          "vars": [
+            {
+              "name": "stream",
+              "type": "std::vector<int>",
+              "val": "{4, -2, 7, 0}",
+              "expandable": true
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 8
+            }
+          ],
+          "inlineVal": "stream: {4, -2, 7, 0}"
+        },
+        {
+          "vars": [
+            {
+              "name": "stream",
+              "type": "std::vector<int>",
+              "val": "{4, -2, 7, 0}",
+              "expandable": true
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 9
+            }
+          ],
+          "inlineVal": "sum: 0"
+        },
+        {
+          "vars": [
+            {
+              "name": "stream",
+              "type": "std::vector<int>",
+              "val": "{4, -2, 7, 0}",
+              "expandable": true
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 10
+            }
+          ],
+          "inlineVal": "count: 0"
+        },
+        {
+          "vars": [
+            {
+              "name": "stream",
+              "type": "std::vector<int>",
+              "val": "{4, -2, 7, 0}",
+              "expandable": true
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "x",
+              "type": "int",
+              "val": 4,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 12
+            }
+          ],
+          "inlineVal": "x: 4"
+        },
+        {
+          "vars": [
+            {
+              "name": "stream",
+              "type": "std::vector<int>",
+              "val": "{4, -2, 7, 0}",
+              "expandable": true
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "x",
+              "type": "int",
+              "val": 4,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 13
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "stream",
+              "type": "std::vector<int>",
+              "val": "{4, -2, 7, 0}",
+              "expandable": true
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "x",
+              "type": "int",
+              "val": 4,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 16
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "stream",
+              "type": "std::vector<int>",
+              "val": "{4, -2, 7, 0}",
+              "expandable": true
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 4,
+              "expandable": false
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            },
+            {
+              "name": "x",
+              "type": "int",
+              "val": 4,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 17
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "stream",
+              "type": "std::vector<int>",
+              "val": "{4, -2, 7, 0}",
+              "expandable": true
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 4,
+              "expandable": false
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "x",
+              "type": "int",
+              "val": 4,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 18
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "stream",
+              "type": "std::vector<int>",
+              "val": "{4, -2, 7, 0}",
+              "expandable": true
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 4,
+              "expandable": false
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "x",
+              "type": "int",
+              "val": -2,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 12
+            }
+          ],
+          "inlineVal": "x: -2"
+        },
+        {
+          "vars": [
+            {
+              "name": "stream",
+              "type": "std::vector<int>",
+              "val": "{4, -2, 7, 0}",
+              "expandable": true
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 4,
+              "expandable": false
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "x",
+              "type": "int",
+              "val": -2,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 13
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "stream",
+              "type": "std::vector<int>",
+              "val": "{4, -2, 7, 0}",
+              "expandable": true
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 4,
+              "expandable": false
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "x",
+              "type": "int",
+              "val": -2,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 16
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "stream",
+              "type": "std::vector<int>",
+              "val": "{4, -2, 7, 0}",
+              "expandable": true
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 4,
+              "expandable": false
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "x",
+              "type": "int",
+              "val": 7,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 12
+            }
+          ],
+          "inlineVal": "x: 7"
+        },
+        {
+          "vars": [
+            {
+              "name": "stream",
+              "type": "std::vector<int>",
+              "val": "{4, -2, 7, 0}",
+              "expandable": true
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 4,
+              "expandable": false
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "x",
+              "type": "int",
+              "val": 7,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 13
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "stream",
+              "type": "std::vector<int>",
+              "val": "{4, -2, 7, 0}",
+              "expandable": true
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 4,
+              "expandable": false
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "x",
+              "type": "int",
+              "val": 7,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 16
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "stream",
+              "type": "std::vector<int>",
+              "val": "{4, -2, 7, 0}",
+              "expandable": true
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 11,
+              "expandable": false
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "x",
+              "type": "int",
+              "val": 7,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 17
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "stream",
+              "type": "std::vector<int>",
+              "val": "{4, -2, 7, 0}",
+              "expandable": true
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 11,
+              "expandable": false
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "val": 2,
+              "expandable": false
+            },
+            {
+              "name": "x",
+              "type": "int",
+              "val": 7,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 18
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "stream",
+              "type": "std::vector<int>",
+              "val": "{4, -2, 7, 0}",
+              "expandable": true
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 11,
+              "expandable": false
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "val": 2,
+              "expandable": false
+            },
+            {
+              "name": "x",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 12
+            }
+          ],
+          "inlineVal": "x: 0"
+        },
+        {
+          "vars": [
+            {
+              "name": "stream",
+              "type": "std::vector<int>",
+              "val": "{4, -2, 7, 0}",
+              "expandable": true
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 11,
+              "expandable": false
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "val": 2,
+              "expandable": false
+            },
+            {
+              "name": "x",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 13
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "stream",
+              "type": "std::vector<int>",
+              "val": "{4, -2, 7, 0}",
+              "expandable": true
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 11,
+              "expandable": false
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "val": 2,
+              "expandable": false
+            },
+            {
+              "name": "x",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 14
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "stream",
+              "type": "std::vector<int>",
+              "val": "{4, -2, 7, 0}",
+              "expandable": true
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 11,
+              "expandable": false
+            },
+            {
+              "name": "count",
+              "type": "int",
+              "val": 2,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 22
+            }
+          ],
+          "inlineVal": null
+        }
+      ];
+      if (stepIndex < 0) return { vars: [], globalVars: [], frames: [{ name: 'main()', file: 'main.cpp', line: activeLine || 8 }], inlineVal: null };
+      if (stepIndex >= states.length) stepIndex = states.length - 1;
+      const state = states[stepIndex];
+      return { vars: state.vars, globalVars: [], frames: state.frames, inlineVal: state.inlineVal };
     },
     "getInlineValueForLine": (stepIndex, lineNum) => {
-      let sumVal = 0;
-      if (stepIndex >= 6 && stepIndex <= 13) sumVal = 4;
-      else if (stepIndex >= 14) sumVal = 11;
-
-      let countVal = 0;
-      if (stepIndex >= 7 && stepIndex <= 14) countVal = 1;
-      else if (stepIndex >= 15) countVal = 2;
-
-      let xVal = null;
-      if (stepIndex >= 3 && stepIndex <= 7) xVal = 4;
-      else if (stepIndex >= 8 && stepIndex <= 10) xVal = -2;
-      else if (stepIndex >= 11 && stepIndex <= 15) xVal = 7;
-      else if (stepIndex >= 16 && stepIndex <= 18) xVal = 0;
-
-      if (lineNum === 8 && stepIndex >= 0) return 'stream: {4, -2, 7, 0}';
-      if (lineNum === 9 && stepIndex >= 1) return 'sum: 0';
-      if (lineNum === 10 && stepIndex >= 2) return 'count: 0';
-      if (lineNum === 12 && xVal !== null) return `x: ${xVal}`;
-      if (lineNum === 13 && xVal !== null) return `x: ${xVal}`;
-      if (lineNum === 14 && stepIndex >= 18) return 'x: 0';
-      if (lineNum === 16 && xVal !== null) return `x: ${xVal}`;
-      if (lineNum === 17 && xVal !== null) return `x: ${xVal}, sum: ${sumVal}`;
-      if (lineNum === 18 && stepIndex >= 7) return `count: ${countVal}`;
-      if (lineNum === 22 && stepIndex >= 19) return `sum: 11, count: 2`;
-      return null;
+      const states = [
+        {
+          "8": "stream: {4, -2, 7, 0}"
+        },
+        {
+          "8": "stream: {4, -2, 7, 0}",
+          "9": "sum: 0"
+        },
+        {
+          "8": "stream: {4, -2, 7, 0}",
+          "9": "sum: 0",
+          "10": "count: 0"
+        },
+        {
+          "8": "stream: {4, -2, 7, 0}",
+          "9": "sum: 0",
+          "10": "count: 0",
+          "12": "x: 4"
+        },
+        {
+          "8": "stream: {4, -2, 7, 0}",
+          "9": "sum: 0",
+          "10": "count: 0",
+          "12": "x: 4"
+        },
+        {
+          "8": "stream: {4, -2, 7, 0}",
+          "9": "sum: 0",
+          "10": "count: 0",
+          "12": "x: 4"
+        },
+        {
+          "8": "stream: {4, -2, 7, 0}",
+          "9": "sum: 4",
+          "10": "count: 0",
+          "12": "x: 4"
+        },
+        {
+          "8": "stream: {4, -2, 7, 0}",
+          "9": "sum: 4",
+          "10": "count: 1",
+          "12": "x: 4"
+        },
+        {
+          "8": "stream: {4, -2, 7, 0}",
+          "9": "sum: 4",
+          "10": "count: 1",
+          "12": "x: -2"
+        },
+        {
+          "8": "stream: {4, -2, 7, 0}",
+          "9": "sum: 4",
+          "10": "count: 1",
+          "12": "x: -2"
+        },
+        {
+          "8": "stream: {4, -2, 7, 0}",
+          "9": "sum: 4",
+          "10": "count: 1",
+          "12": "x: -2"
+        },
+        {
+          "8": "stream: {4, -2, 7, 0}",
+          "9": "sum: 4",
+          "10": "count: 1",
+          "12": "x: 7"
+        },
+        {
+          "8": "stream: {4, -2, 7, 0}",
+          "9": "sum: 4",
+          "10": "count: 1",
+          "12": "x: 7"
+        },
+        {
+          "8": "stream: {4, -2, 7, 0}",
+          "9": "sum: 4",
+          "10": "count: 1",
+          "12": "x: 7"
+        },
+        {
+          "8": "stream: {4, -2, 7, 0}",
+          "9": "sum: 11",
+          "10": "count: 1",
+          "12": "x: 7"
+        },
+        {
+          "8": "stream: {4, -2, 7, 0}",
+          "9": "sum: 11",
+          "10": "count: 2",
+          "12": "x: 7"
+        },
+        {
+          "8": "stream: {4, -2, 7, 0}",
+          "9": "sum: 11",
+          "10": "count: 2",
+          "12": "x: 0"
+        },
+        {
+          "8": "stream: {4, -2, 7, 0}",
+          "9": "sum: 11",
+          "10": "count: 2",
+          "12": "x: 0"
+        },
+        {
+          "8": "stream: {4, -2, 7, 0}",
+          "9": "sum: 11",
+          "10": "count: 2",
+          "12": "x: 0"
+        },
+        {
+          "8": "stream: {4, -2, 7, 0}",
+          "9": "sum: 11",
+          "10": "count: 2"
+        }
+      ];
+      if (stepIndex < 0) return null;
+      if (stepIndex >= states.length) stepIndex = states.length - 1;
+      return states[stepIndex][lineNum] || null;
     }
   }
-};
+}
+;

@@ -333,9 +333,25 @@ Below is the list of all domains (sections) and topics in the syllabus tree, map
 * **Graphs/Tree_Diameter** (Node ID: `graph_diameter`) — [Tree_Diameter.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Tree_Diameter.js)
 * **Graphs/Shortest_Path/Dial** (Node ID: `graph_dial`) — [Dial.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Shortest_Path/Dial.js)
 
+## ⚠️ C++ Line Numbering & Debugger Offsets (CRITICAL)
+
+To prevent alignment bugs where highlighted line numbers in the UI do not correspond to the code line explained, you must follow these absolute rules when writing or updating category data files:
+
+1. **Relative 1-Indexed Line Numbers:** The line numbers in `explanations` step arrays (`"line": X`) and `debugger` hooks (e.g. `lineNum === X` and stack frames) **MUST** match the 1-indexed relative line number of the C++ code block. The first line of the actual C++ code (e.g., `#include <iostream>`) is **Line 1**.
+2. **Beware of Leading Newlines:** The frontend component `CategoryPresentation.jsx` strips leading and trailing newlines from the `code` string using `data.code.replace(/^\r?\n/, '')`. 
+   - If your C++ code template literal starts with a blank line on a new line (e.g., `code: \`\n#include...`), the frontend shifts the rendered lines up by 1.
+   - Do **NOT** offset your line numbers to match the JS file layout line numbers.
+3. **Common Offset Types:**
+   - **JSON Header Offset (usually +6 or +7):** Occurs when line numbers match the line numbers of the JS file itself rather than starting from 1 inside the C++ code block.
+   - **Template Newline Offset (usually +1):** Occurs when line numbers are written counting the unstripped leading newline inside template string literals.
+4. **Mandatory Verification Checks:**
+   - Before completing work, always run `node scratch/check_all_out_of_bounds.cjs` to ensure no step refers to a non-existent line number.
+   - Run `node scratch/offset_dry_run.cjs` to review a preview of the C++ line matches for all files.
+
 ---
 
 ## 🧪 Validation & Syntax Checks
+
 
 To guarantee that any changes made to the syllabus category files are syntactically and structurally correct (and conform to the React dashboard expectations), you should run the validation tools located in the `/validation_tools` directory.
 

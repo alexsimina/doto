@@ -205,7 +205,7 @@ function analyzeFile(filePath) {
     return errors;
 }
 
-const categoriesDir = path.resolve(__dirname, '../dashboard/src/data/categories');
+const categoriesDir = path.resolve(__dirname, '../../dashboard/src/data/categories');
 const files = getJsFiles(categoriesDir);
 console.log(`Analyzing ${files.length} files...\n`);
 

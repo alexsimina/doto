@@ -24,9 +24,48 @@ if [ $BUILD_STATUS -ne 0 ]; then
 fi
 echo "✅ Dashboard build succeeded."
 
-# 2. Verify backend routing tests
+# 2. Verify category data files
 echo ""
-echo "⚙️ Step 2: Running backend unit tests..."
+echo "📊 Step 2: Validating category data configuration files..."
+echo "-----------------------------------------"
+
+echo "🔍 Checking file structure and debugger hooks..."
+node validation_tools/validate_syntax.cjs
+SYNTAX_STATUS=$?
+if [ $SYNTAX_STATUS -ne 0 ]; then
+    echo ""
+    echo "❌ ERROR: Category syntax validation failed!"
+    echo "Push aborted. Please fix the syntax errors before pushing."
+    echo "========================================="
+    exit 1
+fi
+
+echo "🔍 Checking debugger line alignments..."
+node validation_tools/BadDebuggerLines/check_all_out_of_bounds.cjs
+ALIGN_STATUS=$?
+if [ $ALIGN_STATUS -ne 0 ]; then
+    echo ""
+    echo "❌ ERROR: Debugger line alignments have errors!"
+    echo "Push aborted. Please fix the alignments before pushing."
+    echo "========================================="
+    exit 1
+fi
+
+echo "🔍 Checking LaTeX/KaTeX math formatting..."
+node validation_tools/LaTeX/check_all_latex.cjs
+LATEX_STATUS=$?
+if [ $LATEX_STATUS -ne 0 ]; then
+    echo ""
+    echo "❌ ERROR: LaTeX math formatting errors found!"
+    echo "Push aborted. Please fix the math formatting before pushing."
+    echo "========================================="
+    exit 1
+fi
+echo "✅ Category validation checks passed."
+
+# 3. Verify backend routing tests
+echo ""
+echo "⚙️ Step 3: Running backend unit tests..."
 echo "-----------------------------------------"
 node backend/test_routing.js
 TEST_STATUS=$?
@@ -40,9 +79,9 @@ if [ $TEST_STATUS -ne 0 ]; then
 fi
 echo "✅ Backend unit tests passed."
 
-# 3. Verify E2E tests (only if backend server is running)
+# 4. Verify E2E tests (only if backend server is running)
 echo ""
-echo "🌐 Step 3: Checking if backend server is running for E2E tests..."
+echo "🌐 Step 4: Checking if backend server is running for E2E tests..."
 echo "-----------------------------------------"
 # Attempt to connect to localhost:3000/execute
 curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/execute > /dev/null 2>&1

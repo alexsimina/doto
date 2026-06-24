@@ -12,7 +12,7 @@ const targetFiles = [
     'Data_Structures/Data_Structures/Stack.js'
 ];
 
-const basePath = path.resolve(__dirname, '../dashboard/src/data/categories');
+const basePath = path.resolve(__dirname, '../../dashboard/src/data/categories');
 
 targetFiles.forEach(relPath => {
     const filePath = path.join(basePath, relPath);

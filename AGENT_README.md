@@ -36,9 +36,19 @@ Testing framework and cases for the application.
 - `/cases/`: Directory containing specific E2E test cases.
 
 ### 5. `/validation_tools` (Validation Scripts)
-Scripts to validate the syntax, structure, and execution of category configuration JS files.
+Scripts to validate the syntax, structure, LaTeX formatting, and debugger line number alignments of category configuration JS files.
 - `validate_syntax.cjs`: Syntax and structural validation tool for category data configuration JS files.
 - `bracket_counter.cjs`: Helper script to count and match brackets and strings in files.
+- `/BadDebuggerLines`: Subdirectory with tools to check and correct C++ debugger line number alignment offsets:
+  - `check_all_out_of_bounds.cjs`: Verifies that all steps in explanations point to valid C++ code lines.
+  - `offset_dry_run.cjs`: Analyzes all category JS files and suggests the best line offsets.
+  - `verify_details.cjs`: Utility to test line alignment offsets for target files.
+  - `fix_all_offsets.cjs`: Applies calculated offset shifts to category files.
+  - `test_heuristic.cjs`: Runs heuristic checks to determine ideal debugger line offsets.
+- `/LaTeX`: Subdirectory with tools to validate and fix LaTeX/math formatting:
+  - `check_all_latex.cjs`: Scans all files for unclosed math delimiters, mismatched dollar signs, and syntax errors.
+  - `find_latex_errors.cjs`: Identifies potential LaTeX issues, such as missing backslashes before LaTeX commands in math blocks.
+  - `fix_latex_backslashes.cjs`: Automatically repairs over-escaped backslashes (converting `\\\\\\\\` to `\\\\`).
 
 ### 6. Root Directory (`/`) Data & Scripts
 The root contains numerous CommonJS (`.cjs`) utility scripts and JSON data files. These are primarily used for processing, parsing, fixing, and injecting algorithmic and mathematical content.
@@ -345,20 +355,21 @@ To prevent alignment bugs where highlighted line numbers in the UI do not corres
    - **JSON Header Offset (usually +6 or +7):** Occurs when line numbers match the line numbers of the JS file itself rather than starting from 1 inside the C++ code block.
    - **Template Newline Offset (usually +1):** Occurs when line numbers are written counting the unstripped leading newline inside template string literals.
 4. **Mandatory Verification Checks:**
-   - Before completing work, always run `node scratch/check_all_out_of_bounds.cjs` to ensure no step refers to a non-existent line number.
-   - Run `node scratch/offset_dry_run.cjs` to review a preview of the C++ line matches for all files.
+   - Before completing work, always run `node validation_tools/BadDebuggerLines/check_all_out_of_bounds.cjs` to ensure no step refers to a non-existent line number.
+   - Run `node validation_tools/BadDebuggerLines/offset_dry_run.cjs` to review a preview of the C++ line matches for all files.
 
 ---
 
 ## 🧪 Validation & Syntax Checks
 
+To guarantee that any changes made to the syllabus category files are syntactically and structurally correct, conform to the React dashboard expectations, and display math/LaTeX and debugger steps correctly, you should run the validation tools located in the `/validation_tools` directory.
 
-To guarantee that any changes made to the syllabus category files are syntactically and structurally correct (and conform to the React dashboard expectations), you should run the validation tools located in the `/validation_tools` directory.
+### 1. Root Validation Scripts
 
-### 1. `validate_syntax.cjs`
+#### `validate_syntax.cjs`
 This script checks one or more category JS configuration files. It validates that critical fields (like `presentation`, `explanations`, `problems`) are present, and checks the signature and run-time execution of the custom `debugger` hooks (`getDebuggerState` and `getInlineValueForLine`).
 
-- **Usage (All files in a category directory):**
+- **Usage (All files in the categories directory):**
   ```cmd
   node validation_tools/validate_syntax.cjs
   ```
@@ -367,7 +378,7 @@ This script checks one or more category JS configuration files. It validates tha
   node validation_tools/validate_syntax.cjs dashboard/src/data/categories/Math_Geometry/Math/Advanced.js
   ```
 
-### 2. `bracket_counter.cjs`
+#### `bracket_counter.cjs`
 A utility script used to inspect balanced brackets (braces, parentheses, brackets) and unclosed strings/comments. It helps catch syntax errors, mismatched JSON structures, or template literal string leaks.
 
 - **Usage:**
@@ -375,12 +386,76 @@ A utility script used to inspect balanced brackets (braces, parentheses, bracket
   node validation_tools/bracket_counter.cjs <path_to_file.js>
   ```
 
-### 3. `fix_latex_backslashes.cjs`
-A helper script to automatically find and fix over-escaped LaTeX backslashes (replacing 4 backslashes `\\\\` in the source file with 2 backslashes `\\` for correct browser-level KaTeX rendering inside template literals or double-quoted strings).
+### 2. C++ Line Number & Debugger Alignment Tools (`/BadDebuggerLines`)
+
+These tools help diagnose and repair offsets between C++ code lines and the step numbers used in the explanations block of the category files.
+
+#### `offset_dry_run.cjs`
+Analyzes all files in the categories folder, tries offsets from 0 to 50, and prints a preview of the best offset (by comparing step text with code keywords) and how many out-of-bounds steps would be resolved.
 
 - **Usage:**
   ```cmd
-  node validation_tools/fix_latex_backslashes.cjs
+  node validation_tools/BadDebuggerLines/offset_dry_run.cjs
+  ```
+
+#### `verify_details.cjs`
+Utility to print lines for specific target files at offsets from -2 to 8 to inspect code-to-text mapping.
+
+- **Usage:**
+  ```cmd
+  node validation_tools/BadDebuggerLines/verify_details.cjs
+  ```
+
+#### `fix_all_offsets.cjs`
+Shift script that applies calculated offset shifts directly to the `"line"`, `lineNum`, and `activeLine` comparisons inside category JS files.
+
+- **Usage:**
+  ```cmd
+  node validation_tools/BadDebuggerLines/fix_all_offsets.cjs
+  ```
+
+#### `test_heuristic.cjs`
+Prints the best offset and score for each JS file based on a keyword matching heuristic.
+
+- **Usage:**
+  ```cmd
+  node validation_tools/BadDebuggerLines/test_heuristic.cjs
+  ```
+
+#### `check_all_out_of_bounds.cjs`
+Verifies that all steps in the explanations reference valid line numbers in the C++ code block.
+
+- **Usage:**
+  ```cmd
+  node validation_tools/BadDebuggerLines/check_all_out_of_bounds.cjs
+  ```
+
+### 3. LaTeX & Math Formatting Tools (`/LaTeX`)
+
+These tools ensure KaTeX formulas render correctly in the dashboard's explanation panes and do not cause parsing crashes.
+
+#### `check_all_latex.cjs`
+Scans all category JS files recursively for LaTeX syntax errors, unclosed math delimiters (`$`), mismatched dollar signs, and newlines inside inline math blocks.
+
+- **Usage:**
+  ```cmd
+  node validation_tools/LaTeX/check_all_latex.cjs
+  ```
+
+#### `find_latex_errors.cjs`
+Runs detailed diagnostics looking for unescaped LaTeX commands in raw source files or missing backslashes inside math blocks (e.g. `cdot` or `to` without a backslash).
+
+- **Usage:**
+  ```cmd
+  node validation_tools/LaTeX/find_latex_errors.cjs
+  ```
+
+#### `fix_latex_backslashes.cjs`
+A helper script to automatically find and fix over-escaped LaTeX backslashes (replacing 4-backslash `\\\\\\\\` sequences in the source file with 2-backslash `\\\\` sequences for correct browser-level KaTeX rendering inside template literals or double-quoted strings).
+
+- **Usage:**
+  ```cmd
+  node validation_tools/LaTeX/fix_latex_backslashes.cjs
   ```
 
 

@@ -16,7 +16,7 @@ function getJsFiles(dir) {
     return results;
 }
 
-const categoriesDir = path.resolve(__dirname, '../dashboard/src/data/categories');
+const categoriesDir = path.resolve(__dirname, '../../dashboard/src/data/categories');
 const files = getJsFiles(categoriesDir);
 
 console.log(`Scanning ${files.length} files for 4-backslash escaping...`);

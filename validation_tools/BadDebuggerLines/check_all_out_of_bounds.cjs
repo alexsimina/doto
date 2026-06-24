@@ -16,7 +16,12 @@ function getJsFiles(dir) {
     return results;
 }
 
-const files = getJsFiles(path.resolve(__dirname, '../dashboard/src/data/categories'));
+const categoriesDir = path.resolve(__dirname, '../../dashboard/src/data/categories');
+const files = getJsFiles(categoriesDir);
+
+let allOk = true;
+
+console.log(`Checking ${files.length} category files for out-of-bounds steps...\n`);
 
 files.forEach(filePath => {
     let content = fs.readFileSync(filePath, 'utf8');
@@ -32,23 +37,26 @@ files.forEach(filePath => {
             const lines = cleanCode.split('\n');
             const numLines = lines.length;
             
-            let outOfBoundsCount = 0;
-            let maxLine = 0;
-            data.explanations.forEach(step => {
+            const oobSteps = [];
+            data.explanations.forEach((step, idx) => {
                 if (step.line > numLines || step.line <= 0) {
-                    outOfBoundsCount++;
+                    oobSteps.push({ index: idx, line: step.line, text: step.text });
                 }
-                if (step.line > maxLine) maxLine = step.line;
             });
             
-            if (outOfBoundsCount > 0) {
-                console.log(`❌ ${path.relative(path.resolve(__dirname, '..'), filePath)}: ${outOfBoundsCount} steps out of bounds! (Max line: ${maxLine}, Code lines: ${numLines})`);
+            const relPath = path.relative(categoriesDir, filePath);
+            if (oobSteps.length > 0) {
+                allOk = false;
+                console.log(`❌ ${relPath}: ${oobSteps.length} step(s) out of bounds! (Code lines: ${numLines})`);
+                oobSteps.forEach(s => {
+                    console.log(`   - Step ${s.index} references line ${s.line} | "${s.text.substring(0, 75)}..."`);
+                });
             } else {
-                console.log(`✅ ${path.relative(path.resolve(__dirname, '..'), filePath)}: OK (Code lines: ${numLines})`);
+                console.log(`✅ ${relPath}: OK (Code lines: ${numLines})`);
             }
         }
     } catch (err) {
-        console.log(`⚠️ ${path.relative(path.resolve(__dirname, '..'), filePath)}: Evaluator error - ${err.message}`);
+        console.log(`⚠️ ${path.relative(categoriesDir, filePath)}: Loader error - ${err.message}`);
     } finally {
         if (fs.existsSync(tempFile)) {
             fs.unlinkSync(tempFile);
@@ -56,3 +64,10 @@ files.forEach(filePath => {
         delete require.cache[require.resolve(tempFile)];
     }
 });
+
+if (!allOk) {
+    console.log("\n✗ Mismatch found: Some files have out-of-bounds line numbers.");
+    process.exit(1);
+} else {
+    console.log("\n✓ All files are clean and properly aligned!");
+}

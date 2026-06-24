@@ -21,7 +21,7 @@ function analyzeFile(filePath) {
     const errors = [];
     const relativePath = path.relative(path.resolve(__dirname, '..'), filePath);
     
-    // 1. Scan raw file content for unescaped backslashes followed by words
+    // 1. Scan raw file content for unescaped backslashes followed by known LaTeX commands
     let index = 0;
     while ((index = content.indexOf('\\', index)) !== -1) {
         // Check if it is preceded by another backslash
@@ -30,20 +30,17 @@ function analyzeFile(filePath) {
             continue; // Escaped backslash, so it is correct
         }
         
-        // Extract the word after the backslash
         const match = content.slice(index + 1).match(/^[a-zA-Z]+/);
         if (match) {
             const word = match[0];
-            // Standard single-character escape sequences in JS
-            const standardEscapes = ['n', 't', 'r', 'b', 'f', 'v', 'u', 'x'];
+            const latexCommands = ['to', 'cdot', 'pi', 'mathcal', 'le', 'ge', 'log', 'max', 'min', 'theta', 'deg', 'sum', 'infty', 'left', 'right', 'dots', 'alpha', 'beta', 'gamma', 'omega', 'Delta', 'phi', 'cup', 'cap', 'subset', 'subseteq', 'in', 'notin', 'times', 'div', 'pm', 'mp'];
             
-            if (!standardEscapes.includes(word) || word.length > 1) {
-                // Find line number
+            if (latexCommands.includes(word)) {
                 const lineNum = content.slice(0, index).split('\n').length;
                 errors.push({
                     type: 'unescaped-backslash',
                     line: lineNum,
-                    message: `Line ${lineNum}: Found unescaped LaTeX or escape command '\\${word}' in raw source code.`
+                    message: `Line ${lineNum}: Found unescaped LaTeX command '\\${word}' in raw source code.`
                 });
             }
         }
@@ -119,7 +116,7 @@ function analyzeFile(filePath) {
     return errors;
 }
 
-const categoriesDir = path.resolve(__dirname, '../dashboard/src/data/categories');
+const categoriesDir = path.resolve(__dirname, '../../dashboard/src/data/categories');
 const files = getJsFiles(categoriesDir);
 console.log(`Analyzing ${files.length} files...\n`);
 

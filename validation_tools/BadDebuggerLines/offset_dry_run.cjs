@@ -16,7 +16,7 @@ function getJsFiles(dir) {
     return results;
 }
 
-const files = getJsFiles(path.resolve(__dirname, '../dashboard/src/data/categories'));
+const files = getJsFiles(path.resolve(__dirname, '../../dashboard/src/data/categories'));
 
 files.forEach(filePath => {
     let content = fs.readFileSync(filePath, 'utf8');
@@ -73,7 +73,7 @@ files.forEach(filePath => {
         
         if (bestOffset > 0) {
             console.log(`\n========================================`);
-            console.log(`File: ${path.relative(path.resolve(__dirname, '../dashboard/src/data/categories'), filePath)}`);
+            console.log(`File: ${path.relative(path.resolve(__dirname, '../../dashboard/src/data/categories'), filePath)}`);
             console.log(`Best Offset: ${bestOffset} (Score: ${maxScore})`);
             
             let oobCount = 0;

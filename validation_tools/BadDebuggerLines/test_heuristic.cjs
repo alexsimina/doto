@@ -16,7 +16,7 @@ function getJsFiles(dir) {
     return results;
 }
 
-const files = getJsFiles(path.resolve(__dirname, '../dashboard/src/data/categories'));
+const files = getJsFiles(path.resolve(__dirname, '../../dashboard/src/data/categories'));
 
 files.forEach(filePath => {
     let content = fs.readFileSync(filePath, 'utf8');

@@ -22,8 +22,7 @@ Pentru $N$ obiecte în plan (cum ar fi puncte sau capete de segmente):
 - Găsirea celei mai apropiate perechi de puncte în plan bidimensional.
 - Determinarea tuturor punctelor de intersecție dintr-o mulțime de segmente de dreaptă.
 - Triangularea poligoanelor în grafică computerizată.`,
-  "code": `
-#include <iostream>
+  "code": `#include <iostream>
 #include <vector>
 #include <set>
 #include <cmath>
@@ -87,262 +86,262 @@ int main() {
   "explanations": [
   {
     "line": 56,
-    "text": "pts",
+    "text": "Inițializăm vectorul de puncte (pts) în plan bidimensional.",
     "blocksVisual": []
   },
   {
     "line": 57,
-    "text": "Apel closestPair",
+    "text": "Apelăm funcția closestPair pentru a calcula distanța minimă dintre o pereche de puncte.",
     "blocksVisual": []
   },
   {
     "line": 29,
-    "text": "Intrare functie",
+    "text": "Intrăm în corpul funcției closestPair.",
     "blocksVisual": []
   },
   {
     "line": 30,
-    "text": "sort(points)",
+    "text": "Sortăm punctele lexicografic după coordonata X (și secundar după Y) în O(N log N) pentru a permite baleierea de la stânga la dreapta.",
     "blocksVisual": []
   },
   {
     "line": 31,
-    "text": "set active_set",
+    "text": "Inițializăm structura de date active_set (un set ordonat după axa Y care reține punctele din fereastra de baleiere curentă).",
     "blocksVisual": []
   },
   {
     "line": 32,
-    "text": "d = dist",
+    "text": "Inițializăm distanța minimă curentă d ca fiind distanța dintre primele două puncte.",
     "blocksVisual": []
   },
   {
     "line": 33,
-    "text": "insert points[0]",
+    "text": "Introducem primul punct points[0] în mulțimea punctelor active (active_set).",
     "blocksVisual": []
   },
   {
     "line": 34,
-    "text": "insert points[1]",
+    "text": "Introducem al doilea punct points[1] în active_set.",
     "blocksVisual": []
   },
   {
     "line": 36,
-    "text": "int left = 0",
+    "text": "Inițializăm indicele left = 0 pentru a urmări marginea stângă a ferestrei active (punctele a căror distanță pe X față de linia de baleiere este sub d).",
     "blocksVisual": []
   },
   {
     "line": 37,
-    "text": "for i=2",
+    "text": "Parcurgem punctele de la stânga la dreapta; analizăm punctul de la indexul i = 2.",
     "blocksVisual": []
   },
   {
     "line": 38,
-    "text": "while (left < i && points[i].x - points[left].x >= d)",
+    "text": "Verificăm dacă cel mai din stânga punct activ (la indexul left) se află în afara ferestrei de lățime d pe axa X față de punctul curent i.",
     "blocksVisual": []
   },
   {
     "line": 39,
-    "text": "active_set.erase",
+    "text": "Deoarece diferența pe coordonata X este mai mare sau egală cu d, eliminăm punctul points[left] din mulțimea punctelor active active_set.",
     "blocksVisual": []
   },
   {
     "line": 40,
-    "text": "left++",
+    "text": "Incrementăm indicele left pentru a avansa marginea stângă a ferestrei active.",
     "blocksVisual": []
   },
   {
     "line": 38,
-    "text": "while (left < i && points[i].x - points[left].x >= d)",
+    "text": "Verificăm dacă cel mai din stânga punct activ (la indexul left) se află în afara ferestrei de lățime d pe axa X față de punctul curent i.",
     "blocksVisual": []
   },
   {
     "line": 39,
-    "text": "active_set.erase",
+    "text": "Deoarece diferența pe coordonata X este mai mare sau egală cu d, eliminăm punctul points[left] din mulțimea punctelor active active_set.",
     "blocksVisual": []
   },
   {
     "line": 40,
-    "text": "left++",
+    "text": "Incrementăm indicele left pentru a avansa marginea stângă a ferestrei active.",
     "blocksVisual": []
   },
   {
     "line": 38,
-    "text": "while ended",
+    "text": "Ieșim din bucla while deoarece toate punctele active rămase se află în interiorul ferestrei de lățime d pe axa X față de points[i].",
     "blocksVisual": []
   },
   {
     "line": 43,
-    "text": "lower = ...",
+    "text": "Definim limita inferioară a intervalului pe axa Y: lower = points[i].y - d.",
     "blocksVisual": []
   },
   {
     "line": 44,
-    "text": "upper = ...",
+    "text": "Definim limita superioară a intervalului pe axa Y: upper = points[i].y + d.",
     "blocksVisual": []
   },
   {
     "line": 45,
-    "text": "auto it_start = active_set.lower_bound(lower)",
+    "text": "Căutăm în active_set punctele care se află în intervalul de coordonate Y [lower, upper] folosind lower_bound.",
     "blocksVisual": []
   },
   {
     "line": 50,
-    "text": "active_set.insert(points[i])",
+    "text": "Introducem punctul curent points[i] în mulțimea active_set pentru a fi considerat activ la pașii următori.",
     "blocksVisual": []
   },
   {
     "line": 37,
-    "text": "for i=3",
+    "text": "Parcurgem punctele de la stânga la dreapta; analizăm punctul de la indexul i = 3.",
     "blocksVisual": []
   },
   {
     "line": 38,
-    "text": "while (left < i && points[i].x - points[left].x >= d)",
+    "text": "Verificăm dacă cel mai din stânga punct activ (la indexul left) se află în afara ferestrei de lățime d pe axa X față de punctul curent i.",
     "blocksVisual": []
   },
   {
     "line": 39,
-    "text": "active_set.erase",
+    "text": "Deoarece diferența pe coordonata X este mai mare sau egală cu d, eliminăm punctul points[left] din mulțimea punctelor active active_set.",
     "blocksVisual": []
   },
   {
     "line": 40,
-    "text": "left++",
+    "text": "Incrementăm indicele left pentru a avansa marginea stângă a ferestrei active.",
     "blocksVisual": []
   },
   {
     "line": 38,
-    "text": "while ended",
+    "text": "Ieșim din bucla while deoarece toate punctele active rămase se află în interiorul ferestrei de lățime d pe axa X față de points[i].",
     "blocksVisual": []
   },
   {
     "line": 43,
-    "text": "lower = ...",
+    "text": "Definim limita inferioară a intervalului pe axa Y: lower = points[i].y - d.",
     "blocksVisual": []
   },
   {
     "line": 44,
-    "text": "upper = ...",
+    "text": "Definim limita superioară a intervalului pe axa Y: upper = points[i].y + d.",
     "blocksVisual": []
   },
   {
     "line": 45,
-    "text": "auto it_start = active_set.lower_bound(lower)",
+    "text": "Căutăm în active_set punctele care se află în intervalul de coordonate Y [lower, upper] folosind lower_bound.",
     "blocksVisual": []
   },
   {
     "line": 50,
-    "text": "active_set.insert(points[i])",
+    "text": "Introducem punctul curent points[i] în mulțimea active_set pentru a fi considerat activ la pașii următori.",
     "blocksVisual": []
   },
   {
     "line": 37,
-    "text": "for i=4",
+    "text": "Parcurgem punctele de la stânga la dreapta; analizăm punctul de la indexul i = 4.",
     "blocksVisual": []
   },
   {
     "line": 38,
-    "text": "while ended",
+    "text": "Ieșim din bucla while deoarece toate punctele active rămase se află în interiorul ferestrei de lățime d pe axa X față de points[i].",
     "blocksVisual": []
   },
   {
     "line": 43,
-    "text": "lower = ...",
+    "text": "Definim limita inferioară a intervalului pe axa Y: lower = points[i].y - d.",
     "blocksVisual": []
   },
   {
     "line": 44,
-    "text": "upper = ...",
+    "text": "Definim limita superioară a intervalului pe axa Y: upper = points[i].y + d.",
     "blocksVisual": []
   },
   {
     "line": 45,
-    "text": "auto it_start = active_set.lower_bound(lower)",
+    "text": "Căutăm în active_set punctele care se află în intervalul de coordonate Y [lower, upper] folosind lower_bound.",
     "blocksVisual": []
   },
   {
     "line": 50,
-    "text": "active_set.insert(points[i])",
+    "text": "Introducem punctul curent points[i] în mulțimea active_set pentru a fi considerat activ la pașii următori.",
     "blocksVisual": []
   },
   {
     "line": 37,
-    "text": "for i=5",
+    "text": "Parcurgem punctele de la stânga la dreapta; analizăm punctul de la indexul i = 5.",
     "blocksVisual": []
   },
   {
     "line": 38,
-    "text": "while (left < i && points[i].x - points[left].x >= d)",
+    "text": "Verificăm dacă cel mai din stânga punct activ (la indexul left) se află în afara ferestrei de lățime d pe axa X față de punctul curent i.",
     "blocksVisual": []
   },
   {
     "line": 39,
-    "text": "active_set.erase",
+    "text": "Deoarece diferența pe coordonata X este mai mare sau egală cu d, eliminăm punctul points[left] din mulțimea punctelor active active_set.",
     "blocksVisual": []
   },
   {
     "line": 40,
-    "text": "left++",
+    "text": "Incrementăm indicele left pentru a avansa marginea stângă a ferestrei active.",
     "blocksVisual": []
   },
   {
     "line": 38,
-    "text": "while (left < i && points[i].x - points[left].x >= d)",
+    "text": "Verificăm dacă cel mai din stânga punct activ (la indexul left) se află în afara ferestrei de lățime d pe axa X față de punctul curent i.",
     "blocksVisual": []
   },
   {
     "line": 39,
-    "text": "active_set.erase",
+    "text": "Deoarece diferența pe coordonata X este mai mare sau egală cu d, eliminăm punctul points[left] din mulțimea punctelor active active_set.",
     "blocksVisual": []
   },
   {
     "line": 40,
-    "text": "left++",
+    "text": "Incrementăm indicele left pentru a avansa marginea stângă a ferestrei active.",
     "blocksVisual": []
   },
   {
     "line": 38,
-    "text": "while ended",
+    "text": "Ieșim din bucla while deoarece toate punctele active rămase se află în interiorul ferestrei de lățime d pe axa X față de points[i].",
     "blocksVisual": []
   },
   {
     "line": 43,
-    "text": "lower = ...",
+    "text": "Definim limita inferioară a intervalului pe axa Y: lower = points[i].y - d.",
     "blocksVisual": []
   },
   {
     "line": 44,
-    "text": "upper = ...",
+    "text": "Definim limita superioară a intervalului pe axa Y: upper = points[i].y + d.",
     "blocksVisual": []
   },
   {
     "line": 45,
-    "text": "auto it_start = active_set.lower_bound(lower)",
+    "text": "Căutăm în active_set punctele care se află în intervalul de coordonate Y [lower, upper] folosind lower_bound.",
     "blocksVisual": []
   },
   {
     "line": 50,
-    "text": "active_set.insert(points[i])",
+    "text": "Introducem punctul curent points[i] în mulțimea active_set pentru a fi considerat activ la pașii următori.",
     "blocksVisual": []
   },
   {
     "line": 52,
-    "text": "return d",
+    "text": "Returnăm distanța minimă finală găsită d.",
     "blocksVisual": []
   },
   {
     "line": 57,
-    "text": "ans primit",
+    "text": "Revenim în funcția main; valoarea returnată este salvată în variabila ans.",
     "blocksVisual": []
   },
   {
     "line": 58,
-    "text": "cout",
+    "text": "Afișăm rezultatul (distanța minimă) formatat cu 4 zecimale.",
     "blocksVisual": []
   },
   {
     "line": 59,
-    "text": "return 0",
+    "text": "Funcția main returnează 0, finalizând cu succes execuția programului.",
     "blocksVisual": []
   }
 ],
@@ -370,15 +369,22 @@ int main() {
     ]
   },
   "debugger": {
-    "getDebuggerState": (stepIndex) => {
+    "getDebuggerState": (stepIndex, activeLine) => {
       const states = [{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"pts"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"d=1.4142"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(2,3)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(2,3)\",\"(3,4)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(2,3)\",\"(3,4)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"0","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"left=0"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(2,3)\",\"(3,4)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"i=2"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(2,3)\",\"(3,4)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(3,4)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(3,4)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"left=1"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(3,4)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"left=2"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(5,1)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(5,1)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"i=3"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(5,1)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"left=3"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(12,10)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(12,10)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"i=4"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(12,10)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(12,10)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(12,10)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(12,10)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(12,10)\",\"(12,30)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(12,10)\",\"(12,30)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"i=5"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(12,10)\",\"(12,30)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(12,30)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(12,30)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"4","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"left=4"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(12,30)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"4","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"4","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"5","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"left=5"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"5","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"5","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"5","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"5","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(40,50)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"5","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(40,50)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"ans","type":"double","val":"1.4142","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"ans=1.4142"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"ans","type":"double","val":"1.4142","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"ans","type":"double","val":"1.4142","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null}];
       const s = states[stepIndex] || states[states.length - 1];
-      return { vars: s.vars, globalVars: [], frames: s.frames, inlineVal: s.inlineVal };
+      const frames = s.frames.map((frame, index) => {
+        if (index === 0 && activeLine !== undefined && activeLine !== null) {
+          return { ...frame, line: activeLine };
+        }
+        return frame;
+      });
+      return { vars: s.vars, globalVars: [], frames, inlineVal: s.inlineVal };
     },
     "getInlineValueForLine": (stepIndex, lineNum) => {
       const states = [{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"pts"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"d=1.4142"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(2,3)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(2,3)\",\"(3,4)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(2,3)\",\"(3,4)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"0","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"left=0"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(2,3)\",\"(3,4)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"i=2"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(2,3)\",\"(3,4)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(3,4)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"0","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(3,4)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"left=1"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(3,4)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"1","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"left=2"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(5,1)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"2","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(5,1)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"i=3"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(5,1)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"2","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"left=3"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(12,10)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"3","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(12,10)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"i=4"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(12,10)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(12,10)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(12,10)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(12,10)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(12,10)\",\"(12,30)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"4","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(12,10)\",\"(12,30)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"i=5"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(12,10)\",\"(12,30)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(12,30)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"3","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(12,30)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"4","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"left=4"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(12,30)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"4","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"4","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"5","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"left=5"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"5","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"5","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"5","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"5","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(40,50)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"5","expandable":false},{"name":"i","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"points","type":"vector<Point>&","val":"[\"(2,3)\",\"(3,4)\",\"(5,1)\",\"(12,10)\",\"(12,30)\",\"(40,50)\"]","expandable":false},{"name":"active_set","type":"set<Point>","val":"[\"(40,50)\"]","expandable":false},{"name":"d","type":"double","val":"1.4142","expandable":false},{"name":"left","type":"int","val":"5","expandable":false}],"frames":[{"name":"closestPair(pts)","file":"main.cpp","line": 29},{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"ans","type":"double","val":"1.4142","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":"ans=1.4142"},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"ans","type":"double","val":"1.4142","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null},{"vars":[{"name":"pts","type":"vector<Point>","val":"[\"(2,3)\",\"(12,30)\",\"(40,50)\",\"(5,1)\",\"(12,10)\",\"(3,4)\"]","expandable":false},{"name":"ans","type":"double","val":"1.4142","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 55}],"inlineVal":null}];
       const s = states[stepIndex] || states[states.length - 1];
-      if (s.inlineVal && s.frames.length > 0 && s.frames[0].line === lineNum) return s.inlineVal;
+      const activeLine = typeof data !== 'undefined' && data.explanations && data.explanations[stepIndex] ? data.explanations[stepIndex].line : null;
+      if (s.inlineVal && activeLine === lineNum) return s.inlineVal;
       return null;
     },
     "getGraphVisual": (stepIndex) => {
@@ -391,31 +397,58 @@ int main() {
         { id: '5', x: 350, y: 50, label: '(40,50)' }
       ];
 
-      let activeSetIndices = [];
-      let currentPtIdx = -1;
-      let sweepX = null;
+      const pointCoords = {
+        "(2,3)": { x: 46, idx: 0 },
+        "(3,4)": { x: 54, idx: 1 },
+        "(5,1)": { x: 70, idx: 2 },
+        "(12,10)": { x: 126, idx: 3 },
+        "(12,30)": { x: 126, idx: 4 },
+        "(40,50)": { x: 350, idx: 5 }
+      };
 
-      if (stepIndex === 4) {
-        activeSetIndices = [0];
-        sweepX = 46;
-      } else if (stepIndex === 5 || stepIndex === 6) {
-        activeSetIndices = [0, 1];
-        sweepX = 54;
-      } else if (stepIndex === 7 || stepIndex === 8) {
-        activeSetIndices = [0, 1];
-        currentPtIdx = 2;
-        sweepX = 70;
-      } else if (stepIndex === 9) {
-        activeSetIndices = [1];
-        currentPtIdx = 2;
-        sweepX = 70;
-      } else if (stepIndex >= 10 && stepIndex <= 14) {
-        activeSetIndices = [1];
-        currentPtIdx = 2;
-        sweepX = 70;
-      } else if (stepIndex === 15) {
+      const pointsSorted = ["(2,3)", "(3,4)", "(5,1)", "(12,10)", "(12,30)", "(40,50)"];
+
+      const state = data.debugger.getDebuggerState(stepIndex);
+      const iVar = state && state.vars ? state.vars.find(v => v.name === "i") : null;
+      const activeSetVar = state && state.vars ? state.vars.find(v => v.name === "active_set") : null;
+      const ansVar = state && state.vars ? state.vars.find(v => v.name === "ans") : null;
+
+      let currentPtIdx = -1;
+      if (iVar) {
+        currentPtIdx = parseInt(iVar.val);
+      }
+
+      let activeSetIndices = [];
+      if (ansVar || stepIndex >= 48) {
         activeSetIndices = [0, 1, 2, 3, 4, 5];
+      } else if (activeSetVar) {
+        try {
+          const pts = JSON.parse(activeSetVar.val);
+          activeSetIndices = pts.map(pt => pointCoords[pt].idx);
+        } catch (e) {
+          activeSetIndices = [];
+        }
+      }
+
+      let sweepX = null;
+      if (ansVar || stepIndex >= 48) {
         sweepX = 350;
+      } else if (currentPtIdx !== -1) {
+        const ptStr = pointsSorted[currentPtIdx];
+        if (ptStr && pointCoords[ptStr]) {
+          sweepX = pointCoords[ptStr].x;
+        }
+      } else if (activeSetIndices.length > 0) {
+        let maxIdx = -1;
+        activeSetIndices.forEach(idx => {
+          if (idx > maxIdx) maxIdx = idx;
+        });
+        const ptStr = pointsSorted[maxIdx];
+        if (ptStr && pointCoords[ptStr]) {
+          sweepX = pointCoords[ptStr].x;
+        }
+      } else {
+        sweepX = 46;
       }
 
       nodes.forEach(n => {

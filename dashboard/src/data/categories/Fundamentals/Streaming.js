@@ -30,7 +30,7 @@ int main() {
   explanations: [
     {
       line: 8,
-      text: "Definim un vector $stream$ pentru a simula citirea valorilor de la consolă.",
+      text: "Definim un vector $stream$ pentru a simula fluxul de date citit de la tastatură (consolă): 4, -2, 7 și valoarea santinelă 0.",
       blocksVisual: [
         {
           "label": "Flux de intrare",
@@ -55,7 +55,7 @@ int main() {
     },
     {
       line: 9,
-      text: "Inițializăm suma numerelor pozitive cu $0$.",
+      text: "Inițializăm variabila $sum = 0$. Aceasta va acumula suma numerelor strict pozitive din flux.",
       blocksVisual: [
         {
           "label": "Suma",
@@ -72,7 +72,7 @@ int main() {
     },
     {
       line: 10,
-      text: "Inițializăm numărul de elemente pozitive găsite cu $0$.",
+      text: "Inițializăm contorul $count = 0$. Acesta va reține numărul elementelor strict pozitive întâlnite.",
       blocksVisual: [
         {
           "label": "Contor",
@@ -106,7 +106,7 @@ int main() {
     },
     {
       line: 13,
-      text: "Verificăm dacă $x$ este $0$. Nu este.",
+      text: "Verificăm condiția de oprire: $x == 0$. Deoarece $x = 4$, condiția este Falsă.",
       blocksVisual: [
         {
           "label": "Oprire?",
@@ -123,7 +123,7 @@ int main() {
     },
     {
       line: 16,
-      text: "Verificăm dacă $x$ este pozitiv ($4 > 0$). Este adevărat.",
+      text: "Verificăm dacă numărul citit este strict pozitiv: $x > 0$. Deoarece $x = 4$, condiția este Adevărată.",
       blocksVisual: [
         {
           "label": "Verificare",
@@ -140,7 +140,7 @@ int main() {
     },
     {
       line: 17,
-      text: "Adunăm valoarea $4$ la suma totală: $sum = 4$.",
+      text: "Deoarece valoarea $x = 4$ este pozitivă, o adunăm la sumă: $sum$ devine $4$.",
       blocksVisual: [
         {
           "label": "Suma",
@@ -157,7 +157,7 @@ int main() {
     },
     {
       line: 18,
-      text: "Incrementăm contorul numerelor pozitive: $count = 1$.",
+      text: "Incrementăm contorul numerelor pozitive găsite: $count$ devine $1$.",
       blocksVisual: [
         {
           "label": "Contor",
@@ -191,7 +191,7 @@ int main() {
     },
     {
       line: 13,
-      text: "Verificăm dacă $x$ este $0$. Nu este.",
+      text: "Verificăm condiția de oprire: $x == 0$. Deoarece $x = -2$, condiția este Falsă.",
       blocksVisual: [
         {
           "label": "Oprire?",
@@ -208,7 +208,7 @@ int main() {
     },
     {
       line: 16,
-      text: "Verificăm dacă $x$ este pozitiv ($-2 > 0$). Este fals.",
+      text: "Verificăm dacă numărul citit este strict pozitiv: $x > 0$. Deoarece $x = -2$, condiția este Falsă.",
       blocksVisual: [
         {
           "label": "Verificare",
@@ -242,7 +242,7 @@ int main() {
     },
     {
       line: 13,
-      text: "Verificăm dacă $x$ este $0$. Nu este.",
+      text: "Verificăm condiția de oprire: $x == 0$. Deoarece $x = 7$, condiția este Falsă.",
       blocksVisual: [
         {
           "label": "Oprire?",
@@ -259,7 +259,7 @@ int main() {
     },
     {
       line: 16,
-      text: "Verificăm dacă $x$ este pozitiv ($7 > 0$). Este adevărat.",
+      text: "Verificăm dacă numărul citit este strict pozitiv: $x > 0$. Deoarece $x = 7$, condiția este Adevărată.",
       blocksVisual: [
         {
           "label": "Verificare",
@@ -276,7 +276,7 @@ int main() {
     },
     {
       line: 17,
-      text: "Adunăm valoarea $7$ la suma totală: $sum = 11$.",
+      text: "Deoarece valoarea $x = 7$ este pozitivă, o adunăm la sumă: $sum$ devine $11$.",
       blocksVisual: [
         {
           "label": "Suma",
@@ -293,7 +293,7 @@ int main() {
     },
     {
       line: 18,
-      text: "Incrementăm contorul numerelor pozitive: $count = 2$.",
+      text: "Incrementăm contorul numerelor pozitive găsite: $count$ devine $2$.",
       blocksVisual: [
         {
           "label": "Contor",
@@ -327,7 +327,7 @@ int main() {
     },
     {
       line: 13,
-      text: "Verificăm dacă $x$ este $0$. Este adevărat.",
+      text: "Verificăm condiția de oprire: $x == 0$. Deoarece $x = 0$, condiția este Adevărată.",
       blocksVisual: [
         {
           "label": "Oprire?",
@@ -344,7 +344,7 @@ int main() {
     },
     {
       line: 14,
-      text: "Întrerupem bucla folosind instrucțiunea `break`.",
+      text: "Deoarece am întâlnit valoarea santinelă 0, întrerupem imediat execuția buclei folosind instrucțiunea `break`.",
       blocksVisual: [
         {
           "label": "Ieșire din buclă",
@@ -361,7 +361,7 @@ int main() {
     },
     {
       line: 22,
-      text: "Finalizăm programul. Variabilele finale sunt $sum = 11$ și $count = 2$.",
+      text: "Finalizăm programul cu succes, returnând 0. Rezultatele finale sunt: $sum = 11$ și $count = 2$. Fluxul a fost procesat fără a fi stocat în memorie.",
       blocksVisual: [
         {
           "label": "Stare finală",
@@ -1213,4 +1213,6 @@ int main() {
     }
   }
 }
+;
+;
 ;

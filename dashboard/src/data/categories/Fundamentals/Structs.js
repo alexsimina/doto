@@ -43,7 +43,7 @@ int main() {
   explanations: [
     {
       line: 13,
-      text: "Declarăm variabila $s1$ de tipul `Student`.",
+      text: "Declarăm variabila $s1$ de tipul structurii `Student` pentru primul elev din catalog.",
       blocksVisual: [
         {
           "label": "Student s1",
@@ -63,7 +63,7 @@ int main() {
     },
     {
       line: 14,
-      text: "Atribuim valoarea `\"Alex\"` membrului $name$ al structurii $s1$.",
+      text: "Atribuim numele `\"Alex\"` membrului $name$ al structurii $s1$: s1.name = \"Alex\".",
       blocksVisual: [
         {
           "label": "Student s1",
@@ -83,7 +83,7 @@ int main() {
     },
     {
       line: 15,
-      text: "Atribuim valoarea $9$ membrului $grade$ al structurii $s1$.",
+      text: "Atribuim nota $9$ membrului $grade$ al structurii $s1$: s1.grade = 9.",
       blocksVisual: [
         {
           "label": "Student s1",
@@ -103,7 +103,7 @@ int main() {
     },
     {
       line: 17,
-      text: "Declarăm variabila $s2$ de tipul `Student`.",
+      text: "Declarăm a doua variabilă de tip structură: $s2$ de tipul `Student`.",
       blocksVisual: [
         {
           "label": "Student s2",
@@ -123,7 +123,7 @@ int main() {
     },
     {
       line: 18,
-      text: "Setăm numele studentului $s2$ ca fiind `\"Maria\"`.",
+      text: "Setăm numele studentului $s2$ la valoarea `\"Maria\"`: s2.name = \"Maria\".",
       blocksVisual: [
         {
           "label": "Student s2",
@@ -143,7 +143,7 @@ int main() {
     },
     {
       line: 19,
-      text: "Setăm nota studentului $s2$ ca fiind $10$.",
+      text: "Setăm nota studentului $s2$ la valoarea $10$: s2.grade = 10.",
       blocksVisual: [
         {
           "label": "Student s2",
@@ -163,7 +163,7 @@ int main() {
     },
     {
       line: 21,
-      text: "Declarăm un vector $classList$ capabil să stocheze elemente de tipul `Student`.",
+      text: "Declarăm vectorul $classList$ de tipul `std::vector<Student>` în care vom stoca catalogul elevilor.",
       blocksVisual: [
         {
           "label": "Listă Clasă",
@@ -180,7 +180,7 @@ int main() {
     },
     {
       line: 22,
-      text: "Adăugăm studentul $s1$ la finalul vectorului $classList$.",
+      text: "Adăugăm studentul $s1$ la sfârșitul catalogului folosind `push_back(s1)`.",
       blocksVisual: [
         {
           "label": "Listă Clasă",
@@ -197,7 +197,7 @@ int main() {
     },
     {
       line: 23,
-      text: "Adăugăm studentul $s2$ la finalul vectorului.",
+      text: "Adăugăm și studentul $s2$ la sfârșitul catalogului cu `push_back(s2)`. Catalogul are acum 2 elevi.",
       blocksVisual: [
         {
           "label": "Listă Clasă",
@@ -217,7 +217,7 @@ int main() {
     },
     {
       line: 25,
-      text: "Inițializăm nota maximă cu nota primului student din listă: $maxGrade = 9$.",
+      text: "Inițializăm nota maximă cu nota primului student din listă: $maxGrade = classList[0].grade = 9$.",
       blocksVisual: [
         {
           "label": "Maxim",
@@ -234,7 +234,7 @@ int main() {
     },
     {
       line: 26,
-      text: "Inițializăm numele studentului eminent cu cel al primului student: `topStudent = \"Alex\"`.",
+      text: "Inițializăm numele elevului eminent cu numele primului student: $topStudent = classList[0].name = \"Alex\"$.",
       blocksVisual: [
         {
           "label": "Top Student",
@@ -251,7 +251,7 @@ int main() {
     },
     {
       line: 28,
-      text: "Începem parcurgerea clasei de la indexul $i = 1$.",
+      text: "Verificăm condiția buclei de parcurgere: $i < classList.size()$. Deoarece $i = 1$ și dimensiunea este 2, condiția este Adevărată. Parcurgem elementele.",
       blocksVisual: [
         {
           "label": "Index parcurgere",
@@ -268,7 +268,7 @@ int main() {
     },
     {
       line: 29,
-      text: "Verificăm dacă nota studentului curent ($10$) este mai mare decât $maxGrade$ ($9$).",
+      text: "Verificăm dacă nota studentului curent \"Maria\" ($10$) este strict mai mare decât nota maximă de până acum ($maxGrade = 9$). Condiția 10 > 9 este Adevărată.",
       blocksVisual: [
         {
           "label": "Verificare",
@@ -285,7 +285,7 @@ int main() {
     },
     {
       line: 30,
-      text: "Actualizăm nota maximă: $maxGrade = 10$.",
+      text: "Actualizăm nota maximă la nota noului lider de clasă: $maxGrade$ devine $10$.",
       blocksVisual: [
         {
           "label": "Maxim actualizat",
@@ -302,7 +302,7 @@ int main() {
     },
     {
       line: 31,
-      text: "Actualizăm numele studentului eminent: topStudent = \"Maria\".",
+      text: "Actualizăm numele studentului eminent: $topStudent$ devine $\"Maria\"$.",
       blocksVisual: [
         {
           "label": "Top Student actualizat",
@@ -319,7 +319,7 @@ int main() {
     },
     {
       line: 28,
-      text: "Incrementăm $i$ la $2$. Condiția devine falsă. Ieșim din buclă.",
+      text: "Verificăm condiția buclei: $i < classList.size()$. Deoarece $i = 2$ și dimensiunea este 2, condiția $2 < 2$ este Falsă. Finalizăm bucla.",
       blocksVisual: [
         {
           "label": "Condiție buclă",
@@ -336,7 +336,7 @@ int main() {
     },
     {
       line: 35,
-      text: "Finalizăm programul cu succes, având determinat studentul eminent: Maria cu nota 10.",
+      text: "Programul se încheie cu succes. Studentul eminent din catalog este \"Maria\" cu nota maximă 10.",
       blocksVisual: [
         {
           "label": "Rezultate Finale",
@@ -1067,4 +1067,6 @@ int main() {
     }
   }
 }
+;
+;
 ;

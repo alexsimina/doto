@@ -66,75 +66,81 @@ let locals = {
     v: null, weight: null
 };
 
-addStep(86, "Apelăm dial(1, 4, adj, 7).", locals);
+addStep(86, "Apelăm funcția dial(src=1, n=4, adj, max_weight=7) din main pentru a calcula drumurile minime din sursa 1.", locals);
 
-addStep(39, "Inițializăm dist[i] = INF.", locals);
+addStep(39, "Inițializăm vectorul de distanțe dist cu valoarea infinită (INF = 1e9) pentru toate nodurile, considerându-le nevizitate.", locals);
 
 dist[1] = 0;
-addStep(40, "dist[1] = 0.", locals);
+addStep(40, "Setăm distanța minimă de la sursă la ea însăși la 0: dist[1] = 0.", locals);
 
 locals.num_buckets = num_buckets;
-addStep(43, `num_buckets = 29.`, locals);
+addStep(43, `Calculăm numărul maxim de bucket-uri necesar: num_buckets = n * max_weight + 1 = 4 * 7 + 1 = 29.`, locals);
 
-addStep(44, "Inițializăm vectorul buckets.", locals);
+addStep(44, "Inițializăm vectorul buckets care conține 29 de sertare (liste) pentru a sorta nodurile în funcție de distanța lor actuală.", locals);
 
 buckets[0].push(1);
-addStep(46, "buckets[0].push_back(1).", locals);
+addStep(46, "Adăugăm nodul sursă 1 în bucket-ul corespunzător distanței sale (0): buckets[0].", locals);
 
 locals.idx = 0;
-addStep(47, "idx = 0.", locals);
+addStep(47, "Inițializăm indexul bucket-ului curent de unde vom începe căutarea: idx = 0.", locals);
 
 locals.count = 0;
-addStep(49, "Începe bucla (count = 0 < 4).", locals);
+addStep(49, "Începe bucla principală. Verificăm condiția: count < n (0 < 4). Deoarece mai avem noduri nevizitate, intrăm în buclă.", locals);
 
 while (locals.count < n) {
-    addStep(51, `Căutăm următorul bucket ne-vid de la idx=${idx}.`, locals);
+    addStep(51, `Căutăm următorul bucket ne-vid începând de la indexul idx = ${idx}.`, locals);
     while (idx < num_buckets && buckets[idx].length === 0) {
         idx++;
         locals.idx = idx;
-        addStep(52, `idx=${idx}.`, locals);
+        addStep(52, `Deoarece buckets[${idx-1}] este gol, incrementăm indexul căutării: idx = ${idx}.`, locals);
     }
 
-    addStep(55, `Verificăm idx == num_buckets.`, locals);
+    addStep(51, `Am găsit un bucket ne-vid la indexul idx = ${idx}. Oprim căutarea sertarelor.`, locals);
+
+    addStep(55, `Verificăm dacă am depășit limitele sertarelor: idx == num_buckets (${idx} == 29). Condiția este Falsă, deci continuăm.`, locals);
     if (idx === num_buckets) break;
 
     let u = buckets[idx][0];
     locals.u = u;
-    addStep(57, `u = buckets[${idx}].front() = ${u}.`, locals, u);
+    addStep(57, `Extragem primul nod din bucket-ul curent buckets[${idx}]: u = ${u}. Acesta este cel mai apropiat nod nevizitat.`, locals, u);
 
     buckets[idx].shift();
-    addStep(58, `buckets[${idx}].pop_front().`, locals, u);
+    addStep(58, `Eliminăm nodul u = ${u} din buckets[${idx}].`, locals, u);
 
     locals.count++;
-    addStep(60, `count devine ${locals.count}.`, locals, u);
+    addStep(60, `Incrementăm numărul de noduri finalizate: count devine ${locals.count}.`, locals, u);
 
     for (let i = 0; i < adj[u].length; i++) {
         let edge = adj[u][i];
         locals.v = edge.to;
         locals.weight = edge.weight;
-        addStep(62, `Parcurgem vecinii lui ${u}. Vectorul v=${edge.to}, weight=${edge.weight}.`, locals, u);
+        addStep(62, `Explorăm vecinul v = ${edge.to} al nodului u = ${u}. Muchia are costul (ponderea) weight = ${edge.weight}.`, locals, u);
 
-        addStep(66, `Verificăm dacă dist[${u}] + ${edge.weight} < dist[${edge.to}]. (${dist[u] + edge.weight} < ${dist[edge.to] === INF ? "INF" : dist[edge.to]}).`, locals, u);
+        addStep(66, `Verificăm dacă trecerea prin u oferă un drum mai scurt către vecinul v: dist[u] + weight < dist[v] (${dist[u]} + ${edge.weight} < ${dist[edge.to] === INF ? "INF" : dist[edge.to]}). Condiția este ${dist[u] + edge.weight < dist[edge.to] ? "Adevărată (relaxăm muchia)" : "Falsă (drumul existent este mai bun)"}.`, locals, u);
         if (dist[u] + edge.weight < dist[edge.to]) {
-            addStep(67, `Verificăm dacă dist[${edge.to}] != INF.`, locals, u);
+            addStep(67, `Verificăm dacă vecinul v = ${edge.to} avea deja o distanță finită (dist[v] != INF). Deoarece dist[${edge.to}] = ${dist[edge.to] === INF ? "INF" : dist[edge.to]}, condiția este ${dist[edge.to] !== INF ? 'Adevărată' : 'Falsă'}.`, locals, u);
             if (dist[edge.to] !== INF) {
                 let oldD = dist[edge.to];
                 buckets[oldD] = buckets[oldD].filter(x => x !== edge.to);
-                addStep(68, `Eliminăm nodul ${edge.to} din bucket[${oldD}].`, locals, u);
+                addStep(68, `Deoarece vecinul avea o distanță mai veche, îl eliminăm din buckets[${oldD}].`, locals, u);
             }
 
             dist[edge.to] = dist[u] + edge.weight;
-            addStep(71, `dist[${edge.to}] = ${dist[edge.to]}.`, locals, u);
+            addStep(71, `Actualizăm distanța minimă până la vecinul v = ${edge.to}: dist[${edge.to}] = ${dist[edge.to]} pași.`, locals, u);
 
             buckets[dist[edge.to]].push(edge.to);
-            addStep(72, `Adăugăm ${edge.to} în bucket[${dist[edge.to]}].`, locals, u);
+            addStep(72, `Introducem vecinul v = ${edge.to} în noul bucket corespunzător noii sale distanțe: buckets[${dist[edge.to]}].`, locals, u);
         }
     }
 }
 
-addStep(76, "Returnăm vectorul dist.", locals);
-addStep(87, "Afișăm distanțele în main().", locals);
-addStep(91, "Program finalizat.", locals);
+if (locals.count >= n) {
+    addStep(49, `Verificăm condiția buclei principale: count < n (${locals.count} < 4). Deoarece condiția este Falsă, finalizăm bucla.`, locals);
+}
+
+addStep(76, "Am parcurs toate nodurile accesibile. Returnăm vectorul final de distanțe minime dist.", locals);
+addStep(87, "Revenim în main() și afișăm distanțele minime calculate de la sursa 1.", locals);
+addStep(91, "Programul se încheie cu succes.", locals);
 
 let debuggerStateFunction = `
     "getDebuggerState": (stepIndex, activeLine, explanationText) => {

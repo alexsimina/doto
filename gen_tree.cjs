@@ -67,60 +67,61 @@ function bfs(start, callerLine) {
         });
     }
 
-    addStep(35, `Intrăm în ${callName} cu start=${start}.`);
+    addStep(35, `Intrăm în funcția BFS (${callName}) începând din nodul de start $start = ${start}$. Scopul este să determinăm distanțele minime de la acest nod la toate celelalte noduri.`);
 
-    addStep(36, `Inițializăm vectorul dist cu -1.`);
+    addStep(36, `Inițializăm vectorul de distanțe dist cu valoarea -1, considerând toate nodurile ca fiind inițial nevizitate.`);
 
-    addStep(37, `Inițializăm coada q.`);
+    addStep(37, `Inițializăm coada de priorități q, utilizată pentru a asigura parcurgerea în lățime a arborelui.`);
 
     dist[start] = 0;
-    addStep(39, `dist[${start}] = 0.`);
+    addStep(39, `Setăm distanța de pornire pentru nodul de start la 0: dist[${start}] = 0.`);
 
     q.push(start);
-    addStep(40, `q.push(${start}).`);
+    addStep(40, `Adăugăm nodul de start ${start} în coada q pentru a iniția explorarea vecinilor săi.`);
 
     locals.farthest_node = start;
-    addStep(42, `farthest_node = ${start}.`);
+    addStep(42, `Inițializăm cel mai îndepărtat nod detectat până acum ca fiind chiar nodul de start: farthest_node = ${start}.`);
 
     locals.max_dist = 0;
-    addStep(43, `max_dist = 0.`);
-
-    addStep(45, `Începe bucla while (!q.empty()).`);
+    addStep(43, `Inițializăm distanța maximă găsită până în acest moment: max_dist = 0.`);
 
     while (q.length > 0) {
+        addStep(45, `Verificăm condiția buclei: !q.empty(). Deoarece coada conține ${q.length} elemente, condiția este adevărată, deci continuăm parcurgerea.`);
+
         let u = q[0];
         locals.u = u;
-        addStep(46, `u = q.front() = ${u}.`);
+        addStep(46, `Extragem nodul din fața cozii: u = q.front() = ${u}. Distanța sa actuală este dist[${u}] = ${dist[u]}.`);
 
         q.shift();
-        addStep(47, `q.pop().`);
+        addStep(47, `Eliminăm nodul ${u} din coadă (operația pop).`);
 
-        addStep(49, `Verificăm dacă dist[${u}] > max_dist (${dist[u]} > ${locals.max_dist}).`);
+        addStep(49, `Verificăm dacă distanța până la nodul curent dist[${u}] = ${dist[u]} este mai mare decât distanța maximă de până acum (max_dist = ${locals.max_dist}). Condiția ${dist[u]} > ${locals.max_dist} este ${dist[u] > locals.max_dist ? "Adevărată" : "Falsă"}.`);
         if (dist[u] > locals.max_dist) {
             locals.max_dist = dist[u];
-            addStep(50, `max_dist = ${dist[u]}.`);
+            addStep(50, `Actualizăm distanța maximă la noua valoare găsită: max_dist = ${dist[u]}.`);
 
             locals.farthest_node = u;
-            addStep(51, `farthest_node = ${u}.`);
+            addStep(51, `Actualizăm cel mai îndepărtat nod găsit: farthest_node = ${u}.`);
         }
 
         for (let i = 0; i < adj[u].length; i++) {
             let v = adj[u][i];
             locals.v = v;
-            addStep(54, `Parcurgem vecinul v = ${v} al lui ${u}.`);
+            addStep(54, `Parcurgem vecinul v = ${v} al nodului curent u = ${u} din lista de adiacență.`);
 
-            addStep(55, `Verificăm dist[${v}] == -1.`);
+            addStep(55, `Verificăm dacă vecinul v = ${v} a fost deja vizitat: dist[v] == -1. Condiția dist[${v}] == -1 este ${dist[v] === -1 ? 'Adevărată (este nevizitat)' : 'Falsă (este deja vizitat)'}.`);
             if (dist[v] === -1) {
                 dist[v] = dist[u] + 1;
-                addStep(56, `dist[${v}] = ${dist[v]}.`);
+                addStep(56, `Calculăm și actualizăm distanța pentru nodul vecin: dist[${v}] = dist[${u}] + 1 = ${dist[v]}.`);
 
                 q.push(v);
-                addStep(57, `q.push(${v}).`);
+                addStep(57, `Adăugăm vecinul ${v} în coadă pentru a fi explorat în etapele următoare.`);
             }
         }
     }
 
-    addStep(61, `Returnăm perechea {${locals.farthest_node}, ${locals.max_dist}}.`);
+    addStep(45, `Verificăm condiția buclei: !q.empty(). Deoarece coada este goală, condiția este Falsă, deci finalizăm parcurgerea BFS.`);
+    addStep(61, `Parcurgerea BFS s-a terminat. Returnăm perechea {farthest_node, max_dist} = {${locals.farthest_node}, ${locals.max_dist}}.`);
     return { first: locals.farthest_node, second: locals.max_dist };
 }
 
@@ -155,24 +156,24 @@ function mainGen() {
         });
     }
 
-    addMainStep(81, `Apelăm getTreeDiameter(6, adj).`);
+    addMainStep(81, `Apelăm funcția getTreeDiameter(n=6, adj) din main pentru a calcula diametrul arborelui.`);
 
     // In getTreeDiameter
-    addMainStep(65, `Verificăm dacă n <= 1. (6 <= 1 e fals)`, `getTreeDiameter(n=6, adj)`, "solution.cpp");
+    addMainStep(65, `Intrăm în getTreeDiameter. Verificăm cazul de bază n <= 1. Deoarece n = 6, condiția 6 <= 1 este Falsă, deci continuăm.`, `getTreeDiameter(n=6, adj)`, "solution.cpp");
 
-    addMainStep(66, `Apelăm bfs(1, 6, adj).`, `getTreeDiameter(n=6, adj)`, "solution.cpp");
+    addMainStep(66, `Apelăm primul BFS din nodul de start arbitrar 1: bfs(1, n, adj), pentru a determina un nod de pe extremitatea diametrului.`, `getTreeDiameter(n=6, adj)`, "solution.cpp");
     let p1 = bfs(1, 66);
     locals.p1 = p1;
 
-    addMainStep(67, `Apelăm bfs(${p1.first}, 6, adj).`, `getTreeDiameter(n=6, adj)`, "solution.cpp");
+    addMainStep(67, `Primul BFS a terminat și a returnat perechea {${p1.first}, ${p1.second}}. Nodul cel mai îndepărtat de 1 este ${p1.first}. Apelăm al doilea BFS pornind din nodul ${p1.first} pentru a afla diametrul maxim: bfs(${p1.first}, n, adj).`, `getTreeDiameter(n=6, adj)`, "solution.cpp");
     let p2 = bfs(p1.first, 67);
     locals.p2 = p2;
 
-    addMainStep(68, `Returnăm p2.second = ${p2.second}.`, `getTreeDiameter(n=6, adj)`, "solution.cpp");
+    addMainStep(68, `Al doilea BFS a terminat și a returnat perechea {${p2.first}, ${p2.second}}. Diametrul arborelui este distanța maximă găsită: p2.second = ${p2.second}. Returnăm această valoare.`, `getTreeDiameter(n=6, adj)`, "solution.cpp");
     locals.diameter = p2.second;
 
-    addMainStep(82, `Afișăm diametrul arborelui: ${locals.diameter}.`);
-    addMainStep(83, `Program finalizat.`);
+    addMainStep(82, `Afișăm rezultatul final în consolă: diametrul arborelui este ${locals.diameter}.`);
+    addMainStep(83, `Programul se încheie cu succes, returnând 0.`);
 }
 
 mainGen();

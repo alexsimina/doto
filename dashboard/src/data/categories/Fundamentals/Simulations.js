@@ -35,7 +35,7 @@ int main() {
   explanations: [
     {
       line: 9,
-      text: "Inițializăm linia de pornire a robotului: $row = 1$ (centrul unei matrice $3 \\times 3$).",
+      text: "Inițializăm linia de pornire a robotului: $row = 1$ (centrul unei matrice de dimensiune $3 \\times 3$, cu indici de la 0 la 2).",
       blocksVisual: [
         {
           "label": "Poziție Robot",
@@ -55,7 +55,7 @@ int main() {
     },
     {
       line: 10,
-      text: "Inițializăm coloana de pornire a robotului: $col = 1$.",
+      text: "Inițializăm coloana de pornire a robotului: $col = 1$. Poziția inițială a robotului pe grilă este $(1, 1)$.",
       blocksVisual: [
         {
           "label": "Poziție Robot",
@@ -75,7 +75,7 @@ int main() {
     },
     {
       line: 13,
-      text: "Definim șirul de comenzi de mișcare: $commands = \"RULD\"$ (Dreapta, Sus, Stânga, Jos).",
+      text: "Definim șirul de comenzi de mișcare: $commands = \"RULD\"$. Robotul se va deplasa la Dreapta (R), Sus (U), Stânga (L) și Jos (D).",
       blocksVisual: [
         {
           "label": "Comenzi de rulat",
@@ -101,7 +101,7 @@ int main() {
     },
     {
       line: 15,
-      text: "Citim comanda: $cmd = 'R'$.",
+      text: "Citim următoarea comandă din flux: $cmd = 'R'$.",
       blocksVisual: [
         {
           "label": "Comandă curentă",
@@ -118,7 +118,7 @@ int main() {
     },
     {
       line: 16,
-      text: "Verificăm `cmd == 'U' && row > 0`.",
+      text: "Verificăm condiția: comanda este 'U' și linia este superioară limitei superioare: cmd == 'U' && row > 0. Deoarece cmd este 'R' și row este 1, condiția este Falsă.",
       blocksVisual: [
         {
           "label": "Verificare mișcare",
@@ -135,7 +135,7 @@ int main() {
     },
     {
       line: 18,
-      text: "Verificăm `cmd == 'D' && row < 2`.",
+      text: "Verificăm condiția: comanda este 'D' și linia este inferioară limitei inferioare: cmd == 'D' && row < 2. Deoarece cmd este 'R' și row este 1, condiția este Falsă.",
       blocksVisual: [
         {
           "label": "Verificare mișcare",
@@ -152,7 +152,7 @@ int main() {
     },
     {
       line: 20,
-      text: "Verificăm `cmd == 'L' && col > 0`.",
+      text: "Verificăm condiția: comanda este 'L' și coloana este validă: cmd == 'L' && col > 0. Deoarece cmd este 'R' și col este 1, condiția este Falsă.",
       blocksVisual: [
         {
           "label": "Verificare mișcare",
@@ -169,7 +169,7 @@ int main() {
     },
     {
       line: 22,
-      text: "Verificăm `cmd == 'R' && col < 2`.",
+      text: "Verificăm condiția: comanda este 'R' și coloana este validă: cmd == 'R' && col < 2. Deoarece cmd este 'R' și col este 1, condiția este Adevărată.",
       blocksVisual: [
         {
           "label": "Verificare mișcare",
@@ -186,7 +186,7 @@ int main() {
     },
     {
       line: 23,
-      text: "Mutăm robotul la dreapta prin incrementarea coloanei: $col = 2$.",
+      text: "Mutăm robotul la dreapta prin incrementarea coloanei: $col$ devine $col = 2$.",
       blocksVisual: [
         {
           "label": "Poziție Robot",
@@ -206,7 +206,7 @@ int main() {
     },
     {
       line: 15,
-      text: "Citim comanda: $cmd = 'U'$.",
+      text: "Citim următoarea comandă din flux: $cmd = 'U'$.",
       blocksVisual: [
         {
           "label": "Comandă curentă",
@@ -223,7 +223,7 @@ int main() {
     },
     {
       line: 16,
-      text: "Verificăm `cmd == 'U' && row > 0`.",
+      text: "Verificăm condiția: comanda este 'U' și linia este superioară limitei superioare: cmd == 'U' && row > 0. Deoarece cmd este 'U' și row este 1, condiția este Adevărată.",
       blocksVisual: [
         {
           "label": "Verificare mișcare",
@@ -240,7 +240,7 @@ int main() {
     },
     {
       line: 17,
-      text: "Mutăm robotul în sus prin decrementarea liniei: $row = 0$.",
+      text: "Mutăm robotul în sus prin decrementarea liniei: $row$ devine $row = 0$.",
       blocksVisual: [
         {
           "label": "Poziție Robot",
@@ -260,7 +260,7 @@ int main() {
     },
     {
       line: 15,
-      text: "Citim comanda: $cmd = 'L'$.",
+      text: "Citim următoarea comandă din flux: $cmd = 'L'$.",
       blocksVisual: [
         {
           "label": "Comandă curentă",
@@ -277,7 +277,7 @@ int main() {
     },
     {
       line: 16,
-      text: "Verificăm `cmd == 'U' && row > 0`.",
+      text: "Verificăm condiția: comanda este 'U' și linia este superioară limitei superioare: cmd == 'U' && row > 0. Deoarece cmd este 'L' și row este 0, condiția este Falsă.",
       blocksVisual: [
         {
           "label": "Verificare mișcare",
@@ -294,7 +294,7 @@ int main() {
     },
     {
       line: 18,
-      text: "Verificăm `cmd == 'D' && row < 2`.",
+      text: "Verificăm condiția: comanda este 'D' și linia este inferioară limitei inferioare: cmd == 'D' && row < 2. Deoarece cmd este 'L' și row este 0, condiția este Falsă.",
       blocksVisual: [
         {
           "label": "Verificare mișcare",
@@ -311,7 +311,7 @@ int main() {
     },
     {
       line: 20,
-      text: "Verificăm `cmd == 'L' && col > 0`.",
+      text: "Verificăm condiția: comanda este 'L' și coloana este validă: cmd == 'L' && col > 0. Deoarece cmd este 'L' și col este 2, condiția este Adevărată.",
       blocksVisual: [
         {
           "label": "Verificare mișcare",
@@ -328,7 +328,7 @@ int main() {
     },
     {
       line: 21,
-      text: "Mutăm robotul la stânga prin decrementarea coloanei: $col = 1$.",
+      text: "Mutăm robotul la stânga prin decrementarea coloanei: $col$ devine $col = 1$.",
       blocksVisual: [
         {
           "label": "Poziție Robot",
@@ -348,7 +348,7 @@ int main() {
     },
     {
       line: 15,
-      text: "Citim comanda: $cmd = 'D'$.",
+      text: "Citim următoarea comandă din flux: $cmd = 'D'$.",
       blocksVisual: [
         {
           "label": "Comandă curentă",
@@ -365,7 +365,7 @@ int main() {
     },
     {
       line: 16,
-      text: "Verificăm `cmd == 'U' && row > 0`.",
+      text: "Verificăm condiția: comanda este 'U' și linia este superioară limitei superioare: cmd == 'U' && row > 0. Deoarece cmd este 'D' și row este 0, condiția este Falsă.",
       blocksVisual: [
         {
           "label": "Verificare mișcare",
@@ -382,7 +382,7 @@ int main() {
     },
     {
       line: 18,
-      text: "Verificăm `cmd == 'D' && row < 2`.",
+      text: "Verificăm condiția: comanda este 'D' și linia este inferioară limitei inferioare: cmd == 'D' && row < 2. Deoarece cmd este 'D' și row este 0, condiția este Adevărată.",
       blocksVisual: [
         {
           "label": "Verificare mișcare",
@@ -399,7 +399,7 @@ int main() {
     },
     {
       line: 19,
-      text: "Mutăm robotul în jos prin incrementarea liniei: $row = 1$.",
+      text: "Mutăm robotul în jos prin incrementarea liniei: $row$ devine $row = 1$.",
       blocksVisual: [
         {
           "label": "Poziție Robot",
@@ -418,8 +418,25 @@ int main() {
       ]
     },
     {
+      line: 15,
+      text: "Toate caracterele din commands au fost parcurse. Bucla pentru comenzi s-a finalizat.",
+      blocksVisual: [
+        {
+          "label": "Buclă încheiată",
+          "groups": [
+            [
+              {
+                "val": "commands complet",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
       line: 27,
-      text: "Finalizăm simularea cu robotul revenit la poziția de start $(1, 1)$.",
+      text: "Finalizăm simularea cu succes, având robotul revenit la poziția de start: row = 1, col = 1.",
       blocksVisual: [
         {
           "label": "Poziție Finală",
@@ -1208,6 +1225,36 @@ int main() {
             {
               "name": "main()",
               "file": "main.cpp",
+              "line": 15
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "row",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "col",
+              "type": "int",
+              "val": 1,
+              "expandable": false
+            },
+            {
+              "name": "commands",
+              "type": "std::string",
+              "val": "\"RULD\"",
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
               "line": 27
             }
           ],
@@ -1345,6 +1392,11 @@ int main() {
           "9": "row: 1",
           "10": "col: 1",
           "13": "commands: \"RULD\""
+        },
+        {
+          "9": "row: 1",
+          "10": "col: 1",
+          "13": "commands: \"RULD\""
         }
       ];
       if (stepIndex < 0) return null;
@@ -1353,4 +1405,6 @@ int main() {
     }
   }
 }
+;
+;
 ;

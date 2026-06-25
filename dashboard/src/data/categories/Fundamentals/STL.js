@@ -38,7 +38,7 @@ int main() {
   explanations: [
     {
       line: 11,
-      text: "Declarăm un vector de numere întregi $v$, inițial gol.",
+      text: "Declarăm un vector de numere întregi $v$ din STL. În acest moment vectorul este dinamic și complet gol.",
       blocksVisual: [
         {
           "label": "Vector v",
@@ -55,7 +55,7 @@ int main() {
     },
     {
       line: 12,
-      text: "Adăugăm elementul $10$ la finalul vectorului folosind `push_back`. Dimensiunea vectorului devine $1$.",
+      text: "Adăugăm elementul $10$ la finalul vectorului folosind `push_back`. Dimensiunea vectorului devine 1, iar elementul de la indexul 0 este 10.",
       blocksVisual: [
         {
           "label": "Vector v",
@@ -72,7 +72,7 @@ int main() {
     },
     {
       line: 15,
-      text: "Inițializăm perechea $p$ cu valorile $1$ (pe prima poziție, `.first`) și `\"unu\"` (pe a doua poziție, `.second`).",
+      text: "Inițializăm perechea $p$ (de tip `std::pair`) ce grupează două tipuri diferite: primul câmp `.first` are valoarea $1$, iar al doilea câmp `.second` are valoarea `\"unu\"`.",
       blocksVisual: [
         {
           "label": "Pereche p",
@@ -93,7 +93,7 @@ int main() {
     },
     {
       line: 18,
-      text: "Declarăm o mulțime ordonată $s$ pentru a păstra elemente întregi unice. În acest moment este goală.",
+      text: "Declarăm o mulțime ordonată $s$ (de tip `std::set`) pentru a păstra elemente unice. Setul este inițial gol.",
       blocksVisual: [
         {
           "label": "Mulțime s",
@@ -110,7 +110,7 @@ int main() {
     },
     {
       line: 19,
-      text: "Inserăm valoarea $5$ în mulțime. $s$ devine $\\{5\\}$.",
+      text: "Inserăm valoarea $5$ în mulțime. Elementele din `std::set` sunt sortate automat crescător.",
       blocksVisual: [
         {
           "label": "Mulțime s",
@@ -127,7 +127,7 @@ int main() {
     },
     {
       line: 20,
-      text: "Încercăm să inserăm din nou valoarea $5$. Deoarece elementele într-un `std::set` trebuie să fie unice, inserarea este ignorată. Mulțimea rămâne $\\{5\\}$.",
+      text: "Încercăm să inserăm din nou valoarea $5$. Deoarece elementele într-un `std::set` sunt unice, duplicatul este respins, iar mulțimea rămâne $\\{5\\}$.",
       blocksVisual: [
         {
           "label": "Mulțime s (ignorat duplicat)",
@@ -143,7 +143,7 @@ int main() {
     },
     {
       line: 23,
-      text: "Declarăm un dicționar $m$ care asociază chei de tip șir de caractere cu valori întregi.",
+      text: "Declarăm un dicționar $m$ (`std::map`) ce asociază chei de tip șir de caractere (string) cu valori întregi (int). Momentan este gol.",
       blocksVisual: [
         {
           "label": "Dicționar m",
@@ -160,7 +160,7 @@ int main() {
     },
     {
       line: 24,
-      text: "Asociem cheii `\"mere\"` valoarea $3$. Dacă cheia nu exista, ea este creată.",
+      text: "Asociem cheii `\"mere\"` valoarea $3$ prin `m[\"mere\"] = 3`. Cheia este creată și valoarea este stocată în map.",
       blocksVisual: [
         {
           "label": "Dicționar m",
@@ -177,7 +177,7 @@ int main() {
     },
     {
       line: 26,
-      text: "Accesăm primul element din vector: $v[0] = 10$.",
+      text: "Accesăm prin indexare în timp constant primul element din vector: $v[0] = 10$. Valoarea este salvată în variabila $val$.",
       blocksVisual: [
         {
           "label": "Citire Vector",
@@ -194,7 +194,7 @@ int main() {
     },
     {
       line: 27,
-      text: "Obținem dimensiunea mulțimii $s$ folosind funcția `size()`. Valoarea returnată este $1$, deoarece duplicatul a fost ignorat.",
+      text: "Obținem numărul de elemente din setul $s$ folosind `size()`. Dimensiunea este $1$ deoarece duplicatul introdus anterior a fost ignorat.",
       blocksVisual: [
         {
           "label": "Dimensiune Mulțime",
@@ -211,7 +211,7 @@ int main() {
     },
     {
       line: 28,
-      text: "Căutăm și citim valoarea asociată cheii `\"mere\"` în dicționar. Obținem valoarea $3$.",
+      text: "Căutăm în map valoarea asociată cheii `\"mere\"` folosind cheia ca index. Găsim valoarea stocată $3$.",
       blocksVisual: [
         {
           "label": "Citire Dicționar",
@@ -228,7 +228,7 @@ int main() {
     },
     {
       line: 30,
-      text: "Finalizăm programul cu succes.",
+      text: "Programul se încheie cu succes. Containerele din STL ne permit să scriem cod extrem de rapid și bine optimizat.",
       blocksVisual: [
         {
           "label": "Final",
@@ -775,4 +775,6 @@ int main() {
     }
   }
 }
+;
+;
 ;

@@ -94,7 +94,7 @@ int main() {
   "explanations": [
   {
     "line": 62,
-    "text": "Apelăm dial(1, 4, adj, 7).",
+    "text": "Apelăm funcția dial(src=1, n=4, adj, max_weight=7) din main pentru a calcula drumurile minime din sursa 1.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=0",
@@ -135,7 +135,7 @@ int main() {
   },
   {
     "line": 15,
-    "text": "Inițializăm dist[i] = INF.",
+    "text": "Inițializăm vectorul de distanțe dist cu valoarea infinită (INF = 1e9) pentru toate nodurile, considerându-le nevizitate.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=0",
@@ -176,7 +176,7 @@ int main() {
   },
   {
     "line": 16,
-    "text": "dist[1] = 0.",
+    "text": "Setăm distanța minimă de la sursă la ea însăși la 0: dist[1] = 0.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=0",
@@ -217,7 +217,7 @@ int main() {
   },
   {
     "line": 19,
-    "text": "num_buckets = 29.",
+    "text": "Calculăm numărul maxim de bucket-uri necesar: num_buckets = n * max_weight + 1 = 4 * 7 + 1 = 29.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=0",
@@ -258,7 +258,7 @@ int main() {
   },
   {
     "line": 20,
-    "text": "Inițializăm vectorul buckets.",
+    "text": "Inițializăm vectorul buckets care conține 29 de sertare (liste) pentru a sorta nodurile în funcție de distanța lor actuală.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=0",
@@ -299,7 +299,7 @@ int main() {
   },
   {
     "line": 22,
-    "text": "buckets[0].push_back(1).",
+    "text": "Adăugăm nodul sursă 1 în bucket-ul corespunzător distanței sale (0): buckets[0].",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=0",
@@ -340,7 +340,7 @@ int main() {
   },
   {
     "line": 23,
-    "text": "idx = 0.",
+    "text": "Inițializăm indexul bucket-ului curent de unde vom începe căutarea: idx = 0.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=0",
@@ -381,7 +381,7 @@ int main() {
   },
   {
     "line": 25,
-    "text": "Începe bucla (count = 0 < 4).",
+    "text": "Începe bucla principală. Verificăm condiția: count < n (0 < 4). Deoarece mai avem noduri nevizitate, intrăm în buclă.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=0",
@@ -422,7 +422,48 @@ int main() {
   },
   {
     "line": 27,
-    "text": "Căutăm următorul bucket ne-vid de la idx=0.",
+    "text": "Căutăm următorul bucket ne-vid începând de la indexul idx = 0.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=0",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {1}",
+              "active": true
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Am găsit un bucket ne-vid la indexul idx = 0. Oprim căutarea sertarelor.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=0",
@@ -463,7 +504,7 @@ int main() {
   },
   {
     "line": 31,
-    "text": "Verificăm idx == num_buckets.",
+    "text": "Verificăm dacă am depășit limitele sertarelor: idx == num_buckets (0 == 29). Condiția este Falsă, deci continuăm.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=0",
@@ -504,7 +545,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "u = buckets[0].front() = 1.",
+    "text": "Extragem primul nod din bucket-ul curent buckets[0]: u = 1. Acesta este cel mai apropiat nod nevizitat.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=0",
@@ -545,7 +586,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "buckets[0].pop_front().",
+    "text": "Eliminăm nodul u = 1 din buckets[0].",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=0",
@@ -586,7 +627,7 @@ int main() {
   },
   {
     "line": 36,
-    "text": "count devine 1.",
+    "text": "Incrementăm numărul de noduri finalizate: count devine 1.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=0",
@@ -627,7 +668,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Parcurgem vecinii lui 1. Vectorul v=2, weight=2.",
+    "text": "Explorăm vecinul v = 2 al nodului u = 1. Muchia are costul (ponderea) weight = 2.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=0",
@@ -668,7 +709,7 @@ int main() {
   },
   {
     "line": 42,
-    "text": "Verificăm dacă dist[1] + 2 < dist[2]. (2 < INF).",
+    "text": "Verificăm dacă trecerea prin u oferă un drum mai scurt către vecinul v: dist[u] + weight < dist[v] (0 + 2 < INF). Condiția este Adevărată (relaxăm muchia).",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=0",
@@ -709,7 +750,7 @@ int main() {
   },
   {
     "line": 43,
-    "text": "Verificăm dacă dist[2] != INF.",
+    "text": "Verificăm dacă vecinul v = 2 avea deja o distanță finită (dist[v] != INF). Deoarece dist[2] = INF, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=0",
@@ -750,7 +791,7 @@ int main() {
   },
   {
     "line": 47,
-    "text": "dist[2] = 2.",
+    "text": "Actualizăm distanța minimă până la vecinul v = 2: dist[2] = 2 pași.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=0",
@@ -791,7 +832,7 @@ int main() {
   },
   {
     "line": 48,
-    "text": "Adăugăm 2 în bucket[2].",
+    "text": "Introducem vecinul v = 2 în noul bucket corespunzător noii sale distanțe: buckets[2].",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=0",
@@ -832,7 +873,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Parcurgem vecinii lui 1. Vectorul v=3, weight=4.",
+    "text": "Explorăm vecinul v = 3 al nodului u = 1. Muchia are costul (ponderea) weight = 4.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=0",
@@ -873,7 +914,7 @@ int main() {
   },
   {
     "line": 42,
-    "text": "Verificăm dacă dist[1] + 4 < dist[3]. (4 < INF).",
+    "text": "Verificăm dacă trecerea prin u oferă un drum mai scurt către vecinul v: dist[u] + weight < dist[v] (0 + 4 < INF). Condiția este Adevărată (relaxăm muchia).",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=0",
@@ -914,7 +955,7 @@ int main() {
   },
   {
     "line": 43,
-    "text": "Verificăm dacă dist[3] != INF.",
+    "text": "Verificăm dacă vecinul v = 3 avea deja o distanță finită (dist[v] != INF). Deoarece dist[3] = INF, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=0",
@@ -955,7 +996,7 @@ int main() {
   },
   {
     "line": 47,
-    "text": "dist[3] = 4.",
+    "text": "Actualizăm distanța minimă până la vecinul v = 3: dist[3] = 4 pași.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=0",
@@ -996,7 +1037,7 @@ int main() {
   },
   {
     "line": 48,
-    "text": "Adăugăm 3 în bucket[4].",
+    "text": "Introducem vecinul v = 3 în noul bucket corespunzător noii sale distanțe: buckets[4].",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=0",
@@ -1037,7 +1078,7 @@ int main() {
   },
   {
     "line": 27,
-    "text": "Căutăm următorul bucket ne-vid de la idx=0.",
+    "text": "Căutăm următorul bucket ne-vid începând de la indexul idx = 0.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=0",
@@ -1078,7 +1119,7 @@ int main() {
   },
   {
     "line": 28,
-    "text": "idx=1.",
+    "text": "Deoarece buckets[0] este gol, incrementăm indexul căutării: idx = 1.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=1",
@@ -1119,7 +1160,48 @@ int main() {
   },
   {
     "line": 28,
-    "text": "idx=2.",
+    "text": "Deoarece buckets[1] este gol, incrementăm indexul căutării: idx = 2.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=2",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {2}",
+              "active": true
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {3}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Am găsit un bucket ne-vid la indexul idx = 2. Oprim căutarea sertarelor.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=2",
@@ -1160,7 +1242,7 @@ int main() {
   },
   {
     "line": 31,
-    "text": "Verificăm idx == num_buckets.",
+    "text": "Verificăm dacă am depășit limitele sertarelor: idx == num_buckets (2 == 29). Condiția este Falsă, deci continuăm.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=2",
@@ -1201,7 +1283,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "u = buckets[2].front() = 2.",
+    "text": "Extragem primul nod din bucket-ul curent buckets[2]: u = 2. Acesta este cel mai apropiat nod nevizitat.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=2",
@@ -1242,7 +1324,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "buckets[2].pop_front().",
+    "text": "Eliminăm nodul u = 2 din buckets[2].",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=2",
@@ -1283,7 +1365,7 @@ int main() {
   },
   {
     "line": 36,
-    "text": "count devine 2.",
+    "text": "Incrementăm numărul de noduri finalizate: count devine 2.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=2",
@@ -1324,7 +1406,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Parcurgem vecinii lui 2. Vectorul v=3, weight=1.",
+    "text": "Explorăm vecinul v = 3 al nodului u = 2. Muchia are costul (ponderea) weight = 1.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=2",
@@ -1365,7 +1447,7 @@ int main() {
   },
   {
     "line": 42,
-    "text": "Verificăm dacă dist[2] + 1 < dist[3]. (3 < 4).",
+    "text": "Verificăm dacă trecerea prin u oferă un drum mai scurt către vecinul v: dist[u] + weight < dist[v] (2 + 1 < 4). Condiția este Adevărată (relaxăm muchia).",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=2",
@@ -1406,7 +1488,7 @@ int main() {
   },
   {
     "line": 43,
-    "text": "Verificăm dacă dist[3] != INF.",
+    "text": "Verificăm dacă vecinul v = 3 avea deja o distanță finită (dist[v] != INF). Deoarece dist[3] = 4, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=2",
@@ -1447,7 +1529,7 @@ int main() {
   },
   {
     "line": 44,
-    "text": "Eliminăm nodul 3 din bucket[4].",
+    "text": "Deoarece vecinul avea o distanță mai veche, îl eliminăm din buckets[4].",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=2",
@@ -1488,7 +1570,7 @@ int main() {
   },
   {
     "line": 47,
-    "text": "dist[3] = 3.",
+    "text": "Actualizăm distanța minimă până la vecinul v = 3: dist[3] = 3 pași.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=2",
@@ -1529,7 +1611,7 @@ int main() {
   },
   {
     "line": 48,
-    "text": "Adăugăm 3 în bucket[3].",
+    "text": "Introducem vecinul v = 3 în noul bucket corespunzător noii sale distanțe: buckets[3].",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=2",
@@ -1570,7 +1652,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Parcurgem vecinii lui 2. Vectorul v=4, weight=7.",
+    "text": "Explorăm vecinul v = 4 al nodului u = 2. Muchia are costul (ponderea) weight = 7.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=2",
@@ -1611,7 +1693,7 @@ int main() {
   },
   {
     "line": 42,
-    "text": "Verificăm dacă dist[2] + 7 < dist[4]. (9 < INF).",
+    "text": "Verificăm dacă trecerea prin u oferă un drum mai scurt către vecinul v: dist[u] + weight < dist[v] (2 + 7 < INF). Condiția este Adevărată (relaxăm muchia).",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=2",
@@ -1652,7 +1734,7 @@ int main() {
   },
   {
     "line": 43,
-    "text": "Verificăm dacă dist[4] != INF.",
+    "text": "Verificăm dacă vecinul v = 4 avea deja o distanță finită (dist[v] != INF). Deoarece dist[4] = INF, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=2",
@@ -1693,7 +1775,7 @@ int main() {
   },
   {
     "line": 47,
-    "text": "dist[4] = 9.",
+    "text": "Actualizăm distanța minimă până la vecinul v = 4: dist[4] = 9 pași.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=2",
@@ -1734,7 +1816,7 @@ int main() {
   },
   {
     "line": 48,
-    "text": "Adăugăm 4 în bucket[9].",
+    "text": "Introducem vecinul v = 4 în noul bucket corespunzător noii sale distanțe: buckets[9].",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=2",
@@ -1775,7 +1857,7 @@ int main() {
   },
   {
     "line": 27,
-    "text": "Căutăm următorul bucket ne-vid de la idx=2.",
+    "text": "Căutăm următorul bucket ne-vid începând de la indexul idx = 2.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=2",
@@ -1816,7 +1898,48 @@ int main() {
   },
   {
     "line": 28,
-    "text": "idx=3.",
+    "text": "Deoarece buckets[2] este gol, incrementăm indexul căutării: idx = 3.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=3",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {3}",
+              "active": true
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Am găsit un bucket ne-vid la indexul idx = 3. Oprim căutarea sertarelor.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=3",
@@ -1857,7 +1980,7 @@ int main() {
   },
   {
     "line": 31,
-    "text": "Verificăm idx == num_buckets.",
+    "text": "Verificăm dacă am depășit limitele sertarelor: idx == num_buckets (3 == 29). Condiția este Falsă, deci continuăm.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=3",
@@ -1898,7 +2021,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "u = buckets[3].front() = 3.",
+    "text": "Extragem primul nod din bucket-ul curent buckets[3]: u = 3. Acesta este cel mai apropiat nod nevizitat.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=3",
@@ -1939,7 +2062,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "buckets[3].pop_front().",
+    "text": "Eliminăm nodul u = 3 din buckets[3].",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=3",
@@ -1980,7 +2103,7 @@ int main() {
   },
   {
     "line": 36,
-    "text": "count devine 3.",
+    "text": "Incrementăm numărul de noduri finalizate: count devine 3.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=3",
@@ -2021,7 +2144,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Parcurgem vecinii lui 3. Vectorul v=4, weight=3.",
+    "text": "Explorăm vecinul v = 4 al nodului u = 3. Muchia are costul (ponderea) weight = 3.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=3",
@@ -2062,7 +2185,7 @@ int main() {
   },
   {
     "line": 42,
-    "text": "Verificăm dacă dist[3] + 3 < dist[4]. (6 < 9).",
+    "text": "Verificăm dacă trecerea prin u oferă un drum mai scurt către vecinul v: dist[u] + weight < dist[v] (3 + 3 < 9). Condiția este Adevărată (relaxăm muchia).",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=3",
@@ -2103,7 +2226,7 @@ int main() {
   },
   {
     "line": 43,
-    "text": "Verificăm dacă dist[4] != INF.",
+    "text": "Verificăm dacă vecinul v = 4 avea deja o distanță finită (dist[v] != INF). Deoarece dist[4] = 9, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=3",
@@ -2144,7 +2267,7 @@ int main() {
   },
   {
     "line": 44,
-    "text": "Eliminăm nodul 4 din bucket[9].",
+    "text": "Deoarece vecinul avea o distanță mai veche, îl eliminăm din buckets[9].",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=3",
@@ -2185,7 +2308,7 @@ int main() {
   },
   {
     "line": 47,
-    "text": "dist[4] = 6.",
+    "text": "Actualizăm distanța minimă până la vecinul v = 4: dist[4] = 6 pași.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=3",
@@ -2226,7 +2349,7 @@ int main() {
   },
   {
     "line": 48,
-    "text": "Adăugăm 4 în bucket[6].",
+    "text": "Introducem vecinul v = 4 în noul bucket corespunzător noii sale distanțe: buckets[6].",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=3",
@@ -2267,7 +2390,7 @@ int main() {
   },
   {
     "line": 27,
-    "text": "Căutăm următorul bucket ne-vid de la idx=3.",
+    "text": "Căutăm următorul bucket ne-vid începând de la indexul idx = 3.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=3",
@@ -2308,7 +2431,7 @@ int main() {
   },
   {
     "line": 28,
-    "text": "idx=4.",
+    "text": "Deoarece buckets[3] este gol, incrementăm indexul căutării: idx = 4.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=4",
@@ -2349,7 +2472,7 @@ int main() {
   },
   {
     "line": 28,
-    "text": "idx=5.",
+    "text": "Deoarece buckets[4] este gol, incrementăm indexul căutării: idx = 5.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=5",
@@ -2390,7 +2513,48 @@ int main() {
   },
   {
     "line": 28,
-    "text": "idx=6.",
+    "text": "Deoarece buckets[5] este gol, incrementăm indexul căutării: idx = 6.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=6",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {4}",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Am găsit un bucket ne-vid la indexul idx = 6. Oprim căutarea sertarelor.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=6",
@@ -2431,7 +2595,7 @@ int main() {
   },
   {
     "line": 31,
-    "text": "Verificăm idx == num_buckets.",
+    "text": "Verificăm dacă am depășit limitele sertarelor: idx == num_buckets (6 == 29). Condiția este Falsă, deci continuăm.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=6",
@@ -2472,7 +2636,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "u = buckets[6].front() = 4.",
+    "text": "Extragem primul nod din bucket-ul curent buckets[6]: u = 4. Acesta este cel mai apropiat nod nevizitat.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=6",
@@ -2513,7 +2677,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "buckets[6].pop_front().",
+    "text": "Eliminăm nodul u = 4 din buckets[6].",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=6",
@@ -2554,7 +2718,48 @@ int main() {
   },
   {
     "line": 36,
-    "text": "count devine 4.",
+    "text": "Incrementăm numărul de noduri finalizate: count devine 4.",
+    "blocksVisual": [
+      {
+        "label": "Buckets (0..6) - idx=6",
+        "groups": [
+          [
+            {
+              "val": "B[0]: {}",
+              "active": false
+            },
+            {
+              "val": "B[1]: {}",
+              "active": false
+            },
+            {
+              "val": "B[2]: {}",
+              "active": false
+            },
+            {
+              "val": "B[3]: {}",
+              "active": false
+            },
+            {
+              "val": "B[4]: {}",
+              "active": false
+            },
+            {
+              "val": "B[5]: {}",
+              "active": false
+            },
+            {
+              "val": "B[6]: {}",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 25,
+    "text": "Verificăm condiția buclei principale: count < n (4 < 4). Deoarece condiția este Falsă, finalizăm bucla.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=6",
@@ -2595,7 +2800,7 @@ int main() {
   },
   {
     "line": 52,
-    "text": "Returnăm vectorul dist.",
+    "text": "Am parcurs toate nodurile accesibile. Returnăm vectorul final de distanțe minime dist.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=6",
@@ -2636,7 +2841,7 @@ int main() {
   },
   {
     "line": 63,
-    "text": "Afișăm distanțele în main().",
+    "text": "Revenim în main() și afișăm distanțele minime calculate de la sursa 1.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=6",
@@ -2677,7 +2882,7 @@ int main() {
   },
   {
     "line": 67,
-    "text": "Program finalizat.",
+    "text": "Programul se încheie cu succes.",
     "blocksVisual": [
       {
         "label": "Buckets (0..6) - idx=6",
@@ -2719,8 +2924,9 @@ int main() {
 ],
   "debugger": {
     
+    
     "getDebuggerState": (stepIndex, activeLine, explanationText) => {
-      const states = [{"line": 62,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,1000000000,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 15,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,1000000000,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 16,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 19,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 20,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 22,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 23,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 25,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["1","","","","","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":1,"bucketsStr":["","","2","","3","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":1,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","2","","3","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 44,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","3","","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 44,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":3,"bucketsStr":["","","","","","","4"]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":4,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":5,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","","4"]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","",""]},{"line": 52,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 63,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 67,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]}];
+      const states = [{"line": 62,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,1000000000,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 15,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,1000000000,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 16,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 19,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 20,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 22,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 23,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 25,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["1","","","","","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":1,"bucketsStr":["","","2","","3","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":1,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","2","","3","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 44,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","3","","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 44,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":3,"bucketsStr":["","","","","","","4"]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":4,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":5,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","","4"]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","",""]},{"line": 25,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 52,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 63,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 67,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]}];
       if (stepIndex >= states.length) stepIndex = states.length - 1;
       const state = states[stepIndex];
       const locals = state.locals;
@@ -2760,7 +2966,7 @@ int main() {
       return { vars, globalVars, frames, inlineVal };
     },
     "getInlineValueForLine": (stepIndex, lineNum) => {
-      const states = [{"line": 62,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,1000000000,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 15,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,1000000000,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 16,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 19,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 20,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 22,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 23,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 25,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["1","","","","","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":1,"bucketsStr":["","","2","","3","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":1,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","2","","3","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 44,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","3","","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 44,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":3,"bucketsStr":["","","","","","","4"]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":4,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":5,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","","4"]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","",""]},{"line": 52,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 63,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 67,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]}];
+      const states = [{"line": 62,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,1000000000,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 15,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,1000000000,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 16,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 19,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 20,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 22,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 23,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 25,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["1","","","","","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":1,"bucketsStr":["","","2","","3","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":1,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","2","","3","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 44,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","3","","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 44,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":3,"bucketsStr":["","","","","","","4"]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":4,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":5,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","","4"]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","",""]},{"line": 25,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 52,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 63,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 67,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]}];
       if (stepIndex >= states.length) stepIndex = states.length - 1;
       const state = states[stepIndex];
       const locals = state.locals;
@@ -2769,7 +2975,7 @@ int main() {
       return null;
     },
     "getGraphVisual": (stepIndex) => {
-      const states = [{"line": 62,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,1000000000,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 15,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,1000000000,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 16,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 19,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 20,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 22,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 23,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 25,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["1","","","","","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":1,"bucketsStr":["","","2","","3","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":1,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","2","","3","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 44,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","3","","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 44,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":3,"bucketsStr":["","","","","","","4"]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":4,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":5,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","","4"]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","",""]},{"line": 52,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 63,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 67,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]}];
+      const states = [{"line": 62,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,1000000000,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 15,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,1000000000,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 16,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":null,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 19,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 20,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 22,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":null,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 23,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":null,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 25,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":null,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":-1,"bucketsStr":["1","","","","","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["1","","","","","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":0,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":null,"weight":null},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,1000000000,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":2,"weight":2},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,1000000000,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":1,"bucketsStr":["","","2","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":1,"bucketsStr":["","","2","","3","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":0,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":1,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":1,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":-1,"bucketsStr":["","","2","","3","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","2","","3","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":1,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":4},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","3","",""]},{"line": 44,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,4,1000000000],"uVal":2,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":3,"weight":1},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,1000000000],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":2,"bucketsStr":["","","","3","","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":2,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":2,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":-1,"bucketsStr":["","","","3","","",""]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","3","","",""]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":2,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":7},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 38,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 42,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 43,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 44,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,9],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 47,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":3,"bucketsStr":["","","","","","",""]},{"line": 48,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":3,"bucketsStr":["","","","","","","4"]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":3,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":4,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":5,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 28,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 27,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 31,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":3,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","","4"]},{"line": 33,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","","4"]},{"line": 34,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":3,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","",""]},{"line": 36,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":4,"bucketsStr":["","","","","","",""]},{"line": 25,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 52,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 63,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]},{"line": 67,"locals":{"src":1,"n":4,"max_weight":7,"num_buckets":29,"idx":6,"count":4,"u":4,"v":4,"weight":3},"dist":[1000000000,0,2,3,6],"uVal":-1,"bucketsStr":["","","","","","",""]}];
       if (stepIndex >= states.length) stepIndex = states.length - 1;
       const state = states[stepIndex];
       const dist = state.dist;

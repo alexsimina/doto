@@ -26,7 +26,7 @@ int main() {
   explanations: [
     {
       line: 6,
-      text: "Inițializăm numărul $n$ cu valoarea $358$ pe care îl vom procesa.",
+      text: "Inițializăm numărul $n$ cu valoarea $358$ pe care îl vom procesa pentru a-i calcula suma cifrelor și răsturnatul.",
       blocksVisual: [
         {
           "label": "Variabile",
@@ -43,7 +43,7 @@ int main() {
     },
     {
       line: 7,
-      text: "Inițializăm variabila $sum$ cu $0$. Aceasta va acumula suma cifrelor.",
+      text: "Inițializăm variabila $sum = 0$, în care vom acumula suma cifrelor extrase succesiv.",
       blocksVisual: [
         {
           "label": "Stare",
@@ -65,7 +65,7 @@ int main() {
     },
     {
       line: 8,
-      text: "Inițializăm $reversed$ cu $0$. Aici vom construi inversul (răsturnatul) numărului.",
+      text: "Inițializăm variabila $reversed = 0$, în care vom construi numărul răsturnat (inversat).",
       blocksVisual: [
         {
           "label": "Stare",
@@ -87,7 +87,7 @@ int main() {
     },
     {
       line: 9,
-      text: "Copiem valoarea lui $n$ în $temp$ pentru a nu distruge valoarea inițială în timpul procesării.",
+      text: "Copiem valoarea lui $n$ în $temp = 358$ pentru a nu altera valoarea inițială a lui $n$ în timpul prelucrării cifrelor.",
       blocksVisual: [
         {
           "label": "Stare",
@@ -114,7 +114,7 @@ int main() {
     },
     {
       line: 11,
-      text: "Verificăm dacă $temp > 0$. $358 > 0$ este adevărat.",
+      text: "Verificăm condiția buclei: $temp > 0$. Deoarece $temp = 358$ este strict mai mare decât $0$ (358 > 0 este Adevărat), continuăm extragerea cifrelor.",
       blocksVisual: [
         {
           "label": "Condiție",
@@ -131,7 +131,7 @@ int main() {
     },
     {
       line: 12,
-      text: "Extragem ultima cifră a lui $temp$: $358 \\pmod{10} = 8$.",
+      text: "Extragem ultima cifră a lui $temp$ folosind operatorul modulo $10$: $358 \\pmod{10} = 8$.",
       blocksVisual: [
         {
           "label": "Cifră extrasă",
@@ -153,7 +153,7 @@ int main() {
     },
     {
       line: 13,
-      text: "Adăugăm cifra $8$ la suma cifrelor: sum devine $8$.",
+      text: "Adăugăm cifra extrasă $8$ la suma cifrelor: $sum$ devine $0 + 8 = 8$.",
       blocksVisual: [
         {
           "label": "Suma actualizată",
@@ -170,7 +170,7 @@ int main() {
     },
     {
       line: 14,
-      text: "Actualizăm răsturnatul: reversed devine $8$.",
+      text: "Actualizăm răsturnatul: înmulțim vechea valoare a lui $reversed$ cu 10 și adunăm cifra $8$. $reversed$ devine $8$.",
       blocksVisual: [
         {
           "label": "Răsturnat actualizat",
@@ -187,7 +187,7 @@ int main() {
     },
     {
       line: 15,
-      text: "Eliminăm ultima cifră a lui $temp$ prin împărțirea la $10$: $temp = 35$.",
+      text: "Eliminăm ultima cifră a lui $temp$ prin împărțirea întreagă la $10$: $temp$ devine $\\lfloor 358 / 10 \\rfloor = 35$.",
       blocksVisual: [
         {
           "label": "Valoare rămasă",
@@ -204,7 +204,7 @@ int main() {
     },
     {
       line: 11,
-      text: "Verificăm dacă $temp > 0$. $35 > 0$ este adevărat.",
+      text: "Verificăm condiția buclei: $temp > 0$. Deoarece $temp = 35$ este strict mai mare decât $0$ (35 > 0 este Adevărat), continuăm extragerea cifrelor.",
       blocksVisual: [
         {
           "label": "Condiție",
@@ -221,7 +221,7 @@ int main() {
     },
     {
       line: 12,
-      text: "Extragem ultima cifră a lui $temp$: $35 \\pmod{10} = 5$.",
+      text: "Extragem ultima cifră a lui $temp$ folosind operatorul modulo $10$: $35 \\pmod{10} = 5$.",
       blocksVisual: [
         {
           "label": "Cifră extrasă",
@@ -243,7 +243,7 @@ int main() {
     },
     {
       line: 13,
-      text: "Adăugăm cifra $5$ la suma cifrelor: sum devine $13$.",
+      text: "Adăugăm cifra extrasă $5$ la suma cifrelor: $sum$ devine $8 + 5 = 13$.",
       blocksVisual: [
         {
           "label": "Suma actualizată",
@@ -260,7 +260,7 @@ int main() {
     },
     {
       line: 14,
-      text: "Actualizăm răsturnatul: reversed devine $85$.",
+      text: "Actualizăm răsturnatul: înmulțim vechea valoare a lui $reversed$ cu 10 și adunăm cifra $5$. $reversed$ devine $85$.",
       blocksVisual: [
         {
           "label": "Răsturnat actualizat",
@@ -277,7 +277,7 @@ int main() {
     },
     {
       line: 15,
-      text: "Eliminăm ultima cifră a lui $temp$ prin împărțirea la $10$: $temp = 3$.",
+      text: "Eliminăm ultima cifră a lui $temp$ prin împărțirea întreagă la $10$: $temp$ devine $\\lfloor 35 / 10 \\rfloor = 3$.",
       blocksVisual: [
         {
           "label": "Valoare rămasă",
@@ -294,7 +294,7 @@ int main() {
     },
     {
       line: 11,
-      text: "Verificăm dacă $temp > 0$. $3 > 0$ este adevărat.",
+      text: "Verificăm condiția buclei: $temp > 0$. Deoarece $temp = 3$ este strict mai mare decât $0$ (3 > 0 este Adevărat), continuăm extragerea cifrelor.",
       blocksVisual: [
         {
           "label": "Condiție",
@@ -311,7 +311,7 @@ int main() {
     },
     {
       line: 12,
-      text: "Extragem ultima cifră a lui $temp$: $3 \\pmod{10} = 3$.",
+      text: "Extragem ultima cifră a lui $temp$ folosind operatorul modulo $10$: $3 \\pmod{10} = 3$.",
       blocksVisual: [
         {
           "label": "Cifră extrasă",
@@ -333,7 +333,7 @@ int main() {
     },
     {
       line: 13,
-      text: "Adăugăm cifra $3$ la suma cifrelor: sum devine $16$.",
+      text: "Adăugăm cifra extrasă $3$ la suma cifrelor: $sum$ devine $13 + 3 = 16$.",
       blocksVisual: [
         {
           "label": "Suma actualizată",
@@ -350,7 +350,7 @@ int main() {
     },
     {
       line: 14,
-      text: "Actualizăm răsturnatul: reversed devine $853$.",
+      text: "Actualizăm răsturnatul: înmulțim vechea valoare a lui $reversed$ cu 10 și adunăm cifra $3$. $reversed$ devine $853$.",
       blocksVisual: [
         {
           "label": "Răsturnat actualizat",
@@ -367,7 +367,7 @@ int main() {
     },
     {
       line: 15,
-      text: "Eliminăm ultima cifră a lui $temp$ prin împărțirea la $10$: $temp = 0$.",
+      text: "Eliminăm ultima cifră a lui $temp$ prin împărțirea întreagă la $10$: $temp$ devine $\\lfloor 3 / 10 \\rfloor = 0$.",
       blocksVisual: [
         {
           "label": "Valoare rămasă",
@@ -384,14 +384,31 @@ int main() {
     },
     {
       line: 11,
-      text: "Verificăm dacă $temp > 0$. $0 > 0$ este fals.",
+      text: "Verificăm condiția buclei: $temp > 0$. Deoarece $temp = 0$ este strict mai mare decât $0$ (0 > 0 este Adevărat), continuăm extragerea cifrelor.",
       blocksVisual: [
         {
           "label": "Condiție",
           "groups": [
             [
               {
-                "val": "0 > 0 ? Fals",
+                "val": "0 > 0 ? Da",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      line: 11,
+      text: "Verificăm condiția buclei: $temp > 0$. Deoarece $temp = 0$, condiția este falsă (0 > 0 este Fals), deci ieșim din buclă.",
+      blocksVisual: [
+        {
+          "label": "Condiție",
+          "groups": [
+            [
+              {
+                "val": "0 > 0 ? Nu",
                 "active": true
               }
             ]
@@ -401,7 +418,7 @@ int main() {
     },
     {
       line: 18,
-      text: "Finalizăm programul cu succes.",
+      text: "Programul se încheie cu succes, returnând 0. Am calculat cu succes suma cifrelor ($sum = 16$) și răsturnatul ($reversed = 853$).",
       blocksVisual: [
         {
           "label": "Final",
@@ -1230,6 +1247,42 @@ int main() {
             {
               "name": "main()",
               "file": "main.cpp",
+              "line": 11
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "n",
+              "type": "int",
+              "val": 358,
+              "expandable": false
+            },
+            {
+              "name": "sum",
+              "type": "int",
+              "val": 16,
+              "expandable": false
+            },
+            {
+              "name": "reversed",
+              "type": "int",
+              "val": 853,
+              "expandable": false
+            },
+            {
+              "name": "temp",
+              "type": "int",
+              "val": 0,
+              "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
               "line": 18
             }
           ],
@@ -1374,6 +1427,12 @@ int main() {
           "7": "sum: 16",
           "8": "reversed: 853",
           "9": "temp: 0"
+        },
+        {
+          "6": "n: 358",
+          "7": "sum: 16",
+          "8": "reversed: 853",
+          "9": "temp: 0"
         }
       ];
       if (stepIndex < 0) return null;
@@ -1382,4 +1441,6 @@ int main() {
     }
   }
 }
+;
+;
 ;

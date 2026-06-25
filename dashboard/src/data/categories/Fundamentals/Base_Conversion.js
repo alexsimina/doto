@@ -27,7 +27,7 @@ int main() {
   explanations: [
     {
       line: 7,
-      text: "Definim numărul zecimal $n = 13$ pe care dorim să-l convertim.",
+      text: "Definim numărul zecimal $n = 13$ pe care dorim să-l convertim în baza $2$.",
       blocksVisual: [
         {
           "label": "Input",
@@ -44,7 +44,7 @@ int main() {
     },
     {
       line: 8,
-      text: "Definim baza în care dorim să facem conversia: $base = 2$.",
+      text: "Setăm baza în care dorim să facem conversia: $base = 2$. Numărul 13 va fi transformat în format binar.",
       blocksVisual: [
         {
           "label": "Bază",
@@ -61,7 +61,7 @@ int main() {
     },
     {
       line: 9,
-      text: "Declarăm un vector $digits$ în care vom stoca cifrele reprezentării în baza $2$.",
+      text: "Declarăm un vector gol $digits$ în care vom stoca resturile obținute la fiecare pas, reprezentând cifrele în baza 2 de la dreapta la stânga.",
       blocksVisual: [
         {
           "label": "Vector Cifre",
@@ -78,7 +78,7 @@ int main() {
     },
     {
       line: 11,
-      text: "Copiem valoarea lui $n$ în variabila de lucru $temp$.",
+      text: "Copiem valoarea lui $n$ în variabila de lucru $temp = 13$. Vom împărți succesiv $temp$ la bază pentru a nu altera valoarea inițială a lui $n$.",
       blocksVisual: [
         {
           "label": "Copie",
@@ -95,7 +95,7 @@ int main() {
     },
     {
       line: 12,
-      text: "Verificăm dacă $temp > 0$. $13 > 0$ este adevărat.",
+      text: "Verificăm condiția buclei: $temp > 0$. Deoarece $temp = 13$ este strict mai mare decât $0$ (13 > 0 este Adevărat), intrăm în buclă pentru a calcula următoarea cifră.",
       blocksVisual: [
         {
           "label": "Condiție",
@@ -112,7 +112,7 @@ int main() {
     },
     {
       line: 13,
-      text: "Calculăm restul împărțirii lui $temp$ la $base$: $13 \\pmod{2} = 1$.",
+      text: "Calculăm restul împărțirii lui $temp$ la $base$: $13 \\pmod{2} = 1$. Cifra curentă determinată este 1.",
       blocksVisual: [
         {
           "label": "Rest",
@@ -134,7 +134,7 @@ int main() {
     },
     {
       line: 14,
-      text: "Adăugăm restul obținut ($1$) la finalul vectorului $digits$.",
+      text: "Adăugăm restul obținut ($1$) la finalul vectorului $digits$. Starea actuală a cifrelor colectate este [1].",
       blocksVisual: [
         {
           "label": "Vector Cifre",
@@ -151,7 +151,7 @@ int main() {
     },
     {
       line: 15,
-      text: "Împărțim întreagă valoarea lui $temp$ la $base$: $temp = 6$.",
+      text: "Împărțim întreagă valoarea lui $temp$ la $base$ pentru a trece la următoarea cifră: $temp = \\lfloor 13 / 2 \\rfloor = 6$.",
       blocksVisual: [
         {
           "label": "Actualizare",
@@ -168,7 +168,7 @@ int main() {
     },
     {
       line: 12,
-      text: "Verificăm dacă $temp > 0$. $6 > 0$ este adevărat.",
+      text: "Verificăm condiția buclei: $temp > 0$. Deoarece $temp = 6$ este strict mai mare decât $0$ (6 > 0 este Adevărat), intrăm în buclă pentru a calcula următoarea cifră.",
       blocksVisual: [
         {
           "label": "Condiție",
@@ -185,7 +185,7 @@ int main() {
     },
     {
       line: 13,
-      text: "Calculăm restul împărțirii lui $temp$ la $base$: $6 \\pmod{2} = 0$.",
+      text: "Calculăm restul împărțirii lui $temp$ la $base$: $6 \\pmod{2} = 0$. Cifra curentă determinată este 0.",
       blocksVisual: [
         {
           "label": "Rest",
@@ -207,7 +207,7 @@ int main() {
     },
     {
       line: 14,
-      text: "Adăugăm restul obținut ($0$) la finalul vectorului $digits$.",
+      text: "Adăugăm restul obținut ($0$) la finalul vectorului $digits$. Starea actuală a cifrelor colectate este [1, 0].",
       blocksVisual: [
         {
           "label": "Vector Cifre",
@@ -224,7 +224,7 @@ int main() {
     },
     {
       line: 15,
-      text: "Împărțim întreagă valoarea lui $temp$ la $base$: $temp = 3$.",
+      text: "Împărțim întreagă valoarea lui $temp$ la $base$ pentru a trece la următoarea cifră: $temp = \\lfloor 6 / 2 \\rfloor = 3$.",
       blocksVisual: [
         {
           "label": "Actualizare",
@@ -241,7 +241,7 @@ int main() {
     },
     {
       line: 12,
-      text: "Verificăm dacă $temp > 0$. $3 > 0$ este adevărat.",
+      text: "Verificăm condiția buclei: $temp > 0$. Deoarece $temp = 3$ este strict mai mare decât $0$ (3 > 0 este Adevărat), intrăm în buclă pentru a calcula următoarea cifră.",
       blocksVisual: [
         {
           "label": "Condiție",
@@ -258,7 +258,7 @@ int main() {
     },
     {
       line: 13,
-      text: "Calculăm restul împărțirii lui $temp$ la $base$: $3 \\pmod{2} = 1$.",
+      text: "Calculăm restul împărțirii lui $temp$ la $base$: $3 \\pmod{2} = 1$. Cifra curentă determinată este 1.",
       blocksVisual: [
         {
           "label": "Rest",
@@ -280,7 +280,7 @@ int main() {
     },
     {
       line: 14,
-      text: "Adăugăm restul obținut ($1$) la finalul vectorului $digits$.",
+      text: "Adăugăm restul obținut ($1$) la finalul vectorului $digits$. Starea actuală a cifrelor colectate este [1, 0, 1].",
       blocksVisual: [
         {
           "label": "Vector Cifre",
@@ -297,7 +297,7 @@ int main() {
     },
     {
       line: 15,
-      text: "Împărțim întreagă valoarea lui $temp$ la $base$: $temp = 1$.",
+      text: "Împărțim întreagă valoarea lui $temp$ la $base$ pentru a trece la următoarea cifră: $temp = \\lfloor 3 / 2 \\rfloor = 1$.",
       blocksVisual: [
         {
           "label": "Actualizare",
@@ -314,7 +314,7 @@ int main() {
     },
     {
       line: 12,
-      text: "Verificăm dacă $temp > 0$. $1 > 0$ este adevărat.",
+      text: "Verificăm condiția buclei: $temp > 0$. Deoarece $temp = 1$ este strict mai mare decât $0$ (1 > 0 este Adevărat), intrăm în buclă pentru a calcula următoarea cifră.",
       blocksVisual: [
         {
           "label": "Condiție",
@@ -331,7 +331,7 @@ int main() {
     },
     {
       line: 13,
-      text: "Calculăm restul împărțirii lui $temp$ la $base$: $1 \\pmod{2} = 1$.",
+      text: "Calculăm restul împărțirii lui $temp$ la $base$: $1 \\pmod{2} = 1$. Cifra curentă determinată este 1.",
       blocksVisual: [
         {
           "label": "Rest",
@@ -353,7 +353,7 @@ int main() {
     },
     {
       line: 14,
-      text: "Adăugăm restul obținut ($1$) la finalul vectorului $digits$.",
+      text: "Adăugăm restul obținut ($1$) la finalul vectorului $digits$. Starea actuală a cifrelor colectate este [1, 0, 1, 1].",
       blocksVisual: [
         {
           "label": "Vector Cifre",
@@ -370,7 +370,7 @@ int main() {
     },
     {
       line: 15,
-      text: "Împărțim întreagă valoarea lui $temp$ la $base$: $temp = 0$.",
+      text: "Împărțim întreagă valoarea lui $temp$ la $base$ pentru a trece la următoarea cifră: $temp = \\lfloor 1 / 2 \\rfloor = 0$.",
       blocksVisual: [
         {
           "label": "Actualizare",
@@ -387,14 +387,31 @@ int main() {
     },
     {
       line: 12,
-      text: "Verificăm dacă $temp > 0$. $0 > 0$ este fals.",
+      text: "Verificăm condiția buclei: $temp > 0$. Deoarece $temp = 0$ este strict mai mare decât $0$ (0 > 0 este Adevărat), intrăm în buclă pentru a calcula următoarea cifră.",
       blocksVisual: [
         {
           "label": "Condiție",
           "groups": [
             [
               {
-                "val": "0 > 0 ? Fals",
+                "val": "0 > 0 ? Da",
+                "active": true
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      line: 12,
+      text: "Verificăm condiția buclei: $temp > 0$. Deoarece $temp = 0$ nu este mai mare decât $0$ (0 > 0 este Fals), condiția este falsă și ieșim din bucla while.",
+      blocksVisual: [
+        {
+          "label": "Condiție",
+          "groups": [
+            [
+              {
+                "val": "0 > 0 ? Nu",
                 "active": true
               }
             ]
@@ -404,7 +421,7 @@ int main() {
     },
     {
       line: 18,
-      text: "Salvăm lungimea vectorului de cifre pentru afișare/analiză.",
+      text: "Determinăm lungimea vectorului de cifre: $num_digits = 4$. Numărul 13 are 4 cifre în baza 2.",
       blocksVisual: [
         {
           "label": "Rezultat",
@@ -421,7 +438,7 @@ int main() {
     },
     {
       line: 19,
-      text: "Programul se încheie cu succes.",
+      text: "Programul se încheie cu succes, returnând 0. Vectorul $digits$ conține cifrele binare de la dreapta la stânga (reprezentând numărul 1101 binar).",
       blocksVisual: [
         {
           "label": "Final",
@@ -1280,6 +1297,42 @@ int main() {
               "type": "int",
               "val": 0,
               "expandable": false
+            }
+          ],
+          "frames": [
+            {
+              "name": "main()",
+              "file": "main.cpp",
+              "line": 12
+            }
+          ],
+          "inlineVal": null
+        },
+        {
+          "vars": [
+            {
+              "name": "n",
+              "type": "int",
+              "val": 13,
+              "expandable": false
+            },
+            {
+              "name": "base",
+              "type": "int",
+              "val": 2,
+              "expandable": false
+            },
+            {
+              "name": "digits",
+              "type": "std::vector<int>",
+              "val": "[1, 0, 1, 1]",
+              "expandable": true
+            },
+            {
+              "name": "temp",
+              "type": "int",
+              "val": 0,
+              "expandable": false
             },
             {
               "name": "num_digits",
@@ -1483,6 +1536,12 @@ int main() {
           "7": "n: 13",
           "8": "base: 2",
           "14": "digits: [1, 0, 1, 1]",
+          "15": "temp: 0"
+        },
+        {
+          "7": "n: 13",
+          "8": "base: 2",
+          "14": "digits: [1, 0, 1, 1]",
           "15": "temp: 0",
           "18": "num_digits: 4"
         },
@@ -1500,4 +1559,6 @@ int main() {
     }
   }
 }
+;
+;
 ;

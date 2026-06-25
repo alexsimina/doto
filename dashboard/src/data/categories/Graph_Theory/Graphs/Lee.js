@@ -84,7 +84,7 @@ int main() {
   "explanations": [
   {
     "line": 55,
-    "text": "Apelăm funcția leeAlgorithm pentru grid, src=(0,0), dest=(3,3).",
+    "text": "Începem execuția algoritmului lui Lee pentru a determina cel mai scurt drum de la sursa (0,0) la destinația (3,3) pe o matrice cu obstacole.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -138,7 +138,7 @@ int main() {
   },
   {
     "line": 12,
-    "text": "Obținem numărul de rânduri: rows = 4.",
+    "text": "Obținem numărul de linii ale matricei prin apelul grid.size(): rows = 4.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -192,7 +192,7 @@ int main() {
   },
   {
     "line": 13,
-    "text": "Obținem numărul de coloane: cols = 4.",
+    "text": "Obținem numărul de coloane ale matricei prin apelul grid[0].size(): cols = 4.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -246,7 +246,7 @@ int main() {
   },
   {
     "line": 14,
-    "text": "Verificăm dacă sursa sau destinația este obstacol (1). Ambele sunt 0 (libere).",
+    "text": "Verificăm dacă celula sursă sau destinația reprezintă un obstacol (valoare 1). Ambele celule sunt 0 (libere), deci condiția este falsă și putem porni parcurgerea.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -300,7 +300,7 @@ int main() {
   },
   {
     "line": 16,
-    "text": "Inițializăm matricea dist cu valoarea -1.",
+    "text": "Inițializăm matricea dist de dimensiune 4x4 cu valoarea -1, marcând toate celulele ca fiind nevizitate.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -354,7 +354,7 @@ int main() {
   },
   {
     "line": 17,
-    "text": "Inițializăm coada q.",
+    "text": "Inițializăm coada de priorități q, utilizată pentru a asigura parcurgerea în lățime (BFS).",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -408,7 +408,7 @@ int main() {
   },
   {
     "line": 19,
-    "text": "Setăm distanța pentru sursă la 0: dist[0][0] = 0.",
+    "text": "Setăm distanța de pornire pentru celula sursă la 0: dist[0][0] = 0.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -467,7 +467,7 @@ int main() {
   },
   {
     "line": 20,
-    "text": "Adăugăm sursa în coadă.",
+    "text": "Adăugăm celula sursă (0,0) în coada q pentru a fi prima analizată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -530,7 +530,7 @@ int main() {
   },
   {
     "line": 22,
-    "text": "Definim dr = {-1, 1, 0, 0}.",
+    "text": "Definim vectorul de deplasare pe linii dr = {-1, 1, 0, 0} pentru a accesa vecinii (Sus, Jos, Stânga, Dreapta).",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -593,7 +593,7 @@ int main() {
   },
   {
     "line": 23,
-    "text": "Definim dc = {0, 0, -1, 1}.",
+    "text": "Definim vectorul de deplasare pe coloane dc = {0, 0, -1, 1}.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -656,7 +656,7 @@ int main() {
   },
   {
     "line": 25,
-    "text": "Începem o iterație BFS. Coada are 1 elemente.",
+    "text": "Verificăm condiția buclei BFS: !q.empty(). Deoarece coada conține 1 elemente, condiția este adevărată, așa că începem o nouă iterație.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -714,7 +714,7 @@ int main() {
   },
   {
     "line": 26,
-    "text": "Extragem primul element din coadă: curr = (0, 0).",
+    "text": "Extragem celula din fața cozii: curr = (0, 0). Distanța calculată până la ea este dist[0][0] = 0.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -773,7 +773,7 @@ int main() {
   },
   {
     "line": 27,
-    "text": "Scoatem elementul din coadă.",
+    "text": "Eliminăm celula (0, 0) din coada de prelucrare.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -832,7 +832,7 @@ int main() {
   },
   {
     "line": 29,
-    "text": "Verificăm dacă curr este destinația (3,3). Nu.",
+    "text": "Verificăm dacă celula curentă este destinația: curr.r == dest.r && curr.c == dest.c. Coordonatele sunt (0, 0) comparate cu (3, 3). Condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -891,7 +891,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=0.",
+    "text": "Explorăm vecinul i = 0 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -950,7 +950,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = -1.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[0] = 0 + (-1) = -1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -1009,7 +1009,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 0.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[0] = 0 + (0) = 0.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -1068,7 +1068,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (-1, 0). În afara limitelor.",
+    "text": "Verificăm dacă vecinul (-1, 0) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt în afara limitelor, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -1127,7 +1127,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=1.",
+    "text": "Explorăm vecinul i = 1 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -1186,7 +1186,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 1.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[1] = 0 + (1) = 1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -1245,7 +1245,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 0.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[1] = 0 + (0) = 0.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -1304,7 +1304,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (1, 0). În limite.",
+    "text": "Verificăm dacă vecinul (1, 0) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -1363,7 +1363,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Da.",
+    "text": "Verificăm dacă celula vecină (1, 0) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[1][0] = 0 și dist[1][0] = -1, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -1427,7 +1427,7 @@ int main() {
   },
   {
     "line": 39,
-    "text": "Actualizăm dist[1][0] = 1.",
+    "text": "Actualizăm distanța pentru celula vecină: dist[1][0] = dist[0][0] + 1 = 1 pași.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -1491,7 +1491,7 @@ int main() {
   },
   {
     "line": 40,
-    "text": "Adăugăm (1, 0) în coadă.",
+    "text": "Adăugăm coordonatele (1, 0) în coadă pentru a le extinde frontul în iterațiile următoare.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -1559,7 +1559,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=2.",
+    "text": "Explorăm vecinul i = 2 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -1622,7 +1622,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 0.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[2] = 0 + (0) = 0.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -1685,7 +1685,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = -1.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[2] = 0 + (-1) = -1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -1748,7 +1748,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (0, -1). În afara limitelor.",
+    "text": "Verificăm dacă vecinul (0, -1) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt în afara limitelor, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -1811,7 +1811,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=3.",
+    "text": "Explorăm vecinul i = 3 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -1874,7 +1874,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 0.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[3] = 0 + (0) = 0.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -1937,7 +1937,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 1.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[3] = 0 + (1) = 1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -2000,7 +2000,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (0, 1). În limite.",
+    "text": "Verificăm dacă vecinul (0, 1) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -2063,7 +2063,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "text": "Verificăm dacă celula vecină (0, 1) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[0][1] = 1 și dist[0][1] = -1, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -2131,7 +2131,7 @@ int main() {
   },
   {
     "line": 25,
-    "text": "Începem o iterație BFS. Coada are 1 elemente.",
+    "text": "Verificăm condiția buclei BFS: !q.empty(). Deoarece coada conține 1 elemente, condiția este adevărată, așa că începem o nouă iterație.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -2189,7 +2189,7 @@ int main() {
   },
   {
     "line": 26,
-    "text": "Extragem primul element din coadă: curr = (1, 0).",
+    "text": "Extragem celula din fața cozii: curr = (1, 0). Distanța calculată până la ea este dist[1][0] = 1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -2248,7 +2248,7 @@ int main() {
   },
   {
     "line": 27,
-    "text": "Scoatem elementul din coadă.",
+    "text": "Eliminăm celula (1, 0) din coada de prelucrare.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -2307,7 +2307,7 @@ int main() {
   },
   {
     "line": 29,
-    "text": "Verificăm dacă curr este destinația (3,3). Nu.",
+    "text": "Verificăm dacă celula curentă este destinația: curr.r == dest.r && curr.c == dest.c. Coordonatele sunt (1, 0) comparate cu (3, 3). Condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -2366,7 +2366,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=0.",
+    "text": "Explorăm vecinul i = 0 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -2425,7 +2425,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 0.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[0] = 1 + (-1) = 0.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -2484,7 +2484,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 0.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[0] = 0 + (0) = 0.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -2543,7 +2543,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (0, 0). În limite.",
+    "text": "Verificăm dacă vecinul (0, 0) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -2602,7 +2602,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "text": "Verificăm dacă celula vecină (0, 0) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[0][0] = 0 și dist[0][0] = 0, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -2666,7 +2666,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=1.",
+    "text": "Explorăm vecinul i = 1 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -2725,7 +2725,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 2.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[1] = 1 + (1) = 2.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -2784,7 +2784,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 0.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[1] = 0 + (0) = 0.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -2843,7 +2843,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (2, 0). În limite.",
+    "text": "Verificăm dacă vecinul (2, 0) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -2902,7 +2902,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "text": "Verificăm dacă celula vecină (2, 0) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[2][0] = 1 și dist[2][0] = -1, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -2966,7 +2966,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=2.",
+    "text": "Explorăm vecinul i = 2 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -3025,7 +3025,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 1.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[2] = 1 + (0) = 1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -3084,7 +3084,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = -1.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[2] = 0 + (-1) = -1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -3143,7 +3143,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (1, -1). În afara limitelor.",
+    "text": "Verificăm dacă vecinul (1, -1) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt în afara limitelor, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -3202,7 +3202,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=3.",
+    "text": "Explorăm vecinul i = 3 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -3261,7 +3261,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 1.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[3] = 1 + (0) = 1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -3320,7 +3320,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 1.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[3] = 0 + (1) = 1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -3379,7 +3379,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (1, 1). În limite.",
+    "text": "Verificăm dacă vecinul (1, 1) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -3438,7 +3438,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Da.",
+    "text": "Verificăm dacă celula vecină (1, 1) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[1][1] = 0 și dist[1][1] = -1, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -3502,7 +3502,7 @@ int main() {
   },
   {
     "line": 39,
-    "text": "Actualizăm dist[1][1] = 2.",
+    "text": "Actualizăm distanța pentru celula vecină: dist[1][1] = dist[1][0] + 1 = 2 pași.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -3566,7 +3566,7 @@ int main() {
   },
   {
     "line": 40,
-    "text": "Adăugăm (1, 1) în coadă.",
+    "text": "Adăugăm coordonatele (1, 1) în coadă pentru a le extinde frontul în iterațiile următoare.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -3634,7 +3634,7 @@ int main() {
   },
   {
     "line": 25,
-    "text": "Începem o iterație BFS. Coada are 1 elemente.",
+    "text": "Verificăm condiția buclei BFS: !q.empty(). Deoarece coada conține 1 elemente, condiția este adevărată, așa că începem o nouă iterație.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -3692,7 +3692,7 @@ int main() {
   },
   {
     "line": 26,
-    "text": "Extragem primul element din coadă: curr = (1, 1).",
+    "text": "Extragem celula din fața cozii: curr = (1, 1). Distanța calculată până la ea este dist[1][1] = 2.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -3751,7 +3751,7 @@ int main() {
   },
   {
     "line": 27,
-    "text": "Scoatem elementul din coadă.",
+    "text": "Eliminăm celula (1, 1) din coada de prelucrare.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -3810,7 +3810,7 @@ int main() {
   },
   {
     "line": 29,
-    "text": "Verificăm dacă curr este destinația (3,3). Nu.",
+    "text": "Verificăm dacă celula curentă este destinația: curr.r == dest.r && curr.c == dest.c. Coordonatele sunt (1, 1) comparate cu (3, 3). Condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -3869,7 +3869,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=0.",
+    "text": "Explorăm vecinul i = 0 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -3928,7 +3928,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 0.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[0] = 1 + (-1) = 0.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -3987,7 +3987,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 1.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[0] = 1 + (0) = 1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -4046,7 +4046,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (0, 1). În limite.",
+    "text": "Verificăm dacă vecinul (0, 1) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -4105,7 +4105,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "text": "Verificăm dacă celula vecină (0, 1) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[0][1] = 1 și dist[0][1] = -1, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -4169,7 +4169,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=1.",
+    "text": "Explorăm vecinul i = 1 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -4228,7 +4228,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 2.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[1] = 1 + (1) = 2.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -4287,7 +4287,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 1.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[1] = 1 + (0) = 1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -4346,7 +4346,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (2, 1). În limite.",
+    "text": "Verificăm dacă vecinul (2, 1) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -4405,7 +4405,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Da.",
+    "text": "Verificăm dacă celula vecină (2, 1) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[2][1] = 0 și dist[2][1] = -1, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -4469,7 +4469,7 @@ int main() {
   },
   {
     "line": 39,
-    "text": "Actualizăm dist[2][1] = 3.",
+    "text": "Actualizăm distanța pentru celula vecină: dist[2][1] = dist[1][1] + 1 = 3 pași.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -4533,7 +4533,7 @@ int main() {
   },
   {
     "line": 40,
-    "text": "Adăugăm (2, 1) în coadă.",
+    "text": "Adăugăm coordonatele (2, 1) în coadă pentru a le extinde frontul în iterațiile următoare.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -4601,7 +4601,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=2.",
+    "text": "Explorăm vecinul i = 2 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -4664,7 +4664,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 1.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[2] = 1 + (0) = 1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -4727,7 +4727,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 0.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[2] = 1 + (-1) = 0.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -4790,7 +4790,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (1, 0). În limite.",
+    "text": "Verificăm dacă vecinul (1, 0) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -4853,7 +4853,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "text": "Verificăm dacă celula vecină (1, 0) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[1][0] = 0 și dist[1][0] = 1, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -4921,7 +4921,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=3.",
+    "text": "Explorăm vecinul i = 3 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -4984,7 +4984,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 1.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[3] = 1 + (0) = 1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -5047,7 +5047,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 2.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[3] = 1 + (1) = 2.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -5110,7 +5110,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (1, 2). În limite.",
+    "text": "Verificăm dacă vecinul (1, 2) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -5173,7 +5173,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Da.",
+    "text": "Verificăm dacă celula vecină (1, 2) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[1][2] = 0 și dist[1][2] = -1, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -5241,7 +5241,7 @@ int main() {
   },
   {
     "line": 39,
-    "text": "Actualizăm dist[1][2] = 3.",
+    "text": "Actualizăm distanța pentru celula vecină: dist[1][2] = dist[1][1] + 1 = 3 pași.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -5309,7 +5309,7 @@ int main() {
   },
   {
     "line": 40,
-    "text": "Adăugăm (1, 2) în coadă.",
+    "text": "Adăugăm coordonatele (1, 2) în coadă pentru a le extinde frontul în iterațiile următoare.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -5380,7 +5380,7 @@ int main() {
   },
   {
     "line": 25,
-    "text": "Începem o iterație BFS. Coada are 2 elemente.",
+    "text": "Verificăm condiția buclei BFS: !q.empty(). Deoarece coada conține 2 elemente, condiția este adevărată, așa că începem o nouă iterație.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -5441,7 +5441,7 @@ int main() {
   },
   {
     "line": 26,
-    "text": "Extragem primul element din coadă: curr = (2, 1).",
+    "text": "Extragem celula din fața cozii: curr = (2, 1). Distanța calculată până la ea este dist[2][1] = 3.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -5504,7 +5504,7 @@ int main() {
   },
   {
     "line": 27,
-    "text": "Scoatem elementul din coadă.",
+    "text": "Eliminăm celula (2, 1) din coada de prelucrare.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -5567,7 +5567,7 @@ int main() {
   },
   {
     "line": 29,
-    "text": "Verificăm dacă curr este destinația (3,3). Nu.",
+    "text": "Verificăm dacă celula curentă este destinația: curr.r == dest.r && curr.c == dest.c. Coordonatele sunt (2, 1) comparate cu (3, 3). Condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -5630,7 +5630,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=0.",
+    "text": "Explorăm vecinul i = 0 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -5693,7 +5693,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 1.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[0] = 2 + (-1) = 1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -5756,7 +5756,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 1.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[0] = 1 + (0) = 1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -5819,7 +5819,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (1, 1). În limite.",
+    "text": "Verificăm dacă vecinul (1, 1) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -5882,7 +5882,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "text": "Verificăm dacă celula vecină (1, 1) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[1][1] = 0 și dist[1][1] = 2, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -5950,7 +5950,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=1.",
+    "text": "Explorăm vecinul i = 1 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -6013,7 +6013,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 3.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[1] = 2 + (1) = 3.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -6076,7 +6076,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 1.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[1] = 1 + (0) = 1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -6139,7 +6139,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (3, 1). În limite.",
+    "text": "Verificăm dacă vecinul (3, 1) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -6202,7 +6202,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Da.",
+    "text": "Verificăm dacă celula vecină (3, 1) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[3][1] = 0 și dist[3][1] = -1, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -6270,7 +6270,7 @@ int main() {
   },
   {
     "line": 39,
-    "text": "Actualizăm dist[3][1] = 4.",
+    "text": "Actualizăm distanța pentru celula vecină: dist[3][1] = dist[2][1] + 1 = 4 pași.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -6338,7 +6338,7 @@ int main() {
   },
   {
     "line": 40,
-    "text": "Adăugăm (3, 1) în coadă.",
+    "text": "Adăugăm coordonatele (3, 1) în coadă pentru a le extinde frontul în iterațiile următoare.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -6409,7 +6409,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=2.",
+    "text": "Explorăm vecinul i = 2 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -6475,7 +6475,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 2.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[2] = 2 + (0) = 2.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -6541,7 +6541,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 0.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[2] = 1 + (-1) = 0.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -6607,7 +6607,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (2, 0). În limite.",
+    "text": "Verificăm dacă vecinul (2, 0) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -6673,7 +6673,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "text": "Verificăm dacă celula vecină (2, 0) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[2][0] = 1 și dist[2][0] = -1, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -6744,7 +6744,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=3.",
+    "text": "Explorăm vecinul i = 3 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -6810,7 +6810,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 2.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[3] = 2 + (0) = 2.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -6876,7 +6876,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 2.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[3] = 1 + (1) = 2.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -6942,7 +6942,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (2, 2). În limite.",
+    "text": "Verificăm dacă vecinul (2, 2) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -7008,7 +7008,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Da.",
+    "text": "Verificăm dacă celula vecină (2, 2) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[2][2] = 0 și dist[2][2] = -1, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -7079,7 +7079,7 @@ int main() {
   },
   {
     "line": 39,
-    "text": "Actualizăm dist[2][2] = 4.",
+    "text": "Actualizăm distanța pentru celula vecină: dist[2][2] = dist[2][1] + 1 = 4 pași.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -7150,7 +7150,7 @@ int main() {
   },
   {
     "line": 40,
-    "text": "Adăugăm (2, 2) în coadă.",
+    "text": "Adăugăm coordonatele (2, 2) în coadă pentru a le extinde frontul în iterațiile următoare.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -7224,7 +7224,7 @@ int main() {
   },
   {
     "line": 25,
-    "text": "Începem o iterație BFS. Coada are 3 elemente.",
+    "text": "Verificăm condiția buclei BFS: !q.empty(). Deoarece coada conține 3 elemente, condiția este adevărată, așa că începem o nouă iterație.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -7288,7 +7288,7 @@ int main() {
   },
   {
     "line": 26,
-    "text": "Extragem primul element din coadă: curr = (1, 2).",
+    "text": "Extragem celula din fața cozii: curr = (1, 2). Distanța calculată până la ea este dist[1][2] = 3.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -7354,7 +7354,7 @@ int main() {
   },
   {
     "line": 27,
-    "text": "Scoatem elementul din coadă.",
+    "text": "Eliminăm celula (1, 2) din coada de prelucrare.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -7420,7 +7420,7 @@ int main() {
   },
   {
     "line": 29,
-    "text": "Verificăm dacă curr este destinația (3,3). Nu.",
+    "text": "Verificăm dacă celula curentă este destinația: curr.r == dest.r && curr.c == dest.c. Coordonatele sunt (1, 2) comparate cu (3, 3). Condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -7486,7 +7486,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=0.",
+    "text": "Explorăm vecinul i = 0 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -7552,7 +7552,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 0.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[0] = 1 + (-1) = 0.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -7618,7 +7618,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 2.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[0] = 2 + (0) = 2.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -7684,7 +7684,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (0, 2). În limite.",
+    "text": "Verificăm dacă vecinul (0, 2) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -7750,7 +7750,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Da.",
+    "text": "Verificăm dacă celula vecină (0, 2) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[0][2] = 0 și dist[0][2] = -1, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -7821,7 +7821,7 @@ int main() {
   },
   {
     "line": 39,
-    "text": "Actualizăm dist[0][2] = 4.",
+    "text": "Actualizăm distanța pentru celula vecină: dist[0][2] = dist[1][2] + 1 = 4 pași.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -7892,7 +7892,7 @@ int main() {
   },
   {
     "line": 40,
-    "text": "Adăugăm (0, 2) în coadă.",
+    "text": "Adăugăm coordonatele (0, 2) în coadă pentru a le extinde frontul în iterațiile următoare.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -7966,7 +7966,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=1.",
+    "text": "Explorăm vecinul i = 1 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -8035,7 +8035,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 2.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[1] = 1 + (1) = 2.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -8104,7 +8104,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 2.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[1] = 2 + (0) = 2.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -8173,7 +8173,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (2, 2). În limite.",
+    "text": "Verificăm dacă vecinul (2, 2) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -8242,7 +8242,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "text": "Verificăm dacă celula vecină (2, 2) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[2][2] = 0 și dist[2][2] = 4, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -8316,7 +8316,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=2.",
+    "text": "Explorăm vecinul i = 2 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -8385,7 +8385,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 1.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[2] = 1 + (0) = 1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -8454,7 +8454,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 1.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[2] = 2 + (-1) = 1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -8523,7 +8523,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (1, 1). În limite.",
+    "text": "Verificăm dacă vecinul (1, 1) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -8592,7 +8592,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "text": "Verificăm dacă celula vecină (1, 1) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[1][1] = 0 și dist[1][1] = 2, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -8666,7 +8666,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=3.",
+    "text": "Explorăm vecinul i = 3 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -8735,7 +8735,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 1.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[3] = 1 + (0) = 1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -8804,7 +8804,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 3.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[3] = 2 + (1) = 3.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -8873,7 +8873,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (1, 3). În limite.",
+    "text": "Verificăm dacă vecinul (1, 3) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -8942,7 +8942,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "text": "Verificăm dacă celula vecină (1, 3) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[1][3] = 1 și dist[1][3] = -1, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -9016,7 +9016,7 @@ int main() {
   },
   {
     "line": 25,
-    "text": "Începem o iterație BFS. Coada are 3 elemente.",
+    "text": "Verificăm condiția buclei BFS: !q.empty(). Deoarece coada conține 3 elemente, condiția este adevărată, așa că începem o nouă iterație.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -9080,7 +9080,7 @@ int main() {
   },
   {
     "line": 26,
-    "text": "Extragem primul element din coadă: curr = (3, 1).",
+    "text": "Extragem celula din fața cozii: curr = (3, 1). Distanța calculată până la ea este dist[3][1] = 4.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -9146,7 +9146,7 @@ int main() {
   },
   {
     "line": 27,
-    "text": "Scoatem elementul din coadă.",
+    "text": "Eliminăm celula (3, 1) din coada de prelucrare.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -9212,7 +9212,7 @@ int main() {
   },
   {
     "line": 29,
-    "text": "Verificăm dacă curr este destinația (3,3). Nu.",
+    "text": "Verificăm dacă celula curentă este destinația: curr.r == dest.r && curr.c == dest.c. Coordonatele sunt (3, 1) comparate cu (3, 3). Condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -9278,7 +9278,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=0.",
+    "text": "Explorăm vecinul i = 0 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -9344,7 +9344,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 2.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[0] = 3 + (-1) = 2.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -9410,7 +9410,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 1.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[0] = 1 + (0) = 1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -9476,7 +9476,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (2, 1). În limite.",
+    "text": "Verificăm dacă vecinul (2, 1) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -9542,7 +9542,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "text": "Verificăm dacă celula vecină (2, 1) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[2][1] = 0 și dist[2][1] = 3, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -9613,7 +9613,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=1.",
+    "text": "Explorăm vecinul i = 1 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -9679,7 +9679,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 4.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[1] = 3 + (1) = 4.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -9745,7 +9745,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 1.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[1] = 1 + (0) = 1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -9811,7 +9811,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (4, 1). În afara limitelor.",
+    "text": "Verificăm dacă vecinul (4, 1) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt în afara limitelor, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -9877,7 +9877,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=2.",
+    "text": "Explorăm vecinul i = 2 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -9943,7 +9943,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 3.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[2] = 3 + (0) = 3.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -10009,7 +10009,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 0.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[2] = 1 + (-1) = 0.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -10075,7 +10075,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (3, 0). În limite.",
+    "text": "Verificăm dacă vecinul (3, 0) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -10141,7 +10141,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Da.",
+    "text": "Verificăm dacă celula vecină (3, 0) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[3][0] = 0 și dist[3][0] = -1, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -10212,7 +10212,7 @@ int main() {
   },
   {
     "line": 39,
-    "text": "Actualizăm dist[3][0] = 5.",
+    "text": "Actualizăm distanța pentru celula vecină: dist[3][0] = dist[3][1] + 1 = 5 pași.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -10283,7 +10283,7 @@ int main() {
   },
   {
     "line": 40,
-    "text": "Adăugăm (3, 0) în coadă.",
+    "text": "Adăugăm coordonatele (3, 0) în coadă pentru a le extinde frontul în iterațiile următoare.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -10357,7 +10357,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=3.",
+    "text": "Explorăm vecinul i = 3 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -10426,7 +10426,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 3.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[3] = 3 + (0) = 3.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -10495,7 +10495,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 2.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[3] = 1 + (1) = 2.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -10564,7 +10564,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (3, 2). În limite.",
+    "text": "Verificăm dacă vecinul (3, 2) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -10633,7 +10633,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "text": "Verificăm dacă celula vecină (3, 2) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[3][2] = 1 și dist[3][2] = -1, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -10707,7 +10707,7 @@ int main() {
   },
   {
     "line": 25,
-    "text": "Începem o iterație BFS. Coada are 3 elemente.",
+    "text": "Verificăm condiția buclei BFS: !q.empty(). Deoarece coada conține 3 elemente, condiția este adevărată, așa că începem o nouă iterație.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -10771,7 +10771,7 @@ int main() {
   },
   {
     "line": 26,
-    "text": "Extragem primul element din coadă: curr = (2, 2).",
+    "text": "Extragem celula din fața cozii: curr = (2, 2). Distanța calculată până la ea este dist[2][2] = 4.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -10837,7 +10837,7 @@ int main() {
   },
   {
     "line": 27,
-    "text": "Scoatem elementul din coadă.",
+    "text": "Eliminăm celula (2, 2) din coada de prelucrare.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -10903,7 +10903,7 @@ int main() {
   },
   {
     "line": 29,
-    "text": "Verificăm dacă curr este destinația (3,3). Nu.",
+    "text": "Verificăm dacă celula curentă este destinația: curr.r == dest.r && curr.c == dest.c. Coordonatele sunt (2, 2) comparate cu (3, 3). Condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -10969,7 +10969,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=0.",
+    "text": "Explorăm vecinul i = 0 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -11035,7 +11035,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 1.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[0] = 2 + (-1) = 1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -11101,7 +11101,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 2.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[0] = 2 + (0) = 2.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -11167,7 +11167,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (1, 2). În limite.",
+    "text": "Verificăm dacă vecinul (1, 2) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -11233,7 +11233,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "text": "Verificăm dacă celula vecină (1, 2) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[1][2] = 0 și dist[1][2] = 3, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -11304,7 +11304,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=1.",
+    "text": "Explorăm vecinul i = 1 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -11370,7 +11370,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 3.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[1] = 2 + (1) = 3.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -11436,7 +11436,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 2.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[1] = 2 + (0) = 2.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -11502,7 +11502,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (3, 2). În limite.",
+    "text": "Verificăm dacă vecinul (3, 2) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -11568,7 +11568,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "text": "Verificăm dacă celula vecină (3, 2) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[3][2] = 1 și dist[3][2] = -1, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -11639,7 +11639,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=2.",
+    "text": "Explorăm vecinul i = 2 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -11705,7 +11705,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 2.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[2] = 2 + (0) = 2.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -11771,7 +11771,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 1.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[2] = 2 + (-1) = 1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -11837,7 +11837,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (2, 1). În limite.",
+    "text": "Verificăm dacă vecinul (2, 1) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -11903,7 +11903,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "text": "Verificăm dacă celula vecină (2, 1) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[2][1] = 0 și dist[2][1] = 3, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -11974,7 +11974,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=3.",
+    "text": "Explorăm vecinul i = 3 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -12040,7 +12040,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 2.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[3] = 2 + (0) = 2.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -12106,7 +12106,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 3.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[3] = 2 + (1) = 3.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -12172,7 +12172,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (2, 3). În limite.",
+    "text": "Verificăm dacă vecinul (2, 3) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -12238,7 +12238,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Da.",
+    "text": "Verificăm dacă celula vecină (2, 3) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[2][3] = 0 și dist[2][3] = -1, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -12309,7 +12309,7 @@ int main() {
   },
   {
     "line": 39,
-    "text": "Actualizăm dist[2][3] = 5.",
+    "text": "Actualizăm distanța pentru celula vecină: dist[2][3] = dist[2][2] + 1 = 5 pași.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -12380,7 +12380,7 @@ int main() {
   },
   {
     "line": 40,
-    "text": "Adăugăm (2, 3) în coadă.",
+    "text": "Adăugăm coordonatele (2, 3) în coadă pentru a le extinde frontul în iterațiile următoare.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -12454,7 +12454,7 @@ int main() {
   },
   {
     "line": 25,
-    "text": "Începem o iterație BFS. Coada are 3 elemente.",
+    "text": "Verificăm condiția buclei BFS: !q.empty(). Deoarece coada conține 3 elemente, condiția este adevărată, așa că începem o nouă iterație.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -12518,7 +12518,7 @@ int main() {
   },
   {
     "line": 26,
-    "text": "Extragem primul element din coadă: curr = (0, 2).",
+    "text": "Extragem celula din fața cozii: curr = (0, 2). Distanța calculată până la ea este dist[0][2] = 4.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -12584,7 +12584,7 @@ int main() {
   },
   {
     "line": 27,
-    "text": "Scoatem elementul din coadă.",
+    "text": "Eliminăm celula (0, 2) din coada de prelucrare.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -12650,7 +12650,7 @@ int main() {
   },
   {
     "line": 29,
-    "text": "Verificăm dacă curr este destinația (3,3). Nu.",
+    "text": "Verificăm dacă celula curentă este destinația: curr.r == dest.r && curr.c == dest.c. Coordonatele sunt (0, 2) comparate cu (3, 3). Condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -12716,7 +12716,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=0.",
+    "text": "Explorăm vecinul i = 0 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -12782,7 +12782,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = -1.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[0] = 0 + (-1) = -1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -12848,7 +12848,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 2.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[0] = 2 + (0) = 2.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -12914,7 +12914,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (-1, 2). În afara limitelor.",
+    "text": "Verificăm dacă vecinul (-1, 2) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt în afara limitelor, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -12980,7 +12980,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=1.",
+    "text": "Explorăm vecinul i = 1 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -13046,7 +13046,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 1.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[1] = 0 + (1) = 1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -13112,7 +13112,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 2.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[1] = 2 + (0) = 2.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -13178,7 +13178,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (1, 2). În limite.",
+    "text": "Verificăm dacă vecinul (1, 2) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -13244,7 +13244,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "text": "Verificăm dacă celula vecină (1, 2) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[1][2] = 0 și dist[1][2] = 3, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -13315,7 +13315,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=2.",
+    "text": "Explorăm vecinul i = 2 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -13381,7 +13381,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 0.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[2] = 0 + (0) = 0.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -13447,7 +13447,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 1.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[2] = 2 + (-1) = 1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -13513,7 +13513,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (0, 1). În limite.",
+    "text": "Verificăm dacă vecinul (0, 1) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -13579,7 +13579,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "text": "Verificăm dacă celula vecină (0, 1) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[0][1] = 1 și dist[0][1] = -1, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -13650,7 +13650,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=3.",
+    "text": "Explorăm vecinul i = 3 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -13716,7 +13716,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 0.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[3] = 0 + (0) = 0.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -13782,7 +13782,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 3.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[3] = 2 + (1) = 3.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -13848,7 +13848,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (0, 3). În limite.",
+    "text": "Verificăm dacă vecinul (0, 3) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -13914,7 +13914,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Da.",
+    "text": "Verificăm dacă celula vecină (0, 3) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[0][3] = 0 și dist[0][3] = -1, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -13985,7 +13985,7 @@ int main() {
   },
   {
     "line": 39,
-    "text": "Actualizăm dist[0][3] = 5.",
+    "text": "Actualizăm distanța pentru celula vecină: dist[0][3] = dist[0][2] + 1 = 5 pași.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -14056,7 +14056,7 @@ int main() {
   },
   {
     "line": 40,
-    "text": "Adăugăm (0, 3) în coadă.",
+    "text": "Adăugăm coordonatele (0, 3) în coadă pentru a le extinde frontul în iterațiile următoare.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -14130,7 +14130,7 @@ int main() {
   },
   {
     "line": 25,
-    "text": "Începem o iterație BFS. Coada are 3 elemente.",
+    "text": "Verificăm condiția buclei BFS: !q.empty(). Deoarece coada conține 3 elemente, condiția este adevărată, așa că începem o nouă iterație.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -14194,7 +14194,7 @@ int main() {
   },
   {
     "line": 26,
-    "text": "Extragem primul element din coadă: curr = (3, 0).",
+    "text": "Extragem celula din fața cozii: curr = (3, 0). Distanța calculată până la ea este dist[3][0] = 5.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -14260,7 +14260,7 @@ int main() {
   },
   {
     "line": 27,
-    "text": "Scoatem elementul din coadă.",
+    "text": "Eliminăm celula (3, 0) din coada de prelucrare.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -14326,7 +14326,7 @@ int main() {
   },
   {
     "line": 29,
-    "text": "Verificăm dacă curr este destinația (3,3). Nu.",
+    "text": "Verificăm dacă celula curentă este destinația: curr.r == dest.r && curr.c == dest.c. Coordonatele sunt (3, 0) comparate cu (3, 3). Condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -14392,7 +14392,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=0.",
+    "text": "Explorăm vecinul i = 0 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -14458,7 +14458,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 2.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[0] = 3 + (-1) = 2.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -14524,7 +14524,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 0.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[0] = 0 + (0) = 0.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -14590,7 +14590,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (2, 0). În limite.",
+    "text": "Verificăm dacă vecinul (2, 0) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -14656,7 +14656,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "text": "Verificăm dacă celula vecină (2, 0) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[2][0] = 1 și dist[2][0] = -1, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -14727,7 +14727,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=1.",
+    "text": "Explorăm vecinul i = 1 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -14793,7 +14793,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 4.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[1] = 3 + (1) = 4.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -14859,7 +14859,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 0.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[1] = 0 + (0) = 0.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -14925,7 +14925,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (4, 0). În afara limitelor.",
+    "text": "Verificăm dacă vecinul (4, 0) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt în afara limitelor, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -14991,7 +14991,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=2.",
+    "text": "Explorăm vecinul i = 2 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -15057,7 +15057,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 3.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[2] = 3 + (0) = 3.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -15123,7 +15123,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = -1.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[2] = 0 + (-1) = -1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -15189,7 +15189,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (3, -1). În afara limitelor.",
+    "text": "Verificăm dacă vecinul (3, -1) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt în afara limitelor, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -15255,7 +15255,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=3.",
+    "text": "Explorăm vecinul i = 3 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -15321,7 +15321,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 3.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[3] = 3 + (0) = 3.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -15387,7 +15387,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 1.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[3] = 0 + (1) = 1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -15453,7 +15453,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (3, 1). În limite.",
+    "text": "Verificăm dacă vecinul (3, 1) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -15519,7 +15519,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "text": "Verificăm dacă celula vecină (3, 1) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[3][1] = 0 și dist[3][1] = 4, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -15590,7 +15590,7 @@ int main() {
   },
   {
     "line": 25,
-    "text": "Începem o iterație BFS. Coada are 2 elemente.",
+    "text": "Verificăm condiția buclei BFS: !q.empty(). Deoarece coada conține 2 elemente, condiția este adevărată, așa că începem o nouă iterație.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -15651,7 +15651,7 @@ int main() {
   },
   {
     "line": 26,
-    "text": "Extragem primul element din coadă: curr = (2, 3).",
+    "text": "Extragem celula din fața cozii: curr = (2, 3). Distanța calculată până la ea este dist[2][3] = 5.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -15714,7 +15714,7 @@ int main() {
   },
   {
     "line": 27,
-    "text": "Scoatem elementul din coadă.",
+    "text": "Eliminăm celula (2, 3) din coada de prelucrare.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -15777,7 +15777,7 @@ int main() {
   },
   {
     "line": 29,
-    "text": "Verificăm dacă curr este destinația (3,3). Nu.",
+    "text": "Verificăm dacă celula curentă este destinația: curr.r == dest.r && curr.c == dest.c. Coordonatele sunt (2, 3) comparate cu (3, 3). Condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -15840,7 +15840,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=0.",
+    "text": "Explorăm vecinul i = 0 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -15903,7 +15903,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 1.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[0] = 2 + (-1) = 1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -15966,7 +15966,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 3.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[0] = 3 + (0) = 3.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -16029,7 +16029,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (1, 3). În limite.",
+    "text": "Verificăm dacă vecinul (1, 3) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -16092,7 +16092,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "text": "Verificăm dacă celula vecină (1, 3) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[1][3] = 1 și dist[1][3] = -1, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -16160,7 +16160,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=1.",
+    "text": "Explorăm vecinul i = 1 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -16223,7 +16223,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 3.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[1] = 2 + (1) = 3.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -16286,7 +16286,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 3.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[1] = 3 + (0) = 3.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -16349,7 +16349,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (3, 3). În limite.",
+    "text": "Verificăm dacă vecinul (3, 3) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -16412,7 +16412,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Da.",
+    "text": "Verificăm dacă celula vecină (3, 3) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[3][3] = 0 și dist[3][3] = -1, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -16480,7 +16480,7 @@ int main() {
   },
   {
     "line": 39,
-    "text": "Actualizăm dist[3][3] = 6.",
+    "text": "Actualizăm distanța pentru celula vecină: dist[3][3] = dist[2][3] + 1 = 6 pași.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -16548,7 +16548,7 @@ int main() {
   },
   {
     "line": 40,
-    "text": "Adăugăm (3, 3) în coadă.",
+    "text": "Adăugăm coordonatele (3, 3) în coadă pentru a le extinde frontul în iterațiile următoare.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -16619,7 +16619,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=2.",
+    "text": "Explorăm vecinul i = 2 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -16685,7 +16685,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 2.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[2] = 2 + (0) = 2.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -16751,7 +16751,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 2.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[2] = 3 + (-1) = 2.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -16817,7 +16817,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (2, 2). În limite.",
+    "text": "Verificăm dacă vecinul (2, 2) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -16883,7 +16883,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "text": "Verificăm dacă celula vecină (2, 2) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[2][2] = 0 și dist[2][2] = 4, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -16954,7 +16954,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=3.",
+    "text": "Explorăm vecinul i = 3 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -17020,7 +17020,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 2.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[3] = 2 + (0) = 2.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -17086,7 +17086,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 4.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[3] = 3 + (1) = 4.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -17152,7 +17152,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (2, 4). În afara limitelor.",
+    "text": "Verificăm dacă vecinul (2, 4) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt în afara limitelor, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -17218,7 +17218,7 @@ int main() {
   },
   {
     "line": 25,
-    "text": "Începem o iterație BFS. Coada are 2 elemente.",
+    "text": "Verificăm condiția buclei BFS: !q.empty(). Deoarece coada conține 2 elemente, condiția este adevărată, așa că începem o nouă iterație.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -17279,7 +17279,7 @@ int main() {
   },
   {
     "line": 26,
-    "text": "Extragem primul element din coadă: curr = (0, 3).",
+    "text": "Extragem celula din fața cozii: curr = (0, 3). Distanța calculată până la ea este dist[0][3] = 5.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -17342,7 +17342,7 @@ int main() {
   },
   {
     "line": 27,
-    "text": "Scoatem elementul din coadă.",
+    "text": "Eliminăm celula (0, 3) din coada de prelucrare.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -17405,7 +17405,7 @@ int main() {
   },
   {
     "line": 29,
-    "text": "Verificăm dacă curr este destinația (3,3). Nu.",
+    "text": "Verificăm dacă celula curentă este destinația: curr.r == dest.r && curr.c == dest.c. Coordonatele sunt (0, 3) comparate cu (3, 3). Condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -17468,7 +17468,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=0.",
+    "text": "Explorăm vecinul i = 0 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -17531,7 +17531,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = -1.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[0] = 0 + (-1) = -1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -17594,7 +17594,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 3.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[0] = 3 + (0) = 3.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -17657,7 +17657,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (-1, 3). În afara limitelor.",
+    "text": "Verificăm dacă vecinul (-1, 3) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt în afara limitelor, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -17720,7 +17720,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=1.",
+    "text": "Explorăm vecinul i = 1 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -17783,7 +17783,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 1.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[1] = 0 + (1) = 1.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -17846,7 +17846,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 3.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[1] = 3 + (0) = 3.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -17909,7 +17909,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (1, 3). În limite.",
+    "text": "Verificăm dacă vecinul (1, 3) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -17972,7 +17972,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "text": "Verificăm dacă celula vecină (1, 3) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[1][3] = 1 și dist[1][3] = -1, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -18040,7 +18040,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=2.",
+    "text": "Explorăm vecinul i = 2 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -18103,7 +18103,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 0.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[2] = 0 + (0) = 0.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -18166,7 +18166,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 2.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[2] = 3 + (-1) = 2.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -18229,7 +18229,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (0, 2). În limite.",
+    "text": "Verificăm dacă vecinul (0, 2) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt valide, condiția este Adevărată.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -18292,7 +18292,7 @@ int main() {
   },
   {
     "line": 38,
-    "text": "Verificăm dacă celula e liberă și nevizitată. Nu.",
+    "text": "Verificăm dacă celula vecină (0, 2) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[0][2] = 0 și dist[0][2] = 4, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -18360,7 +18360,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Explorăm vecinul i=3.",
+    "text": "Explorăm vecinul i = 3 în direcțiile definite de vectorii dr și dc.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -18423,7 +18423,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Calculăm nr = 0.",
+    "text": "Calculăm linia vecinului: nr = curr.r + dr[3] = 0 + (0) = 0.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -18486,7 +18486,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Calculăm nc = 4.",
+    "text": "Calculăm coloana vecinului: nc = curr.c + dc[3] = 3 + (1) = 4.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -18549,7 +18549,7 @@ int main() {
   },
   {
     "line": 37,
-    "text": "Verificăm limitele pentru (0, 4). În afara limitelor.",
+    "text": "Verificăm dacă vecinul (0, 4) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt în afara limitelor, condiția este Falsă.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -18612,7 +18612,7 @@ int main() {
   },
   {
     "line": 25,
-    "text": "Începem o iterație BFS. Coada are 1 elemente.",
+    "text": "Verificăm condiția buclei BFS: !q.empty(). Deoarece coada conține 1 elemente, condiția este adevărată, așa că începem o nouă iterație.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -18670,7 +18670,7 @@ int main() {
   },
   {
     "line": 26,
-    "text": "Extragem primul element din coadă: curr = (3, 3).",
+    "text": "Extragem celula din fața cozii: curr = (3, 3). Distanța calculată până la ea este dist[3][3] = 6.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -18729,7 +18729,7 @@ int main() {
   },
   {
     "line": 27,
-    "text": "Scoatem elementul din coadă.",
+    "text": "Eliminăm celula (3, 3) din coada de prelucrare.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -18788,7 +18788,7 @@ int main() {
   },
   {
     "line": 29,
-    "text": "Verificăm dacă curr este destinația (3,3). Da, este destinația!",
+    "text": "Verificăm dacă celula curentă este destinația: curr.r == dest.r && curr.c == dest.c. Coordonatele sunt (3, 3) comparate cu (3, 3). Condiția este Adevărată! Am găsit drumul minim.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -18847,7 +18847,7 @@ int main() {
   },
   {
     "line": 30,
-    "text": "Returnăm distanța minimă: 6.",
+    "text": "Returnăm valoarea stocată în dist[3][3] = 6, reprezentând numărul minim de pași de la sursă la destinație.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -18906,7 +18906,7 @@ int main() {
   },
   {
     "line": 56,
-    "text": "Afișăm drumul minim.",
+    "text": "Afișăm rezultatul final obținut în variabila ans: 6 pași.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -18960,7 +18960,7 @@ int main() {
   },
   {
     "line": 57,
-    "text": "Program finalizat.",
+    "text": "Programul se încheie cu succes.",
     "blocksVisual": [
       {
         "label": "Queue q",
@@ -19014,6 +19014,7 @@ int main() {
   }
 ],
   "debugger": {
+    
     
     "getDebuggerState": (stepIndex, activeLine, explanationText) => {
       const states = [{"line": 55,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":null,"cols":null,"curr":null,"i":null,"nr":null,"nc":null},"q":[]},{"line": 12,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":null,"curr":null,"i":null,"nr":null,"nc":null},"q":[]},{"line": 13,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[]},{"line": 14,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[]},{"line": 16,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[]},{"line": 17,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[]},{"line": 19,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[]},{"line": 20,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[{"r":0,"c":0}]},{"line": 22,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[{"r":0,"c":0}]},{"line": 23,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[{"r":0,"c":0}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":null,"i":null,"nr":null,"nc":null},"q":[{"r":0,"c":0}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":null,"nr":null,"nc":null},"q":[]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":null,"nr":null,"nc":null},"q":[]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":null,"nr":null,"nc":null},"q":[]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":0,"nr":null,"nc":null},"q":[]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":0,"nr":-1,"nc":0},"q":[]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":0,"nr":-1,"nc":0},"q":[]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":0,"nr":-1,"nc":0},"q":[]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":1,"nr":-1,"nc":0},"q":[]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":1,"nr":1,"nc":0},"q":[]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":1,"nr":1,"nc":0},"q":[]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":1,"nr":1,"nc":0},"q":[]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":1,"nr":1,"nc":0},"q":[]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":1,"nr":1,"nc":0},"q":[]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":1,"nr":1,"nc":0},"q":[{"r":1,"c":0}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":2,"nr":1,"nc":0},"q":[{"r":1,"c":0}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":2,"nr":0,"nc":-1},"q":[{"r":1,"c":0}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":2,"nr":0,"nc":-1},"q":[{"r":1,"c":0}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":2,"nr":0,"nc":-1},"q":[{"r":1,"c":0}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":3,"nr":0,"nc":-1},"q":[{"r":1,"c":0}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":3,"nr":0,"nc":1},"q":[{"r":1,"c":0}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":3,"nr":0,"nc":1},"q":[{"r":1,"c":0}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":3,"nr":0,"nc":1},"q":[{"r":1,"c":0}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":3,"nr":0,"nc":1},"q":[{"r":1,"c":0}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":0},"i":3,"nr":0,"nc":1},"q":[{"r":1,"c":0}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":0,"nc":1},"q":[]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":0,"nc":1},"q":[]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":0,"nc":1},"q":[]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":0,"nr":0,"nc":1},"q":[]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":0,"nr":0,"nc":0},"q":[]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":0,"nr":0,"nc":0},"q":[]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":0,"nr":0,"nc":0},"q":[]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":0,"nr":0,"nc":0},"q":[]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":1,"nr":0,"nc":0},"q":[]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":1,"nr":2,"nc":0},"q":[]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":1,"nr":2,"nc":0},"q":[]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":1,"nr":2,"nc":0},"q":[]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":1,"nr":2,"nc":0},"q":[]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":2,"nr":2,"nc":0},"q":[]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":2,"nr":1,"nc":-1},"q":[]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":2,"nr":1,"nc":-1},"q":[]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":2,"nr":1,"nc":-1},"q":[]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":1,"nc":-1},"q":[]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":1,"nc":1},"q":[]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":1,"nc":1},"q":[]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":1,"nc":1},"q":[]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":1,"nc":1},"q":[]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":1,"nc":1},"q":[]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":1,"nc":1},"q":[{"r":1,"c":1}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":0},"i":3,"nr":1,"nc":1},"q":[{"r":1,"c":1}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":1},"q":[]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":1},"q":[]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":1},"q":[]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":0,"nr":1,"nc":1},"q":[]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":0,"nr":0,"nc":1},"q":[]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":0,"nr":0,"nc":1},"q":[]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":0,"nr":0,"nc":1},"q":[]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":0,"nr":0,"nc":1},"q":[]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":1,"nr":0,"nc":1},"q":[]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":1,"nr":2,"nc":1},"q":[]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":1,"nr":2,"nc":1},"q":[]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":1,"nr":2,"nc":1},"q":[]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":1,"nr":2,"nc":1},"q":[]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":1,"nr":2,"nc":1},"q":[]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":1,"nr":2,"nc":1},"q":[{"r":2,"c":1}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":2,"nr":2,"nc":1},"q":[{"r":2,"c":1}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":2,"nr":1,"nc":0},"q":[{"r":2,"c":1}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":2,"nr":1,"nc":0},"q":[{"r":2,"c":1}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":2,"nr":1,"nc":0},"q":[{"r":2,"c":1}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":2,"nr":1,"nc":0},"q":[{"r":2,"c":1}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":0},"q":[{"r":2,"c":1}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":2,"c":1}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":2,"c":1}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":2,"c":1}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":2,"c":1}]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":2,"c":1}]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":2,"c":1},{"r":1,"c":2}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":2,"c":1},{"r":1,"c":2}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":1,"c":2}]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":1,"c":2}]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":1,"nc":2},"q":[{"r":1,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":0,"nr":1,"nc":2},"q":[{"r":1,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":0,"nr":1,"nc":1},"q":[{"r":1,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":0,"nr":1,"nc":1},"q":[{"r":1,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":0,"nr":1,"nc":1},"q":[{"r":1,"c":2}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":0,"nr":1,"nc":1},"q":[{"r":1,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":1,"nr":1,"nc":1},"q":[{"r":1,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":1,"nr":3,"nc":1},"q":[{"r":1,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":1,"nr":3,"nc":1},"q":[{"r":1,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":1,"nr":3,"nc":1},"q":[{"r":1,"c":2}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":1,"nr":3,"nc":1},"q":[{"r":1,"c":2}]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":1,"nr":3,"nc":1},"q":[{"r":1,"c":2}]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":1,"nr":3,"nc":1},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":2,"nr":3,"nc":1},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":2,"nr":2,"nc":0},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":2,"nr":2,"nc":0},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":2,"nr":2,"nc":0},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":2,"nr":2,"nc":0},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":2,"nc":0},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":2,"nc":2},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":2,"nc":2},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":2,"nc":2},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":2,"nc":2},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":2,"nc":2},"q":[{"r":1,"c":2},{"r":3,"c":1}]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":2,"nc":2},"q":[{"r":1,"c":2},{"r":3,"c":1},{"r":2,"c":2}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":1},"i":3,"nr":2,"nc":2},"q":[{"r":1,"c":2},{"r":3,"c":1},{"r":2,"c":2}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":0,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":0,"nr":0,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":0,"nr":0,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":0,"nr":0,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":0,"nr":0,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":0,"nr":0,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2}]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":0,"nr":0,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":1,"nr":0,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":1,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":1,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":1,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":1,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":2,"nr":2,"nc":2},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":2,"nr":1,"nc":1},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":2,"nr":1,"nc":1},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":2,"nr":1,"nc":1},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":2,"nr":1,"nc":1},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":1,"nc":1},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":1,"nc":3},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":1,"nc":3},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":1,"nc":3},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":1,"nc":3},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":1,"c":2},"i":3,"nr":1,"nc":3},"q":[{"r":3,"c":1},{"r":2,"c":2},{"r":0,"c":2}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":1,"nc":3},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":1,"nc":3},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":1,"nc":3},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":0,"nr":1,"nc":3},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":0,"nr":2,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":0,"nr":2,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":0,"nr":2,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":0,"nr":2,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":1,"nr":2,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":1,"nr":4,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":1,"nr":4,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":1,"nr":4,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":2,"nr":4,"nc":1},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":2,"nr":3,"nc":0},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":2,"nr":3,"nc":0},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":2,"nr":3,"nc":0},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":2,"nr":3,"nc":0},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":2,"nr":3,"nc":0},"q":[{"r":2,"c":2},{"r":0,"c":2}]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":2,"nr":3,"nc":0},"q":[{"r":2,"c":2},{"r":0,"c":2},{"r":3,"c":0}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":3,"nc":0},"q":[{"r":2,"c":2},{"r":0,"c":2},{"r":3,"c":0}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":3,"nc":2},"q":[{"r":2,"c":2},{"r":0,"c":2},{"r":3,"c":0}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":3,"nc":2},"q":[{"r":2,"c":2},{"r":0,"c":2},{"r":3,"c":0}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":3,"nc":2},"q":[{"r":2,"c":2},{"r":0,"c":2},{"r":3,"c":0}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":3,"nc":2},"q":[{"r":2,"c":2},{"r":0,"c":2},{"r":3,"c":0}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":1},"i":3,"nr":3,"nc":2},"q":[{"r":2,"c":2},{"r":0,"c":2},{"r":3,"c":0}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":0,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":0,"nr":1,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":0,"nr":1,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":0,"nr":1,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":0,"nr":1,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":1,"nr":1,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":1,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":1,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":1,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":1,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":2,"nr":3,"nc":2},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":2,"nr":2,"nc":1},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":2,"nr":2,"nc":1},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":2,"nr":2,"nc":1},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":2,"nr":2,"nc":1},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":2,"nc":1},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":0,"c":2},{"r":3,"c":0}]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":0,"c":2},{"r":3,"c":0},{"r":2,"c":3}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":0,"c":2},{"r":3,"c":0},{"r":2,"c":3}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":2,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":0,"nr":2,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":0,"nr":-1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":0,"nr":-1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":0,"nr":-1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":1,"nr":-1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":1,"nr":1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":1,"nr":1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":1,"nr":1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":1,"nr":1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":2,"nr":1,"nc":2},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":2,"nr":0,"nc":1},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":2,"nr":0,"nc":1},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":2,"nr":0,"nc":1},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":2,"nr":0,"nc":1},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":0,"nc":1},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":0,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":0,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":0,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":0,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":0,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3}]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":0,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3},{"r":0,"c":3}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":2},"i":3,"nr":0,"nc":3},"q":[{"r":3,"c":0},{"r":2,"c":3},{"r":0,"c":3}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":0,"nc":3},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":0,"nc":3},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":0,"nc":3},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":0,"nr":0,"nc":3},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":0,"nr":2,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":0,"nr":2,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":0,"nr":2,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":0,"nr":2,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":1,"nr":2,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":1,"nr":4,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":1,"nr":4,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":1,"nr":4,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":2,"nr":4,"nc":0},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":2,"nr":3,"nc":-1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":2,"nr":3,"nc":-1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":2,"nr":3,"nc":-1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":3,"nc":-1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":3,"nc":1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":3,"nc":1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":3,"nc":1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":3,"nc":1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":0},"i":3,"nr":3,"nc":1},"q":[{"r":2,"c":3},{"r":0,"c":3}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":3,"nr":3,"nc":1},"q":[{"r":0,"c":3}]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":3,"nr":3,"nc":1},"q":[{"r":0,"c":3}]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":3,"nr":3,"nc":1},"q":[{"r":0,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":0,"nr":3,"nc":1},"q":[{"r":0,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":0,"nr":1,"nc":3},"q":[{"r":0,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":0,"nr":1,"nc":3},"q":[{"r":0,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":0,"nr":1,"nc":3},"q":[{"r":0,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":0,"nr":1,"nc":3},"q":[{"r":0,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":1,"nr":1,"nc":3},"q":[{"r":0,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":1,"nr":3,"nc":3},"q":[{"r":0,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":1,"nr":3,"nc":3},"q":[{"r":0,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":1,"nr":3,"nc":3},"q":[{"r":0,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":1,"nr":3,"nc":3},"q":[{"r":0,"c":3}]},{"line": 39,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":1,"nr":3,"nc":3},"q":[{"r":0,"c":3}]},{"line": 40,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":1,"nr":3,"nc":3},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":2,"nr":3,"nc":3},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":2,"nr":2,"nc":2},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":2,"nr":2,"nc":2},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":2,"nr":2,"nc":2},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":2,"nr":2,"nc":2},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":3,"nr":2,"nc":2},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":3,"nr":2,"nc":4},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":3,"nr":2,"nc":4},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":3,"nr":2,"nc":4},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":2,"c":3},"i":3,"nr":2,"nc":4},"q":[{"r":0,"c":3},{"r":3,"c":3}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":3,"nr":2,"nc":4},"q":[{"r":3,"c":3}]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":3,"nr":2,"nc":4},"q":[{"r":3,"c":3}]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":3,"nr":2,"nc":4},"q":[{"r":3,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":0,"nr":2,"nc":4},"q":[{"r":3,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":0,"nr":-1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":0,"nr":-1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":0,"nr":-1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":1,"nr":-1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":1,"nr":1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":1,"nr":1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":1,"nr":1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":1,"nr":1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":2,"nr":1,"nc":3},"q":[{"r":3,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":2,"nr":0,"nc":2},"q":[{"r":3,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":2,"nr":0,"nc":2},"q":[{"r":3,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":2,"nr":0,"nc":2},"q":[{"r":3,"c":3}]},{"line": 38,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":2,"nr":0,"nc":2},"q":[{"r":3,"c":3}]},{"line": 33,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":3,"nr":0,"nc":2},"q":[{"r":3,"c":3}]},{"line": 34,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":3,"nr":0,"nc":4},"q":[{"r":3,"c":3}]},{"line": 35,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":3,"nr":0,"nc":4},"q":[{"r":3,"c":3}]},{"line": 37,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":3,"nr":0,"nc":4},"q":[{"r":3,"c":3}]},{"line": 25,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":0,"c":3},"i":3,"nr":0,"nc":4},"q":[{"r":3,"c":3}]},{"line": 26,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":3},"i":3,"nr":0,"nc":4},"q":[]},{"line": 27,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":3},"i":3,"nr":0,"nc":4},"q":[]},{"line": 29,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":3},"i":3,"nr":0,"nc":4},"q":[]},{"line": 30,"locals":{"ans":null,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":3},"i":3,"nr":0,"nc":4},"q":[]},{"line": 56,"locals":{"ans":6,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":3},"i":3,"nr":0,"nc":4},"q":[]},{"line": 57,"locals":{"ans":6,"srcR":0,"srcC":0,"destR":3,"destC":3,"rows":4,"cols":4,"curr":{"r":3,"c":3},"i":3,"nr":0,"nc":4},"q":[]}];

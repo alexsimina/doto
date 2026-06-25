@@ -67,7 +67,7 @@ int main() {
   "explanations": [
   {
     "line": 22,
-    "text": "Inițializăm matricea `img` de dimensiuni 3x3.",
+    "text": "Inițializăm matricea `img` de dimensiuni 3x3 de pixeli, unde culorile sunt reprezentate prin numere întregi.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -103,7 +103,7 @@ int main() {
   },
   {
     "line": 28,
-    "text": "Preluăm culoarea de start: `startColor = img[1][1] = 1`.",
+    "text": "Preluăm culoarea pixelului de start pe care am dat click: $startColor = img[1][1] = 1$.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -139,7 +139,7 @@ int main() {
   },
   {
     "line": 29,
-    "text": "Verificăm dacă `startColor != 2`. Adevărat (1 != 2).",
+    "text": "Verificăm dacă culoarea de start este diferită de culoarea nouă la care dorim să ajungem ($startColor \\neq 2$). Condiția $1 \\neq 2$ este Adevărată, deci putem porni umplerea fără risc de buclă infinită.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -175,7 +175,7 @@ int main() {
   },
   {
     "line": 30,
-    "text": "Apelăm `floodFill` pentru celula (1,1).",
+    "text": "Apelăm funcția recursivă `floodFill` pentru celula de start (1,1) cu culoarea veche 1 și cea nouă 2.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -216,7 +216,7 @@ int main() {
   },
   {
     "line": 7,
-    "text": "Intrăm în floodFill pentru r=1, c=1. Obținem rows = 3.",
+    "text": "Intrăm în funcția recursivă floodFill pentru celula curentă (1, 1). Citim numărul de rânduri: rows = 3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -257,7 +257,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Obținem cols = 3.",
+    "text": "Obținem numărul de coloane: cols = 3. Matricea are o rezoluție totală de 3x3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -298,7 +298,7 @@ int main() {
   },
   {
     "line": 10,
-    "text": "Verificăm limitele (r=1, c=1). În limite.",
+    "text": "Verificăm dacă coordonatele celulei curente (r=1, c=1) depășesc marginile matricei (0 <= r < 3 și 0 <= c < 3). Condiția este Falsă (suntem în limitele matricei), deci continuăm verificările.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -339,7 +339,7 @@ int main() {
   },
   {
     "line": 11,
-    "text": "Verificăm dacă culoarea curentă este diferită de 1. Culoarea este 1. La fel, continuăm.",
+    "text": "Verificăm dacă culoarea celulei curente (1, 1) este diferită de cea pe care vrem să o înlocuim (oldColor = 1). Culoarea celulei este img[1][1] = 1. Condiția de culoare diferită este Falsă (celula are culoarea țintă 1), deci trebuie să o colorăm.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -380,7 +380,7 @@ int main() {
   },
   {
     "line": 13,
-    "text": "Colorăm celula (1, 1) în noua culoare (2).",
+    "text": "Colorăm celula (1, 1) cu noua culoare: img[1][1] = 2.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -421,7 +421,7 @@ int main() {
   },
   {
     "line": 15,
-    "text": "Apelăm recursiv floodFill pentru vecinul de sus (0, 1).",
+    "text": "Apelăm recursiv floodFill pentru vecinul de SUS (0, 1).",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -467,7 +467,7 @@ int main() {
   },
   {
     "line": 7,
-    "text": "Intrăm în floodFill pentru r=0, c=1. Obținem rows = 3.",
+    "text": "Intrăm în funcția recursivă floodFill pentru celula curentă (0, 1). Citim numărul de rânduri: rows = 3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -508,7 +508,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Obținem cols = 3.",
+    "text": "Obținem numărul de coloane: cols = 3. Matricea are o rezoluție totală de 3x3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -549,7 +549,7 @@ int main() {
   },
   {
     "line": 10,
-    "text": "Verificăm limitele (r=0, c=1). În limite.",
+    "text": "Verificăm dacă coordonatele celulei curente (r=0, c=1) depășesc marginile matricei (0 <= r < 3 și 0 <= c < 3). Condiția este Falsă (suntem în limitele matricei), deci continuăm verificările.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -590,7 +590,7 @@ int main() {
   },
   {
     "line": 11,
-    "text": "Verificăm dacă culoarea curentă este diferită de 1. Culoarea este 1. La fel, continuăm.",
+    "text": "Verificăm dacă culoarea celulei curente (0, 1) este diferită de cea pe care vrem să o înlocuim (oldColor = 1). Culoarea celulei este img[0][1] = 1. Condiția de culoare diferită este Falsă (celula are culoarea țintă 1), deci trebuie să o colorăm.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -631,7 +631,7 @@ int main() {
   },
   {
     "line": 13,
-    "text": "Colorăm celula (0, 1) în noua culoare (2).",
+    "text": "Colorăm celula (0, 1) cu noua culoare: img[0][1] = 2.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -672,7 +672,7 @@ int main() {
   },
   {
     "line": 15,
-    "text": "Apelăm recursiv floodFill pentru vecinul de sus (-1, 1).",
+    "text": "Apelăm recursiv floodFill pentru vecinul de SUS (-1, 1).",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -718,7 +718,7 @@ int main() {
   },
   {
     "line": 7,
-    "text": "Intrăm în floodFill pentru r=-1, c=1. Obținem rows = 3.",
+    "text": "Intrăm în funcția recursivă floodFill pentru celula curentă (-1, 1). Citim numărul de rânduri: rows = 3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -759,7 +759,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Obținem cols = 3.",
+    "text": "Obținem numărul de coloane: cols = 3. Matricea are o rezoluție totală de 3x3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -800,7 +800,7 @@ int main() {
   },
   {
     "line": 10,
-    "text": "Verificăm limitele (r=-1, c=1). Suntem în afara limitelor matricei. Returnăm.",
+    "text": "Verificăm dacă coordonatele celulei curente (r=-1, c=1) depășesc marginile matricei (0 <= r < 3 și 0 <= c < 3). Condiția este Adevărată (suntem în afara limitelor). Ne întoarcem direct din apelul curent.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -841,7 +841,7 @@ int main() {
   },
   {
     "line": 16,
-    "text": "Revenim la (0, 1). Apelăm recursiv floodFill pentru vecinul de jos (1, 1).",
+    "text": "Revenim la (0, 1). Apelăm recursiv floodFill pentru vecinul de JOS (1, 1).",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -887,7 +887,7 @@ int main() {
   },
   {
     "line": 7,
-    "text": "Intrăm în floodFill pentru r=1, c=1. Obținem rows = 3.",
+    "text": "Intrăm în funcția recursivă floodFill pentru celula curentă (1, 1). Citim numărul de rânduri: rows = 3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -928,7 +928,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Obținem cols = 3.",
+    "text": "Obținem numărul de coloane: cols = 3. Matricea are o rezoluție totală de 3x3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -969,7 +969,7 @@ int main() {
   },
   {
     "line": 10,
-    "text": "Verificăm limitele (r=1, c=1). În limite.",
+    "text": "Verificăm dacă coordonatele celulei curente (r=1, c=1) depășesc marginile matricei (0 <= r < 3 și 0 <= c < 3). Condiția este Falsă (suntem în limitele matricei), deci continuăm verificările.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -1010,7 +1010,7 @@ int main() {
   },
   {
     "line": 11,
-    "text": "Verificăm dacă culoarea curentă este diferită de 1. Culoarea este 2. Diferită, deci returnăm.",
+    "text": "Verificăm dacă culoarea celulei curente (1, 1) este diferită de cea pe care vrem să o înlocuim (oldColor = 1). Culoarea celulei este img[1][1] = 2. Condiția de culoare diferită este Adevărată (celula are altă culoare sau a fost deja colorată). Revenim din apel.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -1051,7 +1051,7 @@ int main() {
   },
   {
     "line": 17,
-    "text": "Revenim la (0, 1). Apelăm recursiv floodFill pentru vecinul din stânga (0, 0).",
+    "text": "Revenim la (0, 1). Apelăm recursiv floodFill pentru vecinul din STÂNGA (0, 0).",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -1097,7 +1097,7 @@ int main() {
   },
   {
     "line": 7,
-    "text": "Intrăm în floodFill pentru r=0, c=0. Obținem rows = 3.",
+    "text": "Intrăm în funcția recursivă floodFill pentru celula curentă (0, 0). Citim numărul de rânduri: rows = 3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -1138,7 +1138,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Obținem cols = 3.",
+    "text": "Obținem numărul de coloane: cols = 3. Matricea are o rezoluție totală de 3x3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -1179,7 +1179,7 @@ int main() {
   },
   {
     "line": 10,
-    "text": "Verificăm limitele (r=0, c=0). În limite.",
+    "text": "Verificăm dacă coordonatele celulei curente (r=0, c=0) depășesc marginile matricei (0 <= r < 3 și 0 <= c < 3). Condiția este Falsă (suntem în limitele matricei), deci continuăm verificările.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -1220,7 +1220,7 @@ int main() {
   },
   {
     "line": 11,
-    "text": "Verificăm dacă culoarea curentă este diferită de 1. Culoarea este 1. La fel, continuăm.",
+    "text": "Verificăm dacă culoarea celulei curente (0, 0) este diferită de cea pe care vrem să o înlocuim (oldColor = 1). Culoarea celulei este img[0][0] = 1. Condiția de culoare diferită este Falsă (celula are culoarea țintă 1), deci trebuie să o colorăm.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -1261,7 +1261,7 @@ int main() {
   },
   {
     "line": 13,
-    "text": "Colorăm celula (0, 0) în noua culoare (2).",
+    "text": "Colorăm celula (0, 0) cu noua culoare: img[0][0] = 2.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -1302,7 +1302,7 @@ int main() {
   },
   {
     "line": 15,
-    "text": "Apelăm recursiv floodFill pentru vecinul de sus (-1, 0).",
+    "text": "Apelăm recursiv floodFill pentru vecinul de SUS (-1, 0).",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -1348,7 +1348,7 @@ int main() {
   },
   {
     "line": 7,
-    "text": "Intrăm în floodFill pentru r=-1, c=0. Obținem rows = 3.",
+    "text": "Intrăm în funcția recursivă floodFill pentru celula curentă (-1, 0). Citim numărul de rânduri: rows = 3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -1389,7 +1389,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Obținem cols = 3.",
+    "text": "Obținem numărul de coloane: cols = 3. Matricea are o rezoluție totală de 3x3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -1430,7 +1430,7 @@ int main() {
   },
   {
     "line": 10,
-    "text": "Verificăm limitele (r=-1, c=0). Suntem în afara limitelor matricei. Returnăm.",
+    "text": "Verificăm dacă coordonatele celulei curente (r=-1, c=0) depășesc marginile matricei (0 <= r < 3 și 0 <= c < 3). Condiția este Adevărată (suntem în afara limitelor). Ne întoarcem direct din apelul curent.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -1471,7 +1471,7 @@ int main() {
   },
   {
     "line": 16,
-    "text": "Revenim la (0, 0). Apelăm recursiv floodFill pentru vecinul de jos (1, 0).",
+    "text": "Revenim la (0, 0). Apelăm recursiv floodFill pentru vecinul de JOS (1, 0).",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -1517,7 +1517,7 @@ int main() {
   },
   {
     "line": 7,
-    "text": "Intrăm în floodFill pentru r=1, c=0. Obținem rows = 3.",
+    "text": "Intrăm în funcția recursivă floodFill pentru celula curentă (1, 0). Citim numărul de rânduri: rows = 3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -1558,7 +1558,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Obținem cols = 3.",
+    "text": "Obținem numărul de coloane: cols = 3. Matricea are o rezoluție totală de 3x3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -1599,7 +1599,7 @@ int main() {
   },
   {
     "line": 10,
-    "text": "Verificăm limitele (r=1, c=0). În limite.",
+    "text": "Verificăm dacă coordonatele celulei curente (r=1, c=0) depășesc marginile matricei (0 <= r < 3 și 0 <= c < 3). Condiția este Falsă (suntem în limitele matricei), deci continuăm verificările.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -1640,7 +1640,7 @@ int main() {
   },
   {
     "line": 11,
-    "text": "Verificăm dacă culoarea curentă este diferită de 1. Culoarea este 1. La fel, continuăm.",
+    "text": "Verificăm dacă culoarea celulei curente (1, 0) este diferită de cea pe care vrem să o înlocuim (oldColor = 1). Culoarea celulei este img[1][0] = 1. Condiția de culoare diferită este Falsă (celula are culoarea țintă 1), deci trebuie să o colorăm.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -1681,7 +1681,7 @@ int main() {
   },
   {
     "line": 13,
-    "text": "Colorăm celula (1, 0) în noua culoare (2).",
+    "text": "Colorăm celula (1, 0) cu noua culoare: img[1][0] = 2.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -1722,7 +1722,7 @@ int main() {
   },
   {
     "line": 15,
-    "text": "Apelăm recursiv floodFill pentru vecinul de sus (0, 0).",
+    "text": "Apelăm recursiv floodFill pentru vecinul de SUS (0, 0).",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -1768,7 +1768,7 @@ int main() {
   },
   {
     "line": 7,
-    "text": "Intrăm în floodFill pentru r=0, c=0. Obținem rows = 3.",
+    "text": "Intrăm în funcția recursivă floodFill pentru celula curentă (0, 0). Citim numărul de rânduri: rows = 3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -1809,7 +1809,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Obținem cols = 3.",
+    "text": "Obținem numărul de coloane: cols = 3. Matricea are o rezoluție totală de 3x3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -1850,7 +1850,7 @@ int main() {
   },
   {
     "line": 10,
-    "text": "Verificăm limitele (r=0, c=0). În limite.",
+    "text": "Verificăm dacă coordonatele celulei curente (r=0, c=0) depășesc marginile matricei (0 <= r < 3 și 0 <= c < 3). Condiția este Falsă (suntem în limitele matricei), deci continuăm verificările.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -1891,7 +1891,7 @@ int main() {
   },
   {
     "line": 11,
-    "text": "Verificăm dacă culoarea curentă este diferită de 1. Culoarea este 2. Diferită, deci returnăm.",
+    "text": "Verificăm dacă culoarea celulei curente (0, 0) este diferită de cea pe care vrem să o înlocuim (oldColor = 1). Culoarea celulei este img[0][0] = 2. Condiția de culoare diferită este Adevărată (celula are altă culoare sau a fost deja colorată). Revenim din apel.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -1932,7 +1932,7 @@ int main() {
   },
   {
     "line": 16,
-    "text": "Revenim la (1, 0). Apelăm recursiv floodFill pentru vecinul de jos (2, 0).",
+    "text": "Revenim la (1, 0). Apelăm recursiv floodFill pentru vecinul de JOS (2, 0).",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -1978,7 +1978,7 @@ int main() {
   },
   {
     "line": 7,
-    "text": "Intrăm în floodFill pentru r=2, c=0. Obținem rows = 3.",
+    "text": "Intrăm în funcția recursivă floodFill pentru celula curentă (2, 0). Citim numărul de rânduri: rows = 3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -2019,7 +2019,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Obținem cols = 3.",
+    "text": "Obținem numărul de coloane: cols = 3. Matricea are o rezoluție totală de 3x3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -2060,7 +2060,7 @@ int main() {
   },
   {
     "line": 10,
-    "text": "Verificăm limitele (r=2, c=0). În limite.",
+    "text": "Verificăm dacă coordonatele celulei curente (r=2, c=0) depășesc marginile matricei (0 <= r < 3 și 0 <= c < 3). Condiția este Falsă (suntem în limitele matricei), deci continuăm verificările.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -2101,7 +2101,7 @@ int main() {
   },
   {
     "line": 11,
-    "text": "Verificăm dacă culoarea curentă este diferită de 1. Culoarea este 1. La fel, continuăm.",
+    "text": "Verificăm dacă culoarea celulei curente (2, 0) este diferită de cea pe care vrem să o înlocuim (oldColor = 1). Culoarea celulei este img[2][0] = 1. Condiția de culoare diferită este Falsă (celula are culoarea țintă 1), deci trebuie să o colorăm.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -2142,7 +2142,7 @@ int main() {
   },
   {
     "line": 13,
-    "text": "Colorăm celula (2, 0) în noua culoare (2).",
+    "text": "Colorăm celula (2, 0) cu noua culoare: img[2][0] = 2.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -2183,7 +2183,7 @@ int main() {
   },
   {
     "line": 15,
-    "text": "Apelăm recursiv floodFill pentru vecinul de sus (1, 0).",
+    "text": "Apelăm recursiv floodFill pentru vecinul de SUS (1, 0).",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -2229,7 +2229,7 @@ int main() {
   },
   {
     "line": 7,
-    "text": "Intrăm în floodFill pentru r=1, c=0. Obținem rows = 3.",
+    "text": "Intrăm în funcția recursivă floodFill pentru celula curentă (1, 0). Citim numărul de rânduri: rows = 3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -2270,7 +2270,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Obținem cols = 3.",
+    "text": "Obținem numărul de coloane: cols = 3. Matricea are o rezoluție totală de 3x3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -2311,7 +2311,7 @@ int main() {
   },
   {
     "line": 10,
-    "text": "Verificăm limitele (r=1, c=0). În limite.",
+    "text": "Verificăm dacă coordonatele celulei curente (r=1, c=0) depășesc marginile matricei (0 <= r < 3 și 0 <= c < 3). Condiția este Falsă (suntem în limitele matricei), deci continuăm verificările.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -2352,7 +2352,7 @@ int main() {
   },
   {
     "line": 11,
-    "text": "Verificăm dacă culoarea curentă este diferită de 1. Culoarea este 2. Diferită, deci returnăm.",
+    "text": "Verificăm dacă culoarea celulei curente (1, 0) este diferită de cea pe care vrem să o înlocuim (oldColor = 1). Culoarea celulei este img[1][0] = 2. Condiția de culoare diferită este Adevărată (celula are altă culoare sau a fost deja colorată). Revenim din apel.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -2393,7 +2393,7 @@ int main() {
   },
   {
     "line": 16,
-    "text": "Revenim la (2, 0). Apelăm recursiv floodFill pentru vecinul de jos (3, 0).",
+    "text": "Revenim la (2, 0). Apelăm recursiv floodFill pentru vecinul de JOS (3, 0).",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -2439,7 +2439,7 @@ int main() {
   },
   {
     "line": 7,
-    "text": "Intrăm în floodFill pentru r=3, c=0. Obținem rows = 3.",
+    "text": "Intrăm în funcția recursivă floodFill pentru celula curentă (3, 0). Citim numărul de rânduri: rows = 3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -2480,7 +2480,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Obținem cols = 3.",
+    "text": "Obținem numărul de coloane: cols = 3. Matricea are o rezoluție totală de 3x3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -2521,7 +2521,7 @@ int main() {
   },
   {
     "line": 10,
-    "text": "Verificăm limitele (r=3, c=0). Suntem în afara limitelor matricei. Returnăm.",
+    "text": "Verificăm dacă coordonatele celulei curente (r=3, c=0) depășesc marginile matricei (0 <= r < 3 și 0 <= c < 3). Condiția este Adevărată (suntem în afara limitelor). Ne întoarcem direct din apelul curent.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -2562,7 +2562,7 @@ int main() {
   },
   {
     "line": 17,
-    "text": "Revenim la (2, 0). Apelăm recursiv floodFill pentru vecinul din stânga (2, -1).",
+    "text": "Revenim la (2, 0). Apelăm recursiv floodFill pentru vecinul din STÂNGA (2, -1).",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -2608,7 +2608,7 @@ int main() {
   },
   {
     "line": 7,
-    "text": "Intrăm în floodFill pentru r=2, c=-1. Obținem rows = 3.",
+    "text": "Intrăm în funcția recursivă floodFill pentru celula curentă (2, -1). Citim numărul de rânduri: rows = 3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -2649,7 +2649,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Obținem cols = 3.",
+    "text": "Obținem numărul de coloane: cols = 3. Matricea are o rezoluție totală de 3x3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -2690,7 +2690,7 @@ int main() {
   },
   {
     "line": 10,
-    "text": "Verificăm limitele (r=2, c=-1). Suntem în afara limitelor matricei. Returnăm.",
+    "text": "Verificăm dacă coordonatele celulei curente (r=2, c=-1) depășesc marginile matricei (0 <= r < 3 și 0 <= c < 3). Condiția este Adevărată (suntem în afara limitelor). Ne întoarcem direct din apelul curent.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -2731,7 +2731,7 @@ int main() {
   },
   {
     "line": 18,
-    "text": "Revenim la (2, 0). Apelăm recursiv floodFill pentru vecinul din dreapta (2, 1).",
+    "text": "Revenim la (2, 0). Apelăm recursiv floodFill pentru vecinul din DREAPTA (2, 1).",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -2777,7 +2777,7 @@ int main() {
   },
   {
     "line": 7,
-    "text": "Intrăm în floodFill pentru r=2, c=1. Obținem rows = 3.",
+    "text": "Intrăm în funcția recursivă floodFill pentru celula curentă (2, 1). Citim numărul de rânduri: rows = 3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -2818,7 +2818,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Obținem cols = 3.",
+    "text": "Obținem numărul de coloane: cols = 3. Matricea are o rezoluție totală de 3x3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -2859,7 +2859,7 @@ int main() {
   },
   {
     "line": 10,
-    "text": "Verificăm limitele (r=2, c=1). În limite.",
+    "text": "Verificăm dacă coordonatele celulei curente (r=2, c=1) depășesc marginile matricei (0 <= r < 3 și 0 <= c < 3). Condiția este Falsă (suntem în limitele matricei), deci continuăm verificările.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -2900,7 +2900,7 @@ int main() {
   },
   {
     "line": 11,
-    "text": "Verificăm dacă culoarea curentă este diferită de 1. Culoarea este 0. Diferită, deci returnăm.",
+    "text": "Verificăm dacă culoarea celulei curente (2, 1) este diferită de cea pe care vrem să o înlocuim (oldColor = 1). Culoarea celulei este img[2][1] = 0. Condiția de culoare diferită este Adevărată (celula are altă culoare sau a fost deja colorată). Revenim din apel.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -2941,7 +2941,7 @@ int main() {
   },
   {
     "line": 19,
-    "text": "Am finalizat explorarea pentru (2, 0) și ne întoarcem.",
+    "text": "Am finalizat explorarea tuturor celor 4 vecini pentru celula (2, 0). Acest apel se încheie, revenind în apelant.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -2982,7 +2982,7 @@ int main() {
   },
   {
     "line": 17,
-    "text": "Revenim la (1, 0). Apelăm recursiv floodFill pentru vecinul din stânga (1, -1).",
+    "text": "Revenim la (1, 0). Apelăm recursiv floodFill pentru vecinul din STÂNGA (1, -1).",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -3028,7 +3028,7 @@ int main() {
   },
   {
     "line": 7,
-    "text": "Intrăm în floodFill pentru r=1, c=-1. Obținem rows = 3.",
+    "text": "Intrăm în funcția recursivă floodFill pentru celula curentă (1, -1). Citim numărul de rânduri: rows = 3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -3069,7 +3069,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Obținem cols = 3.",
+    "text": "Obținem numărul de coloane: cols = 3. Matricea are o rezoluție totală de 3x3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -3110,7 +3110,7 @@ int main() {
   },
   {
     "line": 10,
-    "text": "Verificăm limitele (r=1, c=-1). Suntem în afara limitelor matricei. Returnăm.",
+    "text": "Verificăm dacă coordonatele celulei curente (r=1, c=-1) depășesc marginile matricei (0 <= r < 3 și 0 <= c < 3). Condiția este Adevărată (suntem în afara limitelor). Ne întoarcem direct din apelul curent.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -3151,7 +3151,7 @@ int main() {
   },
   {
     "line": 18,
-    "text": "Revenim la (1, 0). Apelăm recursiv floodFill pentru vecinul din dreapta (1, 1).",
+    "text": "Revenim la (1, 0). Apelăm recursiv floodFill pentru vecinul din DREAPTA (1, 1).",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -3197,7 +3197,7 @@ int main() {
   },
   {
     "line": 7,
-    "text": "Intrăm în floodFill pentru r=1, c=1. Obținem rows = 3.",
+    "text": "Intrăm în funcția recursivă floodFill pentru celula curentă (1, 1). Citim numărul de rânduri: rows = 3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -3238,7 +3238,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Obținem cols = 3.",
+    "text": "Obținem numărul de coloane: cols = 3. Matricea are o rezoluție totală de 3x3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -3279,7 +3279,7 @@ int main() {
   },
   {
     "line": 10,
-    "text": "Verificăm limitele (r=1, c=1). În limite.",
+    "text": "Verificăm dacă coordonatele celulei curente (r=1, c=1) depășesc marginile matricei (0 <= r < 3 și 0 <= c < 3). Condiția este Falsă (suntem în limitele matricei), deci continuăm verificările.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -3320,7 +3320,7 @@ int main() {
   },
   {
     "line": 11,
-    "text": "Verificăm dacă culoarea curentă este diferită de 1. Culoarea este 2. Diferită, deci returnăm.",
+    "text": "Verificăm dacă culoarea celulei curente (1, 1) este diferită de cea pe care vrem să o înlocuim (oldColor = 1). Culoarea celulei este img[1][1] = 2. Condiția de culoare diferită este Adevărată (celula are altă culoare sau a fost deja colorată). Revenim din apel.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -3361,7 +3361,7 @@ int main() {
   },
   {
     "line": 19,
-    "text": "Am finalizat explorarea pentru (1, 0) și ne întoarcem.",
+    "text": "Am finalizat explorarea tuturor celor 4 vecini pentru celula (1, 0). Acest apel se încheie, revenind în apelant.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -3402,7 +3402,7 @@ int main() {
   },
   {
     "line": 17,
-    "text": "Revenim la (0, 0). Apelăm recursiv floodFill pentru vecinul din stânga (0, -1).",
+    "text": "Revenim la (0, 0). Apelăm recursiv floodFill pentru vecinul din STÂNGA (0, -1).",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -3448,7 +3448,7 @@ int main() {
   },
   {
     "line": 7,
-    "text": "Intrăm în floodFill pentru r=0, c=-1. Obținem rows = 3.",
+    "text": "Intrăm în funcția recursivă floodFill pentru celula curentă (0, -1). Citim numărul de rânduri: rows = 3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -3489,7 +3489,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Obținem cols = 3.",
+    "text": "Obținem numărul de coloane: cols = 3. Matricea are o rezoluție totală de 3x3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -3530,7 +3530,7 @@ int main() {
   },
   {
     "line": 10,
-    "text": "Verificăm limitele (r=0, c=-1). Suntem în afara limitelor matricei. Returnăm.",
+    "text": "Verificăm dacă coordonatele celulei curente (r=0, c=-1) depășesc marginile matricei (0 <= r < 3 și 0 <= c < 3). Condiția este Adevărată (suntem în afara limitelor). Ne întoarcem direct din apelul curent.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -3571,7 +3571,7 @@ int main() {
   },
   {
     "line": 18,
-    "text": "Revenim la (0, 0). Apelăm recursiv floodFill pentru vecinul din dreapta (0, 1).",
+    "text": "Revenim la (0, 0). Apelăm recursiv floodFill pentru vecinul din DREAPTA (0, 1).",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -3617,7 +3617,7 @@ int main() {
   },
   {
     "line": 7,
-    "text": "Intrăm în floodFill pentru r=0, c=1. Obținem rows = 3.",
+    "text": "Intrăm în funcția recursivă floodFill pentru celula curentă (0, 1). Citim numărul de rânduri: rows = 3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -3658,7 +3658,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Obținem cols = 3.",
+    "text": "Obținem numărul de coloane: cols = 3. Matricea are o rezoluție totală de 3x3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -3699,7 +3699,7 @@ int main() {
   },
   {
     "line": 10,
-    "text": "Verificăm limitele (r=0, c=1). În limite.",
+    "text": "Verificăm dacă coordonatele celulei curente (r=0, c=1) depășesc marginile matricei (0 <= r < 3 și 0 <= c < 3). Condiția este Falsă (suntem în limitele matricei), deci continuăm verificările.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -3740,7 +3740,7 @@ int main() {
   },
   {
     "line": 11,
-    "text": "Verificăm dacă culoarea curentă este diferită de 1. Culoarea este 2. Diferită, deci returnăm.",
+    "text": "Verificăm dacă culoarea celulei curente (0, 1) este diferită de cea pe care vrem să o înlocuim (oldColor = 1). Culoarea celulei este img[0][1] = 2. Condiția de culoare diferită este Adevărată (celula are altă culoare sau a fost deja colorată). Revenim din apel.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -3781,7 +3781,7 @@ int main() {
   },
   {
     "line": 19,
-    "text": "Am finalizat explorarea pentru (0, 0) și ne întoarcem.",
+    "text": "Am finalizat explorarea tuturor celor 4 vecini pentru celula (0, 0). Acest apel se încheie, revenind în apelant.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -3822,7 +3822,7 @@ int main() {
   },
   {
     "line": 18,
-    "text": "Revenim la (0, 1). Apelăm recursiv floodFill pentru vecinul din dreapta (0, 2).",
+    "text": "Revenim la (0, 1). Apelăm recursiv floodFill pentru vecinul din DREAPTA (0, 2).",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -3868,7 +3868,7 @@ int main() {
   },
   {
     "line": 7,
-    "text": "Intrăm în floodFill pentru r=0, c=2. Obținem rows = 3.",
+    "text": "Intrăm în funcția recursivă floodFill pentru celula curentă (0, 2). Citim numărul de rânduri: rows = 3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -3909,7 +3909,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Obținem cols = 3.",
+    "text": "Obținem numărul de coloane: cols = 3. Matricea are o rezoluție totală de 3x3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -3950,7 +3950,7 @@ int main() {
   },
   {
     "line": 10,
-    "text": "Verificăm limitele (r=0, c=2). În limite.",
+    "text": "Verificăm dacă coordonatele celulei curente (r=0, c=2) depășesc marginile matricei (0 <= r < 3 și 0 <= c < 3). Condiția este Falsă (suntem în limitele matricei), deci continuăm verificările.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -3991,7 +3991,7 @@ int main() {
   },
   {
     "line": 11,
-    "text": "Verificăm dacă culoarea curentă este diferită de 1. Culoarea este 1. La fel, continuăm.",
+    "text": "Verificăm dacă culoarea celulei curente (0, 2) este diferită de cea pe care vrem să o înlocuim (oldColor = 1). Culoarea celulei este img[0][2] = 1. Condiția de culoare diferită este Falsă (celula are culoarea țintă 1), deci trebuie să o colorăm.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -4032,7 +4032,7 @@ int main() {
   },
   {
     "line": 13,
-    "text": "Colorăm celula (0, 2) în noua culoare (2).",
+    "text": "Colorăm celula (0, 2) cu noua culoare: img[0][2] = 2.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -4073,7 +4073,7 @@ int main() {
   },
   {
     "line": 15,
-    "text": "Apelăm recursiv floodFill pentru vecinul de sus (-1, 2).",
+    "text": "Apelăm recursiv floodFill pentru vecinul de SUS (-1, 2).",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -4119,7 +4119,7 @@ int main() {
   },
   {
     "line": 7,
-    "text": "Intrăm în floodFill pentru r=-1, c=2. Obținem rows = 3.",
+    "text": "Intrăm în funcția recursivă floodFill pentru celula curentă (-1, 2). Citim numărul de rânduri: rows = 3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -4160,7 +4160,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Obținem cols = 3.",
+    "text": "Obținem numărul de coloane: cols = 3. Matricea are o rezoluție totală de 3x3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -4201,7 +4201,7 @@ int main() {
   },
   {
     "line": 10,
-    "text": "Verificăm limitele (r=-1, c=2). Suntem în afara limitelor matricei. Returnăm.",
+    "text": "Verificăm dacă coordonatele celulei curente (r=-1, c=2) depășesc marginile matricei (0 <= r < 3 și 0 <= c < 3). Condiția este Adevărată (suntem în afara limitelor). Ne întoarcem direct din apelul curent.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -4242,7 +4242,7 @@ int main() {
   },
   {
     "line": 16,
-    "text": "Revenim la (0, 2). Apelăm recursiv floodFill pentru vecinul de jos (1, 2).",
+    "text": "Revenim la (0, 2). Apelăm recursiv floodFill pentru vecinul de JOS (1, 2).",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -4288,7 +4288,7 @@ int main() {
   },
   {
     "line": 7,
-    "text": "Intrăm în floodFill pentru r=1, c=2. Obținem rows = 3.",
+    "text": "Intrăm în funcția recursivă floodFill pentru celula curentă (1, 2). Citim numărul de rânduri: rows = 3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -4329,7 +4329,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Obținem cols = 3.",
+    "text": "Obținem numărul de coloane: cols = 3. Matricea are o rezoluție totală de 3x3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -4370,7 +4370,7 @@ int main() {
   },
   {
     "line": 10,
-    "text": "Verificăm limitele (r=1, c=2). În limite.",
+    "text": "Verificăm dacă coordonatele celulei curente (r=1, c=2) depășesc marginile matricei (0 <= r < 3 și 0 <= c < 3). Condiția este Falsă (suntem în limitele matricei), deci continuăm verificările.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -4411,7 +4411,7 @@ int main() {
   },
   {
     "line": 11,
-    "text": "Verificăm dacă culoarea curentă este diferită de 1. Culoarea este 0. Diferită, deci returnăm.",
+    "text": "Verificăm dacă culoarea celulei curente (1, 2) este diferită de cea pe care vrem să o înlocuim (oldColor = 1). Culoarea celulei este img[1][2] = 0. Condiția de culoare diferită este Adevărată (celula are altă culoare sau a fost deja colorată). Revenim din apel.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -4452,7 +4452,7 @@ int main() {
   },
   {
     "line": 17,
-    "text": "Revenim la (0, 2). Apelăm recursiv floodFill pentru vecinul din stânga (0, 1).",
+    "text": "Revenim la (0, 2). Apelăm recursiv floodFill pentru vecinul din STÂNGA (0, 1).",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -4498,7 +4498,7 @@ int main() {
   },
   {
     "line": 7,
-    "text": "Intrăm în floodFill pentru r=0, c=1. Obținem rows = 3.",
+    "text": "Intrăm în funcția recursivă floodFill pentru celula curentă (0, 1). Citim numărul de rânduri: rows = 3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -4539,7 +4539,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Obținem cols = 3.",
+    "text": "Obținem numărul de coloane: cols = 3. Matricea are o rezoluție totală de 3x3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -4580,7 +4580,7 @@ int main() {
   },
   {
     "line": 10,
-    "text": "Verificăm limitele (r=0, c=1). În limite.",
+    "text": "Verificăm dacă coordonatele celulei curente (r=0, c=1) depășesc marginile matricei (0 <= r < 3 și 0 <= c < 3). Condiția este Falsă (suntem în limitele matricei), deci continuăm verificările.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -4621,7 +4621,7 @@ int main() {
   },
   {
     "line": 11,
-    "text": "Verificăm dacă culoarea curentă este diferită de 1. Culoarea este 2. Diferită, deci returnăm.",
+    "text": "Verificăm dacă culoarea celulei curente (0, 1) este diferită de cea pe care vrem să o înlocuim (oldColor = 1). Culoarea celulei este img[0][1] = 2. Condiția de culoare diferită este Adevărată (celula are altă culoare sau a fost deja colorată). Revenim din apel.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -4662,7 +4662,7 @@ int main() {
   },
   {
     "line": 18,
-    "text": "Revenim la (0, 2). Apelăm recursiv floodFill pentru vecinul din dreapta (0, 3).",
+    "text": "Revenim la (0, 2). Apelăm recursiv floodFill pentru vecinul din DREAPTA (0, 3).",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -4708,7 +4708,7 @@ int main() {
   },
   {
     "line": 7,
-    "text": "Intrăm în floodFill pentru r=0, c=3. Obținem rows = 3.",
+    "text": "Intrăm în funcția recursivă floodFill pentru celula curentă (0, 3). Citim numărul de rânduri: rows = 3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -4749,7 +4749,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Obținem cols = 3.",
+    "text": "Obținem numărul de coloane: cols = 3. Matricea are o rezoluție totală de 3x3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -4790,7 +4790,7 @@ int main() {
   },
   {
     "line": 10,
-    "text": "Verificăm limitele (r=0, c=3). Suntem în afara limitelor matricei. Returnăm.",
+    "text": "Verificăm dacă coordonatele celulei curente (r=0, c=3) depășesc marginile matricei (0 <= r < 3 și 0 <= c < 3). Condiția este Adevărată (suntem în afara limitelor). Ne întoarcem direct din apelul curent.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -4831,7 +4831,7 @@ int main() {
   },
   {
     "line": 19,
-    "text": "Am finalizat explorarea pentru (0, 2) și ne întoarcem.",
+    "text": "Am finalizat explorarea tuturor celor 4 vecini pentru celula (0, 2). Acest apel se încheie, revenind în apelant.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -4872,7 +4872,7 @@ int main() {
   },
   {
     "line": 19,
-    "text": "Am finalizat explorarea pentru (0, 1) și ne întoarcem.",
+    "text": "Am finalizat explorarea tuturor celor 4 vecini pentru celula (0, 1). Acest apel se încheie, revenind în apelant.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -4913,7 +4913,7 @@ int main() {
   },
   {
     "line": 16,
-    "text": "Revenim la (1, 1). Apelăm recursiv floodFill pentru vecinul de jos (2, 1).",
+    "text": "Revenim la (1, 1). Apelăm recursiv floodFill pentru vecinul de JOS (2, 1).",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -4959,7 +4959,7 @@ int main() {
   },
   {
     "line": 7,
-    "text": "Intrăm în floodFill pentru r=2, c=1. Obținem rows = 3.",
+    "text": "Intrăm în funcția recursivă floodFill pentru celula curentă (2, 1). Citim numărul de rânduri: rows = 3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -5000,7 +5000,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Obținem cols = 3.",
+    "text": "Obținem numărul de coloane: cols = 3. Matricea are o rezoluție totală de 3x3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -5041,7 +5041,7 @@ int main() {
   },
   {
     "line": 10,
-    "text": "Verificăm limitele (r=2, c=1). În limite.",
+    "text": "Verificăm dacă coordonatele celulei curente (r=2, c=1) depășesc marginile matricei (0 <= r < 3 și 0 <= c < 3). Condiția este Falsă (suntem în limitele matricei), deci continuăm verificările.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -5082,7 +5082,7 @@ int main() {
   },
   {
     "line": 11,
-    "text": "Verificăm dacă culoarea curentă este diferită de 1. Culoarea este 0. Diferită, deci returnăm.",
+    "text": "Verificăm dacă culoarea celulei curente (2, 1) este diferită de cea pe care vrem să o înlocuim (oldColor = 1). Culoarea celulei este img[2][1] = 0. Condiția de culoare diferită este Adevărată (celula are altă culoare sau a fost deja colorată). Revenim din apel.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -5123,7 +5123,7 @@ int main() {
   },
   {
     "line": 17,
-    "text": "Revenim la (1, 1). Apelăm recursiv floodFill pentru vecinul din stânga (1, 0).",
+    "text": "Revenim la (1, 1). Apelăm recursiv floodFill pentru vecinul din STÂNGA (1, 0).",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -5169,7 +5169,7 @@ int main() {
   },
   {
     "line": 7,
-    "text": "Intrăm în floodFill pentru r=1, c=0. Obținem rows = 3.",
+    "text": "Intrăm în funcția recursivă floodFill pentru celula curentă (1, 0). Citim numărul de rânduri: rows = 3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -5210,7 +5210,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Obținem cols = 3.",
+    "text": "Obținem numărul de coloane: cols = 3. Matricea are o rezoluție totală de 3x3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -5251,7 +5251,7 @@ int main() {
   },
   {
     "line": 10,
-    "text": "Verificăm limitele (r=1, c=0). În limite.",
+    "text": "Verificăm dacă coordonatele celulei curente (r=1, c=0) depășesc marginile matricei (0 <= r < 3 și 0 <= c < 3). Condiția este Falsă (suntem în limitele matricei), deci continuăm verificările.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -5292,7 +5292,7 @@ int main() {
   },
   {
     "line": 11,
-    "text": "Verificăm dacă culoarea curentă este diferită de 1. Culoarea este 2. Diferită, deci returnăm.",
+    "text": "Verificăm dacă culoarea celulei curente (1, 0) este diferită de cea pe care vrem să o înlocuim (oldColor = 1). Culoarea celulei este img[1][0] = 2. Condiția de culoare diferită este Adevărată (celula are altă culoare sau a fost deja colorată). Revenim din apel.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -5333,7 +5333,7 @@ int main() {
   },
   {
     "line": 18,
-    "text": "Revenim la (1, 1). Apelăm recursiv floodFill pentru vecinul din dreapta (1, 2).",
+    "text": "Revenim la (1, 1). Apelăm recursiv floodFill pentru vecinul din DREAPTA (1, 2).",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -5379,7 +5379,7 @@ int main() {
   },
   {
     "line": 7,
-    "text": "Intrăm în floodFill pentru r=1, c=2. Obținem rows = 3.",
+    "text": "Intrăm în funcția recursivă floodFill pentru celula curentă (1, 2). Citim numărul de rânduri: rows = 3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -5420,7 +5420,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Obținem cols = 3.",
+    "text": "Obținem numărul de coloane: cols = 3. Matricea are o rezoluție totală de 3x3.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -5461,7 +5461,7 @@ int main() {
   },
   {
     "line": 10,
-    "text": "Verificăm limitele (r=1, c=2). În limite.",
+    "text": "Verificăm dacă coordonatele celulei curente (r=1, c=2) depășesc marginile matricei (0 <= r < 3 și 0 <= c < 3). Condiția este Falsă (suntem în limitele matricei), deci continuăm verificările.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -5502,7 +5502,7 @@ int main() {
   },
   {
     "line": 11,
-    "text": "Verificăm dacă culoarea curentă este diferită de 1. Culoarea este 0. Diferită, deci returnăm.",
+    "text": "Verificăm dacă culoarea celulei curente (1, 2) este diferită de cea pe care vrem să o înlocuim (oldColor = 1). Culoarea celulei este img[1][2] = 0. Condiția de culoare diferită este Adevărată (celula are altă culoare sau a fost deja colorată). Revenim din apel.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -5543,7 +5543,7 @@ int main() {
   },
   {
     "line": 19,
-    "text": "Am finalizat explorarea pentru (1, 1) și ne întoarcem.",
+    "text": "Am finalizat explorarea tuturor celor 4 vecini pentru celula (1, 1). Acest apel se încheie, revenind în apelant.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -5584,7 +5584,7 @@ int main() {
   },
   {
     "line": 33,
-    "text": "Afișăm rezultatul final al matricei img.",
+    "text": "Pregătim afișarea matricei finale prin două bucle for consecutive.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -5620,7 +5620,7 @@ int main() {
   },
   {
     "line": 34,
-    "text": "Bucla principală pentru afișare (i=0).",
+    "text": "Inițializăm bucla pentru rânduri: i = 0. Parcurgem prima linie.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -5656,7 +5656,7 @@ int main() {
   },
   {
     "line": 35,
-    "text": "Bucla secundară pentru afișare (j=0).",
+    "text": "Inițializăm bucla pentru coloane: j = 0. Afișăm elementul de la prima coloană.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -5692,7 +5692,7 @@ int main() {
   },
   {
     "line": 36,
-    "text": "Afișăm img[0][0].",
+    "text": "Afișăm valoarea pixelului de pe prima poziție: img[0][0] = 2.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -5728,7 +5728,7 @@ int main() {
   },
   {
     "line": 40,
-    "text": "Return 0; program finalizat.",
+    "text": "Programul se încheie cu succes, returnând 0. Zona conectată de culoare 1 a fost umplută complet cu culoarea 2.",
     "blocksVisual": [],
     "matrix": {
       "title": "Gridul de Culori",
@@ -5765,6 +5765,7 @@ int main() {
 ],
   "debugger": {
     
+    
     "getDebuggerState": (stepIndex, activeLine, explanationText) => {
       const states = [{"line": 22,"locals":{"r":null,"c":null,"oldColor":null,"newColor":null,"rows":null,"cols":null,"startColor":1},"stackFrames":[{"name":"main()","file":"main.cpp","line": 22}]},{"line": 28,"locals":{"r":null,"c":null,"oldColor":null,"newColor":null,"rows":null,"cols":null,"startColor":1},"stackFrames":[{"name":"main()","file":"main.cpp","line": 28}]},{"line": 29,"locals":{"r":null,"c":null,"oldColor":null,"newColor":null,"rows":null,"cols":null,"startColor":1},"stackFrames":[{"name":"main()","file":"main.cpp","line": 29}]},{"line": 30,"locals":{"r":null,"c":null,"oldColor":null,"newColor":null,"rows":null,"cols":null,"startColor":1},"stackFrames":[{"name":"main()","file":"main.cpp","line": 30}]},{"line": 7,"locals":{"r":1,"c":1,"oldColor":1,"newColor":2,"rows":null,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 7},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 8,"locals":{"r":1,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 8},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 10,"locals":{"r":1,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 10},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 11,"locals":{"r":1,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 11},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 13,"locals":{"r":1,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 13},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 15,"locals":{"r":1,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 7,"locals":{"r":0,"c":1,"oldColor":1,"newColor":2,"rows":null,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 7},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 8,"locals":{"r":0,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 8},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 10,"locals":{"r":0,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 10},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 11,"locals":{"r":0,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 11},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 13,"locals":{"r":0,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 13},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 15,"locals":{"r":0,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 7,"locals":{"r":-1,"c":1,"oldColor":1,"newColor":2,"rows":null,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=-1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 7},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 8,"locals":{"r":-1,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=-1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 8},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 10,"locals":{"r":-1,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=-1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 10},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 16,"locals":{"r":0,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 7,"locals":{"r":1,"c":1,"oldColor":1,"newColor":2,"rows":null,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 7},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 8,"locals":{"r":1,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 8},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 10,"locals":{"r":1,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 10},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 11,"locals":{"r":1,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 11},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 17,"locals":{"r":0,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 7,"locals":{"r":0,"c":0,"oldColor":1,"newColor":2,"rows":null,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 7},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 8,"locals":{"r":0,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 8},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 10,"locals":{"r":0,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 10},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 11,"locals":{"r":0,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 11},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 13,"locals":{"r":0,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 13},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 15,"locals":{"r":0,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 7,"locals":{"r":-1,"c":0,"oldColor":1,"newColor":2,"rows":null,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=-1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 7},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 8,"locals":{"r":-1,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=-1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 8},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 10,"locals":{"r":-1,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=-1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 10},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 16,"locals":{"r":0,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 7,"locals":{"r":1,"c":0,"oldColor":1,"newColor":2,"rows":null,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 7},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 8,"locals":{"r":1,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 8},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 10,"locals":{"r":1,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 10},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 11,"locals":{"r":1,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 11},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 13,"locals":{"r":1,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 13},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 15,"locals":{"r":1,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 7,"locals":{"r":0,"c":0,"oldColor":1,"newColor":2,"rows":null,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 7},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 8,"locals":{"r":0,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 8},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 10,"locals":{"r":0,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 10},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 11,"locals":{"r":0,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 11},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 16,"locals":{"r":1,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 7,"locals":{"r":2,"c":0,"oldColor":1,"newColor":2,"rows":null,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=2, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 7},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 8,"locals":{"r":2,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=2, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 8},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 10,"locals":{"r":2,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=2, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 10},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 11,"locals":{"r":2,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=2, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 11},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 13,"locals":{"r":2,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=2, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 13},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 15,"locals":{"r":2,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=2, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 7,"locals":{"r":1,"c":0,"oldColor":1,"newColor":2,"rows":null,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 7},{"name":"floodFill(image, r=2, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 8,"locals":{"r":1,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 8},{"name":"floodFill(image, r=2, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 10,"locals":{"r":1,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 10},{"name":"floodFill(image, r=2, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 11,"locals":{"r":1,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 11},{"name":"floodFill(image, r=2, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 16,"locals":{"r":2,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=2, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 7,"locals":{"r":3,"c":0,"oldColor":1,"newColor":2,"rows":null,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=3, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 7},{"name":"floodFill(image, r=2, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 8,"locals":{"r":3,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=3, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 8},{"name":"floodFill(image, r=2, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 10,"locals":{"r":3,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=3, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 10},{"name":"floodFill(image, r=2, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 17,"locals":{"r":2,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=2, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 7,"locals":{"r":2,"c":-1,"oldColor":1,"newColor":2,"rows":null,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=2, c=-1, oldColor=1, newColor=2)","file":"solution.cpp","line": 7},{"name":"floodFill(image, r=2, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 8,"locals":{"r":2,"c":-1,"oldColor":1,"newColor":2,"rows":3,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=2, c=-1, oldColor=1, newColor=2)","file":"solution.cpp","line": 8},{"name":"floodFill(image, r=2, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 10,"locals":{"r":2,"c":-1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=2, c=-1, oldColor=1, newColor=2)","file":"solution.cpp","line": 10},{"name":"floodFill(image, r=2, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 18,"locals":{"r":2,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=2, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 18},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 7,"locals":{"r":2,"c":1,"oldColor":1,"newColor":2,"rows":null,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=2, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 7},{"name":"floodFill(image, r=2, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 8,"locals":{"r":2,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=2, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 8},{"name":"floodFill(image, r=2, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 10,"locals":{"r":2,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=2, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 10},{"name":"floodFill(image, r=2, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 11,"locals":{"r":2,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=2, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 11},{"name":"floodFill(image, r=2, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 19,"locals":{"r":2,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=2, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 19},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 17,"locals":{"r":1,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 7,"locals":{"r":1,"c":-1,"oldColor":1,"newColor":2,"rows":null,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=-1, oldColor=1, newColor=2)","file":"solution.cpp","line": 7},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 8,"locals":{"r":1,"c":-1,"oldColor":1,"newColor":2,"rows":3,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=-1, oldColor=1, newColor=2)","file":"solution.cpp","line": 8},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 10,"locals":{"r":1,"c":-1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=-1, oldColor=1, newColor=2)","file":"solution.cpp","line": 10},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 18,"locals":{"r":1,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 18},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 7,"locals":{"r":1,"c":1,"oldColor":1,"newColor":2,"rows":null,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 7},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 8,"locals":{"r":1,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 8},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 10,"locals":{"r":1,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 10},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 11,"locals":{"r":1,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 11},{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 19,"locals":{"r":1,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 19},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 17,"locals":{"r":0,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 7,"locals":{"r":0,"c":-1,"oldColor":1,"newColor":2,"rows":null,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=-1, oldColor=1, newColor=2)","file":"solution.cpp","line": 7},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 8,"locals":{"r":0,"c":-1,"oldColor":1,"newColor":2,"rows":3,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=-1, oldColor=1, newColor=2)","file":"solution.cpp","line": 8},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 10,"locals":{"r":0,"c":-1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=-1, oldColor=1, newColor=2)","file":"solution.cpp","line": 10},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 18,"locals":{"r":0,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 18},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 7,"locals":{"r":0,"c":1,"oldColor":1,"newColor":2,"rows":null,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 7},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 8,"locals":{"r":0,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 8},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 10,"locals":{"r":0,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 10},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 11,"locals":{"r":0,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 11},{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 19,"locals":{"r":0,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 19},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 18,"locals":{"r":0,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 18},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 7,"locals":{"r":0,"c":2,"oldColor":1,"newColor":2,"rows":null,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 7},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 8,"locals":{"r":0,"c":2,"oldColor":1,"newColor":2,"rows":3,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 8},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 10,"locals":{"r":0,"c":2,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 10},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 11,"locals":{"r":0,"c":2,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 11},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 13,"locals":{"r":0,"c":2,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 13},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 15,"locals":{"r":0,"c":2,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 7,"locals":{"r":-1,"c":2,"oldColor":1,"newColor":2,"rows":null,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=-1, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 7},{"name":"floodFill(image, r=0, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 18},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 8,"locals":{"r":-1,"c":2,"oldColor":1,"newColor":2,"rows":3,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=-1, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 8},{"name":"floodFill(image, r=0, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 18},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 10,"locals":{"r":-1,"c":2,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=-1, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 10},{"name":"floodFill(image, r=0, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 18},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 16,"locals":{"r":0,"c":2,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 7,"locals":{"r":1,"c":2,"oldColor":1,"newColor":2,"rows":null,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 7},{"name":"floodFill(image, r=0, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 18},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 8,"locals":{"r":1,"c":2,"oldColor":1,"newColor":2,"rows":3,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 8},{"name":"floodFill(image, r=0, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 18},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 10,"locals":{"r":1,"c":2,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 10},{"name":"floodFill(image, r=0, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 18},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 11,"locals":{"r":1,"c":2,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 11},{"name":"floodFill(image, r=0, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 18},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 17,"locals":{"r":0,"c":2,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 7,"locals":{"r":0,"c":1,"oldColor":1,"newColor":2,"rows":null,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 7},{"name":"floodFill(image, r=0, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 18},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 8,"locals":{"r":0,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 8},{"name":"floodFill(image, r=0, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 18},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 10,"locals":{"r":0,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 10},{"name":"floodFill(image, r=0, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 18},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 11,"locals":{"r":0,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 11},{"name":"floodFill(image, r=0, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 18},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 18,"locals":{"r":0,"c":2,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 18},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 7,"locals":{"r":0,"c":3,"oldColor":1,"newColor":2,"rows":null,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=3, oldColor=1, newColor=2)","file":"solution.cpp","line": 7},{"name":"floodFill(image, r=0, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 18},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 8,"locals":{"r":0,"c":3,"oldColor":1,"newColor":2,"rows":3,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=3, oldColor=1, newColor=2)","file":"solution.cpp","line": 8},{"name":"floodFill(image, r=0, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 18},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 10,"locals":{"r":0,"c":3,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=3, oldColor=1, newColor=2)","file":"solution.cpp","line": 10},{"name":"floodFill(image, r=0, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 18},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 19,"locals":{"r":0,"c":2,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 19},{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 15},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 19,"locals":{"r":0,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=0, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 19},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 16,"locals":{"r":1,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 16},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 7,"locals":{"r":2,"c":1,"oldColor":1,"newColor":2,"rows":null,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=2, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 7},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 8,"locals":{"r":2,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=2, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 8},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 10,"locals":{"r":2,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=2, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 10},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 11,"locals":{"r":2,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=2, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 11},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 17,"locals":{"r":1,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 17},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 7,"locals":{"r":1,"c":0,"oldColor":1,"newColor":2,"rows":null,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 7},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 8,"locals":{"r":1,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 8},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 10,"locals":{"r":1,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 10},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 11,"locals":{"r":1,"c":0,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=0, oldColor=1, newColor=2)","file":"solution.cpp","line": 11},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 18,"locals":{"r":1,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 18},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 7,"locals":{"r":1,"c":2,"oldColor":1,"newColor":2,"rows":null,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 7},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 8,"locals":{"r":1,"c":2,"oldColor":1,"newColor":2,"rows":3,"cols":null,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 8},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 10,"locals":{"r":1,"c":2,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 10},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 11,"locals":{"r":1,"c":2,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=2, oldColor=1, newColor=2)","file":"solution.cpp","line": 11},{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 30},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 19,"locals":{"r":1,"c":1,"oldColor":1,"newColor":2,"rows":3,"cols":3,"startColor":null},"stackFrames":[{"name":"floodFill(image, r=1, c=1, oldColor=1, newColor=2)","file":"solution.cpp","line": 19},{"name":"main()","file":"main.cpp","line": 30}]},{"line": 33,"locals":{"r":null,"c":null,"oldColor":null,"newColor":null,"rows":null,"cols":null,"startColor":1},"stackFrames":[{"name":"main()","file":"main.cpp","line": 33}]},{"line": 34,"locals":{"r":null,"c":null,"oldColor":null,"newColor":null,"rows":null,"cols":null,"startColor":1},"stackFrames":[{"name":"main()","file":"main.cpp","line": 34}]},{"line": 35,"locals":{"r":null,"c":null,"oldColor":null,"newColor":null,"rows":null,"cols":null,"startColor":1},"stackFrames":[{"name":"main()","file":"main.cpp","line": 35}]},{"line": 36,"locals":{"r":null,"c":null,"oldColor":null,"newColor":null,"rows":null,"cols":null,"startColor":1},"stackFrames":[{"name":"main()","file":"main.cpp","line": 36}]},{"line": 40,"locals":{"r":null,"c":null,"oldColor":null,"newColor":null,"rows":null,"cols":null,"startColor":1},"stackFrames":[{"name":"main()","file":"main.cpp","line": 40}]}];
       if (stepIndex >= states.length) stepIndex = states.length - 1;
@@ -5796,7 +5797,7 @@ int main() {
       if (stepIndex >= states.length) stepIndex = states.length - 1;
       const state = states[stepIndex];
       if (lineNum === 28 || lineNum === 29) return state.locals.startColor !== null ? `startColor: ${state.locals.startColor}` : null;
-      if (lineNum >= 30 && lineNum <= 43 && state.locals.r !== null) return `r: ${state.locals.r}, c: ${state.locals.c}`;
+      if (lineNum >= 6 && lineNum <= 19 && state.locals.r !== null) return `r: ${state.locals.r}, c: ${state.locals.c}`;
       return null;
     }
 

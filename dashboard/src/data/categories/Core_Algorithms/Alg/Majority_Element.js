@@ -38,7 +38,7 @@ int main() {
   explanations: [
   {
     "line": 7,
-    "text": "Definim vectorul arr = {2, 2, 1, 1, 2}.",
+    "text": "Definim și inițializăm vectorul de intrare arr = {2, 2, 1, 1, 2} cu dimensiunea 5.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -86,7 +86,7 @@ int main() {
   },
   {
     "line": 8,
-    "text": "Inițializăm candidate = -1.",
+    "text": "Inițializăm variabila candidate cu -1. Aceasta va stoca elementul care este candidatul curent la majoritate.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -134,7 +134,7 @@ int main() {
   },
   {
     "line": 9,
-    "text": "Inițializăm count = 0.",
+    "text": "Inițializăm contorul de voturi count cu 0.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -182,7 +182,7 @@ int main() {
   },
   {
     "line": 11,
-    "text": "Începem prima parcurgere a vectorului.",
+    "text": "Începem prima parcurgere a vectorului (algoritmul Boyer-Moore) pentru a identifica un candidat viabil.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -230,7 +230,7 @@ int main() {
   },
   {
     "line": 11,
-    "text": "x = arr[0] = 2.",
+    "text": "Extragem primul element din vector: x = arr[0] = 2.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -278,7 +278,7 @@ int main() {
   },
   {
     "line": 12,
-    "text": "Verificăm dacă count == 0. (count este 0)",
+    "text": "Verificăm dacă contorul count este 0. Deoarece count = 0, condiția este adevărată. Aceasta înseamnă că nu avem un candidat activ în acest moment.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -326,7 +326,7 @@ int main() {
   },
   {
     "line": 13,
-    "text": "candidate = 2.",
+    "text": "Deoarece nu aveam un candidat activ (count = 0), stabilim elementul curent ca fiind noul candidat: candidate = x = 2.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -374,7 +374,7 @@ int main() {
   },
   {
     "line": 14,
-    "text": "count = 1.",
+    "text": "Setăm valoarea contorului count la 1, însemnând că noul candidat are un prim vot favorabil.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -422,7 +422,7 @@ int main() {
   },
   {
     "line": 11,
-    "text": "x = arr[1] = 2.",
+    "text": "Trecem la următorul element din vector: x = arr[1] = 2.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -470,7 +470,7 @@ int main() {
   },
   {
     "line": 12,
-    "text": "Verificăm dacă count == 0. (count este 1)",
+    "text": "Verificăm dacă count este 0. Deoarece count = 1, condiția este falsă, deci continuăm cu verificarea egalității.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -518,7 +518,7 @@ int main() {
   },
   {
     "line": 15,
-    "text": "Verificăm dacă x == candidate. (2 == 2)",
+    "text": "Verificăm dacă elementul curent x este egal cu candidatul nostru. Deoarece x = 2 și candidate = 2, condiția x == candidate este adevărată.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -566,7 +566,7 @@ int main() {
   },
   {
     "line": 16,
-    "text": "count devine 2.",
+    "text": "Deoarece elementul curent coincide cu candidatul, incrementăm contorul de voturi: count devine 2.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -614,7 +614,7 @@ int main() {
   },
   {
     "line": 11,
-    "text": "x = arr[2] = 1.",
+    "text": "Trecem la următorul element din vector: x = arr[2] = 1.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -662,7 +662,7 @@ int main() {
   },
   {
     "line": 12,
-    "text": "Verificăm dacă count == 0. (count este 2)",
+    "text": "Verificăm dacă count este 0. Deoarece count = 2, condiția este falsă.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -710,7 +710,7 @@ int main() {
   },
   {
     "line": 15,
-    "text": "Verificăm dacă x == candidate. (1 == 2)",
+    "text": "Verificăm dacă elementul curent x este egal cu candidatul. Deoarece x = 1 și candidate = 2, condiția x == candidate este falsă.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -758,7 +758,7 @@ int main() {
   },
   {
     "line": 18,
-    "text": "count devine 1.",
+    "text": "Deoarece elementul curent (1) diferă de candidat (2), contorul își pierde un vot: count se decrementează și devine 1.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -806,7 +806,7 @@ int main() {
   },
   {
     "line": 11,
-    "text": "x = arr[3] = 1.",
+    "text": "Trecem la următorul element din vector: x = arr[3] = 1.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -854,7 +854,7 @@ int main() {
   },
   {
     "line": 12,
-    "text": "Verificăm dacă count == 0. (count este 1)",
+    "text": "Verificăm dacă contorul count este 0. Deoarece count = 1, condiția este falsă.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -902,7 +902,7 @@ int main() {
   },
   {
     "line": 15,
-    "text": "Verificăm dacă x == candidate. (1 == 2)",
+    "text": "Verificăm dacă elementul curent x este egal cu candidatul. Deoarece x = 1 și candidate = 2, condiția x == candidate este falsă.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -950,7 +950,7 @@ int main() {
   },
   {
     "line": 18,
-    "text": "count devine 0.",
+    "text": "Deoarece elementul curent (1) diferă de candidat (2), contorul scade: count se decrementează și devine 0.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -998,7 +998,7 @@ int main() {
   },
   {
     "line": 11,
-    "text": "x = arr[4] = 2.",
+    "text": "Trecem la ultimul element din vector: x = arr[4] = 2.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -1046,7 +1046,7 @@ int main() {
   },
   {
     "line": 12,
-    "text": "Verificăm dacă count == 0. (count este 0)",
+    "text": "Verificăm dacă count este 0. Deoarece count = 0 (candidatul anterior și-a pierdut toate voturile), condiția este adevărată.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -1094,7 +1094,7 @@ int main() {
   },
   {
     "line": 13,
-    "text": "candidate = 2.",
+    "text": "Stabilim elementul curent ca noul candidat: candidate = x = 2.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -1142,7 +1142,7 @@ int main() {
   },
   {
     "line": 14,
-    "text": "count = 1.",
+    "text": "Setăm valoarea contorului count la 1.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -1190,7 +1190,7 @@ int main() {
   },
   {
     "line": 22,
-    "text": "Inițializăm actual_count = 0 pentru validare.",
+    "text": "După finalizarea primei parcurgeri, am găsit un candidat (2). Inițializăm contorul de apariții reale actual_count cu 0 pentru a-l valida.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -1238,7 +1238,7 @@ int main() {
   },
   {
     "line": 23,
-    "text": "Începem a doua parcurgere a vectorului pentru a număra aparițiile candidatului.",
+    "text": "Începem a doua parcurgere a vectorului pentru a număra exact de câte ori apare candidatul în tot vectorul.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -1286,7 +1286,7 @@ int main() {
   },
   {
     "line": 23,
-    "text": "x = arr[0] = 2.",
+    "text": "Analizăm primul element: x = arr[0] = 2.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -1334,7 +1334,7 @@ int main() {
   },
   {
     "line": 24,
-    "text": "Verificăm dacă x == candidate. (2 == 2)",
+    "text": "Verificăm dacă elementul x este egal cu candidatul. Deoarece x = 2 și candidate = 2, condiția x == candidate este adevărată.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -1382,7 +1382,7 @@ int main() {
   },
   {
     "line": 25,
-    "text": "actual_count devine 1.",
+    "text": "Incrementăm contorul aparițiilor reale: actual_count devine 1.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -1430,7 +1430,7 @@ int main() {
   },
   {
     "line": 23,
-    "text": "x = arr[1] = 2.",
+    "text": "Analizăm al doilea element: x = arr[1] = 2.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -1478,7 +1478,7 @@ int main() {
   },
   {
     "line": 24,
-    "text": "Verificăm dacă x == candidate. (2 == 2)",
+    "text": "Verificăm dacă x == candidate. Deoarece 2 == 2, condiția este adevărată.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -1526,7 +1526,7 @@ int main() {
   },
   {
     "line": 25,
-    "text": "actual_count devine 2.",
+    "text": "Incrementăm contorul aparițiilor reale: actual_count devine 2.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -1574,7 +1574,7 @@ int main() {
   },
   {
     "line": 23,
-    "text": "x = arr[2] = 1.",
+    "text": "Analizăm al treilea element: x = arr[2] = 1.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -1622,7 +1622,7 @@ int main() {
   },
   {
     "line": 24,
-    "text": "Verificăm dacă x == candidate. (1 == 2)",
+    "text": "Verificăm dacă x == candidate. Deoarece 1 == 2, condiția este falsă.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -1670,7 +1670,7 @@ int main() {
   },
   {
     "line": 23,
-    "text": "x = arr[3] = 1.",
+    "text": "Analizăm al patrulea element: x = arr[3] = 1.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -1718,7 +1718,7 @@ int main() {
   },
   {
     "line": 24,
-    "text": "Verificăm dacă x == candidate. (1 == 2)",
+    "text": "Verificăm dacă x == candidate. Deoarece 1 == 2, condiția este falsă.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -1766,7 +1766,7 @@ int main() {
   },
   {
     "line": 23,
-    "text": "x = arr[4] = 2.",
+    "text": "Analizăm ultimul element: x = arr[4] = 2.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -1814,7 +1814,7 @@ int main() {
   },
   {
     "line": 24,
-    "text": "Verificăm dacă x == candidate. (2 == 2)",
+    "text": "Verificăm dacă x == candidate. Deoarece 2 == 2, condiția este adevărată.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -1862,7 +1862,7 @@ int main() {
   },
   {
     "line": 25,
-    "text": "actual_count devine 3.",
+    "text": "Incrementăm contorul aparițiilor reale: actual_count devine 3.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -1910,7 +1910,7 @@ int main() {
   },
   {
     "line": 29,
-    "text": "Calculăm is_majority = (actual_count > arr.size() / 2). (3 > 2).",
+    "text": "Verificăm dacă numărul de apariții determinate (actual_count = 3) este strict mai mare decât jumătate din dimensiunea vectorului (arr.size() / 2 = 2). Condiția 3 > 2 este adevărată, deci elementul este într-adevăr majoritar.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",
@@ -1958,7 +1958,7 @@ int main() {
   },
   {
     "line": 30,
-    "text": "is_majority este true. Returnăm 0.",
+    "text": "Programul s-a încheiat cu succes și returnează 0.",
     "blocksVisual": [
       {
         "label": "Vector (arr)",

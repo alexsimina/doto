@@ -87,82 +87,86 @@ let locals = {
     i: null, nr: null, nc: null
 };
 
-addStep(79, "Apelăm funcția leeAlgorithm pentru grid, src=(0,0), dest=(3,3).", locals);
+addStep(79, "Începem execuția algoritmului lui Lee pentru a determina cel mai scurt drum de la sursa (0,0) la destinația (3,3) pe o matrice cu obstacole.", locals);
 
 locals.rows = 4;
-addStep(36, "Obținem numărul de rânduri: rows = 4.", locals);
+addStep(36, "Obținem numărul de linii ale matricei prin apelul grid.size(): rows = 4.", locals);
 
 locals.cols = 4;
-addStep(37, "Obținem numărul de coloane: cols = 4.", locals);
+addStep(37, "Obținem numărul de coloane ale matricei prin apelul grid[0].size(): cols = 4.", locals);
 
-addStep(38, "Verificăm dacă sursa sau destinația este obstacol (1). Ambele sunt 0 (libere).", locals);
+addStep(38, "Verificăm dacă celula sursă sau destinația reprezintă un obstacol (valoare 1). Ambele celule sunt 0 (libere), deci condiția este falsă și putem porni parcurgerea.", locals);
 
-addStep(40, "Inițializăm matricea dist cu valoarea -1.", locals);
+addStep(40, "Inițializăm matricea dist de dimensiune 4x4 cu valoarea -1, marcând toate celulele ca fiind nevizitate.", locals);
 
-addStep(41, "Inițializăm coada q.", locals);
+addStep(41, "Inițializăm coada de priorități q, utilizată pentru a asigura parcurgerea în lățime (BFS).", locals);
 
 dist[0][0] = 0;
-addStep(43, "Setăm distanța pentru sursă la 0: dist[0][0] = 0.", locals, [{r:0, c:0}]);
+addStep(43, "Setăm distanța de pornire pentru celula sursă la 0: dist[0][0] = 0.", locals, [{r:0, c:0}]);
 
 q.push({r: 0, c: 0});
-addStep(44, "Adăugăm sursa în coadă.", locals, [{r:0, c:0}]);
+addStep(44, "Adăugăm celula sursă (0,0) în coada q pentru a fi prima analizată.", locals, [{r:0, c:0}]);
 
-addStep(46, "Definim dr = {-1, 1, 0, 0}.", locals, [{r:0, c:0}]);
-addStep(47, "Definim dc = {0, 0, -1, 1}.", locals, [{r:0, c:0}]);
+addStep(46, "Definim vectorul de deplasare pe linii dr = {-1, 1, 0, 0} pentru a accesa vecinii (Sus, Jos, Stânga, Dreapta).", locals, [{r:0, c:0}]);
+addStep(47, "Definim vectorul de deplasare pe coloane dc = {0, 0, -1, 1}.", locals, [{r:0, c:0}]);
 
 let dr = [-1, 1, 0, 0];
 let dc = [0, 0, -1, 1];
 
 while (q.length > 0) {
-    addStep(49, `Începem o iterație BFS. Coada are ${q.length} elemente.`, locals);
+    addStep(49, `Verificăm condiția buclei BFS: !q.empty(). Deoarece coada conține ${q.length} elemente, condiția este adevărată, așa că începem o nouă iterație.`, locals);
 
     let curr = q.shift();
     locals.curr = { ...curr };
-    addStep(50, `Extragem primul element din coadă: curr = (${curr.r}, ${curr.c}).`, locals, [{r:curr.r, c:curr.c}]);
+    addStep(50, `Extragem celula din fața cozii: curr = (${curr.r}, ${curr.c}). Distanța calculată până la ea este dist[${curr.r}][${curr.c}] = ${dist[curr.r][curr.c]}.`, locals, [{r:curr.r, c:curr.c}]);
     
-    addStep(51, `Scoatem elementul din coadă.`, locals, [{r:curr.r, c:curr.c}]);
+    addStep(51, `Eliminăm celula (${curr.r}, ${curr.c}) din coada de prelucrare.`, locals, [{r:curr.r, c:curr.c}]);
 
     let isDest = (curr.r === 3 && curr.c === 3);
-    addStep(53, `Verificăm dacă curr este destinația (3,3). ${isDest ? "Da, este destinația!" : "Nu."}`, locals, [{r:curr.r, c:curr.c}]);
+    addStep(53, `Verificăm dacă celula curentă este destinația: curr.r == dest.r && curr.c == dest.c. Coordonatele sunt (${curr.r}, ${curr.c}) comparate cu (3, 3). Condiția este ${isDest ? "Adevărată! Am găsit drumul minim." : "Falsă."}`, locals, [{r:curr.r, c:curr.c}]);
     
     if (isDest) {
-        addStep(54, `Returnăm distanța minimă: ${dist[curr.r][curr.c]}.`, locals, [{r:curr.r, c:curr.c}]);
+        addStep(54, `Returnăm valoarea stocată în dist[${curr.r}][${curr.c}] = ${dist[curr.r][curr.c]}, reprezentând numărul minim de pași de la sursă la destinație.`, locals, [{r:curr.r, c:curr.c}]);
         locals.ans = dist[curr.r][curr.c];
         break;
     }
 
     for (let i = 0; i < 4; i++) {
         locals.i = i;
-        addStep(57, `Explorăm vecinul i=${i}.`, locals, [{r:curr.r, c:curr.c}]);
+        addStep(57, `Explorăm vecinul i = ${i} în direcțiile definite de vectorii dr și dc.`, locals, [{r:curr.r, c:curr.c}]);
         
         let nr = curr.r + dr[i];
         let nc = curr.c + dc[i];
         locals.nr = nr;
         locals.nc = nc;
-        addStep(58, `Calculăm nr = ${nr}.`, locals, [{r:curr.r, c:curr.c}]);
-        addStep(59, `Calculăm nc = ${nc}.`, locals, [{r:curr.r, c:curr.c}]);
+        addStep(58, `Calculăm linia vecinului: nr = curr.r + dr[${i}] = ${curr.r} + (${dr[i]}) = ${nr}.`, locals, [{r:curr.r, c:curr.c}]);
+        addStep(59, `Calculăm coloana vecinului: nc = curr.c + dc[${i}] = ${curr.c} + (${dc[i]}) = ${nc}.`, locals, [{r:curr.r, c:curr.c}]);
 
         let inBounds = (nr >= 0 && nr < 4 && nc >= 0 && nc < 4);
-        addStep(61, `Verificăm limitele pentru (${nr}, ${nc}). ${inBounds ? "În limite." : "În afara limitelor."}`, locals, [{r:curr.r, c:curr.c}]);
+        addStep(61, `Verificăm dacă vecinul (${nr}, ${nc}) se află în interiorul limitelor grilei: nr >= 0 && nr < rows && nc >= 0 && nc < cols. Deoarece coordonatele sunt ${inBounds ? 'valide' : 'în afara limitelor'}, condiția este ${inBounds ? 'Adevărată' : 'Falsă'}.`, locals, [{r:curr.r, c:curr.c}]);
 
         if (inBounds) {
             let isFreeAndUnvisited = (grid[nr][nc] === 0 && dist[nr][nc] === -1);
-            addStep(62, `Verificăm dacă celula e liberă și nevizitată. ${isFreeAndUnvisited ? "Da." : "Nu."}`, locals, [{r:curr.r, c:curr.c}], [{r:nr, c:nc}]);
+            addStep(62, `Verificăm dacă celula vecină (${nr}, ${nc}) este liberă (egală cu 0) și nevizitată (dist == -1). Deoarece grid[${nr}][${nc}] = ${grid[nr][nc]} și dist[${nr}][${nc}] = ${dist[nr][nc]}, condiția este ${isFreeAndUnvisited ? 'Adevărată' : 'Falsă'}.`, locals, [{r:curr.r, c:curr.c}], [{r:nr, c:nc}]);
 
             if (isFreeAndUnvisited) {
                 dist[nr][nc] = dist[curr.r][curr.c] + 1;
-                addStep(63, `Actualizăm dist[${nr}][${nc}] = ${dist[nr][nc]}.`, locals, [{r:curr.r, c:curr.c}], [{r:nr, c:nc}]);
+                addStep(63, `Actualizăm distanța pentru celula vecină: dist[${nr}][${nc}] = dist[${curr.r}][${curr.c}] + 1 = ${dist[nr][nc]} pași.`, locals, [{r:curr.r, c:curr.c}], [{r:nr, c:nc}]);
                 
                 q.push({r: nr, c: nc});
-                addStep(64, `Adăugăm (${nr}, ${nc}) în coadă.`, locals, [{r:curr.r, c:curr.c}], [{r:nr, c:nc}]);
+                addStep(64, `Adăugăm coordonatele (${nr}, ${nc}) în coadă pentru a le extinde frontul în iterațiile următoare.`, locals, [{r:curr.r, c:curr.c}], [{r:nr, c:nc}]);
             }
         }
     }
 }
 
+if (q.length === 0 && locals.ans === null) {
+    addStep(49, `Verificăm condiția buclei BFS: !q.empty(). Deoarece coada este goală, condiția este Falsă și ieșim din buclă.`, locals);
+}
+
 // Back in main
-addStep(80, "Afișăm drumul minim.", locals);
-addStep(81, "Program finalizat.", locals);
+addStep(80, `Afișăm rezultatul final obținut în variabila ans: ${locals.ans} pași.`, locals);
+addStep(81, "Programul se încheie cu succes.", locals);
 
 let debuggerStateFunction = `
     "getDebuggerState": (stepIndex, activeLine, explanationText) => {

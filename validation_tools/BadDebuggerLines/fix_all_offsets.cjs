@@ -23,7 +23,7 @@ function detectShift(filePath) {
     // Find where the actual C++ code starts in the JS file
     let H = -1;
     for (let i = 0; i < lines.length; i++) {
-        if (lines[i].includes('code: `')) {
+        if (lines[i].includes('code: `') || lines[i].includes('"code": `')) {
             H = i + 2; // Line after 'code: `'
             break;
         }

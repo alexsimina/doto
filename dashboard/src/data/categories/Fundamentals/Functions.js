@@ -30,7 +30,7 @@ int main() {
   explanations: [
     {
       line: 16,
-      text: "Inițializăm variabila $a$ cu valoarea $5$. Aceasta va fi transmisă prin valoare.",
+      text: "Inițializăm variabila locală $a = 5$ în funcția main. Valoarea ei va fi transmisă ulterior prin valoare.",
       blocksVisual: [
         {
           "label": "Funcția main",
@@ -50,7 +50,7 @@ int main() {
     },
     {
       line: 17,
-      text: "Inițializăm variabila $b$ cu valoarea $5$. Aceasta va fi transmisă prin referință.",
+      text: "Inițializăm variabila locală $b = 5$ în main. Aceasta va fi transmisă ulterior prin referință.",
       blocksVisual: [
         {
           "label": "Funcția main",
@@ -70,7 +70,7 @@ int main() {
     },
     {
       line: 19,
-      text: "Apelăm funcția `incrementByValue(a)`. Se creează o copie a valorii lui $a$ pe stivă.",
+      text: "Apelăm funcția `incrementByValue(a)`. Deoarece transmiterea este prin valoare, programul va copia valoarea lui $a$ pe stivă.",
       blocksVisual: [
         {
           "label": "Apel incrementByValue",
@@ -92,7 +92,7 @@ int main() {
     },
     {
       line: 6,
-      text: "Suntem în corpul funcției `incrementByValue`. Parametrul $x$ are valoarea copiată $5$.",
+      text: "Suntem acum în interiorul funcției `incrementByValue`. Parametrul $x$ are valoarea copiată $5$.",
       blocksVisual: [
         {
           "label": "În incrementByValue",
@@ -109,7 +109,7 @@ int main() {
     },
     {
       line: 7,
-      text: "Incrementăm variabila locală $x$. Aceasta devine $6$.",
+      text: "Incrementăm variabila locală $x$ din funcție. $x$ devine $6$. Observăm că valoarea originală $a$ din main rămâne neschimbată.",
       blocksVisual: [
         {
           "label": "În incrementByValue",
@@ -126,7 +126,7 @@ int main() {
     },
     {
       line: 8,
-      text: "Funcția se încheie și copia locală $x$ este ștearsă din memorie. Revenim în main.",
+      text: "Funcția `incrementByValue` se încheie. Copia locală $x$ este ștearsă din memorie, iar controlul revine în main.",
       blocksVisual: [
         {
           "label": "Revenire în main",
@@ -148,7 +148,7 @@ int main() {
     },
     {
       line: 20,
-      text: "Apelăm `incrementByReference(b)`. Nu se face o copie; funcția va opera direct pe variabila $b$.",
+      text: "Apelăm `incrementByReference(b)`. Deoarece parametrul este transmis prin referință (folosind &), nu se face o copie, ci se lucrează direct pe variabila originală $b$.",
       blocksVisual: [
         {
           "label": "Apel incrementByReference",
@@ -160,7 +160,7 @@ int main() {
             ],
             [
               {
-                "val": "Referința x pointează către b",
+                "val": "Referința x pointează direct la b",
                 "active": true
               }
             ]
@@ -170,7 +170,7 @@ int main() {
     },
     {
       line: 11,
-      text: "Suntem în `incrementByReference`. Parametrul $x$ este o poreclă (alias) pentru variabila $b$ din main.",
+      text: "Intrăm în funcția `incrementByReference`. Parametrul $x$ este o referință (un alias sau o poreclă) pentru variabila originală $b$ din main.",
       blocksVisual: [
         {
           "label": "În incrementByReference",
@@ -187,7 +187,7 @@ int main() {
     },
     {
       line: 12,
-      text: "Incrementăm valoarea de la referința $x$. Deoarece $x$ este legat direct de $b$, valoarea lui $b$ din main devine $6$.",
+      text: "Incrementăm valoarea referită de $x$. Deoarece $x$ este legat direct de variabila $b$ din main, valoarea lui $b$ devine direct $6$ în memorie.",
       blocksVisual: [
         {
           "label": "În incrementByReference",
@@ -204,7 +204,7 @@ int main() {
     },
     {
       line: 13,
-      text: "Funcția se încheie. Revenim în main.",
+      text: "Funcția `incrementByReference` se încheie. Referința $x$ este eliminată, iar execuția continuă în main.",
       blocksVisual: [
         {
           "label": "Revenire în main",
@@ -226,7 +226,7 @@ int main() {
     },
     {
       line: 22,
-      text: "Finalizăm programul cu succes. Se observă că $a$ a rămas $5$, în timp ce $b$ a devenit $6$.",
+      text: "Programul se finalizează cu succes. Se observă cum $a$ a rămas cu valoarea inițială $5$, în timp ce $b$ a fost modificat cu succes la $6$ prin referință.",
       blocksVisual: [
         {
           "label": "Stare Finală",
@@ -576,4 +576,6 @@ int main() {
     }
   }
 }
+;
+;
 ;

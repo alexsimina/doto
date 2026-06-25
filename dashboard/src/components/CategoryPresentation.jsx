@@ -2040,11 +2040,23 @@ const CategoryPresentation = ({ category, onClose, onNavigate }) => {
                             );
                           })()}
 
-                          {/* Default fallback for other Math topics */}
+                          {/* Default state visualizer for other Math topics */}
                           {!catKey.includes('Number_Theory') && !catKey.includes('Combinatorics') && !catKey.includes('Computational') && !catKey.includes('Game_Theory') && !catKey.includes('Math/Advanced') && !catKey.includes('Linear_Algebra') && (
-                            <div style={{ background: 'linear-gradient(135deg,#141517,#18191c)', border: '1px solid #2b2d30', borderRadius: '10px', padding: '24px', textAlign: 'center', opacity: 0.6 }}>
-                              <div style={{ fontSize: '32px', marginBottom: '8px' }}>🔢</div>
-                              <div style={{ color: '#888', fontSize: '13px' }}>Vizualizator matematic disponibil în modul Debugger</div>
+                            <div style={{ 
+                              background: 'linear-gradient(145deg, #18191c, #1e1f22)',
+                              padding: '24px', 
+                              borderRadius: '10px', 
+                              border: '1px solid #2f3136',
+                              boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04)',
+                              display: 'flex',
+                              flexDirection: 'column',
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                              minHeight: '350px',
+                              gap: '20px',
+                              width: '100%'
+                            }}>
+                              {renderStateVisualizer(true)}
                             </div>
                           )}
                         </div>

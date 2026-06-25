@@ -21,8 +21,7 @@ Pentru a calcula $\\phi(n)$ eficient pentru un singur număr, putem extrage fact
 
 - **Criptografia RSA:** Generarea cheilor publice și private se bazează pe calculul $\\phi(p \\cdot q) = (p-1)(q-1)$ pentru două numere prime mari.
 - **Calculul inversului modular:** Dacă $a$ și $M$ sunt prime între ele, atunci inversul modular al lui $a \\pmod{M}$ este $a^{\\phi(M)-1} \\pmod{M}$.`,
-  "code": `
-#include <iostream>
+  "code": `#include <iostream>
 
 using namespace std;
 
@@ -51,92 +50,92 @@ int main() {
   "explanations": [
   {
     "line": 21,
-    "text": "Apelam eulerPhi(12).",
+    "text": "Apelăm funcția eulerPhi cu parametrul n = 12 pentru a determina numărul de numere prime cu 12 mai mici sau egale cu acesta.",
     "blocksVisual": []
   },
   {
     "line": 5,
-    "text": "Intram in functie.",
+    "text": "Intrăm în funcție. Parametrul primit este n = 12.",
     "blocksVisual": []
   },
   {
     "line": 6,
-    "text": "Initializam result = n",
+    "text": "Inițializăm variabila result cu valoarea lui n, adică result = 12.",
     "blocksVisual": []
   },
   {
     "line": 7,
-    "text": "Verificam factor p = 2. 2*2 <= 12",
+    "text": "Începem bucla for pentru a găsi factorii primi. Verificăm p = 2. Deoarece p * p = 4 <= 12, condiția buclei for este adevărată.",
     "blocksVisual": []
   },
   {
     "line": 8,
-    "text": "Verificam daca n % p == 0: 12 % 2",
+    "text": "Verificăm dacă p = 2 este divizor al lui n (n % p == 0). Deoarece 12 % 2 = 0, condiția este adevărată.",
     "blocksVisual": []
   },
   {
     "line": 9,
-    "text": "Intram in bucla while(n % p == 0)",
+    "text": "Verificăm condiția buclei while (n % p == 0). Deoarece 12 % 2 = 0, condiția este adevărată, deci împărțim n la p pentru a elimina factorul prim 2.",
     "blocksVisual": []
   },
   {
     "line": 10,
-    "text": "n /= p; n devine 6",
+    "text": "Împărțim n la factorul prim p = 2: n /= 2, deci n devine 6.",
     "blocksVisual": []
   },
   {
     "line": 9,
-    "text": "Verificam while(n % p == 0)",
+    "text": "Verificăm din nou condiția buclei while (n % p == 0). Deoarece n = 6 % 2 = 0, condiția este adevărată.",
     "blocksVisual": []
   },
   {
     "line": 10,
-    "text": "n /= p; n devine 3",
+    "text": "Împărțim n la factorul prim p = 2: n /= 2, deci n devine 3.",
     "blocksVisual": []
   },
   {
     "line": 9,
-    "text": "Verificam while(n % p == 0)",
+    "text": "Verificăm din nou condiția buclei while (n % p == 0). Deoarece n = 3 % 2 = 1, condiția este falsă, deci ieșim din bucla while.",
     "blocksVisual": []
   },
   {
     "line": 12,
-    "text": "result -= result / p; result devine 6",
+    "text": "Actualizăm rezultatul pentru factorul prim p = 2: result -= result / 2, adică 12 - 6 = 6. Noul result devine 6.",
     "blocksVisual": []
   },
   {
     "line": 7,
-    "text": "p*p depaseste n. Iesim din bucla for.",
+    "text": "Incrementăm p la 3. Verificăm condiția buclei for: p * p = 9 <= n (unde n a devenit 3). Deoarece 9 > 3, condiția p * p <= n este falsă, așa că ieșim din bucla for.",
     "blocksVisual": []
   },
   {
     "line": 15,
-    "text": "Verificam daca n > 1: n = 3",
+    "text": "Verificăm dacă a rămas vreun factor prim mai mare decât radical din n inițial (condiția n > 1). Deoarece n = 3, condiția este adevărată.",
     "blocksVisual": []
   },
   {
     "line": 16,
-    "text": "n > 1, result -= result / n; result devine 4",
+    "text": "Deoarece n = 3 > 1 este prim, actualizăm rezultatul pentru acest ultim factor prim: result -= result / 3, adică 6 - 2 = 4. Noul result devine 4.",
     "blocksVisual": []
   },
   {
     "line": 18,
-    "text": "Returnam result = 4",
+    "text": "Returnăm rezultatul final calculat: result = 4.",
     "blocksVisual": []
   },
   {
     "line": 22,
-    "text": "A primit 4 in ans",
+    "text": "Revenim în funcția main. Valoarea returnată de eulerPhi este stocată în variabila ans, care devine 4.",
     "blocksVisual": []
   },
   {
     "line": 23,
-    "text": "Afisam",
+    "text": "Afișăm rezultatul obținut la ieșirea standard (cout): phi(12) = 4.",
     "blocksVisual": []
   },
   {
     "line": 24,
-    "text": "Sfarsit",
+    "text": "Funcția main returnează 0, finalizând cu succes execuția programului.",
     "blocksVisual": []
   }
 ],
@@ -164,15 +163,22 @@ int main() {
     ]
   },
   "debugger": {
-    "getDebuggerState": (stepIndex) => {
+    "getDebuggerState": (stepIndex, activeLine) => {
       const states = [{"vars":[],"frames":[{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"Apel eulerPhi"},{"vars":[{"name":"n","type":"int","val":"12","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"n = 12"},{"vars":[{"name":"n","type":"int","val":"12","expandable":false},{"name":"result","type":"int","val":"12","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"result = 12"},{"vars":[{"name":"n","type":"int","val":"12","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"p = 2"},{"vars":[{"name":"n","type":"int","val":"12","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":null},{"vars":[{"name":"n","type":"int","val":"12","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":null},{"vars":[{"name":"n","type":"int","val":"6","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"n = 6"},{"vars":[{"name":"n","type":"int","val":"6","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":null},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"n = 3"},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":null},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"6","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"result = 6"},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"6","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":null},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"6","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":null},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"4","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"result = 4"},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"4","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"return 4"},{"vars":[{"name":"ans","type":"int","val":"4","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"ans = 4"},{"vars":[{"name":"ans","type":"int","val":"4","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"cout"},{"vars":[{"name":"ans","type":"int","val":"4","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"return 0"}];
       const s = states[stepIndex] || states[states.length - 1];
-      return { vars: s.vars, globalVars: [], frames: s.frames, inlineVal: s.inlineVal };
+      const frames = s.frames.map((frame, index) => {
+        if (index === 0 && activeLine !== undefined && activeLine !== null) {
+          return { ...frame, line: activeLine };
+        }
+        return frame;
+      });
+      return { vars: s.vars, globalVars: [], frames, inlineVal: s.inlineVal };
     },
     "getInlineValueForLine": (stepIndex, lineNum) => {
       const states = [{"vars":[],"frames":[{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"Apel eulerPhi"},{"vars":[{"name":"n","type":"int","val":"12","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"n = 12"},{"vars":[{"name":"n","type":"int","val":"12","expandable":false},{"name":"result","type":"int","val":"12","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"result = 12"},{"vars":[{"name":"n","type":"int","val":"12","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"p = 2"},{"vars":[{"name":"n","type":"int","val":"12","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":null},{"vars":[{"name":"n","type":"int","val":"12","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":null},{"vars":[{"name":"n","type":"int","val":"6","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"n = 6"},{"vars":[{"name":"n","type":"int","val":"6","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":null},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"n = 3"},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"12","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":null},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"6","expandable":false},{"name":"p","type":"int","val":"2","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"result = 6"},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"6","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":null},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"6","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":null},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"4","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"result = 4"},{"vars":[{"name":"n","type":"int","val":"3","expandable":false},{"name":"result","type":"int","val":"4","expandable":false}],"frames":[{"name":"eulerPhi(12)","file":"main.cpp","line": 5},{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"return 4"},{"vars":[{"name":"ans","type":"int","val":"4","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"ans = 4"},{"vars":[{"name":"ans","type":"int","val":"4","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"cout"},{"vars":[{"name":"ans","type":"int","val":"4","expandable":false}],"frames":[{"name":"main()","file":"main.cpp","line": 21}],"inlineVal":"return 0"}];
       const s = states[stepIndex] || states[states.length - 1];
-      if (s.inlineVal && s.frames.length > 0 && s.frames[0].line === lineNum) return s.inlineVal;
+      const activeLine = typeof data !== 'undefined' && data.explanations && data.explanations[stepIndex] ? data.explanations[stepIndex].line : null;
+      if (s.inlineVal && activeLine === lineNum) return s.inlineVal;
       return null;
     }
   }

@@ -3,8 +3,7 @@ export const data = {
   "complexity": "### Complexitate\n\n- **Timp:** \n  - Actualizare (Update): $O(1)$ per operație.\n  - Reconstruire vector final: $O(N)$.\n  - Pentru $U$ actualizări, complexitatea totală este de $O(U + N)$ comparat cu $O(U \\cdot N)$ în cazul naiv.\n- **Spațiu:** $O(N)$ memorie adițională pentru stocarea vectorului `diff` de dimensiune $N+2$.",
   "variations": "### Variații și Edge Cases\n\n1. **Matrice de Diferențe 2D:** Logica se poate extinde pentru 2D. Pentru a adăuga $V$ într-o submatrice definită de colțul stânga-sus $(r_1, c_1)$ și colțul dreapta-jos $(r_2, c_2)$, modificăm doar 4 puncte în matricea de diferențe:\n   - `diff[r1][c1] += V`\n   - `diff[r1][c2+1] -= V`\n   - `diff[r2+1][c1] -= V`\n   - `diff[r2+1][c2+1] += V`\n2. **Relația cu Prefix Sums:** Vectorul de Diferențe și Vectorul de Sume Parțiale sunt operații inverse una față de cealaltă (analog cu diferențierea și integrarea în analiză matematică).",
   "applications": "### Aplicații\n\n- **Scanline Algorithm:** Determinarea acoperirii unui set de intervale pe o dreaptă (de exemplu, numărul maxim de utilizatori conectați simultan pe un server).\n- **Actualizări statice pe intervale:** Adăugarea de scoruri sau modificări repetate pe intervale unde interogările se fac doar după finalizarea tuturor actualizărilor.",
-  "code": `
-#include <iostream>
+  "code": `#include <iostream>
 #include <vector>
 
 using namespace std;

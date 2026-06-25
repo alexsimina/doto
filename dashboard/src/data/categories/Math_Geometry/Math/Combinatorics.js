@@ -3,8 +3,7 @@ export const data = {
   "complexity": "### Complexitate\n\nGenerarea Triunghiului lui Pascal până la linia $N$ are:\n- **Timp:** O(N^2), calculând iterativ fiecare rând din rândul anterior.\n- **Spațiu:** O(N^2) dacă stocăm toată matricea, sau O(N) dacă folosim doar rândul anterior (spațiu optimizat).\n",
   "variations": "### Variații și Edge Cases\n\n1. Calculul Combinărilor cu Invers Modular: Pentru $N$ de ordinul $10^5$, nu putem folosi Triunghiul (necesită timp $O(N^2)$). Calculăm direct factoriali $N!$ și apoi împărțim în aritmetică modulară folosind Teorema Mică a lui Fermat ($A^{-1} \\equiv A^{MOD-2} \\pmod{MOD}$).\n2. Stars and Bars: Metodă combinatorică pentru aflarea numărului de soluții întregi ale unor ecuații (ex: $x_1 + x_2 + ... + x_k = N$).",
   "applications": "### Aplicații\n\nProbleme de probabilitate, numărarea căilor pe un grid (Catalan Numbers), calcularea numărului de subseturi, grafuri (ex. numărul de arbori generatori - Cayley), și generare de parole / stringuri.",
-  code: `
-#include <iostream>
+  code: `#include <iostream>
 #include <vector>
 
 using namespace std;

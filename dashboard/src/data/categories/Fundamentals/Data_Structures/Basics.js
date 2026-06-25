@@ -3,8 +3,7 @@ export const data = {
   "complexity": "### Complexitate\n\n- **Timp:** - Stack: Push, Pop, Top -> Toate se fac în O(1) constant, instantaneu.\n- Queue: Push, Pop, Front -> La fel, O(1).\n\n- **Spațiu:** O(N) pentru N elemente stocate.\n",
   "variations": "### Variații și Edge Cases\n\n1. Deque (Double-Ended Queue): O coadă în care poți insera și șterge de la ambele capete.\n2. Priority Queue (Max-Heap/Min-Heap): O coadă care nu sortează după timpul de intrare, ci după prioritatea elementelor.",
   "applications": "### Aplicații\n\n- Stack-urile sunt nucleul execuției funcțiilor în programare (Call Stack), parcurgerii de tip DFS și mecanismelor Undo/Redo.\n- Queue-urile sunt esențiale pentru algoritmul BFS (Breadth-First Search) și gestionarea cererilor asincrone pe servere web.",
-  code: `
-#include <iostream>
+  code: `#include <iostream>
 #include <stack>
 #include <queue>
 

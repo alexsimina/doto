@@ -4,8 +4,7 @@ export const data = {
   "variations": "### Variații și Edge Cases\n\n1. **Sum Over Subsets (SOS DP):** O tehnică avansată care permite calculul sumei valorilor tuturor subseturilor unei măști în timp $\\mathcal{O}(N \\cdot 2^N)$ în loc de $\\mathcal{O}(3^N)$.\n2. **Profile DP (Broken Profile DP):** Utilizată pentru pavări sau numărarea modurilor de acoperire a unei grile 2D folosind piese de domino sau alte forme, unde masca reprezintă starea ultimei linii procesate.\n3. **Edge Cases:**\n   - $N = 1$ (costul este $0$).\n   - Graf neorientat vs. orientat.\n   - Graf incomplet (distanțe infinite între anumite orașe) — stările invalide trebuie inițializate cu o valoare infinită suficient de mare, dar care să nu producă overflow la adunare (ex. $10^9$).",
   "applications": "### Aplicații în Lumea Reală\n\n- **Rutarea Vehiculelor (Logistică):** Determinarea traseelor optime de livrare pentru curieri cu un număr mic de opriri zilnice.\n- **Planificarea Circuitelor Integrate (VLSI):** Proiectarea traseelor optime de cablare pe cipuri de siliciu pentru a reduce la minimum întârzierile de semnal.\n- **Secvențierea ADN:** Reconstrucția genomului prin găsirea celui mai scurt superșir comun (Shortest Common Superstring) care conține un set de fragmente de ADN citite."
 ,
-  code: `
-#include <iostream>
+  code: `#include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;

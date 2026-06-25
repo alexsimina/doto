@@ -3,8 +3,7 @@ export const data = {
   "complexity": "### Complexitate\n\n- **Timp:** O(N log N) în orice caz (Best, Average, Worst). E garantat să nu degenereze în O(N^2) precum Quick Sort.\n- **Spațiu:** O(N) memorie auxiliară. Acesta este marele dezavantaj al Merge Sort – necesită vectori auxiliari pentru interclasare.\n",
   "variations": "### Variații și Edge Cases\n\n1. Inversion Count (Numărarea inversiunilor): Cea mai populară aplicație a algoritmului.\n2. Bottom-up Merge Sort: Fără recursivitate, unește direct perechi de lungime 1, apoi 2, 4 etc.",
   "applications": "### Aplicații\n\nMerge Sort este algoritmul preferat pentru structurile de date Linked Lists, unde inserarea la mijloc se face în O(1) și nu avem nevoie de un vector auxiliar suplimentar masiv.",
-  code: `
-#include <iostream>
+  code: `#include <iostream>
 #include <vector>
 
 using namespace std;

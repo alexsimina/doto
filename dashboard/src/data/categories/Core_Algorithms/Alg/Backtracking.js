@@ -3,8 +3,7 @@ export const data = {
   "complexity": "### Complexitate\n\n- **Timp:** Frecvent exponențial $O(2^N)$ sau factorial $O(N!)$, depinzând de ramificarea arborelui de decizie. Deși ineficient pentru $N$ mari, de multe ori este singura soluție exactă pentru probleme NP-Complete.\n- **Spațiu:** $O(N)$ pentru stiva de apeluri recursiv, unde N este adâncimea maximă a arborelui.\n",
   "variations": "### Variații și Edge Cases\n\n1. Branch and Bound: O optimizare în care păstrăm evidența celei mai bune soluții găsite până acum și abandonăm ramurile care nu o pot îmbunătăți.\n2. Memoization / DP: Dacă subproblemele se suprapun (ceea ce nu e mereu cazul în Backtracking), putem salva rezultatele.",
   "applications": "### Aplicații\n\nBacktracking este folosit extensiv la generarea de permutări, combinări, rezolvarea de puzzle-uri precum Sudoku sau N-Regine, și în AI pentru parcurgerea spațiului de stări.",
-  code: `
-#include <iostream>
+  code: `#include <iostream>
 #include <vector>
 #include <cmath>
 

@@ -3,8 +3,7 @@ export const data = {
   "complexity": "### Complexitate\n\n- **Timp:** $\\mathcal{O}(M \\times N)$, deoarece completăm o matrice de dimensiuni $(M+1) \\times (N+1)$, iar calculul fiecărei celule se realizează în $\\mathcal{O}(1)$.\n- **Spațiu:** $\\mathcal{O}(M \\times N)$ pentru matricea de programare dinamică. Spațiul poate fi optimizat la $\\mathcal{O}(\\min(M, N))$ folosind doar două rânduri în memorie (linia curentă și linia anterioară) dacă dorim doar lungimea subșirului, nu și reconstrucția acestuia.",
   "variations": "### Variații și Edge Cases\n\n1. **Longest Common Substring:** Caracterele din subșir trebuie să fie consecutive în ambele șiruri (tranziția devine $dp[i][j] = dp[i-1][j-1] + 1$ dacă caracterele coincid, respectiv $0$ în caz contrar).\n2. **Edit Distance (Distanța Levenshtein):** Numărul minim de operații (inserare, ștergere, substituire) necesare pentru a transforma un șir în altul.\n3. **Shortest Common Supersequence (SCS):** Cel mai scurt șir care conține ambele șiruri date ca subșiruri (lungimea sa este $M + N - \\text{LCS}(X, Y)$).\n4. **Edge Cases:**\n   - Unul sau ambele șiruri sunt goale.\n   - Niciun caracter nu se potrivește (LCS = 0).\n   - Șirurile sunt identice (LCS = lungimea șirului).",
   "applications": "### Aplicații în Lumea Reală\n\n- **Sisteme de Control al Versiunilor (Git):** Determinarea modificărilor dintre fișiere (`git diff` folosește variații ale algoritmului LCS).\n- **Bioinformatică:** Compararea secvențelor de gene/ADN pentru a măsura gradul de asemănare genetică și evolutivă.\n- **Sisteme Anti-Plagiat:** Identificarea secvențelor de text similare copiate între documente.\n- **Recunoașterea Formelor:** Compararea gesturilor sau a traseelor de mișcare aproximative.",
-  code: `
-#include <iostream>
+  code: `#include <iostream>
 #include <vector>
 #include <string>
 #include <algorithm>

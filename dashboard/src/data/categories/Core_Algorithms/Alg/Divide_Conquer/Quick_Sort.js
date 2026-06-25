@@ -3,8 +3,7 @@ export const data = {
   "complexity": "### Complexitate\n\n- **Timp:** O(N log N) în caz mediu (Average Case) și optim. O(N^2) în cel mai rău caz (Worst Case), care apare când vectorul este deja sortat și alegem sistematic primul sau ultimul element ca pivot. Randomizarea pivotului elimină practic șansa unui O(N^2).\n- **Spațiu:** O(1) memorie auxiliară (sortează 'in-place'). Pe stiva de apeluri folosește O(log N) spațiu.\n",
   "variations": "### Variații și Edge Cases\n\n1. Randomized Quick Sort: Algoritmul standard folosește un rand() pentru a alege pivotul, anulând vulnerabilitățile worst-case.\n2. Quick Select (K-th Element): Putem afla al K-lea cel mai mic element în O(N) folosind logica de partiționare a Quick Sort, fără să sortăm integral vectorul (căutăm doar în stânga sau în dreapta pivotului!).\n3. 3-Way Quick Sort (Dijkstra 3-way partitioning): Optim pentru vectori cu extrem de multe duplicate (grupează '<, ==, >').",
   "applications": "### Aplicații\n\nFuncția qsort() din C și funcțiile similare din alte limbaje s-au bazat decenii la rând pe acest algoritm. Reprezintă de asemenea soluția standard când ai memorie RAM extrem de strictă și Merge Sort e inacceptabil din cauza O(N) aux space.",
-  code: `
-#include <iostream>
+  code: `#include <iostream>
 #include <vector>
 
 using namespace std;

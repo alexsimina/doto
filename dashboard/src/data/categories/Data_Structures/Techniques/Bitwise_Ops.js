@@ -3,8 +3,7 @@ export const data = {
   "complexity": "### Complexitate\n\n- **Timp:** $O(1)$ pentru fiecare operație elementară pe biți.\n- **Spațiu:** $O(1)$ memorie suplimentară. Datele pot fi stocate extrem de compact sub formă de **măști de biți (bitmasks)** (de exemplu, un singur `int` pe 32 de biți poate reține starea de prezență/absență pentru $32$ de elemente distincte, înlocuind un vector de booleană).",
   "variations": "### Variații și Edge Cases\n\n1. **Generarea Submulțimilor:** O mulțime cu $N$ elemente are $2^N$ submulțimi posibile. Fiecare număr din intervalul $[0, 2^N - 1]$ corespunde în mod unic unei submulțimi, unde bitul $i$ este setat la $1$ dacă și numai dacă elementul $i$ face parte din submulțime.\n2. **Extragerea celui mai nesemnificativ bit setat (LSB):** Expresia `x & -x` izolează cel mai din dreapta bit de $1$, fiind folosită intens în Fenwick Trees (Arbori Indexați Binar).\n3. **Trucul lui Brian Kernighan:** Operația `x & (x - 1)` elimină cel mai din dreapta bit de $1$. Permite determinarea numărului de biți setați într-un număr în timp proporțional cu numărul de biți de $1$ stocați, nu cu lungimea totală a reprezentării.",
   "applications": "### Aplicații\n\n- **Programare Dinamică pe măști de biți (Bitmask DP):** Folosită în probleme exponențiale (de exemplu, TSP - Traveling Salesperson Problem).\n- **Criptografie:** Operația XOR este baza multor algoritmi de criptare simetrică.\n- **Sisteme de operare și rețele:** Calcularea măștilor de rețea (subnet masks), permisiuni pe fișiere (read/write/execute ca biți 111 în octal).",
-  "code": `
-#include <iostream>
+  "code": `#include <iostream>
 #include <vector>
 
 using namespace std;

@@ -3,8 +3,7 @@ export const data = {
   "complexity": "### Complexitate\n\n- **Timp:** $O((N + Q) \\sqrt{N})$, unde N e numărul de elemente și Q numărul de interogări. Prin metoda sa de sortare, garantează că pointerul R se mută maxim $O(N)$ per bloc, adică $O(N \\sqrt{N})$ global. Iar pointerul L se mișcă doar in limita blocului său de $\\sqrt{N}$ ori pentru fiecare din cele Q query-uri.\n- **Spațiu:** $O(N + Q)$ pentru date și stocarea interogărilor.\n",
   "variations": "### Variații și Edge Cases\n\n1. Mo's on Trees: Transformarea interogărilor pe drumuri din arbori în interogări de interval folosind Euler Tour (Căutare DFS).\n2. Mo's with Updates: A treia dimensiune este 'timpul' t. Se sortează după bloc(L), bloc(R) și t.",
   "applications": "### Aplicații\n\nDacă într-o problemă trebuie să găsești 'Numărul de elemente distincte' într-un interval, sau frecvența frecvențelor, și problema nu cere update-uri pe parcurs (sau e offline), Algoritmul lui Mo o rezolvă extrem de facil, comparativ cu Persistent Segment Trees.",
-  code: `
-#include <iostream>
+  code: `#include <iostream>
 #include <vector>
 #include <cmath>
 #include <algorithm>

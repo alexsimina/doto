@@ -3,8 +3,7 @@ export const data = {
   "complexity": "### Complexitate\n\n- **Timp:** Exponențierea pe matrici costă $O(K^3 \\log N)$ unde K e dimensiunea matricii de tranziție (ex: K=2 pt Fibonacci). Euclid Extins costă $O(\\log(\\min(A, B)))$ similar cu GCD-ul normal.\n- **Spațiu:** O(1) auxiliar (cu excepția stivei de recursivitate pentru funcții sau matricilor).\n",
   "variations": "### Variații și Edge Cases\n\n1. Teorema Chineză a Resturilor (CRT): Folosită pentru a găsi un număr $X$ care dă resturi diferite modulo numere prime între ele diferite.\n2. FFT pe corpuri finite (Number Theoretic Transform - NTT): Asemănător cu FFT, dar folosește un Modulo special (ex. $998244353$) și rădăcini primitive în loc de numere complexe pentru a garanta exactitatea la nivel de bit și a evita erorile în virgulă mobilă.",
   "applications": "### Aplicații\n\nAritmetica exponențială masivă pentru numărarea posibilităților (combinatorică DP). Punctul de intersecție dintre teoria jocurilor (Numere Grundy / Nim) și teoria grafurilor depinde deseori de fundamente matematice (operații XOR, recurențe).",
-  code: `
-#include <iostream>
+  code: `#include <iostream>
 
 using namespace std;
 

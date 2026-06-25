@@ -3,8 +3,7 @@ export const data = {
   "complexity": "### Complexitate\n\n- **Timp:** $\\mathcal{O}(V + E) = \\mathcal{O}(V)$, deoarece într-un arbore numărul de muchii este $E = V - 1$. Fiecare nod și fiecare muchie este vizitată exact o singură dată în timpul parcurgerii DFS.\n- **Spațiu:** $\\mathcal{O}(V)$ pentru stocarea stărilor de programare dinamică în matricea $dp$, la care se adaugă spațiul ocupat de stiva recursivă a parcurgerii DFS.",
   "variations": "### Variații și Edge Cases\n\n1. **Determinarea Diametrului unui Arbore:** Determinarea celei mai mari distanțe dintre oricare două noduri. Definim $dp[u]$ ca fiind lungimea celui mai lung drum de la $u$ în subarborele său, iar diametrul global este $\\max_{u} (drum1(u) + drum2(u))$.\n2. **Tree Knapsack (Subtree DP cu Greutăți):** Fiecare nod are o greutate și o valoare, iar alegerea unui nod este condiționată de selectarea părintelui său. Starea devine $dp[u][w]$ — valoarea maximă obtenabilă în subarborele lui $u$ cu capacitatea $w$.\n3. **Edge Cases:**\n   - Arbore format dintr-un singur nod (răspunsul este $1$).\n   - Arbore de tip linie (echivalent cu o problemă DP clasică pe secvență liniară).\n   - Rădăcină cu un singur copil.",
   "applications": "### Aplicații în Lumea Reală\n\n- **Ierarhii Organizaționale:** Selectarea celei mai mari echipe de angajați pentru un eveniment fără ca un manager și subordonatul său direct să fie invitați simultan (pentru a asigura comunicarea liberă).\n- **Securitatea Rețelelor:** Plasarea unui număr minim de serverer de securitate (firewalls) în nodurile unei rețele ierarhice pentru a monitoriza toate conexiunile.\n- **Instalarea Facilităților:** Amplasarea optimă a routerelor wireless în clădiri cu structură arborescentă pentru acoperire maximă cu cost minim.",
-  code: `
-#include <iostream>
+  code: `#include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;

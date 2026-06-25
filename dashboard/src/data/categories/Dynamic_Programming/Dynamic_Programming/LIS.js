@@ -3,8 +3,7 @@ export const data = {
   "complexity": "### Complexitate\n\n- **Timp:** \n  - $\\mathcal{O}(N^2)$ pentru abordarea standard cu două bucle imbricate (prezentată în cod).\n  - $\\mathcal{O}(N \\log N)$ pentru varianta optimizată cu Căutare Binară.\n- **Spațiu:** $\\mathcal{O}(N)$ pentru stocarea vectorului $dp$ (sau a vectorului auxiliar în cazul versiunii logaritmice).",
   "variations": "### Variații și Edge Cases\n\n1. **Cel Mai Lung Subșir Descrescător (LDS):** Se dorește o secvență strict descrescătoare (se inversează condiția în $arr[i] < arr[j]$).\n2. **Subșir Crescător Non-Strict (LIS Non-Strict):** Elementele succesive pot fi egale (condiția devine $arr[i] \\ge arr[j]$).\n3. **Cel Mai Lung Subșir Bitonic:** Subșirul crește până la un punct, după care scade (se calculează LIS de la stânga la dreapta și LDS de la dreapta la stânga, maximizând $dp_{LIS}[i] + dp_{LDS}[i] - 1$).\n4. **Edge Cases:**\n   - Vector gol (LIS = 0).\n   - Vector sortat strict descrescător (LIS = 1).\n   - Vector cu toate elementele egale (LIS = 1 pentru strict crescător, LIS = $N$ pentru non-strict).",
   "applications": "### Aplicații în Lumea Reală\n\n- **Patience Sorting:** Un algoritm eficient de sortare bazat pe jocul de cărți Solitaire, care calculează LIS în mod natural.\n- **Analiză Climatologică:** Identificarea tendințelor de încălzire globală prin extragerea celor mai lungi perioade de creștere consecutivă a temperaturilor medii.\n- **Sincronizarea Datelor:** Algoritmi de ordonare a pachetelor de date sosite dezordonat în rețele.\n- **Geometrie Computațională:** Determinarea numărului maxim de drepte neintersectabile în anumite configurații.",
-  code: `
-#include <iostream>
+  code: `#include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;

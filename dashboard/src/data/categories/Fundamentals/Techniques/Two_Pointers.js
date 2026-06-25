@@ -3,8 +3,7 @@ export const data = {
   "complexity": "### Complexitate\n\n- **Timp:** O(N) unde N este mărimea vectorului. Se trece prin fiecare element cel mult o dată.\n- **Spațiu:** O(1) deoarece stocăm doar doi indecși (left și right).\n",
   "variations": "### Variații și Edge Cases\n\n1. Opposite Ends: Cel mai clasic (ex: Găsirea unei perechi ce are o anumită sumă în array sortat).\n2. Same Direction (Sliding Window / Fast & Slow): Un pointer e rapid, altul încet. Folosit pentru a găsi subsecvențe sau pentru a detecta cicluri într-o listă (Algoritmul iepurelui și broaștei).",
   "applications": "### Aplicații\n\n- Problema fundamentală Two Sum (când vectorul e sortat).\n- Validarea palindromurilor.\n- Container With Most Water (găsirea suprafeței maxime cu doi stâlpi).",
-  code: `
-#include <iostream>
+  code: `#include <iostream>
 #include <vector>
 
 using namespace std;

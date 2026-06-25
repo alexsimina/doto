@@ -3,8 +3,7 @@ export const data = {
   "complexity": "### Complexitate\n\n- **Timp:** O(N^2) în cel mai rău caz.\n\nÎnsă Insertion Sort are particularitatea incredibilă că pe vectori parțial sortați rulează în O(N)! Astfel devine extrem de rapid, fiind adesea combinat cu Quick Sort (intro-sort) pentru instanțe mici (< 32 elemente).\n- **Spațiu:** O(1) - sortare in-place (în memoria existentă a vectorului).\n",
   "variations": "### Variații și Edge Cases\n\n1. Stabilitate: Insertion și Bubble Sort sunt 'Stabili' (păstrează ordinea relativă a elementelor egale). Selection Sort NU este stabil.\n2. Inversions: Timpul de rulare a lui Insertion Sort depinde direct de numărul de 'Inversiuni' (elemente în ordine greșită) ale array-ului inițial.",
   "applications": "### Aplicații\n\nAșa cum am menționat, Insertion Sort e adesea implementarea internă a funcțiilor de sistem (std::sort, Array.prototype.sort) pentru sub-segmente mici de date.",
-  code: `
-#include <iostream>
+  code: `#include <iostream>
 #include <vector>
 
 using namespace std;

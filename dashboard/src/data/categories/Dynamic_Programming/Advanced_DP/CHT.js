@@ -4,8 +4,7 @@ export const data = {
   "variations": "### Variații și Edge Cases\n\n1. **Li Chao Tree:** O structură de date arborescentă asemănătoare cu un arbore de intervale, care poate gestiona adăugări de segmente de dreaptă și interogări în puncte arbitrare fără a necesita pante monotone.\n2. **Divide and Conquer Optimization:** Se folosește când funcția de cost îndeplinește proprietatea de quadrangle inequality ($cost[a][c] + cost[b][d] \\le cost[a][d] + cost[b][c]$ pentru $a \\le b \\le c \\le d$).\n3. **Edge Cases:**\n   - **Drepte paralele ($m_1 = m_2$):** Se păstrează doar cea cu interceptul mai mic ($c$ minim), eliminând-o pe cealaltă imediat.\n   - **Diviziune prin zero:** Calculul corect al punctelor de intersecție fără erori de precizie prin utilizarea tipului `long long` sau `double`.",
   "applications": "### Aplicații în Lumea Reală\n\n- **Probleme de Planificare (Scheduling):** Minimizarea penalizărilor de timp sau costurilor de producție atunci când costul este o funcție liniară în raport cu timpul de finalizare.\n- **Optimizări în Rucsac Dinamic:** Rezolvarea anumitor cazuri speciale de alocare continuă a resurselor.\n- **Segmentare Optimă (ex: Machine Learning):** Divizarea unui set de date în $K$ submulțimi pentru a minimiza suma erorilor pătratice."
 ,
-  code: `
-#include <iostream>
+  code: `#include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;

@@ -3,8 +3,7 @@ export const data = {
   "complexity": "### Complexitate\n\n- **Timp:** O(N^3) pentru un sistem de N ecuații cu N necunoscute, datorită celor 3 bucle imbricate (pentru pivot, pentru linia curentă și pentru parcurgerea coloanelor pe linie).\n- **Spațiu:** O(N^2) pentru stocarea matricii sistemului (coeficienții).\n",
   "variations": "### Variații și Edge Cases\n\n1. Gauss-Jordan Elimination: Duce matricea și mai departe, creând zerouri nu doar sub diagonală, ci și *deasupra* diagonalei. La final, soluția este citită direct.\n2. Eliminare Gaussiana în $Z_2$ (Modulo 2): Folosind operatorul bitwise XOR în loc de plus și minus, putem rezolva sisteme de ecuații booleene (des întâlnit în cryptanaliză și concursuri).",
   "applications": "### Aplicații\n\nDeterminarea numărului de cicluri fundamentale dintr-un graf, calculul determinanților unei matrice, rezolvarea circuitelor electrice (Legile lui Kirchhoff) și inversarea matricilor mari.",
-  code: `
-#include <iostream>
+  code: `#include <iostream>
 #include <vector>
 #include <cmath>
 

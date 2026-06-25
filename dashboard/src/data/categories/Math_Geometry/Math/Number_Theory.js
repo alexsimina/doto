@@ -3,8 +3,7 @@ export const data = {
   "complexity": "### Complexitate\n\nPentru Ciurul lui Eratostene:\n- **Timp:** O(N log(log N)), ceea ce este extrem de aproape de O(N). Aceasta se datorează faptului că suma seriei $1/2 + 1/3 + 1/5 + 1/7 + ...$ crește logaritmic.\n- **Spațiu:** O(N), deoarece avem nevoie de un array (sau un bitset) pentru a stoca starea fiecărui număr de la 1 la N.\n",
   "variations": "### Variații și Edge Cases\n\n1. Ciurul pe biți: Pentru a salva memorie, folosim structuri bit-level (ex: `vector<bool>` sau `bitset`), reducând spațiul la a 8-a parte.\n2. Ciurul Liniar (O(N)): O versiune optimizată care se asigură că fiecare număr compus este tăiat o singură dată (prin cel mai mic factor prim al său).\n3. Ciurul Segmentat: Folosit când $N$ este foarte mare (ex: $10^{12}$), dar căutăm prime într-un interval $[L, R]$ de lungime relativ mică.",
   "applications": "### Aplicații\n\nGăsirea rapidă a numerelor prime este baza criptografiei (ex. algoritmul RSA). În probleme de concurs, ciurul este adesea o preprocesare, urmată de rezolvarea problemei folosind divizorii primi ai numerelor.",
-  code: `
-#include <iostream>
+  code: `#include <iostream>
 #include <vector>
 
 using namespace std;

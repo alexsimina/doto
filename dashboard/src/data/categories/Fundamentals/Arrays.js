@@ -3,8 +3,7 @@ export const data = {
   "complexity": "### Complexitate\n\n- **Timp:** - Accesare: O(1) instant, datorită indexării.\n- Inserare/Ștergere la final: O(1) amortizat.\n- Inserare/Ștergere la mijloc sau început: O(N) pentru că trebuie să mutăm restul elementelor.\n\n- **Spațiu:** O(N) pentru stocarea a N elemente.\n",
   "variations": "### Variații și Edge Cases\n\n1. Arrays Multidimensionale: Matrici (2D Arrays), folosite frecvent în grafică și programare dinamică.\n2. Circular Arrays: Array-uri în care după ultimul element urmează logic primul, utile pentru cozi.",
   "applications": "### Aplicații\n\nPractic orice problemă sau algoritm are nevoie de arrays pentru a stoca input-ul inițial. Algoritmi ca Binary Search, Two Pointers și Prefix Sums operează nativ pe arrays.",
-  code: `
-#include <iostream>
+  code: `#include <iostream>
 #include <vector>
 
 using namespace std;

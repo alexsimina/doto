@@ -131,14 +131,18 @@ function detectShift(filePath) {
 
 const basePath = path.resolve(__dirname, '../../dashboard/src/data/categories');
 
-let files = process.argv.slice(2);
-if (files.length === 0) {
+const args = process.argv.slice(2);
+const dryRun = args.includes('--dry-run');
+const targetFiles = args.filter(a => !a.startsWith('-'));
+
+let files = [];
+if (targetFiles.length === 0) {
     files = getJsFiles(basePath);
 } else {
-    files = files.map(f => path.resolve(f));
+    files = targetFiles.map(f => path.resolve(f));
 }
 
-console.log(`Scanning ${files.length} file(s) for offset shifts...\n`);
+console.log(`${dryRun ? 'Scanning' : 'Repairing'} ${files.length} file(s) for offset shifts...\n`);
 let shiftedCount = 0;
 
 for (const filePath of files) {
@@ -150,47 +154,60 @@ for (const filePath of files) {
     const shift = detectShift(filePath);
     if (shift > 0) {
         const relPath = path.relative(basePath, filePath);
-        let content = fs.readFileSync(filePath, 'utf8');
         
-        // Shift line numbers: "line": X or line: X
-        content = content.replace(/("line"|line)\s*:\s*(\d+)/g, (match, p1, p2) => {
-            const val = parseInt(p2);
-            if (val > shift) {
-                return `${p1}: ${val - shift}`;
-            }
-            return match;
-        });
-        
-        // Shift lineNum comparisons in custom hooks
-        const operators = ['===', '==', '>=', '<=', '>', '<'];
-        operators.forEach(op => {
-            const regex = new RegExp(`lineNum\\s*${op.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')}\\s*(\\d+)`, 'g');
-            content = content.replace(regex, (match, p1) => {
-                const val = parseInt(p1);
+        if (!dryRun) {
+            let content = fs.readFileSync(filePath, 'utf8');
+            
+            // Shift line numbers: "line": X or line: X
+            content = content.replace(/("line"|line)\s*:\s*(\d+)/g, (match, p1, p2) => {
+                const val = parseInt(p2);
                 if (val > shift) {
-                    return `lineNum ${op} ${val - shift}`;
+                    return `${p1}: ${val - shift}`;
                 }
                 return match;
             });
-        });
-        
-        // Shift activeLine fallbacks: line: activeLine || X
-        content = content.replace(/line\s*:\s*activeLine\s*\|\|\s*(\d+)/g, (match, p1) => {
-            const val = parseInt(p1);
-            if (val > shift) {
-                return `line: activeLine || ${val - shift}`;
-            }
-            return match;
-        });
+            
+            // Shift lineNum comparisons in custom hooks
+            const operators = ['===', '==', '>=', '<=', '>', '<'];
+            operators.forEach(op => {
+                const regex = new RegExp(`lineNum\\s*${op.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')}\\s*(\\d+)`, 'g');
+                content = content.replace(regex, (match, p1) => {
+                    const val = parseInt(p1);
+                    if (val > shift) {
+                        return `lineNum ${op} ${val - shift}`;
+                    }
+                    return match;
+                });
+            });
+            
+            // Shift activeLine fallbacks: line: activeLine || X
+            content = content.replace(/line\s*:\s*activeLine\s*\|\|\s*(\d+)/g, (match, p1) => {
+                const val = parseInt(p1);
+                if (val > shift) {
+                    return `line: activeLine || ${val - shift}`;
+                }
+                return match;
+            });
 
-        fs.writeFileSync(filePath, content, 'utf8');
-        console.log(`✅ Successfully shifted ${relPath} by -${shift}`);
+            fs.writeFileSync(filePath, content, 'utf8');
+            console.log(`✅ Successfully shifted ${relPath} by -${shift}`);
+        } else {
+            console.log(`⚠️  Found shift issue in [${relPath}]: requires shift of -${shift}`);
+        }
         shiftedCount++;
     }
 }
 
 if (shiftedCount === 0) {
     console.log(`✓ No files required shifting.`);
+    process.exit(0);
 } else {
-    console.log(`\nSuccessfully shifted ${shiftedCount} file(s).`);
+    if (dryRun) {
+        console.log(`\n❌ ERROR: ${shiftedCount} file(s) require offset shifting!`);
+        console.log(`Run 'node validation_tools/BadDebuggerLines/fix_all_offsets.cjs' to automatically apply shifts.`);
+        process.exit(1);
+    } else {
+        console.log(`\nSuccessfully shifted ${shiftedCount} file(s).`);
+        process.exit(0);
+    }
 }

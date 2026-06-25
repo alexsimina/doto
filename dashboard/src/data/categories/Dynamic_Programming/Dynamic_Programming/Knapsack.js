@@ -3,8 +3,7 @@ export const data = {
   "complexity": "### Complexitate\n\n- **Timp:** $\\mathcal{O}(N \\times W)$, unde $N$ este numărul de obiecte și $W$ este capacitatea rucsacului. Deși este polinomial în raport cu parametrii numerici, din punct de vedere computațional este un algoritm pseudo-polinomial (deoarece depinde de valoarea numerică a lui $W$, nu de numărul său de biți).\n- **Spațiu:** $\\mathcal{O}(W)$ prin optimizarea cu vector 1D, sau $\\mathcal{O}(N \\times W)$ dacă este necesară reconstrucția subsetului optim de obiecte selectate.",
   "variations": "### Variații și Edge Cases\n\n1. **Fractional Knapsack:** Obiectele pot fi tăiate (se rezolvă optim cu o strategie Greedy sortând după densitatea de valoare $\\frac{val[i]}{wt[i]}$).\n2. **Unbounded Knapsack:** Fiecare obiect este disponibil în cantități nelimitate (bucla pentru $w$ se parcurge direct, de la $wt[i]$ la $W$).\n3. **Bounded Knapsack:** Fiecare obiect $i$ este disponibil în maximum $c_i$ exemplare (se poate reduce la 0/1 Knapsack prin descompunere binară a cantităților în sub-obiecte).\n4. **Edge Cases:**\n   - Capacitate $W = 0$.\n   - Greutatea unui obiect depășește capacitatea maximă ($wt[i] > W$).\n   - Valori sau greutăți egale cu $0$.",
   "applications": "### Aplicații în Lumea Reală\n\n- **Managementul Portofoliilor:** Selectarea investițiilor care maximizează profitul fără a depăși un buget de risc limitat.\n- **Criptografie:** Criptosistemul Merkle-Hellman bazat pe problema sumei subseturilor (o variație a rucsacului).\n- **Încărcarea Mărfurilor:** Distribuirea eficientă a containerelor în avioane sau nave cargo cu constrângeri stricte de greutate.\n- **Alocarea Resurselor în Cloud:** Plasarea mașinilor virtuale pe serverer fizice cu capacitate fixă de CPU/RAM.",
-  code: `
-#include <iostream>
+  code: `#include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;

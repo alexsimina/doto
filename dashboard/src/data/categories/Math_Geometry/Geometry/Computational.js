@@ -3,8 +3,7 @@ export const data = {
   "complexity": "### Complexitate\n\n- **Timp:** Majoritatea formulelor (Cross Product, Arie poligon) se execută în O(1) sau O(V) unde V e numărul de vârfuri. Pentru Convex Hull (Graham Scan sau Monotone Chain) complexitatea e O(N log N) din cauza nevoii de sortare a punctelor.\n- **Spațiu:** O(N) pentru a stoca vârfurile sau punctele de interes.\n",
   "variations": "### Variații și Edge Cases\n\n1. Sweepline Algorithm (Baleiere): O tehnică avansată pentru a găsi intersecția multor segmente sau punctul cel mai apropiat dintr-un plan în $O(N \\log N)$, traversând planul cu o \"linie imaginară\" de la stânga la dreapta.\n2. Poligoane strict convexe vs Poligoane oarecare: Anumiți algoritmi de geometrie se optimizează dramatic dacă se știe că poligonul este convex.",
   "applications": "### Aplicații\n\nGrafica pe calculator (renderizare 3D/2D, ray casting), Sisteme Informaționale Geografice (GIS, Google Maps), Roboți pentru pathfinding evitând obstacole geometrice (ex: visibility graphs), simularea fizicii (collision detection).",
-  code: `
-#include <iostream>
+  code: `#include <iostream>
 
 using namespace std;
 

@@ -39,11 +39,13 @@ Testing framework and cases for the application.
 Scripts to validate the syntax, structure, LaTeX formatting, and debugger line number alignments of category configuration JS files.
 - `validate_syntax.cjs`: Syntax and structural validation tool for category data configuration JS files.
 - `bracket_counter.cjs`: Helper script to count and match brackets and strings in files.
+- `fix_debugger_sync.cjs`: Scans and repairs debugger-to-editor synchronization issues (such as leading newlines in C++ code blocks, missing dynamic call stack parameters, and out-of-sync inline values).
+- `check_offsets.cjs`: Heuristically scans category files for potential debugger line number offsets.
 - `/BadDebuggerLines`: Subdirectory with tools to check and correct C++ debugger line number alignment offsets:
   - `check_all_out_of_bounds.cjs`: Verifies that all steps in explanations point to valid C++ code lines.
   - `offset_dry_run.cjs`: Analyzes all category JS files and suggests the best line offsets.
   - `verify_details.cjs`: Utility to test line alignment offsets for target files.
-  - `fix_all_offsets.cjs`: Applies calculated offset shifts to category files.
+  - `fix_all_offsets.cjs`: Scans and applies/verifies calculated offset shifts to category files (supports dry-run mode for pre-push verification).
   - `test_heuristic.cjs`: Runs heuristic checks to determine ideal debugger line offsets.
 - `/LaTeX`: Subdirectory with tools to validate and fix LaTeX/math formatting:
   - `check_all_latex.cjs`: Scans all files for unclosed math delimiters, mismatched dollar signs, and syntax errors.
@@ -378,6 +380,21 @@ This script checks one or more category JS configuration files. It validates tha
   node validation_tools/validate_syntax.cjs dashboard/src/data/categories/Math_Geometry/Math/Advanced.js
   ```
 
+#### `fix_debugger_sync.cjs`
+A tool designed to recursively scan category JS files to identify and fix debugger-to-editor synchronization issues. This includes:
+1. Stripping leading newlines from code blocks to align line numbers perfectly.
+2. Updating the signature and return values of `getDebuggerState` to bind stack frames to `activeLine` dynamically.
+3. Aligning `getInlineValueForLine` with the current step's explanation line.
+
+- **Usage (Dry-Run / Scanning Mode):**
+  ```cmd
+  node validation_tools/fix_debugger_sync.cjs --dry-run
+  ```
+- **Usage (Auto-Repair Mode):**
+  ```cmd
+  node validation_tools/fix_debugger_sync.cjs
+  ```
+
 #### `bracket_counter.cjs`
 A utility script used to inspect balanced brackets (braces, parentheses, brackets) and unclosed strings/comments. It helps catch syntax errors, mismatched JSON structures, or template literal string leaks.
 
@@ -409,7 +426,11 @@ Utility to print lines for specific target files at offsets from -2 to 8 to insp
 #### `fix_all_offsets.cjs`
 Shift script that applies calculated offset shifts directly to the `"line"`, `lineNum`, and `activeLine` comparisons inside category JS files.
 
-- **Usage:**
+- **Usage (Dry-Run / Scanning Mode):**
+  ```cmd
+  node validation_tools/BadDebuggerLines/fix_all_offsets.cjs --dry-run
+  ```
+- **Usage (Auto-Repair Mode):**
   ```cmd
   node validation_tools/BadDebuggerLines/fix_all_offsets.cjs
   ```

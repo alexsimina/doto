@@ -3,8 +3,7 @@ export const data = {
   "complexity": "### Complexitate\n\n- **Timp:** Creare/Precalculare: $O(N)$. Interogare: $O(\\sqrt{N})$ deoarece parcurgem cel mult $\\sqrt{N}$ elemente individuale la capete și cel mult $\\sqrt{N}$ blocuri întregi pe mijloc.\n- **Spațiu:** $O(\\sqrt{N})$ pentru a reține răspunsul pe blocuri.\n",
   "variations": "### Variații și Edge Cases\n\n1. Point Update: Actualizarea unei valori necesită doar actualizarea blocului din care face parte în $O(1)$.\n2. Range Update: Se pot folosi 'lazy tags' pe blocuri întregi, similar segment trees.",
   "applications": "### Aplicații\n\nOrice fel de Range Queries pe care nu știm sau ne e greu să le modelăm cu Segment Trees. Unele funcții care nu sunt asociative (ex: Mode / Culoare dominantă) pot fi rezolvate mult mai ușor cu blocuri.",
-  code: `
-#include <iostream>
+  code: `#include <iostream>
 #include <vector>
 #include <cmath>
 

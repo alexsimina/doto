@@ -3,8 +3,7 @@ export const data = {
   "complexity": "### Complexitate de Timp\n\n- **Cazul Favorabil:** `O(1)` (găsim elementul chiar la mijloc)\n- **Cazul Mediu / Defavorabil:** `O(log N)`. \n\nLa fiecare pas, numărul de elemente analizate se reduce la jumătate. Chiar și pentru un miliard de elemente (10^9), algoritmul are nevoie de cel mult 30 de pași!\n\n### Complexitate Spațială\n\n- `O(1)` pentru varianta iterativă (folosește doar pointerii `left` și `right`).\n- `O(log N)` pentru varianta recursivă, datorită spațiului alocat pe *Call Stack*.",
   "variations": "### Variante Populare\n\n1. **Lower Bound / Upper Bound**: Găsim prima valoare mai mare sau egală (`lower_bound`) sau strict mai mare (`upper_bound`).\n2. **Căutarea Binară pe Răspuns** (Binary Search on Answer): O tehnică avansată unde nu căutăm într-un array, ci într-un interval de valori posibile ale răspunsului.\n\nPentru a folosi varianta din C++, apelezi `std::binary_search(arr.begin(), arr.end(), target)` din librăria `<algorithm>`.",
   "applications": "### Aplicații\n\nCăutarea binară este o tehnică foarte versatilă cu numeroase aplicații practice:\n\n- Optimizări în care trebuie să găsești o soluție optimă ('minimizați maximul' sau 'maximizați minimul').\n- Rezolvarea ecuațiilor matematice monotone (ex: găsirea rădăcinilor pătrate sau cubice cu precizie).\n- Interogări rapide pe structuri de date sortate și arbori de căutare.\n\nAflă mai multe din documentația oficială despre [Binary Search pe C++ Reference](https://en.cppreference.com/w/cpp/algorithm/binary_search).",
-  code: `
-#include <iostream>
+  code: `#include <iostream>
 #include <vector>
 
 using namespace std;

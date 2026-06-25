@@ -40,7 +40,7 @@ if [ $SYNTAX_STATUS -ne 0 ]; then
     exit 1
 fi
 
-echo "🔍 Checking debugger line alignments..."
+echo "🔍 Checking debugger line alignments (out-of-bounds)..."
 node validation_tools/BadDebuggerLines/check_all_out_of_bounds.cjs
 ALIGN_STATUS=$?
 if [ $ALIGN_STATUS -ne 0 ]; then
@@ -50,6 +50,29 @@ if [ $ALIGN_STATUS -ne 0 ]; then
     echo "========================================="
     exit 1
 fi
+
+echo "🔍 Checking debugger line offset shifts..."
+node validation_tools/BadDebuggerLines/fix_all_offsets.cjs --dry-run
+OFFSET_STATUS=$?
+if [ $OFFSET_STATUS -ne 0 ]; then
+    echo ""
+    echo "❌ ERROR: Debugger line offset shifts detected!"
+    echo "Push aborted. Run 'node validation_tools/BadDebuggerLines/fix_all_offsets.cjs' to automatically shift them before pushing."
+    echo "========================================="
+    exit 1
+fi
+
+echo "🔍 Checking debugger synchronization (offsets & active line binding)..."
+node validation_tools/fix_debugger_sync.cjs --dry-run
+SYNC_STATUS=$?
+if [ $SYNC_STATUS -ne 0 ]; then
+    echo ""
+    echo "❌ ERROR: Debugger synchronization issues found!"
+    echo "Push aborted. Run 'node validation_tools/fix_debugger_sync.cjs' to repair them automatically before pushing."
+    echo "========================================="
+    exit 1
+fi
+
 
 echo "🔍 Checking LaTeX/KaTeX math formatting..."
 node validation_tools/LaTeX/check_all_latex.cjs

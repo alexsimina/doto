@@ -24,8 +24,7 @@ Pentru un arbore cu $N$ noduri și $N-1$ muchii:
 - Determinarea „centrului” unui arbore (nodul care minimizează distanța maximă către orice alt nod).
 - Probleme de rețelistică, unde vrem să minimizăm întârzierea maximă a transmiterii semnalelor între două puncte finale.
 - Determinarea razei și a excentricității nodurilor într-o rețea fără cicluri.`,
-  "code": `
-#include <iostream>
+  "code": `#include <iostream>
 #include <vector>
 #include <queue>
 #include <algorithm>

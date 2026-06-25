@@ -21,8 +21,7 @@ Pentru un graf cu $V$ noduri, $E$ muchii și costul maxim al unei muchii $W$:
 - Determinarea drumurilor minime în rețele rutiere sau hărți grid unde costul muchiilor reprezintă distanțe mici sau timpi de tranzit uniformi.
 - Rutarea pachetelor în rețele de telecomunicații cu lățimi de bandă discretizate.
 - Planificarea mișcării în jocuri video pe hărți cu tipuri diferite de teren (ex: iarbă = cost 1, mlaștină = cost 3).`,
-  "code": `
-#include <iostream>
+  "code": `#include <iostream>
 #include <vector>
 #include <list>
 #include <algorithm>

@@ -3,8 +3,7 @@ export const data = {
   "complexity": "### Complexitate\n\n- **Timp:** O(N) pentru a calcula suma XOR a celor N stive.\n- **Spațiu:** O(1) deoarece necesită doar o singură variabilă în care acumulăm rezultatul.\n",
   "variations": "### Variații și Edge Cases\n\n1. Misère Nim: O variație în care regulile se schimbă la final: pierde cel care este forțat să ia *ultimul* obiect.\n2. Numere Sprague-Grundy: Orice joc imparțial finit (ex. mutarea unui pion pe un graf, tăierea unei ciocolate) poate fi transformat într-un joc Nim echivalent calculând valorile Grundy (mex - minimum excluded) pentru fiecare stare.",
   "applications": "### Aplicații\n\nAplicațiile sunt teoretice, folosite pentru optimizarea arborilor de decizie în AI simplu și jocuri de logică matematică și puzzle-uri (Hackenbush, jocuri pe table/griduri).",
-  code: `
-#include <iostream>
+  code: `#include <iostream>
 #include <vector>
 
 using namespace std;

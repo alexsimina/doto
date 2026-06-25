@@ -21,8 +21,7 @@ Pentru o matrice de dimensiuni $R \\times C$ (linii și coloane):
 - Instrumentul de umplere cu culoare (Paint Bucket) din editori grafici.
 - Numărarea numărului de regiuni izolate (de exemplu, determinarea numărului de insule într-o hartă satelit).
 - Detectarea zonelor închise în jocuri precum Minesweeper sau Go.`,
-  "code": `
-#include <iostream>
+  "code": `#include <iostream>
 #include <vector>
 
 using namespace std;

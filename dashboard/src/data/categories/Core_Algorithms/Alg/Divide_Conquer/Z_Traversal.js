@@ -3,8 +3,7 @@ export const data = {
   "complexity": "### Complexitate\n\n- **Timp:** O(N) unde N este puterea lui 2 a laturii matricei. Deoarece înjumătățim dimensiunea la fiecare pas, vom face exact N pași.\n- **Spațiu:** O(1) pentru varianta iterativă, sau O(N) memorie pe stiva de apeluri pentru recursivitate.\n",
   "variations": "### Variații și Edge Cases\n\n1. Varianta Inversă: Se dă valoarea și trebuie să găsim coordonatele (R, C) corespunzătoare.\n2. Grafică pe Calculator: Generarea de hărți de biți și optimizarea texturilor (Quadtrees, Morton codes).",
   "applications": "### Aplicații\n\nAcest algoritm stă la baza Quadtrees, folosite extensiv în dezvoltarea de jocuri, detectarea coliziunilor 2D și indexarea geografică a bazelor de date (ex. Amazon DynamoDB / baze de date spațiale).",
-  code: `
-#include <iostream>
+  code: `#include <iostream>
 
 using namespace std;
 

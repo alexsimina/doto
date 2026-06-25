@@ -21,8 +21,7 @@ Pentru o matrice de dimensiune $R \\times C$ (linii și coloane):
 - Găsirea celei mai scurte căi într-un labirint 2D.
 - Algoritmi de rutare a cablurilor pe circuite integrate (routing).
 - AI de bază pentru deplasarea personajelor pe hărți de tip grid în jocuri video.`,
-  "code": `
-#include <iostream>
+  "code": `#include <iostream>
 #include <vector>
 #include <queue>
 

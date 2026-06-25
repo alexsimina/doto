@@ -3,8 +3,7 @@ export const data = {
   "complexity": "### Complexitate\n\n- **Timp:** Majoritatea algoritmilor Greedy necesită o sortare inițială a datelor, deci $O(N \\log N)$. Parcurgerea propriu-zisă e adesea $O(N)$.\n- **Spațiu:** $O(1)$ sau $O(N)$ în funcție de nevoia stocării rezultatului.\n",
   "variations": "### Variații și Edge Cases\n\n1. Interval Scheduling: Selectarea numărului maxim de activități care nu se suprapun.\n2. Huffman Coding: Crearea de arbori de compresie optimi.\n3. Fractional Knapsack: Spre deosebire de 0/1 Knapsack (unde e nevoie de DP), varianta fracționară se rezolvă optim cu Greedy.",
   "applications": "### Aplicații\n\nGreedy este des folosit în rutare (Dijkstra), generarea arborilor de acoperire minimă (Kruskal, Prim), compresia datelor și planificarea activităților (Scheduling).",
-  code: `
-#include <iostream>
+  code: `#include <iostream>
 #include <vector>
 #include <algorithm>
 

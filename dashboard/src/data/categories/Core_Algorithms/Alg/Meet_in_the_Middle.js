@@ -3,8 +3,7 @@ export const data = {
   "complexity": "### Complexitate\n\n- **Timp:** Reducere de la $O(2^N)$ la $O(2^{N/2} \\cdot N)$ datorită combinării.\n- **Spațiu:** $O(2^{N/2})$ pentru a stoca soluțiile unei jumătăți în memorie.\n",
   "variations": "### Variații și Edge Cases\n\n1. Subset Sum: Aflarea dacă există o submulțime cu o anumită sumă.\n2. 4-SUM: Reducerea de la $O(N^4)$ la $O(N^2 \\log N)$ prin același principiu, doar că împărțim în perechi în loc de jumătăți de array.",
   "applications": "### Aplicații\n\nFolosit în criptografie (atacuri asupra 2DES - Double DES), unde împărțirea spațiului cheilor la jumătate face atacul fezabil.",
-  code: `
-#include <iostream>
+  code: `#include <iostream>
 #include <vector>
 #include <algorithm>
 

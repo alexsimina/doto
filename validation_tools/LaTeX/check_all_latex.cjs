@@ -133,3 +133,10 @@ for (const file of files) {
 }
 
 console.log(`\nAnalysis complete. Found ${totalErrors} potential LaTeX/math formatting errors.`);
+
+if (totalErrors > 0) {
+    console.log("\nRun 'node validation_tools/LaTeX/fix_latex_backslashes.cjs' to automatically escape LaTeX backslashes.");
+    process.exit(1);
+} else {
+    process.exit(0);
+}

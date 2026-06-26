@@ -40,6 +40,17 @@ if [ $SYNTAX_STATUS -ne 0 ]; then
     exit 1
 fi
 
+echo "🔍 Checking C++ code strings for unescaped/split newlines..."
+node validation_tools/check_split_strings.cjs
+SPLIT_STATUS=$?
+if [ $SPLIT_STATUS -ne 0 ]; then
+    echo ""
+    echo "❌ ERROR: Unescaped newlines or split C++ strings detected!"
+    echo "Push aborted. Please fix the C++ code strings before pushing."
+    echo "========================================="
+    exit 1
+fi
+
 echo "🔍 Checking debugger line alignments (out-of-bounds)..."
 node validation_tools/BadDebuggerLines/check_all_out_of_bounds.cjs
 ALIGN_STATUS=$?
@@ -52,7 +63,7 @@ if [ $ALIGN_STATUS -ne 0 ]; then
 fi
 
 echo "🔍 Checking debugger line offset shifts..."
-node validation_tools/BadDebuggerLines/fix_all_offsets.cjs --dry-run
+node validation_tools/check_offsets.cjs
 OFFSET_STATUS=$?
 if [ $OFFSET_STATUS -ne 0 ]; then
     echo ""

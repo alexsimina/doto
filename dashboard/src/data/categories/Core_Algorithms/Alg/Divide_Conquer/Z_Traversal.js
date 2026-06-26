@@ -23,7 +23,7 @@ int main() {
     int N = 3;
     int dim = 1 << N;
     int r = 5, c = 2;
-    cout << "Valoarea la (" << r << ", " << c << ") este: " << zTraversal(dim, r, c) << "\n";
+    cout << "Valoarea la (" << r << ", " << c << ") este: " << zTraversal(dim, r, c) << "\\n";
     return 0;
 }
 `,

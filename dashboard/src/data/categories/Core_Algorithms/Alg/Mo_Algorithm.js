@@ -71,7 +71,7 @@ int main() {
     vector<Query> queries = {{1, 3, 0}, {2, 4, 1}};
     vector<int> ans = solveMo(arr, queries);
     for (int x : ans) cout << x << " ";
-    cout << "\n";
+    cout << "\\n";
     return 0;
 }
 `,

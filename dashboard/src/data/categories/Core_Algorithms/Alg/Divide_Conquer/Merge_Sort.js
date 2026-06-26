@@ -49,7 +49,7 @@ int main() {
     mergeSort(arr, 0, arr.size() - 1);
     cout << "Array sortat: ";
     for(int x : arr) cout << x << " ";
-    cout << "\n";
+    cout << "\\n";
     return 0;
 }
 `,

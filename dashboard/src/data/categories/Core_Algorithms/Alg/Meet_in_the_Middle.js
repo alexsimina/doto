@@ -53,7 +53,7 @@ long long maxSubsetSumLessThanS(vector<long long>& a, long long S) {
 int main() {
     vector<long long> a = {2, 3, 9, 10};
     long long S = 13;
-    cout << "Suma maxima <= " << S << " este: " << maxSubsetSumLessThanS(a, S) << "\n";
+    cout << "Suma maxima <= " << S << " este: " << maxSubsetSumLessThanS(a, S) << "\\n";
     return 0;
 }
 `,

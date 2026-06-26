@@ -16,72 +16,122 @@ function getJsFiles(dir) {
     return results;
 }
 
-const files = getJsFiles(path.resolve(__dirname, '../../dashboard/src/data/categories'));
-
-files.forEach(filePath => {
-    let content = fs.readFileSync(filePath, 'utf8');
-    content = content.replace(/export\s+const\s+data\s*=/, 'const data =');
-    content += '\n;module.exports = data;';
+function detectShift(filePath) {
+    const content = fs.readFileSync(filePath, 'utf8');
+    const lines = content.split(/\r?\n/);
     
-    const tempFile = path.join(__dirname, 'temp_test_heur.cjs');
-    fs.writeFileSync(tempFile, content, 'utf8');
+    // Find where the actual C++ code starts in the JS file
+    let H = -1;
+    for (let i = 0; i < lines.length; i++) {
+        if (lines[i].includes('code: `') || lines[i].includes('"code": `') || lines[i].includes('code:`') || lines[i].includes('"code":`')) {
+            H = i + 2; // Line after 'code: `'
+            break;
+        }
+    }
+    
+    if (H === -1) return 0;
+    
+    // Temporarily require the data object to analyze line boundaries
+    let tempContent = content.replace(/export\s+const\s+data\s*=/, 'const data =');
+    tempContent += '\n;module.exports = data;';
+    const tempFile = path.join(__dirname, 'temp_detect_test_heur.cjs');
+    fs.writeFileSync(tempFile, tempContent, 'utf8');
     
     try {
         const data = require(tempFile);
-        if (!data.code || !data.explanations || data.explanations.length === 0) return;
+        if (!data.code || !data.explanations || data.explanations.length === 0) {
+            return 0;
+        }
         
         const cleanCode = data.code.replace(/^\r?\n/, '').replace(/\r?\n$/, '');
         const cppLines = cleanCode.split('\n');
+        const numLines = cppLines.length;
         
-        let bestOffset = 0;
-        let maxScore = -1;
+        let hasOob = false;
+        let maxLine = 0;
+        let minLine = 999999;
+        data.explanations.forEach(step => {
+            if (step.line > numLines || step.line <= 0) {
+                hasOob = true;
+            }
+            if (step.line > maxLine) maxLine = step.line;
+            if (step.line < minLine) minLine = step.line;
+        });
         
-        // Try offsets from 0 to 50
-        for (let S = 0; S <= 50; S++) {
-            let score = 0;
-            let outOfBounds = false;
-            
-            data.explanations.forEach(step => {
-                const lineNum = step.line - S;
-                if (lineNum < 1 || lineNum > cppLines.length) {
-                    outOfBounds = true;
-                    return;
-                }
-                
-                const cppLine = cppLines[lineNum - 1].toLowerCase();
-                const text = step.text.toLowerCase();
-                
-                // Matches
-                if ((text.includes('vizitat') || text.includes('visited')) && (cppLine.includes('visited') || cppLine.includes('vis['))) score += 2;
-                if ((text.includes('coadă') || text.includes('coada') || text.includes('queue')) && (cppLine.includes('queue') || cppLine.includes('q.'))) score += 2;
-                if ((text.includes('for') || text.includes('buclă') || text.includes('bucla') || text.includes('parcurgem') || text.includes('iterăm')) && (cppLine.includes('for') || cppLine.includes('while'))) score += 2;
-                if ((text.includes('if') || text.includes('verificăm') || text.includes('verificam') || text.includes('condiția') || text.includes('conditia')) && (cppLine.includes('if') || cppLine.includes('else'))) score += 2;
-                if ((text.includes('afişăm') || text.includes('afisam') || text.includes('cout')) && cppLine.includes('cout')) score += 2;
-                if ((text.includes('return') || text.includes('returnează') || text.includes('returneaza')) && cppLine.includes('return')) score += 2;
-                if ((text.includes('sort') || text.includes('sortăm') || text.includes('sortam')) && cppLine.includes('sort')) score += 2;
-                if (text.includes('main') && cppLine.includes('main')) score += 2;
-                
-                // General text overlap
-                const words = text.split(/\s+/).filter(w => w.length > 4);
-                words.forEach(w => {
-                    if (cppLine.includes(w)) score += 0.5;
-                });
-            });
-            
-            if (!outOfBounds && score > maxScore) {
-                maxScore = score;
-                bestOffset = S;
+        const expectedShift = H - 1;
+        
+        // 1. If any step is out of bounds, it must be unshifted.
+        if (hasOob) {
+            return expectedShift;
+        }
+        
+        // 2. Identify function/main declaration lines to check alignment
+        const fileName = path.basename(filePath, '.js');
+        const variants = [
+            fileName,
+            fileName.toLowerCase(),
+            fileName.charAt(0).toLowerCase() + fileName.slice(1),
+            fileName.replace(/_/g, ''),
+            fileName.toLowerCase().replace(/_/g, '')
+        ];
+        if (fileName.includes('_')) {
+            const camel = fileName.split('_').map((w, idx) => idx === 0 ? w.toLowerCase() : w.charAt(0).toUpperCase() + w.slice(1)).join('');
+            variants.push(camel);
+        }
+        
+        let declLine = -1;
+        // Prioritize int main() or void main() since explanations start in main if present
+        for (let i = 0; i < cppLines.length; i++) {
+            if (cppLines[i].includes('int main(') || cppLines[i].includes('void main(') || cppLines[i].includes('int main (') || cppLines[i].includes('void main (')) {
+                declLine = i + 1;
+                break;
             }
         }
         
-        console.log(`File: ${path.basename(filePath)} | Best Offset: ${bestOffset} | Score: ${maxScore}`);
+        if (declLine === -1) {
+            // Fallback to function declaration
+            for (let i = 0; i < cppLines.length; i++) {
+                const lineText = cppLines[i];
+                const isDecl = variants.some(v => {
+                    return lineText.includes(v + '(') || lineText.includes(v + 'Algorithm(');
+                });
+                if (isDecl && !lineText.includes(';') && !lineText.trim().startsWith('//')) {
+                    declLine = i + 1;
+                    break;
+                }
+            }
+        }
         
+        if (declLine !== -1 && data.explanations.length > 0) {
+            const firstLine = data.explanations[0].line;
+            const distShifted = Math.abs(firstLine - declLine);
+            const distUnshifted = Math.abs(firstLine - (declLine + expectedShift));
+            
+            if (distUnshifted < distShifted) {
+                return expectedShift;
+            } else {
+                return 0;
+            }
+        }
+        
+        if (minLine >= expectedShift && maxLine > numLines - expectedShift) {
+            return expectedShift;
+        }
+        
+        return 0;
     } catch (err) {
-        console.log(`Error parsing ${filePath}: ${err.message}`);
+        return 0;
     } finally {
         if (fs.existsSync(tempFile)) {
             fs.unlinkSync(tempFile);
         }
         delete require.cache[require.resolve(tempFile)];
     }
+}
+
+const files = getJsFiles(path.resolve(__dirname, '../../dashboard/src/data/categories'));
+
+files.forEach(filePath => {
+    const shift = detectShift(filePath);
+    console.log(`File: ${path.basename(filePath)} | Best Offset: ${shift}`);
 });

@@ -30,9 +30,9 @@ int main() {
     long long cp2 = crossProduct(A, B, C_Stanga);
     long long cp3 = crossProduct(A, B, C_Dreapta);
     
-    cout << "CP pt Coliniar: " << cp1 << " (Orientare: " << (cp1 == 0 ? "Coliniar" : "") << ")\n";
-    cout << "CP pt Stanga: " << cp2 << " (Orientare: " << (cp2 > 0 ? "Anti-Orar (Stanga)" : "") << ")\n";
-    cout << "CP pt Dreapta: " << cp3 << " (Orientare: " << (cp3 < 0 ? "Orar (Dreapta)" : "") << ")\n";
+    cout << "CP pt Coliniar: " << cp1 << " (Orientare: " << (cp1 == 0 ? "Coliniar" : "") << ")\\n";
+    cout << "CP pt Stanga: " << cp2 << " (Orientare: " << (cp2 > 0 ? "Anti-Orar (Stanga)" : "") << ")\\n";
+    cout << "CP pt Dreapta: " << cp3 << " (Orientare: " << (cp3 < 0 ? "Orar (Dreapta)" : "") << ")\\n";
     
     return 0;
 }

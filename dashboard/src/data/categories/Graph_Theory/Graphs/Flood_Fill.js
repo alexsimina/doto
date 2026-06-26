@@ -53,12 +53,12 @@ int main() {
         floodFill(img, 1, 1, startColor, 2);
     }
     
-    cout << "Imaginea dupa Flood Fill:\n";
+    cout << "Imaginea dupa Flood Fill:\\n";
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {
             cout << img[i][j] << " ";
         }
-        cout << "\n";
+        cout << "\\n";
     }
     return 0;
 }

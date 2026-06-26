@@ -83,9 +83,9 @@ int main() {
     adj[3] = {{4, 3}};
     
     vector<int> dist = dial(1, n, adj, 7);
-    cout << "Distante de la nodul 1:\n";
+    cout << "Distante de la nodul 1:\\n";
     for (int i = 1; i <= n; ++i) {
-        cout << "Nodul " << i << ": " << dist[i] << "\n";
+        cout << "Nodul " << i << ": " << dist[i] << "\\n";
     }
     return 0;
 }

@@ -67,7 +67,12 @@ files.forEach(filePath => {
 
 if (!allOk) {
     console.log("\n✗ Mismatch found: Some files have out-of-bounds line numbers.");
+    console.log("Suggestions to resolve this:");
+    console.log("  - Run 'node validation_tools/BadDebuggerLines/fix_all_offsets.cjs' if files need systematic header offset shifts.");
+    console.log("  - Run 'node validation_tools/fix_split_strings.cjs' if files have unescaped newlines (\\n) in C++ string literals.");
+    console.log("  - Or manually inspect and correct the line numbers in the explanations arrays.");
     process.exit(1);
 } else {
     console.log("\n✓ All files are clean and properly aligned!");
+    process.exit(0);
 }

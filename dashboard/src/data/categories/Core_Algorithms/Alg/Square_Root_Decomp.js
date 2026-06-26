@@ -55,7 +55,7 @@ int query(const vector<int>& input, int l, int r) {
 int main() {
     vector<int> input = {2, 1, 3, 4, 5, 8, 9, 2, 0};
     preprocess(input);
-    cout << "Suma pe [1, 7]: " << query(input, 1, 7) << "\n";
+    cout << "Suma pe [1, 7]: " << query(input, 1, 7) << "\\n";
     return 0;
 }
 `,

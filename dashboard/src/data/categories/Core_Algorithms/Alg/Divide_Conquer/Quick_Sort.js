@@ -35,7 +35,7 @@ int main() {
     quickSort(arr, 0, arr.size() - 1);
     cout << "Array sortat cu Quick Sort: ";
     for(int x : arr) cout << x << " ";
-    cout << "\n";
+    cout << "\\n";
     return 0;
 }
 `,

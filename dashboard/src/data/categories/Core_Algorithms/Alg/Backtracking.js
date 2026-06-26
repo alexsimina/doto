@@ -24,7 +24,7 @@ bool isValid(int r, int c) {
 
 void solve(int row) {
     if (row == N) {
-        cout << "Solutie gasita!\n";
+        cout << "Solutie gasita!\\n";
         return;
     }
     

@@ -31,9 +31,9 @@ int main() {
     long long x, y;
     long long g = gcdExtended(a, b, &x, &y);
     
-    cout << "CMMDC(" << a << ", " << b << ") = " << g << "\n";
-    cout << "X = " << x << ", Y = " << y << "\n";
-    cout << "Verificare: " << a << "*" << x << " + " << b << "*" << y << " = " << a*x + b*y << "\n";
+    cout << "CMMDC(" << a << ", " << b << ") = " << g << "\\n";
+    cout << "X = " << x << ", Y = " << y << "\\n";
+    cout << "Verificare: " << a << "*" << x << " + " << b << "*" << y << " = " << a*x + b*y << "\\n";
     
     return 0;
 }

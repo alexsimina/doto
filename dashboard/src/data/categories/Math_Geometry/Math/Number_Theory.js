@@ -20,13 +20,13 @@ void ciurulLuiEratostene(int n) {
         }
     }
     
-    cout << "Numere prime pana la " << n << ":\n";
+    cout << "Numere prime pana la " << n << ":\\n";
     for (int p = 2; p <= n; p++) {
         if (estePrim[p]) {
             cout << p << " ";
         }
     }
-    cout << "\n";
+    cout << "\\n";
 }
 
 int main() {

@@ -27,7 +27,7 @@ void pascalTriangle(int numRows) {
         for (int j = 0; j <= i; j++) {
             cout << triangle[i][j] << " ";
         }
-        cout << "\n";
+        cout << "\\n";
     }
 }
 

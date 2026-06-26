@@ -36,9 +36,9 @@ int main() {
     int result = binarySearch(arr, target);
     
     if (result != -1) {
-        cout << "Elementul " << target << " a fost gasit la indexul: " << result << "\n";
+        cout << "Elementul " << target << " a fost gasit la indexul: " << result << "\\n";
     } else {
-        cout << "Elementul " << target << " nu a fost gasit.\n";
+        cout << "Elementul " << target << " nu a fost gasit.\\n";
     }
     
     return 0;

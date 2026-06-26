@@ -19,8 +19,7 @@ int main() {
         int sum = arr[L] + arr[R];
         
         if (sum == target) {
-            cout << "Gasit la indicii " << L << " si " << R << "
-";
+            cout << "Gasit la indicii " << L << " si " << R << "\\n";
             break;
         } else if (sum < target) {
             L++; // Avem nevoie de o suma mai mare

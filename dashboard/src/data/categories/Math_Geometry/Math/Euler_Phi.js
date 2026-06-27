@@ -51,92 +51,1618 @@ int main() {
   {
     "line": 21,
     "text": "Apelăm funcția eulerPhi cu parametrul n = 12 pentru a determina numărul de numere prime cu 12 mai mici sau egale cu acesta.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Candidați Coprimi (1..12)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "9",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "10",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "11",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "12",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "n = 12",
+              "active": false
+            },
+            {
+              "val": "result = 12",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 5,
     "text": "Intrăm în funcție. Parametrul primit este n = 12.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Candidați Coprimi (1..12)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "9",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "10",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "11",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "12",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "n = 12",
+              "active": true
+            },
+            {
+              "val": "result = 12",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 6,
     "text": "Inițializăm variabila result cu valoarea lui n, adică result = 12.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Candidați Coprimi (1..12)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "9",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "10",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "11",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "12",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "n = 12",
+              "active": true
+            },
+            {
+              "val": "result = 12",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 7,
     "text": "Începem bucla for pentru a găsi factorii primi. Verificăm p = 2. Deoarece p * p = 4 <= 12, condiția buclei for este adevărată.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Candidați Coprimi (1..12)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "9",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "10",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "11",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "12",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "n = 12",
+              "active": true
+            },
+            {
+              "val": "result = 12",
+              "active": true
+            },
+            {
+              "val": "p = 2",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 8,
     "text": "Verificăm dacă p = 2 este divizor al lui n (n % p == 0). Deoarece 12 % 2 = 0, condiția este adevărată.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Candidați Coprimi (1..12)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "9",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "10",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "11",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "12",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "n = 12",
+              "active": true
+            },
+            {
+              "val": "result = 12",
+              "active": true
+            },
+            {
+              "val": "p = 2",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 9,
     "text": "Verificăm condiția buclei while (n % p == 0). Deoarece 12 % 2 = 0, condiția este adevărată, deci împărțim n la p pentru a elimina factorul prim 2.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Candidați Coprimi (1..12)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "9",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "10",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "11",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "12",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "n = 12",
+              "active": true
+            },
+            {
+              "val": "result = 12",
+              "active": true
+            },
+            {
+              "val": "p = 2",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 10,
     "text": "Împărțim n la factorul prim p = 2: n /= 2, deci n devine 6.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Candidați Coprimi (1..12)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "9",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "10",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "11",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "12",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "n = 6",
+              "active": true
+            },
+            {
+              "val": "result = 12",
+              "active": true
+            },
+            {
+              "val": "p = 2",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 9,
     "text": "Verificăm din nou condiția buclei while (n % p == 0). Deoarece n = 6 % 2 = 0, condiția este adevărată.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Candidați Coprimi (1..12)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "9",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "10",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "11",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "12",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "n = 6",
+              "active": true
+            },
+            {
+              "val": "result = 12",
+              "active": true
+            },
+            {
+              "val": "p = 2",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 10,
     "text": "Împărțim n la factorul prim p = 2: n /= 2, deci n devine 3.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Candidați Coprimi (1..12)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "9",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "10",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "11",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "12",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "n = 3",
+              "active": true
+            },
+            {
+              "val": "result = 12",
+              "active": true
+            },
+            {
+              "val": "p = 2",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 9,
     "text": "Verificăm din nou condiția buclei while (n % p == 0). Deoarece n = 3 % 2 = 1, condiția este falsă, deci ieșim din bucla while.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Candidați Coprimi (1..12)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "9",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "10",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "11",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "12",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "n = 3",
+              "active": true
+            },
+            {
+              "val": "result = 12",
+              "active": true
+            },
+            {
+              "val": "p = 2",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 12,
     "text": "Actualizăm rezultatul pentru factorul prim p = 2: result -= result / 2, adică 12 - 6 = 6. Noul result devine 6.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Candidați Coprimi (1..12)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "11",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "n = 3",
+              "active": true
+            },
+            {
+              "val": "result = 6",
+              "active": true
+            },
+            {
+              "val": "p = 2",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 7,
     "text": "Incrementăm p la 3. Verificăm condiția buclei for: p * p = 9 <= n (unde n a devenit 3). Deoarece 9 > 3, condiția p * p <= n este falsă, așa că ieșim din bucla for.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Candidați Coprimi (1..12)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "11",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "n = 3",
+              "active": true
+            },
+            {
+              "val": "result = 6",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 15,
     "text": "Verificăm dacă a rămas vreun factor prim mai mare decât radical din n inițial (condiția n > 1). Deoarece n = 3, condiția este adevărată.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Candidați Coprimi (1..12)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "11",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "n = 3",
+              "active": true
+            },
+            {
+              "val": "result = 6",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 16,
     "text": "Deoarece n = 3 > 1 este prim, actualizăm rezultatul pentru acest ultim factor prim: result -= result / 3, adică 6 - 2 = 4. Noul result devine 4.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Candidați Coprimi (1..12)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "11",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "n = 3",
+              "active": true
+            },
+            {
+              "val": "result = 4",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 18,
     "text": "Returnăm rezultatul final calculat: result = 4.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Candidați Coprimi (1..12)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "11",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "✕",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "n = 3",
+              "active": true
+            },
+            {
+              "val": "result = 4",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 22,
     "text": "Revenim în funcția main. Valoarea returnată de eulerPhi este stocată în variabila ans, care devine 4.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Candidați Coprimi (1..12)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "9",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "10",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "11",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "12",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "n = 12",
+              "active": false
+            },
+            {
+              "val": "result = 12",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 23,
     "text": "Afișăm rezultatul obținut la ieșirea standard (cout): phi(12) = 4.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Candidați Coprimi (1..12)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "9",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "10",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "11",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "12",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "n = 12",
+              "active": false
+            },
+            {
+              "val": "result = 12",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 24,
     "text": "Funcția main returnează 0, finalizând cu succes execuția programului.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Candidați Coprimi (1..12)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "9",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "10",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "11",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "12",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "n = 12",
+              "active": false
+            },
+            {
+              "val": "result = 12",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   }
 ],
   "problems": {

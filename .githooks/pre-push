@@ -30,7 +30,7 @@ echo "📊 Step 2: Validating category data configuration files..."
 echo "-----------------------------------------"
 
 echo "🔍 Checking file structure and debugger hooks..."
-node validation_tools/validate_syntax.cjs
+node validation_tools/Syntax/validate_syntax.cjs
 SYNTAX_STATUS=$?
 if [ $SYNTAX_STATUS -ne 0 ]; then
     echo ""
@@ -41,7 +41,7 @@ if [ $SYNTAX_STATUS -ne 0 ]; then
 fi
 
 echo "🔍 Checking C++ code strings for unescaped/split newlines..."
-node validation_tools/check_split_strings.cjs
+node validation_tools/Syntax/check_split_strings.cjs
 SPLIT_STATUS=$?
 if [ $SPLIT_STATUS -ne 0 ]; then
     echo ""
@@ -52,7 +52,7 @@ if [ $SPLIT_STATUS -ne 0 ]; then
 fi
 
 echo "🔍 Checking debugger line alignments (out-of-bounds)..."
-node validation_tools/BadDebuggerLines/check_all_out_of_bounds.cjs
+node validation_tools/Debugger/check_all_out_of_bounds.cjs
 ALIGN_STATUS=$?
 if [ $ALIGN_STATUS -ne 0 ]; then
     echo ""
@@ -63,23 +63,23 @@ if [ $ALIGN_STATUS -ne 0 ]; then
 fi
 
 echo "🔍 Checking debugger line offset shifts..."
-node validation_tools/check_offsets.cjs
+node validation_tools/Debugger/check_offsets.cjs
 OFFSET_STATUS=$?
 if [ $OFFSET_STATUS -ne 0 ]; then
     echo ""
     echo "❌ ERROR: Debugger line offset shifts detected!"
-    echo "Push aborted. Run 'node validation_tools/BadDebuggerLines/fix_all_offsets.cjs' to automatically shift them before pushing."
+    echo "Push aborted. Run 'node validation_tools/Debugger/fix_all_offsets.cjs' to automatically shift them before pushing."
     echo "========================================="
     exit 1
 fi
 
 echo "🔍 Checking debugger synchronization (offsets & active line binding)..."
-node validation_tools/fix_debugger_sync.cjs --dry-run
+node validation_tools/Debugger/fix_debugger_sync.cjs --dry-run
 SYNC_STATUS=$?
 if [ $SYNC_STATUS -ne 0 ]; then
     echo ""
     echo "❌ ERROR: Debugger synchronization issues found!"
-    echo "Push aborted. Run 'node validation_tools/fix_debugger_sync.cjs' to repair them automatically before pushing."
+    echo "Push aborted. Run 'node validation_tools/Debugger/fix_debugger_sync.cjs' to repair them automatically before pushing."
     echo "========================================="
     exit 1
 fi

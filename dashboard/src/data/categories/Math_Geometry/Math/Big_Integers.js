@@ -63,232 +63,3410 @@ int main() {
   {
     "line": 35,
     "text": "Apelăm funcția addBigIntegers cu argumentele num1 = \"987\" și num2 = \"45\" pentru a le aduna ca numere mari.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 0",
+              "active": false
+            },
+            {
+              "val": "sum = 0",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "(gol)",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 8,
     "text": "Intrăm în corpul funcției cu parametrii num1 = \"987\" și num2 = \"45\".",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 0",
+              "active": false
+            },
+            {
+              "val": "sum = 0",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "(gol)",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 9,
     "text": "Inițializăm string-ul result ca fiind gol. Aici vom construi cifrele sumei în ordine inversă.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 0",
+              "active": false
+            },
+            {
+              "val": "sum = 0",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "(gol)",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 10,
     "text": "Setăm i ca fiind indexul ultimei cifre din num1: i = num1.length() - 1, adică 3 - 1 = 2 (corespunde cifrei '7').",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 0",
+              "active": false
+            },
+            {
+              "val": "sum = 0",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "(gol)",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 11,
     "text": "Setăm j ca fiind indexul ultimei cifre din num2: j = num2.length() - 1, adică 2 - 1 = 1 (corespunde cifrei '5').",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 0",
+              "active": false
+            },
+            {
+              "val": "sum = 0",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "(gol)",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 12,
     "text": "Inițializăm valoarea transportului carry cu 0.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 0",
+              "active": true
+            },
+            {
+              "val": "sum = 0",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "(gol)",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 14,
     "text": "Verificăm condiția buclei while (i >= 0 || j >= 0 || carry > 0). Deoarece i = 2 (>=0), condiția este adevărată, deci procesăm cifrele curente.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 0",
+              "active": true
+            },
+            {
+              "val": "sum = 0",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "(gol)",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 15,
     "text": "Inițializăm suma pe poziția curentă cu valoarea transportului carry: sum = 0.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 0",
+              "active": true
+            },
+            {
+              "val": "sum = 0",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "(gol)",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 16,
     "text": "Verificăm dacă mai avem cifre de procesat în num1 (i >= 0). Deoarece i = 2, condiția este adevărată.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 0",
+              "active": true
+            },
+            {
+              "val": "sum = 0",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "(gol)",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 17,
     "text": "Adunăm valoarea cifrei num1[2] (care este '7') la sumă: sum += 7, deci sum devine 7.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 0",
+              "active": true
+            },
+            {
+              "val": "sum = 7",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "(gol)",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 18,
     "text": "Decrementăm indexul i pentru a trece la poziția anterioară din num1: i devine 1.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": true
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 0",
+              "active": true
+            },
+            {
+              "val": "sum = 7",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "(gol)",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 20,
     "text": "Verificăm dacă mai avem cifre de procesat în num2 (j >= 0). Deoarece j = 1, condiția este adevărată.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": true
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 0",
+              "active": true
+            },
+            {
+              "val": "sum = 7",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "(gol)",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 21,
     "text": "Adunăm valoarea cifrei num2[1] (care este '5') la sumă: sum += 5, deci sum devine 12.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": true
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 0",
+              "active": true
+            },
+            {
+              "val": "sum = 12",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "(gol)",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 22,
     "text": "Decrementăm indexul j pentru a trece la poziția anterioară din num2: j devine 0.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": true
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": true
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 0",
+              "active": true
+            },
+            {
+              "val": "sum = 12",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "(gol)",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 24,
     "text": "Calculăm transportul împărțind suma obținută la 10: carry = 12 / 10 = 1.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": true
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": true
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 1",
+              "active": true
+            },
+            {
+              "val": "sum = 12",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "(gol)",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 25,
     "text": "Adăugăm cifra unităților din sum în result: result += to_string(12 % 10) = \"2\".",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": true
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": true
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 1",
+              "active": true
+            },
+            {
+              "val": "sum = 12",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 14,
     "text": "Verificăm din nou condiția buclei while (i >= 0 || j >= 0 || carry > 0). Deoarece i = 1, j = 0 și carry = 1, condiția este adevărată.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": true
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": true
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 1",
+              "active": true
+            },
+            {
+              "val": "sum = 12",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 15,
     "text": "Inițializăm suma curentă cu valoarea transportului carry: sum = 1.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": true
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": true
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 1",
+              "active": true
+            },
+            {
+              "val": "sum = 1",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 16,
     "text": "Verificăm dacă i >= 0. Deoarece i = 1 (cifra '8'), condiția este adevărată.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": true
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": true
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 1",
+              "active": true
+            },
+            {
+              "val": "sum = 1",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 17,
     "text": "Adunăm valoarea cifrei num1[1] (care este '8') la sumă: sum += 8, deci sum devine 9.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": true
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": true
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 1",
+              "active": true
+            },
+            {
+              "val": "sum = 9",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 18,
     "text": "Decrementăm indexul i: i devine 0.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": true
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": true
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 1",
+              "active": true
+            },
+            {
+              "val": "sum = 9",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 20,
     "text": "Verificăm dacă j >= 0. Deoarece j = 0 (cifra '4'), condiția este adevărată.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": true
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": true
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 1",
+              "active": true
+            },
+            {
+              "val": "sum = 9",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 21,
     "text": "Adunăm valoarea cifrei num2[0] (care este '4') la sumă: sum += 4, deci sum devine 13.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": true
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": true
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 1",
+              "active": true
+            },
+            {
+              "val": "sum = 13",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 22,
     "text": "Decrementăm indexul j: j devine -1 (am terminat cifrele din num2).",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": true
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 1",
+              "active": true
+            },
+            {
+              "val": "sum = 13",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 24,
     "text": "Calculăm transportul: carry = 13 / 10 = 1.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": true
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 1",
+              "active": true
+            },
+            {
+              "val": "sum = 13",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 25,
     "text": "Adăugăm cifra unităților (3) la result: result devine \"23\".",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": true
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 1",
+              "active": true
+            },
+            {
+              "val": "sum = 13",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 14,
     "text": "Verificăm condiția buclei: i = 0, j = -1, carry = 1. Condiția este adevărată (deoarece i >= 0 și carry > 0).",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": true
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 1",
+              "active": true
+            },
+            {
+              "val": "sum = 13",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 15,
     "text": "Inițializăm suma curentă cu valoarea transportului carry: sum = 1.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": true
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 1",
+              "active": true
+            },
+            {
+              "val": "sum = 1",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 16,
     "text": "Verificăm dacă i >= 0. Deoarece i = 0 (cifra '9'), condiția este adevărată.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": true
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 1",
+              "active": true
+            },
+            {
+              "val": "sum = 1",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 17,
     "text": "Adunăm valoarea cifrei num1[0] (care este '9') la sumă: sum += 9, deci sum devine 10.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": true
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 1",
+              "active": true
+            },
+            {
+              "val": "sum = 10",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 18,
     "text": "Decrementăm indexul i: i devine -1 (am terminat cifrele din num1).",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 1",
+              "active": true
+            },
+            {
+              "val": "sum = 10",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 20,
     "text": "Verificăm dacă j >= 0. Deoarece j = -1, condiția este falsă, sărim peste adunarea din num2.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 1",
+              "active": true
+            },
+            {
+              "val": "sum = 10",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 24,
     "text": "Calculăm transportul: carry = 10 / 10 = 1.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 1",
+              "active": true
+            },
+            {
+              "val": "sum = 10",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 25,
     "text": "Adăugăm cifra unităților (0) la result: result devine \"230\".",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 1",
+              "active": true
+            },
+            {
+              "val": "sum = 10",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "0",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 14,
     "text": "Verificăm condiția buclei: i = -1, j = -1, carry = 1. Deoarece carry > 0, condiția este adevărată.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 1",
+              "active": true
+            },
+            {
+              "val": "sum = 10",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "0",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 15,
     "text": "Inițializăm suma curentă cu valoarea transportului carry: sum = 1.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 1",
+              "active": true
+            },
+            {
+              "val": "sum = 1",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "0",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 16,
     "text": "Verificăm dacă i >= 0. Deoarece i = -1, condiția este falsă.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 1",
+              "active": true
+            },
+            {
+              "val": "sum = 1",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "0",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 20,
     "text": "Verificăm dacă j >= 0. Deoarece j = -1, condiția este falsă.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 1",
+              "active": true
+            },
+            {
+              "val": "sum = 1",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "0",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 24,
     "text": "Calculăm transportul: carry = 1 / 10 = 0.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 0",
+              "active": true
+            },
+            {
+              "val": "sum = 1",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "0",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 25,
     "text": "Adăugăm cifra unităților (1) la result: result devine \"2301\".",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 0",
+              "active": true
+            },
+            {
+              "val": "sum = 1",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "0",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 14,
     "text": "Verificăm condiția buclei: i = -1, j = -1, carry = 0. Toate condițiile fiind false, ieșim din bucla while.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 0",
+              "active": true
+            },
+            {
+              "val": "sum = 1",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "0",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 28,
     "text": "Inversăm string-ul result pentru a aduce cifrele la ordinea corectă de la stânga la dreapta: result devine \"1032\".",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 0",
+              "active": true
+            },
+            {
+              "val": "sum = 0",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "0",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 29,
     "text": "Returnăm rezultatul final al adunării: \"1032\".",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 0",
+              "active": true
+            },
+            {
+              "val": "sum = 0",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "0",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 35,
     "text": "Revenim în funcția main. Valoarea sumei returnate de addBigIntegers este salvată în variabila sum, care devine \"1032\".",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 0",
+              "active": false
+            },
+            {
+              "val": "sum = NaN",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "(gol)",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 36,
     "text": "Afișăm rezultatul final la consolă: Suma: 1032.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 0",
+              "active": false
+            },
+            {
+              "val": "sum = NaN",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "(gol)",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 37,
     "text": "Funcția main se termină cu succes și returnează 0.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "num1 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": "9",
+              "active": false
+            },
+            {
+              "val": "8",
+              "active": false
+            },
+            {
+              "val": "7",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "num2 (De adunat)",
+        "groups": [
+          [
+            {
+              "val": " ",
+              "active": false
+            },
+            {
+              "val": "4",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Transport & Sumă",
+        "groups": [
+          [
+            {
+              "val": "carry = 0",
+              "active": false
+            },
+            {
+              "val": "sum = NaN",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "result (Cifre calculate)",
+        "groups": [
+          [
+            {
+              "val": "(gol)",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   }
 ],
   "problems": {

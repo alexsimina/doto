@@ -389,21 +389,21 @@ int main() {
     },
     "getGraphVisual": (stepIndex) => {
       const nodes = [
-        { id: '0', x: 46, y: 238, label: '(2,3)' },
-        { id: '1', x: 54, y: 234, label: '(3,4)' },
-        { id: '2', x: 70, y: 246, label: '(5,1)' },
-        { id: '3', x: 126, y: 210, label: '(12,10)' },
-        { id: '4', x: 126, y: 130, label: '(12,30)' },
-        { id: '5', x: 350, y: 50, label: '(40,50)' }
+        { id: '0', x: 50, y: 200, label: '(2,3)' },
+        { id: '1', x: 100, y: 170, label: '(3,4)' },
+        { id: '2', x: 160, y: 230, label: '(5,1)' },
+        { id: '3', x: 260, y: 130, label: '(12,10)' },
+        { id: '4', x: 260, y: 60, label: '(12,30)' },
+        { id: '5', x: 380, y: 30, label: '(40,50)' }
       ];
 
       const pointCoords = {
-        "(2,3)": { x: 46, idx: 0 },
-        "(3,4)": { x: 54, idx: 1 },
-        "(5,1)": { x: 70, idx: 2 },
-        "(12,10)": { x: 126, idx: 3 },
-        "(12,30)": { x: 126, idx: 4 },
-        "(40,50)": { x: 350, idx: 5 }
+        "(2,3)": { x: 50, idx: 0 },
+        "(3,4)": { x: 100, idx: 1 },
+        "(5,1)": { x: 160, idx: 2 },
+        "(12,10)": { x: 260, idx: 3 },
+        "(12,30)": { x: 260, idx: 4 },
+        "(40,50)": { x: 380, idx: 5 }
       };
 
       const pointsSorted = ["(2,3)", "(3,4)", "(5,1)", "(12,10)", "(12,30)", "(40,50)"];
@@ -432,7 +432,7 @@ int main() {
 
       let sweepX = null;
       if (ansVar || stepIndex >= 48) {
-        sweepX = 350;
+        sweepX = 380;
       } else if (currentPtIdx !== -1) {
         const ptStr = pointsSorted[currentPtIdx];
         if (ptStr && pointCoords[ptStr]) {
@@ -448,7 +448,7 @@ int main() {
           sweepX = pointCoords[ptStr].x;
         }
       } else {
-        sweepX = 46;
+        sweepX = 50;
       }
 
       nodes.forEach(n => {

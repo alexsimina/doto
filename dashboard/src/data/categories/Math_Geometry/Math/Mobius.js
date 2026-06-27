@@ -86,452 +86,11513 @@ int main() {
   {
     "line": 7,
     "text": "Inițializăm vectorul mu cu 11 elemente (de la 0 la 10) cu valoarea implicită 0.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "2:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "3:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 8,
     "text": "Inițializăm vectorul isPrime cu 11 elemente având valoarea true (presupunem inițial că toate numerele sunt prime).",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "2:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "3:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 9,
     "text": "Inițializăm un vector gol primes pentru a stoca numerele prime pe care le vom găsi.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "2:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "3:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 11,
     "text": "Prin definiție, valoarea funcției Mobius pentru 1 este 1, deci setăm mu[1] = 1.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "3:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 12,
     "text": "Începem sau continuăm iterația buclei for exterioare cu i = 2.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "3:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 13,
     "text": "Verificăm dacă valoarea curentă i este marcată ca fiind număr prim (isPrime[i] este adevărat).",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "3:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 14,
     "text": "Numărul 2 fiind prim, îl adăugăm în vectorul primes.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "3:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 15,
     "text": "Deoarece 2 este număr prim, are un singur factor prim (număr impar de factori), deci mu[2] = -1.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 17,
     "text": "Parcurgem numerele prime găsite până acum; verificăm factorul prim curent p = 2.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "4:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 18,
     "text": "Verificăm dacă multiplul i * p depășește limita n.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "4:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 19,
     "text": "Marcăm multiplul compus 4 ca fiind ne-prim în vectorul isPrime (isPrime[i * p] = false).",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "4:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 20,
     "text": "Verificăm dacă indexul curent i este divizibil cu numărul prim p.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "4:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 21,
     "text": "Deoarece i se divide cu p, numărul 4 se divide cu p^2 (nu este liber de pătrate), deci setăm mu[4] = 0.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "4:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 22,
     "text": "break p loop",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "4:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 12,
     "text": "Începem sau continuăm iterația buclei for exterioare cu i = 3.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 13,
     "text": "Verificăm dacă valoarea curentă i este marcată ca fiind număr prim (isPrime[i] este adevărat).",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 14,
     "text": "Numărul 3 fiind prim, îl adăugăm în vectorul primes.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 15,
     "text": "Deoarece 3 este număr prim, are un singur factor prim (număr impar de factori), deci mu[3] = -1.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 17,
     "text": "Parcurgem numerele prime găsite până acum; verificăm factorul prim curent p = 2.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 18,
     "text": "Verificăm dacă multiplul i * p depășește limita n.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 19,
     "text": "Marcăm multiplul compus 6 ca fiind ne-prim în vectorul isPrime (isPrime[i * p] = false).",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 20,
     "text": "Verificăm dacă indexul curent i este divizibil cu numărul prim p.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 24,
     "text": "Deoarece i nu se divide cu p, numărul i * p are un factor prim distinct în plus față de i, deci mu[i * p] = -mu[i].",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 17,
     "text": "Parcurgem numerele prime găsite până acum; verificăm factorul prim curent p = 3.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 18,
     "text": "Verificăm dacă multiplul i * p depășește limita n.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 19,
     "text": "Marcăm multiplul compus 9 ca fiind ne-prim în vectorul isPrime (isPrime[i * p] = false).",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 20,
     "text": "Verificăm dacă indexul curent i este divizibil cu numărul prim p.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 21,
     "text": "Deoarece i se divide cu p, numărul 9 se divide cu p^2 (nu este liber de pătrate), deci setăm mu[9] = 0.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 22,
     "text": "break p loop",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 12,
     "text": "Începem sau continuăm iterația buclei for exterioare cu i = 4.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 13,
     "text": "Verificăm dacă valoarea curentă i este marcată ca fiind număr prim (isPrime[i] este adevărat).",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 17,
     "text": "Parcurgem numerele prime găsite până acum; verificăm factorul prim curent p = 2.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 18,
     "text": "Verificăm dacă multiplul i * p depășește limita n.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 19,
     "text": "Marcăm multiplul compus 8 ca fiind ne-prim în vectorul isPrime (isPrime[i * p] = false).",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 20,
     "text": "Verificăm dacă indexul curent i este divizibil cu numărul prim p.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 21,
     "text": "Deoarece i se divide cu p, numărul 8 se divide cu p^2 (nu este liber de pătrate), deci setăm mu[8] = 0.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 22,
     "text": "break p loop",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 12,
     "text": "Începem sau continuăm iterația buclei for exterioare cu i = 5.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 13,
     "text": "Verificăm dacă valoarea curentă i este marcată ca fiind număr prim (isPrime[i] este adevărat).",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 14,
     "text": "Numărul 5 fiind prim, îl adăugăm în vectorul primes.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 15,
     "text": "Deoarece 5 este număr prim, are un singur factor prim (număr impar de factori), deci mu[5] = -1.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": false,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:P",
+              "active": false,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 17,
     "text": "Parcurgem numerele prime găsite până acum; verificăm factorul prim curent p = 2.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": true,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:P",
+              "active": true,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 18,
     "text": "Verificăm dacă multiplul i * p depășește limita n.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": true,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:P",
+              "active": true,
+              "sorted": 1
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 19,
     "text": "Marcăm multiplul compus 10 ca fiind ne-prim în vectorul isPrime (isPrime[i * p] = false).",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": true,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": true,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 20,
     "text": "Verificăm dacă indexul curent i este divizibil cu numărul prim p.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:0",
+              "active": true,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": true,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 24,
     "text": "Deoarece i nu se divide cu p, numărul i * p are un factor prim distinct în plus față de i, deci mu[i * p] = -mu[i].",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": true,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 17,
     "text": "Parcurgem numerele prime găsite până acum; verificăm factorul prim curent p = 3.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": false,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 18,
     "text": "Verificăm dacă multiplul i * p depășește limita n.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": false,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 18,
     "text": "i*p > n, break",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": false,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 12,
     "text": "Începem sau continuăm iterația buclei for exterioare cu i = 6.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": false,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 13,
     "text": "Verificăm dacă valoarea curentă i este marcată ca fiind număr prim (isPrime[i] este adevărat).",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": false,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 17,
     "text": "Parcurgem numerele prime găsite până acum; verificăm factorul prim curent p = 2.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": false,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 18,
     "text": "Verificăm dacă multiplul i * p depășește limita n.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": false,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 18,
     "text": "i*p > n, break",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": false,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 12,
     "text": "Începem sau continuăm iterația buclei for exterioare cu i = 7.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": false,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 13,
     "text": "Verificăm dacă valoarea curentă i este marcată ca fiind număr prim (isPrime[i] este adevărat).",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": false,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 14,
     "text": "Numărul 7 fiind prim, îl adăugăm în vectorul primes.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": false,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 15,
     "text": "Deoarece 7 este număr prim, are un singur factor prim (număr impar de factori), deci mu[7] = -1.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": false,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 17,
     "text": "Parcurgem numerele prime găsite până acum; verificăm factorul prim curent p = 2.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": false,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 18,
     "text": "Verificăm dacă multiplul i * p depășește limita n.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": false,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 18,
     "text": "i*p > n, break",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": true,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": false,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 12,
     "text": "Începem sau continuăm iterația buclei for exterioare cu i = 8.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": false,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 13,
     "text": "Verificăm dacă valoarea curentă i este marcată ca fiind număr prim (isPrime[i] este adevărat).",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": false,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 17,
     "text": "Parcurgem numerele prime găsite până acum; verificăm factorul prim curent p = 2.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": false,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 18,
     "text": "Verificăm dacă multiplul i * p depășește limita n.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": false,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 18,
     "text": "i*p > n, break",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": false,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 12,
     "text": "Începem sau continuăm iterația buclei for exterioare cu i = 9.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": false,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 13,
     "text": "Verificăm dacă valoarea curentă i este marcată ca fiind număr prim (isPrime[i] este adevărat).",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": false,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 17,
     "text": "Parcurgem numerele prime găsite până acum; verificăm factorul prim curent p = 2.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": false,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 18,
     "text": "Verificăm dacă multiplul i * p depășește limita n.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": false,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 18,
     "text": "i*p > n, break",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": true,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": true,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": false,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 12,
     "text": "Începem sau continuăm iterația buclei for exterioare cu i = 10.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": true,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 13,
     "text": "Verificăm dacă valoarea curentă i este marcată ca fiind număr prim (isPrime[i] este adevărat).",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": true,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 17,
     "text": "Parcurgem numerele prime găsite până acum; verificăm factorul prim curent p = 2.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": true,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 18,
     "text": "Verificăm dacă multiplul i * p depășește limita n.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": true,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 18,
     "text": "i*p > n, break",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": true,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": true,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 28,
     "text": "return mu",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "isPrime[1..10] (P=Prim, C=Compus)",
+        "groups": [
+          [
+            {
+              "val": "1:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "2:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "3:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "4:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "5:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "6:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "7:P",
+              "active": false,
+              "sorted": 1
+            },
+            {
+              "val": "8:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "9:C",
+              "active": false,
+              "sorted": 0
+            },
+            {
+              "val": "10:C",
+              "active": true,
+              "sorted": 0
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Numere Prime Găsite (primes)",
+        "groups": [
+          [
+            {
+              "val": "2",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "5",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 33,
     "text": "A primit mu",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 34,
     "text": "Tipărim mesajul introductiv la ieșirea standard.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 35,
     "text": "Afișăm la consolă valoarea calculată mu[1].",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 35,
     "text": "Afișăm la consolă valoarea calculată mu[2].",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 35,
     "text": "Afișăm la consolă valoarea calculată mu[3].",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 35,
     "text": "Afișăm la consolă valoarea calculată mu[4].",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 35,
     "text": "Afișăm la consolă valoarea calculată mu[5].",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 35,
     "text": "Afișăm la consolă valoarea calculată mu[6].",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 35,
     "text": "Afișăm la consolă valoarea calculată mu[7].",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 35,
     "text": "Afișăm la consolă valoarea calculată mu[8].",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 35,
     "text": "Afișăm la consolă valoarea calculată mu[9].",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 35,
     "text": "Afișăm la consolă valoarea calculată mu[10].",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 39,
     "text": "Funcția main returnează 0, finalizând cu succes programul.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Valori Mobius mu[1..10]",
+        "groups": [
+          [
+            {
+              "val": "1:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "2:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "3:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "4:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "5:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "6:1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "7:-1",
+              "active": false,
+              "sorted": true
+            },
+            {
+              "val": "8:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "9:0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "10:1",
+              "active": false,
+              "sorted": true
+            }
+          ]
+        ]
+      }
+    ]
   }
 ],
   "problems": {

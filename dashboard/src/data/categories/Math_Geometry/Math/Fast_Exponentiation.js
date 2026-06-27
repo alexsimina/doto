@@ -45,142 +45,1265 @@ int main() {
   {
     "line": 18,
     "text": "Apelăm funcția fastExponentiation cu parametrii base = 3, exp = 13 și mod = 10 pentru a calcula modular (3^13) % 10.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar (1101_2)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 3",
+              "active": false
+            },
+            {
+              "val": "exp = 13",
+              "active": false
+            },
+            {
+              "val": "result = 1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 5,
     "text": "Intrăm în corpul funcției cu valorile primite: base = 3, exp = 13 și mod = 10.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar (1101_2)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 3",
+              "active": true
+            },
+            {
+              "val": "exp = 13",
+              "active": true
+            },
+            {
+              "val": "result = 1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 6,
     "text": "Inițializăm variabila result cu 1. Aceasta va acumula rezultatul ridicării la putere.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar (1101_2)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 3",
+              "active": true
+            },
+            {
+              "val": "exp = 13",
+              "active": true
+            },
+            {
+              "val": "result = 1",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 7,
     "text": "Reducem baza inițială modulo mod: base = base % mod, adică 3 % 10 = 3. Noua valoare pentru base este 3.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar (1101_2)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 3",
+              "active": true
+            },
+            {
+              "val": "exp = 13",
+              "active": true
+            },
+            {
+              "val": "result = 1",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 8,
     "text": "Verificăm condiția buclei while (exp > 0). Deoarece exp = 13 este mai mare decât 0, condiția este adevărată, deci continuăm execuția buclei.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar (1101_2)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 3",
+              "active": true
+            },
+            {
+              "val": "exp = 13",
+              "active": true
+            },
+            {
+              "val": "result = 1",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 9,
     "text": "Verificăm dacă exponentul curent exp este impar: exp % 2 == 1. Deoarece 13 % 2 = 1 (adevărat), vom actualiza rezultatul.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar (1101_2)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 3",
+              "active": true
+            },
+            {
+              "val": "exp = 13",
+              "active": true
+            },
+            {
+              "val": "result = 1",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 10,
     "text": "Actualizăm rezultatul prin înmulțirea cu baza curentă modulo mod: result = (result * base) % mod, adică (1 * 3) % 10 = 3. Noul result devine 3.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar (1101_2)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 3",
+              "active": true
+            },
+            {
+              "val": "exp = 13",
+              "active": true
+            },
+            {
+              "val": "result = 3",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 12,
     "text": "Ridicăm baza la pătrat în mod modular pentru următorul pas: base = (base * base) % mod, adică (3 * 3) % 10 = 9. Noua bază devine 9.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar (1101_2)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 9",
+              "active": true
+            },
+            {
+              "val": "exp = 13",
+              "active": true
+            },
+            {
+              "val": "result = 3",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 13,
     "text": "Înjumătățim exponentul prin împărțire întreagă: exp = exp / 2, adică 13 / 2 = 6. Exponentul devine 6.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar (110_2)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "0",
+              "active": true,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 9",
+              "active": true
+            },
+            {
+              "val": "exp = 6",
+              "active": true
+            },
+            {
+              "val": "result = 3",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 8,
     "text": "Verificăm din nou condiția buclei while (exp > 0). Deoarece exp = 6 este mai mare decât 0, condiția este adevărată, intrăm în buclă.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar (110_2)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "0",
+              "active": true,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 9",
+              "active": true
+            },
+            {
+              "val": "exp = 6",
+              "active": true
+            },
+            {
+              "val": "result = 3",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 9,
     "text": "Verificăm dacă exponentul este impar: exp % 2 == 1. Deoarece 6 % 2 = 0 (fals), sărim peste actualizarea rezultatului.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar (110_2)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "0",
+              "active": true,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 9",
+              "active": true
+            },
+            {
+              "val": "exp = 6",
+              "active": true
+            },
+            {
+              "val": "result = 3",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 12,
     "text": "Ridicăm baza la pătrat în mod modular: base = (base * base) % mod, adică (9 * 9) % 10 = 81 % 10 = 1. Noua bază devine 1.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar (110_2)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "0",
+              "active": true,
+              "sorted": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 1",
+              "active": true
+            },
+            {
+              "val": "exp = 6",
+              "active": true
+            },
+            {
+              "val": "result = 3",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 13,
     "text": "Înjumătățim exponentul: exp = exp / 2, adică 6 / 2 = 3. Exponentul devine 3.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar (11_2)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 1",
+              "active": true
+            },
+            {
+              "val": "exp = 3",
+              "active": true
+            },
+            {
+              "val": "result = 3",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 8,
     "text": "Verificăm din nou condiția buclei while (exp > 0). Deoarece exp = 3 este mai mare decât 0, condiția este adevărată, intrăm în buclă.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar (11_2)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 1",
+              "active": true
+            },
+            {
+              "val": "exp = 3",
+              "active": true
+            },
+            {
+              "val": "result = 3",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 9,
     "text": "Verificăm dacă exponentul este impar: exp % 2 == 1. Deoarece 3 % 2 = 1 (adevărat), actualizăm rezultatul.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar (11_2)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 1",
+              "active": true
+            },
+            {
+              "val": "exp = 3",
+              "active": true
+            },
+            {
+              "val": "result = 3",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 10,
     "text": "Înmulțim rezultatul cu baza curentă modulo mod: result = (result * base) % mod, adică (3 * 1) % 10 = 3. Noul result devine 3.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar (11_2)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 1",
+              "active": true
+            },
+            {
+              "val": "exp = 3",
+              "active": true
+            },
+            {
+              "val": "result = 3",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 12,
     "text": "Ridicăm baza la pătrat: base = (base * base) % mod, adică (1 * 1) % 10 = 1. Noua bază devine 1.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar (11_2)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 1",
+              "active": true
+            },
+            {
+              "val": "exp = 3",
+              "active": true
+            },
+            {
+              "val": "result = 3",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 13,
     "text": "Înjumătățim exponentul: exp = exp / 2, adică 3 / 2 = 1. Exponentul devine 1.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar (1_2)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 1",
+              "active": true
+            },
+            {
+              "val": "exp = 1",
+              "active": true
+            },
+            {
+              "val": "result = 3",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 8,
     "text": "Verificăm condiția buclei while (exp > 0). Deoarece exp = 1 este mai mare decât 0, condiția este adevărată, intrăm în buclă.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar (1_2)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 1",
+              "active": true
+            },
+            {
+              "val": "exp = 1",
+              "active": true
+            },
+            {
+              "val": "result = 3",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 9,
     "text": "Verificăm dacă exponentul este impar: exp % 2 == 1. Deoarece 1 % 2 = 1 (adevărat), actualizăm rezultatul.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar (1_2)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 1",
+              "active": true
+            },
+            {
+              "val": "exp = 1",
+              "active": true
+            },
+            {
+              "val": "result = 3",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 10,
     "text": "Înmulțim rezultatul cu baza curentă modulo mod: result = (result * base) % mod, adică (3 * 1) % 10 = 3. Noul result devine 3.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar (1_2)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 1",
+              "active": true
+            },
+            {
+              "val": "exp = 1",
+              "active": true
+            },
+            {
+              "val": "result = 3",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 12,
     "text": "Ridicăm baza la pătrat: base = (base * base) % mod, adică (1 * 1) % 10 = 1. Noua bază devine 1.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar (1_2)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 1",
+              "active": true
+            },
+            {
+              "val": "exp = 1",
+              "active": true
+            },
+            {
+              "val": "result = 3",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 13,
     "text": "Înjumătățim exponentul: exp = exp / 2, adică 1 / 2 = 0. Exponentul devine 0.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 1",
+              "active": true
+            },
+            {
+              "val": "exp = 0",
+              "active": true
+            },
+            {
+              "val": "result = 3",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 8,
     "text": "Verificăm condiția buclei while (exp > 0). Deoarece exp = 0, condiția este acum falsă, așa că ieșim din buclă.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 1",
+              "active": true
+            },
+            {
+              "val": "exp = 0",
+              "active": true
+            },
+            {
+              "val": "result = 3",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 15,
     "text": "Returnăm rezultatul final calculat: result = 3.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 1",
+              "active": true
+            },
+            {
+              "val": "exp = 0",
+              "active": true
+            },
+            {
+              "val": "result = 3",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 19,
     "text": "Revenim în funcția main. Valoarea returnată de fastExponentiation este atribuită variabilei ans, care devine 3.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar (1101_2)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 3",
+              "active": false
+            },
+            {
+              "val": "exp = 13",
+              "active": false
+            },
+            {
+              "val": "result = 1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 20,
     "text": "Afișăm rezultatul obținut la ieșirea standard (cout): 3^13 % 10 = 3.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar (1101_2)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 3",
+              "active": false
+            },
+            {
+              "val": "exp = 13",
+              "active": false
+            },
+            {
+              "val": "result = 1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   },
   {
     "line": 21,
     "text": "Funcția main se termină și returnează 0, finalizând cu succes execuția întregului program.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "exp în binar (1101_2)",
+        "groups": [
+          [
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "0",
+              "active": false,
+              "sorted": false
+            },
+            {
+              "val": "1",
+              "active": true,
+              "sorted": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            {
+              "val": "base = 3",
+              "active": false
+            },
+            {
+              "val": "exp = 13",
+              "active": false
+            },
+            {
+              "val": "result = 1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
   }
 ],
   "problems": {

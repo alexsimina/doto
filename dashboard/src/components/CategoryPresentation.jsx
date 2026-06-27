@@ -1043,8 +1043,11 @@ const CategoryPresentation = ({ category, onClose, onNavigate }) => {
                 const dx=x2-x1, dy=y2-y1;
                 const len=Math.sqrt(dx*dx+dy*dy)||1;
                 const ux=dx/len, uy=dy/len;
-                const sx=x1+ux*nodeR, sy=y1+uy*nodeR;
-                const targetPadding = isDirected ? (nodeR + 6) : nodeR;
+                const isSweep = edge.source?.startsWith('sweep') || edge.target?.startsWith('sweep');
+                const n1R = isSweep ? 0 : nodeR;
+                const n2R = isSweep ? 0 : nodeR;
+                const sx=x1+ux*n1R, sy=y1+uy*n1R;
+                const targetPadding = isDirected ? (n2R + 6) : n2R;
                 const ex=x2-ux*targetPadding, ey=y2-uy*targetPadding;
                 const mx2=(sx+ex)/2, my2=(sy+ey)/2;
                 const isActive = edge.active;
@@ -1055,6 +1058,7 @@ const CategoryPresentation = ({ category, onClose, onNavigate }) => {
                   <g key={i}>
                     <line x1={sx} y1={sy} x2={ex} y2={ey}
                       stroke={strokeColor} strokeWidth={isActive ? 2.5 : 1.5}
+                      strokeDasharray={isSweep ? "4 4" : undefined}
                       markerEnd={isDirected ? markerRef : undefined}
                     />
                     {edge.weight != null && (
@@ -1067,8 +1071,21 @@ const CategoryPresentation = ({ category, onClose, onNavigate }) => {
                   </g>
                 );
               })}
+              {nodes.filter(node => node.id.startsWith('sweep') && node.label).map(node => {
+                const cx = getX(node);
+                const cy = getY(node);
+                return (
+                  <text key={`label_${node.id}`} x={cx} y={cy - 10} textAnchor="middle" dominantBaseline="central"
+                    fontSize={isLarge ? '11px' : '9px'} fontWeight="bold" fill="#3574f0"
+                    fontFamily="var(--font-mono)"
+                    style={{ paintOrder: 'stroke', stroke: '#1e1f22', strokeWidth: '3' }}
+                  >
+                    {node.label}
+                  </text>
+                );
+              })}
             </svg>
-            {nodes.map(node => {
+            {nodes.filter(node => !node.id.startsWith('sweep')).map(node => {
               const isNodeActive = node.state === 'active' || node.active;
               const isVisited = node.state === 'visited';
               let bg = '#1e1f22', border = '#3c3f41', color = '#a9b7c6', shadow = 'none';

@@ -36,12 +36,93 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
 
   const [hoveredNode, setHoveredNode] = useState(null);
 
-  const [scale, setScale] = useState(1);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [scale, setScale] = useState(0.85);
+  const [position, setPosition] = useState({ x: 0, y: 1600 });
   const [isDragging, setIsDragging] = useState(false);
   const [hasMoved, setHasMoved] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const containerRef = useRef(null);
+
+  // QOL States
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [flashedNodeId, setFlashedNodeId] = useState(null);
+  const [activeDomainFilter, setActiveDomainFilter] = useState(null);
+  const [activeStatusFilter, setActiveStatusFilter] = useState(null);
+  const [isPanelCollapsed, setIsPanelCollapsed] = useState(false);
+  const flashTimeoutRef = useRef(null);
+
+  // Clean up timers on unmount
+  useEffect(() => {
+    return () => {
+      if (flashTimeoutRef.current) clearTimeout(flashTimeoutRef.current);
+    };
+  }, []);
+
+  const fitDomain = (domain) => {
+    if (!domain.bounds) return;
+    const container = containerRef.current;
+    const W = container ? container.clientWidth : 1200;
+    const H = container ? container.clientHeight : 800;
+    const { x, y, w, h } = domain.bounds;
+    
+    const targetScale = Math.max(0.4, Math.min((W - 140) / w, (H - 140) / h, 1.15));
+    const centerX = x + w / 2;
+    const centerY = y + h / 2;
+    
+    setScale(targetScale);
+    setPosition({
+      x: -centerX,
+      y: 2200 - centerY
+    });
+  };
+
+  const fitAll = () => {
+    const container = containerRef.current;
+    const W = container ? container.clientWidth : 1200;
+    const H = container ? container.clientHeight : 800;
+    const w = 4207 + 360;
+    const h = 3683 + 280;
+    const targetScale = Math.max(0.18, Math.min((W - 100) / w, (H - 100) / h, 0.95));
+    setScale(targetScale);
+    setPosition({
+      x: -285,
+      y: 2200 - 1841
+    });
+  };
+
+  const handleSearchChange = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    if (!query.trim()) {
+      setSearchResults([]);
+      return;
+    }
+    const cleanQuery = query.toLowerCase();
+    const matches = nodes.filter(n => {
+      const cleanLabel = n.label.toLowerCase();
+      const labelWords = n.label.replace(/_/g, ' ').replace(/\//g, ' ').toLowerCase();
+      return cleanLabel.includes(cleanQuery) || labelWords.includes(cleanQuery);
+    });
+    setSearchResults(matches.slice(0, 10));
+  };
+
+  const handleSelectNode = (node) => {
+    setPosition({
+      x: -node.x,
+      y: 2200 - node.y
+    });
+    setScale(1.0);
+    
+    setFlashedNodeId(node.id);
+    if (flashTimeoutRef.current) clearTimeout(flashTimeoutRef.current);
+    flashTimeoutRef.current = setTimeout(() => {
+      setFlashedNodeId(null);
+    }, 2500);
+    
+    setSearchQuery('');
+    setSearchResults([]);
+  };
 
   useEffect(() => {
     const handleWheelNative = (e) => {
@@ -62,6 +143,71 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
         el.removeEventListener('wheel', handleWheelNative);
       }
     };
+  }, []);
+
+  // Keyboard navigation shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (document.activeElement && (
+        document.activeElement.tagName === 'INPUT' || 
+        document.activeElement.tagName === 'TEXTAREA'
+      )) {
+        return;
+      }
+      
+      const moveStep = 60;
+      const zoomStep = 0.05;
+      
+      switch(e.key) {
+        case 'ArrowUp':
+        case 'w':
+        case 'W':
+          setPosition(p => ({ ...p, y: p.y + moveStep }));
+          break;
+        case 'ArrowDown':
+        case 's':
+        case 'S':
+          setPosition(p => ({ ...p, y: p.y - moveStep }));
+          break;
+        case 'ArrowLeft':
+        case 'a':
+        case 'A':
+          setPosition(p => ({ ...p, x: p.x + moveStep }));
+          break;
+        case 'ArrowRight':
+        case 'd':
+        case 'D':
+          setPosition(p => ({ ...p, x: p.x - moveStep }));
+          break;
+        case '+':
+        case '=':
+          setScale(s => Math.min(s + zoomStep, 4));
+          break;
+        case '-':
+        case '_':
+          setScale(s => Math.max(s - zoomStep, 0.1));
+          break;
+        case 'r':
+        case 'R':
+          setScale(0.85);
+          setPosition({ x: 0, y: 1600 });
+          break;
+        case 'Escape':
+          setScale(0.85);
+          setPosition({ x: 0, y: 1600 });
+          break;
+        case '/':
+          e.preventDefault();
+          const searchInput = document.getElementById('syllabus-search-input');
+          if (searchInput) searchInput.focus();
+          break;
+        default:
+          break;
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   const handleMouseDown = (e) => {
@@ -428,10 +574,22 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
             const domain1 = getNodeDomain(n1.id);
             const flowColor = domain1 ? domain1.borderColor : 'var(--accent-primary)';
 
+            // Dynamic filter opacities
+            const n1Domain = getNodeDomain(n1.id);
+            const n2Domain = getNodeDomain(n2.id);
+            const n1Visible = (!activeDomainFilter || (n1Domain && n1Domain.id === activeDomainFilter)) && 
+                              (!activeStatusFilter || n1.status === activeStatusFilter);
+            const n2Visible = (!activeDomainFilter || (n2Domain && n2Domain.id === activeDomainFilter)) && 
+                              (!activeStatusFilter || n2.status === activeStatusFilter);
+            const isEdgeVisible = n1Visible && n2Visible;
+            
+            const edgeBaseOpacity = !hoveredNode ? (bothCompleted ? 1 : 0.85) : ((isRelated || bothCompleted) ? 1 : 0.35);
+            const finalEdgeOpacity = isEdgeVisible ? edgeBaseOpacity : 0.05;
+
             return (
               <g key={i}>
                 {/* Glow path behind the edge */}
-                {(bothCompleted || isRelated) && (
+                {(bothCompleted || isRelated) && isEdgeVisible && (
                   <path
                     d={pathData}
                     fill="none"
@@ -452,11 +610,11 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                     transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                     strokeDasharray: bothCompleted ? '12 12' : (isEdgeToParent ? '8 8' : (isEdgeToChild ? 'none' : '6 6')),
                     animation: bothCompleted ? 'dataFlow 1.2s linear infinite' : (isEdgeToParent ? 'dataFlow 0.8s linear infinite' : 'none'),
-                    opacity: !hoveredNode ? (bothCompleted ? 1 : 0.85) : ((isRelated || bothCompleted) ? 1 : 0.35)
+                    opacity: finalEdgeOpacity
                   }}
                 />
                 {/* Dynamic Moving Data Pulse overlay */}
-                {(bothCompleted || isRelated || n1.status === 'completed') && n2.status !== 'locked' && (
+                {(bothCompleted || isRelated || n1.status === 'completed') && n2.status !== 'locked' && isEdgeVisible && (
                   <path
                     d={pathData}
                     fill="none"
@@ -519,9 +677,16 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
             shadow = '0 4px 12px rgba(0, 0, 0, 0.8)';
           }
 
+          // Interactive domain & status filter visibility
+          const isNodeVisible = (!activeDomainFilter || (domain && domain.id === activeDomainFilter)) &&
+                                (!activeStatusFilter || node.status === activeStatusFilter);
+          const nodeBaseOpacity = node.status === 'locked' ? 0.6 : 1;
+          const finalNodeOpacity = (flashedNodeId === node.id) ? 1 : (isNodeVisible ? nodeBaseOpacity : 0.15);
+
           return (
             <div 
               key={node.id}
+              className={flashedNodeId === node.id ? 'searched-flash' : ''}
               onMouseEnter={() => setHoveredNode(node.id)}
               onMouseLeave={() => setHoveredNode(null)}
               onClick={(e) => {
@@ -546,8 +711,8 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                 cursor: node.status === 'locked' ? 'default' : 'pointer',
                 zIndex: isHovered ? 10 : (isParentOfHovered || isChildOfHovered ? 8 : (node.status === 'completed' ? 5 : 1)),
                 boxShadow: shadow,
-                transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-                opacity: node.status === 'locked' ? 0.6 : 1,
+                transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease',
+                opacity: finalNodeOpacity,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -762,6 +927,265 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
         </div>
       </div>
 
+      {/* Syllabus Control Panel */}
+      <div style={{
+        position: 'absolute',
+        top: '24px',
+        right: '24px',
+        zIndex: 150,
+        width: isPanelCollapsed ? '44px' : '320px',
+        height: isPanelCollapsed ? '44px' : 'auto',
+        maxHeight: isPanelCollapsed ? '44px' : 'calc(100% - 48px)',
+        background: '#0a0b10',
+        border: '1px solid rgba(255, 255, 255, 0.08)',
+        borderRadius: '14px',
+        boxShadow: '0 12px 35px rgba(0,0,0,0.8)',
+        display: 'flex',
+        flexDirection: 'column',
+        overflow: isPanelCollapsed ? 'hidden' : 'visible',
+        transition: 'all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)',
+        padding: isPanelCollapsed ? '0' : '16px',
+        boxSizing: 'border-box'
+      }}>
+        {isPanelCollapsed ? (
+          <button
+            onClick={() => setIsPanelCollapsed(false)}
+            style={{
+              width: '100%',
+              height: '100%',
+              background: 'transparent',
+              border: 'none',
+              color: '#a5b4fc',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              outline: 'none'
+            }}
+            title="Deschide panou control"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%', height: '100%', position: 'relative' }}>
+            {/* Header */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '10px' }}>
+              <span style={{ fontSize: '13px', fontWeight: '800', fontFamily: 'var(--font-mono)', letterSpacing: '1px', color: '#a5b4fc', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span>⚙️</span> CONTROL PANEL
+              </span>
+              <button
+                onClick={() => setIsPanelCollapsed(true)}
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  color: 'rgba(255,255,255,0.4)',
+                  cursor: 'pointer',
+                  fontSize: '16px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  padding: '2px'
+                }}
+                title="Ascunde"
+              >
+                ✕
+              </button>
+            </div>
+            
+            {/* Search Section */}
+            <div style={{ position: 'relative' }}>
+              <input
+                id="syllabus-search-input"
+                type="text"
+                value={searchQuery}
+                onChange={handleSearchChange}
+                placeholder="Caută algoritm (ex: Dijkstra)..."
+                style={{
+                  width: '100%',
+                  background: '#050508',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  borderRadius: '8px',
+                  padding: '8px 12px',
+                  color: '#fff',
+                  fontSize: '13px',
+                  fontFamily: 'var(--font-sans)',
+                  outline: 'none',
+                  boxSizing: 'border-box'
+                }}
+              />
+              {/* Autocomplete Suggestions */}
+              {searchQuery.trim() !== '' && (
+                <div style={{
+                  position: 'absolute',
+                  top: '100%',
+                  left: 0,
+                  right: 0,
+                  background: '#0a0b10',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  borderRadius: '8px',
+                  marginTop: '4px',
+                  zIndex: 200,
+                  boxShadow: '0 10px 25px rgba(0,0,0,0.9)',
+                  maxHeight: '250px',
+                  overflowY: 'auto'
+                }}>
+                  {searchResults.length > 0 ? (
+                    searchResults.map(node => {
+                      const parts = node.label.replace(/_/g, ' ').split('/');
+                      const leaf = parts[parts.length - 1];
+                      const path = parts.slice(0, parts.length - 1).join(' / ');
+                      return (
+                        <div
+                          key={node.id}
+                          onClick={() => handleSelectNode(node)}
+                          style={{
+                            padding: '8px 12px',
+                            cursor: 'pointer',
+                            borderBottom: '1px solid rgba(255,255,255,0.03)'
+                          }}
+                          className="search-item"
+                        >
+                          <div style={{ fontSize: '13px', fontWeight: 'bold', color: '#fff' }}>{leaf}</div>
+                          <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase' }}>{path}</div>
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <div style={{ padding: '12px', fontSize: '12px', color: 'rgba(255,255,255,0.4)', textAlign: 'center' }}>
+                      Niciun rezultat găsit
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* Status Filter Section */}
+            <div>
+              <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px', fontWeight: '700' }}>
+                Filtrare Status
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px' }}>
+                {[
+                  { id: null, label: 'Toate', color: 'rgba(255,255,255,0.06)', activeColor: 'rgba(255,255,255,0.15)' },
+                  { id: 'completed', label: 'Finalizate', color: 'rgba(16, 185, 129, 0.05)', activeColor: 'rgba(16, 185, 129, 0.25)', borderColor: 'rgba(16, 185, 129, 0.4)' },
+                  { id: 'in-progress', label: 'În lucru', color: 'rgba(139, 92, 246, 0.05)', activeColor: 'rgba(139, 92, 246, 0.25)', borderColor: 'rgba(139, 92, 246, 0.4)' },
+                  { id: 'locked', label: 'Blocate', color: 'rgba(255,255,255,0.02)', activeColor: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.15)' }
+                ].map(opt => {
+                  const isActive = activeStatusFilter === opt.id;
+                  return (
+                    <button
+                      key={opt.label}
+                      onClick={() => setActiveStatusFilter(opt.id)}
+                      style={{
+                        background: isActive ? opt.activeColor : opt.color,
+                        border: `1px solid ${isActive ? (opt.borderColor || '#a5b4fc') : 'rgba(255,255,255,0.06)'}`,
+                        borderRadius: '6px',
+                        padding: '6px 8px',
+                        color: isActive ? '#fff' : 'rgba(255,255,255,0.7)',
+                        fontSize: '11px',
+                        fontWeight: isActive ? '800' : 'normal',
+                        cursor: 'pointer',
+                        transition: 'all 0.15s ease'
+                      }}
+                    >
+                      {opt.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Legend & Stats Section */}
+            <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '11px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px', fontWeight: '700' }}>
+                <span>Legendă domenii & Statistici</span>
+                <span style={{ fontSize: '10px', color: '#10b981' }}>
+                  {nodes.filter(n => n.status === 'completed').length} / {nodes.length} OK
+                </span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', overflowY: 'auto', maxHeight: '200px', paddingRight: '4px' }}>
+                {domainsWithBounds.map(d => {
+                  if (!d.bounds) return null;
+                  const domainNodes = nodes.filter(n => d.nodes.includes(n.id));
+                  const completedCount = domainNodes.filter(n => n.status === 'completed').length;
+                  const totalCount = domainNodes.length;
+                  const isHoveredDomain = activeDomainFilter === d.id;
+                  
+                  return (
+                    <div
+                      key={d.id}
+                      onMouseEnter={() => setActiveDomainFilter(d.id)}
+                      onMouseLeave={() => setActiveDomainFilter(null)}
+                      onClick={() => fitDomain(d)}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        padding: '6px 10px',
+                        borderRadius: '6px',
+                        background: isHoveredDomain ? 'rgba(255,255,255,0.03)' : 'transparent',
+                        border: `1px solid ${isHoveredDomain ? d.borderColor : 'transparent'}`,
+                        cursor: 'pointer',
+                        transition: 'all 0.15s ease'
+                      }}
+                    >
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <span style={{ fontSize: '14px' }}>{d.icon}</span>
+                        <span style={{ fontSize: '12px', color: isHoveredDomain ? '#fff' : 'rgba(255,255,255,0.85)', fontWeight: isHoveredDomain ? 'bold' : 'normal' }}>
+                          {d.label}
+                        </span>
+                      </div>
+                      <span style={{ fontSize: '10px', color: d.borderColor, fontWeight: 'bold', fontFamily: 'var(--font-mono)' }}>
+                        {completedCount}/{totalCount}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Quick Actions */}
+            <div style={{ display: 'flex', gap: '6px', borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '12px' }}>
+              <button
+                onClick={() => { setScale(0.85); setPosition({ x: 0, y: 1600 }); }}
+                style={{
+                  flex: 1,
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  borderRadius: '6px',
+                  padding: '8px',
+                  color: '#fff',
+                  fontSize: '11px',
+                  fontWeight: 'bold',
+                  cursor: 'pointer'
+                }}
+              >
+                Alinează Start
+              </button>
+              <button
+                onClick={fitAll}
+                style={{
+                  flex: 1,
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  borderRadius: '6px',
+                  padding: '8px',
+                  color: '#fff',
+                  fontSize: '11px',
+                  fontWeight: 'bold',
+                  cursor: 'pointer'
+                }}
+              >
+                Privire de ansamblu
+              </button>
+            </div>
+            
+          </div>
+        )}
+      </div>
+
       <style>
         {`
           @keyframes fadeIn {
@@ -812,7 +1236,6 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
             100% { 
               box-shadow: 0 4px 12px var(--glow-color);
               transform: translate(-50%, -50%) scale(1.02) translateY(-2px);
-              border-color: var(--glow-color);
             }
           }
           @keyframes cyberPulse {
@@ -827,6 +1250,40 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
           @keyframes radarSweep {
             0% { transform: translateY(0); }
             100% { transform: translateY(167px); }
+          }
+          @keyframes searchFlashPulse {
+            0% {
+              border-color: #fff;
+              box-shadow: 0 0 8px #fff, 0 0 25px var(--glow-color), inset 0 0 10px var(--glow-color);
+              transform: translate(-50%, -50%) scale(1.15);
+            }
+            25% {
+              border-color: var(--accent-tertiary);
+              box-shadow: 0 0 25px var(--accent-tertiary), 0 0 50px var(--accent-tertiary), inset 0 0 20px var(--accent-tertiary);
+              transform: translate(-50%, -50%) scale(1.25);
+            }
+            50% {
+              border-color: #fff;
+              box-shadow: 0 0 8px #fff, 0 0 25px var(--glow-color), inset 0 0 10px var(--glow-color);
+              transform: translate(-50%, -50%) scale(1.15);
+            }
+            75% {
+              border-color: var(--accent-tertiary);
+              box-shadow: 0 0 25px var(--accent-tertiary), 0 0 50px var(--accent-tertiary), inset 0 0 20px var(--accent-tertiary);
+              transform: translate(-50%, -50%) scale(1.25);
+            }
+            100% {
+              border-color: var(--glow-color);
+              box-shadow: 0 10px 30px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+              transform: translate(-50%, -50%) scale(1);
+            }
+          }
+          .searched-flash {
+            animation: searchFlashPulse 2.5s ease-in-out forwards !important;
+            z-index: 1000 !important;
+          }
+          .search-item:hover {
+            background: rgba(99, 102, 241, 0.15) !important;
           }
         `}
       </style>

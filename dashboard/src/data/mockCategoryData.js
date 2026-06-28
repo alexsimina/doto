@@ -94,6 +94,18 @@ import { data as data_Graphs_Shortest_Path_Dial } from './categories/Graph_Theor
 // New Core Algorithms imports
 import { data as data_Alg_Majority_Element } from './categories/Core_Algorithms/Alg/Majority_Element.js';
 
+// New Tree Algorithms imports
+import { data as data_Trees_Decompositions } from './categories/Tree_Algorithms/Trees/Decompositions.js';
+import { data as data_Trees_Euler_Tour } from './categories/Tree_Algorithms/Trees/Euler_Tour.js';
+import { data as data_Trees_Decompositions_HLD } from './categories/Tree_Algorithms/Trees/Decompositions/HLD.js';
+import { data as data_Trees_Decompositions_Centroid } from './categories/Tree_Algorithms/Trees/Decompositions/Centroid.js';
+
+// Phase 2 imports
+import { data as data_Dynamic_Programming_MCM } from './categories/Dynamic_Programming/Dynamic_Programming/MCM.js';
+import { data as data_Graphs_Shortest_Path_SPFA } from './categories/Graph_Theory/Graphs/Shortest_Path/SPFA.js';
+import { data as data_Strings_Z_Algorithm } from './categories/String_Processing/Strings/Z_Algorithm.js';
+import { data as data_Trees_Segment_Trees_Lazy } from './categories/Data_Structures/Trees/Segment_Trees/Lazy.js';
+
 const mockCategoryData = {
   "Arrays": data_Arrays,
   "Alg/Divide_Conquer": data_Alg_Divide_Conquer,
@@ -192,6 +204,18 @@ const mockCategoryData = {
 
   // New Core Algorithms Mappings
   "Alg/Majority_Element": data_Alg_Majority_Element,
+
+  // New Tree Algorithms Mappings
+  "Trees/Decompositions": data_Trees_Decompositions,
+  "Trees/Euler_Tour": data_Trees_Euler_Tour,
+  "Trees/Decompositions/HLD": data_Trees_Decompositions_HLD,
+  "Trees/Decompositions/Centroid": data_Trees_Decompositions_Centroid,
+
+  // Phase 2 Mappings
+  "Dynamic_Programming/MCM": data_Dynamic_Programming_MCM,
+  "Graphs/Shortest_Path/SPFA": data_Graphs_Shortest_Path_SPFA,
+  "Strings/Z_Algorithm": data_Strings_Z_Algorithm,
+  "Trees/Segment_Trees/Lazy_Propagation": data_Trees_Segment_Trees_Lazy,
 };
 
 export default mockCategoryData;

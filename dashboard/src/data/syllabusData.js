@@ -16,11 +16,12 @@ export const getCategoryIcon = (label) => {
 export const domainGroups = [
   { id: 'math', label: 'Math & Geometry', color: 'rgba(99, 102, 241, 0.03)', borderColor: 'rgba(99, 102, 241, 0.5)', icon: '🧮', nodes: ['math1', 'comb', 'geom', 'game_theory', 'linalg', 'advmath', 'math_fast_expo', 'math_bigint', 'math_phi', 'math_pie', 'math_mobius', 'math_matrix_expo', 'geom_sweepline', 'geom_convexhull'] },
   { id: 'fund', label: 'Fundamentals', color: 'rgba(139, 92, 246, 0.03)', borderColor: 'rgba(139, 92, 246, 0.5)', icon: '📚', nodes: ['ds_basics', 'arr', 'sort', 'twoptr', 'fund_digits', 'fund_stream', 'fund_bases', 'fund_sim', 'fund_funcs', 'fund_structs', 'fund_stl'] },
-  { id: 'str', label: 'String Processing', color: 'rgba(236, 72, 153, 0.03)', borderColor: 'rgba(236, 72, 153, 0.5)', icon: '🔤', nodes: ['str', 'trie', 'kmp', 'aho', 'suffix'] },
-  { id: 'dp', label: 'Dynamic Programming', color: 'rgba(245, 158, 11, 0.03)', borderColor: 'rgba(245, 158, 11, 0.5)', icon: '🧠', nodes: ['dp', 'dp_knapsack', 'dp_lcs', 'dp_lis', 'dp_trees', 'dp_exp', 'cht'] },
+  { id: 'str', label: 'String Processing', color: 'rgba(236, 72, 153, 0.03)', borderColor: 'rgba(236, 72, 153, 0.5)', icon: '🔤', nodes: ['str', 'trie', 'kmp', 'aho', 'suffix', 'str_z'] },
+  { id: 'dp', label: 'Dynamic Programming', color: 'rgba(245, 158, 11, 0.03)', borderColor: 'rgba(245, 158, 11, 0.5)', icon: '🧠', nodes: ['dp', 'dp_knapsack', 'dp_lcs', 'dp_lis', 'dp_trees', 'dp_exp', 'cht', 'dp_mcm'] },
   { id: 'alg', label: 'Core Algorithms', color: 'rgba(16, 185, 129, 0.03)', borderColor: 'rgba(16, 185, 129, 0.5)', icon: '⚡', nodes: ['bkt', 'greedy', 'dq', 'dq_merge', 'dq_quick', 'dq_bin', 'dq_z', 'meetinmid', 'sqrtd', 'mo', 'alg_majority'] },
-  { id: 'ds', label: 'Data Structures', color: 'rgba(14, 165, 233, 0.03)', borderColor: 'rgba(14, 165, 233, 0.5)', icon: '🗃️', nodes: ['bits', 'diffarr', 'rmq', 'dsu', 'aib', 'seg', 'ds_frequency', 'ds_stack', 'ds_queue_deque', 'ds_priority_queue'] },
-  { id: 'graph', label: 'Graph Theory', color: 'rgba(244, 63, 94, 0.03)', borderColor: 'rgba(244, 63, 94, 0.5)', icon: '🕸️', nodes: ['graph_theory_concepts', 'graph_basics', 'dfs', 'bfs', 'topsort', 'scc', 'eulerhamilton', 'mst', 'sp', 'maxflow', 'lca', 'sp_dijkstra', 'sp_bf', 'sp_fw', 'mst_kruskal', 'mst_prim', 'scc_kosaraju', 'scc_tarjan', 'maxflow_ek', 'maxflow_dinic', 'lca_bin', 'lca_rmq', 'graph_lee', 'graph_fill', 'graph_diameter', 'graph_dial'] }
+  { id: 'ds', label: 'Data Structures', color: 'rgba(14, 165, 233, 0.03)', borderColor: 'rgba(14, 165, 233, 0.5)', icon: '🗃️', nodes: ['bits', 'diffarr', 'rmq', 'dsu', 'aib', 'seg', 'ds_frequency', 'ds_stack', 'ds_queue_deque', 'ds_priority_queue', 'seg_lazy'] },
+  { id: 'graph', label: 'Graph Theory', color: 'rgba(244, 63, 94, 0.03)', borderColor: 'rgba(244, 63, 94, 0.5)', icon: '🕸️', nodes: ['graph_theory_concepts', 'graph_basics', 'dfs', 'bfs', 'topsort', 'scc', 'eulerhamilton', 'mst', 'sp', 'maxflow', 'lca', 'sp_dijkstra', 'sp_bf', 'sp_fw', 'mst_kruskal', 'mst_prim', 'scc_kosaraju', 'scc_tarjan', 'maxflow_ek', 'maxflow_dinic', 'lca_bin', 'lca_rmq', 'graph_lee', 'graph_fill', 'graph_diameter', 'graph_dial', 'sp_spfa'] },
+  { id: 'tree_alg', label: 'Tree Algorithms', color: 'rgba(20, 184, 166, 0.03)', borderColor: 'rgba(20, 184, 166, 0.5)', icon: '🌳', nodes: ['tree_euler', 'tree_decomp', 'tree_hld', 'tree_centroid'] }
 ];
 
 export const getNodeDomain = (nodeId) => {
@@ -134,7 +135,19 @@ export const rawNodes = [
     { id: 'graph_dial', label: 'Graphs/Shortest_Path/Dial', x: 1200, y: 3520, status: null },
 
     // New Core Algorithms Nodes
-    { id: 'alg_majority', label: 'Alg/Majority_Element', x: 0, y: 960, status: null }
+    { id: 'alg_majority', label: 'Alg/Majority_Element', x: 0, y: 960, status: null },
+
+    // New Tree Algorithms Nodes
+    { id: 'tree_euler', label: 'Trees/Euler_Tour', x: -800, y: 2600, status: null },
+    { id: 'tree_decomp', label: 'Trees/Decompositions', x: -400, y: 2600, status: null },
+    { id: 'tree_hld', label: 'Trees/Decompositions/HLD', x: -600, y: 2900, status: null },
+    { id: 'tree_centroid', label: 'Trees/Decompositions/Centroid', x: -200, y: 2900, status: null },
+
+    // Phase 2 Nodes
+    { id: 'dp_mcm', label: 'Dynamic_Programming/MCM', x: -1458, y: 2020, status: null },
+    { id: 'sp_spfa', label: 'Graphs/Shortest_Path/SPFA', x: 1417, y: 3520, status: null },
+    { id: 'str_z', label: 'Strings/Z_Algorithm', x: 1741, y: 486, status: null },
+    { id: 'seg_lazy', label: 'Trees/Segment_Trees/Lazy_Propagation', x: 2156, y: 1850, status: null }
   ];
 
 export const rawEdges = [
@@ -253,5 +266,17 @@ export const rawEdges = [
     { from: 'dfs', to: 'graph_diameter' },
     { from: 'sp', to: 'graph_dial' },
     { from: 'arr', to: 'alg_majority' },
-    { from: 'alg_majority', to: 'greedy' }
+    { from: 'alg_majority', to: 'greedy' },
+
+    // Tree Algorithms Edges
+    { from: 'dfs', to: 'tree_euler' },
+    { from: 'dfs', to: 'tree_decomp' },
+    { from: 'tree_decomp', to: 'tree_hld' },
+    { from: 'tree_decomp', to: 'tree_centroid' },
+
+    // Phase 2 Edges
+    { from: 'dp', to: 'dp_mcm' },
+    { from: 'sp', to: 'sp_spfa' },
+    { from: 'str', to: 'str_z' },
+    { from: 'seg', to: 'seg_lazy' }
   ];

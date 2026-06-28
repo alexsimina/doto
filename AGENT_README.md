@@ -285,6 +285,7 @@ Below is the list of all domains (sections) and topics in the syllabus tree, map
 * **Strings/KMP** (Node ID: `kmp`) — [KMP.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/String_Processing/Strings/KMP.js)
 * **Strings/Aho_Corasick** (Node ID: `aho`) — [Aho_Corasick.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/String_Processing/Strings/Aho_Corasick.js)
 * **Strings/Suffix_Structures** (Node ID: `suffix`) — [Suffix_Structures.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/String_Processing/Strings/Suffix_Structures.js)
+* **Strings/Z_Algorithm** (Node ID: `str_z`) — [Z_Algorithm.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/String_Processing/Strings/Z_Algorithm.js)
 
 ### 4. Dynamic Programming (ID: `dp` | 🧠)
 * **Dynamic_Programming** (Node ID: `dp`) — [Dynamic_Programming.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Dynamic_Programming/Dynamic_Programming.js)
@@ -294,6 +295,7 @@ Below is the list of all domains (sections) and topics in the syllabus tree, map
 * **Advanced_DP/Trees_Graphs** (Node ID: `dp_trees`) — [Trees_Graphs.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Dynamic_Programming/Advanced_DP/Trees_Graphs.js)
 * **Advanced_DP/Exponential_States** (Node ID: `dp_exp`) — [Exponential_States.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Dynamic_Programming/Advanced_DP/Exponential_States.js)
 * **Advanced_DP/CHT** (Node ID: `cht`) — [CHT.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Dynamic_Programming/Advanced_DP/CHT.js)
+* **Dynamic_Programming/MCM** (Node ID: `dp_mcm`) — [MCM.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Dynamic_Programming/Dynamic_Programming/MCM.js)
 
 ### 5. Core Algorithms (ID: `alg` | ⚡)
 * **Alg/Backtracking** (Node ID: `bkt`) — [Backtracking.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Core_Algorithms/Alg/Backtracking.js)
@@ -315,6 +317,7 @@ Below is the list of all domains (sections) and topics in the syllabus tree, map
 * **Data_Structures/Disjoint_Sets** (Node ID: `dsu`) — [Disjoint_Sets.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Data_Structures/Data_Structures/Disjoint_Sets.js)
 * **Trees/Fenwick_Tree** (Node ID: `aib`) — [Fenwick_Tree.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Data_Structures/Trees/Fenwick_Tree.js)
 * **Trees/Segment_Trees** (Node ID: `seg`) — [Segment_Trees.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Data_Structures/Trees/Segment_Trees.js)
+* **Trees/Segment_Trees/Lazy_Propagation** (Node ID: `seg_lazy`) — [Lazy.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Data_Structures/Trees/Segment_Trees/Lazy.js)
 * **Data_Structures/Frequency_Vectors** (Node ID: `ds_frequency`) — [Frequency_Vectors.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Data_Structures/Data_Structures/Frequency_Vectors.js)
 * **Data_Structures/Stack** (Node ID: `ds_stack`) — [Stack.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Data_Structures/Data_Structures/Stack.js)
 * **Data_Structures/Queue_Deque** (Node ID: `ds_queue_deque`) — [Queue_Deque.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Data_Structures/Data_Structures/Queue_Deque.js)
@@ -347,6 +350,13 @@ Below is the list of all domains (sections) and topics in the syllabus tree, map
 * **Graphs/Flood_Fill** (Node ID: `graph_fill`) — [Flood_Fill.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Flood_Fill.js)
 * **Graphs/Tree_Diameter** (Node ID: `graph_diameter`) — [Tree_Diameter.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Tree_Diameter.js)
 * **Graphs/Shortest_Path/Dial** (Node ID: `graph_dial`) — [Dial.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Shortest_Path/Dial.js)
+* **Graphs/Shortest_Path/SPFA** (Node ID: `sp_spfa`) — [SPFA.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Shortest_Path/SPFA.js)
+
+### 8. Tree Algorithms (ID: `tree_alg` | 🌳)
+* **Trees/Euler_Tour** (Node ID: `tree_euler`) — [Euler_Tour.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Tree_Algorithms/Trees/Euler_Tour.js)
+* **Trees/Decompositions** (Node ID: `tree_decomp`) — [Decompositions.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Tree_Algorithms/Trees/Decompositions.js)
+* **Trees/Decompositions/HLD** (Node ID: `tree_hld`) — [HLD.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Tree_Algorithms/Trees/Decompositions/HLD.js)
+* **Trees/Decompositions/Centroid** (Node ID: `tree_centroid`) — [Centroid.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Tree_Algorithms/Trees/Decompositions/Centroid.js)
 
 ## ⚠️ C++ Line Numbering & Debugger Offsets (CRITICAL)
 

@@ -648,6 +648,145 @@ int main() {
   assertTraceConcepts(result, ['line_number']);
 };
 
+exports.test_f3_euler_tour_explanation = async () => {
+  const code = `
+// euler tour
+#include <iostream>
+#include <vector>
+using namespace std;
+vector<int> adj[6];
+vector<int> euler;
+void dfs(int u, int p) {
+    euler.push_back(u);
+    for (int v : adj[u]) {
+        if (v != p) {
+            dfs(v, u);
+            euler.push_back(u);
+        }
+    }
+}
+int main() {
+    adj[1] = {2, 3}; adj[2] = {1, 4, 5}; adj[3] = {1};
+    dfs(1, 0);
+    return 0;
+}`;
+  const result = await sendCode(code);
+  assert.ok(result.explanation, 'Expected explanation field');
+  assert.match(result.explanation, /euler/i);
+  assertTraceConcepts(result, ['euler']);
+};
+
+exports.test_f3_hld_explanation = async () => {
+  const code = `
+// hld
+#include <iostream>
+#include <vector>
+using namespace std;
+int sz[10];
+int heavy[10];
+void dfs_sz(int v, int p) {
+    sz[v] = 1;
+    for (int u : adj[v]) {
+        if (u != p) {
+            dfs_sz(u, v);
+            sz[v] += sz[u];
+            if (sz[u] > sz[heavy[v]]) {
+                heavy[v] = u;
+            }
+        }
+    }
+}
+int main() {
+    return 0;
+}`;
+  const result = await sendCode(code);
+  assert.ok(result.explanation, 'Expected explanation field');
+  assert.match(result.explanation, /hld/i);
+  assertTraceConcepts(result, ['heavy']);
+};
+
+exports.test_f3_centroid_explanation = async () => {
+  const code = `
+// centroid
+#include <iostream>
+#include <vector>
+using namespace std;
+bool removed[10];
+int main() {
+    return 0;
+}`;
+  const result = await sendCode(code);
+  assert.ok(result.explanation, 'Expected explanation field');
+  assert.match(result.explanation, /centroid/i);
+  assertTraceConcepts(result, ['removed']);
+};
+
+exports.test_f3_mcm_explanation = async () => {
+  const code = `
+// mcm
+#include <iostream>
+using namespace std;
+int dp[10][10];
+int main() {
+    int n = 4;
+    return 0;
+}`;
+  const result = await sendCode(code);
+  assert.ok(result.explanation, 'Expected explanation field');
+  assert.match(result.explanation, /mcm/i);
+  assertTraceConcepts(result, ['dp']);
+};
+
+exports.test_f3_spfa_explanation = async () => {
+  const code = `
+// spfa
+#include <iostream>
+#include <queue>
+using namespace std;
+int main() {
+    queue<int> q;
+    bool in_queue[10];
+    return 0;
+}`;
+  const result = await sendCode(code);
+  assert.ok(result.explanation, 'Expected explanation field');
+  assert.match(result.explanation, /spfa/i);
+  assertTraceConcepts(result, ['queue']);
+};
+
+exports.test_f3_z_algorithm_explanation = async () => {
+  const code = `
+// z-algorithm
+#include <iostream>
+#include <vector>
+using namespace std;
+int main() {
+    vector<int> z(10, 0);
+    z[0] = 0;
+    return 0;
+}`;
+  const result = await sendCode(code);
+  assert.ok(result.explanation, 'Expected explanation field');
+  assert.match(result.explanation, /z-algorithm/i);
+  assertTraceConcepts(result, ['z[']);
+};
+
+exports.test_f3_lazy_explanation = async () => {
+  const code = `
+// lazy propagation
+#include <iostream>
+using namespace std;
+int tree[40];
+int lazy[40];
+int main() {
+    return 0;
+}`;
+  const result = await sendCode(code);
+  assert.ok(result.explanation, 'Expected explanation field');
+  assert.match(result.explanation, /lazy/i);
+  assertTraceConcepts(result, ['lazy']);
+};
+
 exports.test_katex_mathml_hidden_in_css = async () => {
   const cssPath = path.join(__dirname, '../../dashboard/src/index.css');
   assert.ok(fs.existsSync(cssPath), 'index.css should exist at dashboard/src/index.css');

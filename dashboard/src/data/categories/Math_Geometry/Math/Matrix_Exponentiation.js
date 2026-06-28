@@ -66,142 +66,794 @@ int main() {
   {
     "line": 33,
     "text": "Definim matricea de tranziție T pentru șirul lui Fibonacci: T = {{1, 1}, {1, 0}}.",
-    "blocksVisual": []
+    "blocksVisual": [],
+    "matrix": {
+      "title": "Matricea de tranziție T (Fibonacci)",
+      "headers": ["", "Col 0", "Col 1"],
+      "rows": [
+        ["R0", "1", "1"],
+        ["R1", "1", "0"]
+      ]
+    }
   },
   {
     "line": 34,
     "text": "Apelăm funcția power pentru a ridica matricea T la puterea 5, folosind modulul 1000000007.",
-    "blocksVisual": []
+    "blocksVisual": [],
+    "matrix": {
+      "title": "Matricea de tranziție T (Fibonacci)",
+      "headers": ["", "Col 0", "Col 1"],
+      "rows": [
+        ["R0", "1", "1"],
+        ["R1", "1", "0"]
+      ]
+    }
   },
   {
     "line": 20,
     "text": "Intrăm în corpul funcției power cu exponentul p = 5.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Exponentul p în binar (101_2)",
+        "groups": [
+          [
+            { "val": "1", "active": false },
+            { "val": "0", "active": false },
+            { "val": "1", "active": true }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            { "val": "p = 5", "active": true },
+            { "val": "mod = 10^9 + 7", "active": false }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Matricea A (Baza)",
+      "headers": ["", "A[i][0]", "A[i][1]"],
+      "rows": [
+        ["i = 0", "1", "1"],
+        ["i = 1", "1", "0"]
+      ]
+    }
   },
   {
     "line": 21,
     "text": "Inițializăm matricea res cu Matricea Identitate {{1, 0}, {0, 1}}, care servește drept element neutru la înmulțire.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Exponentul p în binar (101_2)",
+        "groups": [
+          [
+            { "val": "1", "active": false },
+            { "val": "0", "active": false },
+            { "val": "1", "active": true }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            { "val": "p = 5", "active": true },
+            { "val": "res = Identitate", "active": true }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Rezultatul res (Identitate) | Matricea A",
+      "headers": ["", "res[i][0]", "res[i][1]", " ", "A[i][0]", "A[i][1]"],
+      "rows": [
+        ["i = 0", "1", "0", "", "1", "1"],
+        ["i = 1", "0", "1", "", "1", "0"]
+      ]
+    }
   },
   {
     "line": 22,
     "text": "Verificăm condiția buclei while (p > 0). Deoarece p = 5 > 0, condiția este adevărată, deci continuăm.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Exponentul p în binar (101_2)",
+        "groups": [
+          [
+            { "val": "1", "active": false },
+            { "val": "0", "active": false },
+            { "val": "1", "active": true }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            { "val": "p = 5 > 0 (Adevărat)", "active": true }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Rezultatul res | Matricea A",
+      "headers": ["", "res[i][0]", "res[i][1]", " ", "A[i][0]", "A[i][1]"],
+      "rows": [
+        ["i = 0", "1", "0", "", "1", "1"],
+        ["i = 1", "0", "1", "", "1", "0"]
+      ]
+    }
   },
   {
     "line": 23,
     "text": "Verificăm dacă exponentul curent p este impar: p % 2 == 1. Deoarece 5 % 2 = 1, condiția este adevărată.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Exponentul p în binar (101_2)",
+        "groups": [
+          [
+            { "val": "1", "active": false },
+            { "val": "0", "active": false },
+            { "val": "1", "active": true, "sorted": true }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            { "val": "p % 2 == 1 (Adevărat)", "active": true }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Rezultatul res | Matricea A",
+      "headers": ["", "res[i][0]", "res[i][1]", " ", "A[i][0]", "A[i][1]"],
+      "rows": [
+        ["i = 0", "1", "0", "", "1", "1"],
+        ["i = 1", "0", "1", "", "1", "0"]
+      ]
+    }
   },
   {
     "line": 24,
     "text": "Apelăm funcția multiply pentru a înmulți res curent cu matricea de putere A.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Exponentul p în binar (101_2)",
+        "groups": [
+          [
+            { "val": "1", "active": false },
+            { "val": "0", "active": false },
+            { "val": "1", "active": true, "sorted": true }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            { "val": "Înmulțire", "active": true }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Înmulțire: res = res * A",
+      "headers": ["", "res[i][0]", "res[i][1]", " ", "A[i][0]", "A[i][1]"],
+      "activeCells": [{"r": 0, "c": 1}, {"r": 0, "c": 2}, {"r": 1, "c": 1}, {"r": 1, "c": 2}],
+      "highlightCells": [{"r": 0, "c": 4}, {"r": 0, "c": 5}, {"r": 1, "c": 4}, {"r": 1, "c": 5}],
+      "rows": [
+        ["i = 0", "1", "0", "", "1", "1"],
+        ["i = 1", "0", "1", "", "1", "0"]
+      ]
+    }
   },
   {
     "line": 24,
     "text": "Matricea res a fost actualizată în urma înmulțirii.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Exponentul p în binar (101_2)",
+        "groups": [
+          [
+            { "val": "1", "active": false },
+            { "val": "0", "active": false },
+            { "val": "1", "active": true, "sorted": true }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            { "val": "res actualizat", "active": true }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "res actualizat cu succes",
+      "headers": ["", "res[i][0]", "res[i][1]", " ", "A[i][0]", "A[i][1]"],
+      "activeCells": [{"r": 0, "c": 1}, {"r": 0, "c": 2}, {"r": 1, "c": 1}, {"r": 1, "c": 2}],
+      "rows": [
+        ["i = 0", "1", "1", "", "1", "1"],
+        ["i = 1", "1", "0", "", "1", "0"]
+      ]
+    }
   },
   {
     "line": 26,
     "text": "Apelăm funcția multiply pentru a ridica matricea A la pătrat (dublăm puterea de tranziție).",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Exponentul p în binar (101_2)",
+        "groups": [
+          [
+            { "val": "1", "active": false },
+            { "val": "0", "active": false },
+            { "val": "1", "active": true }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            { "val": "Dublare putere A", "active": true }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Ridicarea la pătrat: A = A * A",
+      "headers": ["", "res[i][0]", "res[i][1]", " ", "A[i][0]", "A[i][1]"],
+      "activeCells": [{"r": 0, "c": 4}, {"r": 0, "c": 5}, {"r": 1, "c": 4}, {"r": 1, "c": 5}],
+      "rows": [
+        ["i = 0", "1", "1", "", "1", "1"],
+        ["i = 1", "1", "0", "", "1", "0"]
+      ]
+    }
   },
   {
     "line": 26,
     "text": "Matricea A a fost înlocuită cu pătratul său.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Exponentul p în binar (101_2)",
+        "groups": [
+          [
+            { "val": "1", "active": false },
+            { "val": "0", "active": false },
+            { "val": "1", "active": true }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            { "val": "A actualizat la A^2", "active": true }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "A actualizat cu A^2",
+      "headers": ["", "res[i][0]", "res[i][1]", " ", "A[i][0]", "A[i][1]"],
+      "activeCells": [{"r": 0, "c": 4}, {"r": 0, "c": 5}, {"r": 1, "c": 4}, {"r": 1, "c": 5}],
+      "rows": [
+        ["i = 0", "1", "1", "", "2", "1"],
+        ["i = 1", "1", "0", "", "1", "1"]
+      ]
+    }
   },
   {
     "line": 27,
     "text": "Înjumătățim exponentul p prin împărțire întreagă la 2: p devine 5 / 2 = 2.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Exponentul p în binar (10_2)",
+        "groups": [
+          [
+            { "val": "1", "active": false },
+            { "val": "0", "active": true }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            { "val": "p = 2", "active": true }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "res | A^2",
+      "headers": ["", "res[i][0]", "res[i][1]", " ", "A[i][0]", "A[i][1]"],
+      "rows": [
+        ["i = 0", "1", "1", "", "2", "1"],
+        ["i = 1", "1", "0", "", "1", "1"]
+      ]
+    }
   },
   {
     "line": 22,
     "text": "Verificăm din nou condiția buclei while (p > 0). Deoarece p = 2 > 0, condiția este adevărată, continuăm.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Exponentul p în binar (10_2)",
+        "groups": [
+          [
+            { "val": "1", "active": false },
+            { "val": "0", "active": true }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            { "val": "p = 2 > 0 (Adevărat)", "active": true }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "res | A^2",
+      "headers": ["", "res[i][0]", "res[i][1]", " ", "A[i][0]", "A[i][1]"],
+      "rows": [
+        ["i = 0", "1", "1", "", "2", "1"],
+        ["i = 1", "1", "0", "", "1", "1"]
+      ]
+    }
   },
   {
     "line": 23,
     "text": "Verificăm dacă exponentul curent p este impar. Deoarece 2 % 2 = 0, condiția este falsă; sărim peste înmulțirea rezultatului.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Exponentul p în binar (10_2)",
+        "groups": [
+          [
+            { "val": "1", "active": false },
+            { "val": "0", "active": true, "sorted": true }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            { "val": "p % 2 == 1 (Fals)", "active": true }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "res | A^2",
+      "headers": ["", "res[i][0]", "res[i][1]", " ", "A[i][0]", "A[i][1]"],
+      "rows": [
+        ["i = 0", "1", "1", "", "2", "1"],
+        ["i = 1", "1", "0", "", "1", "1"]
+      ]
+    }
   },
   {
     "line": 26,
     "text": "Apelăm funcția multiply pentru a ridica din nou matricea A la pătrat.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Exponentul p în binar (10_2)",
+        "groups": [
+          [
+            { "val": "1", "active": false },
+            { "val": "0", "active": true }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            { "val": "Dublare putere A", "active": true }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Ridicarea la pătrat: A = A * A",
+      "headers": ["", "res[i][0]", "res[i][1]", " ", "A[i][0]", "A[i][1]"],
+      "activeCells": [{"r": 0, "c": 4}, {"r": 0, "c": 5}, {"r": 1, "c": 4}, {"r": 1, "c": 5}],
+      "rows": [
+        ["i = 0", "1", "1", "", "2", "1"],
+        ["i = 1", "1", "0", "", "1", "1"]
+      ]
+    }
   },
   {
     "line": 26,
     "text": "Matricea A a fost actualizată cu pătratul său.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Exponentul p în binar (10_2)",
+        "groups": [
+          [
+            { "val": "1", "active": false },
+            { "val": "0", "active": true }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            { "val": "A actualizat la A^4", "active": true }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "A actualizat cu A^4",
+      "headers": ["", "res[i][0]", "res[i][1]", " ", "A[i][0]", "A[i][1]"],
+      "activeCells": [{"r": 0, "c": 4}, {"r": 0, "c": 5}, {"r": 1, "c": 4}, {"r": 1, "c": 5}],
+      "rows": [
+        ["i = 0", "1", "1", "", "5", "3"],
+        ["i = 1", "1", "0", "", "3", "2"]
+      ]
+    }
   },
   {
     "line": 27,
     "text": "Înjumătățim exponentul p prin împărțire întreagă: p devine 2 / 2 = 1.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Exponentul p în binar (1_2)",
+        "groups": [
+          [
+            { "val": "1", "active": true }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            { "val": "p = 1", "active": true }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "res | A^4",
+      "headers": ["", "res[i][0]", "res[i][1]", " ", "A[i][0]", "A[i][1]"],
+      "rows": [
+        ["i = 0", "1", "1", "", "5", "3"],
+        ["i = 1", "1", "0", "", "3", "2"]
+      ]
+    }
   },
   {
     "line": 22,
     "text": "Verificăm condiția buclei while (p > 0). Deoarece p = 1 > 0, condiția este adevărată.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Exponentul p în binar (1_2)",
+        "groups": [
+          [
+            { "val": "1", "active": true }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            { "val": "p = 1 > 0 (Adevărat)", "active": true }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "res | A^4",
+      "headers": ["", "res[i][0]", "res[i][1]", " ", "A[i][0]", "A[i][1]"],
+      "rows": [
+        ["i = 0", "1", "1", "", "5", "3"],
+        ["i = 1", "1", "0", "", "3", "2"]
+      ]
+    }
   },
   {
     "line": 23,
     "text": "Verificăm dacă p este impar. Deoarece 1 % 2 = 1, condiția este adevărată.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Exponentul p în binar (1_2)",
+        "groups": [
+          [
+            { "val": "1", "active": true, "sorted": true }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            { "val": "p % 2 == 1 (Adevărat)", "active": true }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "res | A^4",
+      "headers": ["", "res[i][0]", "res[i][1]", " ", "A[i][0]", "A[i][1]"],
+      "rows": [
+        ["i = 0", "1", "1", "", "5", "3"],
+        ["i = 1", "1", "0", "", "3", "2"]
+      ]
+    }
   },
   {
     "line": 24,
     "text": "Apelăm funcția multiply pentru a înmulți rezultatul acumulat res cu matricea de putere curentă A.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Exponentul p în binar (1_2)",
+        "groups": [
+          [
+            { "val": "1", "active": true, "sorted": true }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            { "val": "Înmulțire", "active": true }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Înmulțire: res = res * A",
+      "headers": ["", "res[i][0]", "res[i][1]", " ", "A[i][0]", "A[i][1]"],
+      "activeCells": [{"r": 0, "c": 1}, {"r": 0, "c": 2}, {"r": 1, "c": 1}, {"r": 1, "c": 2}],
+      "highlightCells": [{"r": 0, "c": 4}, {"r": 0, "c": 5}, {"r": 1, "c": 4}, {"r": 1, "c": 5}],
+      "rows": [
+        ["i = 0", "1", "1", "", "5", "3"],
+        ["i = 1", "1", "0", "", "3", "2"]
+      ]
+    }
   },
   {
     "line": 24,
     "text": "Matricea res a fost actualizată în urma înmulțirii.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Exponentul p în binar (1_2)",
+        "groups": [
+          [
+            { "val": "1", "active": true, "sorted": true }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            { "val": "res actualizat", "active": true }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "res actualizat cu succes",
+      "headers": ["", "res[i][0]", "res[i][1]", " ", "A[i][0]", "A[i][1]"],
+      "activeCells": [{"r": 0, "c": 1}, {"r": 0, "c": 2}, {"r": 1, "c": 1}, {"r": 1, "c": 2}],
+      "rows": [
+        ["i = 0", "8", "5", "", "5", "3"],
+        ["i = 1", "5", "3", "", "3", "2"]
+      ]
+    }
   },
   {
     "line": 26,
     "text": "Apelăm multiply pentru a ridica din nou matricea A la pătrat.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Exponentul p în binar (1_2)",
+        "groups": [
+          [
+            { "val": "1", "active": true }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            { "val": "Dublare putere A", "active": true }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Ridicarea la pătrat: A = A * A",
+      "headers": ["", "res[i][0]", "res[i][1]", " ", "A[i][0]", "A[i][1]"],
+      "activeCells": [{"r": 0, "c": 4}, {"r": 0, "c": 5}, {"r": 1, "c": 4}, {"r": 1, "c": 5}],
+      "rows": [
+        ["i = 0", "8", "5", "", "5", "3"],
+        ["i = 1", "5", "3", "", "3", "2"]
+      ]
+    }
   },
   {
     "line": 26,
     "text": "Matricea A a fost înlocuită cu pătratul său.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Exponentul p în binar (1_2)",
+        "groups": [
+          [
+            { "val": "1", "active": true }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            { "val": "A actualizat la A^8", "active": true }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "A actualizat cu A^8",
+      "headers": ["", "res[i][0]", "res[i][1]", " ", "A[i][0]", "A[i][1]"],
+      "activeCells": [{"r": 0, "c": 4}, {"r": 0, "c": 5}, {"r": 1, "c": 4}, {"r": 1, "c": 5}],
+      "rows": [
+        ["i = 0", "8", "5", "", "34", "21"],
+        ["i = 1", "5", "3", "", "21", "13"]
+      ]
+    }
   },
   {
     "line": 27,
     "text": "Înjumătățim exponentul p prin împărțire întreagă: p devine 1 / 2 = 0.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Exponentul p în binar (0_2)",
+        "groups": [
+          [
+            { "val": "0", "active": true }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            { "val": "p = 0", "active": true }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "res | A^8",
+      "headers": ["", "res[i][0]", "res[i][1]", " ", "A[i][0]", "A[i][1]"],
+      "rows": [
+        ["i = 0", "8", "5", "", "34", "21"],
+        ["i = 1", "5", "3", "", "21", "13"]
+      ]
+    }
   },
   {
     "line": 22,
     "text": "Verificăm condiția buclei while (p > 0). Deoarece p = 0, condiția este acum falsă, așa că ieșim din buclă.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Exponentul p în binar (0_2)",
+        "groups": [
+          [
+            { "val": "0", "active": true }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            { "val": "p = 0 > 0 (Fals)", "active": true }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "res | A^8",
+      "headers": ["", "res[i][0]", "res[i][1]", " ", "A[i][0]", "A[i][1]"],
+      "rows": [
+        ["i = 0", "8", "5", "", "34", "21"],
+        ["i = 1", "5", "3", "", "21", "13"]
+      ]
+    }
   },
   {
     "line": 29,
     "text": "Returnăm matricea res ce conține rezultatul final T^5.",
-    "blocksVisual": []
+    "blocksVisual": [
+      {
+        "label": "Exponentul p în binar (0_2)",
+        "groups": [
+          [
+            { "val": "0", "active": true }
+          ]
+        ]
+      },
+      {
+        "label": "Parametri Curenți",
+        "groups": [
+          [
+            { "val": "Returnare res", "active": true }
+          ]
+        ]
+      }
+    ],
+    "matrix": {
+      "title": "Returnăm rezultatul res (T^5)",
+      "headers": ["", "res[i][0]", "res[i][1]", " ", "A[i][0]", "A[i][1]"],
+      "activeCells": [{"r": 0, "c": 1}, {"r": 0, "c": 2}, {"r": 1, "c": 1}, {"r": 1, "c": 2}],
+      "rows": [
+        ["i = 0", "8", "5", "", "34", "21"],
+        ["i = 1", "5", "3", "", "21", "13"]
+      ]
+    }
   },
   {
     "line": 34,
     "text": "Revenim în funcția main. Atribuim matricea returnată variabilei T_pow.",
-    "blocksVisual": []
+    "blocksVisual": [],
+    "matrix": {
+      "title": "Matricea Rezultat T_pow (T^5)",
+      "headers": ["", "T_pow[i][0]", "T_pow[i][1]"],
+      "rows": [
+        ["i = 0", "8", "5"],
+        ["i = 1", "5", "3"]
+      ]
+    }
   },
   {
     "line": 35,
     "text": "Afișăm valoarea calculată a celui de-al 6-lea termen Fibonacci, aflat în T_pow[0][0].",
-    "blocksVisual": []
+    "blocksVisual": [],
+    "matrix": {
+      "title": "Afișăm T_pow[0][0] = 8",
+      "headers": ["", "T_pow[i][0]", "T_pow[i][1]"],
+      "activeCells": [{"r": 0, "c": 1}],
+      "rows": [
+        ["i = 0", "8", "5"],
+        ["i = 1", "5", "3"]
+      ]
+    }
   },
   {
     "line": 36,
     "text": "Funcția main se încheie cu return 0, ceea ce indică succesul programului.",
-    "blocksVisual": []
+    "blocksVisual": [],
+    "matrix": {
+      "title": "Program Finalizat cu Succes",
+      "headers": ["", "T_pow[i][0]", "T_pow[i][1]"],
+      "rows": [
+        ["i = 0", "8", "5"],
+        ["i = 1", "5", "3"]
+      ]
+    }
   }
 ],
   "problems": {

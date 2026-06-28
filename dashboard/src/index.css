@@ -293,3 +293,8 @@ h1, h2, h3, h4, h5, h6 {
 .viz-fade-in {
   animation: vizFadeIn 0.25s ease-out forwards;
 }
+
+/* Bulletproof fix for KaTeX MathML double text rendering bug */
+.katex-mathml {
+  display: none !important;
+}

@@ -321,6 +321,7 @@ Below is the list of all domains (sections) and topics in the syllabus tree, map
 * **Data_Structures/Priority_Queue** (Node ID: `ds_priority_queue`) — [Priority_Queue.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Data_Structures/Data_Structures/Priority_Queue.js)
 
 ### 7. Graph Theory (ID: `graph` | 🕸️)
+* **Graphs/Theory_Concepts** (Node ID: `graph_theory_concepts`) — [Theory_Concepts.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Theory_Concepts.js)
 * **Graphs/Basics** (Node ID: `graph_basics`) — [Basics.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Basics.js)
 * **Graphs/DFS** (Node ID: `dfs`) — [DFS.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/DFS.js)
 * **Graphs/BFS** (Node ID: `bfs`) — [BFS.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/BFS.js)
@@ -495,6 +496,24 @@ A helper script to automatically find and fix over-escaped LaTeX backslashes (re
 - **Usage:**
   ```cmd
   node validation_tools/LaTeX/fix_latex_backslashes.cjs
+  ```
+
+### 4. Markdown Formatting Validation & Repair Tools (`/Syntax`)
+
+#### `check_markdown_format.cjs`
+Checks if category files contain level 4 headers (`####`) or markdown tables (`|`), which are not supported by the custom dashboard parser.
+
+- **Usage:**
+  ```cmd
+  node validation_tools/Syntax/check_markdown_format.cjs
+  ```
+
+#### `fix_markdown_format.cjs`
+Automatically repairs category files by converting `####` headers to `###` and converting markdown tables into structured bulleted lists.
+
+- **Usage:**
+  ```cmd
+  node validation_tools/Syntax/fix_markdown_format.cjs
   ```
 
 

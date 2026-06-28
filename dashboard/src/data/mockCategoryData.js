@@ -85,6 +85,7 @@ import { data as data_Geometry_Sweep_Line } from './categories/Math_Geometry/Geo
 import { data as data_Geometry_Convex_Hull } from './categories/Math_Geometry/Geometry/Convex_Hull.js';
 
 // New Graph imports
+import { data as data_Graphs_Theory_Concepts } from './categories/Graph_Theory/Graphs/Theory_Concepts.js';
 import { data as data_Graphs_Lee } from './categories/Graph_Theory/Graphs/Lee.js';
 import { data as data_Graphs_Flood_Fill } from './categories/Graph_Theory/Graphs/Flood_Fill.js';
 import { data as data_Graphs_Tree_Diameter } from './categories/Graph_Theory/Graphs/Tree_Diameter.js';
@@ -183,6 +184,7 @@ const mockCategoryData = {
   "Geometry/Convex_Hull": data_Geometry_Convex_Hull,
 
   // New Graph Mappings
+  "Graphs/Theory_Concepts": data_Graphs_Theory_Concepts,
   "Graphs/Lee": data_Graphs_Lee,
   "Graphs/Flood_Fill": data_Graphs_Flood_Fill,
   "Graphs/Tree_Diameter": data_Graphs_Tree_Diameter,

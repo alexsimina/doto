@@ -628,4 +628,34 @@ int main() {
   assertTraceConcepts(result, ['dividing']);
 };
 
+exports.test_f3_theory_concepts_explanation = async () => {
+  const code = `
+// graph theory concepts
+#include <iostream>
+#include <vector>
+using namespace std;
+int main() {
+    int V = 4;
+    vector<vector<int>> adj(V);
+    adj[0].push_back(1);
+    vector<int> deg(V, 0);
+    deg[0] = adj[0].size();
+    return 0;
+}`;
+  const result = await sendCode(code);
+  assert.ok(result.explanation, 'Expected explanation field');
+  assert.match(result.explanation, /graph/i);
+  assertTraceConcepts(result, ['line_number']);
+};
+
+exports.test_katex_mathml_hidden_in_css = async () => {
+  const cssPath = path.join(__dirname, '../../dashboard/src/index.css');
+  assert.ok(fs.existsSync(cssPath), 'index.css should exist at dashboard/src/index.css');
+  const cssContent = fs.readFileSync(cssPath, 'utf8');
+  assert.ok(
+    cssContent.includes('.katex-mathml') && cssContent.includes('display: none'),
+    'index.css must contain a rule to hide .katex-mathml to prevent double-rendered math text'
+  );
+};
+
 

@@ -18,6 +18,19 @@ function validateFile(filePath) {
         if (!exported.presentation || !exported.explanations) {
             throw new Error("Missing critical keys: presentation or explanations");
         }
+        
+        const textFields = ['presentation', 'complexity', 'variations', 'applications'];
+        for (const field of textFields) {
+            if (exported[field]) {
+                const textVal = exported[field];
+                if (textVal.includes('####')) {
+                    throw new Error(`Field '${field}' contains header level 4 (####), which is unsupported by formatText. Use up to ###.`);
+                }
+                if (/\|(\s*:?-+:?\s*\|)+/.test(textVal)) {
+                    throw new Error(`Field '${field}' contains markdown table separator (using '|'), which is unsupported by the custom dashboard parser. Convert tables to bulleted lists.`);
+                }
+            }
+        }
         if (exported.debugger) {
             if (typeof exported.debugger.getDebuggerState !== 'function') {
                 throw new Error("debugger.getDebuggerState is not a function");

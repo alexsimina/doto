@@ -20,7 +20,7 @@ export const domainGroups = [
   { id: 'dp', label: 'Dynamic Programming', color: 'rgba(245, 158, 11, 0.03)', borderColor: 'rgba(245, 158, 11, 0.5)', icon: '🧠', nodes: ['dp', 'dp_knapsack', 'dp_lcs', 'dp_lis', 'dp_trees', 'dp_exp', 'cht'] },
   { id: 'alg', label: 'Core Algorithms', color: 'rgba(16, 185, 129, 0.03)', borderColor: 'rgba(16, 185, 129, 0.5)', icon: '⚡', nodes: ['bkt', 'greedy', 'dq', 'dq_merge', 'dq_quick', 'dq_bin', 'dq_z', 'meetinmid', 'sqrtd', 'mo', 'alg_majority'] },
   { id: 'ds', label: 'Data Structures', color: 'rgba(14, 165, 233, 0.03)', borderColor: 'rgba(14, 165, 233, 0.5)', icon: '🗃️', nodes: ['bits', 'diffarr', 'rmq', 'dsu', 'aib', 'seg', 'ds_frequency', 'ds_stack', 'ds_queue_deque', 'ds_priority_queue'] },
-  { id: 'graph', label: 'Graph Theory', color: 'rgba(244, 63, 94, 0.03)', borderColor: 'rgba(244, 63, 94, 0.5)', icon: '🕸️', nodes: ['graph_basics', 'dfs', 'bfs', 'topsort', 'scc', 'eulerhamilton', 'mst', 'sp', 'maxflow', 'lca', 'sp_dijkstra', 'sp_bf', 'sp_fw', 'mst_kruskal', 'mst_prim', 'scc_kosaraju', 'scc_tarjan', 'maxflow_ek', 'maxflow_dinic', 'lca_bin', 'lca_rmq', 'graph_lee', 'graph_fill', 'graph_diameter', 'graph_dial'] }
+  { id: 'graph', label: 'Graph Theory', color: 'rgba(244, 63, 94, 0.03)', borderColor: 'rgba(244, 63, 94, 0.5)', icon: '🕸️', nodes: ['graph_theory_concepts', 'graph_basics', 'dfs', 'bfs', 'topsort', 'scc', 'eulerhamilton', 'mst', 'sp', 'maxflow', 'lca', 'sp_dijkstra', 'sp_bf', 'sp_fw', 'mst_kruskal', 'mst_prim', 'scc_kosaraju', 'scc_tarjan', 'maxflow_ek', 'maxflow_dinic', 'lca_bin', 'lca_rmq', 'graph_lee', 'graph_fill', 'graph_diameter', 'graph_dial'] }
 ];
 
 export const getNodeDomain = (nodeId) => {
@@ -85,6 +85,7 @@ export const rawNodes = [
     { id: 'ds_priority_queue', label: 'Data_Structures/Priority_Queue', x: 1010, y: 1782, status: null },
 
     // Graph Theory
+    { id: 'graph_theory_concepts', label: 'Graphs/Theory_Concepts', x: 891, y: 2050, status: null },
     { id: 'graph_basics', label: 'Graphs/Basics', x: 891, y: 2306, status: null },
     { id: 'dfs', label: 'Graphs/DFS', x: 364, y: 2630, status: null },
     { id: 'bfs', label: 'Graphs/BFS', x: 1417, y: 2630, status: null },
@@ -138,7 +139,8 @@ export const rawNodes = [
 
 export const rawEdges = [
     // Basics & Fundamentals
-    { from: 'ds_basics', to: 'graph_basics' },
+    { from: 'ds_basics', to: 'graph_theory_concepts' },
+    { from: 'graph_theory_concepts', to: 'graph_basics' },
     { from: 'ds_basics', to: 'arr' },
     { from: 'graph_basics', to: 'dfs' },
     { from: 'graph_basics', to: 'bfs' },

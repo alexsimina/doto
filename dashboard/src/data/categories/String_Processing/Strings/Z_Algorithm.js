@@ -51,348 +51,4123 @@ int main() {
 }
 `,
   "explanations": [
-    {
-      "line": 39,
-      "text": "Pornim programul în funcția main.",
-      "blocksVisual": [
-        {
-          "label": "Șirul s",
-          "groups": [[{"val": "a"}, {"val": "a"}, {"val": "b"}, {"val": "a"}, {"val": "a"}, {"val": "b"}, {"val": "a"}, {"val": "a"}]]
-        },
-        {
-          "label": "Vectorul Z",
-          "groups": [[{"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}]]
-        }
-      ]
-    },
-    {
-      "line": 40,
-      "text": "Inițializăm șirul s = \"aabaabaa\" de lungime 8.",
-      "blocksVisual": [
-        {
-          "label": "Șirul s",
-          "groups": [[{"val": "a"}, {"val": "a"}, {"val": "b"}, {"val": "a"}, {"val": "a"}, {"val": "b"}, {"val": "a"}, {"val": "a"}]]
-        },
-        {
-          "label": "Vectorul Z",
-          "groups": [[{"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}]]
-        }
-      ]
-    },
-    {
-      "line": 41,
-      "text": "Apelăm funcția calculateZ(s) pentru a construi tabloul Z.",
-      "blocksVisual": [
-        {
-          "label": "Șirul s",
-          "groups": [[{"val": "a"}, {"val": "a"}, {"val": "b"}, {"val": "a"}, {"val": "a"}, {"val": "b"}, {"val": "a"}, {"val": "a"}]]
-        },
-        {
-          "label": "Vectorul Z",
-          "groups": [[{"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}]]
-        }
-      ]
-    },
-    {
-      "line": 9,
-      "text": "În interiorul calculateZ, aflăm lungimea n = 8.",
-      "blocksVisual": []
-    },
-    {
-      "line": 10,
-      "text": "Inițializăm vectorul Z cu valoarea 0 pentru toate cele 8 elemente. Z[0] = 0.",
-      "blocksVisual": [
-        {
-          "label": "Șirul s",
-          "groups": [[{"val": "a"}, {"val": "a"}, {"val": "b"}, {"val": "a"}, {"val": "a"}, {"val": "b"}, {"val": "a"}, {"val": "a"}]]
-        },
-        {
-          "label": "Vectorul Z",
-          "groups": [[{"val": "0", "active": true}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}]]
-        }
-      ]
-    },
-    {
-      "line": 11,
-      "text": "Inițializăm limitele ferestrei L = 0 și R = 0.",
-      "blocksVisual": []
-    },
-    {
-      "line": 13,
-      "text": "Începem bucla for de la indexul i = 1.",
-      "blocksVisual": []
-    },
-    {
-      "line": 14,
-      "text": "Verificăm condiția i <= R. Deoarece 1 <= 0 este fals, trecem direct pe ramura else.",
-      "blocksVisual": []
-    },
-    {
-      "line": 27,
-      "text": "Setăm L = 1 și R = 1.",
-      "blocksVisual": []
-    },
-    {
-      "line": 29,
-      "text": "Comparăm caracterele din prefix cu sufixul pornind de la poziția i = 1. Avem s[0] == s[1] ('a' == 'a') - potrivire. R devine 2. Apoi s[1] == s[2] ('a' == 'b') - nepotrivire. Ne oprim.",
-      "blocksVisual": [
-        {
-          "label": "Fereastra [L, R] = [1, 1]",
-          "groups": [[{"val": "a"}, {"val": "a", "active": true}, {"val": "b"}, {"val": "a"}, {"val": "a"}, {"val": "b"}, {"val": "a"}, {"val": "a"}]]
-        }
-      ]
-    },
-    {
-      "line": 32,
-      "text": "Calculăm Z[1] = R - L = 2 - 1 = 1. Apoi setăm R = 1. Fereastra curentă este [L, R] = [1, 1].",
-      "blocksVisual": [
-        {
-          "label": "Z[1] = 1",
-          "groups": [[{"val": "0"}, {"val": "1", "active": true}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}]]
-        }
-      ]
-    },
-    {
-      "line": 13,
-      "text": "Mergem la următorul pas din buclă: i = 2.",
-      "blocksVisual": []
-    },
-    {
-      "line": 14,
-      "text": "Verificăm dacă i <= R. Deoarece 2 <= 1 este fals, intrăm în else.",
-      "blocksVisual": []
-    },
-    {
-      "line": 27,
-      "text": "Setăm L = 2 și R = 2.",
-      "blocksVisual": []
-    },
-    {
-      "line": 29,
-      "text": "Comparăm caracterele pornind de la i = 2: s[0] == s[2] ('a' == 'b') - nepotrivire. Rămânem cu 0 potriviri.",
-      "blocksVisual": [
-        {
-          "label": "i = 2 (nepotrivire)",
-          "groups": [[{"val": "a"}, {"val": "a"}, {"val": "b", "active": true}, {"val": "a"}, {"val": "a"}, {"val": "b"}, {"val": "a"}, {"val": "a"}]]
-        }
-      ]
-    },
-    {
-      "line": 32,
-      "text": "Calculăm Z[2] = R - L = 2 - 2 = 0. Apoi setăm R = 1 (decrementare). Fereastra revine la [1, 1].",
-      "blocksVisual": [
-        {
-          "label": "Z[2] = 0",
-          "groups": [[{"val": "0"}, {"val": "1"}, {"val": "0", "active": true}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}]]
-        }
-      ]
-    },
-    {
-      "line": 13,
-      "text": "Trecem la următorul pas din buclă: i = 3.",
-      "blocksVisual": []
-    },
-    {
-      "line": 14,
-      "text": "Verificăm dacă i <= R. Deoarece 3 <= 1 este fals, mergem în else.",
-      "blocksVisual": []
-    },
-    {
-      "line": 27,
-      "text": "Setăm L = 3 și R = 3.",
-      "blocksVisual": []
-    },
-    {
-      "line": 29,
-      "text": "Comparăm elementele succesive începând de la indexul 3 cu caracterele de la începutul șirului. Găsim 5 potriviri (\"aabaa\" de la 3 la 7 coincide cu prefixul \"aabaa\"). R crește la 8.",
-      "blocksVisual": [
-        {
-          "label": "Fereastră nouă [3, 7]",
-          "groups": [[{"val": "a"}, {"val": "a"}, {"val": "b"}, {"val": "a", "active": true}, {"val": "a", "active": true}, {"val": "b", "active": true}, {"val": "a", "active": true}, {"val": "a", "active": true}]]
-        }
-      ]
-    },
-    {
-      "line": 32,
-      "text": "Calculăm Z[3] = R - L = 8 - 3 = 5. Apoi decrementăm R la 7. Noua fereastră optimă este [L, R] = [3, 7].",
-      "blocksVisual": [
-        {
-          "label": "Z[3] = 5",
-          "groups": [[{"val": "0"}, {"val": "1"}, {"val": "0"}, {"val": "5", "active": true}, {"val": "0"}, {"val": "0"}, {"val": "0"}, {"val": "0"}]]
-        }
-      ]
-    },
-    {
-      "line": 13,
-      "text": "Trecem la următorul pas din buclă: i = 4.",
-      "blocksVisual": []
-    },
-    {
-      "line": 14,
-      "text": "Verificăm dacă i <= R. Deoarece 4 <= 7 este adevărat, suntem complet în interiorul ferestrei active [3, 7]!",
-      "blocksVisual": []
-    },
-    {
-      "line": 15,
-      "text": "Calculăm indexul corespondent în prefix: k = i - L = 4 - 3 = 1.",
-      "blocksVisual": []
-    },
-    {
-      "line": 16,
-      "text": "Verificăm dacă Z[k] < R - i + 1. Avem Z[1] = 1, iar R - i + 1 = 7 - 4 + 1 = 4. Deoarece 1 < 4, putem copia valoarea fără comparații suplimentare!",
-      "blocksVisual": []
-    },
-    {
-      "line": 17,
-      "text": "Setăm direct Z[4] = Z[1] = 1.",
-      "blocksVisual": [
-        {
-          "label": "Z[4] = 1 (Copiat)",
-          "groups": [[{"val": "0"}, {"val": "1"}, {"val": "0"}, {"val": "5"}, {"val": "1", "active": true}, {"val": "0"}, {"val": "0"}, {"val": "0"}]]
-        }
-      ]
-    },
-    {
-      "line": 13,
-      "text": "Trecem la următorul pas din buclă: i = 5.",
-      "blocksVisual": []
-    },
-    {
-      "line": 14,
-      "text": "Verificăm dacă i <= R. Deoarece 5 <= 7 este adevărat, suntem în interiorul ferestrei [3, 7].",
-      "blocksVisual": []
-    },
-    {
-      "line": 15,
-      "text": "Aflăm indexul corespondent în prefix: k = i - L = 5 - 3 = 2.",
-      "blocksVisual": []
-    },
-    {
-      "line": 16,
-      "text": "Verificăm dacă Z[k] < R - i + 1. Avem Z[2] = 0, iar R - i + 1 = 7 - 5 + 1 = 3. Deoarece 0 < 3 este adevărat, copiem valoarea direct.",
-      "blocksVisual": []
-    },
-    {
-      "line": 17,
-      "text": "Setăm direct Z[5] = Z[2] = 0.",
-      "blocksVisual": [
-        {
-          "label": "Z[5] = 0 (Copiat)",
-          "groups": [[{"val": "0"}, {"val": "1"}, {"val": "0"}, {"val": "5"}, {"val": "1"}, {"val": "0", "active": true}, {"val": "0"}, {"val": "0"}]]
-        }
-      ]
-    },
-    {
-      "line": 13,
-      "text": "Trecem la următorul pas din buclă: i = 6.",
-      "blocksVisual": []
-    },
-    {
-      "line": 14,
-      "text": "Verificăm dacă i <= R. Deoarece 6 <= 7 este adevărat, suntem în interiorul ferestrei [3, 7].",
-      "blocksVisual": []
-    },
-    {
-      "line": 15,
-      "text": "Calculăm k = i - L = 6 - 3 = 3.",
-      "blocksVisual": []
-    },
-    {
-      "line": 16,
-      "text": "Verificăm dacă Z[3] < R - i + 1. Avem Z[3] = 5, iar R - i + 1 = 7 - 6 + 1 = 2. Deoarece 5 < 2 este fals, este posibil ca potrivirea să continue dincolo de R. Intrăm în else.",
-      "blocksVisual": []
-    },
-    {
-      "line": 19,
-      "text": "Actualizăm originea ferestrei: L = 6.",
-      "blocksVisual": []
-    },
-    {
-      "line": 20,
-      "text": "Încercăm să extindem fereastra pornind de la R = 7. Comparăm s[R-L] cu s[R], adică s[1] cu s[7]. Deoarece 'a' == 'a', potrivirea se extinde! R devine 8. Apoi s[2] cu s[8] (depășește lungimea șirului). Ne oprim.",
-      "blocksVisual": [
-        {
-          "label": "Fereastră [6, 7]",
-          "groups": [[{"val": "a"}, {"val": "a"}, {"val": "b"}, {"val": "a"}, {"val": "a"}, {"val": "b"}, {"val": "a", "active": true}, {"val": "a", "active": true}]]
-        }
-      ]
-    },
-    {
-      "line": 23,
-      "text": "Calculăm Z[6] = R - L = 8 - 6 = 2. Noua fereastră devine [L, R] = [6, 7].",
-      "blocksVisual": [
-        {
-          "label": "Z[6] = 2",
-          "groups": [[{"val": "0"}, {"val": "1"}, {"val": "0"}, {"val": "5"}, {"val": "1"}, {"val": "0"}, {"val": "2", "active": true}, {"val": "0"}]]
-        }
-      ]
-    },
-    {
-      "line": 13,
-      "text": "Mergem la ultimul pas al buclei: i = 7.",
-      "blocksVisual": []
-    },
-    {
-      "line": 14,
-      "text": "Verificăm dacă i <= R. Deoarece 7 <= 7 este adevărat, intrăm în if.",
-      "blocksVisual": []
-    },
-    {
-      "line": 15,
-      "text": "Calculăm k = i - L = 7 - 6 = 1.",
-      "blocksVisual": []
-    },
-    {
-      "line": 16,
-      "text": "Verificăm dacă Z[1] < R - i + 1. Avem Z[1] = 1, iar R - i + 1 = 7 - 7 + 1 = 1. Deoarece 1 < 1 este fals, mergem în else pentru a încerca să extindem.",
-      "blocksVisual": []
-    },
-    {
-      "line": 19,
-      "text": "Actualizăm originea ferestrei: L = 7.",
-      "blocksVisual": []
-    },
-    {
-      "line": 20,
-      "text": "Încercăm extinderea pornind de la R = 7: s[0] cu s[7]. Deoarece 'a' == 'a', potrivirea se extinde, R devine 8. Apoi s[1] cu s[8] (out of bounds). Ne oprim.",
-      "blocksVisual": [
-        {
-          "label": "Fereastră [7, 7]",
-          "groups": [[{"val": "a"}, {"val": "a"}, {"val": "b"}, {"val": "a"}, {"val": "a"}, {"val": "b"}, {"val": "a"}, {"val": "a", "active": true}]]
-        }
-      ]
-    },
-    {
-      "line": 23,
-      "text": "Calculăm Z[7] = R - L = 8 - 7 = 1. Noua fereastră devine [L, R] = [7, 7].",
-      "blocksVisual": [
-        {
-          "label": "Z[7] = 1",
-          "groups": [[{"val": "0"}, {"val": "1"}, {"val": "0"}, {"val": "5"}, {"val": "1"}, {"val": "0"}, {"val": "2"}, {"val": "1", "active": true}]]
-        }
-      ]
-    },
-    {
-      "line": 36,
-      "text": "Returnăm vectorul Z rezultat: [0, 1, 0, 5, 1, 0, 2, 1].",
-      "blocksVisual": []
-    },
-    {
-      "line": 41,
-      "text": "Vectorul z este recepționat în main.",
-      "blocksVisual": []
-    },
-    {
-      "line": 42,
-      "text": "Afișăm valorile calculate din vectorul z.",
-      "blocksVisual": []
-    },
-    {
-      "line": 45,
-      "text": "Programul se încheie cu succes returnând 0.",
-      "blocksVisual": []
-    }
-  ],
+  {
+    "line": 39,
+    "text": "Pornim programul în funcția main.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 40,
+    "text": "Inițializăm șirul s = \"aabaabaa\" de lungime 8.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 41,
+    "text": "Apelăm funcția calculateZ(s) pentru a construi tabloul Z.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 9,
+    "text": "În interiorul calculateZ, aflăm lungimea n = 8.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 10,
+    "text": "Inițializăm vectorul Z cu valoarea 0 pentru toate cele 8 elemente. Z[0] = 0.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 11,
+    "text": "Inițializăm limitele ferestrei L = 0 și R = 0.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 13,
+    "text": "Începem bucla for de la indexul i = 1.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 14,
+    "text": "Verificăm condiția i <= R. Deoarece 1 <= 0 este fals, trecem direct pe ramura else.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Setăm L = 1 și R = 1.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 29,
+    "text": "Comparăm caracterele din prefix cu sufixul pornind de la poziția i = 1. Avem s[0] == s[1] ('a' == 'a') - potrivire. R devine 2. Apoi s[1] == s[2] ('a' == 'b') - nepotrivire. Ne oprim.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 32,
+    "text": "Calculăm Z[1] = R - L = 2 - 1 = 1. Apoi setăm R = 1. Fereastra curentă este [L, R] = [1, 1].",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [1, 1])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 13,
+    "text": "Mergem la următorul pas din buclă: i = 2.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [1, 1])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": true
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 14,
+    "text": "Verificăm dacă i <= R. Deoarece 2 <= 1 este fals, intrăm în else.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [1, 1])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": true
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Setăm L = 2 și R = 2.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [1, 1])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": true
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 29,
+    "text": "Comparăm caracterele pornind de la i = 2: s[0] == s[2] ('a' == 'b') - nepotrivire. Rămânem cu 0 potriviri.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [1, 1])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            },
+            {
+              "val": "b",
+              "active": true
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 32,
+    "text": "Calculăm Z[2] = R - L = 2 - 2 = 0. Apoi setăm R = 1 (decrementare). Fereastra revine la [1, 1].",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [2, 1])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": true
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 13,
+    "text": "Trecem la următorul pas din buclă: i = 3.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [2, 1])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 14,
+    "text": "Verificăm dacă i <= R. Deoarece 3 <= 1 este fals, mergem în else.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [2, 1])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 27,
+    "text": "Setăm L = 3 și R = 3.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [2, 1])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 29,
+    "text": "Comparăm elementele succesive începând de la indexul 3 cu caracterele de la începutul șirului. Găsim 5 potriviri (\"aabaa\" de la 3 la 7 coincide cu prefixul \"aabaa\"). R crește la 8.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [2, 1])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 32,
+    "text": "Calculăm Z[3] = R - L = 8 - 3 = 5. Apoi decrementăm R la 7. Noua fereastră optimă este [L, R] = [3, 7].",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [3, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 13,
+    "text": "Trecem la următorul pas din buclă: i = 4.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [3, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 14,
+    "text": "Verificăm dacă i <= R. Deoarece 4 <= 7 este adevărat, suntem complet în interiorul ferestrei active [3, 7]!",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [3, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 15,
+    "text": "Calculăm indexul corespondent în prefix: k = i - L = 4 - 3 = 1.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [3, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 16,
+    "text": "Verificăm dacă Z[k] < R - i + 1. Avem Z[1] = 1, iar R - i + 1 = 7 - 4 + 1 = 4. Deoarece 1 < 4, putem copia valoarea fără comparații suplimentare!",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [3, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 17,
+    "text": "Setăm direct Z[4] = Z[1] = 1.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [3, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 13,
+    "text": "Trecem la următorul pas din buclă: i = 5.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [3, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": true
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 14,
+    "text": "Verificăm dacă i <= R. Deoarece 5 <= 7 este adevărat, suntem în interiorul ferestrei [3, 7].",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [3, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": true
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 15,
+    "text": "Aflăm indexul corespondent în prefix: k = i - L = 5 - 3 = 2.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [3, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": true
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 16,
+    "text": "Verificăm dacă Z[k] < R - i + 1. Avem Z[2] = 0, iar R - i + 1 = 7 - 5 + 1 = 3. Deoarece 0 < 3 este adevărat, copiem valoarea direct.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [3, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": true
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 17,
+    "text": "Setăm direct Z[5] = Z[2] = 0.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [3, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": true
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 13,
+    "text": "Trecem la următorul pas din buclă: i = 6.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [3, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 14,
+    "text": "Verificăm dacă i <= R. Deoarece 6 <= 7 este adevărat, suntem în interiorul ferestrei [3, 7].",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [3, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 15,
+    "text": "Calculăm k = i - L = 6 - 3 = 3.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [3, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 16,
+    "text": "Verificăm dacă Z[3] < R - i + 1. Avem Z[3] = 5, iar R - i + 1 = 7 - 6 + 1 = 2. Deoarece 5 < 2 este fals, este posibil ca potrivirea să continue dincolo de R. Intrăm în else.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [3, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 19,
+    "text": "Actualizăm originea ferestrei: L = 6.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [6, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 20,
+    "text": "Încercăm să extindem fereastra pornind de la R = 7. Comparăm s[R-L] cu s[R], adică s[1] cu s[7]. Deoarece 'a' == 'a', potrivirea se extinde! R devine 8. Apoi s[2] cu s[8] (depășește lungimea șirului). Ne oprim.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [6, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            },
+            {
+              "val": "a",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 23,
+    "text": "Calculăm Z[6] = R - L = 8 - 6 = 2. Noua fereastră devine [L, R] = [6, 7].",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [6, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 13,
+    "text": "Mergem la ultimul pas al buclei: i = 7.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [6, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": true
+            },
+            {
+              "val": "0",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 14,
+    "text": "Verificăm dacă i <= R. Deoarece 7 <= 7 este adevărat, intrăm în if.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [6, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 15,
+    "text": "Calculăm k = i - L = 7 - 6 = 1.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [6, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 16,
+    "text": "Verificăm dacă Z[1] < R - i + 1. Avem Z[1] = 1, iar R - i + 1 = 7 - 7 + 1 = 1. Deoarece 1 < 1 este fals, mergem în else pentru a încerca să extindem.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [6, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 19,
+    "text": "Actualizăm originea ferestrei: L = 7.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [7, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 20,
+    "text": "Încercăm extinderea pornind de la R = 7: s[0] cu s[7]. Deoarece 'a' == 'a', potrivirea se extinde, R devine 8. Apoi s[1] cu s[8] (out of bounds). Ne oprim.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [7, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 23,
+    "text": "Calculăm Z[7] = R - L = 8 - 7 = 1. Noua fereastră devine [L, R] = [7, 7].",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [7, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": true
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": true
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 36,
+    "text": "Returnăm vectorul Z rezultat: [0, 1, 0, 5, 1, 0, 2, 1].",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [7, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 41,
+    "text": "Vectorul z este recepționat în main.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [7, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 42,
+    "text": "Afișăm valorile calculate din vectorul z.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [7, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "line": 45,
+    "text": "Programul se încheie cu succes returnând 0.",
+    "blocksVisual": [
+      {
+        "label": "Șirul s (Fereastra [7, 7])",
+        "groups": [
+          [
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "b",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            },
+            {
+              "val": "a",
+              "active": false
+            }
+          ]
+        ]
+      },
+      {
+        "label": "Vectorul Z",
+        "groups": [
+          [
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "5",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            },
+            {
+              "val": "0",
+              "active": false
+            },
+            {
+              "val": "2",
+              "active": false
+            },
+            {
+              "val": "1",
+              "active": false
+            }
+          ]
+        ]
+      }
+    ]
+  }
+],
   "problems": {
     "easy": [
       {

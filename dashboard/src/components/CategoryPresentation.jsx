@@ -204,7 +204,7 @@ const renderNonMathInline = (text) => {
 
 const formatText = (text) => {
   if (typeof text !== 'string') return text;
-  const processedText = text.replace(/\\n/g, '\n');
+  const processedText = text.replace(/\\n(?!\w)/g, '\n');
 
   // Separăm mai întâi blocurile de cod
   const blocks = processedText.split(/(```[\s\S]*?```)/g);
@@ -1092,13 +1092,40 @@ const CategoryPresentation = ({ category, onClose, onNavigate }) => {
               if (isNodeActive) { bg = 'linear-gradient(135deg,#2860c8,#3574f0)'; border = '#56a8f5'; color = '#fff'; shadow = '0 0 14px rgba(53,116,240,0.7)'; }
               else if (isVisited) { bg = 'linear-gradient(135deg,#4a9a5a,#59a869)'; border = '#59a869'; color = '#fff'; shadow = '0 0 8px rgba(89,168,105,0.5)'; }
               const cx = getX(node), cy = getY(node);
+              
+              const showSideLabel = node.labelPosition === 'left' || node.labelPosition === 'right';
+              const sideLabel = showSideLabel ? node.label : null;
+              const centerLabel = showSideLabel ? (node.val || node.id) : (node.label || node.id);
+
               return (
                 <div key={node.id} style={{ position: 'absolute', left: `${cx}px`, top: `${cy}px`, transform: 'translate(-50%,-50%)', width: `${nodeR*2}px`, height: `${nodeR*2}px`, zIndex: 2 }}>
                   {node.desc && (
                     <div style={{ position:'absolute', top:'-15px', left:'50%', transform:'translateX(-50%)', fontSize: isLarge ? '10px' : '8px', color:'#8c929e', fontFamily:'var(--font-mono)', fontWeight:'bold', whiteSpace:'nowrap', pointerEvents:'none' }}>{node.desc}</div>
                   )}
+                  {sideLabel && (
+                    <div style={{ 
+                      position: 'absolute', 
+                      top: '50%', 
+                      left: node.labelPosition === 'left' ? 'auto' : `${nodeR*2 + 6}px`,
+                      right: node.labelPosition === 'left' ? `${nodeR*2 + 6}px` : 'auto',
+                      transform: 'translateY(-50%)', 
+                      fontSize: isLarge ? '11px' : '9px', 
+                      color: '#a9b7c6', 
+                      fontFamily: 'var(--font-mono)', 
+                      fontWeight: 'bold', 
+                      whiteSpace: 'nowrap', 
+                      pointerEvents: 'none',
+                      background: 'rgba(30, 31, 34, 0.9)',
+                      padding: '2px 6px',
+                      borderRadius: '4px',
+                      border: '1px solid #2b2d30',
+                      boxShadow: '0 2px 6px rgba(0,0,0,0.3)'
+                    }}>
+                      {sideLabel}
+                    </div>
+                  )}
                   <div style={{ width:'100%', height:'100%', borderRadius:'50%', display:'flex', alignItems:'center', justifyContent:'center', background: bg, border:`2px solid ${border}`, color, fontWeight:'bold', fontSize: isLarge ? '13px' : '11px', transition:'all 0.25s ease', boxShadow: shadow }}>
-                    {node.label}
+                    {centerLabel}
                   </div>
                 </div>
               );

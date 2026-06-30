@@ -93,13 +93,14 @@ The root contains numerous CommonJS (`.cjs`) utility scripts and JSON data files
    - This function returns an object structured as:
      ```javascript
      {
-       directed: boolean, // true for directed graphs (with arrows), false for undirected
-       title: string,     // Optional title (e.g., "Graf Transpus")
-       nodes: Array<{ id, x, y, label, state?: 'active'|'visited', desc?: string }>,
-       edges: Array<{ source, target, weight?: number|string, active?: boolean }>
+        directed: boolean, // true for directed graphs (with arrows), false for undirected
+        title: string,     // Optional title (e.g., "Graf Transpus")
+        nodes: Array<{ id, x, y, label, val?: string, labelPosition?: 'left'|'right', state?: 'active'|'visited', desc?: string }>,
+        edges: Array<{ source, target, weight?: number|string, active?: boolean }>
      }
      ```
    - Node and edge highlight states (`active`, `visited`) and edge weights/labels are calculated dynamically based on the current step's variables.
+   - **Side Labels for Nodes**: To prevent label crowding inside circle nodes, a node can specify `labelPosition: 'left'` or `'right'`. This renders the long `label` text outside the node circle as an aligned tooltip, while displaying a short identifier (`val` or `id`) centered inside the circle.
    - **Segment Tree & Tree/Graph DP Visualizations**: This same dynamic graph model is used to represent tree structures like **Segment Trees** and trees/graphs in **Dynamic Programming** (e.g., DP on Trees/Graphs). For Segment Trees, node intervals (e.g., `[start..end]`) are rendered above each node using the `desc` property. In Tree/Graph DP, this `desc` property is highly recommended to show subproblem intervals, active states, or calculated DP values for specific tree nodes/intervals.
    - **Dynamic Titles for Trees**: The UI dynamically resolves tree categories to render clean titles in the graph header. Segment Trees show `"Arbore de Intervale"`, DP on Trees/Graphs shows `"Arbore / DP pe Arbori"`, and other tree topics show `"Structură de Arbore"`, separating them from standard `"Graf Orientat"` / `"Graf Neorientat"`.
 
@@ -164,7 +165,7 @@ Used for Graph Theory topics, MSTs, Shortest Paths, Trees, Segment Trees, and Tr
     directed: false, // true for arrows, false for undirected lines
     title: "Graf Curent", // Optional title displayed in the header
     nodes: [
-      { id: "0", x: 80, y: 50, label: "0", state: "active", desc: "[0..3]" }
+      { id: "0", x: 80, y: 50, label: "0 (cuplat)", labelPosition: "left", val: "0", state: "active", desc: "[0..3]" }
     ],
     edges: [
       { source: "0", target: "1", weight: 10, active: true }
@@ -174,6 +175,8 @@ Used for Graph Theory topics, MSTs, Shortest Paths, Trees, Segment Trees, and Tr
 * **Attributes:**
   - `state` (Node): `"active"` (red border highlight), `"visited"` (green/blue visited highlight), or `undefined` (default).
   - `desc` (Node): Text badge drawn above the node (used for node metrics or Segment Tree intervals).
+  - `labelPosition` (Node): Optional `'left'` or `'right'`. Enables side labels (places the `label` text outside the node circle).
+  - `val` (Node): Optional short string (e.g. `id` or short name) to render inside the node circle when `labelPosition` is specified.
   - `active` (Edge): Highlights the edge in thick green (used to trace Dijkstra's shortest path, Kruskal/Prim MSTs, etc.).
 
 ---
@@ -265,6 +268,8 @@ Below is the list of all domains (sections) and topics in the syllabus tree, map
 * **Math/Matrix_Exponentiation** (Node ID: `math_matrix_expo`) — [Matrix_Exponentiation.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Math_Geometry/Math/Matrix_Exponentiation.js)
 * **Geometry/Sweep_Line** (Node ID: `geom_sweepline`) — [Sweep_Line.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Math_Geometry/Geometry/Sweep_Line.js)
 * **Geometry/Convex_Hull** (Node ID: `geom_convexhull`) — [Convex_Hull.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Math_Geometry/Geometry/Convex_Hull.js)
+* **Math/Catalan** (Node ID: `math_catalan`) — [Catalan.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Math_Geometry/Math/Catalan.js)
+* **Math/Modular_Inverse** (Node ID: `math_modinv`) — [Modular_Inverse.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Math_Geometry/Math/Modular_Inverse.js)
 
 ### 2. Fundamentals (ID: `fund` | 📚)
 * **Data_Structures/Basics** (Node ID: `ds_basics`) — [Basics.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Fundamentals/Data_Structures/Basics.js)
@@ -286,6 +291,8 @@ Below is the list of all domains (sections) and topics in the syllabus tree, map
 * **Strings/Aho_Corasick** (Node ID: `aho`) — [Aho_Corasick.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/String_Processing/Strings/Aho_Corasick.js)
 * **Strings/Suffix_Structures** (Node ID: `suffix`) — [Suffix_Structures.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/String_Processing/Strings/Suffix_Structures.js)
 * **Strings/Z_Algorithm** (Node ID: `str_z`) — [Z_Algorithm.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/String_Processing/Strings/Z_Algorithm.js)
+* **Strings/Manacher** (Node ID: `str_manacher`) — [Manacher.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/String_Processing/Strings/Manacher.js)
+* **Strings/Rabin_Karp** (Node ID: `str_rabin_karp`) — [Rabin_Karp.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/String_Processing/Strings/Rabin_Karp.js)
 
 ### 4. Dynamic Programming (ID: `dp` | 🧠)
 * **Dynamic_Programming** (Node ID: `dp`) — [Dynamic_Programming.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Dynamic_Programming/Dynamic_Programming.js)
@@ -296,6 +303,8 @@ Below is the list of all domains (sections) and topics in the syllabus tree, map
 * **Advanced_DP/Exponential_States** (Node ID: `dp_exp`) — [Exponential_States.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Dynamic_Programming/Advanced_DP/Exponential_States.js)
 * **Advanced_DP/CHT** (Node ID: `cht`) — [CHT.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Dynamic_Programming/Advanced_DP/CHT.js)
 * **Dynamic_Programming/MCM** (Node ID: `dp_mcm`) — [MCM.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Dynamic_Programming/Dynamic_Programming/MCM.js)
+* **Dynamic_Programming/Digit_DP** (Node ID: `dp_digit`) — [Digit_DP.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Dynamic_Programming/Dynamic_Programming/Digit_DP.js)
+* **Advanced_DP/Divide_Conquer_Optimization** (Node ID: `dp_opt_dq`) — [DAndCOptimization.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Dynamic_Programming/Advanced_DP/DAndCOptimization.js)
 
 ### 5. Core Algorithms (ID: `alg` | ⚡)
 * **Alg/Backtracking** (Node ID: `bkt`) — [Backtracking.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Core_Algorithms/Alg/Backtracking.js)
@@ -309,6 +318,7 @@ Below is the list of all domains (sections) and topics in the syllabus tree, map
 * **Alg/Meet_in_the_Middle** (Node ID: `meetinmid`) — [Meet_in_the_Middle.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Core_Algorithms/Alg/Meet_in_the_Middle.js)
 * **Alg/Mo_Algorithm** (Node ID: `mo`) — [Mo_Algorithm.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Core_Algorithms/Alg/Mo_Algorithm.js)
 * **Alg/Majority_Element** (Node ID: `alg_majority`) — [Majority_Element.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Core_Algorithms/Alg/Majority_Element.js)
+* **Alg/Divide_Conquer/Ternary_Search** (Node ID: `dq_ternary`) — [Ternary_Search.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Core_Algorithms/Alg/Divide_Conquer/Ternary_Search.js)
 
 ### 6. Data Structures (ID: `ds` | 🗃️)
 * **Techniques/Bitwise_Ops** (Node ID: `bits`) — [Bitwise_Ops.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Data_Structures/Techniques/Bitwise_Ops.js)
@@ -322,6 +332,7 @@ Below is the list of all domains (sections) and topics in the syllabus tree, map
 * **Data_Structures/Stack** (Node ID: `ds_stack`) — [Stack.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Data_Structures/Data_Structures/Stack.js)
 * **Data_Structures/Queue_Deque** (Node ID: `ds_queue_deque`) — [Queue_Deque.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Data_Structures/Data_Structures/Queue_Deque.js)
 * **Data_Structures/Priority_Queue** (Node ID: `ds_priority_queue`) — [Priority_Queue.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Data_Structures/Data_Structures/Priority_Queue.js)
+* **Trees/Treap** (Node ID: `ds_treap`) — [Treap.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Data_Structures/Trees/Treap.js)
 
 ### 7. Graph Theory (ID: `graph` | 🕸️)
 * **Graphs/Theory_Concepts** (Node ID: `graph_theory_concepts`) — [Theory_Concepts.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Theory_Concepts.js)
@@ -351,12 +362,22 @@ Below is the list of all domains (sections) and topics in the syllabus tree, map
 * **Graphs/Tree_Diameter** (Node ID: `graph_diameter`) — [Tree_Diameter.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Tree_Diameter.js)
 * **Graphs/Shortest_Path/Dial** (Node ID: `graph_dial`) — [Dial.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Shortest_Path/Dial.js)
 * **Graphs/Shortest_Path/SPFA** (Node ID: `sp_spfa`) — [SPFA.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Shortest_Path/SPFA.js)
+* **Graphs/Theory_Undirected** (Node ID: `graph_theory_undirected`) — [Theory_Undirected.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Theory_Undirected.js)
+* **Graphs/Theory_Directed** (Node ID: `graph_theory_directed`) — [Theory_Directed.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Theory_Directed.js)
+* **Graphs/Shortest_Path/BFS_01** (Node ID: `sp_bfs01`) — [BFS_01.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Shortest_Path/BFS_01.js)
+* **Graphs/Bipartite** (Node ID: `graph_bipartite`) — [Bipartite.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Bipartite.js)
+* **Graphs/Bipartite/Max_Matching** (Node ID: `graph_bipartite_matching`) — [Max_Matching.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Bipartite/Max_Matching.js)
+* **Graphs/SCC/Biconnected** (Node ID: `scc_biconnected`) — [Biconnected.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/SCC/Biconnected.js)
+* **Graphs/Bridges_Articulation** (Node ID: `graph_bridges`) — [Bridges_Articulation.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Bridges_Articulation.js)
+* **Graphs/Min_Cut** (Node ID: `graph_mincut`) — [Min_Cut.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Graph_Theory/Graphs/Min_Cut.js)
 
 ### 8. Tree Algorithms (ID: `tree_alg` | 🌳)
 * **Trees/Euler_Tour** (Node ID: `tree_euler`) — [Euler_Tour.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Tree_Algorithms/Trees/Euler_Tour.js)
 * **Trees/Decompositions** (Node ID: `tree_decomp`) — [Decompositions.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Tree_Algorithms/Trees/Decompositions.js)
 * **Trees/Decompositions/HLD** (Node ID: `tree_hld`) — [HLD.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Tree_Algorithms/Trees/Decompositions/HLD.js)
 * **Trees/Decompositions/Centroid** (Node ID: `tree_centroid`) — [Centroid.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Tree_Algorithms/Trees/Decompositions/Centroid.js)
+* **Trees/Persistent_Segment_Tree** (Node ID: `ds_persistent_seg`) — [Persistent_Segment_Tree.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Tree_Algorithms/Trees/Persistent_Segment_Tree.js)
+* **Trees/Binary_Trie** (Node ID: `ds_binary_trie`) — [Binary_Trie.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/categories/Tree_Algorithms/Trees/Binary_Trie.js)
 
 ## ⚠️ C++ Line Numbering & Debugger Offsets (CRITICAL)
 

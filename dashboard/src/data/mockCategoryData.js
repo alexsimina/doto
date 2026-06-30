@@ -106,6 +106,28 @@ import { data as data_Graphs_Shortest_Path_SPFA } from './categories/Graph_Theor
 import { data as data_Strings_Z_Algorithm } from './categories/String_Processing/Strings/Z_Algorithm.js';
 import { data as data_Trees_Segment_Trees_Lazy } from './categories/Data_Structures/Trees/Segment_Trees/Lazy.js';
 
+// Phase 3 imports
+import { data as data_Graphs_Theory_Undirected } from './categories/Graph_Theory/Graphs/Theory_Undirected.js';
+import { data as data_Graphs_Theory_Directed } from './categories/Graph_Theory/Graphs/Theory_Directed.js';
+import { data as data_Graphs_SCC_Biconnected } from './categories/Graph_Theory/Graphs/SCC/Biconnected.js';
+import { data as data_Graphs_Shortest_Path_BFS_01 } from './categories/Graph_Theory/Graphs/Shortest_Path/BFS_01.js';
+import { data as data_Graphs_Bipartite } from './categories/Graph_Theory/Graphs/Bipartite.js';
+import { data as data_Graphs_Bipartite_Max_Matching } from './categories/Graph_Theory/Graphs/Bipartite/Max_Matching.js';
+import { data as data_Strings_Manacher } from './categories/String_Processing/Strings/Manacher.js';
+import { data as data_Strings_Rabin_Karp } from './categories/String_Processing/Strings/Rabin_Karp.js';
+import { data as data_Trees_Treap } from './categories/Data_Structures/Trees/Treap.js';
+import { data as data_Alg_Divide_Conquer_Ternary_Search } from './categories/Core_Algorithms/Alg/Divide_Conquer/Ternary_Search.js';
+
+// New expansion imports
+import { data as data_Math_Catalan } from './categories/Math_Geometry/Math/Catalan.js';
+import { data as data_Math_Modular_Inverse } from './categories/Math_Geometry/Math/Modular_Inverse.js';
+import { data as data_Dynamic_Programming_Digit_DP } from './categories/Dynamic_Programming/Dynamic_Programming/Digit_DP.js';
+import { data as data_Advanced_DP_DAndCOptimization } from './categories/Dynamic_Programming/Advanced_DP/DAndCOptimization.js';
+import { data as data_Trees_Persistent_Segment_Tree } from './categories/Tree_Algorithms/Trees/Persistent_Segment_Tree.js';
+import { data as data_Trees_Binary_Trie } from './categories/Tree_Algorithms/Trees/Binary_Trie.js';
+import { data as data_Graphs_Bridges_Articulation } from './categories/Graph_Theory/Graphs/Bridges_Articulation.js';
+import { data as data_Graphs_Min_Cut } from './categories/Graph_Theory/Graphs/Min_Cut.js';
+
 const mockCategoryData = {
   "Arrays": data_Arrays,
   "Alg/Divide_Conquer": data_Alg_Divide_Conquer,
@@ -216,6 +238,28 @@ const mockCategoryData = {
   "Graphs/Shortest_Path/SPFA": data_Graphs_Shortest_Path_SPFA,
   "Strings/Z_Algorithm": data_Strings_Z_Algorithm,
   "Trees/Segment_Trees/Lazy_Propagation": data_Trees_Segment_Trees_Lazy,
+
+  // Phase 3 Mappings
+  "Graphs/Theory_Undirected": data_Graphs_Theory_Undirected,
+  "Graphs/Theory_Directed": data_Graphs_Theory_Directed,
+  "Graphs/SCC/Biconnected": data_Graphs_SCC_Biconnected,
+  "Graphs/Shortest_Path/BFS_01": data_Graphs_Shortest_Path_BFS_01,
+  "Graphs/Bipartite": data_Graphs_Bipartite,
+  "Graphs/Bipartite/Max_Matching": data_Graphs_Bipartite_Max_Matching,
+  "Strings/Manacher": data_Strings_Manacher,
+  "Strings/Rabin_Karp": data_Strings_Rabin_Karp,
+  "Trees/Treap": data_Trees_Treap,
+  "Alg/Divide_Conquer/Ternary_Search": data_Alg_Divide_Conquer_Ternary_Search,
+
+  // New expansion mappings
+  "Math/Catalan": data_Math_Catalan,
+  "Math/Modular_Inverse": data_Math_Modular_Inverse,
+  "Dynamic_Programming/Digit_DP": data_Dynamic_Programming_Digit_DP,
+  "Advanced_DP/Divide_Conquer_Optimization": data_Advanced_DP_DAndCOptimization,
+  "Trees/Persistent_Segment_Tree": data_Trees_Persistent_Segment_Tree,
+  "Trees/Binary_Trie": data_Trees_Binary_Trie,
+  "Graphs/Bridges_Articulation": data_Graphs_Bridges_Articulation,
+  "Graphs/Min_Cut": data_Graphs_Min_Cut,
 };
 
 export default mockCategoryData;

@@ -1,6 +1,35 @@
 const fs = require('fs');
 const path = require('path');
 
+function checkBalancedBraces(mathText) {
+    let openCount = 0;
+    let closeCount = 0;
+    for (let i = 0; i < mathText.length; i++) {
+        if (mathText[i] === '{') {
+            let bsCount = 0;
+            let j = i - 1;
+            while (j >= 0 && mathText[j] === '\\') {
+                bsCount++;
+                j--;
+            }
+            if (bsCount % 2 === 0) {
+                openCount++;
+            }
+        } else if (mathText[i] === '}') {
+            let bsCount = 0;
+            let j = i - 1;
+            while (j >= 0 && mathText[j] === '\\') {
+                bsCount++;
+                j--;
+            }
+            if (bsCount % 2 === 0) {
+                closeCount++;
+            }
+        }
+    }
+    return openCount === closeCount;
+}
+
 function getJsFiles(dir) {
     let results = [];
     const list = fs.readdirSync(dir);
@@ -60,7 +89,8 @@ function analyzeFile(filePath) {
         
         for (const field of textFields) {
             if (data[field]) {
-                const val = data[field];
+                // Apply the same formatting rules as the frontend (CategoryPresentation.jsx)
+                const val = data[field].replace(/\\n(?!\w)/g, '\n');
                 
                 // Count dollar signs
                 const dollars = (val.match(/\$/g) || []).length;
@@ -71,7 +101,7 @@ function analyzeFile(filePath) {
                     });
                 }
                 
-                // Check for newlines in inline math blocks $ ... $
+                // Check for newlines and unbalanced braces in math blocks
                 let pos = 0;
                 while (true) {
                     const start = val.indexOf('$', pos);
@@ -86,18 +116,23 @@ function analyzeFile(filePath) {
                         break;
                     }
                     
-                    if (!isDouble) {
-                        const mathText = val.substring(start + 1, end);
-                        if (mathText.includes('\n')) {
-                            errors.push({
-                                type: 'newline-in-inline-math',
-                                message: `Field '${field}' has newline inside inline math: "$${mathText.replace(/\n/g, '\\n')}$"`
-                            });
-                        }
-                        pos = end + 1;
-                    } else {
-                        pos = end + 2;
+                    const mathText = isDouble ? val.substring(start + 2, end) : val.substring(start + 1, end);
+                    
+                    if (!isDouble && mathText.includes('\n')) {
+                        errors.push({
+                            type: 'newline-in-inline-math',
+                            message: `Field '${field}' has newline inside inline math: "$${mathText.replace(/\n/g, '\\n')}$"`
+                        });
                     }
+                    
+                    if (!checkBalancedBraces(mathText)) {
+                        errors.push({
+                            type: 'unbalanced-braces',
+                            message: `Field '${field}' has unbalanced curly braces in math block: "${isDouble ? '$$' : '$'}${mathText}${isDouble ? '$$' : '$'}"`
+                        });
+                    }
+                    
+                    pos = isDouble ? end + 2 : end + 1;
                 }
             }
         }

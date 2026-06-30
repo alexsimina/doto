@@ -1,7 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
-import { getCategoryIcon, domainGroups, getNodeDomain, rawNodes, rawEdges } from '../data/syllabusData';
+import { getCategoryIcon, domainGroups, getNodeDomain, rawNodes, rawEdges, olympiadPaths } from '../data/syllabusData';
 
 const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
+  const [activeLevelFilter, setActiveLevelFilter] = useState(null);
+  const [activeTab, setActiveTab] = useState('pregatire');
+
   const getStatus = (label) => {
     const xp = userXp[label] || 0;
     if (xp >= 100) return 'completed';
@@ -9,7 +12,11 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
     return 'locked';
   };
 
-  const nodes = rawNodes.map(node => ({ ...node, status: getStatus(node.label) }));
+  const nodes = rawNodes.map(node => {
+    const status = getStatus(node.label);
+    const isDimmed = activeLevelFilter && node.olympiadLevel !== activeLevelFilter;
+    return { ...node, status, isDimmed };
+  });
   const edges = rawEdges;
 
   const domainsWithBounds = domainGroups.map(domain => {
@@ -578,13 +585,15 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
             const n1Domain = getNodeDomain(n1.id);
             const n2Domain = getNodeDomain(n2.id);
             const n1Visible = (!activeDomainFilter || (n1Domain && n1Domain.id === activeDomainFilter)) && 
-                              (!activeStatusFilter || n1.status === activeStatusFilter);
+                              (!activeStatusFilter || n1.status === activeStatusFilter) &&
+                              (!n1.isDimmed);
             const n2Visible = (!activeDomainFilter || (n2Domain && n2Domain.id === activeDomainFilter)) && 
-                              (!activeStatusFilter || n2.status === activeStatusFilter);
+                              (!activeStatusFilter || n2.status === activeStatusFilter) &&
+                              (!n2.isDimmed);
             const isEdgeVisible = n1Visible && n2Visible;
             
             const edgeBaseOpacity = !hoveredNode ? (bothCompleted ? 1 : 0.85) : ((isRelated || bothCompleted) ? 1 : 0.35);
-            const finalEdgeOpacity = isEdgeVisible ? edgeBaseOpacity : 0.05;
+            const finalEdgeOpacity = isEdgeVisible ? edgeBaseOpacity : 0.02;
 
             return (
               <g key={i}>
@@ -679,18 +688,21 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
 
           // Interactive domain & status filter visibility
           const isNodeVisible = (!activeDomainFilter || (domain && domain.id === activeDomainFilter)) &&
-                                (!activeStatusFilter || node.status === activeStatusFilter);
+                                (!activeStatusFilter || node.status === activeStatusFilter) &&
+                                (!node.isDimmed);
           const nodeBaseOpacity = node.status === 'locked' ? 0.6 : 1;
-          const finalNodeOpacity = (flashedNodeId === node.id) ? 1 : (isNodeVisible ? nodeBaseOpacity : 0.15);
+          const finalNodeOpacity = (flashedNodeId === node.id) ? 1 : (isNodeVisible ? nodeBaseOpacity : 0.12);
 
           return (
             <div 
               key={node.id}
               className={flashedNodeId === node.id ? 'searched-flash' : ''}
-              onMouseEnter={() => setHoveredNode(node.id)}
+              onMouseEnter={() => {
+                if (!node.isDimmed) setHoveredNode(node.id);
+              }}
               onMouseLeave={() => setHoveredNode(null)}
               onClick={(e) => {
-                if (hasMoved) {
+                if (hasMoved || node.isDimmed) {
                   e.stopPropagation();
                   return;
                 }
@@ -707,8 +719,9 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                 border: borderOverlay,
                 borderRadius: '20px',
                 padding: '24px 32px',
-                color: node.status === 'locked' ? 'rgba(255, 255, 255, 0.25)' : '#fff',
-                cursor: node.status === 'locked' ? 'default' : 'pointer',
+                color: (node.status === 'locked' || node.isDimmed) ? 'rgba(255, 255, 255, 0.25)' : '#fff',
+                cursor: (node.status === 'locked' || node.isDimmed) ? 'default' : 'pointer',
+                pointerEvents: node.isDimmed ? 'none' : 'auto',
                 zIndex: isHovered ? 10 : (isParentOfHovered || isChildOfHovered ? 8 : (node.status === 'completed' ? 5 : 1)),
                 boxShadow: shadow,
                 transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease',
@@ -722,6 +735,30 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                 "--glow-color": domainBorderColor
               }}
             >
+              {/* Recommended Order Badge */}
+              {activeLevelFilter && !node.isDimmed && (
+                <div style={{
+                  position: 'absolute',
+                  top: '-12px',
+                  left: '-12px',
+                  width: '28px',
+                  height: '28px',
+                  borderRadius: '50%',
+                  background: 'linear-gradient(135deg, #4f46e5, #06b6d4)',
+                  border: '2px solid #05040f',
+                  boxShadow: '0 0 15px rgba(99, 102, 241, 0.8)',
+                  color: '#fff',
+                  fontSize: '11px',
+                  fontWeight: 'bold',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontFamily: 'var(--font-mono)',
+                  zIndex: 12
+                }}>
+                  {node.recommendedOrder}
+                </div>
+              )}
               {/* Sci-fi corner brackets (HTML/CSS design overlay) */}
               {node.status !== 'locked' && (
                 <>
@@ -970,31 +1007,73 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
             </svg>
           </button>
         ) : (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%', height: '100%', position: 'relative' }}>
-            {/* Header */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '10px' }}>
-              <span style={{ fontSize: '13px', fontWeight: '800', fontFamily: 'var(--font-mono)', letterSpacing: '1px', color: '#a5b4fc', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span>⚙️</span> CONTROL PANEL
-              </span>
-              <button
-                onClick={() => setIsPanelCollapsed(true)}
-                style={{
-                  background: 'transparent',
-                  border: 'none',
-                  color: 'rgba(255,255,255,0.4)',
-                  cursor: 'pointer',
-                  fontSize: '16px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  padding: '2px'
-                }}
-                title="Ascunde"
-              >
-                ✕
-              </button>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', width: '100%', height: '100%', position: 'relative' }}>
+            {/* Futuristic Tabbed Header */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '10px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontSize: '12px', fontWeight: '800', fontFamily: 'var(--font-mono)', letterSpacing: '1.2px', color: '#a5b4fc', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <span>⚙️</span> OLYMPIC PANEL
+                </span>
+                <button
+                  onClick={() => setIsPanelCollapsed(true)}
+                  style={{
+                    background: 'transparent',
+                    border: 'none',
+                    color: 'rgba(255,255,255,0.4)',
+                    cursor: 'pointer',
+                    fontSize: '16px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    padding: '2px'
+                  }}
+                  title="Ascunde"
+                >
+                  ✕
+                </button>
+              </div>
+
+              {/* Tabs Switcher */}
+              <div style={{ display: 'flex', background: 'rgba(0,0,0,0.4)', borderRadius: '8px', padding: '2px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                <button
+                  onClick={() => setActiveTab('pregatire')}
+                  style={{
+                    flex: 1,
+                    background: activeTab === 'pregatire' ? 'rgba(99, 102, 241, 0.2)' : 'transparent',
+                    border: activeTab === 'pregatire' ? '1px solid rgba(99, 102, 241, 0.4)' : '1px solid transparent',
+                    borderRadius: '6px',
+                    color: activeTab === 'pregatire' ? '#fff' : 'rgba(255,255,255,0.5)',
+                    fontSize: '11px',
+                    fontWeight: 'bold',
+                    padding: '6px 0',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                    fontFamily: 'var(--font-mono)'
+                  }}
+                >
+                  🏆 PREGĂTIRE
+                </button>
+                <button
+                  onClick={() => setActiveTab('filtre')}
+                  style={{
+                    flex: 1,
+                    background: activeTab === 'filtre' ? 'rgba(99, 102, 241, 0.2)' : 'transparent',
+                    border: activeTab === 'filtre' ? '1px solid rgba(99, 102, 241, 0.4)' : '1px solid transparent',
+                    borderRadius: '6px',
+                    color: activeTab === 'filtre' ? '#fff' : 'rgba(255,255,255,0.5)',
+                    fontSize: '11px',
+                    fontWeight: 'bold',
+                    padding: '6px 0',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                    fontFamily: 'var(--font-mono)'
+                  }}
+                >
+                  🔍 FILTRE & STATS
+                </button>
+              </div>
             </div>
             
-            {/* Search Section */}
+            {/* Search Section (Always Available) */}
             <div style={{ position: 'relative' }}>
               <input
                 id="syllabus-search-input"
@@ -1061,93 +1140,233 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
               )}
             </div>
 
-            {/* Status Filter Section */}
-            <div>
-              <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px', fontWeight: '700' }}>
-                Filtrare Status
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px' }}>
-                {[
-                  { id: null, label: 'Toate', color: 'rgba(255,255,255,0.06)', activeColor: 'rgba(255,255,255,0.15)' },
-                  { id: 'completed', label: 'Finalizate', color: 'rgba(16, 185, 129, 0.05)', activeColor: 'rgba(16, 185, 129, 0.25)', borderColor: 'rgba(16, 185, 129, 0.4)' },
-                  { id: 'in-progress', label: 'În lucru', color: 'rgba(139, 92, 246, 0.05)', activeColor: 'rgba(139, 92, 246, 0.25)', borderColor: 'rgba(139, 92, 246, 0.4)' },
-                  { id: 'locked', label: 'Blocate', color: 'rgba(255,255,255,0.02)', activeColor: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.15)' }
-                ].map(opt => {
-                  const isActive = activeStatusFilter === opt.id;
-                  return (
-                    <button
-                      key={opt.label}
-                      onClick={() => setActiveStatusFilter(opt.id)}
-                      style={{
-                        background: isActive ? opt.activeColor : opt.color,
-                        border: `1px solid ${isActive ? (opt.borderColor || '#a5b4fc') : 'rgba(255,255,255,0.06)'}`,
-                        borderRadius: '6px',
-                        padding: '6px 8px',
-                        color: isActive ? '#fff' : 'rgba(255,255,255,0.7)',
-                        fontSize: '11px',
-                        fontWeight: isActive ? '800' : 'normal',
-                        cursor: 'pointer',
-                        transition: 'all 0.15s ease'
-                      }}
-                    >
-                      {opt.label}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
+            {/* Render Tab Contents */}
+            {activeTab === 'pregatire' ? (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', flex: 1, minHeight: 0 }}>
+                {/* Level selection */}
+                <div>
+                  <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px', fontWeight: '700' }}>
+                    Alege Nivel Pregătire
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '6px' }}>
+                    {[
+                      { id: null, label: 'Toate', icon: '🌐' },
+                      { id: 'clasa9', label: 'Clasa a 9-a', icon: '9️⃣' },
+                      { id: 'clasa10', label: 'Clasa a 10-a', icon: '🔟' },
+                      { id: 'clasele11_12', label: 'Clasele 11-12', icon: '⚔️' },
+                      { id: 'baraj', label: 'Baraj', icon: '👑' }
+                    ].map(level => {
+                      const isActive = activeLevelFilter === level.id;
+                      return (
+                        <button
+                          key={level.label}
+                          onClick={() => {
+                            setActiveLevelFilter(level.id);
+                            if (level.id) {
+                              const firstNodeId = olympiadPaths[level.id].steps[0].nodeIds[0];
+                              const firstNode = nodes.find(n => n.id === firstNodeId);
+                              if (firstNode) {
+                                handleSelectNode(firstNode);
+                              }
+                            }
+                          }}
+                          style={{
+                            background: isActive ? 'rgba(99, 102, 241, 0.2)' : 'rgba(255,255,255,0.02)',
+                            border: `1px solid ${isActive ? 'rgba(99, 102, 241, 0.6)' : 'rgba(255,255,255,0.06)'}`,
+                            borderRadius: '8px',
+                            padding: '8px 4px',
+                            color: isActive ? '#fff' : 'rgba(255,255,255,0.7)',
+                            fontSize: '11px',
+                            fontWeight: isActive ? '800' : 'normal',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '4px',
+                            transition: 'all 0.15s ease'
+                          }}
+                        >
+                          <span>{level.icon}</span>
+                          {level.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
 
-            {/* Legend & Stats Section */}
-            <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '11px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px', fontWeight: '700' }}>
-                <span>Legendă domenii & Statistici</span>
-                <span style={{ fontSize: '10px', color: '#10b981' }}>
-                  {nodes.filter(n => n.status === 'completed').length} / {nodes.length} OK
-                </span>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', overflowY: 'auto', maxHeight: '200px', paddingRight: '4px' }}>
-                {domainsWithBounds.map(d => {
-                  if (!d.bounds) return null;
-                  const domainNodes = nodes.filter(n => d.nodes.includes(n.id));
-                  const completedCount = domainNodes.filter(n => n.status === 'completed').length;
-                  const totalCount = domainNodes.length;
-                  const isHoveredDomain = activeDomainFilter === d.id;
-                  
-                  return (
-                    <div
-                      key={d.id}
-                      onMouseEnter={() => setActiveDomainFilter(d.id)}
-                      onMouseLeave={() => setActiveDomainFilter(null)}
-                      onClick={() => fitDomain(d)}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        padding: '6px 10px',
-                        borderRadius: '6px',
-                        background: isHoveredDomain ? 'rgba(255,255,255,0.03)' : 'transparent',
-                        border: `1px solid ${isHoveredDomain ? d.borderColor : 'transparent'}`,
-                        cursor: 'pointer',
-                        transition: 'all 0.15s ease'
-                      }}
-                    >
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <span style={{ fontSize: '14px' }}>{d.icon}</span>
-                        <span style={{ fontSize: '12px', color: isHoveredDomain ? '#fff' : 'rgba(255,255,255,0.85)', fontWeight: isHoveredDomain ? 'bold' : 'normal' }}>
-                          {d.label}
-                        </span>
-                      </div>
-                      <span style={{ fontSize: '10px', color: d.borderColor, fontWeight: 'bold', fontFamily: 'var(--font-mono)' }}>
-                        {completedCount}/{totalCount}
+                {/* Checklist learning path */}
+                {activeLevelFilter ? (
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '11px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px', fontWeight: '700' }}>
+                      <span>Parcurs recomandat</span>
+                      <span style={{ color: '#818cf8', fontWeight: 'bold' }}>
+                        {Math.round((nodes.filter(n => n.olympiadLevel === activeLevelFilter && n.status === 'completed').length / nodes.filter(n => n.olympiadLevel === activeLevelFilter).length) * 100)}% Gata
                       </span>
                     </div>
-                  );
-                })}
+                    <div style={{ flex: 1, overflowY: 'auto', maxHeight: '250px', paddingRight: '4px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                      {olympiadPaths[activeLevelFilter].steps.map((step, idx) => {
+                        const stepNodes = nodes.filter(n => step.nodeIds.includes(n.id));
+                        const completedCount = stepNodes.filter(n => n.status === 'completed').length;
+                        const totalCount = stepNodes.length;
+                        const isStepDone = completedCount === totalCount;
+                        
+                        return (
+                          <div 
+                            key={idx} 
+                            style={{ 
+                              background: 'rgba(255,255,255,0.01)', 
+                              border: '1px solid rgba(255,255,255,0.04)', 
+                              borderRadius: '8px', 
+                              padding: '8px'
+                            }}
+                          >
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                              <span style={{ fontSize: '11px', fontWeight: 'bold', color: isStepDone ? 'var(--success-color)' : '#fff' }}>
+                                {step.title}
+                              </span>
+                              <span style={{ fontSize: '10px', color: isStepDone ? 'var(--success-color)' : 'rgba(255,255,255,0.4)', fontFamily: 'var(--font-mono)' }}>
+                                {completedCount}/{totalCount}
+                              </span>
+                            </div>
+                            
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+                              {step.nodeIds.map(nodeId => {
+                                const nodeObj = nodes.find(n => n.id === nodeId);
+                                if (!nodeObj) return null;
+                                
+                                const parts = nodeObj.label.split('/');
+                                const labelShort = parts[parts.length - 1].replace(/_/g, ' ');
+                                
+                                let bulletColor = 'rgba(255, 255, 255, 0.2)';
+                                if (nodeObj.status === 'completed') bulletColor = 'var(--success-color)';
+                                else if (nodeObj.status === 'in-progress') bulletColor = 'var(--accent-secondary)';
+                                
+                                return (
+                                  <button
+                                    key={nodeId}
+                                    onClick={() => handleSelectNode(nodeObj)}
+                                    style={{
+                                      background: 'rgba(0,0,0,0.3)',
+                                      border: '1px solid rgba(255,255,255,0.06)',
+                                      borderRadius: '6px',
+                                      padding: '3px 6px',
+                                      color: nodeObj.status === 'completed' ? '#a7f3d0' : (nodeObj.status === 'in-progress' ? '#e9d5ff' : 'rgba(255,255,255,0.6)'),
+                                      fontSize: '10px',
+                                      cursor: 'pointer',
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      gap: '4px',
+                                      transition: 'all 0.15s ease'
+                                    }}
+                                  >
+                                    <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: bulletColor }} />
+                                    {labelShort}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ) : (
+                  <div style={{ padding: '20px 10px', textAlign: 'center', color: 'rgba(255,255,255,0.4)', fontSize: '11px', border: '1px dashed rgba(255,255,255,0.08)', borderRadius: '10px' }}>
+                    ✨ Selectează un nivel de pregătire pentru a vizualiza ordinea parcurgerii capitolelor.
+                  </div>
+                )}
               </div>
-            </div>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', flex: 1, minHeight: 0 }}>
+                {/* Status Filter Section */}
+                <div>
+                  <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px', fontWeight: '700' }}>
+                    Filtrare Status
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px' }}>
+                    {[
+                      { id: null, label: 'Toate', color: 'rgba(255,255,255,0.06)', activeColor: 'rgba(255,255,255,0.15)' },
+                      { id: 'completed', label: 'Finalizate', color: 'rgba(16, 185, 129, 0.05)', activeColor: 'rgba(16, 185, 129, 0.25)', borderColor: 'rgba(16, 185, 129, 0.4)' },
+                      { id: 'in-progress', label: 'În lucru', color: 'rgba(139, 92, 246, 0.05)', activeColor: 'rgba(139, 92, 246, 0.25)', borderColor: 'rgba(139, 92, 246, 0.4)' },
+                      { id: 'locked', label: 'Blocate', color: 'rgba(255,255,255,0.02)', activeColor: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.15)' }
+                    ].map(opt => {
+                      const isActive = activeStatusFilter === opt.id;
+                      return (
+                        <button
+                          key={opt.label}
+                          onClick={() => setActiveStatusFilter(opt.id)}
+                          style={{
+                            background: isActive ? opt.activeColor : opt.color,
+                            border: `1px solid ${isActive ? (opt.borderColor || '#a5b4fc') : 'rgba(255,255,255,0.06)'}`,
+                            borderRadius: '6px',
+                            padding: '6px 8px',
+                            color: isActive ? '#fff' : 'rgba(255,255,255,0.7)',
+                            fontSize: '11px',
+                            fontWeight: isActive ? '800' : 'normal',
+                            cursor: 'pointer',
+                            transition: 'all 0.15s ease'
+                          }}
+                        >
+                          {opt.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Legend & Stats Section */}
+                <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '11px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px', fontWeight: '700' }}>
+                    <span>Legendă domenii & Statistici</span>
+                    <span style={{ fontSize: '10px', color: '#10b981' }}>
+                      {nodes.filter(n => n.status === 'completed').length} / {nodes.length} OK
+                    </span>
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', overflowY: 'auto', maxHeight: '180px', paddingRight: '4px' }}>
+                    {domainsWithBounds.map(d => {
+                      if (!d.bounds) return null;
+                      const domainNodes = nodes.filter(n => d.nodes.includes(n.id));
+                      const completedCount = domainNodes.filter(n => n.status === 'completed').length;
+                      const totalCount = domainNodes.length;
+                      const isHoveredDomain = activeDomainFilter === d.id;
+                      
+                      return (
+                        <div
+                          key={d.id}
+                          onMouseEnter={() => setActiveDomainFilter(d.id)}
+                          onMouseLeave={() => setActiveDomainFilter(null)}
+                          onClick={() => fitDomain(d)}
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            padding: '4px 8px',
+                            borderRadius: '6px',
+                            background: isHoveredDomain ? 'rgba(255,255,255,0.03)' : 'transparent',
+                            border: `1px solid ${isHoveredDomain ? d.borderColor : 'transparent'}`,
+                            cursor: 'pointer',
+                            transition: 'all 0.15s ease'
+                          }}
+                        >
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            <span style={{ fontSize: '13px' }}>{d.icon}</span>
+                            <span style={{ fontSize: '11px', color: isHoveredDomain ? '#fff' : 'rgba(255,255,255,0.85)', fontWeight: isHoveredDomain ? 'bold' : 'normal' }}>
+                              {d.label}
+                            </span>
+                          </div>
+                          <span style={{ fontSize: '10px', color: d.borderColor, fontWeight: 'bold', fontFamily: 'var(--font-mono)' }}>
+                            {completedCount}/{totalCount}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Quick Actions */}
-            <div style={{ display: 'flex', gap: '6px', borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '12px' }}>
+            <div style={{ display: 'flex', gap: '6px', borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '10.5px' }}>
               <button
                 onClick={() => { setScale(0.85); setPosition({ x: 0, y: 1600 }); }}
                 style={{

@@ -1,10 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-import { getCategoryIcon, domainGroups, getNodeDomain, rawNodes, rawEdges, olympiadPaths } from '../data/syllabusData';
+import { getCategoryIcon, domainGroups, getNodeDomain, rawNodes, rawEdges, olympiadTracks } from '../data/syllabusData';
 
 const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
-  const [activeLevelFilter, setActiveLevelFilter] = useState(null);
-  const [activeTab, setActiveTab] = useState('pregatire');
-
   const getStatus = (label) => {
     const xp = userXp[label] || 0;
     if (xp >= 100) return 'completed';
@@ -12,11 +9,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
     return 'locked';
   };
 
-  const nodes = rawNodes.map(node => {
-    const status = getStatus(node.label);
-    const isDimmed = activeLevelFilter && node.olympiadLevel !== activeLevelFilter;
-    return { ...node, status, isDimmed };
-  });
+  const nodes = rawNodes.map(node => ({ ...node, status: getStatus(node.label) }));
   const edges = rawEdges;
 
   const domainsWithBounds = domainGroups.map(domain => {
@@ -59,12 +52,125 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
   const [isPanelCollapsed, setIsPanelCollapsed] = useState(false);
   const flashTimeoutRef = useRef(null);
 
+  // Olympiad Track States
+  const [activeTrackId, setActiveTrackId] = useState(null);
+  const [isVoyageMode, setIsVoyageMode] = useState(false);
+  const [voyageStep, setVoyageStep] = useState(0);
+  const [isHudOpen, setIsHudOpen] = useState(false);
+  const [isHudHovered, setIsHudHovered] = useState(false);
+
+  const activeTrack = activeTrackId ? olympiadTracks.find(t => t.id === activeTrackId) : null;
+  const activeTrackNodes = activeTrack ? activeTrack.nodes : [];
+
+  const nextTargetIndex = activeTrackId ? activeTrackNodes.findIndex(nId => {
+    const nodeObj = nodes.find(n => n.id === nId);
+    return nodeObj && nodeObj.status !== 'completed';
+  }) : -1;
+  const nextTargetNodeId = (activeTrackId && nextTargetIndex !== -1) ? activeTrackNodes[nextTargetIndex] : null;
+
+  // Calcularea recomandării globale pe baza progresului general (caută primul nod nefinalizat din toate traseele)
+  let globalRecommendedNodeId = null;
+  let globalRecommendedTrack = null;
+  let globalRecommendedIndex = -1;
+
+  for (const track of olympiadTracks) {
+    const uncompletedIdx = track.nodes.findIndex(nId => {
+      const nodeObj = nodes.find(n => n.id === nId);
+      return nodeObj && nodeObj.status !== 'completed';
+    });
+    if (uncompletedIdx !== -1) {
+      globalRecommendedNodeId = track.nodes[uncompletedIdx];
+      globalRecommendedTrack = track;
+      globalRecommendedIndex = uncompletedIdx;
+      break;
+    }
+  }
+
+  // Ținta activă este fie următorul pas din traseul activ, fie recomandarea globală
+  const targetNodeId = activeTrackId ? nextTargetNodeId : globalRecommendedNodeId;
+
+  const [fogOfWarEnabled, setFogOfWarEnabled] = useState(() => {
+    const saved = localStorage.getItem('fogOfWarEnabled');
+    return saved !== null ? JSON.parse(saved) : true;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('fogOfWarEnabled', JSON.stringify(fogOfWarEnabled));
+  }, [fogOfWarEnabled]);
+
+  // Compute discovered nodes Set
+  const discoveredNodeIds = new Set();
+  nodes.forEach(node => {
+    // 1. XP > 0 (completed or in-progress)
+    if (node.status === 'completed' || node.status === 'in-progress') {
+      discoveredNodeIds.add(node.id);
+      return;
+    }
+    // 2. Root nodes (no incoming edges)
+    const hasIncoming = edges.some(e => e.to === node.id);
+    if (!hasIncoming) {
+      discoveredNodeIds.add(node.id);
+      return;
+    }
+    // 3. Has at least one completed parent node
+    const hasCompletedParent = edges.some(e => {
+      if (e.to !== node.id) return false;
+      const parentNode = nodes.find(n => n.id === e.from);
+      return parentNode && parentNode.status === 'completed';
+    });
+    if (hasCompletedParent) {
+      discoveredNodeIds.add(node.id);
+      return;
+    }
+    // 4. Recommended node (current target)
+    if (node.id === targetNodeId) {
+      discoveredNodeIds.add(node.id);
+      return;
+    }
+    // 5. Active track next target
+    if (activeTrackId && node.id === nextTargetNodeId) {
+      discoveredNodeIds.add(node.id);
+      return;
+    }
+    // 6. Temporarily revealed search result
+    if (flashedNodeId === node.id) {
+      discoveredNodeIds.add(node.id);
+      return;
+    }
+  });
+
+  const isDomainDiscovered = (domain) => {
+    return domain.nodes.some(nodeId => discoveredNodeIds.has(nodeId));
+  };
+
   // Clean up timers on unmount
   useEffect(() => {
     return () => {
       if (flashTimeoutRef.current) clearTimeout(flashTimeoutRef.current);
     };
   }, []);
+
+  // Slide up HUD when mouse is at the bottom of the screen
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      // Dacă utilizatorul trage harta (drag), HUD-ul rămâne ascuns
+      if (isDragging) {
+        setIsHudOpen(false);
+        return;
+      }
+      
+      const threshold = window.innerHeight - 55; // 55px din marginea inferioară a ecranului
+      if (e.clientY >= threshold) {
+        setIsHudOpen(true);
+      } else if (!isHudHovered) {
+        setIsHudOpen(false);
+      }
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [isHudHovered, isDragging]);
 
   const fitDomain = (domain) => {
     if (!domain.bounds) return;
@@ -217,6 +323,24 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  // Centrarea camerei pe nodul activ când se schimbă pasul în modul Călătorie (Voyage Mode)
+  useEffect(() => {
+    if (isVoyageMode && activeTrackId) {
+      const activeTrack = olympiadTracks.find(t => t.id === activeTrackId);
+      if (activeTrack && activeTrack.nodes[voyageStep]) {
+        const nodeId = activeTrack.nodes[voyageStep];
+        const node = nodes.find(n => n.id === nodeId);
+        if (node) {
+          setPosition({
+            x: -node.x,
+            y: 2200 - node.y
+          });
+          setScale(1.1);
+        }
+      }
+    }
+  }, [isVoyageMode, voyageStep, activeTrackId]);
+
   const handleMouseDown = (e) => {
     setIsDragging(true);
     setHasMoved(false);
@@ -299,6 +423,65 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
     >
+      {/* Fog of War Toggle Switch */}
+      <div style={{
+        position: 'absolute',
+        bottom: '80px',
+        right: '24px',
+        zIndex: 100,
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
+        background: 'rgba(10, 14, 23, 0.85)',
+        border: '1px solid rgba(255, 255, 255, 0.12)',
+        borderRadius: '20px',
+        padding: '6px 14px',
+        backdropFilter: 'blur(24px)',
+        boxShadow: '0 12px 40px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255,255,255,0.05)',
+        cursor: 'pointer',
+        transition: 'all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)',
+        userSelect: 'none'
+      }}
+      onClick={() => setFogOfWarEnabled(!fogOfWarEnabled)}
+      onMouseOver={e => {
+        e.currentTarget.style.borderColor = 'rgba(99, 102, 241, 0.4)';
+        e.currentTarget.style.boxShadow = '0 12px 40px rgba(99, 102, 241, 0.15), inset 0 1px 1px rgba(255,255,255,0.1)';
+      }}
+      onMouseOut={e => {
+        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)';
+        e.currentTarget.style.boxShadow = '0 12px 40px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255,255,255,0.05)';
+      }}
+      title="Comută vizibilitatea zonelor nedescoperite"
+      >
+        <span style={{ fontSize: '13px', display: 'flex', alignItems: 'center' }}>
+          {fogOfWarEnabled ? '🌫️' : '👁️'}
+        </span>
+        <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.8)', fontWeight: '800', fontFamily: 'var(--font-mono)', letterSpacing: '1px', textTransform: 'uppercase' }}>
+          Fog of War:
+        </span>
+        <span style={{
+          fontSize: '10px',
+          fontWeight: '900',
+          fontFamily: 'var(--font-mono)',
+          color: fogOfWarEnabled ? '#818cf8' : '#6b7280',
+          transition: 'color 0.2s ease',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '6px'
+        }}>
+          {fogOfWarEnabled ? 'ACTIV' : 'OPRIT'}
+          <span style={{
+            width: '6px',
+            height: '6px',
+            borderRadius: '50%',
+            background: fogOfWarEnabled ? '#818cf8' : '#4b5563',
+            boxShadow: fogOfWarEnabled ? '0 0 8px #818cf8' : 'none',
+            display: 'inline-block',
+            animation: fogOfWarEnabled ? 'sonarPing 2s infinite' : 'none'
+          }} />
+        </span>
+      </div>
+
       {/* Dynamic zoom capsule controls */}
       <div style={{
         position: 'absolute',
@@ -362,6 +545,27 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
         {domainsWithBounds.map(domain => {
           if(!domain.bounds) return null;
           const {x, y, w, h} = domain.bounds;
+          if (fogOfWarEnabled && !isDomainDiscovered(domain)) {
+            return (
+              <div 
+                key={`fog-domain-${domain.id}`}
+                style={{
+                  position: 'absolute',
+                  left: x + OFFSET_X - 45,
+                  top: y + OFFSET_Y - 45,
+                  width: w + 90,
+                  height: h + 90,
+                  background: 'radial-gradient(circle, rgba(0,0,0,1) 20%, rgba(4,4,8,0.98) 60%, rgba(8,8,14,0.7) 80%, transparent 100%)',
+                  borderRadius: '40px',
+                  filter: 'blur(30px)',
+                  opacity: 0.98,
+                  pointerEvents: 'none',
+                  zIndex: 8,
+                  animation: 'fogDriftLarge 18s infinite ease-in-out'
+                }}
+              />
+            );
+          }
           const glowColor = domain.borderColor.replace('0.5', '0.22');
           return (
             <div 
@@ -457,6 +661,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
           {/* Render Domain Backgrounds */}
           {domainsWithBounds.map(domain => {
             if(!domain.bounds) return null;
+            if (fogOfWarEnabled && !isDomainDiscovered(domain)) return null;
             const {x, y, w, h} = domain.bounds;
             const rectX = x + OFFSET_X - 45;
             const rectY = y + OFFSET_Y - 45;
@@ -548,6 +753,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
             const n1 = nodes.find(n => n.id === edge.from);
             const n2 = nodes.find(n => n.id === edge.to);
             if(!n1 || !n2) return null;
+            if (fogOfWarEnabled && (!discoveredNodeIds.has(n1.id) || !discoveredNodeIds.has(n2.id))) return null;
             
             const startX = n1.x + OFFSET_X;
             const startY = n1.y + OFFSET_Y;
@@ -585,15 +791,19 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
             const n1Domain = getNodeDomain(n1.id);
             const n2Domain = getNodeDomain(n2.id);
             const n1Visible = (!activeDomainFilter || (n1Domain && n1Domain.id === activeDomainFilter)) && 
-                              (!activeStatusFilter || n1.status === activeStatusFilter) &&
-                              (!n1.isDimmed);
+                              (!activeStatusFilter || n1.status === activeStatusFilter);
             const n2Visible = (!activeDomainFilter || (n2Domain && n2Domain.id === activeDomainFilter)) && 
-                              (!activeStatusFilter || n2.status === activeStatusFilter) &&
-                              (!n2.isDimmed);
+                              (!activeStatusFilter || n2.status === activeStatusFilter);
             const isEdgeVisible = n1Visible && n2Visible;
             
             const edgeBaseOpacity = !hoveredNode ? (bothCompleted ? 1 : 0.85) : ((isRelated || bothCompleted) ? 1 : 0.35);
-            const finalEdgeOpacity = isEdgeVisible ? edgeBaseOpacity : 0.02;
+            
+            // Diminuarea opacității legăturilor standard dacă un traseu olimpic este activ
+            const trackActive = activeTrackId !== null;
+            const inTrackEdge = activeTrackId ? (activeTrackNodes.includes(n1.id) && activeTrackNodes.includes(n2.id)) : false;
+            const trackEdgeDim = trackActive ? (inTrackEdge ? 0.2 : 0.04) : 1;
+            
+            const finalEdgeOpacity = isEdgeVisible ? (edgeBaseOpacity * trackEdgeDim) : 0.05;
 
             return (
               <g key={i}>
@@ -640,10 +850,87 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
               </g>
             )
           })}
+
+          {/* Render Active Olympiad Constellation Paths */}
+          {activeTrackId && activeTrackNodes.length > 1 && activeTrackNodes.map((nodeId, idx) => {
+            if (idx === activeTrackNodes.length - 1) return null;
+            const n1 = nodes.find(n => n.id === nodeId);
+            const n2 = nodes.find(n => n.id === activeTrackNodes[idx + 1]);
+            if (!n1 || !n2) return null;
+
+            const startX = n1.x + OFFSET_X;
+            const startY = n1.y + OFFSET_Y;
+            const endX = n2.x + OFFSET_X;
+            const endY = n2.y + OFFSET_Y;
+
+            const dy = Math.abs(endY - startY);
+            const cp1X = startX;
+            const cp1Y = startY + dy * 0.5;
+            const cp2X = endX;
+            const cp2Y = endY - dy * 0.5;
+
+            const pathData = `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
+            
+            // Highlight step segment in Voyage Mode
+            const isVoyageActiveSegment = isVoyageMode && (idx === voyageStep || idx === voyageStep - 1);
+            const pathColor = activeTrack.color;
+
+            return (
+              <g key={`olympiad-constellation-edge-${idx}`}>
+                {/* Glowing thick ribbon */}
+                <path
+                  d={pathData}
+                  fill="none"
+                  stroke={pathColor}
+                  strokeWidth={isVoyageActiveSegment ? "12" : "7"}
+                  opacity={isVoyageActiveSegment ? "0.45" : "0.22"}
+                  filter="url(#glow)"
+                  style={{ transition: 'all 0.3s ease' }}
+                />
+                {/* Core animated dashed line */}
+                <path
+                  d={pathData}
+                  fill="none"
+                  stroke={pathColor}
+                  strokeWidth={isVoyageActiveSegment ? "4.5" : "2.5"}
+                  strokeDasharray="10 15"
+                  style={{
+                    animation: `dataPulseFlow ${isVoyageActiveSegment ? '0.7s' : '1.4s'} linear infinite`,
+                    opacity: isVoyageActiveSegment ? 1 : 0.75,
+                    transition: 'all 0.3s ease'
+                  }}
+                />
+              </g>
+            );
+          })}
         </svg>
 
         {/* Draw HTML Nodes */}
         {nodes.map(node => {
+          if (fogOfWarEnabled && !discoveredNodeIds.has(node.id)) {
+            return (
+              <div 
+                key={`fog-node-${node.id}`}
+                style={{
+                  position: 'absolute',
+                  left: node.x + OFFSET_X,
+                  top: node.y + OFFSET_Y,
+                  transform: 'translate(-50%, -50%)',
+                  width: '260px',
+                  height: '140px',
+                  background: 'radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(5, 5, 8, 0.95) 45%, rgba(10, 10, 18, 0.5) 75%, transparent 100%)',
+                  borderRadius: '50%',
+                  filter: 'blur(14px)',
+                  pointerEvents: 'none',
+                  zIndex: 9,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  animation: 'fogDrift 12s infinite linear'
+                }}
+              />
+            );
+          }
           const isHovered = hoveredNode === node.id;
           const isParentOfHovered = hoveredNode ? edges.some(e => e.from === node.id && e.to === hoveredNode) : false;
           const isChildOfHovered = hoveredNode ? edges.some(e => e.to === node.id && e.from === hoveredNode) : false;
@@ -688,21 +975,74 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
 
           // Interactive domain & status filter visibility
           const isNodeVisible = (!activeDomainFilter || (domain && domain.id === activeDomainFilter)) &&
-                                (!activeStatusFilter || node.status === activeStatusFilter) &&
-                                (!node.isDimmed);
+                                (!activeStatusFilter || node.status === activeStatusFilter);
+
+          const isNodeInTrack = activeTrackId ? activeTrackNodes.includes(node.id) : true;
+          const trackIndex = activeTrackNodes.indexOf(node.id);
+          const isCurrentVoyageNode = isVoyageMode && activeTrackId && node.id === activeTrackNodes[voyageStep];
+
+          let trackOpacity = 1;
+          if (activeTrackId) {
+            if (isNodeInTrack) {
+              if (isVoyageMode) {
+                trackOpacity = isCurrentVoyageNode ? 1 : 0.45;
+              } else {
+                trackOpacity = 1;
+              }
+            } else {
+              trackOpacity = 0.12;
+            }
+          }
+
           const nodeBaseOpacity = node.status === 'locked' ? 0.6 : 1;
-          const finalNodeOpacity = (flashedNodeId === node.id) ? 1 : (isNodeVisible ? nodeBaseOpacity : 0.12);
+          const finalNodeOpacity = (flashedNodeId === node.id) ? 1 : (isNodeVisible ? nodeBaseOpacity * trackOpacity : 0.15);
+
+          const isRecommended = node.id === targetNodeId;
+
+          if (isCurrentVoyageNode) {
+            borderOverlay = `3px solid ${activeTrack.color}`;
+            shadow = `0 0 35px ${activeTrack.color}, inset 0 1px 0 rgba(255,255,255,0.25)`;
+            transformScale = 'scale(1.15) translateY(-5px)';
+            customAnimation = 'cyberPulse 1.5s infinite ease-in-out';
+          } else if (isHovered) {
+            transformScale = 'scale(1.1) translateY(-10px)';
+            nodeBg = 'linear-gradient(135deg, #131726 0%, #0d0f17 100%)';
+            shadow = `0 18px 40px rgba(0,0,0,0.8), 0 0 20px ${isRecommended ? '#10b981' : domainBorderColor}, inset 0 1px 0 rgba(255,255,255,0.1)`;
+            borderOverlay = `2.5px solid ${isRecommended ? '#10b981' : domainBorderColor}`;
+          } else if (isRecommended) {
+            borderOverlay = `2.5px solid #10b981`;
+            shadow = `0 0 22px rgba(16, 185, 129, 0.65), inset 0 1px 0 rgba(255,255,255,0.15)`;
+            customAnimation = 'cyberPulse 2s infinite ease-in-out';
+          } else if (isParentOfHovered) {
+            borderOverlay = `2px solid ${domainBorderColor}`;
+            shadow = `0 10px 30px rgba(0, 0, 0, 0.75), 0 0 15px ${domainBorderColor}, inset 0 1px 0 rgba(255,255,255,0.05)`;
+            customAnimation = 'parentGlowPulse 2.5s infinite ease-in-out';
+          } else if (isChildOfHovered) {
+            borderOverlay = `2px solid ${domainBorderColor}`;
+            shadow = `0 10px 30px rgba(0, 0, 0, 0.75), 0 0 15px ${domainBorderColor}, inset 0 1px 0 rgba(255,255,255,0.05)`;
+            customAnimation = 'childGlowPulse 2.5s infinite ease-in-out';
+          } else if (node.status === 'completed') {
+            nodeBg = 'linear-gradient(135deg, #04100c 0%, #080a10 100%)';
+            borderOverlay = `2px solid ${getStatusColor(node.status)}`;
+            customAnimation = 'cyberPulse 3s infinite ease-in-out';
+          } else if (node.status === 'in-progress') {
+            nodeBg = 'linear-gradient(135deg, #0a0b12 0%, #141724 100%)';
+            borderOverlay = `2px solid ${domainBorderColor}`;
+            shadow = `0 10px 30px rgba(0, 0, 0, 0.7), 0 0 12px ${domainBorderColor}, inset 0 1px 0 rgba(255,255,255,0.05)`;
+          } else if (node.status === 'locked') {
+            nodeBg = '#06070a';
+            borderOverlay = `1px solid rgba(255, 255, 255, 0.08)`;
+            shadow = '0 4px 12px rgba(0, 0, 0, 0.8)';
+          }
 
           return (
             <div 
               key={node.id}
               className={flashedNodeId === node.id ? 'searched-flash' : ''}
-              onMouseEnter={() => {
-                if (!node.isDimmed) setHoveredNode(node.id);
-              }}
+              onMouseEnter={() => setHoveredNode(node.id)}
               onMouseLeave={() => setHoveredNode(null)}
               onClick={(e) => {
-                if (hasMoved || node.isDimmed) {
+                if (hasMoved) {
                   e.stopPropagation();
                   return;
                 }
@@ -719,10 +1059,9 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                 border: borderOverlay,
                 borderRadius: '20px',
                 padding: '24px 32px',
-                color: (node.status === 'locked' || node.isDimmed) ? 'rgba(255, 255, 255, 0.25)' : '#fff',
-                cursor: (node.status === 'locked' || node.isDimmed) ? 'default' : 'pointer',
-                pointerEvents: node.isDimmed ? 'none' : 'auto',
-                zIndex: isHovered ? 10 : (isParentOfHovered || isChildOfHovered ? 8 : (node.status === 'completed' ? 5 : 1)),
+                color: node.status === 'locked' ? 'rgba(255, 255, 255, 0.25)' : '#fff',
+                cursor: node.status === 'locked' ? 'default' : 'pointer',
+                zIndex: isCurrentVoyageNode ? 15 : (isHovered ? 10 : (isParentOfHovered || isChildOfHovered ? 8 : (node.status === 'completed' ? 5 : 1))),
                 boxShadow: shadow,
                 transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease',
                 opacity: finalNodeOpacity,
@@ -735,30 +1074,31 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                 "--glow-color": domainBorderColor
               }}
             >
-              {/* Recommended Order Badge */}
-              {activeLevelFilter && !node.isDimmed && (
+              {/* Floating holographic step index badge for active track */}
+              {activeTrackId && trackIndex !== -1 && (
                 <div style={{
                   position: 'absolute',
-                  top: '-12px',
-                  left: '-12px',
-                  width: '28px',
-                  height: '28px',
+                  top: '-15px',
+                  left: '-15px',
+                  width: '32px',
+                  height: '32px',
                   borderRadius: '50%',
-                  background: 'linear-gradient(135deg, #4f46e5, #06b6d4)',
-                  border: '2px solid #05040f',
-                  boxShadow: '0 0 15px rgba(99, 102, 241, 0.8)',
-                  color: '#fff',
-                  fontSize: '11px',
-                  fontWeight: 'bold',
+                  backgroundColor: activeTrack.color,
+                  border: '2px solid #fff',
+                  boxShadow: `0 0 12px ${activeTrack.glowColor}`,
+                  color: '#000',
+                  fontWeight: '900',
+                  fontSize: '14px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   fontFamily: 'var(--font-mono)',
-                  zIndex: 12
+                  zIndex: 20
                 }}>
-                  {node.recommendedOrder}
+                  {trackIndex + 1}
                 </div>
               )}
+
               {/* Sci-fi corner brackets (HTML/CSS design overlay) */}
               {node.status !== 'locked' && (
                 <>
@@ -924,6 +1264,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(99, 102, 241, 0.03) 2px, rgba(99, 102, 241, 0.03) 4px)', pointerEvents: 'none', zIndex: 1 }} />
         <div style={{ position: 'relative', width: '100%', height: 'calc(100% - 33px)', zIndex: 2 }}>
           {nodes.map(node => {
+            if (fogOfWarEnabled && !discoveredNodeIds.has(node.id)) return null;
             const nodeDomain = getNodeDomain(node.id);
             const dotColor = node.status === 'completed' 
               ? 'var(--success-color)' 
@@ -1007,73 +1348,31 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
             </svg>
           </button>
         ) : (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', width: '100%', height: '100%', position: 'relative' }}>
-            {/* Futuristic Tabbed Header */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '10px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '12px', fontWeight: '800', fontFamily: 'var(--font-mono)', letterSpacing: '1.2px', color: '#a5b4fc', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span>⚙️</span> OLYMPIC PANEL
-                </span>
-                <button
-                  onClick={() => setIsPanelCollapsed(true)}
-                  style={{
-                    background: 'transparent',
-                    border: 'none',
-                    color: 'rgba(255,255,255,0.4)',
-                    cursor: 'pointer',
-                    fontSize: '16px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    padding: '2px'
-                  }}
-                  title="Ascunde"
-                >
-                  ✕
-                </button>
-              </div>
-
-              {/* Tabs Switcher */}
-              <div style={{ display: 'flex', background: 'rgba(0,0,0,0.4)', borderRadius: '8px', padding: '2px', border: '1px solid rgba(255,255,255,0.05)' }}>
-                <button
-                  onClick={() => setActiveTab('pregatire')}
-                  style={{
-                    flex: 1,
-                    background: activeTab === 'pregatire' ? 'rgba(99, 102, 241, 0.2)' : 'transparent',
-                    border: activeTab === 'pregatire' ? '1px solid rgba(99, 102, 241, 0.4)' : '1px solid transparent',
-                    borderRadius: '6px',
-                    color: activeTab === 'pregatire' ? '#fff' : 'rgba(255,255,255,0.5)',
-                    fontSize: '11px',
-                    fontWeight: 'bold',
-                    padding: '6px 0',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s ease',
-                    fontFamily: 'var(--font-mono)'
-                  }}
-                >
-                  🏆 PREGĂTIRE
-                </button>
-                <button
-                  onClick={() => setActiveTab('filtre')}
-                  style={{
-                    flex: 1,
-                    background: activeTab === 'filtre' ? 'rgba(99, 102, 241, 0.2)' : 'transparent',
-                    border: activeTab === 'filtre' ? '1px solid rgba(99, 102, 241, 0.4)' : '1px solid transparent',
-                    borderRadius: '6px',
-                    color: activeTab === 'filtre' ? '#fff' : 'rgba(255,255,255,0.5)',
-                    fontSize: '11px',
-                    fontWeight: 'bold',
-                    padding: '6px 0',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s ease',
-                    fontFamily: 'var(--font-mono)'
-                  }}
-                >
-                  🔍 FILTRE & STATS
-                </button>
-              </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%', height: '100%', position: 'relative' }}>
+            {/* Header */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '10px' }}>
+              <span style={{ fontSize: '13px', fontWeight: '800', fontFamily: 'var(--font-mono)', letterSpacing: '1px', color: '#a5b4fc', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span>⚙️</span> CONTROL PANEL
+              </span>
+              <button
+                onClick={() => setIsPanelCollapsed(true)}
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  color: 'rgba(255,255,255,0.4)',
+                  cursor: 'pointer',
+                  fontSize: '16px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  padding: '2px'
+                }}
+                title="Ascunde"
+              >
+                ✕
+              </button>
             </div>
             
-            {/* Search Section (Always Available) */}
+            {/* Search Section */}
             <div style={{ position: 'relative' }}>
               <input
                 id="syllabus-search-input"
@@ -1122,12 +1421,20 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                           style={{
                             padding: '8px 12px',
                             cursor: 'pointer',
-                            borderBottom: '1px solid rgba(255,255,255,0.03)'
+                            borderBottom: '1px solid rgba(255,255,255,0.03)',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center'
                           }}
                           className="search-item"
                         >
-                          <div style={{ fontSize: '13px', fontWeight: 'bold', color: '#fff' }}>{leaf}</div>
-                          <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase' }}>{path}</div>
+                          <div>
+                            <div style={{ fontSize: '13px', fontWeight: 'bold', color: '#fff' }}>{leaf}</div>
+                            <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase' }}>{path}</div>
+                          </div>
+                          {fogOfWarEnabled && !discoveredNodeIds.has(node.id) && (
+                            <span style={{ fontSize: '12px', opacity: 0.6 }} title="Ascuns în ceață">🌫️</span>
+                          )}
                         </div>
                       );
                     })
@@ -1140,233 +1447,98 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
               )}
             </div>
 
-            {/* Render Tab Contents */}
-            {activeTab === 'pregatire' ? (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', flex: 1, minHeight: 0 }}>
-                {/* Level selection */}
-                <div>
-                  <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px', fontWeight: '700' }}>
-                    Alege Nivel Pregătire
-                  </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '6px' }}>
-                    {[
-                      { id: null, label: 'Toate', icon: '🌐' },
-                      { id: 'clasa9', label: 'Clasa a 9-a', icon: '9️⃣' },
-                      { id: 'clasa10', label: 'Clasa a 10-a', icon: '🔟' },
-                      { id: 'clasele11_12', label: 'Clasele 11-12', icon: '⚔️' },
-                      { id: 'baraj', label: 'Baraj', icon: '👑' }
-                    ].map(level => {
-                      const isActive = activeLevelFilter === level.id;
-                      return (
-                        <button
-                          key={level.label}
-                          onClick={() => {
-                            setActiveLevelFilter(level.id);
-                            if (level.id) {
-                              const firstNodeId = olympiadPaths[level.id].steps[0].nodeIds[0];
-                              const firstNode = nodes.find(n => n.id === firstNodeId);
-                              if (firstNode) {
-                                handleSelectNode(firstNode);
-                              }
-                            }
-                          }}
-                          style={{
-                            background: isActive ? 'rgba(99, 102, 241, 0.2)' : 'rgba(255,255,255,0.02)',
-                            border: `1px solid ${isActive ? 'rgba(99, 102, 241, 0.6)' : 'rgba(255,255,255,0.06)'}`,
-                            borderRadius: '8px',
-                            padding: '8px 4px',
-                            color: isActive ? '#fff' : 'rgba(255,255,255,0.7)',
-                            fontSize: '11px',
-                            fontWeight: isActive ? '800' : 'normal',
-                            cursor: 'pointer',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            gap: '4px',
-                            transition: 'all 0.15s ease'
-                          }}
-                        >
-                          <span>{level.icon}</span>
-                          {level.label}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
+            {/* Status Filter Section */}
+            <div>
+              <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px', fontWeight: '700' }}>
+                Filtrare Status
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px' }}>
+                {[
+                  { id: null, label: 'Toate', color: 'rgba(255,255,255,0.06)', activeColor: 'rgba(255,255,255,0.15)' },
+                  { id: 'completed', label: 'Finalizate', color: 'rgba(16, 185, 129, 0.05)', activeColor: 'rgba(16, 185, 129, 0.25)', borderColor: 'rgba(16, 185, 129, 0.4)' },
+                  { id: 'in-progress', label: 'În lucru', color: 'rgba(139, 92, 246, 0.05)', activeColor: 'rgba(139, 92, 246, 0.25)', borderColor: 'rgba(139, 92, 246, 0.4)' },
+                  { id: 'locked', label: 'Blocate', color: 'rgba(255,255,255,0.02)', activeColor: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.15)' }
+                ].map(opt => {
+                  const isActive = activeStatusFilter === opt.id;
+                  return (
+                    <button
+                      key={opt.label}
+                      onClick={() => setActiveStatusFilter(opt.id)}
+                      style={{
+                        background: isActive ? opt.activeColor : opt.color,
+                        border: `1px solid ${isActive ? (opt.borderColor || '#a5b4fc') : 'rgba(255,255,255,0.06)'}`,
+                        borderRadius: '6px',
+                        padding: '6px 8px',
+                        color: isActive ? '#fff' : 'rgba(255,255,255,0.7)',
+                        fontSize: '11px',
+                        fontWeight: isActive ? '800' : 'normal',
+                        cursor: 'pointer',
+                        transition: 'all 0.15s ease'
+                      }}
+                    >
+                      {opt.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
 
-                {/* Checklist learning path */}
-                {activeLevelFilter ? (
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '11px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px', fontWeight: '700' }}>
-                      <span>Parcurs recomandat</span>
-                      <span style={{ color: '#818cf8', fontWeight: 'bold' }}>
-                        {Math.round((nodes.filter(n => n.olympiadLevel === activeLevelFilter && n.status === 'completed').length / nodes.filter(n => n.olympiadLevel === activeLevelFilter).length) * 100)}% Gata
+            {/* Legend & Stats Section */}
+            <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '11px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px', fontWeight: '700' }}>
+                <span>Legendă domenii & Statistici</span>
+                <span style={{ fontSize: '10px', color: '#10b981' }}>
+                  {nodes.filter(n => n.status === 'completed').length} / {nodes.length} OK
+                </span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', overflowY: 'auto', maxHeight: '200px', paddingRight: '4px' }}>
+                {domainsWithBounds.map(d => {
+                  if (!d.bounds) return null;
+                  const domainNodes = nodes.filter(n => d.nodes.includes(n.id));
+                  const completedCount = domainNodes.filter(n => n.status === 'completed').length;
+                  const totalCount = domainNodes.length;
+                  const isHoveredDomain = activeDomainFilter === d.id;
+                  const isDiscovered = !fogOfWarEnabled || isDomainDiscovered(d);
+                  const icon = isDiscovered ? d.icon : '🔒';
+                  const label = isDiscovered ? d.label : '[Domeniu Nedescoperit]';
+                  const progressStr = isDiscovered ? `${completedCount}/${totalCount}` : '?/?';
+                  
+                  return (
+                    <div
+                      key={d.id}
+                      onMouseEnter={() => { if (isDiscovered) setActiveDomainFilter(d.id); }}
+                      onMouseLeave={() => { if (isDiscovered) setActiveDomainFilter(null); }}
+                      onClick={() => { if (isDiscovered) fitDomain(d); }}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        padding: '6px 10px',
+                        borderRadius: '6px',
+                        background: isHoveredDomain && isDiscovered ? 'rgba(255,255,255,0.03)' : 'transparent',
+                        border: `1px solid ${isHoveredDomain && isDiscovered ? d.borderColor : 'transparent'}`,
+                        cursor: isDiscovered ? 'pointer' : 'default',
+                        opacity: isDiscovered ? 1 : 0.4,
+                        transition: 'all 0.15s ease'
+                      }}
+                    >
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <span style={{ fontSize: '14px' }}>{icon}</span>
+                        <span style={{ fontSize: '12px', color: isHoveredDomain && isDiscovered ? '#fff' : 'rgba(255,255,255,0.85)', fontWeight: isHoveredDomain && isDiscovered ? 'bold' : 'normal' }}>
+                          {label}
+                        </span>
+                      </div>
+                      <span style={{ fontSize: '10px', color: isDiscovered ? d.borderColor : 'rgba(255,255,255,0.3)', fontWeight: 'bold', fontFamily: 'var(--font-mono)' }}>
+                        {progressStr}
                       </span>
                     </div>
-                    <div style={{ flex: 1, overflowY: 'auto', maxHeight: '250px', paddingRight: '4px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                      {olympiadPaths[activeLevelFilter].steps.map((step, idx) => {
-                        const stepNodes = nodes.filter(n => step.nodeIds.includes(n.id));
-                        const completedCount = stepNodes.filter(n => n.status === 'completed').length;
-                        const totalCount = stepNodes.length;
-                        const isStepDone = completedCount === totalCount;
-                        
-                        return (
-                          <div 
-                            key={idx} 
-                            style={{ 
-                              background: 'rgba(255,255,255,0.01)', 
-                              border: '1px solid rgba(255,255,255,0.04)', 
-                              borderRadius: '8px', 
-                              padding: '8px'
-                            }}
-                          >
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                              <span style={{ fontSize: '11px', fontWeight: 'bold', color: isStepDone ? 'var(--success-color)' : '#fff' }}>
-                                {step.title}
-                              </span>
-                              <span style={{ fontSize: '10px', color: isStepDone ? 'var(--success-color)' : 'rgba(255,255,255,0.4)', fontFamily: 'var(--font-mono)' }}>
-                                {completedCount}/{totalCount}
-                              </span>
-                            </div>
-                            
-                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
-                              {step.nodeIds.map(nodeId => {
-                                const nodeObj = nodes.find(n => n.id === nodeId);
-                                if (!nodeObj) return null;
-                                
-                                const parts = nodeObj.label.split('/');
-                                const labelShort = parts[parts.length - 1].replace(/_/g, ' ');
-                                
-                                let bulletColor = 'rgba(255, 255, 255, 0.2)';
-                                if (nodeObj.status === 'completed') bulletColor = 'var(--success-color)';
-                                else if (nodeObj.status === 'in-progress') bulletColor = 'var(--accent-secondary)';
-                                
-                                return (
-                                  <button
-                                    key={nodeId}
-                                    onClick={() => handleSelectNode(nodeObj)}
-                                    style={{
-                                      background: 'rgba(0,0,0,0.3)',
-                                      border: '1px solid rgba(255,255,255,0.06)',
-                                      borderRadius: '6px',
-                                      padding: '3px 6px',
-                                      color: nodeObj.status === 'completed' ? '#a7f3d0' : (nodeObj.status === 'in-progress' ? '#e9d5ff' : 'rgba(255,255,255,0.6)'),
-                                      fontSize: '10px',
-                                      cursor: 'pointer',
-                                      display: 'flex',
-                                      alignItems: 'center',
-                                      gap: '4px',
-                                      transition: 'all 0.15s ease'
-                                    }}
-                                  >
-                                    <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: bulletColor }} />
-                                    {labelShort}
-                                  </button>
-                                );
-                              })}
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                ) : (
-                  <div style={{ padding: '20px 10px', textAlign: 'center', color: 'rgba(255,255,255,0.4)', fontSize: '11px', border: '1px dashed rgba(255,255,255,0.08)', borderRadius: '10px' }}>
-                    ✨ Selectează un nivel de pregătire pentru a vizualiza ordinea parcurgerii capitolelor.
-                  </div>
-                )}
+                  );
+                })}
               </div>
-            ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', flex: 1, minHeight: 0 }}>
-                {/* Status Filter Section */}
-                <div>
-                  <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px', fontWeight: '700' }}>
-                    Filtrare Status
-                  </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px' }}>
-                    {[
-                      { id: null, label: 'Toate', color: 'rgba(255,255,255,0.06)', activeColor: 'rgba(255,255,255,0.15)' },
-                      { id: 'completed', label: 'Finalizate', color: 'rgba(16, 185, 129, 0.05)', activeColor: 'rgba(16, 185, 129, 0.25)', borderColor: 'rgba(16, 185, 129, 0.4)' },
-                      { id: 'in-progress', label: 'În lucru', color: 'rgba(139, 92, 246, 0.05)', activeColor: 'rgba(139, 92, 246, 0.25)', borderColor: 'rgba(139, 92, 246, 0.4)' },
-                      { id: 'locked', label: 'Blocate', color: 'rgba(255,255,255,0.02)', activeColor: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.15)' }
-                    ].map(opt => {
-                      const isActive = activeStatusFilter === opt.id;
-                      return (
-                        <button
-                          key={opt.label}
-                          onClick={() => setActiveStatusFilter(opt.id)}
-                          style={{
-                            background: isActive ? opt.activeColor : opt.color,
-                            border: `1px solid ${isActive ? (opt.borderColor || '#a5b4fc') : 'rgba(255,255,255,0.06)'}`,
-                            borderRadius: '6px',
-                            padding: '6px 8px',
-                            color: isActive ? '#fff' : 'rgba(255,255,255,0.7)',
-                            fontSize: '11px',
-                            fontWeight: isActive ? '800' : 'normal',
-                            cursor: 'pointer',
-                            transition: 'all 0.15s ease'
-                          }}
-                        >
-                          {opt.label}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Legend & Stats Section */}
-                <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '11px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px', fontWeight: '700' }}>
-                    <span>Legendă domenii & Statistici</span>
-                    <span style={{ fontSize: '10px', color: '#10b981' }}>
-                      {nodes.filter(n => n.status === 'completed').length} / {nodes.length} OK
-                    </span>
-                  </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', overflowY: 'auto', maxHeight: '180px', paddingRight: '4px' }}>
-                    {domainsWithBounds.map(d => {
-                      if (!d.bounds) return null;
-                      const domainNodes = nodes.filter(n => d.nodes.includes(n.id));
-                      const completedCount = domainNodes.filter(n => n.status === 'completed').length;
-                      const totalCount = domainNodes.length;
-                      const isHoveredDomain = activeDomainFilter === d.id;
-                      
-                      return (
-                        <div
-                          key={d.id}
-                          onMouseEnter={() => setActiveDomainFilter(d.id)}
-                          onMouseLeave={() => setActiveDomainFilter(null)}
-                          onClick={() => fitDomain(d)}
-                          style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                            padding: '4px 8px',
-                            borderRadius: '6px',
-                            background: isHoveredDomain ? 'rgba(255,255,255,0.03)' : 'transparent',
-                            border: `1px solid ${isHoveredDomain ? d.borderColor : 'transparent'}`,
-                            cursor: 'pointer',
-                            transition: 'all 0.15s ease'
-                          }}
-                        >
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                            <span style={{ fontSize: '13px' }}>{d.icon}</span>
-                            <span style={{ fontSize: '11px', color: isHoveredDomain ? '#fff' : 'rgba(255,255,255,0.85)', fontWeight: isHoveredDomain ? 'bold' : 'normal' }}>
-                              {d.label}
-                            </span>
-                          </div>
-                          <span style={{ fontSize: '10px', color: d.borderColor, fontWeight: 'bold', fontFamily: 'var(--font-mono)' }}>
-                            {completedCount}/{totalCount}
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            )}
+            </div>
 
             {/* Quick Actions */}
-            <div style={{ display: 'flex', gap: '6px', borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '10.5px' }}>
+            <div style={{ display: 'flex', gap: '6px', borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '12px' }}>
               <button
                 onClick={() => { setScale(0.85); setPosition({ x: 0, y: 1600 }); }}
                 style={{
@@ -1405,11 +1577,400 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
         )}
       </div>
 
+      {/* Olympiad Quest Deck HUD */}
+      <div 
+        onMouseDown={(e) => e.stopPropagation()}
+        onMouseMove={(e) => e.stopPropagation()}
+        onMouseUp={(e) => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}
+        onMouseEnter={() => setIsHudHovered(true)}
+        onMouseLeave={() => setIsHudHovered(false)}
+        style={{
+          position: 'absolute',
+          bottom: (isHudOpen || isHudHovered) ? '24px' : '0px',
+          left: '50%',
+          transform: (isHudOpen || isHudHovered) ? 'translateX(-50%)' : 'translateX(-50%) translateY(calc(100% - 10px))',
+          zIndex: 150,
+          width: '680px',
+          background: '#0a0b10',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
+          borderRadius: '16px',
+          boxShadow: (isHudOpen || isHudHovered) ? '0 12px 40px rgba(0, 0, 0, 0.85)' : '0 0 15px rgba(16, 185, 129, 0.15)',
+          padding: '16px 20px',
+          boxSizing: 'border-box',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '12px',
+          color: '#fff',
+          opacity: (isHudOpen || isHudHovered) ? 1 : 0.15,
+          transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1), boxShadow 0.3s ease'
+        }}
+      >
+        {/* Track Selection Buttons */}
+        <div style={{ display: 'flex', gap: '8px', justifyContent: 'space-between' }}>
+          {olympiadTracks.map(track => {
+            const isActive = activeTrackId === track.id;
+            const trackNodes = track.nodes;
+            const completedCount = trackNodes.filter(nId => {
+              const nodeObj = nodes.find(n => n.id === nId);
+              return nodeObj && nodeObj.status === 'completed';
+            }).length;
+            const progressPct = trackNodes.length > 0 ? Math.round((completedCount / trackNodes.length) * 100) : 0;
+
+            return (
+              <button
+                key={track.id}
+                onClick={() => {
+                  if (isActive) {
+                    setActiveTrackId(null);
+                    setIsVoyageMode(false);
+                  } else {
+                    setActiveTrackId(track.id);
+                    setIsVoyageMode(false);
+                    setVoyageStep(0);
+                  }
+                }}
+                style={{
+                  flex: 1,
+                  background: isActive ? `${track.color}15` : 'rgba(255, 255, 255, 0.02)',
+                  border: `1px solid ${isActive ? track.color : 'rgba(255, 255, 255, 0.08)'}`,
+                  borderRadius: '10px',
+                  padding: '10px 8px',
+                  color: isActive ? '#fff' : 'rgba(255, 255, 255, 0.65)',
+                  fontSize: '12px',
+                  fontWeight: '800',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '4px',
+                  boxShadow: isActive ? `0 0 15px ${track.color}25` : 'none',
+                  transition: 'all 0.2s ease',
+                  outline: 'none'
+                }}
+              >
+                <span style={{ fontSize: '18px' }}>{track.badge}</span>
+                <span style={{ fontFamily: 'var(--font-display)', letterSpacing: '0.5px' }}>{track.label}</span>
+                <span style={{ fontSize: '10px', opacity: 0.7, fontFamily: 'var(--font-mono)' }}>{progressPct}% completat</span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Recomandare Globală (afișată când nu este selectat niciun traseu) */}
+        {!activeTrackId && globalRecommendedTrack && (() => {
+          const recNodeObj = nodes.find(n => n.id === globalRecommendedNodeId);
+          if (!recNodeObj) return null;
+          const labelParts = recNodeObj.label.split('/');
+          const recShortName = labelParts[labelParts.length - 1].replace(/_/g, ' ');
+          
+          return (
+            <div 
+              onClick={() => {
+                handleSelectNode(recNodeObj);
+                setActiveTrackId(globalRecommendedTrack.id);
+              }}
+              style={{
+                background: 'rgba(16, 185, 129, 0.04)',
+                border: '1px solid rgba(16, 185, 129, 0.2)',
+                borderRadius: '10px',
+                padding: '10px 14px',
+                fontSize: '11px',
+                color: '#fff',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: '12px',
+                marginTop: '4px',
+                transition: 'all 0.2s ease',
+                boxShadow: 'inset 0 0 10px rgba(16, 185, 129, 0.02)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(16, 185, 129, 0.08)';
+                e.currentTarget.style.borderColor = 'rgba(16, 185, 129, 0.4)';
+                e.currentTarget.style.boxShadow = '0 0 8px rgba(16, 185, 129, 0.15)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(16, 185, 129, 0.04)';
+                e.currentTarget.style.borderColor = 'rgba(16, 185, 129, 0.2)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ fontSize: '14px' }}>🎯</span>
+                <span>
+                  Recomandare: Începe sau continuă cu <strong>{recShortName}</strong> din traseul <strong>{globalRecommendedTrack.label}</strong>
+                </span>
+              </div>
+              <span style={{ fontSize: '10px', color: '#10b981', fontWeight: 'bold' }}>Focalizează ➔</span>
+            </div>
+          );
+        })()}
+
+        {/* Selected Track Detail & Steps */}
+        {activeTrackId && (() => {
+          const track = olympiadTracks.find(t => t.id === activeTrackId);
+          const trackNodes = track ? track.nodes : [];
+          const completedCount = trackNodes.filter(nId => {
+            const nodeObj = nodes.find(n => n.id === nId);
+            return nodeObj && nodeObj.status === 'completed';
+          }).length;
+          const progressPct = trackNodes.length > 0 ? Math.round((completedCount / trackNodes.length) * 100) : 0;
+
+          return (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', borderTop: '1px solid rgba(255, 255, 255, 0.05)', paddingTop: '10px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: track.color, boxShadow: `0 0 8px ${track.color}` }} />
+                  <span style={{ fontSize: '12px', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '1px', color: track.color }}>
+                    Traseul {track.label}
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsVoyageMode(!isVoyageMode);
+                    setVoyageStep(0);
+                  }}
+                  style={{
+                    background: isVoyageMode ? '#ef444420' : `${track.color}25`,
+                    border: `1px solid ${isVoyageMode ? '#ef4444' : track.color}`,
+                    borderRadius: '6px',
+                    padding: '4px 12px',
+                    color: isVoyageMode ? '#f87171' : '#fff',
+                    fontSize: '11px',
+                    fontWeight: '800',
+                    cursor: 'pointer',
+                    outline: 'none',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  {isVoyageMode ? '✕ Oprire Antrenament' : '🚀 Antrenament Ghidat'}
+                </button>
+              </div>
+
+              {/* Detalii Pas curent din Antrenamentul Ghidat */}
+              {isVoyageMode && (() => {
+                const activeNodeId = trackNodes[voyageStep];
+                const nodeObj = nodes.find(n => n.id === activeNodeId);
+                if (!nodeObj) return null;
+
+                const labelParts = nodeObj.label.split('/');
+                const categoryName = labelParts.slice(0, labelParts.length - 1).join(' / ').replace(/_/g, ' ');
+                const topicName = labelParts[labelParts.length - 1].replace(/_/g, ' ');
+                const isCompleted = nodeObj.status === 'completed';
+
+                return (
+                  <div style={{
+                    background: 'rgba(255, 255, 255, 0.02)',
+                    border: '1px solid rgba(255, 255, 255, 0.05)',
+                    borderRadius: '12px',
+                    padding: '14px 16px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '12px',
+                    marginTop: '4px',
+                    animation: 'fadeIn 0.2s ease'
+                  }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ fontSize: '11px', fontWeight: '800', color: track.color, textTransform: 'uppercase', letterSpacing: '1px', fontFamily: 'var(--font-mono)' }}>
+                        {track.badge} Antrenament: Pasul {voyageStep + 1} / {trackNodes.length}
+                      </span>
+                      <span style={{
+                        fontSize: '9px',
+                        padding: '2px 6px',
+                        borderRadius: '4px',
+                        background: isCompleted ? 'rgba(16, 185, 129, 0.15)' : 'rgba(234, 179, 8, 0.15)',
+                        color: isCompleted ? '#34d399' : '#fbbf24',
+                        fontWeight: 'bold',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.5px'
+                      }}>
+                        {isCompleted ? '✓ Finalizat' : '⚡ În lucru'}
+                      </span>
+                    </div>
+
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '16px' }}>
+                      <div>
+                        <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.8px' }}>
+                          {categoryName}
+                        </div>
+                        <h3 style={{ fontSize: '18px', fontWeight: '800', margin: '2px 0 0 0', fontFamily: 'var(--font-display)', letterSpacing: '-0.2px' }}>
+                          {topicName}
+                        </h3>
+                      </div>
+                      
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (onNodeClick) onNodeClick(nodeObj.label);
+                        }}
+                        style={{
+                          background: `linear-gradient(135deg, ${track.color} 0%, ${track.color}dd 100%)`,
+                          border: 'none',
+                          borderRadius: '6px',
+                          padding: '8px 14px',
+                          color: '#000',
+                          fontWeight: '800',
+                          fontSize: '11px',
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '6px',
+                          boxShadow: `0 3px 10px ${track.color}30`,
+                          transition: 'all 0.2s ease',
+                          whiteSpace: 'nowrap'
+                        }}
+                      >
+                        📖 Studiază Teorie & C++
+                      </button>
+                    </div>
+
+                    <div style={{ display: 'flex', justifyContent: 'space-between', gap: '10px', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '10px', marginTop: '2px' }}>
+                      <button
+                        type="button"
+                        disabled={voyageStep === 0}
+                        onClick={() => setVoyageStep(s => Math.max(0, s - 1))}
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.02)',
+                          border: '1px solid rgba(255, 255, 255, 0.08)',
+                          borderRadius: '6px',
+                          padding: '6px 12px',
+                          color: voyageStep === 0 ? 'rgba(255, 255, 255, 0.2)' : '#fff',
+                          fontSize: '11px',
+                          fontWeight: 'bold',
+                          cursor: voyageStep === 0 ? 'default' : 'pointer'
+                        }}
+                      >
+                        ◀ Pasul Anterior
+                      </button>
+                      
+                      <button
+                        type="button"
+                        disabled={voyageStep === trackNodes.length - 1}
+                        onClick={() => setVoyageStep(s => Math.min(trackNodes.length - 1, s + 1))}
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.02)',
+                          border: '1px solid rgba(255, 255, 255, 0.08)',
+                          borderRadius: '6px',
+                          padding: '6px 12px',
+                          color: voyageStep === trackNodes.length - 1 ? 'rgba(255, 255, 255, 0.2)' : '#fff',
+                          fontSize: '11px',
+                          fontWeight: 'bold',
+                          cursor: voyageStep === trackNodes.length - 1 ? 'default' : 'pointer'
+                        }}
+                      >
+                        Pasul Următor ▶
+                      </button>
+                    </div>
+                  </div>
+                );
+              })()}
+
+              {/* Horizontal Scrollable Step Navigator */}
+              <div 
+                style={{ 
+                  display: 'flex', 
+                  gap: '8px', 
+                  overflowX: 'auto', 
+                  paddingBottom: '4px',
+                  scrollBehavior: 'smooth'
+                }}
+                className="custom-scrollbar"
+              >
+                {trackNodes.map((nId, idx) => {
+                  const nodeObj = nodes.find(n => n.id === nId);
+                  if (!nodeObj) return null;
+                  const labelParts = nodeObj.label.split('/');
+                  const shortName = labelParts[labelParts.length - 1].replace(/_/g, ' ');
+                  
+                  const isCurrent = isVoyageMode && voyageStep === idx;
+                  const isCompleted = nodeObj.status === 'completed';
+                  const isRecommended = nId === nextTargetNodeId;
+
+                  let stepBg = 'rgba(255,255,255,0.02)';
+                  let stepBorder = '1px solid rgba(255,255,255,0.06)';
+                  let extraShadow = 'none';
+                  if (isCurrent) {
+                    stepBg = `${track.color}20`;
+                    stepBorder = `1px solid ${track.color}`;
+                  } else if (isRecommended) {
+                    stepBg = 'rgba(16, 185, 129, 0.08)';
+                    stepBorder = '1px solid #10b981';
+                    extraShadow = '0 0 10px rgba(16, 185, 129, 0.2)';
+                  } else if (isCompleted) {
+                    stepBg = 'rgba(16, 185, 129, 0.05)';
+                    stepBorder = '1px solid rgba(16, 185, 129, 0.3)';
+                  }
+
+                  return (
+                    <div
+                      key={`${nId}-step-${idx}`}
+                      onClick={() => {
+                        handleSelectNode(nodeObj);
+                        if (isVoyageMode) {
+                          setVoyageStep(idx);
+                        }
+                      }}
+                      style={{
+                        padding: '6px 12px',
+                        borderRadius: '8px',
+                        background: stepBg,
+                        border: stepBorder,
+                        boxShadow: extraShadow,
+                        fontSize: '11px',
+                        cursor: 'pointer',
+                        whiteSpace: 'nowrap',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        color: isCurrent ? '#fff' : (isRecommended ? '#34d399' : 'rgba(255, 255, 255, 0.7)'),
+                        fontWeight: isCurrent || isRecommended ? 'bold' : 'normal',
+                        transition: 'all 0.15s ease'
+                      }}
+                    >
+                      <span style={{
+                        width: '16px',
+                        height: '16px',
+                        borderRadius: '50%',
+                        background: isCompleted ? 'var(--success-color)' : (isRecommended ? '#10b981' : 'rgba(255,255,255,0.1)'),
+                        color: isCompleted || isRecommended ? '#000' : '#fff',
+                        fontSize: '9px',
+                        fontWeight: 'bold',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }}>
+                        {isCompleted ? '✓' : (isRecommended ? '🎯' : idx + 1)}
+                      </span>
+                      {shortName}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })()}
+      </div>
+
+
+
       <style>
         {`
           @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-4px); }
             to { opacity: 1; transform: translateY(0); }
+          }
+          @keyframes fogDrift {
+            0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 0.95; }
+            50% { transform: translate(-50%, -50%) scale(1.08) rotate(180deg); opacity: 0.82; }
+            100% { transform: translate(-50%, -50%) scale(1) rotate(360deg); opacity: 0.95; }
+          }
+          @keyframes fogDriftLarge {
+            0% { transform: scale(1) translate(0, 0); opacity: 0.98; }
+            50% { transform: scale(1.04) translate(-10px, 8px); opacity: 0.88; }
+            100% { transform: scale(1) translate(0, 0); opacity: 0.98; }
           }
           @keyframes dataFlow {
             from { stroke-dashoffset: 24; }
@@ -1503,6 +2064,20 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
           }
           .search-item:hover {
             background: rgba(99, 102, 241, 0.15) !important;
+          }
+          .custom-scrollbar::-webkit-scrollbar {
+            height: 6px;
+          }
+          .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 4px;
+          }
+          .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+          }
+          .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
           }
         `}
       </style>

@@ -249,6 +249,30 @@ Concrete implementation of a specific algorithm with debugger steps.
 
 ---
 
+## 🏆 Olympiad Learning Tracks & Unified Quest HUD
+
+The Syllabus Tree includes a gamified study path system, **Traseul Olimpic de Excelență**, designed to guide students through the curriculum for different grade levels and lot selection.
+
+### 1. Data Structure (`olympiadTracks`)
+The tracks are defined inside [syllabusData.js](file:///c:/Users/User8/Desktop/doto/dashboard/src/data/syllabusData.js) as the `olympiadTracks` array. Each track object contains:
+- `id`: unique identifier (`'g9'`, `'g10'`, `'g11_12'`, `'baraj'`).
+- `label`: Name of the stage (e.g., `'Clasa a IX-a'`).
+- `color`: Hex color representing the track theme (Bronze, Silver, Gold, Cyber-Purple).
+- `glowColor`: RGBA glow color for SVG paths.
+- `badge`: Emoji badge (`🥉`, `🥈`, `🥇`, `🌌`).
+- `nodes`: Sequential list of node IDs defining the exact study path order.
+
+### 2. Quest Deck HUD & Antrenament Ghidat
+The view handles active tracks dynamically:
+- **Quest Deck HUD**: Floating console at the bottom of the screen (`SyllabusTree.jsx`). Features track selection buttons, a horizontal step navigator, and integrated step details.
+- **Antrenament Ghidat (Guided Training)**: Toggled via `🚀 Antrenament Ghidat` inside the HUD. It expands the bottom console to show active step details (Category, Topic, Study button, Previous/Next navigation controls) and centers the camera on the active node.
+- **SVG Constellation Paths**: Sequential connections are rendered directly on the SVG canvas between track nodes, styled with glowing neon lines and animated pulses (`dataPulseFlow`). Standard DAG edges are faded to low opacities (`0.2` or `0.04`).
+- **Pulsing Step Badges**: Nodes on the canvas display circular index overlays (`❶`, `❷`, `❸`...) representing their sequence number in the active track.
+- **Next Target Recommendation**: An algorithm identifies the first uncompleted node in the active track's sequence. It renders a pulsing green `🎯 RECOMANDAT` badge on the canvas node card and replaces its index number with a `🎯` icon in the horizontal HUD list.
+- **Event Isolation**: Click/mouse events on the HUD elements stop propagation (`e.stopPropagation()`) to prevent conflict with the parent container's canvas dragging behavior.
+
+---
+
 ## 🌳 Syllabus Tree Sections & Topics
 
 Below is the list of all domains (sections) and topics in the syllabus tree, mapped to their configuration files:

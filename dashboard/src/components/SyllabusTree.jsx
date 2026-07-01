@@ -297,8 +297,8 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
     const container = containerRef.current;
     const W = container ? container.clientWidth : 1200;
     const H = container ? container.clientHeight : 800;
-    const minX = -3580;
-    const maxX = 5580;
+    const minX = -4320;
+    const maxX = 5950;
     const minY = -140;
     const maxY = 2440;
     const w = maxX - minX;
@@ -506,7 +506,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
     outline: 'none'
   };
 
-  const OFFSET_X = 4000;
+  const OFFSET_X = 5000;
   const OFFSET_Y = 300;
 
   const computeEdgePath = (n1, n2) => {
@@ -642,7 +642,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
         left: '50%',
         transform: `translate(calc(-50% + ${position.x}px), calc(-50% + ${position.y}px)) scale(${scale})`,
         transformOrigin: 'center',
-        width: '10000px',
+        width: '12000px',
         height: '5000px',
         transition: isDragging ? 'none' : 'transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1)'
       }}>
@@ -674,7 +674,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
         })}
 
         {/* Draw SVG Background Domains and Edges */}
-        <svg width="10000" height="5000" style={{ position: 'absolute', top: 0, left: 0, zIndex: 1, pointerEvents: 'none' }}>
+        <svg width="12000" height="5000" style={{ position: 'absolute', top: 0, left: 0, zIndex: 1, pointerEvents: 'none' }}>
           <defs>
             {/* Tech Blueprint Grid Pattern */}
             <pattern id="techgrid" width="80" height="80" patternUnits="userSpaceOnUse">
@@ -1336,7 +1336,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
             return (
               <div key={`mini-${node.id}`} style={{
                 position: 'absolute',
-                left: `${((node.x + OFFSET_X) / 10000) * 100}%`,
+                left: `${((node.x + OFFSET_X) / 12000) * 100}%`,
                 top: `${((node.y + OFFSET_Y) / 5000) * 100}%`,
                 width: '4px',
                 height: '4px',
@@ -1351,8 +1351,8 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
           <div style={{
             position: 'absolute',
             left: '50%', top: '50%',
-            transform: `translate(calc(-50% - ${(position.x / 10000) * 240}px), calc(-50% - ${(position.y / 5000) * 167}px))`,
-            width: `${(100 / scale) * (800 / 10000)}%`,
+            transform: `translate(calc(-50% - ${(position.x / 12000) * 240}px), calc(-50% - ${(position.y / 5000) * 167}px))`,
+            width: `${(100 / scale) * (800 / 12000)}%`,
             height: `${(100 / scale) * (600 / 5000)}%`,
             border: '1px solid rgba(99, 102, 241, 0.7)',
             borderRadius: '2px',

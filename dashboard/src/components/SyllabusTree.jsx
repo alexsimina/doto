@@ -468,25 +468,31 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
     setIsDragging(false);
   };
 
-  const formatNodeLabel = (label) => {
+  const formatNodeLabel = (label, status, chapterColor) => {
     const parts = label.replace(/_/g, ' ').split('/');
+    const isLocked = status === 'locked';
+    
+    // CLion editor style code highlighting colors
+    const nsColor = isLocked ? '#686868' : '#9876aa'; // purple namespace/variable
+    const leafColor = isLocked ? '#808080' : (chapterColor ? chapterColor.replace('0.5', '0.95') : '#ffc66d'); // chapter color when unlocked
+    
     if (parts.length > 1) {
       const leaf = parts[parts.length - 1];
-      const category = parts.slice(0, parts.length - 1).join(' / ');
+      const category = parts.slice(0, parts.length - 1).join('::');
       return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-          <span style={{ fontSize: '10px', color: 'rgba(255, 255, 255, 0.4)', textTransform: 'uppercase', letterSpacing: '1.2px', fontFamily: 'var(--font-mono)', marginBottom: '3px' }}>
-            {category}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', fontFamily: 'var(--font-mono)' }}>
+          <span style={{ fontSize: '11px', color: nsColor, letterSpacing: '0.5px', marginBottom: '2px' }}>
+            {category}::
           </span>
-          <span style={{ fontSize: '16px', fontWeight: '800', fontFamily: 'var(--font-display)', color: '#ffffff', letterSpacing: '0.2px' }}>
-            {leaf}
+          <span style={{ fontSize: '15px', fontWeight: '600', color: leafColor, letterSpacing: '0.2px' }}>
+            {leaf}()
           </span>
         </div>
       );
     }
     return (
-      <span style={{ fontSize: '16px', fontWeight: '800', fontFamily: 'var(--font-display)', color: '#ffffff', letterSpacing: '0.2px' }}>
-        {parts[0]}
+      <span style={{ fontSize: '15px', fontWeight: '600', fontFamily: 'var(--font-mono)', color: leafColor, letterSpacing: '0.2px' }}>
+        {parts[0]}()
       </span>
     );
   };
@@ -518,52 +524,48 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
     const dx = endX - startX;
     const dy = endY - startY;
 
-    // Case 1: arr -> math1
+    // Case 1: arr -> math1 (goes far left and up)
     if (n1.id === 'arr' && n2.id === 'math1') {
       const midY = startY - 80;
-      return `M ${startX} ${startY} C ${startX} ${startY - 40}, ${startX - 100} ${midY}, ${startX - 200} ${midY} L ${endX + 200} ${midY} C ${endX + 100} ${midY}, ${endX} ${endY - 60}, ${endX} ${endY}`;
+      return `M ${startX} ${startY} L ${startX} ${midY} L ${endX} ${midY} L ${endX} ${endY}`;
     }
 
-    // Case 2: arr -> str
+    // Case 2: arr -> str (goes far right and up)
     if (n1.id === 'arr' && n2.id === 'str') {
       const midY = startY - 80;
-      return `M ${startX} ${startY} C ${startX} ${startY - 40}, ${startX + 100} ${midY}, ${startX + 200} ${midY} L ${endX - 200} ${midY} C ${endX - 100} ${midY}, ${endX} ${endY - 60}, ${endX} ${endY}`;
+      return `M ${startX} ${startY} L ${startX} ${midY} L ${endX} ${midY} L ${endX} ${endY}`;
     }
 
     // Case 3: fund_stl -> graph_theory_concepts
     if (n1.id === 'fund_stl' && n2.id === 'graph_theory_concepts') {
       const midY = 320 + OFFSET_Y;
-      return `M ${startX} ${startY} C ${startX} ${startY - 60}, ${startX + 100} ${midY}, ${startX + 200} ${midY} L ${endX - 250} ${midY} C ${endX - 120} ${midY}, ${endX} ${endY - 100}, ${endX} ${endY}`;
+      return `M ${startX} ${startY} L ${startX} ${midY} L ${endX} ${midY} L ${endX} ${endY}`;
     }
 
     // Case 4: dsu -> mst
     if (n1.id === 'dsu' && n2.id === 'mst') {
       const midY = 2150 + OFFSET_Y;
-      return `M ${startX} ${startY} C ${startX} ${startY + 100}, ${startX + 200} ${midY}, ${startX + 400} ${midY} L ${endX - 400} ${midY} C ${endX - 200} ${midY}, ${endX} ${endY + 100}, ${endX} ${endY}`;
+      return `M ${startX} ${startY} L ${startX} ${midY} L ${endX} ${midY} L ${endX} ${endY}`;
     }
 
     // Case 5: greedy -> mst
     if (n1.id === 'greedy' && n2.id === 'mst') {
       const midY = 2220 + OFFSET_Y;
-      return `M ${startX} ${startY} C ${startX} ${startY + 200}, ${startX + 300} ${midY}, ${startX + 600} ${midY} L ${endX - 600} ${midY} C ${endX - 300} ${midY}, ${endX} ${endY + 150}, ${endX} ${endY}`;
+      return `M ${startX} ${startY} L ${startX} ${midY} L ${endX} ${midY} L ${endX} ${endY}`;
     }
 
-    // Default: Adaptive Bezier Curves
-    const adx = Math.abs(dx);
-    const ady = Math.abs(dy);
+    // Default Orthogonal Dagre-style pathing (Manhattan paths)
+    const absDx = Math.abs(dx);
+    const absDy = Math.abs(dy);
 
-    if (adx > ady * 1.4 && ady > 0) {
-      const cp1X = startX + dx * 0.45;
-      const cp1Y = startY;
-      const cp2X = endX - dx * 0.45;
-      const cp2Y = endY;
-      return `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
+    if (absDx > absDy * 1.2) {
+      // Mostly horizontal step
+      const midX = startX + dx * 0.5;
+      return `M ${startX} ${startY} L ${midX} ${startY} L ${midX} ${endY} L ${endX} ${endY}`;
     } else {
-      const cp1X = startX;
-      const cp1Y = startY + dy * 0.5;
-      const cp2X = endX;
-      const cp2Y = endY - dy * 0.5;
-      return `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
+      // Mostly vertical step
+      const midY = startY + dy * 0.5;
+      return `M ${startX} ${startY} L ${startX} ${midY} L ${endX} ${midY} L ${endX} ${endY}`;
     }
   };
 
@@ -577,11 +579,10 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
         overflow: 'hidden', 
         position: 'relative',
         cursor: isDragging ? 'grabbing' : 'grab',
-        backgroundColor: '#05040f',
-        backgroundImage: 'radial-gradient(circle at center, #16113c 0%, #05040f 100%)',
-        boxShadow: 'inset 0 0 100px rgba(0,0,0,0.95)',
+        backgroundColor: '#1a1b1d',
+        boxShadow: 'none',
         borderRadius: '24px',
-        border: '1px solid var(--glass-border)'
+        border: '1px solid #2b2d30'
       }}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
@@ -597,20 +598,19 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
         display: 'flex',
         alignItems: 'center',
         gap: '8px',
-        background: 'rgba(10, 14, 23, 0.85)',
-        border: '1px solid rgba(255, 255, 255, 0.12)',
-        borderRadius: '20px',
+        background: '#2b2d30',
+        border: '1px solid #3c3f41',
+        borderRadius: '8px',
         padding: '6px 12px',
-        backdropFilter: 'blur(24px)',
-        boxShadow: '0 12px 40px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255,255,255,0.05)'
+        boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)'
       }}>
-        <span style={{ fontSize: '11px', color: 'rgba(255,255,255,0.6)', fontWeight: '700', padding: '0 8px', borderRight: '1px solid rgba(255,255,255,0.1)', fontFamily: 'var(--font-mono)' }}>
+        <span style={{ fontSize: '11px', color: '#a9b7c6', fontWeight: '700', padding: '0 8px', borderRight: '1px solid #3c3f41', fontFamily: 'var(--font-mono)' }}>
           {Math.round(scale * 100)}%
         </span>
         <button 
           onClick={() => setScale(s => Math.min(s + 0.2, 4))} 
           style={controlBtnStyle}
-          onMouseOver={e => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'}
+          onMouseOver={e => e.currentTarget.style.background = '#3c3f41'}
           onMouseOut={e => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)'}
           title="Zoom In"
         >
@@ -619,7 +619,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
         <button 
           onClick={() => setScale(s => Math.max(s - 0.2, 0.1))} 
           style={controlBtnStyle}
-          onMouseOver={e => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'}
+          onMouseOver={e => e.currentTarget.style.background = '#3c3f41'}
           onMouseOut={e => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)'}
           title="Zoom Out"
         >
@@ -628,7 +628,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
         <button 
           onClick={() => { setScale(1); setPosition({x:0, y:0}); }} 
           style={{ ...controlBtnStyle, width: '48px' }}
-          onMouseOver={e => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'}
+          onMouseOver={e => e.currentTarget.style.background = '#3c3f41'}
           onMouseOut={e => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)'}
           title="Reset View"
         >
@@ -644,46 +644,22 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
         transformOrigin: 'center',
         width: '12000px',
         height: '5000px',
-        transition: isDragging ? 'none' : 'transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1)'
+        transition: isDragging ? 'none' : 'transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1)',
+        backgroundColor: '#1e1f22'
       }}>
         
         {/* Glow Orbs Layer (Dynamic) */}
-        {domainsWithBounds.map(domain => {
-          if(!domain.bounds) return null;
-          const {x, y, w, h} = domain.bounds;
-          const glowColor = domain.borderColor.replace('0.5', '0.22');
-          return (
-            <div 
-              key={`glow-${domain.id}`}
-              style={{
-                position: 'absolute',
-                left: x + OFFSET_X - 35,
-                top: y + OFFSET_Y - 35,
-                width: w + 70,
-                height: h + 70,
-                backgroundColor: glowColor,
-                borderRadius: '48px',
-                filter: 'blur(90px)',
-                mixBlendMode: 'screen',
-                opacity: 0.78,
-                pointerEvents: 'none',
-                zIndex: 0
-              }}
-            />
-          );
-        })}
-
         {/* Draw SVG Background Domains and Edges */}
         <svg width="12000" height="5000" style={{ position: 'absolute', top: 0, left: 0, zIndex: 1, pointerEvents: 'none' }}>
           <defs>
             {/* Tech Blueprint Grid Pattern */}
             <pattern id="techgrid" width="80" height="80" patternUnits="userSpaceOnUse">
-              <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(99, 102, 241, 0.08)" strokeWidth="1" />
-              <circle cx="40" cy="40" r="1.2" fill="rgba(255, 255, 255, 0.12)" />
-              <path d="M 0 8 L 0 0 L 8 0" fill="none" stroke="rgba(99, 102, 241, 0.25)" strokeWidth="1.5" />
-              <path d="M 80 8 L 80 0 L 72 0" fill="none" stroke="rgba(99, 102, 241, 0.25)" strokeWidth="1.5" />
-              <path d="M 0 72 L 0 80 L 8 80" fill="none" stroke="rgba(99, 102, 241, 0.25)" strokeWidth="1.5" />
-              <path d="M 80 72 L 80 80 L 72 80" fill="none" stroke="rgba(99, 102, 241, 0.25)" strokeWidth="1.5" />
+              <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(43, 45, 48, 0.45)" strokeWidth="1" />
+              <circle cx="40" cy="40" r="1.2" fill="rgba(255, 255, 255, 0.03)" />
+              <path d="M 0 8 L 0 0 L 8 0" fill="none" stroke="rgba(60, 63, 65, 0.45)" strokeWidth="1.5" />
+              <path d="M 80 8 L 80 0 L 72 0" fill="none" stroke="rgba(60, 63, 65, 0.45)" strokeWidth="1.5" />
+              <path d="M 0 72 L 0 80 L 8 80" fill="none" stroke="rgba(60, 63, 65, 0.45)" strokeWidth="1.5" />
+              <path d="M 80 72 L 80 80 L 72 80" fill="none" stroke="rgba(60, 63, 65, 0.45)" strokeWidth="1.5" />
             </pattern>
 
             {/* Black Halftone Pattern */}
@@ -729,8 +705,8 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
 
             {/* Neon Glow Filter */}
             <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur1" />
-              <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="blur2" />
+              <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blur1" />
+              <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur2" />
               <feMerge>
                 <feMergeNode in="blur2" />
                 <feMergeNode in="blur1" />
@@ -740,8 +716,8 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
           </defs>
 
           {/* Grid Backgrounds */}
-          <rect width="100%" height="100%" fill="url(#techgrid)" mask="url(#grid-mask)" style={{ mixBlendMode: 'screen', opacity: 0.45 }} />
-          <rect width="100%" height="100%" fill="url(#black-halftone)" mask="url(#grid-mask)" style={{ mixBlendMode: 'multiply', opacity: 0.95 }} />
+          <rect width="100%" height="100%" fill="url(#techgrid)" mask="url(#grid-mask)" style={{ mixBlendMode: 'screen', opacity: 0.65 }} />
+          <rect width="100%" height="100%" fill="url(#black-halftone)" mask="url(#grid-mask)" style={{ mixBlendMode: 'multiply', opacity: 0.15 }} />
 
           {/* Render Domain Backgrounds */}
           {domainsWithBounds.map(domain => {
@@ -764,10 +740,10 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                   height={rectH}
                   fill="none"
                   stroke={borderColor}
-                  strokeWidth="12"
-                  opacity="0.04"
+                  strokeWidth="6"
+                  opacity="0.02"
                   filter="url(#glow)"
-                  rx="40"
+                  rx="12"
                 />
                 {/* Outer Tech Border */}
                 <rect 
@@ -775,39 +751,39 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                   y={rectY} 
                   width={rectW} 
                   height={rectH} 
-                  fill={domain.color.replace('0.03', '0.04')} 
-                  stroke={borderColor.replace('0.5', '0.25')} 
-                  strokeWidth="1.5" 
-                  rx="40" 
+                  fill="#161719" 
+                  stroke={borderColor.replace('0.5', '0.15')} 
+                  strokeWidth="1" 
+                  rx="12" 
                 />
                 {/* Inner Tech Border */}
                 <rect 
-                  x={rectX + 6} 
-                  y={rectY + 6} 
-                  width={rectW - 12} 
-                  height={rectH - 12} 
+                  x={rectX + 4} 
+                  y={rectY + 4} 
+                  width={rectW - 8} 
+                  height={rectH - 8} 
                   fill="none" 
-                  stroke={borderColor.replace('0.5', '0.35')} 
-                  strokeWidth="1"
-                  strokeDasharray="24 16"
-                  rx="34" 
+                  stroke={borderColor.replace('0.5', '0.1')} 
+                  strokeWidth="0.75"
+                  strokeDasharray="16 12"
+                  rx="10" 
                 />
                 {/* Sector Bracket Highlights (Sci-fi Corner Overlays) */}
                 {/* Top-Left Corner */}
-                <path d={`M ${rectX} ${rectY + 40} L ${rectX} ${rectY} L ${rectX + 40} ${rectY}`} fill="none" stroke={borderColor} strokeWidth="4" strokeLinecap="round" />
+                <path d={`M ${rectX} ${rectY + 20} L ${rectX} ${rectY} L ${rectX + 20} ${rectY}`} fill="none" stroke={borderColor} strokeWidth="2.5" strokeLinecap="round" />
                 {/* Top-Right Corner */}
-                <path d={`M ${rectX + rectW - 40} ${rectY} L ${rectX + rectW} ${rectY} L ${rectX + rectW} ${rectY + 40}`} fill="none" stroke={borderColor} strokeWidth="4" strokeLinecap="round" />
+                <path d={`M ${rectX + rectW - 20} ${rectY} L ${rectX + rectW} ${rectY} L ${rectX + rectW} ${rectY + 20}`} fill="none" stroke={borderColor} strokeWidth="2.5" strokeLinecap="round" />
                 {/* Bottom-Left Corner */}
-                <path d={`M ${rectX} ${rectY + rectH - 40} L ${rectX} ${rectY + rectH} L ${rectX + 40} ${rectY + rectH}`} fill="none" stroke={borderColor} strokeWidth="4" strokeLinecap="round" />
+                <path d={`M ${rectX} ${rectY + rectH - 20} L ${rectX} ${rectY + rectH} L ${rectX + 20} ${rectY + rectH}`} fill="none" stroke={borderColor} strokeWidth="2.5" strokeLinecap="round" />
                 {/* Bottom-Right Corner */}
-                <path d={`M ${rectX + rectW - 40} ${rectY + rectH} L ${rectX + rectW} ${rectY + rectH} L ${rectX + rectW} ${rectY + rectH - 40}`} fill="none" stroke={borderColor} strokeWidth="4" strokeLinecap="round" />
+                <path d={`M ${rectX + rectW - 20} ${rectY + rectH} L ${rectX + rectW} ${rectY + rectH} L ${rectX + rectW} ${rectY + rectH - 20}`} fill="none" stroke={borderColor} strokeWidth="2.5" strokeLinecap="round" />
 
                 {/* Tech Meta Code text */}
                 <text
-                  x={rectX + rectW - 24}
-                  y={rectY + 28}
-                  fill={borderColor.replace('0.5', '0.4')}
-                  fontSize="10"
+                  x={rectX + rectW - 16}
+                  y={rectY + 22}
+                  fill={borderColor.replace('0.5', '0.3')}
+                  fontSize="9"
                   fontFamily="var(--font-mono)"
                   fontWeight="bold"
                   textAnchor="end"
@@ -818,13 +794,13 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
 
                 {/* Domain Label */}
                 <text 
-                  x={rectX + 32} 
-                  y={rectY + 44} 
+                  x={rectX + 20} 
+                  y={rectY + 32} 
                   fill={borderColor} 
-                  fontSize="28" 
-                  fontFamily="var(--font-display)"
-                  fontWeight="800" 
-                  style={{ letterSpacing: '2px', textShadow: `0 4px 15px rgba(0,0,0,0.8), 0 0 15px ${borderColor}` }}
+                  fontSize="18" 
+                  fontFamily="var(--font-mono)"
+                  fontWeight="700" 
+                  style={{ letterSpacing: '1px' }}
                 >
                   {domain.icon} {domain.label.toUpperCase()}
                 </text>
@@ -1005,37 +981,21 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
           const domain = getNodeDomain(node.id);
           const domainBorderColor = domain ? domain.borderColor : 'rgba(255, 255, 255, 0.2)';
           
-          let nodeBg = 'linear-gradient(135deg, #090a0f 0%, #11131c 100%)';
-          let shadow = '0 10px 30px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.05)';
+          let nodeBg = '#252629';
+          let shadow = '0 4px 12px rgba(0, 0, 0, 0.35)';
           let transformScale = 'scale(1)';
-          let borderOverlay = '2px solid rgba(255, 255, 255, 0.15)';
+          let borderOverlay = '1px solid #3c3f41';
           let customAnimation = 'none';
 
-          if (isHovered) {
-            transformScale = 'scale(1.1) translateY(-10px)';
-            nodeBg = 'linear-gradient(135deg, #131726 0%, #0d0f17 100%)';
-            shadow = `0 18px 40px rgba(0,0,0,0.8), 0 0 20px ${domainBorderColor}, inset 0 1px 0 rgba(255,255,255,0.1)`;
-            borderOverlay = `2px solid ${domainBorderColor}`;
-          } else if (isParentOfHovered) {
-            borderOverlay = `2px solid ${domainBorderColor}`;
-            shadow = `0 10px 30px rgba(0, 0, 0, 0.75), 0 0 15px ${domainBorderColor}, inset 0 1px 0 rgba(255,255,255,0.05)`;
-            customAnimation = 'parentGlowPulse 2.5s infinite ease-in-out';
-          } else if (isChildOfHovered) {
-            borderOverlay = `2px solid ${domainBorderColor}`;
-            shadow = `0 10px 30px rgba(0, 0, 0, 0.75), 0 0 15px ${domainBorderColor}, inset 0 1px 0 rgba(255,255,255,0.05)`;
-            customAnimation = 'childGlowPulse 2.5s infinite ease-in-out';
+          if (node.status === 'locked') {
+            nodeBg = '#1e1f22';
+            borderOverlay = '1px solid #2b2d30';
+            shadow = 'none';
           } else if (node.status === 'completed') {
-            nodeBg = 'linear-gradient(135deg, #04100c 0%, #080a10 100%)';
-            borderOverlay = `2px solid ${getStatusColor(node.status)}`;
-            customAnimation = 'cyberPulse 3s infinite ease-in-out';
+            borderOverlay = '1.5px solid #499c54'; // IntelliJ green
           } else if (node.status === 'in-progress') {
-            nodeBg = 'linear-gradient(135deg, #0a0b12 0%, #141724 100%)';
-            borderOverlay = `2px solid ${domainBorderColor}`;
-            shadow = `0 10px 30px rgba(0, 0, 0, 0.7), 0 0 12px ${domainBorderColor}, inset 0 1px 0 rgba(255,255,255,0.05)`;
-          } else if (node.status === 'locked') {
-            nodeBg = '#06070a';
-            borderOverlay = `1px solid rgba(255, 255, 255, 0.08)`;
-            shadow = '0 4px 12px rgba(0, 0, 0, 0.8)';
+            borderOverlay = '1.5px solid #3574f0'; // IntelliJ blue
+            shadow = `0 4px 15px rgba(0, 0, 0, 0.35), 0 0 8px ${domainBorderColor}`;
           }
 
           // Interactive domain & status filter visibility
@@ -1065,39 +1025,26 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
           const isRecommended = node.id === targetNodeId;
 
           if (isCurrentVoyageNode) {
-            borderOverlay = `3px solid ${activeTrack.color}`;
-            shadow = `0 0 35px ${activeTrack.color}, inset 0 1px 0 rgba(255,255,255,0.25)`;
-            transformScale = 'scale(1.15) translateY(-5px)';
-            customAnimation = 'cyberPulse 1.5s infinite ease-in-out';
-          } else if (isHovered) {
-            transformScale = 'scale(1.1) translateY(-10px)';
-            nodeBg = 'linear-gradient(135deg, #131726 0%, #0d0f17 100%)';
-            shadow = `0 18px 40px rgba(0,0,0,0.8), 0 0 20px ${isRecommended ? '#10b981' : domainBorderColor}, inset 0 1px 0 rgba(255,255,255,0.1)`;
-            borderOverlay = `2.5px solid ${isRecommended ? '#10b981' : domainBorderColor}`;
+            borderOverlay = `2px solid ${activeTrack.color}`;
+            shadow = `0 0 20px ${activeTrack.color}`;
+            transformScale = 'scale(1.06) translateY(-4px)';
+          } else if (isHovered && node.status !== 'locked') {
+            transformScale = 'scale(1.06) translateY(-6px)';
+            nodeBg = '#313339'; // CLion active tab/hover color
+            shadow = `0 12px 28px rgba(0, 0, 0, 0.5), 0 0 12px ${isRecommended ? '#499c54' : domainBorderColor}`;
+            borderOverlay = `1.5px solid ${isRecommended ? '#499c54' : domainBorderColor}`;
           } else if (isRecommended) {
-            borderOverlay = `2.5px solid #10b981`;
-            shadow = `0 0 22px rgba(16, 185, 129, 0.65), inset 0 1px 0 rgba(255,255,255,0.15)`;
-            customAnimation = 'cyberPulse 2s infinite ease-in-out';
+            borderOverlay = `1.5px solid #499c54`;
+            shadow = `0 0 16px rgba(73, 156, 84, 0.5)`;
+            customAnimation = 'cyberPulse 2.5s infinite ease-in-out';
           } else if (isParentOfHovered) {
-            borderOverlay = `2px solid ${domainBorderColor}`;
-            shadow = `0 10px 30px rgba(0, 0, 0, 0.75), 0 0 15px ${domainBorderColor}, inset 0 1px 0 rgba(255,255,255,0.05)`;
+            borderOverlay = `1.5px solid ${domainBorderColor}`;
+            shadow = `0 4px 15px rgba(0, 0, 0, 0.35), 0 0 10px ${domainBorderColor}`;
             customAnimation = 'parentGlowPulse 2.5s infinite ease-in-out';
           } else if (isChildOfHovered) {
-            borderOverlay = `2px solid ${domainBorderColor}`;
-            shadow = `0 10px 30px rgba(0, 0, 0, 0.75), 0 0 15px ${domainBorderColor}, inset 0 1px 0 rgba(255,255,255,0.05)`;
+            borderOverlay = `1.5px solid ${domainBorderColor}`;
+            shadow = `0 4px 15px rgba(0, 0, 0, 0.35), 0 0 10px ${domainBorderColor}`;
             customAnimation = 'childGlowPulse 2.5s infinite ease-in-out';
-          } else if (node.status === 'completed') {
-            nodeBg = 'linear-gradient(135deg, #04100c 0%, #080a10 100%)';
-            borderOverlay = `2px solid ${getStatusColor(node.status)}`;
-            customAnimation = 'cyberPulse 3s infinite ease-in-out';
-          } else if (node.status === 'in-progress') {
-            nodeBg = 'linear-gradient(135deg, #0a0b12 0%, #141724 100%)';
-            borderOverlay = `2px solid ${domainBorderColor}`;
-            shadow = `0 10px 30px rgba(0, 0, 0, 0.7), 0 0 12px ${domainBorderColor}, inset 0 1px 0 rgba(255,255,255,0.05)`;
-          } else if (node.status === 'locked') {
-            nodeBg = '#06070a';
-            borderOverlay = `1px solid rgba(255, 255, 255, 0.08)`;
-            shadow = '0 4px 12px rgba(0, 0, 0, 0.8)';
           }
 
           return (
@@ -1122,38 +1069,38 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                 transform: `translate(-50%, -50%) ${transformScale}`,
                 background: nodeBg,
                 border: borderOverlay,
-                borderRadius: '20px',
-                padding: '24px 32px',
+                borderRadius: '8px',
+                padding: '14px 18px',
                 color: node.status === 'locked' ? 'rgba(255, 255, 255, 0.25)' : '#fff',
                 cursor: node.status === 'locked' ? 'default' : 'pointer',
                 zIndex: isCurrentVoyageNode ? 15 : (isHovered ? 10 : (isParentOfHovered || isChildOfHovered ? 8 : (node.status === 'completed' ? 5 : 1))),
                 boxShadow: shadow,
-                transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease',
+                transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.15), opacity 0.3s ease',
                 opacity: finalNodeOpacity,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                gap: '14px',
-                minWidth: '270px',
+                gap: '10px',
+                minWidth: '240px',
                 animation: customAnimation,
                 "--glow-color": domainBorderColor
               }}
             >
-              {/* Floating holographic step index badge for active track */}
+              {/* Floating step index badge for active track */}
               {activeTrackId && trackIndex !== -1 && (
                 <div style={{
                   position: 'absolute',
-                  top: '-15px',
-                  left: '-15px',
-                  width: '32px',
-                  height: '32px',
+                  top: '-12px',
+                  left: '-12px',
+                  width: '24px',
+                  height: '24px',
                   borderRadius: '50%',
                   backgroundColor: activeTrack.color,
-                  border: '2px solid #fff',
-                  boxShadow: `0 0 12px ${activeTrack.glowColor}`,
+                  border: '1.5px solid #fff',
+                  boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
                   color: '#000',
                   fontWeight: '900',
-                  fontSize: '14px',
+                  fontSize: '11px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -1164,13 +1111,13 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                 </div>
               )}
 
-              {/* Sci-fi corner brackets (HTML/CSS design overlay) */}
+              {/* Sci-fi corner brackets aligned to 8px borders */}
               {node.status !== 'locked' && (
                 <>
-                  <div style={{ position: 'absolute', top: '8px', left: '8px', width: '8px', height: '8px', borderTop: `2px solid ${domainBorderColor}`, borderLeft: `2px solid ${domainBorderColor}`, borderTopLeftRadius: '4px', opacity: 0.6 }} />
-                  <div style={{ position: 'absolute', top: '8px', right: '8px', width: '8px', height: '8px', borderTop: `2px solid ${domainBorderColor}`, borderRight: `2px solid ${domainBorderColor}`, borderTopRightRadius: '4px', opacity: 0.6 }} />
-                  <div style={{ position: 'absolute', bottom: '8px', left: '8px', width: '8px', height: '8px', borderBottom: `2px solid ${domainBorderColor}`, borderLeft: `2px solid ${domainBorderColor}`, borderBottomLeftRadius: '4px', opacity: 0.6 }} />
-                  <div style={{ position: 'absolute', bottom: '8px', right: '8px', width: '8px', height: '8px', borderBottom: `2px solid ${domainBorderColor}`, borderRight: `2px solid ${domainBorderColor}`, borderBottomRightRadius: '4px', opacity: 0.6 }} />
+                  <div style={{ position: 'absolute', top: '4px', left: '4px', width: '6px', height: '6px', borderTop: `1.5px solid ${domainBorderColor}`, borderLeft: `1.5px solid ${domainBorderColor}`, borderTopLeftRadius: '2px', opacity: 0.35 }} />
+                  <div style={{ position: 'absolute', top: '4px', right: '4px', width: '6px', height: '6px', borderTop: `1.5px solid ${domainBorderColor}`, borderRight: `1.5px solid ${domainBorderColor}`, borderTopRightRadius: '2px', opacity: 0.35 }} />
+                  <div style={{ position: 'absolute', bottom: '4px', left: '4px', width: '6px', height: '6px', borderBottom: `1.5px solid ${domainBorderColor}`, borderLeft: `1.5px solid ${domainBorderColor}`, borderBottomLeftRadius: '2px', opacity: 0.35 }} />
+                  <div style={{ position: 'absolute', bottom: '4px', right: '4px', width: '6px', height: '6px', borderBottom: `1.5px solid ${domainBorderColor}`, borderRight: `1.5px solid ${domainBorderColor}`, borderBottomRightRadius: '2px', opacity: 0.35 }} />
                 </>
               )}
 
@@ -1180,10 +1127,10 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                 style={{
                   position: 'absolute',
                   top: 0, left: 0, right: 0, bottom: 0,
-                  backgroundImage: 'linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.08) 50%, transparent 65%)',
+                  backgroundImage: 'linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.05) 50%, transparent 65%)',
                   backgroundSize: '200% 100%',
                   pointerEvents: 'none',
-                  borderRadius: '20px',
+                  borderRadius: '8px',
                   opacity: isHovered ? 1 : 0,
                   animation: isHovered ? 'shimmerSweep 1.5s infinite linear' : 'none'
                 }} 
@@ -1193,56 +1140,51 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                 <div style={{
                   position: 'absolute',
                   top: 0, left: 0, right: 0, bottom: 0,
-                  borderRadius: '20px',
-                  border: `2px solid ${domainBorderColor}`,
-                  animation: 'sonarPing 2s cubic-bezier(0, 0, 0.2, 1) infinite',
+                  borderRadius: '8px',
+                  border: `1.5px solid ${domainBorderColor}`,
+                  animation: 'sonarPing 2.5s cubic-bezier(0, 0, 0.2, 1) infinite',
                   pointerEvents: 'none',
                   zIndex: -1
                 }} />
               )}
               
               {/* Category Icon and Label */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', letterSpacing: '0.4px', whiteSpace: 'nowrap' }}>
-                <span style={{ fontSize: '24px', filter: node.status === 'locked' ? 'grayscale(100%) opacity(0.3)' : 'none' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', letterSpacing: '0.4px', whiteSpace: 'nowrap' }}>
+                <span style={{ fontSize: '20px', filter: node.status === 'locked' ? 'grayscale(100%) opacity(0.3)' : 'none' }}>
                   {domain ? domain.icon : getCategoryIcon(node.label)}
                 </span>
-                {formatNodeLabel(node.label)}
+                {formatNodeLabel(node.label, node.status, domainBorderColor)}
               </div>
               
               {node.status !== 'locked' && (
-                <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: '800', fontFamily: 'var(--font-mono)' }}>
+                <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.5px', fontWeight: '700', fontFamily: 'var(--font-mono)' }}>
                     <span>Mastery</span>
-                    <span style={{ color: getStatusColor(node.status), fontWeight: 'bold' }}>{confidence}%</span>
+                    <span style={{ color: node.status === 'completed' ? '#499c54' : '#3574f0', fontWeight: 'bold' }}>{confidence}%</span>
                   </div>
-                  {/* Styled segmented-look progress bar */}
+                  {/* Clean IntelliJ Progress Bar */}
                   <div style={{ 
                     width: '100%', 
-                    height: '8px', 
-                    background: 'repeating-linear-gradient(45deg, rgba(255,255,255,0.03), rgba(255,255,255,0.03) 2px, transparent 2px, transparent 6px)',
-                    backgroundColor: 'rgba(0, 0, 0, 0.4)',
-                    borderRadius: '4px', 
+                    height: '4px', 
+                    backgroundColor: '#1e1f22',
+                    borderRadius: '2px', 
                     overflow: 'hidden', 
-                    boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.6)',
                     position: 'relative'
                   }}>
                     <div style={{ 
                       width: `${confidence}%`, 
                       height: '100%', 
-                      background: node.status === 'completed' 
-                        ? 'linear-gradient(90deg, var(--success-color), #34d399)' 
-                        : `linear-gradient(90deg, ${domainBorderColor}, var(--text-primary))`,
-                      boxShadow: `0 0 10px ${getStatusColor(node.status)}`,
-                      transition: 'width 1s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                      borderRadius: '4px'
+                      background: node.status === 'completed' ? '#499c54' : '#3574f0',
+                      transition: 'width 0.8s cubic-bezier(0.34, 1.2, 0.64, 1)',
+                      borderRadius: '2px'
                     }}></div>
                   </div>
                 </div>
               )}
               
               {node.status === 'locked' && (
-                <div style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.25)', marginTop: '4px', fontStyle: 'italic', display: 'flex', alignItems: 'center', gap: '6px', fontFamily: 'var(--font-mono)' }}>
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <div style={{ fontSize: '11px', color: 'rgba(255, 255, 255, 0.25)', marginTop: '2px', fontStyle: 'italic', display: 'flex', alignItems: 'center', gap: '4px', fontFamily: 'var(--font-mono)' }}>
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                   </svg>
@@ -1250,29 +1192,29 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                 </div>
               )}
               
-              {/* Sci-fi glowing tooltip hint */}
+              {/* Solid IDE Tooltip Hint */}
               {isHovered && node.status !== 'locked' && (
                 <div style={{
                   position: 'absolute',
-                  bottom: '-42px',
-                  background: 'rgba(10, 14, 23, 0.95)',
-                  border: `1px solid ${domainBorderColor}`,
-                  color: '#fff',
+                  bottom: '-36px',
+                  background: '#1a1b1d',
+                  border: '1px solid #3c3f41',
+                  color: '#a9b7c6',
                   fontSize: '10px',
-                  padding: '6px 12px',
-                  borderRadius: '6px',
+                  padding: '4px 8px',
+                  borderRadius: '4px',
                   whiteSpace: 'nowrap',
-                  fontWeight: '800',
+                  fontWeight: '600',
                   fontFamily: 'var(--font-mono)',
-                  boxShadow: `0 8px 20px rgba(0, 0, 0, 0.6), 0 0 12px ${domainBorderColor.replace('0.5', '0.25')}`,
+                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.5)',
                   animation: 'fadeIn 0.2s ease forwards',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '6px',
                   zIndex: 100,
-                  letterSpacing: '0.8px'
+                  letterSpacing: '0.5px'
                 }}>
-                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: domainBorderColor, display: 'inline-block', animation: 'sonarPing 1s infinite' }} />
+                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: domainBorderColor, display: 'inline-block' }} />
                   EXPLORE TOPICS
                 </div>
               )}
@@ -1281,29 +1223,29 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
         })}
       </div>
 
-      {/* Holographic Radar Minimap */}
+      {/* Solid IDE Structure Minimap */}
       <div style={{
         position: 'absolute',
         bottom: '24px',
         left: '24px',
         width: '240px',
         height: '200px',
-        background: 'rgba(8, 10, 16, 0.8)',
-        border: '1px solid rgba(99, 102, 241, 0.2)',
-        borderRadius: '16px',
-        backdropFilter: 'blur(20px)',
+        background: '#1a1b1d',
+        border: '1px solid #3c3f41',
+        borderRadius: '6px',
         zIndex: 100,
         overflow: 'hidden',
-        boxShadow: '0 10px 35px rgba(0,0,0,0.6), inset 0 0 15px rgba(99, 102, 241, 0.05)'
+        boxShadow: '0 4px 15px rgba(0,0,0,0.5)'
       }}>
         <div style={{ 
           padding: '8px 12px', 
           fontSize: '10px', 
-          color: 'rgba(255,255,255,0.5)', 
-          borderBottom: '1px solid rgba(99, 102, 241, 0.15)', 
+          color: '#a9b7c6', 
+          background: '#2b2d30',
+          borderBottom: '1px solid #3c3f41', 
           fontWeight: 700, 
           textTransform: 'uppercase', 
-          letterSpacing: '1.5px', 
+          letterSpacing: '1px', 
           position: 'relative', 
           zIndex: 4,
           fontFamily: 'var(--font-mono)',
@@ -1311,28 +1253,15 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
           justifyContent: 'space-between',
           alignItems: 'center'
         }}>
-          <span>Tactical Map</span>
-          <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--accent-secondary)', display: 'inline-block', animation: 'sonarPing 2.5s infinite' }} />
+          <span>Structure Map</span>
+          <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#499c54', display: 'inline-block' }} />
         </div>
-        {/* Radar scanline sweep overlay */}
-        <div style={{ 
-          position: 'absolute', 
-          left: 0,
-          width: '100%',
-          height: '3px',
-          background: 'linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), transparent)',
-          boxShadow: '0 0 6px rgba(99, 102, 241, 0.6)',
-          animation: 'radarSweep 4s linear infinite',
-          pointerEvents: 'none', 
-          zIndex: 3 
-        }} />
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(99, 102, 241, 0.03) 2px, rgba(99, 102, 241, 0.03) 4px)', pointerEvents: 'none', zIndex: 1 }} />
         <div style={{ position: 'relative', width: '100%', height: 'calc(100% - 33px)', zIndex: 2 }}>
           {nodes.map(node => {
             const nodeDomain = getNodeDomain(node.id);
             const dotColor = node.status === 'completed' 
-              ? 'var(--success-color)' 
-              : (node.status === 'locked' ? 'rgba(255,255,255,0.15)' : (nodeDomain ? nodeDomain.borderColor : 'var(--accent-secondary)'));
+              ? '#499c54' 
+              : (node.status === 'locked' ? 'rgba(255,255,255,0.1)' : (nodeDomain ? nodeDomain.borderColor : '#3574f0'));
             return (
               <div key={`mini-${node.id}`} style={{
                 position: 'absolute',
@@ -1343,7 +1272,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                 background: dotColor,
                 borderRadius: '50%',
                 transform: 'translate(-50%, -50%)',
-                boxShadow: node.status === 'in-progress' ? `0 0 6px ${dotColor}` : 'none'
+                boxShadow: node.status === 'in-progress' ? `0 0 4px ${dotColor}` : 'none'
               }} />
             );
           })}
@@ -1354,17 +1283,17 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
             transform: `translate(calc(-50% - ${(position.x / 12000) * 240}px), calc(-50% - ${(position.y / 5000) * 167}px))`,
             width: `${(100 / scale) * (800 / 12000)}%`,
             height: `${(100 / scale) * (600 / 5000)}%`,
-            border: '1px solid rgba(99, 102, 241, 0.7)',
+            border: '1px solid #3574f0',
             borderRadius: '2px',
-            background: 'rgba(99, 102, 241, 0.08)',
+            background: 'rgba(53, 116, 240, 0.06)',
             pointerEvents: 'none',
-            boxShadow: '0 0 10px rgba(99, 102, 241, 0.25)'
+            boxShadow: '0 0 6px rgba(53, 116, 240, 0.15)'
           }}>
             {/* Viewfinder ticks */}
-            <div style={{ position: 'absolute', top: '-1px', left: '-1px', width: '4px', height: '4px', borderTop: '1px solid #fff', borderLeft: '1px solid #fff' }} />
-            <div style={{ position: 'absolute', top: '-1px', right: '-1px', width: '4px', height: '4px', borderTop: '1px solid #fff', borderRight: '1px solid #fff' }} />
-            <div style={{ position: 'absolute', bottom: '-1px', left: '-1px', width: '4px', height: '4px', borderBottom: '1px solid #fff', borderLeft: '1px solid #fff' }} />
-            <div style={{ position: 'absolute', bottom: '-1px', right: '-1px', width: '4px', height: '4px', borderBottom: '1px solid #fff', borderRight: '1px solid #fff' }} />
+            <div style={{ position: 'absolute', top: '-1px', left: '-1px', width: '4px', height: '4px', borderTop: '1px solid #3574f0', borderLeft: '1px solid #3574f0' }} />
+            <div style={{ position: 'absolute', top: '-1px', right: '-1px', width: '4px', height: '4px', borderTop: '1px solid #3574f0', borderRight: '1px solid #3574f0' }} />
+            <div style={{ position: 'absolute', bottom: '-1px', left: '-1px', width: '4px', height: '4px', borderBottom: '1px solid #3574f0', borderLeft: '1px solid #3574f0' }} />
+            <div style={{ position: 'absolute', bottom: '-1px', right: '-1px', width: '4px', height: '4px', borderBottom: '1px solid #3574f0', borderRight: '1px solid #3574f0' }} />
           </div>
         </div>
       </div>
@@ -1378,14 +1307,14 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
         width: isPanelCollapsed ? '44px' : '320px',
         height: isPanelCollapsed ? '44px' : 'auto',
         maxHeight: isPanelCollapsed ? '44px' : 'calc(100% - 48px)',
-        background: '#0a0b10',
-        border: '1px solid rgba(255, 255, 255, 0.08)',
-        borderRadius: '14px',
-        boxShadow: '0 12px 35px rgba(0,0,0,0.8)',
+        background: '#1a1b1d',
+        border: '1px solid #3c3f41',
+        borderRadius: '8px',
+        boxShadow: '0 6px 20px rgba(0,0,0,0.5)',
         display: 'flex',
         flexDirection: 'column',
         overflow: isPanelCollapsed ? 'hidden' : 'visible',
-        transition: 'all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)',
+        transition: 'all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1)',
         padding: isPanelCollapsed ? '0' : '16px',
         boxSizing: 'border-box'
       }}>
@@ -1397,7 +1326,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
               height: '100%',
               background: 'transparent',
               border: 'none',
-              color: '#a5b4fc',
+              color: '#a9b7c6',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
@@ -1405,6 +1334,8 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
               outline: 'none'
             }}
             title="Deschide panou control"
+            onMouseOver={e => e.currentTarget.style.background = '#2b2d30'}
+            onMouseOut={e => e.currentTarget.style.background = 'transparent'}
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <circle cx="11" cy="11" r="8"></circle>
@@ -1414,8 +1345,8 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%', height: '100%', position: 'relative' }}>
             {/* Header */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '10px' }}>
-              <span style={{ fontSize: '13px', fontWeight: '800', fontFamily: 'var(--font-mono)', letterSpacing: '1px', color: '#a5b4fc', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #2b2d30', paddingBottom: '10px' }}>
+              <span style={{ fontSize: '12px', fontWeight: '700', fontFamily: 'var(--font-mono)', letterSpacing: '0.5px', color: '#a9b7c6', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span>⚙️</span> CONTROL PANEL
               </span>
               <button
@@ -1423,14 +1354,16 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                 style={{
                   background: 'transparent',
                   border: 'none',
-                  color: 'rgba(255,255,255,0.4)',
+                  color: '#686868',
                   cursor: 'pointer',
-                  fontSize: '16px',
+                  fontSize: '14px',
                   display: 'flex',
                   alignItems: 'center',
                   padding: '2px'
                 }}
                 title="Ascunde"
+                onMouseOver={e => e.currentTarget.style.color = '#a9b7c6'}
+                onMouseOut={e => e.currentTarget.style.color = '#686868'}
               >
                 ✕
               </button>
@@ -1446,16 +1379,18 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                 placeholder="Caută algoritm (ex: Dijkstra)..."
                 style={{
                   width: '100%',
-                  background: '#050508',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                  borderRadius: '8px',
+                  background: '#1e1f22',
+                  border: '1px solid #3c3f41',
+                  borderRadius: '6px',
                   padding: '8px 12px',
-                  color: '#fff',
+                  color: '#a9b7c6',
                   fontSize: '13px',
                   fontFamily: 'var(--font-sans)',
                   outline: 'none',
                   boxSizing: 'border-box'
                 }}
+                onFocus={e => e.currentTarget.style.borderColor = '#3574f0'}
+                onBlur={e => e.currentTarget.style.borderColor = '#3c3f41'}
               />
               {/* Autocomplete Suggestions */}
               {searchQuery.trim() !== '' && (
@@ -1464,12 +1399,12 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                   top: '100%',
                   left: 0,
                   right: 0,
-                  background: '#0a0b10',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  borderRadius: '8px',
+                  background: '#1e1f22',
+                  border: '1px solid #3c3f41',
+                  borderRadius: '6px',
                   marginTop: '4px',
                   zIndex: 200,
-                  boxShadow: '0 10px 25px rgba(0,0,0,0.9)',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
                   maxHeight: '250px',
                   overflowY: 'auto'
                 }}>
@@ -1485,17 +1420,17 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                           style={{
                             padding: '8px 12px',
                             cursor: 'pointer',
-                            borderBottom: '1px solid rgba(255,255,255,0.03)'
+                            borderBottom: '1px solid #2b2d30'
                           }}
                           className="search-item"
                         >
-                          <div style={{ fontSize: '13px', fontWeight: 'bold', color: '#fff' }}>{leaf}</div>
-                          <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase' }}>{path}</div>
+                          <div style={{ fontSize: '13px', fontWeight: 'bold', color: '#ffc66d', fontFamily: 'var(--font-mono)' }}>{leaf}()</div>
+                          <div style={{ fontSize: '10px', color: '#9876aa', textTransform: 'uppercase', fontFamily: 'var(--font-mono)' }}>{path}</div>
                         </div>
                       );
                     })
                   ) : (
-                    <div style={{ padding: '12px', fontSize: '12px', color: 'rgba(255,255,255,0.4)', textAlign: 'center' }}>
+                    <div style={{ padding: '12px', fontSize: '12px', color: 'rgba(255,255,255,0.3)', textAlign: 'center' }}>
                       Niciun rezultat găsit
                     </div>
                   )}
@@ -1505,15 +1440,15 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
 
             {/* Status Filter Section */}
             <div>
-              <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px', fontWeight: '700' }}>
+              <div style={{ fontSize: '11px', color: '#a9b7c6', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '8px', fontWeight: '700', fontFamily: 'var(--font-mono)' }}>
                 Filtrare Status
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px' }}>
                 {[
-                  { id: null, label: 'Toate', color: 'rgba(255,255,255,0.06)', activeColor: 'rgba(255,255,255,0.15)' },
-                  { id: 'completed', label: 'Finalizate', color: 'rgba(16, 185, 129, 0.05)', activeColor: 'rgba(16, 185, 129, 0.25)', borderColor: 'rgba(16, 185, 129, 0.4)' },
-                  { id: 'in-progress', label: 'În lucru', color: 'rgba(139, 92, 246, 0.05)', activeColor: 'rgba(139, 92, 246, 0.25)', borderColor: 'rgba(139, 92, 246, 0.4)' },
-                  { id: 'locked', label: 'Blocate', color: 'rgba(255,255,255,0.02)', activeColor: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.15)' }
+                  { id: null, label: 'Toate', color: '#2b2d30', activeColor: '#3c3f41', borderColor: '#a9b7c6' },
+                  { id: 'completed', label: 'Finalizate', color: '#2b2d30', activeColor: 'rgba(73, 156, 84, 0.15)', borderColor: '#499c54' },
+                  { id: 'in-progress', label: 'În lucru', color: '#2b2d30', activeColor: 'rgba(53, 116, 240, 0.15)', borderColor: '#3574f0' },
+                  { id: 'locked', label: 'Blocate', color: '#2b2d30', activeColor: '#1e1f22', borderColor: '#555555' }
                 ].map(opt => {
                   const isActive = activeStatusFilter === opt.id;
                   return (
@@ -1522,10 +1457,10 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                       onClick={() => setActiveStatusFilter(opt.id)}
                       style={{
                         background: isActive ? opt.activeColor : opt.color,
-                        border: `1px solid ${isActive ? (opt.borderColor || '#a5b4fc') : 'rgba(255,255,255,0.06)'}`,
+                        border: `1px solid ${isActive ? opt.borderColor : '#3c3f41'}`,
                         borderRadius: '6px',
                         padding: '6px 8px',
-                        color: isActive ? '#fff' : 'rgba(255,255,255,0.7)',
+                        color: isActive ? '#fff' : '#a9b7c6',
                         fontSize: '11px',
                         fontWeight: isActive ? '800' : 'normal',
                         cursor: 'pointer',
@@ -1541,13 +1476,13 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
 
             {/* Legend & Stats Section */}
             <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '11px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '8px', fontWeight: '700' }}>
-                <span>Legendă domenii & Statistici</span>
-                <span style={{ fontSize: '10px', color: '#10b981' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '11px', color: '#a9b7c6', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '8px', fontWeight: '700', fontFamily: 'var(--font-mono)' }}>
+                <span>Domenii & Statistici</span>
+                <span style={{ fontSize: '10px', color: '#499c54', fontWeight: 'bold' }}>
                   {nodes.filter(n => n.status === 'completed').length} / {nodes.length} OK
                 </span>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', overflowY: 'auto', maxHeight: '200px', paddingRight: '4px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', overflowY: 'auto', maxHeight: '200px', paddingRight: '4px' }}>
                 {domainsWithBounds.map(d => {
                   if (!d.bounds) return null;
                   const domainNodes = nodes.filter(n => d.nodes.includes(n.id));
@@ -1566,16 +1501,16 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                         alignItems: 'center',
                         justifyContent: 'space-between',
                         padding: '6px 10px',
-                        borderRadius: '6px',
-                        background: isHoveredDomain ? 'rgba(255,255,255,0.03)' : 'transparent',
-                        border: `1px solid ${isHoveredDomain ? d.borderColor : 'transparent'}`,
+                        borderRadius: '4px',
+                        background: isHoveredDomain ? '#2b2d30' : 'transparent',
+                        border: `1px solid ${isHoveredDomain ? '#3c3f41' : 'transparent'}`,
                         cursor: 'pointer',
                         transition: 'all 0.15s ease'
                       }}
                     >
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <span style={{ fontSize: '14px' }}>{d.icon}</span>
-                        <span style={{ fontSize: '12px', color: isHoveredDomain ? '#fff' : 'rgba(255,255,255,0.85)', fontWeight: isHoveredDomain ? 'bold' : 'normal' }}>
+                        <span style={{ fontSize: '12px', color: isHoveredDomain ? '#fff' : '#a9b7c6', fontWeight: isHoveredDomain ? 'bold' : 'normal' }}>
                           {d.label}
                         </span>
                       </div>
@@ -1589,20 +1524,22 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
             </div>
 
             {/* Quick Actions */}
-            <div style={{ display: 'flex', gap: '6px', borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '12px' }}>
+            <div style={{ display: 'flex', gap: '6px', borderTop: '1px solid #2b2d30', paddingTop: '12px' }}>
               <button
                 onClick={() => { setScale(0.85); setPosition({ x: 0, y: 1600 }); }}
                 style={{
                   flex: 1,
-                  background: 'rgba(255, 255, 255, 0.03)',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  background: '#2b2d30',
+                  border: '1px solid #3c3f41',
                   borderRadius: '6px',
                   padding: '8px',
-                  color: '#fff',
+                  color: '#a9b7c6',
                   fontSize: '11px',
                   fontWeight: 'bold',
                   cursor: 'pointer'
                 }}
+                onMouseOver={e => e.currentTarget.style.background = '#3c3f41'}
+                onMouseOut={e => e.currentTarget.style.background = '#2b2d30'}
               >
                 Alinează Start
               </button>
@@ -1610,15 +1547,17 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                 onClick={fitAll}
                 style={{
                   flex: 1,
-                  background: 'rgba(255, 255, 255, 0.03)',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  background: '#2b2d30',
+                  border: '1px solid #3c3f41',
                   borderRadius: '6px',
                   padding: '8px',
-                  color: '#fff',
+                  color: '#a9b7c6',
                   fontSize: '11px',
                   fontWeight: 'bold',
                   cursor: 'pointer'
                 }}
+                onMouseOver={e => e.currentTarget.style.background = '#3c3f41'}
+                onMouseOut={e => e.currentTarget.style.background = '#2b2d30'}
               >
                 Privire de ansamblu
               </button>
@@ -1628,7 +1567,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
         )}
       </div>
 
-      {/* Olympiad Quest Deck HUD */}
+      {/* Olympiad Quest Deck HUD (Solid IDE panel) */}
       <div 
         onMouseDown={(e) => e.stopPropagation()}
         onMouseMove={(e) => e.stopPropagation()}
@@ -1643,18 +1582,18 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
           transform: (isHudOpen || isHudHovered) ? 'translateX(-50%)' : 'translateX(-50%) translateY(calc(100% - 10px))',
           zIndex: 150,
           width: '680px',
-          background: '#0a0b10',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          borderRadius: '16px',
-          boxShadow: (isHudOpen || isHudHovered) ? '0 12px 40px rgba(0, 0, 0, 0.85)' : '0 0 15px rgba(16, 185, 129, 0.15)',
+          background: '#2b2d30',
+          border: '1px solid #3c3f41',
+          borderRadius: '8px',
+          boxShadow: (isHudOpen || isHudHovered) ? '0 6px 20px rgba(0, 0, 0, 0.5)' : 'none',
           padding: '16px 20px',
           boxSizing: 'border-box',
           display: 'flex',
           flexDirection: 'column',
           gap: '12px',
-          color: '#fff',
-          opacity: (isHudOpen || isHudHovered) ? 1 : 0.15,
-          transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1), boxShadow 0.3s ease'
+          color: '#a9b7c6',
+          opacity: (isHudOpen || isHudHovered) ? 1 : 0.25,
+          transition: 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, bottom 0.35s cubic-bezier(0.16, 1, 0.3, 1), boxShadow 0.3s ease'
         }}
       >
         {/* Track Selection Buttons */}
@@ -1683,25 +1622,25 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                 }}
                 style={{
                   flex: 1,
-                  background: isActive ? `${track.color}15` : 'rgba(255, 255, 255, 0.02)',
-                  border: `1px solid ${isActive ? track.color : 'rgba(255, 255, 255, 0.08)'}`,
-                  borderRadius: '10px',
+                  background: isActive ? '#1e1f22' : '#2b2d30',
+                  border: `1.5px solid ${isActive ? track.color : '#3c3f41'}`,
+                  borderRadius: '6px',
                   padding: '10px 8px',
-                  color: isActive ? '#fff' : 'rgba(255, 255, 255, 0.65)',
+                  color: isActive ? '#fff' : '#a9b7c6',
                   fontSize: '12px',
-                  fontWeight: '800',
+                  fontWeight: '700',
                   cursor: 'pointer',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
                   gap: '4px',
-                  boxShadow: isActive ? `0 0 15px ${track.color}25` : 'none',
-                  transition: 'all 0.2s ease',
+                  boxShadow: 'none',
+                  transition: 'all 0.15s ease',
                   outline: 'none'
                 }}
               >
                 <span style={{ fontSize: '18px' }}>{track.badge}</span>
-                <span style={{ fontFamily: 'var(--font-display)', letterSpacing: '0.5px' }}>{track.label}</span>
+                <span style={{ fontFamily: 'var(--font-sans)', letterSpacing: '0.5px' }}>{track.label}</span>
                 <span style={{ fontSize: '10px', opacity: 0.7, fontFamily: 'var(--font-mono)' }}>{progressPct}% completat</span>
               </button>
             );
@@ -1722,39 +1661,36 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                 setActiveTrackId(globalRecommendedTrack.id);
               }}
               style={{
-                background: 'rgba(16, 185, 129, 0.04)',
-                border: '1px solid rgba(16, 185, 129, 0.2)',
-                borderRadius: '10px',
+                background: 'rgba(73, 156, 84, 0.08)',
+                border: '1px solid #499c54',
+                borderRadius: '6px',
                 padding: '10px 14px',
                 fontSize: '11px',
-                color: '#fff',
+                color: '#a9b7c6',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 gap: '12px',
                 marginTop: '4px',
-                transition: 'all 0.2s ease',
-                boxShadow: 'inset 0 0 10px rgba(16, 185, 129, 0.02)'
+                transition: 'all 0.15s ease'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(16, 185, 129, 0.08)';
-                e.currentTarget.style.borderColor = 'rgba(16, 185, 129, 0.4)';
-                e.currentTarget.style.boxShadow = '0 0 8px rgba(16, 185, 129, 0.15)';
+                e.currentTarget.style.background = 'rgba(73, 156, 84, 0.15)';
+                e.currentTarget.style.borderColor = '#499c54';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(16, 185, 129, 0.04)';
-                e.currentTarget.style.borderColor = 'rgba(16, 185, 129, 0.2)';
-                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.background = 'rgba(73, 156, 84, 0.08)';
+                e.currentTarget.style.borderColor = '#499c54';
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span style={{ fontSize: '14px' }}>🎯</span>
                 <span>
-                  Recomandare: Începe sau continuă cu <strong>{recShortName}</strong> din traseul <strong>{globalRecommendedTrack.label}</strong>
+                  Recomandare: Începe sau continuă cu <strong style={{ color: '#fff' }}>{recShortName}</strong> din traseul <strong style={{ color: '#fff' }}>{globalRecommendedTrack.label}</strong>
                 </span>
               </div>
-              <span style={{ fontSize: '10px', color: '#10b981', fontWeight: 'bold' }}>Focalizează ➔</span>
+              <span style={{ fontSize: '10px', color: '#499c54', fontWeight: 'bold' }}>Focalizează ➔</span>
             </div>
           );
         })()}
@@ -1770,11 +1706,11 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
           const progressPct = trackNodes.length > 0 ? Math.round((completedCount / trackNodes.length) * 100) : 0;
 
           return (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', borderTop: '1px solid rgba(255, 255, 255, 0.05)', paddingTop: '10px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', borderTop: '1px solid #3c3f41', paddingTop: '10px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: track.color, boxShadow: `0 0 8px ${track.color}` }} />
-                  <span style={{ fontSize: '12px', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '1px', color: track.color }}>
+                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: track.color }} />
+                  <span style={{ fontSize: '11px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.5px', color: track.color, fontFamily: 'var(--font-mono)' }}>
                     Traseul {track.label}
                   </span>
                 </div>
@@ -1785,16 +1721,16 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                     setVoyageStep(0);
                   }}
                   style={{
-                    background: isVoyageMode ? '#ef444420' : `${track.color}25`,
-                    border: `1px solid ${isVoyageMode ? '#ef4444' : track.color}`,
+                    background: isVoyageMode ? 'rgba(239, 68, 68, 0.15)' : '#1e1f22',
+                    border: `1px solid ${isVoyageMode ? '#ef4444' : '#3c3f41'}`,
                     borderRadius: '6px',
                     padding: '4px 12px',
-                    color: isVoyageMode ? '#f87171' : '#fff',
+                    color: isVoyageMode ? '#f87171' : '#a9b7c6',
                     fontSize: '11px',
-                    fontWeight: '800',
+                    fontWeight: '700',
                     cursor: 'pointer',
                     outline: 'none',
-                    transition: 'all 0.2s ease'
+                    transition: 'all 0.15s ease'
                   }}
                 >
                   {isVoyageMode ? '✕ Oprire Antrenament' : '🚀 Antrenament Ghidat'}
@@ -1814,9 +1750,9 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
 
                 return (
                   <div style={{
-                    background: 'rgba(255, 255, 255, 0.02)',
-                    border: '1px solid rgba(255, 255, 255, 0.05)',
-                    borderRadius: '12px',
+                    background: '#1e1f22',
+                    border: '1px solid #3c3f41',
+                    borderRadius: '6px',
                     padding: '14px 16px',
                     display: 'flex',
                     flexDirection: 'column',
@@ -1825,15 +1761,15 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                     animation: 'fadeIn 0.2s ease'
                   }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontSize: '11px', fontWeight: '800', color: track.color, textTransform: 'uppercase', letterSpacing: '1px', fontFamily: 'var(--font-mono)' }}>
+                      <span style={{ fontSize: '11px', fontWeight: '700', color: track.color, textTransform: 'uppercase', letterSpacing: '0.5px', fontFamily: 'var(--font-mono)' }}>
                         {track.badge} Antrenament: Pasul {voyageStep + 1} / {trackNodes.length}
                       </span>
                       <span style={{
                         fontSize: '9px',
                         padding: '2px 6px',
                         borderRadius: '4px',
-                        background: isCompleted ? 'rgba(16, 185, 129, 0.15)' : 'rgba(234, 179, 8, 0.15)',
-                        color: isCompleted ? '#34d399' : '#fbbf24',
+                        background: isCompleted ? 'rgba(73, 156, 84, 0.15)' : 'rgba(245, 166, 35, 0.15)',
+                        color: isCompleted ? '#499c54' : '#fbbf24',
                         fontWeight: 'bold',
                         textTransform: 'uppercase',
                         letterSpacing: '0.5px'
@@ -1844,11 +1780,11 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
 
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '16px' }}>
                       <div>
-                        <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.8px' }}>
+                        <div style={{ fontSize: '10px', color: '#9876aa', textTransform: 'uppercase', fontFamily: 'var(--font-mono)' }}>
                           {categoryName}
                         </div>
-                        <h3 style={{ fontSize: '18px', fontWeight: '800', margin: '2px 0 0 0', fontFamily: 'var(--font-display)', letterSpacing: '-0.2px' }}>
-                          {topicName}
+                        <h3 style={{ fontSize: '16px', fontWeight: '700', margin: '2px 0 0 0', fontFamily: 'var(--font-mono)', color: '#ffc66d' }}>
+                          {topicName}()
                         </h3>
                       </div>
                       
@@ -1858,9 +1794,9 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                           if (onNodeClick) onNodeClick(nodeObj.label);
                         }}
                         style={{
-                          background: `linear-gradient(135deg, ${track.color} 0%, ${track.color}dd 100%)`,
+                          background: track.color,
                           border: 'none',
-                          borderRadius: '6px',
+                          borderRadius: '4px',
                           padding: '8px 14px',
                           color: '#000',
                           fontWeight: '800',
@@ -1869,8 +1805,8 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                           display: 'flex',
                           alignItems: 'center',
                           gap: '6px',
-                          boxShadow: `0 3px 10px ${track.color}30`,
-                          transition: 'all 0.2s ease',
+                          boxShadow: 'none',
+                          transition: 'all 0.15s ease',
                           whiteSpace: 'nowrap'
                         }}
                       >
@@ -1878,17 +1814,17 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                       </button>
                     </div>
 
-                    <div style={{ display: 'flex', justifyContent: 'space-between', gap: '10px', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '10px', marginTop: '2px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', gap: '10px', borderTop: '1px solid #3c3f41', paddingTop: '10px', marginTop: '2px' }}>
                       <button
                         type="button"
                         disabled={voyageStep === 0}
                         onClick={() => setVoyageStep(s => Math.max(0, s - 1))}
                         style={{
-                          background: 'rgba(255, 255, 255, 0.02)',
-                          border: '1px solid rgba(255, 255, 255, 0.08)',
-                          borderRadius: '6px',
+                          background: '#1e1f22',
+                          border: '1px solid #3c3f41',
+                          borderRadius: '4px',
                           padding: '6px 12px',
-                          color: voyageStep === 0 ? 'rgba(255, 255, 255, 0.2)' : '#fff',
+                          color: voyageStep === 0 ? '#686868' : '#a9b7c6',
                           fontSize: '11px',
                           fontWeight: 'bold',
                           cursor: voyageStep === 0 ? 'default' : 'pointer'
@@ -1902,11 +1838,11 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                         disabled={voyageStep === trackNodes.length - 1}
                         onClick={() => setVoyageStep(s => Math.min(trackNodes.length - 1, s + 1))}
                         style={{
-                          background: 'rgba(255, 255, 255, 0.02)',
-                          border: '1px solid rgba(255, 255, 255, 0.08)',
-                          borderRadius: '6px',
+                          background: '#1e1f22',
+                          border: '1px solid #3c3f41',
+                          borderRadius: '4px',
                           padding: '6px 12px',
-                          color: voyageStep === trackNodes.length - 1 ? 'rgba(255, 255, 255, 0.2)' : '#fff',
+                          color: voyageStep === trackNodes.length - 1 ? '#686868' : '#a9b7c6',
                           fontSize: '11px',
                           fontWeight: 'bold',
                           cursor: voyageStep === trackNodes.length - 1 ? 'default' : 'pointer'
@@ -1940,19 +1876,18 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                   const isCompleted = nodeObj.status === 'completed';
                   const isRecommended = nId === nextTargetNodeId;
 
-                  let stepBg = 'rgba(255,255,255,0.02)';
-                  let stepBorder = '1px solid rgba(255,255,255,0.06)';
+                  let stepBg = '#1e1f22';
+                  let stepBorder = '1px solid #3c3f41';
                   let extraShadow = 'none';
                   if (isCurrent) {
-                    stepBg = `${track.color}20`;
-                    stepBorder = `1px solid ${track.color}`;
+                    stepBg = '#252629';
+                    stepBorder = `2px solid ${track.color}`;
                   } else if (isRecommended) {
-                    stepBg = 'rgba(16, 185, 129, 0.08)';
-                    stepBorder = '1px solid #10b981';
-                    extraShadow = '0 0 10px rgba(16, 185, 129, 0.2)';
+                    stepBg = 'rgba(73, 156, 84, 0.08)';
+                    stepBorder = '1px solid #499c54';
                   } else if (isCompleted) {
-                    stepBg = 'rgba(16, 185, 129, 0.05)';
-                    stepBorder = '1px solid rgba(16, 185, 129, 0.3)';
+                    stepBg = '#1e1f22';
+                    stepBorder = '1px solid #499c54';
                   }
 
                   return (
@@ -1966,7 +1901,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                       }}
                       style={{
                         padding: '6px 12px',
-                        borderRadius: '8px',
+                        borderRadius: '4px',
                         background: stepBg,
                         border: stepBorder,
                         boxShadow: extraShadow,
@@ -1976,7 +1911,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                         display: 'flex',
                         alignItems: 'center',
                         gap: '6px',
-                        color: isCurrent ? '#fff' : (isRecommended ? '#34d399' : 'rgba(255, 255, 255, 0.7)'),
+                        color: isCurrent ? '#fff' : (isRecommended ? '#499c54' : '#a9b7c6'),
                         fontWeight: isCurrent || isRecommended ? 'bold' : 'normal',
                         transition: 'all 0.15s ease'
                       }}
@@ -1985,8 +1920,8 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                         width: '16px',
                         height: '16px',
                         borderRadius: '50%',
-                        background: isCompleted ? 'var(--success-color)' : (isRecommended ? '#10b981' : 'rgba(255,255,255,0.1)'),
-                        color: isCompleted || isRecommended ? '#000' : '#fff',
+                        background: isCompleted ? '#499c54' : (isRecommended ? '#499c54' : '#2b2d30'),
+                        color: isCompleted || isRecommended ? '#000' : '#a9b7c6',
                         fontSize: '9px',
                         fontWeight: 'bold',
                         display: 'flex',
@@ -2023,54 +1958,50 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
           }
           @keyframes sonarPing {
             0% { transform: scale(1); opacity: 0.8; }
-            70% { transform: scale(1.15); opacity: 0; }
-            100% { transform: scale(1.15); opacity: 0; }
+            70% { transform: scale(1.06); opacity: 0; }
+            100% { transform: scale(1.06); opacity: 0; }
           }
           @keyframes parentGlowPulse {
             0% { 
-              box-shadow: 0 0 12px var(--glow-color), inset 0 0 12px var(--glow-color);
+              box-shadow: 0 0 6px var(--glow-color);
               transform: translate(-50%, -50%) scale(1.02);
               border-color: var(--glow-color);
             }
             50% { 
-              box-shadow: 0 0 28px var(--glow-color), inset 0 0 20px var(--glow-color);
-              transform: translate(-50%, -50%) scale(1.04);
+              box-shadow: 0 0 12px var(--glow-color);
+              transform: translate(-50%, -50%) scale(1.03);
               border-color: #fff;
             }
             100% { 
-              box-shadow: 0 0 12px var(--glow-color), inset 0 0 12px var(--glow-color);
+              box-shadow: 0 0 6px var(--glow-color);
               transform: translate(-50%, -50%) scale(1.02);
               border-color: var(--glow-color);
             }
           }
           @keyframes childGlowPulse {
             0% { 
-              box-shadow: 0 4px 12px var(--glow-color);
-              transform: translate(-50%, -50%) scale(1.02) translateY(-2px);
+              box-shadow: 0 2px 6px var(--glow-color);
+              transform: translate(-50%, -50%) scale(1.02) translateY(-1px);
               border-color: var(--glow-color);
             }
             50% { 
-              box-shadow: 0 14px 32px var(--glow-color);
-              transform: translate(-50%, -50%) scale(1.05) translateY(-5px);
+              box-shadow: 0 6px 16px var(--glow-color);
+              transform: translate(-50%, -50%) scale(1.03) translateY(-2px);
               border-color: #fff;
             }
             100% { 
-              box-shadow: 0 4px 12px var(--glow-color);
-              transform: translate(-50%, -50%) scale(1.02) translateY(-2px);
+              box-shadow: 0 2px 6px var(--glow-color);
+              transform: translate(-50%, -50%) scale(1.02) translateY(-1px);
             }
           }
           @keyframes cyberPulse {
-            0% { box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2), inset 0 1px 1px rgba(255,255,255,0.08); }
-            50% { box-shadow: 0 8px 36px rgba(16, 185, 129, 0.4), inset 0 1px 1px rgba(255,255,255,0.15); }
-            100% { box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2), inset 0 1px 1px rgba(255,255,255,0.08); }
+            0% { box-shadow: 0 4px 10px rgba(73, 156, 84, 0.2); }
+            50% { box-shadow: 0 4px 16px rgba(73, 156, 84, 0.35); }
+            100% { box-shadow: 0 4px 10px rgba(73, 156, 84, 0.2); }
           }
           @keyframes shimmerSweep {
             0% { background-position: -200% 0; }
             100% { background-position: 200% 0; }
-          }
-          @keyframes radarSweep {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(167px); }
           }
           @keyframes searchFlashPulse {
             0% {

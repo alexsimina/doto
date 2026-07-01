@@ -30,6 +30,22 @@ function checkBalancedBraces(mathText) {
     return openCount === closeCount;
 }
 
+function getEnvironmentRanges(mathText) {
+    const ranges = [];
+    const beginRegex = /\\begin\{([a-zA-Z*]+)\}/g;
+    let match;
+    while ((match = beginRegex.exec(mathText)) !== null) {
+        const envName = match[1];
+        const startIndex = match.index;
+        const endStr = `\\end{${envName}}`;
+        const endIndex = mathText.indexOf(endStr, beginRegex.lastIndex);
+        if (endIndex !== -1) {
+            ranges.push({ start: startIndex, end: endIndex + endStr.length });
+        }
+    }
+    return ranges;
+}
+
 function getJsFiles(dir) {
     let results = [];
     const list = fs.readdirSync(dir);
@@ -130,6 +146,23 @@ function analyzeFile(filePath) {
                             type: 'unbalanced-braces',
                             message: `Field '${field}' has unbalanced curly braces in math block: "${isDouble ? '$$' : '$'}${mathText}${isDouble ? '$$' : '$'}"`
                         });
+                    }
+                    
+                    // Check for unescaped ampersands outside of alignment environments
+                    let ampPos = 0;
+                    const envRanges = getEnvironmentRanges(mathText);
+                    while ((ampPos = mathText.indexOf('&', ampPos)) !== -1) {
+                        const isEscaped = ampPos > 0 && mathText[ampPos - 1] === '\\';
+                        if (!isEscaped) {
+                            const inEnv = envRanges.some(r => ampPos >= r.start && ampPos < r.end);
+                            if (!inEnv) {
+                                errors.push({
+                                    type: 'unescaped-ampersand',
+                                    message: `Field '${field}' has unescaped ampersand outside alignment environment: "${isDouble ? '$$' : '$'}${mathText}${isDouble ? '$$' : '$'}"`
+                                });
+                            }
+                        }
+                        ampPos++;
                     }
                     
                     pos = isDouble ? end + 2 : end + 1;

@@ -9,7 +9,144 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
     return 'locked';
   };
 
-  const nodes = rawNodes.map(node => ({ ...node, status: getStatus(node.label) }));
+  const nodes = useMemo(() => {
+    const layoutOverrides = {
+      // --- MATH & GEOMETRY (extrema stângă) ---
+      'math1': { x: -3500, y: 360 },
+      'math_bigint': { x: -3500, y: 540 },
+      'math_modinv': { x: -3180, y: 540 },
+      'math_fast_expo': { x: -3820, y: 720 },
+      'comb': { x: -3820, y: 1080 },
+      'geom': { x: -3180, y: 1080 },
+      'math_phi': { x: -4140, y: 1080 },
+      'math_matrix_expo': { x: -2860, y: 1080 },
+      'geom_sweepline': { x: -3200, y: 1260 },
+      'geom_convexhull': { x: -2880, y: 1260 },
+      'math_catalan': { x: -3840, y: 1260 },
+      'math_pie': { x: -3520, y: 1260 },
+      'linalg': { x: -2560, y: 1260 },
+      'game_theory': { x: -3820, y: 1440 },
+      'advmath': { x: -2540, y: 1440 },
+      'math_mobius': { x: -4140, y: 1440 },
+
+      // --- FUNDAMENTALS (centru-sus) ---
+      'ds_basics': { x: 400, y: 0 },
+      'fund_funcs': { x: 200, y: 160 },
+      'fund_structs': { x: 600, y: 160 },
+      'arr': { x: 400, y: 320 },
+      'fund_digits': { x: 200, y: 500 },
+      'fund_bases': { x: 380, y: 680 },
+      'fund_stream': { x: 100, y: 680 },
+      'fund_sim': { x: 720, y: 500 },
+      'fund_stl': { x: 940, y: 680 },
+      'ds_frequency': { x: 400, y: 980 },
+      'diffarr': { x: 200, y: 1160 },
+      'bits': { x: 280, y: 1340 },
+      'sort': { x: -200, y: 680 },
+      'twoptr': { x: 660, y: 680 },
+
+      // --- DATA STRUCTURES (centru-dreapta) ---
+      'ds_stack': { x: 200, y: 1520 },
+      'ds_queue_deque': { x: 200, y: 1700 },
+      'ds_priority_queue': { x: 200, y: 1880 },
+      'dsu': { x: 200, y: 2060 },
+      'rmq': { x: 600, y: 1160 },
+      'aib': { x: 600, y: 1340 },
+      'seg': { x: 920, y: 1340 },
+      'seg_lazy': { x: 920, y: 1520 },
+      'ds_treap': { x: 920, y: 1700 },
+
+      // --- CORE ALGORITHMS (stânga-sus) ---
+      'alg_majority': { x: -1040, y: 600 },
+      'greedy': { x: -1040, y: 780 },
+      'dq_bin': { x: -720, y: 600 },
+      'sqrtd': { x: -720, y: 780 },
+      'mo': { x: -1600, y: 960 },
+      'meetinmid': { x: -1360, y: 780 },
+      'bkt': { x: -1680, y: 600 },
+      'dq': { x: -1680, y: 780 },
+      'dq_merge': { x: -1920, y: 960 },
+      'dq_quick': { x: -1280, y: 960 },
+      'dq_z': { x: -1820, y: 1140 },
+      'dq_ternary': { x: -960, y: 960 },
+
+      // --- DYNAMIC PROGRAMMING (stânga-jos) ---
+      'dp': { x: -1700, y: 1500 },
+      'dp_knapsack': { x: -2020, y: 1680 },
+      'dp_lis': { x: -1700, y: 1680 },
+      'dp_lcs': { x: -1380, y: 1680 },
+      'dp_digit': { x: -2020, y: 1860 },
+      'dp_mcm': { x: -1380, y: 1860 },
+      'dp_trees': { x: -2020, y: 2040 },
+      'dp_exp': { x: -1700, y: 2040 },
+      'cht': { x: -1380, y: 2040 },
+      'dp_opt_dq': { x: -1060, y: 2040 },
+
+      // --- STRING PROCESSING (dreapta-mijloc) ---
+      'str': { x: 1700, y: 400 },
+      'str_rabin_karp': { x: 1380, y: 580 },
+      'str_z': { x: 1700, y: 580 },
+      'str_manacher': { x: 2020, y: 580 },
+      'kmp': { x: 1540, y: 760 },
+      'trie': { x: 1860, y: 760 },
+      'aho': { x: 1700, y: 940 },
+      'suffix': { x: 1700, y: 1120 },
+
+      // --- TREE ALGORITHMS (dreapta-jos) ---
+      'ds_persistent_seg': { x: 1380, y: 1410 },
+      'ds_binary_trie': { x: 1700, y: 1410 },
+      'tree_euler': { x: 2020, y: 1410 },
+      'tree_decomp': { x: 2340, y: 1590 },
+      'tree_hld': { x: 2180, y: 1770 },
+      'tree_centroid': { x: 2500, y: 1770 },
+
+      // --- GRAPH THEORY (dreapta) ---
+      'graph_theory_concepts': { x: 4330, y: 650 },
+      'graph_theory_undirected': { x: 3930, y: 830 },
+      'graph_theory_directed': { x: 4730, y: 830 },
+      'graph_basics': { x: 4330, y: 1010 },
+      'dfs': { x: 3830, y: 1190 },
+      'graph_fill': { x: 3530, y: 1370 },
+      'topsort': { x: 3210, y: 1550 },
+      'graph_bridges': { x: 3850, y: 1550 },
+      'eulerhamilton': { x: 4170, y: 1550 },
+      'scc': { x: 3190, y: 1730 },
+      'scc_kosaraju': { x: 2870, y: 1910 },
+      'scc_tarjan': { x: 3190, y: 1910 },
+      'scc_biconnected': { x: 3510, y: 1910 },
+      'graph_diameter': { x: 4170, y: 1730 },
+      'bfs': { x: 4630, y: 1190 },
+      'graph_lee': { x: 4230, y: 1370 },
+      'sp': { x: 4630, y: 1370 },
+      'sp_dijkstra': { x: 4490, y: 1550 },
+      'sp_bf': { x: 4810, y: 1550 },
+      'sp_bfs01': { x: 5130, y: 1550 },
+      'sp_fw': { x: 3530, y: 1730 },
+      'sp_spfa': { x: 3850, y: 1730 },
+      'graph_dial': { x: 4470, y: 1730 },
+      'maxflow': { x: 4890, y: 1730 },
+      'maxflow_ek': { x: 4570, y: 1910 },
+      'maxflow_dinic': { x: 4890, y: 1910 },
+      'graph_mincut': { x: 5210, y: 1910 },
+      'graph_bipartite': { x: 5280, y: 1190 },
+      'graph_bipartite_matching': { x: 5280, y: 1370 },
+      'lca': { x: 5610, y: 1370 },
+      'lca_bin': { x: 5450, y: 1550 },
+      'lca_rmq': { x: 5770, y: 1550 },
+      'mst': { x: 3430, y: 2060 },
+      'mst_kruskal': { x: 3270, y: 2240 },
+      'mst_prim': { x: 3590, y: 2240 }
+    };
+
+    return rawNodes.map(rawNode => {
+      const node = { ...rawNode, status: getStatus(rawNode.label) };
+      if (layoutOverrides[node.id]) {
+        const { x, y } = layoutOverrides[node.id];
+        return { ...node, x, y };
+      }
+      return node;
+    });
+  }, [userXp]);
   const edges = rawEdges;
 
   const domainsWithBounds = domainGroups.map(domain => {
@@ -372,6 +509,64 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
   const OFFSET_X = 4000;
   const OFFSET_Y = 300;
 
+  const computeEdgePath = (n1, n2) => {
+    const startX = n1.x + OFFSET_X;
+    const startY = n1.y + OFFSET_Y;
+    const endX = n2.x + OFFSET_X + (n1.x === n2.x ? 0.01 : 0);
+    const endY = n2.y + OFFSET_Y + (n1.y === n2.y ? 0.01 : 0);
+
+    const dx = endX - startX;
+    const dy = endY - startY;
+
+    // Case 1: arr -> math1
+    if (n1.id === 'arr' && n2.id === 'math1') {
+      const midY = startY - 80;
+      return `M ${startX} ${startY} C ${startX} ${startY - 40}, ${startX - 100} ${midY}, ${startX - 200} ${midY} L ${endX + 200} ${midY} C ${endX + 100} ${midY}, ${endX} ${endY - 60}, ${endX} ${endY}`;
+    }
+
+    // Case 2: arr -> str
+    if (n1.id === 'arr' && n2.id === 'str') {
+      const midY = startY - 80;
+      return `M ${startX} ${startY} C ${startX} ${startY - 40}, ${startX + 100} ${midY}, ${startX + 200} ${midY} L ${endX - 200} ${midY} C ${endX - 100} ${midY}, ${endX} ${endY - 60}, ${endX} ${endY}`;
+    }
+
+    // Case 3: fund_stl -> graph_theory_concepts
+    if (n1.id === 'fund_stl' && n2.id === 'graph_theory_concepts') {
+      const midY = 320 + OFFSET_Y;
+      return `M ${startX} ${startY} C ${startX} ${startY - 60}, ${startX + 100} ${midY}, ${startX + 200} ${midY} L ${endX - 250} ${midY} C ${endX - 120} ${midY}, ${endX} ${endY - 100}, ${endX} ${endY}`;
+    }
+
+    // Case 4: dsu -> mst
+    if (n1.id === 'dsu' && n2.id === 'mst') {
+      const midY = 2150 + OFFSET_Y;
+      return `M ${startX} ${startY} C ${startX} ${startY + 100}, ${startX + 200} ${midY}, ${startX + 400} ${midY} L ${endX - 400} ${midY} C ${endX - 200} ${midY}, ${endX} ${endY + 100}, ${endX} ${endY}`;
+    }
+
+    // Case 5: greedy -> mst
+    if (n1.id === 'greedy' && n2.id === 'mst') {
+      const midY = 2220 + OFFSET_Y;
+      return `M ${startX} ${startY} C ${startX} ${startY + 200}, ${startX + 300} ${midY}, ${startX + 600} ${midY} L ${endX - 600} ${midY} C ${endX - 300} ${midY}, ${endX} ${endY + 150}, ${endX} ${endY}`;
+    }
+
+    // Default: Adaptive Bezier Curves
+    const adx = Math.abs(dx);
+    const ady = Math.abs(dy);
+
+    if (adx > ady * 1.4 && ady > 0) {
+      const cp1X = startX + dx * 0.45;
+      const cp1Y = startY;
+      const cp2X = endX - dx * 0.45;
+      const cp2Y = endY;
+      return `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
+    } else {
+      const cp1X = startX;
+      const cp1Y = startY + dy * 0.5;
+      const cp2X = endX;
+      const cp2Y = endY - dy * 0.5;
+      return `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
+    }
+  };
+
   return (
     <div 
       ref={containerRef}
@@ -643,19 +838,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
             const n2 = nodes.find(n => n.id === edge.to);
             if(!n1 || !n2) return null;
             
-            const startX = n1.x + OFFSET_X;
-            const startY = n1.y + OFFSET_Y;
-            const endX = n2.x + OFFSET_X + (n1.x === n2.x ? 0.01 : 0);
-            const endY = n2.y + OFFSET_Y + (n1.y === n2.y ? 0.01 : 0);
-            
-            // Cubic bezier for organic tree look
-            const dy = Math.abs(endY - startY);
-            const cp1X = startX;
-            const cp1Y = startY + dy * 0.5;
-            const cp2X = endX;
-            const cp2Y = endY - dy * 0.5;
-            
-            const pathData = `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
+            const pathData = computeEdgePath(n1, n2);
             
             const isEdgeToChild = hoveredNode === n1.id;
             const isAncestorEdge = hoveredNode && (upwardDistances[n2.id] !== undefined);
@@ -775,18 +958,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
             const n2 = nodes.find(n => n.id === activeTrackNodes[idx + 1]);
             if (!n1 || !n2) return null;
 
-            const startX = n1.x + OFFSET_X;
-            const startY = n1.y + OFFSET_Y;
-            const endX = n2.x + OFFSET_X;
-            const endY = n2.y + OFFSET_Y;
-
-            const dy = Math.abs(endY - startY);
-            const cp1X = startX;
-            const cp1Y = startY + dy * 0.5;
-            const cp2X = endX;
-            const cp2Y = endY - dy * 0.5;
-
-            const pathData = `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
+            const pathData = computeEdgePath(n1, n2);
             
             // Highlight step segment in Voyage Mode
             const isVoyageActiveSegment = isVoyageMode && (idx === voyageStep || idx === voyageStep - 1);

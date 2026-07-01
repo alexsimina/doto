@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { getCategoryIcon, domainGroups, getNodeDomain, rawNodes, rawEdges, olympiadTracks } from '../data/syllabusData';
 
 const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
@@ -36,8 +36,28 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
 
   const [hoveredNode, setHoveredNode] = useState(null);
 
+  // Compute all upward ancestor distances from the hovered node
+  const upwardDistances = useMemo(() => {
+    if (!hoveredNode) return {};
+    const distances = {};
+    distances[hoveredNode] = 0;
+    const queue = [hoveredNode];
+    while (queue.length > 0) {
+      const current = queue.shift();
+      const currentDist = distances[current];
+      const parents = edges.filter(e => e.to === current).map(e => e.from);
+      for (const parent of parents) {
+        if (distances[parent] === undefined || distances[parent] > currentDist + 1) {
+          distances[parent] = currentDist + 1;
+          queue.push(parent);
+        }
+      }
+    }
+    return distances;
+  }, [hoveredNode, edges]);
+
   const [scale, setScale] = useState(0.85);
-  const [position, setPosition] = useState({ x: 0, y: 1600 });
+  const [position, setPosition] = useState({ x: 200, y: 1950 });
   const [isDragging, setIsDragging] = useState(false);
   const [hasMoved, setHasMoved] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
@@ -89,60 +109,6 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
   // Ținta activă este fie următorul pas din traseul activ, fie recomandarea globală
   const targetNodeId = activeTrackId ? nextTargetNodeId : globalRecommendedNodeId;
 
-  const [fogOfWarEnabled, setFogOfWarEnabled] = useState(() => {
-    const saved = localStorage.getItem('fogOfWarEnabled');
-    return saved !== null ? JSON.parse(saved) : true;
-  });
-
-  useEffect(() => {
-    localStorage.setItem('fogOfWarEnabled', JSON.stringify(fogOfWarEnabled));
-  }, [fogOfWarEnabled]);
-
-  // Compute discovered nodes Set
-  const discoveredNodeIds = new Set();
-  nodes.forEach(node => {
-    // 1. XP > 0 (completed or in-progress)
-    if (node.status === 'completed' || node.status === 'in-progress') {
-      discoveredNodeIds.add(node.id);
-      return;
-    }
-    // 2. Root nodes (no incoming edges)
-    const hasIncoming = edges.some(e => e.to === node.id);
-    if (!hasIncoming) {
-      discoveredNodeIds.add(node.id);
-      return;
-    }
-    // 3. Has at least one completed parent node
-    const hasCompletedParent = edges.some(e => {
-      if (e.to !== node.id) return false;
-      const parentNode = nodes.find(n => n.id === e.from);
-      return parentNode && parentNode.status === 'completed';
-    });
-    if (hasCompletedParent) {
-      discoveredNodeIds.add(node.id);
-      return;
-    }
-    // 4. Recommended node (current target)
-    if (node.id === targetNodeId) {
-      discoveredNodeIds.add(node.id);
-      return;
-    }
-    // 5. Active track next target
-    if (activeTrackId && node.id === nextTargetNodeId) {
-      discoveredNodeIds.add(node.id);
-      return;
-    }
-    // 6. Temporarily revealed search result
-    if (flashedNodeId === node.id) {
-      discoveredNodeIds.add(node.id);
-      return;
-    }
-  });
-
-  const isDomainDiscovered = (domain) => {
-    return domain.nodes.some(nodeId => discoveredNodeIds.has(nodeId));
-  };
-
   // Clean up timers on unmount
   useEffect(() => {
     return () => {
@@ -185,7 +151,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
     
     setScale(targetScale);
     setPosition({
-      x: -centerX,
+      x: 1000 - centerX,
       y: 2200 - centerY
     });
   };
@@ -194,13 +160,17 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
     const container = containerRef.current;
     const W = container ? container.clientWidth : 1200;
     const H = container ? container.clientHeight : 800;
-    const w = 4207 + 360;
-    const h = 3683 + 280;
-    const targetScale = Math.max(0.18, Math.min((W - 100) / w, (H - 100) / h, 0.95));
+    const minX = -3580;
+    const maxX = 5580;
+    const minY = -140;
+    const maxY = 2440;
+    const w = maxX - minX;
+    const h = maxY - minY;
+    const targetScale = Math.max(0.10, Math.min((W - 140) / w, (H - 140) / h, 0.95));
     setScale(targetScale);
     setPosition({
-      x: -285,
-      y: 2200 - 1841
+      x: 1000 - (minX + maxX) / 2,
+      y: 2200 - (minY + maxY) / 2
     });
   };
 
@@ -222,7 +192,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
 
   const handleSelectNode = (node) => {
     setPosition({
-      x: -node.x,
+      x: 1000 - node.x,
       y: 2200 - node.y
     });
     setScale(1.0);
@@ -399,7 +369,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
     outline: 'none'
   };
 
-  const OFFSET_X = 3000;
+  const OFFSET_X = 4000;
   const OFFSET_Y = 300;
 
   return (
@@ -423,65 +393,6 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
     >
-      {/* Fog of War Toggle Switch */}
-      <div style={{
-        position: 'absolute',
-        bottom: '80px',
-        right: '24px',
-        zIndex: 100,
-        display: 'flex',
-        alignItems: 'center',
-        gap: '8px',
-        background: 'rgba(10, 14, 23, 0.85)',
-        border: '1px solid rgba(255, 255, 255, 0.12)',
-        borderRadius: '20px',
-        padding: '6px 14px',
-        backdropFilter: 'blur(24px)',
-        boxShadow: '0 12px 40px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255,255,255,0.05)',
-        cursor: 'pointer',
-        transition: 'all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)',
-        userSelect: 'none'
-      }}
-      onClick={() => setFogOfWarEnabled(!fogOfWarEnabled)}
-      onMouseOver={e => {
-        e.currentTarget.style.borderColor = 'rgba(99, 102, 241, 0.4)';
-        e.currentTarget.style.boxShadow = '0 12px 40px rgba(99, 102, 241, 0.15), inset 0 1px 1px rgba(255,255,255,0.1)';
-      }}
-      onMouseOut={e => {
-        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)';
-        e.currentTarget.style.boxShadow = '0 12px 40px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255,255,255,0.05)';
-      }}
-      title="Comută vizibilitatea zonelor nedescoperite"
-      >
-        <span style={{ fontSize: '13px', display: 'flex', alignItems: 'center' }}>
-          {fogOfWarEnabled ? '🌫️' : '👁️'}
-        </span>
-        <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.8)', fontWeight: '800', fontFamily: 'var(--font-mono)', letterSpacing: '1px', textTransform: 'uppercase' }}>
-          Fog of War:
-        </span>
-        <span style={{
-          fontSize: '10px',
-          fontWeight: '900',
-          fontFamily: 'var(--font-mono)',
-          color: fogOfWarEnabled ? '#818cf8' : '#6b7280',
-          transition: 'color 0.2s ease',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '6px'
-        }}>
-          {fogOfWarEnabled ? 'ACTIV' : 'OPRIT'}
-          <span style={{
-            width: '6px',
-            height: '6px',
-            borderRadius: '50%',
-            background: fogOfWarEnabled ? '#818cf8' : '#4b5563',
-            boxShadow: fogOfWarEnabled ? '0 0 8px #818cf8' : 'none',
-            display: 'inline-block',
-            animation: fogOfWarEnabled ? 'sonarPing 2s infinite' : 'none'
-          }} />
-        </span>
-      </div>
-
       {/* Dynamic zoom capsule controls */}
       <div style={{
         position: 'absolute',
@@ -536,7 +447,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
         left: '50%',
         transform: `translate(calc(-50% + ${position.x}px), calc(-50% + ${position.y}px)) scale(${scale})`,
         transformOrigin: 'center',
-        width: '6000px',
+        width: '10000px',
         height: '5000px',
         transition: isDragging ? 'none' : 'transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1)'
       }}>
@@ -545,27 +456,6 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
         {domainsWithBounds.map(domain => {
           if(!domain.bounds) return null;
           const {x, y, w, h} = domain.bounds;
-          if (fogOfWarEnabled && !isDomainDiscovered(domain)) {
-            return (
-              <div 
-                key={`fog-domain-${domain.id}`}
-                style={{
-                  position: 'absolute',
-                  left: x + OFFSET_X - 45,
-                  top: y + OFFSET_Y - 45,
-                  width: w + 90,
-                  height: h + 90,
-                  background: 'radial-gradient(circle, rgba(0,0,0,1) 20%, rgba(4,4,8,0.98) 60%, rgba(8,8,14,0.7) 80%, transparent 100%)',
-                  borderRadius: '40px',
-                  filter: 'blur(30px)',
-                  opacity: 0.98,
-                  pointerEvents: 'none',
-                  zIndex: 8,
-                  animation: 'fogDriftLarge 18s infinite ease-in-out'
-                }}
-              />
-            );
-          }
           const glowColor = domain.borderColor.replace('0.5', '0.22');
           return (
             <div 
@@ -589,7 +479,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
         })}
 
         {/* Draw SVG Background Domains and Edges */}
-        <svg width="6000" height="5000" style={{ position: 'absolute', top: 0, left: 0, zIndex: 1, pointerEvents: 'none' }}>
+        <svg width="10000" height="5000" style={{ position: 'absolute', top: 0, left: 0, zIndex: 1, pointerEvents: 'none' }}>
           <defs>
             {/* Tech Blueprint Grid Pattern */}
             <pattern id="techgrid" width="80" height="80" patternUnits="userSpaceOnUse">
@@ -661,7 +551,6 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
           {/* Render Domain Backgrounds */}
           {domainsWithBounds.map(domain => {
             if(!domain.bounds) return null;
-            if (fogOfWarEnabled && !isDomainDiscovered(domain)) return null;
             const {x, y, w, h} = domain.bounds;
             const rectX = x + OFFSET_X - 45;
             const rectY = y + OFFSET_Y - 45;
@@ -753,7 +642,6 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
             const n1 = nodes.find(n => n.id === edge.from);
             const n2 = nodes.find(n => n.id === edge.to);
             if(!n1 || !n2) return null;
-            if (fogOfWarEnabled && (!discoveredNodeIds.has(n1.id) || !discoveredNodeIds.has(n2.id))) return null;
             
             const startX = n1.x + OFFSET_X;
             const startY = n1.y + OFFSET_Y;
@@ -770,15 +658,17 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
             const pathData = `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
             
             const isEdgeToChild = hoveredNode === n1.id;
-            const isEdgeToParent = hoveredNode === n2.id;
-            const isRelated = isEdgeToChild || isEdgeToParent;
+            const isAncestorEdge = hoveredNode && (upwardDistances[n2.id] !== undefined);
+            const ancestorDistance = isAncestorEdge ? upwardDistances[n2.id] : -1;
             const bothCompleted = n1.status === 'completed' && n2.status === 'completed';
             
             let edgeColor = `url(#grad-${i})`;
             let edgeWidth = '4';
 
-            if (isRelated) {
+            if (isEdgeToChild) {
               edgeWidth = '8';
+            } else if (isAncestorEdge) {
+              edgeWidth = ancestorDistance === 0 ? '8' : (ancestorDistance === 1 ? '6' : '5');
             } else if (n1.status === 'locked' && n2.status === 'locked') {
               edgeColor = 'rgba(255, 255, 255, 0.25)';
               edgeWidth = '2';
@@ -796,7 +686,15 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                               (!activeStatusFilter || n2.status === activeStatusFilter);
             const isEdgeVisible = n1Visible && n2Visible;
             
-            const edgeBaseOpacity = !hoveredNode ? (bothCompleted ? 1 : 0.85) : ((isRelated || bothCompleted) ? 1 : 0.35);
+            const edgeBaseOpacity = !hoveredNode 
+              ? (bothCompleted ? 1 : 0.85) 
+              : (isEdgeToChild || bothCompleted 
+                  ? 1 
+                  : (isAncestorEdge 
+                      ? (ancestorDistance === 0 ? 1 : (ancestorDistance === 1 ? 0.65 : 0.45))
+                      : 0.25
+                    )
+                );
             
             // Diminuarea opacității legăturilor standard dacă un traseu olimpic este activ
             const trackActive = activeTrackId !== null;
@@ -805,16 +703,35 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
             
             const finalEdgeOpacity = isEdgeVisible ? (edgeBaseOpacity * trackEdgeDim) : 0.05;
 
+            let dashArray = '6 6';
+            let edgeAnimation = 'none';
+            if (bothCompleted) {
+              dashArray = '12 12';
+              edgeAnimation = 'dataFlow 1.2s linear infinite';
+            } else if (isEdgeToChild) {
+              dashArray = 'none';
+            } else if (isAncestorEdge) {
+              const speed = 0.8 + ancestorDistance * 0.4;
+              edgeAnimation = `dataFlow ${speed}s linear infinite`;
+              if (ancestorDistance === 0) {
+                dashArray = '8 8';
+              } else if (ancestorDistance === 1) {
+                dashArray = '4 8';
+              } else {
+                dashArray = '2 10';
+              }
+            }
+
             return (
               <g key={i}>
                 {/* Glow path behind the edge */}
-                {(bothCompleted || isRelated) && isEdgeVisible && (
+                {(bothCompleted || isEdgeToChild || isAncestorEdge) && isEdgeVisible && (
                   <path
                     d={pathData}
                     fill="none"
-                    stroke={isRelated ? flowColor : 'var(--success-color)'}
-                    strokeWidth={isRelated ? 10 : 6}
-                    opacity="0.24"
+                    stroke={isEdgeToChild || isAncestorEdge ? flowColor : 'var(--success-color)'}
+                    strokeWidth={isEdgeToChild ? 10 : (isAncestorEdge ? Math.max(4, 10 - ancestorDistance * 2) : 6)}
+                    opacity={isEdgeToChild ? "0.24" : (isAncestorEdge ? (0.24 * Math.max(0.15, 1 - ancestorDistance * 0.35)) : "0.24")}
                     filter="url(#glow)"
                     style={{ transition: 'all 0.4s ease' }}
                   />
@@ -827,23 +744,23 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                   strokeWidth={edgeWidth}
                   style={{ 
                     transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                    strokeDasharray: bothCompleted ? '12 12' : (isEdgeToParent ? '8 8' : (isEdgeToChild ? 'none' : '6 6')),
-                    animation: bothCompleted ? 'dataFlow 1.2s linear infinite' : (isEdgeToParent ? 'dataFlow 0.8s linear infinite' : 'none'),
+                    strokeDasharray: dashArray,
+                    animation: edgeAnimation,
                     opacity: finalEdgeOpacity
                   }}
                 />
                 {/* Dynamic Moving Data Pulse overlay */}
-                {(bothCompleted || isRelated || n1.status === 'completed') && n2.status !== 'locked' && isEdgeVisible && (
+                {(bothCompleted || isEdgeToChild || isAncestorEdge || n1.status === 'completed') && n2.status !== 'locked' && isEdgeVisible && (
                   <path
                     d={pathData}
                     fill="none"
-                    stroke={isRelated ? '#fff' : (bothCompleted ? 'var(--success-color)' : flowColor)}
-                    strokeWidth={isRelated ? '2.5' : '1.5'}
+                    stroke={isEdgeToChild || isAncestorEdge ? '#fff' : (bothCompleted ? 'var(--success-color)' : flowColor)}
+                    strokeWidth={isEdgeToChild ? '2.5' : (isAncestorEdge ? Math.max(1.2, 2.5 - ancestorDistance * 0.5) : '1.5')}
                     strokeLinecap="round"
                     strokeDasharray="8 60"
                     style={{
-                      animation: `dataPulseFlow ${isRelated ? '0.7s' : (bothCompleted ? '1.5s' : '2.5s')} linear infinite`,
-                      opacity: 0.85
+                      animation: `dataPulseFlow ${isEdgeToChild ? '0.7s' : (isAncestorEdge ? `${0.7 + ancestorDistance * 0.4}s` : (bothCompleted ? '1.5s' : '2.5s'))} linear infinite`,
+                      opacity: isEdgeToChild ? 0.85 : (isAncestorEdge ? 0.85 * Math.max(0.15, 1 - ancestorDistance * 0.35) : 0.85)
                     }}
                   />
                 )}
@@ -907,30 +824,6 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
 
         {/* Draw HTML Nodes */}
         {nodes.map(node => {
-          if (fogOfWarEnabled && !discoveredNodeIds.has(node.id)) {
-            return (
-              <div 
-                key={`fog-node-${node.id}`}
-                style={{
-                  position: 'absolute',
-                  left: node.x + OFFSET_X,
-                  top: node.y + OFFSET_Y,
-                  transform: 'translate(-50%, -50%)',
-                  width: '260px',
-                  height: '140px',
-                  background: 'radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(5, 5, 8, 0.95) 45%, rgba(10, 10, 18, 0.5) 75%, transparent 100%)',
-                  borderRadius: '50%',
-                  filter: 'blur(14px)',
-                  pointerEvents: 'none',
-                  zIndex: 9,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  animation: 'fogDrift 12s infinite linear'
-                }}
-              />
-            );
-          }
           const isHovered = hoveredNode === node.id;
           const isParentOfHovered = hoveredNode ? edges.some(e => e.from === node.id && e.to === hoveredNode) : false;
           const isChildOfHovered = hoveredNode ? edges.some(e => e.to === node.id && e.from === hoveredNode) : false;
@@ -1264,7 +1157,6 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(99, 102, 241, 0.03) 2px, rgba(99, 102, 241, 0.03) 4px)', pointerEvents: 'none', zIndex: 1 }} />
         <div style={{ position: 'relative', width: '100%', height: 'calc(100% - 33px)', zIndex: 2 }}>
           {nodes.map(node => {
-            if (fogOfWarEnabled && !discoveredNodeIds.has(node.id)) return null;
             const nodeDomain = getNodeDomain(node.id);
             const dotColor = node.status === 'completed' 
               ? 'var(--success-color)' 
@@ -1272,7 +1164,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
             return (
               <div key={`mini-${node.id}`} style={{
                 position: 'absolute',
-                left: `${((node.x + OFFSET_X) / 6000) * 100}%`,
+                left: `${((node.x + OFFSET_X) / 10000) * 100}%`,
                 top: `${((node.y + OFFSET_Y) / 5000) * 100}%`,
                 width: '4px',
                 height: '4px',
@@ -1287,8 +1179,8 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
           <div style={{
             position: 'absolute',
             left: '50%', top: '50%',
-            transform: `translate(calc(-50% - ${(position.x / 6000) * 240}px), calc(-50% - ${(position.y / 5000) * 167}px))`,
-            width: `${(100 / scale) * (800 / 6000)}%`,
+            transform: `translate(calc(-50% - ${(position.x / 10000) * 240}px), calc(-50% - ${(position.y / 5000) * 167}px))`,
+            width: `${(100 / scale) * (800 / 10000)}%`,
             height: `${(100 / scale) * (600 / 5000)}%`,
             border: '1px solid rgba(99, 102, 241, 0.7)',
             borderRadius: '2px',
@@ -1421,20 +1313,12 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                           style={{
                             padding: '8px 12px',
                             cursor: 'pointer',
-                            borderBottom: '1px solid rgba(255,255,255,0.03)',
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center'
+                            borderBottom: '1px solid rgba(255,255,255,0.03)'
                           }}
                           className="search-item"
                         >
-                          <div>
-                            <div style={{ fontSize: '13px', fontWeight: 'bold', color: '#fff' }}>{leaf}</div>
-                            <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase' }}>{path}</div>
-                          </div>
-                          {fogOfWarEnabled && !discoveredNodeIds.has(node.id) && (
-                            <span style={{ fontSize: '12px', opacity: 0.6 }} title="Ascuns în ceață">🌫️</span>
-                          )}
+                          <div style={{ fontSize: '13px', fontWeight: 'bold', color: '#fff' }}>{leaf}</div>
+                          <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase' }}>{path}</div>
                         </div>
                       );
                     })
@@ -1498,38 +1382,33 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                   const completedCount = domainNodes.filter(n => n.status === 'completed').length;
                   const totalCount = domainNodes.length;
                   const isHoveredDomain = activeDomainFilter === d.id;
-                  const isDiscovered = !fogOfWarEnabled || isDomainDiscovered(d);
-                  const icon = isDiscovered ? d.icon : '🔒';
-                  const label = isDiscovered ? d.label : '[Domeniu Nedescoperit]';
-                  const progressStr = isDiscovered ? `${completedCount}/${totalCount}` : '?/?';
                   
                   return (
                     <div
                       key={d.id}
-                      onMouseEnter={() => { if (isDiscovered) setActiveDomainFilter(d.id); }}
-                      onMouseLeave={() => { if (isDiscovered) setActiveDomainFilter(null); }}
-                      onClick={() => { if (isDiscovered) fitDomain(d); }}
+                      onMouseEnter={() => setActiveDomainFilter(d.id)}
+                      onMouseLeave={() => setActiveDomainFilter(null)}
+                      onClick={() => fitDomain(d)}
                       style={{
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between',
                         padding: '6px 10px',
                         borderRadius: '6px',
-                        background: isHoveredDomain && isDiscovered ? 'rgba(255,255,255,0.03)' : 'transparent',
-                        border: `1px solid ${isHoveredDomain && isDiscovered ? d.borderColor : 'transparent'}`,
-                        cursor: isDiscovered ? 'pointer' : 'default',
-                        opacity: isDiscovered ? 1 : 0.4,
+                        background: isHoveredDomain ? 'rgba(255,255,255,0.03)' : 'transparent',
+                        border: `1px solid ${isHoveredDomain ? d.borderColor : 'transparent'}`,
+                        cursor: 'pointer',
                         transition: 'all 0.15s ease'
                       }}
                     >
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <span style={{ fontSize: '14px' }}>{icon}</span>
-                        <span style={{ fontSize: '12px', color: isHoveredDomain && isDiscovered ? '#fff' : 'rgba(255,255,255,0.85)', fontWeight: isHoveredDomain && isDiscovered ? 'bold' : 'normal' }}>
-                          {label}
+                        <span style={{ fontSize: '14px' }}>{d.icon}</span>
+                        <span style={{ fontSize: '12px', color: isHoveredDomain ? '#fff' : 'rgba(255,255,255,0.85)', fontWeight: isHoveredDomain ? 'bold' : 'normal' }}>
+                          {d.label}
                         </span>
                       </div>
-                      <span style={{ fontSize: '10px', color: isDiscovered ? d.borderColor : 'rgba(255,255,255,0.3)', fontWeight: 'bold', fontFamily: 'var(--font-mono)' }}>
-                        {progressStr}
+                      <span style={{ fontSize: '10px', color: d.borderColor, fontWeight: 'bold', fontFamily: 'var(--font-mono)' }}>
+                        {completedCount}/{totalCount}
                       </span>
                     </div>
                   );
@@ -1961,16 +1840,6 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
           @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-4px); }
             to { opacity: 1; transform: translateY(0); }
-          }
-          @keyframes fogDrift {
-            0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 0.95; }
-            50% { transform: translate(-50%, -50%) scale(1.08) rotate(180deg); opacity: 0.82; }
-            100% { transform: translate(-50%, -50%) scale(1) rotate(360deg); opacity: 0.95; }
-          }
-          @keyframes fogDriftLarge {
-            0% { transform: scale(1) translate(0, 0); opacity: 0.98; }
-            50% { transform: scale(1.04) translate(-10px, 8px); opacity: 0.88; }
-            100% { transform: scale(1) translate(0, 0); opacity: 0.98; }
           }
           @keyframes dataFlow {
             from { stroke-dashoffset: 24; }

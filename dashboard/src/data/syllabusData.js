@@ -277,8 +277,8 @@ export const olympiadTracks = [
   {
     id: 'g9',
     label: 'Clasa a IX-a',
-    color: '#f97316',
-    glowColor: 'rgba(249, 115, 22, 0.4)',
+    color: '#499c54',
+    glowColor: 'rgba(73, 156, 84, 0.4)',
     badge: '🥉',
     nodes: [
       'ds_basics',
@@ -306,8 +306,8 @@ export const olympiadTracks = [
   {
     id: 'g10',
     label: 'Clasa a X-a',
-    color: '#38bdf8',
-    glowColor: 'rgba(56, 189, 248, 0.4)',
+    color: '#499c54',
+    glowColor: 'rgba(73, 156, 84, 0.4)',
     badge: '🥈',
     nodes: [
       'ds_basics',
@@ -340,8 +340,8 @@ export const olympiadTracks = [
   {
     id: 'g11_12',
     label: 'Clasele XI-XII',
-    color: '#eab308',
-    glowColor: 'rgba(234, 179, 8, 0.4)',
+    color: '#499c54',
+    glowColor: 'rgba(73, 156, 84, 0.4)',
     badge: '🥇',
     nodes: [
       'ds_stack',
@@ -386,8 +386,8 @@ export const olympiadTracks = [
   {
     id: 'baraj',
     label: 'Baraj & Lot',
-    color: '#d946ef',
-    glowColor: 'rgba(217, 70, 239, 0.4)',
+    color: '#499c54',
+    glowColor: 'rgba(73, 156, 84, 0.4)',
     badge: '🌌',
     nodes: [
       'seg',

@@ -200,6 +200,30 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const containerRef = useRef(null);
 
+  const scaleRef = useRef(scale);
+  const positionRef = useRef(position);
+
+  useEffect(() => {
+    scaleRef.current = scale;
+    positionRef.current = position;
+  }, [scale, position]);
+
+  const handleZoomIncrement = (step) => {
+    const currentScale = scaleRef.current;
+    const newScale = Math.max(0.1, Math.min(currentScale + step, 4));
+    if (newScale === currentScale) return;
+    
+    const k = newScale / currentScale;
+    const currentPos = positionRef.current;
+    const newPosX = currentPos.x * k;
+    const newPosY = currentPos.y * k;
+    
+    scaleRef.current = newScale;
+    positionRef.current = { x: newPosX, y: newPosY };
+    setScale(newScale);
+    setPosition({ x: newPosX, y: newPosY });
+  };
+
   // QOL States
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -347,11 +371,35 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
   useEffect(() => {
     const handleWheelNative = (e) => {
       e.preventDefault();
+      const container = containerRef.current;
+      if (!container) return;
+
+      const rect = container.getBoundingClientRect();
+      const cursorX = e.clientX - rect.left;
+      const cursorY = e.clientY - rect.top;
+
       const zoomSensitivity = 0.002;
-      setScale(currentScale => {
-        let newScale = currentScale - e.deltaY * zoomSensitivity;
-        return Math.max(0.1, Math.min(newScale, 4));
-      });
+      const currentScale = scaleRef.current;
+      const currentPos = positionRef.current;
+
+      const newScale = Math.max(0.1, Math.min(currentScale - e.deltaY * zoomSensitivity, 4));
+      if (newScale === currentScale) return;
+
+      const cx_v = container.clientWidth / 2;
+      const cy_v = container.clientHeight / 2;
+
+      const dxCursor = cursorX - cx_v;
+      const dyCursor = cursorY - cy_v;
+
+      const k = newScale / currentScale;
+      const newPosX = dxCursor - (dxCursor - currentPos.x) * k;
+      const newPosY = dyCursor - (dyCursor - currentPos.y) * k;
+
+      scaleRef.current = newScale;
+      positionRef.current = { x: newPosX, y: newPosY };
+
+      setScale(newScale);
+      setPosition({ x: newPosX, y: newPosY });
     };
 
     const el = containerRef.current;
@@ -401,11 +449,11 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
           break;
         case '+':
         case '=':
-          setScale(s => Math.min(s + zoomStep, 4));
+          handleZoomIncrement(zoomStep);
           break;
         case '-':
         case '_':
-          setScale(s => Math.max(s - zoomStep, 0.1));
+          handleZoomIncrement(-zoomStep);
           break;
         case 'r':
         case 'R':
@@ -416,11 +464,12 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
           setScale(0.85);
           setPosition({ x: 0, y: 1600 });
           break;
-        case '/':
+        case '/': {
           e.preventDefault();
           const searchInput = document.getElementById('syllabus-search-input');
           if (searchInput) searchInput.focus();
           break;
+        }
         default:
           break;
       }
@@ -500,15 +549,15 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
   const controlBtnStyle = {
     width: '36px',
     height: '36px',
-    background: 'rgba(255, 255, 255, 0.03)',
-    border: '1px solid rgba(255, 255, 255, 0.08)',
-    borderRadius: '10px',
-    color: '#fff',
+    background: '#2b2d30',
+    border: '1px solid #3c3f41',
+    borderRadius: '6px',
+    color: '#a9b7c6',
     cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    transition: 'all 0.2s ease',
+    transition: 'all 0.15s ease',
     outline: 'none'
   };
 
@@ -608,19 +657,19 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
           {Math.round(scale * 100)}%
         </span>
         <button 
-          onClick={() => setScale(s => Math.min(s + 0.2, 4))} 
+          onClick={() => handleZoomIncrement(0.2)} 
           style={controlBtnStyle}
           onMouseOver={e => e.currentTarget.style.background = '#3c3f41'}
-          onMouseOut={e => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)'}
+          onMouseOut={e => e.currentTarget.style.background = '#2b2d30'}
           title="Zoom In"
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
         </button>
         <button 
-          onClick={() => setScale(s => Math.max(s - 0.2, 0.1))} 
+          onClick={() => handleZoomIncrement(-0.2)} 
           style={controlBtnStyle}
           onMouseOver={e => e.currentTarget.style.background = '#3c3f41'}
-          onMouseOut={e => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)'}
+          onMouseOut={e => e.currentTarget.style.background = '#2b2d30'}
           title="Zoom Out"
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
@@ -629,7 +678,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
           onClick={() => { setScale(1); setPosition({x:0, y:0}); }} 
           style={{ ...controlBtnStyle, width: '48px' }}
           onMouseOver={e => e.currentTarget.style.background = '#3c3f41'}
-          onMouseOut={e => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)'}
+          onMouseOut={e => e.currentTarget.style.background = '#2b2d30'}
           title="Reset View"
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
@@ -677,6 +726,78 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
 
               <path d="M 30 16 L 30 21 M 30 39 L 30 44 M 16 30 L 21 30 M 39 30 L 44 30" stroke="#000000" strokeWidth="1.2" strokeLinecap="round" />
             </pattern>
+
+            {/* Dynamic Halftone Patterns for each domain using domain.borderColor */}
+            {domainGroups.map(domain => {
+              const baseColor = domain.borderColor; // e.g. "rgba(99, 102, 241, 0.5)"
+              const dotColor = baseColor.replace('0.5', '0.24');
+              const smallDotColor = baseColor.replace('0.5', '0.12');
+              return (
+                <pattern
+                  key={`halftone-${domain.id}`}
+                  id={`halftone-${domain.id}`}
+                  width="36"
+                  height="36"
+                  patternUnits="userSpaceOnUse"
+                  patternTransform="rotate(30)"
+                >
+                  <circle cx="18" cy="18" r="4.5" fill={dotColor} />
+                  <circle cx="0" cy="0" r="2.2" fill={dotColor} />
+                  <circle cx="36" cy="0" r="2.2" fill={dotColor} />
+                  <circle cx="0" cy="36" r="2.2" fill={dotColor} />
+                  <circle cx="36" cy="36" r="2.2" fill={dotColor} />
+                  
+                  {/* Intermediate noise dots for grunge print simulation */}
+                  <circle cx="9" cy="9" r="1.2" fill={smallDotColor} />
+                  <circle cx="27" cy="9" r="1.2" fill={smallDotColor} />
+                  <circle cx="9" cy="27" r="1.2" fill={smallDotColor} />
+                  <circle cx="27" cy="27" r="1.2" fill={smallDotColor} />
+                </pattern>
+              );
+            })}
+
+            {/* Grunge Distortion Filter using fractalNoise */}
+            <filter id="grunge-distort" x="-20%" y="-20%" width="140%" height="140%">
+              {/* Turbulence generator creating fine structure and distressed edges */}
+              <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="3" result="noise" />
+              {/* Displace halftone dots dynamically based on noise map */}
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+
+            {/* Radial Gradient for Vignette Fade inside Domains */}
+            <radialGradient id="domain-vignette-grad" cx="50%" cy="50%" r="70%">
+              <stop offset="0%" stopColor="white" stopOpacity="0.08" />
+              <stop offset="50%" stopColor="white" stopOpacity="0.45" />
+              <stop offset="100%" stopColor="white" stopOpacity="0.95" />
+            </radialGradient>
+            <mask id="domain-vignette-mask" maskContentUnits="objectBoundingBox">
+              <rect width="1" height="1" fill="url(#domain-vignette-grad)" />
+            </mask>
+
+            {/* Main Canvas Grunge Halftone Pattern (Optimized: distressed shapes defined statically) */}
+            <pattern id="main-grunge-halftone" width="60" height="60" patternUnits="userSpaceOnUse" patternTransform="rotate(25)">
+              {/* Central primary dot (distorted/split to look grunge) */}
+              <circle cx="30" cy="30" r="3.5" fill="rgba(169, 183, 198, 0.04)" />
+              <circle cx="28.5" cy="31.2" r="1.5" fill="rgba(169, 183, 198, 0.02)" />
+              <circle cx="31.5" cy="28.8" r="2.0" fill="rgba(169, 183, 198, 0.03)" />
+              
+              {/* Corner dots */}
+              <circle cx="0" cy="0" r="1.8" fill="rgba(169, 183, 198, 0.03)" />
+              <circle cx="2" cy="1" r="1.0" fill="rgba(169, 183, 198, 0.02)" />
+              <circle cx="60" cy="0" r="1.8" fill="rgba(169, 183, 198, 0.03)" />
+              <circle cx="0" cy="60" r="1.8" fill="rgba(169, 183, 198, 0.03)" />
+              <circle cx="60" cy="60" r="1.8" fill="rgba(169, 183, 198, 0.03)" />
+              
+              {/* Distressed splatters/noise dots within the grid to simulate grunge wear */}
+              <circle cx="15" cy="12" r="0.8" fill="rgba(169, 183, 198, 0.02)" />
+              <circle cx="42" cy="18" r="1.2" fill="rgba(169, 183, 198, 0.02)" />
+              <circle cx="18" cy="45" r="1.0" fill="rgba(169, 183, 198, 0.02)" />
+              <circle cx="48" cy="42" r="0.7" fill="rgba(169, 183, 198, 0.02)" />
+              
+              {/* Tiny dust/hair scratch simulation in the pattern */}
+              <path d="M 12 25 Q 14 27 13 30" stroke="rgba(169, 183, 198, 0.02)" strokeWidth="0.8" fill="none" />
+              <path d="M 45 10 Q 47 8 49 11" stroke="rgba(169, 183, 198, 0.02)" strokeWidth="0.6" fill="none" />
+            </pattern>
             
             {/* Fade mask for grid edges */}
             <radialGradient id="grid-fade" cx="50%" cy="50%" r="50%">
@@ -716,8 +837,64 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
           </defs>
 
           {/* Grid Backgrounds */}
+          <rect width="100%" height="100%" fill="url(#main-grunge-halftone)" mask="url(#grid-mask)" style={{ opacity: 0.85 }} />
           <rect width="100%" height="100%" fill="url(#techgrid)" mask="url(#grid-mask)" style={{ mixBlendMode: 'screen', opacity: 0.65 }} />
-          <rect width="100%" height="100%" fill="url(#black-halftone)" mask="url(#grid-mask)" style={{ mixBlendMode: 'multiply', opacity: 0.15 }} />
+          {/* Tech Blueprint Ruler Guide Lines & Meta Details */}
+          <line x1="0" y1={OFFSET_Y} x2="12000" y2={OFFSET_Y} stroke="rgba(60, 63, 65, 0.15)" strokeWidth="1" strokeDasharray="6 6" />
+          <line x1={OFFSET_X} y1="0" x2={OFFSET_X} y2="5000" stroke="rgba(60, 63, 65, 0.15)" strokeWidth="1" strokeDasharray="6 6" />
+
+          {/* Central Watermark */}
+          <text x={OFFSET_X} y={OFFSET_Y - 80} fill="rgba(169, 183, 198, 0.05)" fontFamily="var(--font-mono)" fontSize="32" textAnchor="middle" fontWeight="bold" letterSpacing="12">
+            [ SYLLABUS DIRECTED progression TREE CONST MAP ]
+          </text>
+
+          {/* Top-Left Tech metadata */}
+          <g transform="translate(150, 150)" fill="rgba(169, 183, 198, 0.15)" fontFamily="var(--font-mono)" fontSize="11" letterSpacing="0.5px">
+            <text x="0" y="0">FILE: prog_tree_canvas.cpp</text>
+            <text x="0" y="16">TARGET: CLion Debugger Env v2.4</text>
+            <text x="0" y="32">MEMORY POOL: 0x7FFF5FBFF608 [OK]</text>
+            <text x="0" y="48">SYSTEM SCHEMATIC: ACTIVE CONST MAP LAYOUT</text>
+          </g>
+
+          {/* Bottom-Right Tech metadata */}
+          <g transform="translate(11850, 4850)" fill="rgba(169, 183, 198, 0.15)" fontFamily="var(--font-mono)" fontSize="11" letterSpacing="0.5px" textAnchor="end">
+            <text x="0" y="0">MODE: BINARY DATA FLUID STREAM [0 / 1]</text>
+            <text x="0" y="-16">COORDINATE CALIBRATION: OFFSET_X=5000, OFFSET_Y=300</text>
+            <text x="0" y="-32">CANVAS DIMENSIONS: 12000 * 5000 px</text>
+            <text x="0" y="-48">MATRIX CODEC: UTF-8 / ASCII STREAM</text>
+          </g>
+
+          {/* Faint Coordinate markers across grid intersections */}
+          <g fill="rgba(169, 183, 198, 0.04)" fontFamily="var(--font-mono)" fontSize="9" letterSpacing="1px">
+            {/* Horizontal coordinates */}
+            <text x={OFFSET_X - 4000} y={OFFSET_Y + 15} textAnchor="middle">X: -4000px [GRID_IDX_L4]</text>
+            <text x={OFFSET_X - 3000} y={OFFSET_Y + 15} textAnchor="middle">X: -3000px [GRID_IDX_L3]</text>
+            <text x={OFFSET_X - 2000} y={OFFSET_Y + 15} textAnchor="middle">X: -2000px [GRID_IDX_L2]</text>
+            <text x={OFFSET_X - 1000} y={OFFSET_Y + 15} textAnchor="middle">X: -1000px [GRID_IDX_L1]</text>
+            <text x={OFFSET_X + 1000} y={OFFSET_Y + 15} textAnchor="middle">X: +1000px [GRID_IDX_R1]</text>
+            <text x={OFFSET_X + 2000} y={OFFSET_Y + 15} textAnchor="middle">X: +2000px [GRID_IDX_R2]</text>
+            <text x={OFFSET_X + 3000} y={OFFSET_Y + 15} textAnchor="middle">X: +3000px [GRID_IDX_R3]</text>
+            <text x={OFFSET_X + 4000} y={OFFSET_Y + 15} textAnchor="middle">X: +4000px [GRID_IDX_R4]</text>
+
+            {/* Vertical coordinates */}
+            <text x={OFFSET_X + 15} y={OFFSET_Y - 200} dominantBaseline="middle">Y: -200px [AXIS_TOP_MIN]</text>
+            <text x={OFFSET_X + 15} y={OFFSET_Y + 500} dominantBaseline="middle">Y: +500px [AXIS_LANE_1]</text>
+            <text x={OFFSET_X + 15} y={OFFSET_Y + 1000} dominantBaseline="middle">Y: +1000px [AXIS_LANE_2]</text>
+            <text x={OFFSET_X + 15} y={OFFSET_Y + 1500} dominantBaseline="middle">Y: +1500px [AXIS_LANE_3]</text>
+            <text x={OFFSET_X + 15} y={OFFSET_Y + 2000} dominantBaseline="middle">Y: +2000px [AXIS_LANE_4]</text>
+            <text x={OFFSET_X + 15} y={OFFSET_Y + 2500} dominantBaseline="middle">Y: +2500px [AXIS_LANE_5]</text>
+          </g>
+
+          {/* Additional background watermarks */}
+          <text x={OFFSET_X - 2500} y={1500} fill="rgba(169, 183, 198, 0.02)" fontFamily="var(--font-mono)" fontSize="54" fontWeight="bold" textAnchor="middle">
+            [ STACK // QUEUE // DEQUE STRUCT ]
+          </text>
+          <text x={OFFSET_X + 2500} y={3500} fill="rgba(169, 183, 198, 0.02)" fontFamily="var(--font-mono)" fontSize="54" fontWeight="bold" textAnchor="middle">
+            [ GRAPH_THEORY::SCC::KOSARAJU ]
+          </text>
+          <text x={OFFSET_X - 3000} y={3200} fill="rgba(169, 183, 198, 0.02)" fontFamily="var(--font-mono)" fontSize="48" fontWeight="bold" textAnchor="middle">
+            [ COMPLEXITY_BOUNDS::O(N * log N) ]
+          </text>
 
           {/* Render Domain Backgrounds */}
           {domainsWithBounds.map(domain => {
@@ -756,6 +933,18 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                   strokeWidth="1" 
                   rx="12" 
                 />
+                {/* Grunge Halftone Background Layer */}
+                <rect
+                  x={rectX + 2}
+                  y={rectY + 2}
+                  width={rectW - 4}
+                  height={rectH - 4}
+                  fill={`url(#halftone-${domain.id})`}
+                  filter="url(#grunge-distort)"
+                  mask="url(#domain-vignette-mask)"
+                  rx="10"
+                  pointerEvents="none"
+                />
                 {/* Inner Tech Border */}
                 <rect 
                   x={rectX + 4} 
@@ -777,6 +966,47 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                 <path d={`M ${rectX} ${rectY + rectH - 20} L ${rectX} ${rectY + rectH} L ${rectX + 20} ${rectY + rectH}`} fill="none" stroke={borderColor} strokeWidth="2.5" strokeLinecap="round" />
                 {/* Bottom-Right Corner */}
                 <path d={`M ${rectX + rectW - 20} ${rectY + rectH} L ${rectX + rectW} ${rectY + rectH} L ${rectX + rectW} ${rectY + rectH - 20}`} fill="none" stroke={borderColor} strokeWidth="2.5" strokeLinecap="round" />
+
+                {/* Top-Left location tag */}
+                <text x={rectX + 8} y={rectY - 6} fill={borderColor.replace('0.5', '0.22')} fontSize="8" fontFamily="var(--font-mono)">
+                  {`LOC_REF: [${rectX}px, ${rectY}px]`}
+                </text>
+                {/* Bottom-Right location tag */}
+                <text x={rectX + rectW - 8} y={rectY + rectH + 12} fill={borderColor.replace('0.5', '0.22')} fontSize="8" fontFamily="var(--font-mono)" textAnchor="end">
+                  {`LOC_END: [${rectX + rectW}px, ${rectY + rectH}px]`}
+                </text>
+
+                {/* Domain-specific programming watermarks */}
+                {domain.id === 'math' && (
+                  <text x={rectX + rectW / 2} y={rectY + rectH / 2 + 10} fill={borderColor.replace('0.5', '0.03')} fontFamily="var(--font-mono)" fontSize="48" textAnchor="middle" fontWeight="bold">
+                    O(log N) * Sum(i=1..N)
+                  </text>
+                )}
+                {domain.id === 'fund' && (
+                  <text x={rectX + rectW / 2} y={rectY + rectH / 2 + 10} fill={borderColor.replace('0.5', '0.03')} fontFamily="var(--font-mono)" fontSize="40" textAnchor="middle" fontWeight="bold">
+                    [ A[0] | A[1] | A[2] | A[3] ]
+                  </text>
+                )}
+                {domain.id === 'graph' && (
+                  <text x={rectX + rectW / 2} y={rectY + rectH / 2 + 10} fill={borderColor.replace('0.5', '0.025')} fontFamily="var(--font-mono)" fontSize="32" textAnchor="middle" fontWeight="bold" letterSpacing="2px">
+                    adj[u] = &#123;v1, v2, v3&#125;
+                  </text>
+                )}
+                {domain.id === 'dp' && (
+                  <text x={rectX + rectW / 2} y={rectY + rectH / 2 + 10} fill={borderColor.replace('0.5', '0.025')} fontFamily="var(--font-mono)" fontSize="32" textAnchor="middle" fontWeight="bold">
+                    dp[i][j] = dp[i-1][j] + dp[i][j-1]
+                  </text>
+                )}
+                {domain.id === 'str' && (
+                  <text x={rectX + rectW / 2} y={rectY + rectH / 2 + 10} fill={borderColor.replace('0.5', '0.025')} fontFamily="var(--font-mono)" fontSize="36" textAnchor="middle" fontWeight="bold" letterSpacing="4px">
+                    Trie::insert(S)
+                  </text>
+                )}
+                {domain.id === 'ds' && (
+                  <text x={rectX + rectW / 2} y={rectY + rectH / 2 + 10} fill={borderColor.replace('0.5', '0.025')} fontFamily="var(--font-mono)" fontSize="36" textAnchor="middle" fontWeight="bold" letterSpacing="4px">
+                    Tree[idx] = Left + Right
+                  </text>
+                )}
 
                 {/* Tech Meta Code text */}
                 <text
@@ -820,6 +1050,10 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
             const isAncestorEdge = hoveredNode && (upwardDistances[n2.id] !== undefined);
             const ancestorDistance = isAncestorEdge ? upwardDistances[n2.id] : -1;
             const bothCompleted = n1.status === 'completed' && n2.status === 'completed';
+            const isToRecommended = n2.id === targetNodeId;
+            if (isToRecommended) {
+              console.log("Recommended edge found:", edge.from, "->", edge.to, "targetNodeId:", targetNodeId);
+            }
             
             let edgeColor = `url(#grad-${i})`;
             let edgeWidth = '4';
@@ -828,6 +1062,9 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
               edgeWidth = '8';
             } else if (isAncestorEdge) {
               edgeWidth = ancestorDistance === 0 ? '8' : (ancestorDistance === 1 ? '6' : '5');
+            } else if (isToRecommended) {
+              edgeColor = '#499c54';
+              edgeWidth = '5';
             } else if (n1.status === 'locked' && n2.status === 'locked') {
               edgeColor = 'rgba(255, 255, 255, 0.25)';
               edgeWidth = '2';
@@ -860,7 +1097,10 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
             const inTrackEdge = activeTrackId ? (activeTrackNodes.includes(n1.id) && activeTrackNodes.includes(n2.id)) : false;
             const trackEdgeDim = trackActive ? (inTrackEdge ? 0.2 : 0.04) : 1;
             
-            const finalEdgeOpacity = isEdgeVisible ? (edgeBaseOpacity * trackEdgeDim) : 0.05;
+            let finalEdgeOpacity = isEdgeVisible ? (edgeBaseOpacity * trackEdgeDim) : 0.05;
+            if (isToRecommended && isEdgeVisible) {
+              finalEdgeOpacity = 1.0;
+            }
 
             let dashArray = '6 6';
             let edgeAnimation = 'none';
@@ -869,6 +1109,9 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
               edgeAnimation = 'dataFlow 1.2s linear infinite';
             } else if (isEdgeToChild) {
               dashArray = 'none';
+            } else if (isToRecommended) {
+              dashArray = '6 6';
+              edgeAnimation = 'dataFlow 1.8s linear infinite';
             } else if (isAncestorEdge) {
               const speed = 0.8 + ancestorDistance * 0.4;
               edgeAnimation = `dataFlow ${speed}s linear infinite`;
@@ -881,22 +1124,25 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
               }
             }
 
+            const isBinaryStreamActive = (bothCompleted || isEdgeToChild || isAncestorEdge || isToRecommended) && isEdgeVisible;
+
             return (
               <g key={i}>
                 {/* Glow path behind the edge */}
-                {(bothCompleted || isEdgeToChild || isAncestorEdge) && isEdgeVisible && (
+                {(bothCompleted || isEdgeToChild || isAncestorEdge || isToRecommended) && isEdgeVisible && (
                   <path
                     d={pathData}
                     fill="none"
-                    stroke={isEdgeToChild || isAncestorEdge ? flowColor : 'var(--success-color)'}
-                    strokeWidth={isEdgeToChild ? 10 : (isAncestorEdge ? Math.max(4, 10 - ancestorDistance * 2) : 6)}
-                    opacity={isEdgeToChild ? "0.24" : (isAncestorEdge ? (0.24 * Math.max(0.15, 1 - ancestorDistance * 0.35)) : "0.24")}
+                    stroke={isEdgeToChild || isAncestorEdge || isToRecommended ? (isToRecommended ? '#499c54' : flowColor) : 'var(--success-color)'}
+                    strokeWidth={isEdgeToChild || isToRecommended ? 10 : (isAncestorEdge ? Math.max(4, 10 - ancestorDistance * 2) : 6)}
+                    opacity={isEdgeToChild || isToRecommended ? "0.24" : (isAncestorEdge ? (0.24 * Math.max(0.15, 1 - ancestorDistance * 0.35)) : "0.24")}
                     filter="url(#glow)"
                     style={{ transition: 'all 0.4s ease' }}
                   />
                 )}
                 {/* Base Connector Line */}
                 <path 
+                  id={`edge-path-${i}`}
                   d={pathData}
                   fill="none"
                   stroke={edgeColor} 
@@ -908,6 +1154,32 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                     opacity: finalEdgeOpacity
                   }}
                 />
+
+                {/* Animated Binary Data Stream (0/1) overlay */}
+                {isBinaryStreamActive && (
+                  <text 
+                    dy="-3.5" 
+                    fill={isEdgeToChild ? '#499c54' : (isAncestorEdge ? '#3574f0' : '#499c54')}
+                  >
+                    <textPath 
+                      href={`#edge-path-${i}`}
+                      xlinkHref={`#edge-path-${i}`}
+                      startOffset="0%"
+                    >
+                      <tspan 
+                        fontSize="9px" 
+                        fontWeight="bold"
+                        fontFamily="var(--font-mono)" 
+                        letterSpacing="4px"
+                        opacity={isEdgeToChild ? 0.9 : 0.65}
+                      >
+                        101001011010010110100101
+                      </tspan>
+                      <animate attributeName="startOffset" from="0%" to="100%" dur={isEdgeToChild ? '4s' : '7.5s'} repeatCount="indefinite" />
+                    </textPath>
+                  </text>
+                )}
+
                 {/* Dynamic Moving Data Pulse overlay */}
                 {(bothCompleted || isEdgeToChild || isAncestorEdge || n1.status === 'completed') && n2.status !== 'locked' && isEdgeVisible && (
                   <path
@@ -938,7 +1210,8 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
             
             // Highlight step segment in Voyage Mode
             const isVoyageActiveSegment = isVoyageMode && (idx === voyageStep || idx === voyageStep - 1);
-            const pathColor = activeTrack.color;
+            const pathColor = '#499c54'; // Binary green style
+            const constellationEdgeId = `constellation-edge-${idx}`;
 
             return (
               <g key={`olympiad-constellation-edge-${idx}`}>
@@ -954,9 +1227,10 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                 />
                 {/* Core animated dashed line */}
                 <path
+                  id={constellationEdgeId}
                   d={pathData}
                   fill="none"
-                  stroke={pathColor}
+                  stroke={isVoyageActiveSegment ? '#fff' : pathColor}
                   strokeWidth={isVoyageActiveSegment ? "4.5" : "2.5"}
                   strokeDasharray="10 15"
                   style={{
@@ -965,6 +1239,19 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                     transition: 'all 0.3s ease'
                   }}
                 />
+                {/* Binary overlay on constellation */}
+                <text dy="-3.5" fill={isVoyageActiveSegment ? '#fff' : pathColor}>
+                  <textPath 
+                    href={`#${constellationEdgeId}`}
+                    xlinkHref={`#${constellationEdgeId}`}
+                    startOffset="0%"
+                  >
+                    <tspan fontSize="9px" fontWeight="bold" fontFamily="var(--font-mono)" letterSpacing="4px" opacity={isVoyageActiveSegment ? 0.95 : 0.8}>
+                      1010010110101001011010
+                    </tspan>
+                    <animate attributeName="startOffset" from="0%" to="100%" dur="3s" repeatCount="indefinite" />
+                  </textPath>
+                </text>
               </g>
             );
           })}
@@ -980,22 +1267,25 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
           const confidence = Math.min(100, xp);
           const domain = getNodeDomain(node.id);
           const domainBorderColor = domain ? domain.borderColor : 'rgba(255, 255, 255, 0.2)';
+          const activeColor = domainBorderColor.includes('0.5') 
+            ? domainBorderColor.replace('0.5', '0.95') 
+            : domainBorderColor.replace('0.2', '0.8');
           
           let nodeBg = '#252629';
-          let shadow = '0 4px 12px rgba(0, 0, 0, 0.35)';
+          let shadow;
           let transformScale = 'scale(1)';
-          let borderOverlay = '1px solid #3c3f41';
+          let borderOverlay;
           let customAnimation = 'none';
 
           if (node.status === 'locked') {
             nodeBg = '#1e1f22';
             borderOverlay = '1px solid #2b2d30';
             shadow = 'none';
-          } else if (node.status === 'completed') {
-            borderOverlay = '1.5px solid #499c54'; // IntelliJ green
-          } else if (node.status === 'in-progress') {
-            borderOverlay = '1.5px solid #3574f0'; // IntelliJ blue
-            shadow = `0 4px 15px rgba(0, 0, 0, 0.35), 0 0 8px ${domainBorderColor}`;
+          } else {
+            // For both 'in-progress' and 'completed' (100%)
+            const glowRadius = 3 + (confidence / 100) * 12; // scales from 3px up to 15px
+            borderOverlay = `1.5px solid ${domainBorderColor}`;
+            shadow = `0 4px 15px rgba(0, 0, 0, 0.35), 0 0 ${glowRadius}px ${domainBorderColor}`;
           }
 
           // Interactive domain & status filter visibility
@@ -1031,7 +1321,8 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
           } else if (isHovered && node.status !== 'locked') {
             transformScale = 'scale(1.06) translateY(-6px)';
             nodeBg = '#313339'; // CLion active tab/hover color
-            shadow = `0 12px 28px rgba(0, 0, 0, 0.5), 0 0 12px ${isRecommended ? '#499c54' : domainBorderColor}`;
+            const glowRadius = 3 + (confidence / 100) * 12;
+            shadow = `0 12px 28px rgba(0, 0, 0, 0.5), 0 0 ${glowRadius + 4}px ${isRecommended ? '#499c54' : domainBorderColor}`;
             borderOverlay = `1.5px solid ${isRecommended ? '#499c54' : domainBorderColor}`;
           } else if (isRecommended) {
             borderOverlay = `1.5px solid #499c54`;
@@ -1160,7 +1451,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                 <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '6px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.5px', fontWeight: '700', fontFamily: 'var(--font-mono)' }}>
                     <span>Mastery</span>
-                    <span style={{ color: node.status === 'completed' ? '#499c54' : '#3574f0', fontWeight: 'bold' }}>{confidence}%</span>
+                    <span style={{ color: activeColor, fontWeight: 'bold' }}>{confidence}%</span>
                   </div>
                   {/* Clean IntelliJ Progress Bar */}
                   <div style={{ 
@@ -1174,7 +1465,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
                     <div style={{ 
                       width: `${confidence}%`, 
                       height: '100%', 
-                      background: node.status === 'completed' ? '#499c54' : '#3574f0',
+                      background: activeColor,
                       transition: 'width 0.8s cubic-bezier(0.34, 1.2, 0.64, 1)',
                       borderRadius: '2px'
                     }}></div>
@@ -1698,12 +1989,18 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
         {/* Selected Track Detail & Steps */}
         {activeTrackId && (() => {
           const track = olympiadTracks.find(t => t.id === activeTrackId);
-          const trackNodes = track ? track.nodes : [];
-          const completedCount = trackNodes.filter(nId => {
+          const rawTrackNodes = track ? track.nodes : [];
+          const completedCount = rawTrackNodes.filter(nId => {
             const nodeObj = nodes.find(n => n.id === nId);
             return nodeObj && nodeObj.status === 'completed';
           }).length;
-          const progressPct = trackNodes.length > 0 ? Math.round((completedCount / trackNodes.length) * 100) : 0;
+          const progressPct = rawTrackNodes.length > 0 ? Math.round((completedCount / rawTrackNodes.length) * 100) : 0;
+
+          // Ignore already completed nodes!
+          const trackNodes = rawTrackNodes.filter(nId => {
+            const nodeObj = nodes.find(n => n.id === nId);
+            return nodeObj && nodeObj.status !== 'completed';
+          });
 
           return (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', borderTop: '1px solid #3c3f41', paddingTop: '10px' }}>
@@ -1739,6 +2036,23 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
 
               {/* Detalii Pas curent din Antrenamentul Ghidat */}
               {isVoyageMode && (() => {
+                if (trackNodes.length === 0) {
+                  return (
+                    <div style={{
+                      background: '#1e1f22',
+                      border: '1px solid #499c54',
+                      borderRadius: '6px',
+                      padding: '16px',
+                      textAlign: 'center',
+                      color: '#499c54',
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '12px',
+                      marginTop: '4px'
+                    }}>
+                      🎉 Felicitări! Ai finalizat toate topicurile din traseul {track.label}!
+                    </div>
+                  );
+                }
                 const activeNodeId = trackNodes[voyageStep];
                 const nodeObj = nodes.find(n => n.id === activeNodeId);
                 if (!nodeObj) return null;
@@ -2005,28 +2319,28 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
           }
           @keyframes searchFlashPulse {
             0% {
-              border-color: #fff;
-              box-shadow: 0 0 8px #fff, 0 0 25px var(--glow-color), inset 0 0 10px var(--glow-color);
-              transform: translate(-50%, -50%) scale(1.15);
+              border-color: #3574f0;
+              box-shadow: 0 0 12px #3574f0;
+              transform: translate(-50%, -50%) scale(1.04);
             }
             25% {
-              border-color: var(--accent-tertiary);
-              box-shadow: 0 0 25px var(--accent-tertiary), 0 0 50px var(--accent-tertiary), inset 0 0 20px var(--accent-tertiary);
-              transform: translate(-50%, -50%) scale(1.25);
+              border-color: #ffc66d;
+              box-shadow: 0 0 16px #ffc66d;
+              transform: translate(-50%, -50%) scale(1.08);
             }
             50% {
-              border-color: #fff;
-              box-shadow: 0 0 8px #fff, 0 0 25px var(--glow-color), inset 0 0 10px var(--glow-color);
-              transform: translate(-50%, -50%) scale(1.15);
+              border-color: #3574f0;
+              box-shadow: 0 0 12px #3574f0;
+              transform: translate(-50%, -50%) scale(1.04);
             }
             75% {
-              border-color: var(--accent-tertiary);
-              box-shadow: 0 0 25px var(--accent-tertiary), 0 0 50px var(--accent-tertiary), inset 0 0 20px var(--accent-tertiary);
-              transform: translate(-50%, -50%) scale(1.25);
+              border-color: #ffc66d;
+              box-shadow: 0 0 16px #ffc66d;
+              transform: translate(-50%, -50%) scale(1.08);
             }
             100% {
               border-color: var(--glow-color);
-              box-shadow: 0 10px 30px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
               transform: translate(-50%, -50%) scale(1);
             }
           }
@@ -2035,21 +2349,22 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
             z-index: 1000 !important;
           }
           .search-item:hover {
-            background: rgba(99, 102, 241, 0.15) !important;
+            background: #2b2d30 !important;
           }
           .custom-scrollbar::-webkit-scrollbar {
             height: 6px;
+            width: 6px;
           }
           .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.02);
+            background: #1a1b1d;
             border-radius: 4px;
           }
           .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.15);
+            background: #3c3f41;
             border-radius: 4px;
           }
           .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: #555555;
           }
         `}
       </style>

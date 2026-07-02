@@ -52,7 +52,97 @@ export const data = {
   "complexity": "### Complexitate\n\n- **Timp:** $O(F \\cdot E \\cdot V)$ în cel mai rău caz, unde $F$ este valoarea fluxului maxim, iar $E \\cdot V$ este complexitatea medie a unei rulări SPFA. În practică, SPFA rulează mult mai rapid decât Bellman-Ford.\n- **Spațiu:** $O(V + E)$ pentru stocarea rețelei de flux, a fluxurilor, capacităților și structurilor auxiliare de distanțe și cozi.",
   "variations": "### Variații și Optimizări\n\n- **Algoritmul lui Dijkstra cu Potențiale (Johnson)**: Pentru a evita SPFA la fiecare pas, putem defini un set de potențiale de noduri $h(u)$ pentru a face toate costurile muchiilor non-negative, permițând utilizarea lui Dijkstra cu Heap in $O(F \\cdot E \\log V)$.\n- **Algoritmul de anulare a ciclurilor de cost negativ (Cycle Canceling)**: Începe cu un flux maxim (calculat de exemplu cu Dinic) și caută cicluri cu cost negativ în rețeaua reziduală, trimițând flux de-a lungul lor pentru a reduce costul.",
   "applications": "### Aplicații Reale\n\n- **Problema de transport**: Optimizarea livrărilor din depozite la clienți, minimizând costurile de transport.\n- **Cuplaj de cost minim (Assignment Problem)**: Alocarea a $N$ sarcini către $N$ agenți cu costuri diferite, rezolvabilă prin reducerea la MCMF.\n- **Planificarea zborurilor**: Alocarea optimă a avioanelor pe rute pentru a reduce consumul și taxele.",
-  "code": `#include <iostream>\\n#include <vector>\\n#include <queue>\\n#include <algorithm>\\n\\nusing namespace std;\\n\\nconst int INF = 1e9;\\nint n = 4;\\nint source = 0, sink = 3;\\nvector<int> head;\\nvector<int> to_node, next_edge, cap, flow, cost;\\nvector<int> dist, parent_edge, parent_node;\\nvector<bool> in_queue;\\n\\nvoid add_edge(int u, int v, int c, int w) {\\n    to_node.push_back(v);\\n    cap.push_back(c);\\n    flow.push_back(0);\\n    cost.push_back(w);\\n    next_edge.push_back(head[u]);\\n    head[u] = to_node.size() - 1;\\n\\n    to_node.push_back(u);\\n    cap.push_back(0);\\n    flow.push_back(0);\\n    cost.push_back(-w);\\n    next_edge.push_back(head[v]);\\n    head[v] = to_node.size() - 1;\\n}\\n\\nbool spfa() {\\n    dist.assign(n, INF);\\n    parent_node.assign(n, -1);\\n    parent_edge.assign(n, -1);\\n    in_queue.assign(n, false);\\n    queue<int> q;\\n    q.push(source);\\n    dist[source] = 0;\\n    in_queue[source] = true;\\n    while (!q.empty()) {\\n        int u = q.front();\\n        q.pop();\\n        in_queue[u] = false;\\n        for (int e = head[u]; e != -1; e = next_edge[e]) {\\n            int v = to_node[e];\\n            if (cap[e] - flow[e] > 0 && dist[u] + cost[e] < dist[v]) {\\n                dist[v] = dist[u] + cost[e];\\n                parent_node[v] = u;\\n                parent_edge[v] = e;\\n                if (!in_queue[v]) {\\n                    q.push(v);\\n                    in_queue[v] = true;\\n                }\\n            }\\n        }\\n    }\\n    return dist[sink] != INF;\\n}\\n\\npair<int, int> mcmf() {\\n    int max_flow = 0;\\n    int min_cost = 0;\\n    while (spfa()) {\\n        int push = INF;\\n        for (int v = sink; v != source; v = parent_node[v]) {\\n            int e = parent_edge[v];\\n            push = min(push, cap[e] - flow[e]);\\n        }\\n        for (int v = sink; v != source; v = parent_node[v]) {\\n            int e = parent_edge[v];\\n            flow[e] += push;\\n            flow[e ^ 1] -= push;\\n            min_cost += push * cost[e];\\n        }\\n        max_flow += push;\\n    }\\n    return {max_flow, min_cost};\\n}\\n\\nint main() {\\n    head.assign(n, -1);\\n    add_edge(0, 1, 4, 2);\\n    add_edge(0, 2, 2, 5);\\n    add_edge(1, 2, 2, 1);\\n    add_edge(1, 3, 3, 4);\\n    add_edge(2, 3, 4, 3);\\n    mcmf();\\n    return 0;\\n}\\n`,
+  "code": `#include <iostream>
+#include <vector>
+#include <queue>
+#include <algorithm>
+
+using namespace std;
+
+const int INF = 1e9;
+int n = 4;
+int source = 0, sink = 3;
+vector<int> head;
+vector<int> to_node, next_edge, cap, flow, cost;
+vector<int> dist, parent_edge, parent_node;
+vector<bool> in_queue;
+
+void add_edge(int u, int v, int c, int w) {
+    to_node.push_back(v);
+    cap.push_back(c);
+    flow.push_back(0);
+    cost.push_back(w);
+    next_edge.push_back(head[u]);
+    head[u] = to_node.size() - 1;
+
+    to_node.push_back(u);
+    cap.push_back(0);
+    flow.push_back(0);
+    cost.push_back(-w);
+    next_edge.push_back(head[v]);
+    head[v] = to_node.size() - 1;
+}
+
+bool spfa() {
+    dist.assign(n, INF);
+    parent_node.assign(n, -1);
+    parent_edge.assign(n, -1);
+    in_queue.assign(n, false);
+    queue<int> q;
+    q.push(source);
+    dist[source] = 0;
+    in_queue[source] = true;
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        in_queue[u] = false;
+        for (int e = head[u]; e != -1; e = next_edge[e]) {
+            int v = to_node[e];
+            if (cap[e] - flow[e] > 0 && dist[u] + cost[e] < dist[v]) {
+                dist[v] = dist[u] + cost[e];
+                parent_node[v] = u;
+                parent_edge[v] = e;
+                if (!in_queue[v]) {
+                    q.push(v);
+                    in_queue[v] = true;
+                }
+            }
+        }
+    }
+    return dist[sink] != INF;
+}
+
+pair<int, int> mcmf() {
+    int max_flow = 0;
+    int min_cost = 0;
+    while (spfa()) {
+        int push = INF;
+        for (int v = sink; v != source; v = parent_node[v]) {
+            int e = parent_edge[v];
+            push = min(push, cap[e] - flow[e]);
+        }
+        for (int v = sink; v != source; v = parent_node[v]) {
+            int e = parent_edge[v];
+            flow[e] += push;
+            flow[e ^ 1] -= push;
+            min_cost += push * cost[e];
+        }
+        max_flow += push;
+    }
+    return {max_flow, min_cost};
+}
+
+int main() {
+    head.assign(n, -1);
+    add_edge(0, 1, 4, 2);
+    add_edge(0, 2, 2, 5);
+    add_edge(1, 2, 2, 1);
+    add_edge(1, 3, 3, 4);
+    add_edge(2, 3, 4, 3);
+    mcmf();
+    return 0;
+}
+`,
   "explanations": steps.map((s, idx) => ({
     "line": s.line,
     "text": s.text,

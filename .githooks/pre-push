@@ -51,6 +51,17 @@ if [ $SPLIT_STATUS -ne 0 ]; then
     exit 1
 fi
 
+echo "🔍 Checking C++ code strings for correct line breaks (newlines)..."
+node validation_tools/Syntax/check_code_newlines.cjs
+NEWLINE_STATUS=$?
+if [ $NEWLINE_STATUS -ne 0 ]; then
+    echo ""
+    echo "❌ ERROR: Single-line C++ code blocks with escaped newlines detected!"
+    echo "Push aborted. Run 'node validation_tools/Syntax/fix_code_newlines.cjs' to repair them before pushing."
+    echo "========================================="
+    exit 1
+fi
+
 echo "🔍 Checking debugger line alignments (out-of-bounds)..."
 node validation_tools/Debugger/check_all_out_of_bounds.cjs
 ALIGN_STATUS=$?

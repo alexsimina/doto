@@ -93,7 +93,88 @@ export const data = {
   "complexity": "### Complexitate\n\n- **Timp:** $O(E \\sqrt{V})$ deoarece numărul de faze (BFS + DFS) este limitat la $O(\\sqrt{V})$, iar fiecare fază parcurge graful în timp liniar $O(V + E)$.\n- **Spațiu:** $O(V + E)$ pentru listele de adiacență ale grafului, vectorii de cuplaje `pair_u` / `pair_v` și structurile auxiliare de distanțe.",
   "variations": "### Variații și Algoritmul lui Kuhn\n\n- **Algoritmul lui Kuhn**: Folosește doar DFS simplu pentru a căuta căi de augmentare pe rând, având o complexitate de $O(V \\cdot E)$. Deși mai simplu, este mai lent pe grafuri dense și mari.\n- **Flux Maxim**: Problema cuplajului maxim poate fi redusă la flux maxim adăugând o sursă $S$ conectată la $U$ și o destinație $T$ conectată la $V$. Hopcroft-Karp este echivalent cu algoritmul lui Dinic aplicat pe această rețea de flux.",
   "applications": "### Aplicații Reale\n\n- **Sisteme de recomandare**: Asignarea optimă a reclamelor/produselor către utilizatori.\n- **Alocarea resurselor**: Distribuirea sarcinilor către procesoare sau vehicule.\n- **Determining Maximum Independent Set**: În grafuri bipartite, conform teoremei lui König, putem găsi mulțimea independentă maximă folosind cuplajul maxim.",
-  "code": `#include <iostream>\\n#include <vector>\\n#include <queue>\\n#include <algorithm>\\n\\nusing namespace std;\\n\\nconst int INF = 1e9;\\nconst int NIL = 0;\\n\\nint n1 = 3;\\nint n2 = 3;\\nvector<vector<int>> adj;\\nvector<int> pair_u, pair_v, dist;\\n\\nbool bfs() {\\n    queue<int> q;\\n    for (int u = 1; u <= n1; u++) {\\n        if (pair_u[u] == NIL) {\\n            dist[u] = 0;\\n            q.push(u);\\n        } else {\\n            dist[u] = INF;\\n        }\\n    }\\n    dist[NIL] = INF;\\n    while (!q.empty()) {\\n        int u = q.front();\\n        q.pop();\\n        if (dist[u] < dist[NIL]) {\\n            for (int v : adj[u]) {\\n                if (dist[pair_v[v]] == INF) {\\n                    dist[pair_v[v]] = dist[u] + 1;\\n                    q.push(pair_v[v]);\\n                }\\n            }\\n        }\\n    }\\n    return (dist[NIL] != INF);\\n}\\n\\nbool dfs(int u) {\\n    if (u != NIL) {\\n        for (int v : adj[u]) {\\n            if (dist[pair_v[v]] == dist[u] + 1) {\\n                if (dfs(pair_v[v])) {\\n                    pair_v[v] = u;\\n                    pair_u[u] = v;\\n                    return true;\\n                }\\n            }\\n        }\\n        dist[u] = INF;\\n        return false;\\n    }\\n    return true;\\n}\\n\\nint hopcroft_karp() {\\n    pair_u.assign(n1 + 1, NIL);\\n    pair_v.assign(n2 + 1, NIL);\\n    dist.assign(n1 + 1, 0);\\n    int matching = 0;\\n    while (bfs()) {\\n        for (int u = 1; u <= n1; u++) {\\n            if (pair_u[u] == NIL && dfs(u)) {\\n                matching++;\\n            }\\n        }\\n    }\\n    return matching;\\n}\\n\\nint main() {\\n    adj.resize(n1 + 1);\\n    adj[1] = {1, 2};\\n    adj[2] = {2, 3};\\n    adj[3] = {1};\\n    hopcroft_karp();\\n    return 0;\\n}\\n`,
+  "code": `#include <iostream>
+#include <vector>
+#include <queue>
+#include <algorithm>
+
+using namespace std;
+
+const int INF = 1e9;
+const int NIL = 0;
+
+int n1 = 3;
+int n2 = 3;
+vector<vector<int>> adj;
+vector<int> pair_u, pair_v, dist;
+
+bool bfs() {
+    queue<int> q;
+    for (int u = 1; u <= n1; u++) {
+        if (pair_u[u] == NIL) {
+            dist[u] = 0;
+            q.push(u);
+        } else {
+            dist[u] = INF;
+        }
+    }
+    dist[NIL] = INF;
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        if (dist[u] < dist[NIL]) {
+            for (int v : adj[u]) {
+                if (dist[pair_v[v]] == INF) {
+                    dist[pair_v[v]] = dist[u] + 1;
+                    q.push(pair_v[v]);
+                }
+            }
+        }
+    }
+    return (dist[NIL] != INF);
+}
+
+bool dfs(int u) {
+    if (u != NIL) {
+        for (int v : adj[u]) {
+            if (dist[pair_v[v]] == dist[u] + 1) {
+                if (dfs(pair_v[v])) {
+                    pair_v[v] = u;
+                    pair_u[u] = v;
+                    return true;
+                }
+            }
+        }
+        dist[u] = INF;
+        return false;
+    }
+    return true;
+}
+
+int hopcroft_karp() {
+    pair_u.assign(n1 + 1, NIL);
+    pair_v.assign(n2 + 1, NIL);
+    dist.assign(n1 + 1, 0);
+    int matching = 0;
+    while (bfs()) {
+        for (int u = 1; u <= n1; u++) {
+            if (pair_u[u] == NIL && dfs(u)) {
+                matching++;
+            }
+        }
+    }
+    return matching;
+}
+
+int main() {
+    adj.resize(n1 + 1);
+    adj[1] = {1, 2};
+    adj[2] = {2, 3};
+    adj[3] = {1};
+    hopcroft_karp();
+    return 0;
+}
+`,
   "explanations": steps.map((s, idx) => ({
     "line": s.line,
     "text": s.text,

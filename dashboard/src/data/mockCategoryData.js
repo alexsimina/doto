@@ -28,6 +28,8 @@ import { data as data_Alg_Meet_in_the_Middle } from './categories/Core_Algorithm
 import { data as data_Alg_Square_Root_Decomp } from './categories/Core_Algorithms/Alg/Square_Root_Decomp.js';
 import { data as data_Alg_Mo_Algorithm } from './categories/Core_Algorithms/Alg/Mo_Algorithm.js';
 import { data as data_Math_Number_Theory } from './categories/Math_Geometry/Math/Number_Theory.js';
+import { data as data_Math_Sieve_of_Eratosthenes } from './categories/Math_Geometry/Math/Sieve_of_Eratosthenes.js';
+import { data as data_Math_Extended_Euclidean_Algorithm } from './categories/Math_Geometry/Math/Extended_Euclidean_Algorithm.js';
 import { data as data_Math_Combinatorics } from './categories/Math_Geometry/Math/Combinatorics.js';
 import { data as data_Geometry_Computational } from './categories/Math_Geometry/Geometry/Computational.js';
 import { data as data_Math_Advanced } from './categories/Math_Geometry/Math/Advanced.js';
@@ -128,6 +130,16 @@ import { data as data_Trees_Binary_Trie } from './categories/Tree_Algorithms/Tre
 import { data as data_Graphs_Bridges_Articulation } from './categories/Graph_Theory/Graphs/Bridges_Articulation.js';
 import { data as data_Graphs_Min_Cut } from './categories/Graph_Theory/Graphs/Min_Cut.js';
 
+import { data as data_Fundamentals_Complexity_Analysis } from './categories/Fundamentals/Complexity_Analysis.js';
+import { data as data_Strings_Hashing } from './categories/String_Processing/Strings/Hashing.js';
+import { data as data_Advanced_DP_Knuth_Optimization } from './categories/Dynamic_Programming/Advanced_DP/Knuth_Optimization.js';
+import { data as data_Trees_BST } from './categories/Data_Structures/Trees/BST.js';
+import { data as data_Data_Structures_DSU_Rollback } from './categories/Data_Structures/Data_Structures/DSU_Rollback.js';
+import { data as data_Trees_DSU_on_Trees } from './categories/Tree_Algorithms/Trees/DSU_on_Trees.js';
+import { data as data_Graphs_Two_SAT } from './categories/Graph_Theory/Graphs/Two_SAT.js';
+import { data as data_Graphs_Bipartite_Hopcroft_Karp } from './categories/Graph_Theory/Graphs/Bipartite/Hopcroft_Karp.js';
+import { data as data_Graphs_Max_Flow_MCMF } from './categories/Graph_Theory/Graphs/Max_Flow/MCMF.js';
+
 const mockCategoryData = {
   "Arrays": data_Arrays,
   "Alg/Divide_Conquer": data_Alg_Divide_Conquer,
@@ -158,6 +170,8 @@ const mockCategoryData = {
   "Alg/Square_Root_Decomp": data_Alg_Square_Root_Decomp,
   "Alg/Mo_Algorithm": data_Alg_Mo_Algorithm,
   "Math/Number_Theory": data_Math_Number_Theory,
+  "Math/Number_Theory/Sieve_of_Eratosthenes": data_Math_Sieve_of_Eratosthenes,
+  "Math/Number_Theory/Extended_Euclidean_Algorithm": data_Math_Extended_Euclidean_Algorithm,
   "Math/Combinatorics": data_Math_Combinatorics,
   "Geometry/Computational": data_Geometry_Computational,
   "Math/Advanced": data_Math_Advanced,
@@ -260,6 +274,16 @@ const mockCategoryData = {
   "Trees/Binary_Trie": data_Trees_Binary_Trie,
   "Graphs/Bridges_Articulation": data_Graphs_Bridges_Articulation,
   "Graphs/Min_Cut": data_Graphs_Min_Cut,
+  
+  "Fundamentals/Complexity_Analysis": data_Fundamentals_Complexity_Analysis,
+  "Strings/Hashing": data_Strings_Hashing,
+  "Advanced_DP/Knuth_Optimization": data_Advanced_DP_Knuth_Optimization,
+  "Trees/BST": data_Trees_BST,
+  "Data_Structures/DSU_Rollback": data_Data_Structures_DSU_Rollback,
+  "Trees/DSU_on_Trees": data_Trees_DSU_on_Trees,
+  "Graphs/Two_SAT": data_Graphs_Two_SAT,
+  "Graphs/Bipartite/Hopcroft_Karp": data_Graphs_Bipartite_Hopcroft_Karp,
+  "Graphs/Max_Flow/MCMF": data_Graphs_Max_Flow_MCMF,
 };
 
 export default mockCategoryData;

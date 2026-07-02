@@ -135,7 +135,18 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
       'lca_rmq': { x: 5770, y: 1550 },
       'mst': { x: 3430, y: 2060 },
       'mst_kruskal': { x: 3270, y: 2240 },
-      'mst_prim': { x: 3590, y: 2240 }
+      'mst_prim': { x: 3590, y: 2240 },
+      'math_euclid': { x: -3180, y: 720 },
+      'math_sieve': { x: -3500, y: 900 },
+      'fund_complexity': { x: 880, y: 160 },
+      'str_hashing': { x: 1240, y: 760 },
+      'dp_opt_knuth': { x: -1060, y: 2220 },
+      'ds_bst': { x: 600, y: 1520 },
+      'ds_dsu_rollback': { x: 200, y: 2240 },
+      'graph_2sat': { x: 2870, y: 2090 },
+      'graph_hopcroft_karp': { x: 5600, y: 1730 },
+      'graph_mcmf': { x: 4890, y: 2090 },
+      'tree_dsu': { x: 2020, y: 1590 }
     };
 
     return rawNodes.map(rawNode => {
@@ -777,26 +788,26 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
             {/* Main Canvas Grunge Halftone Pattern (Optimized: distressed shapes defined statically) */}
             <pattern id="main-grunge-halftone" width="60" height="60" patternUnits="userSpaceOnUse" patternTransform="rotate(25)">
               {/* Central primary dot (distorted/split to look grunge) */}
-              <circle cx="30" cy="30" r="3.5" fill="rgba(169, 183, 198, 0.04)" />
-              <circle cx="28.5" cy="31.2" r="1.5" fill="rgba(169, 183, 198, 0.02)" />
-              <circle cx="31.5" cy="28.8" r="2.0" fill="rgba(169, 183, 198, 0.03)" />
+              <circle cx="30" cy="30" r="4.2" fill="rgba(169, 183, 198, 0.15)" />
+              <circle cx="28.5" cy="31.2" r="1.8" fill="rgba(169, 183, 198, 0.09)" />
+              <circle cx="31.5" cy="28.8" r="2.2" fill="rgba(169, 183, 198, 0.11)" />
               
               {/* Corner dots */}
-              <circle cx="0" cy="0" r="1.8" fill="rgba(169, 183, 198, 0.03)" />
-              <circle cx="2" cy="1" r="1.0" fill="rgba(169, 183, 198, 0.02)" />
-              <circle cx="60" cy="0" r="1.8" fill="rgba(169, 183, 198, 0.03)" />
-              <circle cx="0" cy="60" r="1.8" fill="rgba(169, 183, 198, 0.03)" />
-              <circle cx="60" cy="60" r="1.8" fill="rgba(169, 183, 198, 0.03)" />
+              <circle cx="0" cy="0" r="2.2" fill="rgba(169, 183, 198, 0.11)" />
+              <circle cx="2" cy="1" r="1.2" fill="rgba(169, 183, 198, 0.07)" />
+              <circle cx="60" cy="0" r="2.2" fill="rgba(169, 183, 198, 0.11)" />
+              <circle cx="0" cy="60" r="2.2" fill="rgba(169, 183, 198, 0.11)" />
+              <circle cx="60" cy="60" r="2.2" fill="rgba(169, 183, 198, 0.11)" />
               
               {/* Distressed splatters/noise dots within the grid to simulate grunge wear */}
-              <circle cx="15" cy="12" r="0.8" fill="rgba(169, 183, 198, 0.02)" />
-              <circle cx="42" cy="18" r="1.2" fill="rgba(169, 183, 198, 0.02)" />
-              <circle cx="18" cy="45" r="1.0" fill="rgba(169, 183, 198, 0.02)" />
-              <circle cx="48" cy="42" r="0.7" fill="rgba(169, 183, 198, 0.02)" />
+              <circle cx="15" cy="12" r="1.0" fill="rgba(169, 183, 198, 0.08)" />
+              <circle cx="42" cy="18" r="1.4" fill="rgba(169, 183, 198, 0.08)" />
+              <circle cx="18" cy="45" r="1.2" fill="rgba(169, 183, 198, 0.08)" />
+              <circle cx="48" cy="42" r="0.8" fill="rgba(169, 183, 198, 0.06)" />
               
               {/* Tiny dust/hair scratch simulation in the pattern */}
-              <path d="M 12 25 Q 14 27 13 30" stroke="rgba(169, 183, 198, 0.02)" strokeWidth="0.8" fill="none" />
-              <path d="M 45 10 Q 47 8 49 11" stroke="rgba(169, 183, 198, 0.02)" strokeWidth="0.6" fill="none" />
+              <path d="M 12 25 Q 14 27 13 30" stroke="rgba(169, 183, 198, 0.08)" strokeWidth="0.9" fill="none" />
+              <path d="M 45 10 Q 47 8 49 11" stroke="rgba(169, 183, 198, 0.07)" strokeWidth="0.7" fill="none" />
             </pattern>
             
             {/* Fade mask for grid edges */}
@@ -837,7 +848,7 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
           </defs>
 
           {/* Grid Backgrounds */}
-          <rect width="100%" height="100%" fill="url(#main-grunge-halftone)" mask="url(#grid-mask)" style={{ opacity: 0.85 }} />
+          <rect width="100%" height="100%" fill="url(#main-grunge-halftone)" mask="url(#grid-mask)" />
           <rect width="100%" height="100%" fill="url(#techgrid)" mask="url(#grid-mask)" style={{ mixBlendMode: 'screen', opacity: 0.65 }} />
           {/* Tech Blueprint Ruler Guide Lines & Meta Details */}
           <line x1="0" y1={OFFSET_Y} x2="12000" y2={OFFSET_Y} stroke="rgba(60, 63, 65, 0.15)" strokeWidth="1" strokeDasharray="6 6" />
@@ -1281,8 +1292,13 @@ const SyllabusTree = ({ userXp = {}, onNodeClick }) => {
             nodeBg = '#1e1f22';
             borderOverlay = '1px solid #2b2d30';
             shadow = 'none';
+          } else if (node.status === 'completed') {
+            // For completed nodes (100%): slightly more illuminated glow and sharper border
+            const glowRadius = 18;
+            borderOverlay = `1.5px solid ${activeColor}`;
+            shadow = `0 6px 18px rgba(0, 0, 0, 0.4), 0 0 ${glowRadius}px ${domainBorderColor}, 0 0 ${glowRadius * 1.5}px ${domainBorderColor.replace('0.5', '0.22')}`;
           } else {
-            // For both 'in-progress' and 'completed' (100%)
+            // For 'in-progress'
             const glowRadius = 3 + (confidence / 100) * 12; // scales from 3px up to 15px
             borderOverlay = `1.5px solid ${domainBorderColor}`;
             shadow = `0 4px 15px rgba(0, 0, 0, 0.35), 0 0 ${glowRadius}px ${domainBorderColor}`;
